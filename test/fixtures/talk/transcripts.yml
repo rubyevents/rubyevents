@@ -8,6 +8,7 @@
 #  enhanced_transcript :text
 #  language            :string           default("en"), not null, uniquely indexed => [talk_id]
 #  raw_transcript      :text
+#  translated          :boolean          default(FALSE), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  talk_id             :integer          not null, indexed, uniquely indexed => [language]

@@ -2,7 +2,7 @@
   <% series_with_todos.each do |series_data| %>
     <div class="card bg-base-200">
       <div class="card-body p-4">
-        <div class="flex items-center gap-2 mb-3">
+        <div class="mb-3 flex items-center gap-2">
           <span class="badge badge-primary"><%= series_data[:total_count] %></span>
 
           <% if series_data[:series] %>
@@ -10,27 +10,29 @@
               <%= series_data[:series].name %>
             <% end %>
           <% else %>
-            <span class="font-bold text-lg"><%= series_data[:series_slug] %></span>
+            <span class="text-lg font-bold"><%= series_data[:series_slug] %></span>
           <% end %>
         </div>
 
         <% series_data[:events].each do |event_data| %>
-          <div class="collapse collapse-arrow bg-base-300 mb-1">
+          <div class="collapse collapse-arrow mb-1 bg-base-300">
             <input type="checkbox">
-            <div class="collapse-title py-2 min-h-0 font-medium flex items-center gap-2">
-              <span class="badge badge-sm badge-secondary"><%= event_data[:total_count] %></span>
+
+            <div class="collapse-title flex min-h-0 items-center gap-2 py-2 font-medium">
+              <span class="badge badge-secondary badge-sm"><%= event_data[:total_count] %></span>
 
               <% if event_data[:event] %>
                 <%= link_to event_path(event_data[:event].slug), class: "hover:underline" do %>
                   <%= event_data[:event].title %>
                 <% end %>
                 <% if event_data[:event].end_date %>
-                  <span class="text-base-content/50 text-sm">(<%= event_data[:event].end_date.strftime("%b %Y") %>)</span>
+                  <span class="text-sm text-base-content/50">(<%= event_data[:event].end_date.strftime("%b %Y") %>)</span>
                 <% end %>
               <% else %>
                 <span><%= event_data[:event_slug] %></span>
               <% end %>
             </div>
+
             <div class="collapse-content">
               <table class="table table-xs">
                 <thead>
@@ -39,6 +41,7 @@
                     <th>Content</th>
                   </tr>
                 </thead>
+
                 <tbody>
                   <% event_data[:files].each do |file, todos| %>
                     <% todos.each do |todo| %>
@@ -48,7 +51,8 @@
                             <%= File.basename(todo.file) %>:<%= todo.line %>
                           <% end %>
                         </td>
-                        <td><code class="text-xs break-all"><%= todo.content %></code></td>
+
+                        <td><code class="break-all text-xs"><%= todo.content %></code></td>
                       </tr>
                     <% end %>
                   <% end %>

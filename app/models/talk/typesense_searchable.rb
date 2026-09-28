@@ -3,6 +3,9 @@
 module Talk::TypesenseSearchable
   extend ActiveSupport::Concern
 
+  SEARCH_QUERY_BY = "title,slug,summary,description,kind,speaker_names,speaker_alias_names,speaker_github_handles,speaker_twitter_handles,event_name,event_alias_names,series_name,series_alias_names,topic_names,resource_names,city,country_name,state_name,continent,location,transcript_text"
+  SEARCH_QUERY_BY_WEIGHTS = "10,9,5,3,3,8,7,9,9,4,4,4,4,6,7,3,3,2,2,2,1"
+
   included do
     include ::Typesense
 
@@ -314,11 +317,15 @@ module Talk::TypesenseSearchable
       TypesenseIndexJob.perform_later(record, remove ? "typesense_remove_from_index!" : "typesense_index!")
     end
 
+    def typesense_multi_search_config
+      {collection: "Talk", query_by: SEARCH_QUERY_BY, query_by_weights: SEARCH_QUERY_BY_WEIGHTS, filter_by: "watchable:=true"}
+    end
+
     def typesense_search_talks(query, options = {})
-      query_by_fields = "title,slug,summary,description,kind,speaker_names,speaker_alias_names,speaker_github_handles,speaker_twitter_handles,event_name,event_alias_names,series_name,series_alias_names,topic_names,resource_names,city,country_name,state_name,continent,location,transcript_text"
+      query_by_fields = SEARCH_QUERY_BY
 
       search_options = {
-        query_by_weights: "10,9,5,3,3,8,7,9,9,4,4,4,4,6,7,3,3,2,2,2,1",
+        query_by_weights: SEARCH_QUERY_BY_WEIGHTS,
         per_page: options[:per_page] || 20,
         page: options[:page] || 1,
         highlight_full_fields: "title,summary",

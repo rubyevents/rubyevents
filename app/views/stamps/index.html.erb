@@ -7,12 +7,20 @@
 </style>
 
 <div class="container mx-auto px-4 py-8">
-  <div class="max-w-7xl mx-auto">
-    <h1 class="text-4xl font-bold mb-8"><%= title "Ruby Passport Stamps" %></h1>
+  <div class="mx-auto max-w-7xl">
+    <h1 class="mb-8 text-4xl font-bold"><%= title "Ruby Passport Stamps" %></h1>
 
     <% if @stamps.empty? %>
       <div class="alert alert-info">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-6 w-6 shrink-0 stroke-current">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+
         <span>No passport stamps available yet. Run <code>rake export_stamps</code> to generate them from the Sketch file.</span>
       </div>
     <% else %>
@@ -26,8 +34,9 @@
       </div>
 
       <% if @missing_stamp_countries.present? %>
-        <div class="mb-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-          <h3 class="text-lg font-semibold mb-2 text-yellow-800">Countries with events but no stamps:</h3>
+        <div class="mb-8 rounded-lg border border-yellow-200 bg-yellow-50 p-4">
+          <h3 class="mb-2 text-lg font-semibold text-yellow-800">Countries with events but no stamps:</h3>
+
           <div class="flex flex-wrap gap-2">
             <% @missing_stamp_countries.each do |country| %>
               <div class="badge badge-warning badge-outline">
@@ -40,16 +49,23 @@
 
       <% if @event_stamps.any? %>
         <div class="mb-12">
-          <h2 class="text-2xl font-semibold mb-6 text-gray-800">Event Stamps</h2>
+          <h2 class="mb-6 text-2xl font-semibold text-gray-800">Event Stamps</h2>
 
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+          <div class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
             <% @event_stamps.each do |stamp| %>
-              <div class="card bg-base-100 border border-gray-200 hover:border-gray-400 transition-colors duration-300 passport-stamp-card">
+              <div
+                class="
+                  passport-stamp-card card border border-gray-200 bg-base-100 transition-colors duration-300
+                  hover:border-gray-400
+                "
+              >
                 <%= ui_stamp(stamp, rotate: true, size: :xl, class: "mx-auto p-4", zoom_effect: true) %>
-                <div class="card-body items-center text-center p-4">
+
+                <div class="card-body items-center p-4 text-center">
                   <h3 class="card-title text-sm">
                     <%= stamp.name %>
                   </h3>
+
                   <% if stamp.event %>
                     <div class="card-actions mt-2">
                       <%= link_to "View Event",
@@ -66,16 +82,23 @@
 
       <% @stamps_by_continent.each do |continent, stamps| %>
         <div class="mb-12">
-          <h2 class="text-2xl font-semibold mb-6 text-gray-800"><%= continent || "Unknown" %></h2>
+          <h2 class="mb-6 text-2xl font-semibold text-gray-800"><%= continent || "Unknown" %></h2>
 
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+          <div class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
             <% stamps.each do |stamp| %>
-              <div class="card bg-base-100 border border-gray-200 hover:border-gray-400 transition-colors duration-300 passport-stamp-card">
+              <div
+                class="
+                  passport-stamp-card card border border-gray-200 bg-base-100 transition-colors duration-300
+                  hover:border-gray-400
+                "
+              >
                 <%= ui_stamp(stamp, rotate: true, size: :xl, class: "mx-auto p-4", zoom_effect: true) %>
-                <div class="card-body items-center text-center p-4">
+
+                <div class="card-body items-center p-4 text-center">
                   <h3 class="card-title text-sm">
                     <%= stamp.name %>
                   </h3>
+
                   <% if stamp.has_country? %>
                     <div class="card-actions mt-2">
                       <%= link_to "View Events",

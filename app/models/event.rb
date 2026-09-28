@@ -3,31 +3,32 @@
 # Table name: events
 # Database name: primary
 #
-#  id                  :integer          not null, primary key
-#  banner_background   :string
-#  city                :string
-#  country_code        :string           indexed => [state_code]
-#  date                :date
-#  date_precision      :string           default("day"), not null
-#  end_date            :date
-#  featured_background :string
-#  featured_color      :string
-#  geocode_metadata    :json             not null
-#  home_sort_date      :date
-#  kind                :string           default("event"), not null, indexed
-#  latitude            :decimal(10, 6)
-#  location            :string
-#  longitude           :decimal(10, 6)
-#  name                :string           default(""), not null, indexed
-#  slug                :string           default(""), not null, uniquely indexed
-#  start_date          :date
-#  state_code          :string           indexed => [country_code]
-#  talks_count         :integer          default(0), not null
-#  website             :string           default("")
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  canonical_id        :integer          indexed
-#  event_series_id     :integer          not null, indexed
+#  id                        :integer          not null, primary key
+#  banner_background         :string
+#  city                      :string
+#  country_code              :string           indexed => [state_code]
+#  date                      :date
+#  date_precision            :string           default("day"), not null
+#  end_date                  :date
+#  featured_background       :string
+#  featured_color            :string
+#  geocode_metadata          :json             not null
+#  home_sort_date            :date
+#  kind                      :string           default("event"), not null, indexed
+#  latitude                  :decimal(10, 6)
+#  location                  :string
+#  longitude                 :decimal(10, 6)
+#  name                      :string           default(""), not null, indexed
+#  recordings_published_date :date
+#  slug                      :string           default(""), not null, uniquely indexed
+#  start_date                :date
+#  state_code                :string           indexed => [country_code]
+#  talks_count               :integer          default(0), not null
+#  website                   :string           default("")
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  canonical_id              :integer          indexed
+#  event_series_id           :integer          not null, indexed
 #
 # Indexes
 #
@@ -158,6 +159,10 @@ class Event < ApplicationRecord
     start_date.present? && end_date.present? && (start_date..end_date).cover?(Date.today)
   end
 
+  def live?
+    happening? && schedule.exist?
+  end
+
   def happening_tomorrow?
     start_date.present? && start_date == Date.today + 1
   end
@@ -202,6 +207,29 @@ class Event < ApplicationRecord
     else
       Float::INFINITY
     end
+  end
+
+  def self.featured(limit: 15, today: Date.today)
+    base = distinct.not_meetup.featurable.where.not(home_sort_date: nil)
+
+    ids = (
+      base.where.not(recordings_published_date: nil).pluck(:id) +
+      base.where(start_date: ..today, end_date: today..).pluck(:id) +
+      base.where(end_date: (today - FEATURED_RECENTLY_ENDED_WINDOW)..today.prev_day).pluck(:id) +
+      base.where(start_date: today.next_day..(today + FEATURED_UPCOMING_WINDOW)).pluck(:id) +
+      base.joins(:cfps).where(cfps: {close_date: today..(today + FEATURED_CFP_CLOSING_WINDOW)}).where.not(cfps: {link: nil}).pluck(:id)
+    ).uniq
+
+    ordered_ids = where(id: ids)
+      .includes(:cfps)
+      .sort_by { |event| event.featured_distance(today: today) }
+      .reject { |event| event.static_metadata.cancelled? }
+      .first(limit)
+      .map(&:id)
+
+    where(id: ordered_ids)
+      .includes(:series, :keynote_speakers, :speakers, :cfps)
+      .in_order_of(:id, ordered_ids)
   end
 
   def self.find_by_name_or_alias(name)
@@ -396,6 +424,7 @@ class Event < ApplicationRecord
         host: "#{request.protocol}#{request.host}:#{request.port}"),
       featured_background: static_metadata.featured_background,
       featured_color: static_metadata.featured_color,
+      live: live?,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end

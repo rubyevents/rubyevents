@@ -1,3 +1,1246 @@
-# TODO: Add talks and videos
 ---
-[]
+## Day 1 - 2014-09-18
+
+- id: "opening-rubykaigi-2014"
+  title: "Opening"
+  raw_title: "Opening (Shintaro Kakutani)"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  language: "Japanese"
+  track: "Hall A"
+  video_provider: "not_recorded"
+  video_id: "opening-rubykaigi-2014"
+  description: ""
+  speakers:
+    - Shintaro Kakutani
+
+- id: "tomoyuki-chikanaga-rubykaigi-2014"
+  title: "CRuby Committers Who's Who in 2014"
+  raw_title: "CRuby Committers Who's Who in 2014 - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T12:16:15Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "http://www.slideshare.net/nagachika/crubycommitterswhoswhoin2014"
+  video_provider: "youtube"
+  video_id: "uSVuNzyXo-o"
+  description: |-
+    The "CRuby Committers Who's Who" is back! At RubyKaigi 2013, I gave a presentation titled "CRuby Committers Who's Who in 2013". This year, many committers will attend RubyKaigi 2014 as speakers. In this presentation, I'll introduce their contributions to CRuby development.
+  speakers:
+    - Tomoyuki Chikanaga
+
+- id: "koichi-sasada-rubykaigi-2014"
+  title: "Building the Ruby interpreter -- What is easy and what is difficult?"
+  raw_title: "Build-up Ruby interepreter - What is easy and what is difficult? - RubyKaigi 2014"
+  kind: "keynote"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-09-29T11:48:03Z"
+  language: "Japanese"
+  track: "Hall A"
+  video_provider: "youtube"
+  video_id: "C92x7ce5Zsc"
+  description: |-
+    Ten years ago, I started developing YARV: Yet Another RubyVM to make the Ruby interpreter faster. Today, a decade later, I continue work toward improving quality (includes performance) of the Ruby interpreter in my job. In this presentation, I will show you I will show you what is easy, and what is difficult to improve quality of the Ruby interpreter. The difficulties include what I'm facing on. How about to think of them with me?
+  speakers:
+    - Koichi Sasada
+
+- id: "narihiro-nakamura-rubykaigi-2014"
+  title: "Symbol GC"
+  raw_title: "Symbol GC - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T12:16:27Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "http://www.slideshare.net/authorNari/symbol-gc"
+  video_provider: "youtube"
+  video_id: "rAnK9UHs_Kc"
+  description: |-
+    I'll introduce Symbol GC for Ruby 2.2.0. I'll talk about these topics.
+
+    - Is Symbol of other programming languages collectable?
+    - How difficult do CRuby collect Symbol.
+    - How do I implement Symbol GC.
+  speakers:
+    - Narihiro Nakamura
+
+- id: "jonathan-mukai-heidt-rubykaigi-2014"
+  title: "Controller Testing: You’re Doing It Wrong"
+  raw_title: "Controller Testing: You’re Doing It Wrong - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T23:43:35Z"
+  language: "English"
+  track: "Hall B"
+  slides_url: "http://www.slideshare.net/johnnygroundwork/controller-testing-youre-doing-it-wrong"
+  video_provider: "youtube"
+  video_id: "AuhX9DFu9v4"
+  description: |-
+    How do you feel about your controller testing strategy? Do you feel begrudgingly obligated to write them? Do you find yourself stubbing methods like find_by only to feel a vague sense of dissatisfaction? Is your test suite soul-crushingly slow because you’re relying on integration specs to test controllers? Do you write controller specs at all?
+
+    Rails controllers are wonderfully idiomatic and declarative to the point of being almost redundant. This is a good thing; it keeps many concerns like authentication and server response consistent while keeping business logic in models where it belongs. But this same simplicity leaves many developers conflicted about how and what to test in controller specs. To properly test Rails controllers we need a testing strategy as declarative as the controllers themselves. Come find out how to write controller specs that are as simple and concise as well written Rails controllers!
+  speakers:
+    - Jonathan Mukai-Heidt
+
+- id: "rei-odaira-rubykaigi-2014"
+  title: "Eliminating Giant VM Lock in Ruby through Hardware Transactional Memory"
+  raw_title: "Eliminating Giant VM Lock in Ruby through Hardware Transactional Memory - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T12:16:51Z"
+  language: "Japanese"
+  track: "Hall A"
+  video_provider: "youtube"
+  video_id: "EA_yKAdjTA8"
+  description: |-
+    MRI uses a Giant VM Lock (GVL) to simplify its internal design, but this kind of lock lowers the multi-thread performance on multi-core machines. In this talk, I will show our results of eliminating the GVL of MRI using Hardware Transactional Memory (HTM). HTM is a new hardware feature implemented in recent CPUs and allows multiple threads to access shared data without using locks. Through HTM, multiple Ruby threads can execute (mostly) in parallel without any source code modification, and the execution results are still compatible with those of the original MRI. Our results show that HTM achieved 1.6- and 1.2-fold speedups in WEBrick and Ruby on Rails, respectively. A code patch for our changes will be made available shortly from our Web site.
+  speakers:
+    - Rei Odaira
+
+- id: "rob-sanheim-rubykaigi-2014"
+  title: "Continuous Delivery at GitHub"
+  raw_title: "Continuous Delivery at GitHub - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T23:43:58Z"
+  language: "English"
+  track: "Hall B"
+  slides_url: "https://speakerdeck.com/rsanheim/continuous-delivery-at-github"
+  video_provider: "youtube"
+  video_id: "Rhvri5cozTc"
+  description: |-
+    Continuous Delivery (CD) is the practice of building software that is ready to be deployed to production at all times. CD requires a stable, automated build pipeline, with simple, push button deployments, guided by feedback and metrics on the health of the production system. By refining and shortening feedback loops throughout the entire software process, it is possible to continually be delivering high-quality, working software to happy customers.
+
+    At GitHub, we deploy hundreds of times in the course of an average day. We practice continuous delivery from design, development and ops, through our release processes and into customer support. This talk will cover many of the techniques and tools we use for continuous delivery at GitHub, including pull requests, feature toggles, chat ops and continuous integration and deployment. We will also discuss core principles so you can apply these lessons in your own Ruby deployment environment, software process, and business.
+  speakers:
+    - Rob Sanheim
+
+- id: "szu-kai-hsu-rubykaigi-2014"
+  title: "Cores unleashed Part II: Introduction to GobiesVM (and Software Transactional Memory)"
+  raw_title: "Cores unleashed Part II: Introduction to GobiesVM - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T12:17:06Z"
+  language: "English"
+  track: "Hall A"
+  slides_url: "https://speakerdeck.com/brucehsu/core-unleashed-part-ii-introduction-to-gobiesvm-and-stm-at-rubykaigi-2014"
+  video_provider: "youtube"
+  video_id: "PnL2VsZ623U"
+  description: |-
+    Parallelism in Ruby has been continuously, if not extensively, studied recently. Besides MRI which uses global interpreter lock to maintain thread-safety meanwhile eliminates the possibility to exploit multi-core processing power, most alternative Ruby implementations take the fine-grained lock approach for maximum CPU utilization. Yet traditional locking mechanism requires careful design or could cause poor performance and unpredictable results. Locking mechanism itself is also too sophisticated for general developers who wish to take advantage of modern hardware.
+
+    GobiesVM aims to solve this dilemma via a state-of-the-art Software Transactional Memory (STM) approach. This talk will introduce architecture and internals of GobiesVM, the way STM works and how STM affects the performance regarding parallel Ruby programs.
+
+    You can find GobiesVM at https://github.com/brucehsu/GobiesVM
+  speakers:
+    - Szu-Kai Hsu
+
+- id: "keiko-oda-rubykaigi-2014"
+  title: "What's wrong with your app?"
+  raw_title: "What's wrong with your app? - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T23:44:18Z"
+  language: "English"
+  track: "Hall B"
+  slides_url: "https://speakerdeck.com/keiko713/whats-wrong-with-your-app"
+  video_provider: "youtube"
+  video_id: "xqqxO0HBsSM"
+  description: |-
+    When you start seeing the problem for your production app, what would you do? How would you look into that problem? As a support engineer, I've seen many Rails apps that are having various problems. This talk will cover what you can do when you see the problem, and what you should start doing right now to prevent the problem from happening, based on a real experience.
+  speakers:
+    - Keiko Oda
+
+- id: "satoshi-egi-rubykaigi-2014"
+  title: "Non-Linear Pattern Matching against Unfree Data Types in Ruby (Egison Pattern Matching in Ruby)"
+  raw_title: "Non-Linear Pattern Matching against Unfree Data Types in Ruby - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T12:17:26Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "http://www.slideshare.net/rakutentech/ruby-egison"
+  video_provider: "youtube"
+  video_id: "LC3AJsfjfr8"
+  description: |-
+    We have designed and implemented the library that realizes non-linear pattern matching against unfree data types. We can directly express pattern-matching against lists, multisets, and sets using this library. The library is already released via RubyGems.org as one of gems.
+
+    The expressive power of this gem derives from the theory behind the Egison programming language and is so strong that we can write poker-hands analyzer in a single pattern matching expression. This is impossible even in any other state-of-the-art programming language.
+
+    Pattern matching is one of the most important features of programming language for intuitive representation of algorithms. Our library simplifies code by replacing not only complex conditional branches but also nested loops with an intuitive pattern-matching expression.
+
+    The source code of the library is open to pubic with sample code. Please check it on GitHub.
+
+    配列やリストだけでなく、多重集合や集合に対しても柔軟なパターンマッチをRubyで行えるようにするライブラリを私は設計・実装しました。
+
+    このパターンマッチは非常に強力な表現力を持ち、例えばポーカーの役判定を行うようなプログラムを1つのパターンマッチ式で記述できます。 このようなパターンマッチは、私が設計・開発したプログラミング言語Egisonを除いて、最先端のプログラミング言語を用いても不可能です。
+
+    パターンマッチはプログラムを直感的に記述するために非常に重要なプログラミング言語の機能です。 私の開発したライブラリを使えば、複雑な条件分岐だけでなく、何重にもネストするループも、パターンマッチを用いて簡潔に記述できるようになります。
+
+    本ライブラリはRubyGems.org経由で簡単にインストールできます。ソースコードはサンプルコードとともにGitHubで公開されています。ぜひ試してみてください。
+
+    (We are planning to talk in Japanese, but slides in English.)
+  speakers:
+    - Satoshi Egi
+
+- id: "yasuo-honda-rubykaigi-2014"
+  title: "Introduce Oracle enhanced adapter for ActiveRecord, another choice for your Rails database."
+  raw_title: "Introduce Oracle enhanced adapter for ActiveRecord - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T23:44:30Z"
+  language: "Japanese"
+  track: "Hall B"
+  slides_url: "https://speakerdeck.com/yahonda/introduce-oracle-enhanced-adapter-with-rails"
+  video_provider: "youtube"
+  video_id: "7kwhWaPeoP4"
+  description: |-
+    Oracle Enhanced Adapter is one of the 3rd party ActiveRecord database adapters. It supports Rails from 2.3 to 4.1. It has been developing well since version 1.5.0 was released on the day same day Rails 4.0.1 was out, November 1st 2013. Now we are on the way to support Rails 4.2.
+
+    In Rails world MySQL and PostgreSQL are two giant databases, Oracle database does not have much presense here. Although it has better features such as good optimizers it also has some non-standard features like handling empty string as NULL. However, this situation has been changing. Finally Oracle 12c implements row limits and offset then developers can write better Top-N queries without dirty subquery and rownum statements. I'll introduce a experimental Arel implementations without ugly order_hacks method.
+
+    I have been working for Oracle enhanced adapter since August 2011, starting from Rails 4 support. It is still the first 3 years. Fortunately I'm still enjoying to do that, yes I'm not burned out yet. I'm sorry that I have nothing to do with your license fee but we can keep contributing source code to resolve your technical issues. I'd be glad to hear that anyone start using Oracle database and Oracle enhanced adapter with your Rails applications.
+
+    Oracle Enhanced Adapterは、ActiveRecord 3rd partyデータベースアダプタです。Rails 2.3から4.1に対応しており、Rails 4への対応も4.0.1がリリースされた2013年11月1日と同日から対応するなど、着実なサポートが継続されており、現在はRails 4.2の対応が進んでいます。
+
+    ご存じの通り、Railsの世界ではMySQLとPostgreSQLのふたつのデータベースが大きなシェアをもっており、Oracleの利用報告はごくわずかです。優れたオプティマイザなどの機能を持つ反面、NULLと空文字を同様に扱うなど、"標準"とはことなる独自の実装がなされてきましたが、近年では他データベースでの便利な機能やSQL標準の対応もされるようになりました。なかでも、Oracle 12cでは、row limits、offsetの対応が追加され、ようやくまともなTop-N queryが書けるようになりました。これにより、悩ましいArelでのorder_hacksが削除されたシンプルなArel実装を紹介します。
+
+    私は2011年の8月からOracle enhanced adapterのRails4対応から、まだ最初の3年間ではありますが、燃え尽きることなくやってくることができました。 ライセンス費用は私にはどうすることもできませんが、Railsで利用するための技術的な課題が解決されることで、OracleをRailsのデータベースとして採用するきっかけとなれば幸いです。
+  speakers:
+    - Yasuo Honda
+
+- id: "laurent-sansonetti-rubykaigi-2014"
+  title: "Inside RubyMotion for Android"
+  raw_title: "Inside RubyMotion for Android - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T12:17:43Z"
+  language: "English"
+  track: "Hall A"
+  video_provider: "youtube"
+  video_id: "l4-uFXhtoBE"
+  description: |-
+    RubyMotion is a Ruby-based toolchain for iOS and OS X development, and it now supports Android development.
+
+    RubyMotion for Android features a brand-new runtime based on Java. It is a new implementation of Ruby.
+
+    In this case, we will go inside RubyMotion for Android and cover how things work. Java API call, memory management, application static compilation, etc. It will be very technical.
+  speakers:
+    - Laurent Sansonetti
+
+- id: "toru-kawamura-rubykaigi-2014"
+  title: "Hypermedia: the Missing Element to Building Adaptable Web APIs in Rails"
+  raw_title: "Hypermedia: the Missing Element to Building Adaptable Web APIs in Rails - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T23:44:44Z"
+  language: "Japanese"
+  track: "Hall B"
+  slides_url: "http://www.slideshare.net/tkawa1/rubykaigi2014-hypermedia-the-missing-element"
+  video_provider: "youtube"
+  video_id: "_Tatz4-N08g"
+  description: |-
+    The development of Web APIs has seen a surge in popularity in recent years. It is relatively easy to build Web APIs with Rails. You can generate JSON using Jbuilder or RABL. You can use 'respond_to' to share logic with a web application. You can also use another framework that specializes in Web APIs called Grape. However, there are some issues that come up after creating your API. Is your API sustainable? Does it break clients when you change your API? The versioning of APIs has drawn a lot of attention in blogs and podcasts such as Rebuild.fm. What does such versioning do for your API?
+
+    The key to troubleshooting these problems and to creating a well-designed Web API is "Hypermedia".
+
+    In this session, I will translate lessons from the book "RESTful Web APIs" (O'Reilly) to practical hints in building APIs using Rails, with a focus on hypermedia.
+  speakers:
+    - Toru Kawamura
+
+- id: "thomas-e-enebo-rubykaigi-2014"
+  title: "JRuby 9000 Project Update"
+  raw_title: "JRuby 9000 Project Update - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T12:17:54Z"
+  language: "English"
+  track: "Hall A"
+  video_provider: "youtube"
+  video_id: "vZH6m6-c6Co"
+  description: |-
+    JRuby is a fast, compliant Ruby implementation which can make use of many features of the Java platform. We are rapidly nearing completion of our next version, JRuby 9000. JRuby 9000 is a major release featuring Ruby 2.1 compliance, a new runtime implementation, rewritten IO subsystem, and several other large changes. We are also making some new tooling to make memory management problems easier to diagnose as a Ruby programmer. Come hear about the status of JRuby 9000 and why this will be our best release yet.
+  speakers:
+    - Thomas E Enebo
+
+- id: "takumi-miura-rubykaigi-2014"
+  title: "\"Gem of this Week\" - building culture and making gem"
+  raw_title: "\"Gem of this Week\" - building culture and making gem - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T23:44:58Z"
+  language: "Japanese"
+  track: "Hall B"
+  slides_url: "https://speakerdeck.com/mitaku/rubykaigi-2014-gem-of-this-week"
+  video_provider: "youtube"
+  video_id: "txfudhTdcyo"
+  description: |-
+    Nowadays, there are many useful "Gem"s in the world. Don't you think it is great if lots of your team members create the "Gem"s that make work more and more efficient? In my company, there is a corner called "Gem of this Week" in regular weekly meeting of engineers, so that the cultural of engineers developing and using "Gem"s has been formed.
+
+    As a result of these, I would like to talk about how to make most engineers in your organization keep developing and publishing their "Gem"s, by reducing barriers of creating "Gem"s.
+  speakers:
+    - Takumi Miura
+
+- id: "ruby-committers-rubykaigi-2014"
+  title: "Ruby Committers vs the World"
+  raw_title: "Ruby Committers vs. the World - RubyKaigi 2014"
+  kind: "q_and_a"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-18"
+  published_at: "2014-10-02T12:24:10Z"
+  language: "Japanese"
+  track: "Hall A"
+  video_provider: "youtube"
+  video_id: "3wk4K02n2vk"
+  description: |-
+    Greetings rubyists! We are the ones who develop ruby.
+
+    With more ruby-core committers than anywhere else on the planet, RubyKaigi presents a great opportunity to ask these core committers the burning questions on your mind. At Ask Me Anything, core committers including matz will get on stage to answer any questions you have.
+
+    We can't answer questions without questions to answer, so please tweet them tagged with #ama and #rubykaigi. We will search for these tags beforehand and answer them at the Kaigi. We can't guarantee we will have time to answer all questions, but we promise we will try our best!
+
+    Ruby Committers vs. the World を開催します！会場に集まるコミッターに質問できるまたとないチャンスです。
+
+    今年は事前に質問を募集することにしました。ハッシュタグ #ama #rubykaigi をつけて質問(日本語 OK) していただくと、会場にてコミッターが回答させていただきます。尺の都合で全部とはいきませんが、できるだけ返答できるようにしたいと思います。
+
+    たくさんの質問お待ちしてます。
+  speakers:
+    - Ruby Committers
+
+
+## Day 2 - 2014-09-19
+
+- id: "yukihiro-matz-matsumoto-rubykaigi-2014"
+  title: "Keynote: Coming soon..."
+  raw_title: "Keynote - Coming soon... - RubyKaigi 2014"
+  kind: "keynote"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-09-29T11:48:03Z"
+  language: "Japanese"
+  track: "Hall A"
+  video_provider: "youtube"
+  video_id: "zt56zjNf84Q"
+  description: |-
+    http://rubykaigi.org/2014/presentation/S-YukihiroMatzMatsumoto
+  speakers:
+    - "Yukihiro \"Matz\" Matsumoto"
+
+- id: "andre-arko-rubykaigi-2014"
+  title: "Extreme Makeover: Rubygems Edition"
+  raw_title: "Extreme Makeover: Rubygems Edition - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:10:13Z"
+  language: "English"
+  track: "Hall A"
+  slides_url: "https://speakerdeck.com/indirect/extreme-makeover-rubygems-edition-rubykaigi-2014"
+  video_provider: "youtube"
+  video_id: "QedJ8eVqkOU"
+  description: |-
+    Rubygems.org provides every Rubyist with an amazing service: all the libraries in the Ruby world. As amazing as that is, installing gems can be a time-consuming and even error-prone process. (Just ask the Travis guys.) In this talk, you'll learn about the recent dramatic changes in Rubygems and Bundler to improve speed and reliability by rewriting the Rubygems client/server architecture. I'll show how the new system caches more information, makes fewer requests, and takes less time to install gems. Finally, I'll cover how the changes allow worldwide mirrors of rubygems.org, improving things for Rubyists around the globe.
+  speakers:
+    - André Arko
+
+- id: "masahiro-ide-rubykaigi-2014"
+  title: "A Just in Time compiler for CRuby (CRuby言語処理系向けJITコンパイラ)"
+  raw_title: "A Just in Time compiler for CRuby - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:13:33Z"
+  language: "Japanese"
+  track: "Hall B"
+  video_provider: "youtube"
+  video_id: "29dUT4VPKv8"
+  description: |-
+    我々は，Rubyスクリプトの実行を高速化するため，Rubyスクリプトを実行時に機械語へ変換する，CRuby処理系向けJust In Time(JIT)コンパイラ RuJITを開発した． 本論文では，我々のJITコンパイラの設計，実装について述べる．また，ベンチマークプログラムを用いた性能評価について述べる．
+
+    We developed a just in time (JIT) compiler for Ruby programming language. In this presentation, we will describe the feature, the design and the implementation of our JIT compiler. We will also show the performance evaluation.
+  speakers:
+    - Masahiro Ide
+
+- id: "kazuhiro-nishiyama-rubykaigi-2014"
+  title: "Archeology of Ruby: Removed Features (Ruby 考古学 消された機能編)"
+  raw_title: "Archeology of Ruby: Removed Features (Ruby 考古学 機能編) - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:10:32Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "http://slide.rabbit-shocker.org/authors/znz/rubykaigi2014/"
+  video_provider: "youtube"
+  video_id: "qJ5zAP_j0Hc"
+  description: |-
+    I've been following the evolution of Ruby since version 1.4. In that time, I've noticed that experimental features are often introduced in development, then removed before Ruby is actually released. Other features are introduced, only to be removed in later Ruby releases. I'd like to talk about such features, and about the history of what I felt were major changes over Ruby's development.
+
+    As a historical overview of Ruby's evolution, I hope this talk will be useful as a reference for anyone planning to make a proposal for a new Ruby feature.
+
+    Ruby の開発を見ていると、開発版で一度実験的に入った機能がリリースされる前にやっぱりなかったことになることも何度かありました。他にも過去のリリースにはあった機能が外されるということもありました。 いったいどのような機能が一度入っては外されていったのかを中心に、大きめの変更だったと感じた機能変更の歴史を紹介したいと思います。
+
+    機能を提案する時にどういうものは既にダメだったので通りにくそうとか、改善した案ならまだ行けそうとか、そういう視点でも参考になるかと思います。
+  speakers:
+    - Kazuhiro NISHIYAMA
+
+- id: "prathamesh-sonpatki-rubykaigi-2014"
+  title: "Deep down fixtures"
+  raw_title: "Deep down fixtures - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:13:43Z"
+  language: "English"
+  track: "Hall B"
+  slides_url: "https://speakerdeck.com/prathamesh/deep-down-fixtures"
+  video_provider: "youtube"
+  video_id: "AFDwI1oIgxk"
+  description: |-
+    Rails endorses fixtures to build and maintain test data in our web apps. Fixtures look very easy at first. Just a YAML file and we auto-magically get users(:john) in our tests.
+
+    But..
+
+    As our requirements grow, we start fighting with fixtures. How to get ordered records. How to use my own values for ids, timestamps? How to maintain associations? How to generate on the fly dynamic data?
+
+    Lets seek answers to these questions by going deep down fixtures internals. In the process we will also see how others like FactoryGirl are doing this task of generating and maintaining test data.
+  speakers:
+    - Prathamesh Sonpatki
+
+- id: "kensuke-nagae-rubykaigi-2014"
+  title: "<%= link_to \"bundle\", \"update\" %> - Make \"bundle update\" more fun to review"
+  raw_title: "＜%= link_to \"bundle\", \"update\" %＞ - Make \"bundle update\" more fun to review - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:10:50Z"
+  language: "English"
+  track: "Hall A"
+  slides_url: "https://speakerdeck.com/kyanny/percent-equals-link-to-bundle-update-percent-make-bundle-update-more-fun-to-review"
+  video_provider: "youtube"
+  video_id: "gfixiM5nomU"
+  description: |-
+    In modern development environment, developers use pull requests to review all changes of code. "bundle update" generates diff of Gemfile.lock, so why not review it on pull request as well?
+
+    I want to have better experience around "bundle update". At RubyKaigi 2013 [1], I also shared an idea about "bundle update" and pull request integration. But after that, I noticed another problem: the diff of Gemfile.lock is not easy to review.
+
+    In this talk, I will introduce Compare Linker [2], a tool to make GitHub's compare view URL [3] for upgraded and/or downgraded gems from difference of Gemfile.lock.
+
+    I will talk about my challenge to make "bundle update" more fun to review. I will show my solution (what I made), motivation (why I needed it) and implementation (how I solved problem).
+
+    I also will share my precious findings from this challenge.
+
+    - [1] http://rubykaigi.org/2013/talk/S72
+    - [2] https://github.com/kyanny/compare_linker
+    - [3] https://github.com/blog/612-introducing-github-compare-view
+  speakers:
+    - Kensuke Nagae
+
+- id: "richard-schneeman-rubykaigi-2014"
+  title: "Going the Distance"
+  raw_title: "Going the Distance - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:14:01Z"
+  language: "English"
+  track: "Hall B"
+  slides_url: "https://speakerdeck.com/schneems/going-the-distance"
+  video_provider: "youtube"
+  video_id: "wujPwfY8t7Y"
+  description: |-
+    If you've ever misspelled a word while searching on Google, you've benefitted from decades of distance algorithm development. In this talk we'll break down some popular distance measurements and see how they can be implemented in Ruby. We'll look at real world applications with some live demos. It won't matter if you get your kicks "Hamming" it up, if you drink your coffee in a "Levenshtein", or if you're new to Ruby: this talk is Rated R, for "all Rubyists". You'll be guaranteed to walk away with O(n^n) expectations met.
+  speakers:
+    - Richard Schneeman
+
+- id: "thiago-scalone-daniel-rodriguez-rubykaigi-2014"
+  title: "MRuby as Development Platform for Payments"
+  raw_title: "MRuby as Development Platform for Payments - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:11:06Z"
+  language: "English"
+  track: "Hall A"
+  slides_url: "https://speakerdeck.com/scalone/mruby-as-development-platform-for-payments"
+  video_provider: "youtube"
+  video_id: "tftR3brkWuY"
+  description: |-
+    We have been working on payment market with embedded applications for 3 years, providing a development platform for machines of Point Of Sale, it was develop only for some devices with our own Virtual Machine. After made so many mistakes in our own Virtual Machine We found MRuby as new Virtual Machine and We had a big jump in quality. Improving tests, time to support new devices, code beauty, user development experience and including expand the platform for mobiles. This presentation is focused on the testimony of this path. Let's talk about others technologies We leave to get MRuby. The difficulties, solutions and how We managed to link MRuby with many devices.
+  speakers:
+    - Thiago Scalone
+    - Daniel Rodriguez
+
+- id: "emma-haruka-iwao-rubykaigi-2014"
+  title: "RailsGirls: Not Only For Girls"
+  raw_title: "RailsGirls: Not Only For Girls - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:14:13Z"
+  language: "English"
+  track: "Hall B"
+  slides_url: "http://www.slideshare.net/Yuryu/rails-girls-not-only-for-girls-rubykaigi-2014"
+  video_provider: "youtube"
+  video_id: "wZdyq_9DiE8"
+  description: |-
+    RailsGirls is an activity to introduce Ruby and Rails to women, ranging from beginners to programmers familiar with other languages. There are nine events held in Japan so far with more than 300 participants. The speaker first participated RailsGirls Tokyo 2nd as a trainee (aka girl), and then Tokyo 3rd as a coach. In this session, she will introduce what RailsGirls is and how you can contribute to the activity and why you want. Also she will discuss about why we need more women in software engineering and why diversity is necessary.
+  speakers:
+    - Emma Haruka Iwao
+
+- id: "takehiko-yoshida-rubykaigi-2014"
+  title: "Open the door of embedded systems to IoT! mruby on LEGO Mindstorms EV3 ®"
+  raw_title: "Open the door of embedded systems to IoT! mruby on LEGO Mindstorms EV3 ® - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:11:39Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "http://www.slideshare.net/ssuser4ab91b/mruby-onev3dev-u"
+  video_provider: "youtube"
+  video_id: "mhKMV8bUKfE"
+  description: |-
+    LEGO Mindstorms EV3 ® is the awesome construction kit to create customizable, programmable robots.
+
+    ev3dev, one of the linux distributions is running on the Mindstorms EV3. I will explain how to implement the APIs to operate the Mindstorms EV3 using mruby. mruby is the lightweight implementation of the Ruby language, and it will encourage embedded system programmers to open the door to IoT (Internet of Things). Please learn how to hook your devices into the net with mruby.
+
+    keywords: mruby, embedded system, robotics, physical computing
+  speakers:
+    - Takehiko YOSHIDA
+
+- id: "hiroshi-shibata-rubykaigi-2014"
+  title: "The Twelve-factor Ruby 「Ruby を良くするための12のポイント」"
+  raw_title: "The Twelve-factor Ruby 「Ruby を良くするための12のポイント」 - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:14:26Z"
+  language: "Japanese"
+  track: "Hall B"
+  slides_url: "https://speakerdeck.com/hsbt/the-twelve-factor-ruby"
+  video_provider: "youtube"
+  video_id: "PyzX4U4nvR8"
+  description: |-
+    How can we make Ruby programming more pleasant?
+
+    This answer is simple. ”You should fix or develop Ruby”. Most people think that it's difficult to contribute or fix Ruby. Well, it is actually easy to contribute to or fix Ruby and many more people would be affected by your effort!
+
+    Ruby committers started new development process such as call for new features, developer meeting couple of months, and more. I introduce these changes. One of big change is release cycle of Ruby. Now, Ruby will releasing every Christmas. Therefore, Your code is shipping to world every year via new version.
+
+    How can you start fixing Ruby?
+
+    I'll introduce the twelve-factor to get started in improving Ruby, such as contribute instructions, basicaly proposals of new features, writing documents, fixing websites, reporting defects and more.
+
+    Ruby でより楽しくプログラミングするための方法は何でしょうか?
+
+    その答えは “Ruby そのものを開発したり直したりすること” と言っても良いでしょう. 多くの人々にとって、Ruby を直したりコントリビュートすることはとても難しいものと考えられています。しかし、実はそれはとても簡単で、あなたの行動が多くの人々に影響を与えることも可能なのです。
+
+    私を含む Ruby コミッタは新機能の追加の仕組みや開発者会議を定期開催するなど、新しい開発プロセスを積極的に取り入れています。中でも毎年クリスマスに定期リリースするという開発サイクルの変更はとても大きい変更です。つまり、Ruby のコードをコントリビュートすると毎年世界中にあなたのコードが配布されるということを意味しています。
+
+    では Ruby を直すために何から始めればいいのでしょうか?
+
+    Rubyにコントリビュートする時にはいくつかのお作法があります。お作法には新機能の提案の基本パターン、ドキュメントやウェブサイトの修正方法、より良いバグレポートの方法などが含まれています。本トークではRubyに受け入れられやすいコントリビュートの方法を12個に絞って取っておきの方法としてご紹介します。
+  speakers:
+    - Hiroshi SHIBATA
+
+- id: "shota-fukumori-rubykaigi-2014"
+  title: "Scalable deployments - How we deploy Rails app to 100+ hosts in a minute"
+  raw_title: "Scalable deployments - How we deploy Rails app to 100+ hosts in a minute - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:11:56Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "https://speakerdeck.com/sorah/scalable-deployments-how-we-deploy-rails-app-to-150-plus-hosts-in-a-minute"
+  video_provider: "youtube"
+  video_id: "m-LB3-T8YF4"
+  description: |-
+    If you're developing web apps, I guess you perform some deployments using tools like Capistrano. And we think the existing tools are slow for huge applications and a lot of servers.
+
+    We serve cookpad.com, which is a huge Rails app, and the largest recipe site in Japan. It is now backed more than 100 app servers. We've used Capistrano with SSH and rsync, but it became a bottleneck, slower and slower, as well as the number of server increases.
+
+    Our developer have wanted to focus on development, not an deployment. Deployments should be done in short time, and scalable for future server increases. Deployments should not steal a time from developers.
+
+    And there is more one problem: we automate scaling out/in of servers. We've had to lock deploying during automated scaling out/in, to avoid deployed revision inconsistency. Developers should wait the completion of scaling in/out, so finally it makes duration of a deployment longer. We can't block servers' scaling. This problem can be solved in process of deployment.
+
+    To solve these problems around deployment, we created a new tool – https://github.com/sorah/mamiya . In this talk, speaker talks about how we had deployed Rails app at past, and its problems, then introduce a new tool, that we use to deploy Rails app to more than 100 hosts in a minute.
+
+    (This talk's spoken language will be Japanese, but slides will be provided in English.)
+  speakers:
+    - Shota Fukumori
+
+- id: "amy-wibowo-rubykaigi-2014"
+  title: "Sweaters as a Service"
+  raw_title: "Sweaters as a Service - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:14:38Z"
+  language: "English"
+  track: "Hall B"
+  video_provider: "youtube"
+  video_id: "spB6klBmW58"
+  description: |-
+    In the 1980's, Nintendo had plans for making a knitting add-on to the NES, with an interface that resembled Mariopaint, but with patterned mittens, sweaters, and scarves as output. Sadly, this product never saw the light of day. Devastated upon hearing this and dreaming about what could have been, a group of Airbnb engineers (who knew nothing about machine knitting) set out to hack a knitting machine from the 1980's to be computer-controlled, using a tutorial from adafruit as a starting point.
+
+    Hear about our struggles and triumphs, which ranged from learning to replace knitting machine needles and conduct basic repairs, to emulating a floppy drive and hacking together a custom cable cable to send our own patterns to the machine, to writing our own yarn printer API in ruby/sinatra and printing our first doge meme in yarn. And watch us as we send images and knit requests to our yarn server, and behold as it knits ugly sweaters from those images!
+  speakers:
+    - Amy Wibowo
+
+- id: "matsumoto-ryosuke-rubykaigi-2014"
+  title: "Resource Control Architecture scripting with mruby for a Web Server Separating Computer Resources Virtually at Each HTTP Request"
+  raw_title: "Resource Control Architecture scripting with mruby - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:12:15Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "https://speakerdeck.com/matsumoto_r/rubykaigi-2014-mod-mruby-ngx-mruby"
+  video_provider: "youtube"
+  video_id: "zpisuAgndV4"
+  description: |-
+    As the increase of large-scale Web services, Web applications are increasingly sophisticated. The increase of smartphones makes traffic to Web servers increase each day. Management of Web servers is increasingly important. When a Web server receives resource-hungry requests, administrators of the web server must control the resources flexibly. However, existing resource control methods process mandatorily such as denial, disconnect or the like of the request when the number of simultaneous connections, request per unit time, CPU used time or memory utilization exceed a certain threshold value. These methods can’t control resources processing request. In this situation, if one request has the potential to occupy a majority of computer resources, the server process can process other request in principle by separating resources of the server process temporarily without using up the saving of computer resources. In this paper, we propose a resources control architecture scripting with mruby for a Web server separating computer resources virtually by a HTTP request using mod_mruby and mruby-cgroup. Each HTTP request processing is allocated virtual computer resources temporarily and the request is process within the limit of the allocated computer resources in our architecture. Therefore, each request processing has a very small effect if clients access to contents heavily or a particular content occupy a majority of computer resources. If a request has the potential to occupy a majority of computer resources, our architecture can process the request continually within the limit of the allocated computer resources without denying or disconnecting requests mandatorily.
+  speakers:
+    - MATSUMOTO Ryosuke
+
+- id: "richard-huang-rubykaigi-2014"
+  title: "Write ruby code to change ruby code"
+  raw_title: "Write ruby code to change ruby code - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:14:55Z"
+  language: "English"
+  track: "Hall B"
+  slides_url: "https://speakerdeck.com/flyerhzm/write-ruby-code-to-change-ruby-code"
+  video_provider: "youtube"
+  video_id: "_lKn4OvCkvk"
+  description: |-
+    There are many cases we need to change ruby code besides implementing features, e.g. we will change old hash / lambda to new syntax when upgrading ruby to 1.9 or newer, every time when we upgrade rails, we have to replace old deprecated syntax or configs with new ones. Most of changes are repetitive, boring and time-consuming, I will introduce you how to write some simple ruby code to do these changes automatically, it saves your time and you don't need to repeat yourself again.
+  speakers:
+    - Richard Huang
+
+- id: "masahiro-nakagawa-rubykaigi-2014"
+  title: "ServerEngine: a framework for multiprocess servers in Ruby"
+  raw_title: "ServerEngine: a framework for multiprocess servers in Ruby - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:12:40Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "http://www.slideshare.net/treasure-data/rubykaigi-2014-serverengine"
+  video_provider: "youtube"
+  video_id: "_f7XEDvnZIU"
+  description: |-
+    ServerEngine is a framework which can make robust multi-process / multi-thread like Unicorn. With ServerEngine, we use Ruby as a reliable environment to write system programs for 24/7 services.
+
+    This presentaion will talk ServerEngine architecture and functionality, how ServerEngine simplied real appliations, and how to apply ServerEngine to your systems.
+  speakers:
+    - Masahiro Nakagawa
+
+- id: "zev-blut-kevin-griffin-rubykaigi-2014"
+  title: "7 years of Ruby & Rails with the same web site"
+  raw_title: "7 years of Ruby & Rails with the same web site - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:15:10Z"
+  language: "English"
+  track: "Hall B"
+  slides_url: "https://speakerdeck.com/kevingriffin/7-years-of-ruby-and-rails-with-the-same-web-site"
+  video_provider: "youtube"
+  video_id: "v2xK0ePbRK0"
+  description: |-
+    http://iknow.jp has a 7 year history with many changes. We will talk about how the code has changed from a single site to multiple sites with a shared core. We will discuss what we learned from our successes and failures.
+  speakers:
+    - Zev Blut
+    - Kevin Griffin
+
+- id: "kouji-takao-nobuyuki-honda-rubykaigi-2014"
+  title: "Kids, Ruby, Fun!: Introduction of the Smalruby and the Ruby Programming Shounendan"
+  raw_title: "Kids, Ruby, Fun!: Introduction of the Smalruby and the Ruby Programming Shounendan - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:12:56Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "http://www.slideshare.net/kouji/kids-ruby-run-introduction-of-the-smalruby-and-the-ruby-programming-shounendan"
+  video_provider: "youtube"
+  video_id: "941grmMpp4w"
+  description: |-
+    We will explain the introduction of the Smalruby and the Ruby Programming Shounendan, For more information about the implementation of the smalruby-editor of the Ruby programming visual editor.
+  speakers:
+    - Kouji Takao
+    - Nobuyuki Honda
+
+- id: "kazuki-tsujimoto-rubykaigi-2014"
+  title: "Power Assert in Ruby"
+  raw_title: "Power Assert in Ruby - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:15:22Z"
+  language: "Japanese"
+  track: "Hall B"
+  slides_url: "https://speakerdeck.com/k_tsj/power-assert-in-ruby"
+  video_provider: "youtube"
+  video_id: "b1XZKHPemls"
+  description: |-
+    Are you getting tired of using many kinds of assertions when you write test code? Power Assert provides a simple answer for it. This presentation shows its concept and how to implement it.
+  speakers:
+    - Kazuki Tsujimoto
+
+- id: "lightning-talk-rubykaigi-2014"
+  title: "Lightning Talks"
+  raw_title: "Lightning Talks - RubyKaigi 2014"
+  kind: "lightning_talk"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-19"
+  published_at: "2014-10-04T00:13:09Z"
+  track: "Hall A"
+  video_provider: "youtube"
+  video_id: "rZ7rzVAWu7E"
+  description: |-
+    http://rubykaigi.org/2014/LT
+  talks:
+    - id: "kenichi-takahashi-rubykaigi-2014"
+      title: "Lightning Talk: Practical factory_girl"
+      raw_title: "Practical factory_girl"
+      kind: "lightning_talk"
+      event_name: "RubyKaigi 2014"
+      date: "2014-09-19"
+      start_cue: "01:41"
+      end_cue: "06:38"
+      language: "Japanese"
+      video_provider: "parent"
+      video_id: "kenichi-takahashi-rubykaigi-2014"
+      description: |-
+        factory_girlを代表とするFixture Replacementライブラリによって、柔軟なテストデータの準備が容易にできるようになりました。
+
+        しかしながら、Fixture Replacementの使い方を知るだけでは、変化し続けるプロダクトに合わせてテストデータをメンテナンス可能な形で更新し続けるのは困難です。
+
+        本発表では、factory_girlの機能紹介だけなく、テストデータとテストコードを継続的にメンテナンスし続けるための考え方と、実践的なTipsを紹介します。
+
+        あなたのアプリケーションのテストデータとテストコードの両方を書きやすく、そして読みやすくするために、明日からできることを持って帰ってください。
+      speakers:
+        - Kenichi Takahashi
+
+    - id: "rei-kagetsuki-rubykaigi-2014"
+      title: "Lightning Talk: Native Libs and Gems on Heroku with Hammer"
+      raw_title: "Native Libs and Gems on Heroku with Hammer"
+      kind: "lightning_talk"
+      event_name: "RubyKaigi 2014"
+      date: "2014-09-19"
+      start_cue: "06:55"
+      end_cue: "12:29"
+      language: "English"
+      video_provider: "parent"
+      video_id: "rei-kagetsuki-rubykaigi-2014"
+      description: |-
+        Deploying apps to Heroku that require native [system] libraries or Ruby native extensions can seem like a complex task, but with the [not well documented] tool "hammer" and knowing how to compile native extensions/gems and vendorize them it's actually quite simple! This lightning talk will give a quick run through of the process, from start to finish, of how to quickly get native libs and gems up and running on Heroku.
+      speakers:
+        - Rei Kagetsuki
+
+    - id: "ongaeshi-rubykaigi-2014"
+      title: "Lightning Talk: ofruby - Ruby running on the iPhone"
+      raw_title: "ofruby - Ruby running on the iPhone"
+      kind: "lightning_talk"
+      event_name: "RubyKaigi 2014"
+      date: "2014-09-19"
+      start_cue: "12:29"
+      end_cue: "17:00"
+      language: "Japanese"
+      video_provider: "parent"
+      video_id: "ongaeshi-rubykaigi-2014"
+      description: |-
+        mrubyで作ったiPhone上で動くグラフィックプログラミング環境のofrubyを紹介します。 openFrameworksをmrubyを使ってiPhoneアプリに組み込みました。 iPhoneやiPadさえあれば誰でもRubyを使ってマルチメディアプログラムを作ることが出来ます。
+      speakers:
+        - ongaeshi
+
+    - id: "yasuko-ohba-rubykaigi-2014"
+      title: "Lightning Talk: Keep Freedom on Ruby - A magical world, 'Diversity'"
+      raw_title: "Keep Freedom on Ruby - A magical world, 'Diversity'"
+      kind: "lightning_talk"
+      event_name: "RubyKaigi 2014"
+      date: "2014-09-19"
+      start_cue: "17:27"
+      end_cue: "22:18"
+      language: "Japanese"
+      video_provider: "parent"
+      video_id: "yasuko-ohba-rubykaigi-2014"
+      description: |-
+        Consistency is import in coding. But I generally want to write code as I want at the time. With Ruby that's easy, but sometimes we are asked to write code in a unified manner. I’ll talk about the conflicted feeling at those cases and some solution patterns.
+      speakers:
+        - Yasuko Ohba
+
+    - id: "rubyist-magazine-editors-rubykaigi-2014"
+      title: "Lightning Talk: 10th anniversary of Rubyist Magazine"
+      raw_title: "10th anniversary of Rubyist Magazine"
+      kind: "lightning_talk"
+      event_name: "RubyKaigi 2014"
+      date: "2014-09-19"
+      start_cue: "23:07"
+      end_cue: "28:07"
+      language: "Japanese"
+      video_provider: "parent"
+      video_id: "rubyist-magazine-editors-rubykaigi-2014"
+      description: |-
+        Rubyist Magazine is web-zine about Ruby programming language in Japanese from 2004. So that this year 2014 is great 10th anniversary of Rubyist Magazine. We will show you the 10 years history of Rubyist Magazine.
+      speakers:
+        - Rubyist Magazine editors
+
+    - id: "inoue-yasuyuki-rubykaigi-2014"
+      title: "Lightning Talk: Let's try mruby's edge cases"
+      raw_title: "Let's try mruby's edge cases"
+      kind: "lightning_talk"
+      event_name: "RubyKaigi 2014"
+      date: "2014-09-19"
+      start_cue: "28:41"
+      end_cue: "33:21"
+      language: "Japanese"
+      video_provider: "parent"
+      video_id: "inoue-yasuyuki-rubykaigi-2014"
+      description: |-
+        mrubyはおおむね安定している。しかし、まだ、あまり利用されていないエッジケースに遭遇すると、時に問題にぶつかることがある。 mruby本体ではなく、mrbgemsを利用していると、mruby本体よりさらに問題にぶつかりやすい。 今なら、高度なことをしなくても、あまり利用されていない機能や設定を利用するだけで、簡単に問題を見つけ、mrubyに貢献することができる。 実際に、エッジケースで利用して遭遇した問題を例に、今がmrubyに貢献するチャンスであることを示す。
+      speakers:
+        - INOUE Yasuyuki
+
+    - id: "ippei-obayashi-rubykaigi-2014"
+      title: "Lightning Talk: Probabilistic model for inspirations and significance of programming"
+      raw_title: "Probabilistic model for inspirations and significance of programming"
+      kind: "lightning_talk"
+      event_name: "RubyKaigi 2014"
+      date: "2014-09-19"
+      start_cue: "33:46"
+      end_cue: "38:27"
+      language: "Japanese"
+      video_provider: "parent"
+      video_id: "ippei-obayashi-rubykaigi-2014"
+      description: |-
+        「発想」「アイデア」などと呼ばれる概念は謎に包まれています。この発表では確率モデルを用いてこの概念について考察し、 何故我々がコードを書き続けねばならないのか、プログラミングの技術を磨かなければならないのか、について考えます。 確率モデルといっても簡単なものですし数学ジョークのようなものなので気楽に聞いてください。
+      speakers:
+        - Ippei Obayashi
+
+    - id: "kohei-suzuki-rubykaigi-2014"
+      title: "Lightning Talk: R/W splitting in Rails"
+      raw_title: "R/W splitting in Rails"
+      kind: "lightning_talk"
+      event_name: "RubyKaigi 2014"
+      date: "2014-09-19"
+      start_cue: "39:03"
+      end_cue: "44:02"
+      thumbnail_cue: "39:04"
+      language: "Japanese"
+      video_provider: "parent"
+      video_id: "kohei-suzuki-rubykaigi-2014"
+      description: |-
+        データベースの R/W splitting を行う方法が標準では用意されていない Rails で R/W splitting を行うために switch_point を作り、実際に cookpad.com で利用しています。 その switch_point について、設計ポリシーや実装について話します。 https://github.com/eagletmt/switch_point
+      speakers:
+        - Kohei Suzuki
+
+    - id: "satoshi-tagomori-rubykaigi-2014"
+      title: "Lightning Talk: Invitation for v1.0.0"
+      raw_title: "Invitation for v1.0.0"
+      kind: "lightning_talk"
+      event_name: "RubyKaigi 2014"
+      date: "2014-09-19"
+      start_cue: "44:35"
+      end_cue: "50:57"
+      thumbnail_cue: "44:36"
+      language: "English"
+      video_provider: "parent"
+      video_id: "satoshi-tagomori-rubykaigi-2014"
+      description: |-
+        Releasing gems as version 1.0.0 is very hard for many library or product owners! We know that our software products have many bugs, and also does not have enough features. But we should release v1.0.0, I think. In this session, I'll talk about the reason why we should release v1.0.0, and about my experience after v1.0.0 of my product.
+      speakers:
+        - Satoshi Tagomori
+
+    - id: "yuji-nakayama-rubykaigi-2014"
+      title: "Lightning Talk: How the RSpec team and I built the smooth upgrade process for RSpec 3"
+      raw_title: "How the RSpec team and I built the smooth upgrade process for RSpec 3"
+      kind: "lightning_talk"
+      event_name: "RubyKaigi 2014"
+      date: "2014-09-19"
+      start_cue: "50:57"
+      end_cue: "55:49"
+      language: "Japanese"
+      video_provider: "parent"
+      video_id: "yuji-nakayama-rubykaigi-2014"
+      description: |-
+        Sometimes frameworks need to introduce breaking API changes to keep growing in the future. However users may suffer from adapting their codebase to the new API, while developers don't hope so.
+
+        The RSpec core team and I tackled this problem. We made the upgrade process for RSpec 3 very smooth by a combination of an upgrade-specific version and an automatic code conversion tool.
+
+        I'll talk about how we've done it and a knowledge from the experience.
+      speakers:
+        - Yuji Nakayama
+
+
+## Day 3 - 2014-09-20
+
+- id: "panel-rubykaigi-2014"
+  title: "Ohayō Rails (おはよう Rails)"
+  raw_title: "Ohayō Rails (おはよう Rails) - RubyKaigi 2014"
+  kind: "panel"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:34Z"
+  language: "Japanese"
+  track: "Hall A"
+  video_provider: "youtube"
+  video_id: "opcZ4cHq-gg"
+  description: |-
+    「ごきげんよう」 「ごきげんよう」
+
+    さわやかな朝の挨拶が、澄みきった青空にこだまする。RubyKaigiの会場に集うハッカーたちが、今日も天使のような無垢な笑顔で、背の高い門をくぐり抜けていく。
+
+    というわけで、今年のRubyKaigi最終日は、日本を代表するRuby on Rails採用企業の開発者によるパネルディスカッションから始まります。「イマドキのRailsアプリケーションってどうやって開発するのがベストなの？」から「なお、Railsブームから10年経った模様」みたいな話まで、Railsアプリケーション開発現場の最前線でバリバリに活躍している人たちから、パネル形式でホンネを引き出しちゃいます！
+  speakers:
+    - Takafumi ONAKA
+    - Tsukasa Oishi
+    - Kei Shiratsuchi
+    - Toshiaki Koshiba
+    - Hiroki Ohtsuka
+    - Yusuke Kuoka
+    - Naoto Takai
+
+- id: "aaron-patterson-rubykaigi-2014"
+  title: "Speeding up Rails 4.2"
+  raw_title: "Speeding up Rails 4.2 - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:33Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "https://speakerdeck.com/tenderlove/gao-du-nakodo"
+  video_provider: "youtube"
+  video_id: "jLJvdMIoJs4"
+  description: |-
+    In this presentation we'll cover performance improvements we've been making to Rails for the 4.2 release. We'll cover improvements to Active Record for speeding up database interactions, and performance improvements to Action View for speeding up rendering. We will also discuss techniques that can be used in your application for performance testing and improvements.
+  speakers:
+    - Aaron Patterson
+
+- id: "andrew-culver-rubykaigi-2014"
+  title: "ROM Hacking with Ruby"
+  raw_title: "ROM Hacking with Ruby - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:32Z"
+  language: "English"
+  track: "Hall B"
+  video_provider: "youtube"
+  video_id: "W8v7PPLqP8c"
+  description: |-
+    For 30+ years, console video games have captured the imagination of children and adults alike. This presentation describes how a childhood love of video games can translate into a love of programming and a general understanding of low-level computing through the hobby known as ROM hacking. We’ll also review everything you need to know in Ruby for it to be your ROM hacking language of choice.
+
+    Over 13 years ago I learned to program as I was motivated to write tools that would allow me and my friends to more easily translate the ROMs of Japanese Famicom and Super Famicom games that had never been released in English (for our NES and Super NES.) Through ROM hacking, my love of video games helped lay the groundwork for my college education and career in software development. As Ruby became my language of choice professionally, I also began writing all my ROM hacking tools in Ruby as well.
+
+    Even for experienced developers who have cut their teeth on higher-level programming languages like Ruby and web frameworks like Rails, an overview of ROM hacking with Ruby provides a fun opportunity to understand the basics of some important lower-level computing concepts:
+
+    - Pointers, stack, memory pages, etc.
+    - Binary file handling.
+    - Character encodings.
+    - Binary file format concepts.
+    - Writing simple command line tools.
+    - Assembler and binary disassembly.
+
+    It will be fun to review these concepts in the context of video games and ROM hacking, but they’re also broadly applicable and a level-up for any developer.
+  speakers:
+    - Andrew Culver
+
+- id: "morohashi-kyosuke-rubykaigi-2014"
+  title: "Practical meta-programming in Application"
+  raw_title: "Practical meta-programming in Application - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:33Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "https://speakerdeck.com/moro/practical-metaprogramming-in-application"
+  video_provider: "youtube"
+  video_id: "Pxy-uEZChkM"
+  description: |-
+    Ruby is a so enjoyable programming language. One of the biggest attraction of Ruby is that it is easy to "meta-programming".
+
+    The words "meta-programming" sounds that are complex and not very common, but it is very familiar in Ruby. Many popular features of Ruby, eg attr_accessor() or has_many() on Rails, are also built with Ruby's meta-programming mechanism.
+
+    Although meta-programming is familiar in Ruby, the knack is required in order to use it well. Unreserved use of reflection API easily makes a code hard to maintenance.
+
+    In this presentation, I want to tell you ideas for using practical meta-programming without too much increase the complexity. I hope that people feels meta-programming more familiar and easy to maintenance, and they enjoys Ruby programming more.
+
+    This story is based on the presentation I hold at Ruby Association seminar. I'm going to update towards the September 2014, the time with Ruby 2.1 is.
+  speakers:
+    - MOROHASHI Kyosuke
+
+- id: "weihang-jian-rubykaigi-2014"
+  title: "Streaming Processing in Camera Remote API"
+  raw_title: "Streaming Processing in Camera Remote API - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:34Z"
+  language: "English"
+  track: "Hall B"
+  slides_url: "http://tonytonyjan.net/slides/2014-09-18-ruby-kaigi-sonycam/sonycam.pdf"
+  video_provider: "youtube"
+  video_id: "mdJ0mZCTlJc"
+  description: |-
+    This talk will demonstrate some tips about how Ruby can process streaming. And take Camera Remote API (using Sony camera) for instance. Integrate with Sinatra, and finally display camera live preview in web page.
+  speakers:
+    - Weihang Jian
+
+- id: "jonan-scheffler-rubykaigi-2014"
+  title: "Everything is Broken: A Story of Hope"
+  raw_title: "Everything is Broken: A Story of Hope - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:33Z"
+  language: "Japanese"
+  track: "Hall A"
+  video_provider: "youtube"
+  video_id: "RAQA36eM2yw"
+  description: |-
+    I once trusted the dream of a secure internet. I gleefully entered my card number when I saw a green lock, genuinely believing that I was safe in my force field of encryption.
+
+    This is the story of how that dream died, and how we're going to get it back.
+
+    Through the eyes of a simple web request we'll explore the life cycle of a secure transaction including DNSSEC, TLS/SSL, HSTS, EDH and a long list of other technologies. We'll talk about how we might mitigate attacks like Heartbleed, and prepare for what comes next.
+
+    Come rebuild the dream with me. You'll be surprised by what you learn.
+  speakers:
+    - Jonan Scheffler
+
+- id: "keiju-ishitsuka-rubykaigi-2014"
+  title: "Reish, an unix shell for rubyist."
+  raw_title: "Reish, an unix shell for rubyist. - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:34Z"
+  language: "Japanese"
+  track: "Hall B"
+  video_provider: "youtube"
+  video_id: "dIoY74dreTc"
+  description: |-
+    Reish is an unix shell for rubyist.
+  speakers:
+    - Keiju Ishitsuka
+
+- id: "naotoshi-seo-rubykaigi-2014"
+  title: "Fluentd Hacking Guide (Fluentd ソースコード完全解説)"
+  raw_title: "Fluentd Hacking Guide (Fluentd ソースコード完全解説) - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:33Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "http://www.slideshare.net/sonots/fluentd-hacking-guide-at-rubykaigi-20140920"
+  video_provider: "youtube"
+  video_id: "u6teInqqN_0"
+  description: |-
+    Fluentd is a fully free and open-source log management tool designed for processing data streams.
+
+    In this presentation, I will explain the internal implementation details of Fluentd such as:
+
+    The bootstrap sequence of Fluentd, and how Fluentd loads plugins How Fluentd parses the configuration file How an input plugin passes the data to output plugins internally How a BufferedOutput plugin processes data The event-driven programming using cool.io, and effects of GVL I will describe the behavior together with the knowledge obtained in the operation at production. While such detailed knowledge is not essential in the use of Fluentd, it should provide you a variety of useful findings for your operation.
+
+    DISCLAIMER: In this presentation, I do not explain, what is Fluentd, and how to use Fluentd. Audiences who have following experiences are desirable:
+
+    Have ever used Fluentd Have ever written Fluentd plugin(s)
+  speakers:
+    - Naotoshi Seo
+
+- id: "kei-sawada-rubykaigi-2014"
+  title: "8bit Game Development With Ruby"
+  raw_title: "8bit Game Development With Ruby"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:33Z"
+  language: "English"
+  track: "Hall B"
+  slides_url: "https://speakerdeck.com/remore/burn-8-bit-game-development-with-ruby"
+  video_provider: "youtube"
+  video_id: "S2zDjt7gpnQ"
+  description: |-
+    There are countless ways out there that emulate .nes game, but very few that create .nes rom file without hassle. This is the reason why Kei have developed Burn, is_a handy toolkit to make a .nes application from Ruby DSLs. Burn v0.1.3 release is announced on reddit this April, and it spread to every corner of the world.
+
+    In this presentation we will explore what Burn is, how it is structured, and what homebrewed .nes application looks like in an NES Emulator. We'll also learn a few practical techniques for making the most from Ruby bindings, Ripper and Ruby DSL.
+  speakers:
+    - Kei Sawada
+
+- id: "prem-sichanugrist-rubykaigi-2014"
+  title: "The Ruby Challenge"
+  raw_title: "The Ruby Challenge - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:33Z"
+  language: "English"
+  track: "Hall A"
+  video_provider: "youtube"
+  video_id: "aDeP7FGQBig"
+  description: |-
+    While Ruby doesn't have a "There should be one, and preferably only one way to do it" philosophy like Python, writing the best code using the best algorithm to solve the problem will save you time and money and is going to be better in the long run. Come join us in this little game show where everyone guesses which code snippet is the best way to solve a particular problem. Do you think you can spot the better code?
+  speakers:
+    - Prem Sichanugrist
+
+- id: "matthew-werner-rubykaigi-2014"
+  title: "The role of ruby in the single page app."
+  raw_title: "The role of ruby in the single page app. - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:33Z"
+  language: "English"
+  track: "Hall B"
+  video_provider: "youtube"
+  video_id: "uXq5qymsu18"
+  description: |-
+    Single page apps are becoming more and more ubiquitous in today's market. While the role of the ruby backend has receded, there is still an important role to play for web servers.
+
+    I will discuss common problems introduced by a client-first approach to development. As well as provide some ways to leverage ruby to provide solutions to these problems. In addition, looking forward, I'll outline ways you can squeeze out some extra performance from your stack by backing your single page app with a ruby backend.
+  speakers:
+    - Matthew Werner
+
+- id: "josh-kalderimis-rubykaigi-2014"
+  title: "Scaling is hard, let's go server shopping! Or, How we scaled Travis CI, and helped Open Source at the same time."
+  raw_title: "Scaling is hard, let's go server shopping! - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:34Z"
+  language: "English"
+  track: "Hall A"
+  video_provider: "youtube"
+  video_id: "EaExu2hGrfs"
+  description: |-
+    Travis CI started a little side project back in Feb 2011 (http://svenfuchs.com/2011/2/5/travis-a-distributed-build-server-tool-for-the-ruby-community). Over the coming months a handful of projects signed up, and a handful of builds per day were run on a single dedicated machine.
+
+    Things have sure grown fast! On the 3rd of June 2014 Travis ran 71,000 jobs on travis-ci.org alone, with a total of 112,000 GitHub repositories running a build over the last 12 months!
+
+    And along the way we found a business model that allowed us to offer testing for private projects, while helping us to continue to support Open Source.
+
+    We've learnt a lot along the way, from scale tech, decoupling code, and growing a team.
+
+    In this talk, Josh Kalderimis, CEO of Travis CI, GmbH, and Hiro Asari, software deveoper at Travis CI, will discuss how Travis CI grew as a code base, decoupled their core services, and embraced devops, support, and coffee.
+  speakers:
+    - Josh Kalderimis
+
+- id: "yuki-torii-rubykaigi-2014"
+  title: "Walking around ruby forest more deeply"
+  raw_title: "Walking around ruby forest more deeply - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:34Z"
+  language: "Japanese"
+  track: "Hall B"
+  video_provider: "youtube"
+  video_id: "Q8BvM5VC8aA"
+  description: |-
+    For non C-programmer, it is difficult to take his/her first step toward reading implementation of Ruby interpreter. I’m now trying to read it. At the last the last Rubyconf.tw 2014, I talked about ""how to take the first step"", titled ""walking-around-the-ruby-forest"": introduced the books for reference, glanced Ruby source files, and showed basic ruby data-structure. https://speakerdeck.com/yotii23/walking-around-the-ruby-forest. In RubyKaigi 2014, I’ll talk about one more step, more detailed Ruby Implementation.
+  speakers:
+    - Yuki Torii
+
+- id: "masatoshi-seki-rubykaigi-2014"
+  title: "Make your own synchronization mechanism."
+  raw_title: "Make your own synchronization mechanism. - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:34Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "https://speakerdeck.com/m_seki/make-your-own-synchronization-mechanism"
+  video_provider: "youtube"
+  video_id: "PL2c6wdZYKo"
+  description: |-
+    Ruby by default comes bundled with synchronous mechanisms for asynchronous programming. Most applications work fine with existing libraries, so for many people these synchronous mechanisms are taken for granted.
+
+    However, occasionally you may have the inclination to design your own synchronous mechanisms. Maybe you just learned about some elegant synchronous mechanism (Linda), or about popular mechanisms in other languages (channels in Go), or maybe you were pressured by the creators of popular libraries to come up with a better design yourself. All this leads you to consider the "primitives" of synchronous programming, and give your ideas a try.
+
+    In this session, we will learn techniques for implementing synchronous mechanisms, like channels in Go, in Ruby, by actually designing and implementing some of your own. Together we will discover the joy of designing a minimal interface, and the joy of implementing one.
+  speakers:
+    - Masatoshi SEKI
+
+- id: "zachary-scott-rubykaigi-2014"
+  title: "tending the ruby ecosystem"
+  raw_title: "tending the ruby ecosystem - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:33Z"
+  language: "Japanese"
+  track: "Hall B"
+  slides_url: "https://speakerdeck.com/zzak/tending-the-ruby-ecosystem"
+  video_provider: "youtube"
+  video_id: "K0eCFZ_8SVc"
+  description: |-
+    With over 75,000 gems available on rubygems.org, many of them unattended and require much needed love and care.
+
+    Let's talk about how you can pitch in and help bring these gems back to life.
+
+    We're going to talk about some recent cases where this has already happened, and how we made a difference. As well as some crucial projects to the Ruby ecosystem, that many people overlook, and how you can help.
+  speakers:
+    - Zachary Scott
+
+- id: "kouhei-sutou-rubykaigi-2014"
+  title: "Three Ruby usages - High-level interface, Glue and Embedding - Inside Droonga"
+  raw_title: "Three Ruby usages - High-level interface, Glue and Embedding - Inside Droonga - RubyKaigi 2014"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-10-05T01:58:34Z"
+  language: "Japanese"
+  track: "Hall A"
+  slides_url: "http://slide.rabbit-shocker.org/authors/kou/rubykaigi-2014/"
+  video_provider: "youtube"
+  video_id: "XIbwz5weVlM"
+  description: |-
+    This talk describes three Ruby usages:
+
+    - Implementing high-level interface by Ruby.
+    - Using Ruby as a glue language.
+    - Embedding Ruby into a C program for flexibility.
+
+    All of them have pros and cons. They are trade-off. If a case can ignore cons, we will have pros for the case.
+
+    Most of Rubyists implement their Ruby applications only by Ruby. This talk shows another options to use Ruby as your convenient tool. If you know another options and trade-offs of them, you will implement your Ruby applications more effectively.
+
+    This talk uses Droonga, a distributed full-text search engine, as a sample application to describe these Ruby usages. Droonga uses these three Ruby usages.
+
+    More details:
+
+    About implementing high-level interface by Ruby:
+
+    High-level interface is Ruby on Rails (contrasted with Rack), Web API (contrasted with library API) and so on.
+
+    Ruby itself and its libraries provide many convenience features for text processing, networking, process management and so on. We can use Ruby to implement high-level interface rapidly and robustly.
+
+    On the other hand, Ruby is not the fastest programming language in the most cases. An application that implements high-level interface by Ruby may be slow.
+
+    About using Ruby as a glue language:
+
+    A glue language exports features in language1 to language2.
+
+    We can use Ruby as a glue language. If we implement a well-written glue, users never notice that the exported features aren't implemented in Ruby.
+
+    We can speed up our applications by using features implemented in C. C is faster than Ruby for most cases. This fact can improve Ruby's disadvantage in performance.
+
+    If we can use well-written glues, we still live in Ruby world with high performance. We don't need to think about other languages.
+
+    About embedding Ruby into a C program for flexibility:
+
+    Ruby is easy to try and error. We can improve development speed (not application performance) to implement features by Ruby instead of C. It will reduce application performance. But if features replaced by Ruby are not performance critical features, replacing by Ruby has more merits than demerits.
+  speakers:
+    - Kouhei Sutou
+
+- id: "aman-gupta-rubykaigi-2014"
+  title: "Ruby 2.1 in Production"
+  raw_title: "Ruby 2.1 in Production - RubyKaigi 2014"
+  kind: "keynote"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  published_at: "2014-09-29T11:48:03Z"
+  language: "English"
+  track: "Hall A"
+  slides_url: "http://bit.ly/ruby21-in-production"
+  video_provider: "youtube"
+  video_id: "sQn9y1zl2-0"
+  description: |-
+    This talk will cover tools and techniques used at github.com to keep our ruby code running fast. We'll highlight new APIs available with Ruby 2.1 for easier cpu profiling, object allocation tracking and heap dumping. Each technique will be presented with a variety of real-world examples of how it was used to solve problems in a high-traffic rails application.
+  speakers:
+    - Aman Gupta
+
+- id: "closing-rubykaigi-2014"
+  title: "Closing"
+  raw_title: "Closing (Shintaro Kakutani)"
+  event_name: "RubyKaigi 2014"
+  date: "2014-09-20"
+  language: "Japanese"
+  track: "Hall A"
+  video_provider: "not_recorded"
+  video_id: "closing-rubykaigi-2014"
+  description: ""
+  speakers:
+    - Shintaro Kakutani

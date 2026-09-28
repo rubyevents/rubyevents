@@ -4,6 +4,7 @@ require "generators/event_base"
 
 class VenueGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
+  TOOL_DESC = "Create a venue.yml file for a given event and update the event.yml file with the venue's coordinates."
 
   class_option :name, type: :string, desc: "Venue name", group: "Fields"
   class_option :address, type: :string, desc: "Venue address", group: "Fields"
@@ -19,10 +20,27 @@ class VenueGenerator < Generators::EventBase
   class_option :rooms, type: :boolean, desc: "Include rooms section", default: false, group: "Fields"
   class_option :spaces, type: :boolean, desc: "Include spaces section", default: false, group: "Fields"
 
+  def apple_maps
+    return unless geocoded_address
+    "https://maps.apple.com/?q=#{options[:name]&.tr(" ", "+")}&ll=#{geocoded_address.latitude},#{geocoded_address.longitude}"
+  end
+
+  def geocoded_address
+    @geocoded_address ||= geocode_address(name: options[:name], address: options[:address])
+  end
+
+  def google_maps
+    return unless geocoded_address
+    "https://maps.google.com/?q=#{options[:name]&.tr(" ", "+")},#{geocoded_address.latitude},#{geocoded_address.longitude}"
+  end
+
+  def openstreetmap_maps
+    return unless geocoded_address
+    "https://www.openstreetmap.org/?mlat=#{geocoded_address.latitude}&mlon=#{geocoded_address.longitude}"
+  end
+
   def copy_venue_file
     venue_file = File.join([event_directory, "venue.yml"])
-    @geocoded_address = geocode_address(name: options[:name], address: options[:address])
-
     template "venue.yml.tt", venue_file
   end
 
@@ -30,7 +48,7 @@ class VenueGenerator < Generators::EventBase
     return unless @geocoded_address
     event_file = File.join([event_directory, "event.yml"])
     return unless File.exist?(event_file)
-    @coordinates = {latitude: @geocoded_address.latitude, longitude: @geocoded_address.longitude}
+    @coordinates = {latitude: geocoded_address.latitude, longitude: geocoded_address.longitude}
 
     event_document = Yerba.parse_file(event_file)
     event_document["coordinates.latitude"] = @coordinates[:latitude]

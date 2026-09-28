@@ -49,6 +49,12 @@ class Static::Validators::TalkKindTest < ActiveSupport::TestCase
     end
   end
 
+  test "does not flag a redundant kind: talk on a short entry (under 10 minutes)" do
+    with_temp_video([{"title" => "I love Ruby", "kind" => "talk", "start_cue" => "00:00", "end_cue" => "05:00", "video_provider" => "not_recorded"}]) do |path|
+      assert_empty Static::Validators::TalkKind.new(file_path: path).errors
+    end
+  end
+
   test "checks nested talks" do
     videos = [{"video_provider" => "children", "talks" => [{"title" => "Lightning Talk: Foo", "video_provider" => "not_recorded"}]}]
 

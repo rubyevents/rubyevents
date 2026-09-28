@@ -63,58 +63,61 @@
 
 <% if track_info %>
   <div class="mb-4">
-    <span class="px-3 py-1 rounded text-sm font-medium" style="background: <%= track_info["color"] %>; color: <%= track_info["text_color"] %>">
+    <span
+      class="rounded px-3 py-1 text-sm font-medium"
+      style="background: <%= track_info["color"] %>; color: <%= track_info["text_color"] %>"
+    >
       <%= current_track %>
     </span>
   </div>
 <% end %>
 
-<div class="flex flex-col sm:flex-row items-stretch gap-2 mb-6 min-w-0">
-  <div class="flex-1 min-w-0">
+<div class="mb-6 flex min-w-0 flex-col items-stretch gap-2 sm:flex-row">
+  <div class="min-w-0 flex-1">
     <% if prev_talk %>
       <%= link_to talk_path(prev_talk), class: "flex flex-col h-full p-3 rounded border bg-white hover:bg-gray-50 transition-colors overflow-hidden" do %>
-        <span class="text-xs text-gray-400 mb-1 truncate"><%= fa("arrow-left", size: :xs, class: "fill-gray-400 inline mr-1") %> <%= prev_label %></span>
-        <span class="font-medium text-sm line-clamp-2"><%= prev_talk.title %></span>
-        <span class="text-xs text-gray-500 mt-1 truncate block w-full"><%= prev_talk.speakers.map(&:name).join(", ") %></span>
+        <span class="mb-1 truncate text-xs text-gray-400"><%= fa("arrow-left", size: :xs, class: "fill-gray-400 inline mr-1") %> <%= prev_label %></span>
+        <span class="line-clamp-2 text-sm font-medium"><%= prev_talk.title %></span>
+        <span class="mt-1 block w-full truncate text-xs text-gray-500"><%= prev_talk.speakers.map(&:name).join(", ") %></span>
 
         <% if prev_time %>
-          <span class="text-xs text-gray-400 mt-1"><%= prev_time %></span>
+          <span class="mt-1 text-xs text-gray-400"><%= prev_time %></span>
         <% end %>
       <% end %>
     <% else %>
-      <div class="flex flex-col h-full p-3 rounded border border-dashed bg-white text-gray-400">
-        <span class="text-xs mb-1 truncate"><%= prev_label %></span>
+      <div class="flex h-full flex-col rounded border border-dashed bg-white p-3 text-gray-400">
+        <span class="mb-1 truncate text-xs"><%= prev_label %></span>
         <span class="text-sm">No previous session</span>
       </div>
     <% end %>
   </div>
 
-  <div class="flex-1 min-w-0">
-    <div class="flex flex-col h-full p-3 rounded bg-primary text-white overflow-hidden">
-      <span class="text-xs text-white/70 mb-1">Now Playing</span>
-      <span class="font-medium text-sm line-clamp-2"><%= talk.title %></span>
-      <span class="text-xs text-white/70 mt-1 truncate block w-full"><%= talk.speakers.map(&:name).join(", ") %></span>
+  <div class="min-w-0 flex-1">
+    <div class="flex h-full flex-col overflow-hidden rounded bg-primary p-3 text-white">
+      <span class="mb-1 text-xs text-white/70">Now Playing</span>
+      <span class="line-clamp-2 text-sm font-medium"><%= talk.title %></span>
+      <span class="mt-1 block w-full truncate text-xs text-white/70"><%= talk.speakers.map(&:name).join(", ") %></span>
 
       <% if current_time %>
-        <span class="text-xs text-white/70 mt-1"><%= current_time %></span>
+        <span class="mt-1 text-xs text-white/70"><%= current_time %></span>
       <% end %>
     </div>
   </div>
 
-  <div class="flex-1 min-w-0">
+  <div class="min-w-0 flex-1">
     <% if next_talk %>
       <%= link_to talk_path(next_talk), class: "flex flex-col h-full p-3 rounded border bg-white hover:bg-gray-50 transition-colors overflow-hidden" do %>
-        <span class="text-xs text-gray-400 mb-1 truncate"><%= next_label %> <%= fa("arrow-right", size: :xs, class: "fill-gray-400 inline ml-1") %></span>
-        <span class="font-medium text-sm line-clamp-2"><%= next_talk.title %></span>
-        <span class="text-xs text-gray-500 mt-1 truncate block w-full"><%= next_talk.speakers.map(&:name).join(", ") %></span>
+        <span class="mb-1 truncate text-xs text-gray-400"><%= next_label %> <%= fa("arrow-right", size: :xs, class: "fill-gray-400 inline ml-1") %></span>
+        <span class="line-clamp-2 text-sm font-medium"><%= next_talk.title %></span>
+        <span class="mt-1 block w-full truncate text-xs text-gray-500"><%= next_talk.speakers.map(&:name).join(", ") %></span>
 
         <% if next_time %>
-          <span class="text-xs text-gray-400 mt-1"><%= next_time %></span>
+          <span class="mt-1 text-xs text-gray-400"><%= next_time %></span>
         <% end %>
       <% end %>
     <% else %>
-      <div class="flex flex-col h-full p-3 rounded border border-dashed bg-white text-gray-400">
-        <span class="text-xs mb-1 truncate"><%= next_label %></span>
+      <div class="flex h-full flex-col rounded border border-dashed bg-white p-3 text-gray-400">
+        <span class="mb-1 truncate text-xs"><%= next_label %></span>
         <span class="text-sm">No next session</span>
       </div>
     <% end %>
@@ -123,22 +126,25 @@
 
 <% if parallel_talks.any? %>
   <div class="mb-6">
-    <h4 class="text-sm font-medium text-gray-600 mb-3">Other parallel sessions at <%= current_slot_time %></h4>
+    <h4 class="mb-3 text-sm font-medium text-gray-600">Other parallel sessions at <%= current_slot_time %></h4>
 
-    <div class="flex flex-col sm:flex-row gap-2">
+    <div class="flex flex-col gap-2 sm:flex-row">
       <% parallel_talks.each do |parallel_talk| %>
         <% parallel_track = parallel_talk.static_metadata&.track %>
         <% parallel_track_info = parallel_track && tracks.find { |t| t["name"] == parallel_track } %>
 
         <%= link_to talk_path(parallel_talk), class: "flex-1 flex flex-col p-3 rounded border bg-white hover:bg-gray-50 transition-colors min-w-0 overflow-hidden" do %>
           <% if parallel_track_info %>
-            <span class="text-xs px-2 py-0.5 rounded self-start mb-2" style="background: <%= parallel_track_info["color"] %>; color: <%= parallel_track_info["text_color"] %>">
+            <span
+              class="mb-2 self-start rounded px-2 py-0.5 text-xs"
+              style="background: <%= parallel_track_info["color"] %>; color: <%= parallel_track_info["text_color"] %>"
+            >
               <%= parallel_track %>
             </span>
           <% end %>
 
-          <span class="font-medium text-sm line-clamp-2"><%= parallel_talk.title %></span>
-          <span class="text-xs text-gray-500 mt-1 truncate block w-full"><%= parallel_talk.speakers.map(&:name).join(", ") %></span>
+          <span class="line-clamp-2 text-sm font-medium"><%= parallel_talk.title %></span>
+          <span class="mt-1 block w-full truncate text-xs text-gray-500"><%= parallel_talk.speakers.map(&:name).join(", ") %></span>
         <% end %>
       <% end %>
     </div>
@@ -147,7 +153,7 @@
 
 <hr class="mb-6">
 
-<h3 class="font-bold text-lg mb-4">Full Schedule</h3>
+<h3 class="mb-4 text-lg font-bold">Full Schedule</h3>
 
 <div class="flex flex-col gap-6">
   <% talk_index = 0 %>
@@ -157,7 +163,7 @@
     <% date_string = date.strftime("%A, %b %d") %>
 
     <div>
-      <h4 class="font-semibold mb-3"><%= day.dig("name") %> - <%= date_string %></h4>
+      <h4 class="mb-3 font-semibold"><%= day.dig("name") %> - <%= date_string %></h4>
 
       <div class="flex flex-col gap-2">
         <% day.dig("grid").each do |grid| %>
@@ -167,8 +173,8 @@
           <% items = grid.fetch("items", []) %>
 
           <% if items.any? %>
-            <div class="flex items-center gap-3 py-2 px-3 bg-gray-100 rounded text-sm text-gray-600">
-              <span class="text-xs text-gray-400 w-24 flex-shrink-0"><%= [start_time, end_time].uniq.join(" - ") %></span>
+            <div class="flex items-center gap-3 rounded bg-gray-100 px-3 py-2 text-sm text-gray-600">
+              <span class="w-24 flex-shrink-0 text-xs text-gray-400"><%= [start_time, end_time].uniq.join(" - ") %></span>
               <span><%= items.first.is_a?(String) ? items.first : items.first&.fetch("title", "") %></span>
             </div>
           <% else %>
@@ -184,28 +190,30 @@
                 <% speaker_classes = is_current ? "text-white/70" : "text-gray-500" %>
 
                 <%= link_to talk_path(schedule_talk), class: link_classes do %>
-                  <span class="text-xs w-20 flex-shrink-0 hidden sm:inline <%= time_classes %>">
+                  <span class="hidden w-20 flex-shrink-0 text-xs sm:inline <%= time_classes %>">
                     <%= [start_time, end_time].uniq.join(" - ") %>
                   </span>
 
-                  <div class="w-16 h-9 flex-shrink-0 rounded overflow-hidden">
+                  <div class="h-9 w-16 flex-shrink-0 overflow-hidden rounded">
                     <%= image_tag schedule_talk.thumbnail_sm, class: "w-full h-full #{schedule_talk.thumbnail_classes.presence || "object-cover"}", loading: :lazy, alt: "" %>
                   </div>
 
-                  <div class="flex-grow min-w-0">
-                    <div class="font-medium truncate"><%= schedule_talk.title.truncate(100) %></div>
+                  <div class="min-w-0 flex-grow">
+                    <div class="truncate font-medium"><%= schedule_talk.title.truncate(100) %></div>
 
-                    <div class="text-xs <%= speaker_classes %> truncate overflow-hidden flex max-w-full">
+                    <div class="flex max-w-full overflow-hidden truncate text-xs <%= speaker_classes %>">
                       <%= schedule_talk.speakers.map(&:name).join(", ").truncate(120) %>
                     </div>
                   </div>
 
                   <% if track && talk_track %>
-                    <span class="text-xs px-2 py-0.5 rounded flex-shrink-0 min-w-[100px] text-center" style="background: <%= track["color"] %>; color: <%= track["text_color"] %>">
+                    <span
+                      class="min-w-[100px] flex-shrink-0 rounded px-2 py-0.5 text-center text-xs"
+                      style="background: <%= track["color"] %>; color: <%= track["text_color"] %>"
+                    >
                       <%= talk_track %>
                     </span>
                   <% end %>
-
                 <% end %>
 
                 <% talk_index += 1 %>

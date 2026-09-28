@@ -1,7 +1,5 @@
 <%= content_tag :div do %>
-  <div
-    aria-live="assertive"
-    class="pointer-events-none inset-0 flex items-end sm:items-start">
+  <div aria-live="assertive" class="pointer-events-none inset-0 flex items-end sm:items-start">
     <div class="flex w-full flex-col items-center sm:items-end">
       <div
         data-controller="transition"
@@ -10,14 +8,16 @@
         data-transition-enter-to-value="translate-y-0 opacity-100 sm:translate-x-0"
         data-transition-leave-after-value="2000"
         class="
-          pointer-events-auto max-w-sm overflow-hidden rounded-lg bg-white text-neutral
-          shadow-lg ring-1 ring-brand-lighter hidden
-        ">
+          pointer-events-auto hidden max-w-sm overflow-hidden rounded-lg bg-white text-neutral shadow-lg ring-1
+          ring-black/5
+        "
+      >
         <div class="p-2 sm:p-4">
           <div class="flex items-center gap-3">
             <div class="flex-shrink-0">
               <%= fa("check") %>
             </div>
+
             <div class="flex-1 whitespace-normal text-sm">
               <%= text %>
             </div>

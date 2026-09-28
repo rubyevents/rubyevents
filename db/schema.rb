@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_07_03_140000) do
+ActiveRecord::Schema[8.2].define(version: 2026_07_05_130000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -227,6 +227,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_03_140000) do
     t.string "location"
     t.decimal "longitude", precision: 10, scale: 6
     t.string "name", default: "", null: false
+    t.date "recordings_published_date"
     t.string "slug", default: "", null: false
     t.date "start_date"
     t.string "state_code"
@@ -380,6 +381,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_03_140000) do
     t.string "language", default: "en", null: false
     t.text "raw_transcript"
     t.integer "talk_id", null: false
+    t.boolean "translated", default: false, null: false
     t.datetime "updated_at", null: false
     t.index ["talk_id", "language"], name: "index_talk_transcripts_on_talk_id_and_language", unique: true
     t.index ["talk_id"], name: "index_talk_transcripts_on_talk_id"
@@ -415,6 +417,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_03_140000) do
     t.string "thumbnail_xl", default: "", null: false
     t.string "thumbnail_xs", default: "", null: false
     t.string "title", default: "", null: false
+    t.datetime "transcript_checked_at"
     t.datetime "updated_at", null: false
     t.datetime "video_availability_checked_at"
     t.string "video_id", default: "", null: false

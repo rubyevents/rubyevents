@@ -7,8 +7,7 @@
 <% unless Rails.env.development? %>
   <div>
     <%= ui_button url: github_path, kind: :neutral, class: "w-full", method: :post, data: {turbo: false, controller: "bridge--oauth", action: "click->bridge--oauth#signIn:prevent", "bridge--oauth-start-path-value": github_start_path, "bridge--oauth-exchange-path-value": exchange_sessions_path} do %>
-      <%= icon "github", size: :sm, class: "mr-2" %>
-      Sign in with GitHub
+      <%= icon "github", size: :sm, class: "mr-2" %> Sign in with GitHub
     <% end %>
   </div>
 <% end %>

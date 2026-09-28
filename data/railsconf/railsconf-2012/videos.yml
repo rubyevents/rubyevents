@@ -1,10 +1,10 @@
+---
 # TODO: talk dates
 # TODO: talks running order
 # TODO: schedule website
-
 # Website: https://web.archive.org/web/20140105002431/http://railsconf2012.com/
 # Reference: https://github.com/newhavenrb/conferences/wiki/RailsConf-2012
----
+# Playlist: https://www.youtube.com/playlist?list=PLF16D2F3A8469021E
 - id: "david-heinemeier-hansson-railsconf-2012"
   title: "Keynote: Progress"
   raw_title: "Rails Conf 2012 Keynote: Progress by David Heinemeier Hansson"
@@ -40,20 +40,7 @@
   speakers:
     - Pedro Belo
 
-- id: "nathan-bibler-railsconf-2012"
-  title: "How to Find Valuable Gems"
-  raw_title: "How to Find Valuable Gems by Nathan Bibler"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-08-14T18:00:15Z"
-  video_provider: "youtube"
-  video_id: "SbOmrlVG5Ik"
-  description: |-
-    There's no need to reinvent the wheel. There are over 30,000 RubyGems available on just RubyGems.org, alone. But with so many out there, it must be impossible to find the right one, right? In this talk we'll learn about some resources which help you find the right gems, as well as how to intelligently decide if a library is right for your project.
-  speakers:
-    - Nathan Bibler
-
-- id: "lightning-talks-part-ii-railsconf-2012"
+- id: "lightning-talk-railsconf-2012"
   title: "Lightning Talks - Part II"
   raw_title: "Lightning Talks - Part II"
   kind: "lightning_talk"
@@ -64,331 +51,193 @@
   video_id: "KFO-hPBzzII"
   description: ""
   talks:
-    - id: "greg-belt-lighting-talk-railsconf-2012"
+    - id: "greg-belt-railsconf-2012"
       title: "Lightning Talk: Seven Tips for running an Open Source Project"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "00:25"
       end_cue: "01:27"
       video_provider: "parent"
-      video_id: "greg-belt-lighting-talk-railsconf-2012"
+      video_id: "greg-belt-railsconf-2012"
       speakers:
         - Greg Belt
 
-    - id: "ryan-biggs-lighting-talk-railsconf-2012"
+    - id: "ryan-bigg-railsconf-2012"
       title: "Lightning Talk: Integration testing engines"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "01:27"
       end_cue: "04:55"
       video_provider: "parent"
-      video_id: "ryan-biggs-lighting-talk-railsconf-2012"
+      video_id: "ryan-bigg-railsconf-2012"
       speakers:
-        - Ryan Biggs
+        - Ryan Bigg
 
-    - id: "yehuda-katz-lighting-talk-railsconf-2012"
+    - id: "yehuda-katz-lightning-talk-railsconf-2012"
       title: "Lightning Talk: Tokaido"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "04:55"
       end_cue: "09:25"
       video_provider: "parent"
-      video_id: "yehuda-katz-lighting-talk-railsconf-2012"
+      video_id: "yehuda-katz-lightning-talk-railsconf-2012"
       speakers:
         - Yehuda Katz
 
-    - id: "ryan-brunner-lighting-talk-railsconf-2012"
+    - id: "ryan-brunner-railsconf-2012"
       title: "Lightning Talk: Seven reasons why you should help organizer your local user group"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "09:25"
       end_cue: "14:20"
       video_provider: "parent"
-      video_id: "ryan-brunner-lighting-talk-railsconf-2012"
+      video_id: "ryan-brunner-railsconf-2012"
       speakers:
         - Ryan Brunner
 
-    - id: "mike-scalnik-lighting-talk-railsconf-2012"
+    - id: "mike-scalnik-railsconf-2012"
       title: "Lightning Talk: Railcar"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "14:20"
       end_cue: "16:27"
       video_provider: "parent"
-      video_id: "mike-scalnik-lighting-talk-railsconf-2012"
+      video_id: "mike-scalnik-railsconf-2012"
       speakers:
         - Mike Scalnik
 
-    - id: "felix-dominguez-lighting-talk-railsconf-2012"
+    - id: "felix-dominguez-railsconf-2012"
       title: "Lightning Talk: Why you don't get hired"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "16:27"
       end_cue: "20:53"
       video_provider: "parent"
-      video_id: "felix-dominguez-lighting-talk-railsconf-2012"
+      video_id: "felix-dominguez-railsconf-2012"
       speakers:
         - Felix Dominguez
 
-    - id: "reid-morrison-lighting-talk-railsconf-2012"
+    - id: "reid-morrison-railsconf-2012"
       title: "Lightning Talk: Rails Encryption"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "20:53"
       end_cue: "26:11"
       video_provider: "parent"
-      video_id: "reid-morrison-lighting-talk-railsconf-2012"
+      video_id: "reid-morrison-railsconf-2012"
       speakers:
         - Reid Morrison
 
-    - id: "evan-dorn-lighting-talk-railsconf-2012"
+    - id: "evan-dorn-railsconf-2012"
       title: "Lightning Talk: Ninjascript"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "26:11"
       end_cue: "27:00"
       video_provider: "parent"
-      video_id: "evan-dorn-lighting-talk-railsconf-2012"
+      video_id: "evan-dorn-railsconf-2012"
       speakers:
         - Evan Dorn
 
-    - id: "jay-moorthi-lighting-talk-railsconf-2012"
+    - id: "jay-moorthi-railsconf-2012"
       title: "Lightning Talk: tddium"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "27:00"
       end_cue: "31:44"
       video_provider: "parent"
-      video_id: "jay-moorthi-lighting-talk-railsconf-2012"
+      video_id: "jay-moorthi-railsconf-2012"
       speakers:
         - Jay Moorthi
 
-    - id: "rod-paddock-lighting-talk-railsconf-2012"
+    - id: "rod-paddock-railsconf-2012"
       title: "Lightning Talk: How I saved the World with Ruby and Nokogiri"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "31:44"
       end_cue: "34:15"
       video_provider: "parent"
-      video_id: "rod-paddock-lighting-talk-railsconf-2012"
+      video_id: "rod-paddock-railsconf-2012"
       speakers:
         - Rod Paddock
 
-    - id: "richard-schneeman-lighting-talk-railsconf-2012"
+    - id: "richard-schneeman-railsconf-2012"
       title: "Lightning Talk: Wizards from WTF to Wicked"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "34:15"
       end_cue: "36:42"
       video_provider: "parent"
-      video_id: "richard-schneeman-lighting-talk-railsconf-2012"
+      video_id: "richard-schneeman-railsconf-2012"
       speakers:
         - Richard Schneeman
 
-    - id: "sam-woodard-lighting-talk-railsconf-2012"
+    - id: "sam-woodard-railsconf-2012"
       title: "Lightning Talk: flash_s3_rails"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "36:42"
       end_cue: "40:36"
       video_provider: "parent"
-      video_id: "sam-woodard-lighting-talk-railsconf-2012"
+      video_id: "sam-woodard-railsconf-2012"
       speakers:
         - Sam Woodard
 
-    - id: "charles-lowell-lighting-talk-railsconf-2012"
+    - id: "charles-lowell-railsconf-2012"
       title: "Lightning Talk: One Man in the name of Embedding Javascript into Ruby"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "40:36"
       end_cue: "44:37"
       video_provider: "parent"
-      video_id: "charles-lowell-lighting-talk-railsconf-2012"
+      video_id: "charles-lowell-railsconf-2012"
       speakers:
         - Charles Lowell
 
-    - id: "matt-rogish-lighting-talk-railsconf-2012"
+    - id: "matt-rogish-railsconf-2012"
       title: "Lightning Talk: Hacking the Airlines"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "44:37"
       end_cue: "49:08"
       video_provider: "parent"
-      video_id: "matt-rogish-lighting-talk-railsconf-2012"
+      video_id: "matt-rogish-railsconf-2012"
       speakers:
         - Matt Rogish
 
-    - id: "brad-wilkening-lighting-talk-railsconf-2012"
+    - id: "brad-wilkening-railsconf-2012"
       title: "Lightning Talk: Top 10 Reasons you should probably quit your job"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "49:08"
       end_cue: "54:08"
       video_provider: "parent"
-      video_id: "brad-wilkening-lighting-talk-railsconf-2012"
+      video_id: "brad-wilkening-railsconf-2012"
       speakers:
         - Brad Wilkening
 
-    - id: "matt-conway-lighting-talk-railsconf-2012"
+    - id: "matt-conway-railsconf-2012"
       title: "Lightning Talk: Monitoring with Graphite"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "54:08"
       end_cue: "58:51"
       video_provider: "parent"
-      video_id: "matt-conway-lighting-talk-railsconf-2012"
+      video_id: "matt-conway-railsconf-2012"
       speakers:
         - Matt Conway
 
-    - id: "dr-nic-williams-evan-phoenix-lighting-talk-railsconf-2012"
+    - id: "dr-nic-williams-evan-phoenix-railsconf-2012"
       title: "Lightning Talk: It's a Wrap!"
       kind: "lightning_talk"
       date: "2012-04-23"
       start_cue: "58:51"
       end_cue: "01:00:48"
       video_provider: "parent"
-      video_id: "dr-nic-williams-evan-phoenix-lighting-talk-railsconf-2012"
+      video_id: "dr-nic-williams-evan-phoenix-railsconf-2012"
       speakers:
         - Dr. Nic Williams
         - Evan Phoenix
-
-- id: "joseph-ruscio-railsconf-2012"
-  title: "It's Not in Production Unless it's Monitored"
-  raw_title: "Rails Conf 2012 It's Not in Production Unless it's Monitored by Joseph Ruscio (improved audio)"
-  event_name: "RailsConf 2012"
-  date: "2012-04-25"
-  published_at: "2012-07-28T10:41:15Z"
-  video_provider: "youtube"
-  video_id: "0spo9hvDz_4"
-  description: |-
-    In the 21st century successful teams are data-driven. We'll present a complete introduction to everything you need to start monitoring your service at every level from business drivers to per-request metrics in Rails/Rack, down to server memory/cpu. Provides a high-level overview of the fundamental components that comprise a holistic monitoring system and then drills into real-world examples with tools like ActiveSupport::Notifications, statsd/rack-statsd, and CollectD. Also covers best practices for active alerting on custom monitoring data.
-  speakers:
-    - Joseph Ruscio
-  alternative_recordings:
-    - note: "Version with bad audio"
-      title: "It's not in Production Unless it's Monitored"
-      date: "2012-04-25"
-      video_provider: "youtube"
-      video_id: "YXEdd7_IbEc"
-
-- id: "michael-fairley-railsconf-2012"
-  title: "Extending Ruby with Ruby"
-  raw_title: "Rails Conf 2012 Extending Ruby with Ruby by Michael Fairley"
-  event_name: "RailsConf 2012"
-  date: "2012-04-25"
-  published_at: "2012-07-15T01:52:24Z"
-  video_provider: "youtube"
-  video_id: "ZjYgNnCtpg4"
-  description: |-
-    Other programming languages have powerful features that are often enviable while working in Ruby: Python's function decorators, Scala's partial evaluation, and Haskell's lazy evaluation, among others. Fortunately, Ruby's metaprogramming facilities give us the ability to add these features to Ruby ourselves, without the need for the core language to be changed.
-
-    This talk will walk through adding simple (yet functional) versions of the previously mentioned features to Ruby, using Ruby, and discuss the dos and don'ts of responsible Ruby metaprogramming.
-  speakers:
-    - Michael Fairley
-
-- id: "jared-ning-railsconf-2012"
-  title: "MiniTest: Refactoring Test Unit and RSpec back to version 0.0.1"
-  raw_title: "MiniTest: Refactoring Test  Unit and RSpec back to version 0.0.1 by Jared Ning"
-  event_name: "RailsConf 2012"
-  date: "2012-04-25"
-  published_at: "2012-07-13T15:17:42Z"
-  video_provider: "youtube"
-  video_id: "IHB__duBuT0"
-  description: |-
-    MiniTest is the no-nonsense testing framework you already know how to use. If we strive for cleaner and simpler code in our own work, wouldn't it be nice to have that in our test framework too? Whether you're a Test Unit fan or RSpec fan, you'll feel right at home using MiniTest. Its simplicity makes it fast, easy to use, extendable, and maybe most importantly, easy to understand. Plus, Rails 4 uses MiniTest.
-  speakers:
-    - Jared Ning
-
-- id: "nick-quaranto-railsconf-2012"
-  title: "Code spelunking in the All New Basecamp"
-  raw_title: "Code spelunking in the All New Basecamp by Nick Quaranto"
-  event_name: "RailsConf 2012"
-  date: "2012-04-25"
-  published_at: "2012-07-13T15:35:49Z"
-  video_provider: "youtube"
-  video_id: "oXTzFCXE66M"
-  description: |-
-    Heard about the big Basecamp launch this March? Wondering what's new, how it's shaping Rails, and the tech behind it? We're going to go over some the practices and patterns in the new Basecamp's code base and you can learn how to improve your app with them.
-
-    Some of what we'll go over:
-
-    Employing concerns to share code across models/controllers Stacker, the CoffeeScript component behind the "page" based layout Why polling for updates still works at scale Client side testing without the hassle Using jbuilder to keep view data out of models Keeping your team's sanity with a single setup script Debugging painful JavaScript performance slowdowns How to keep your app alive even if external dependencies like Redis are down Why tagged request logging and action/controller SQL query logging can make finding bugs easier
-  speakers:
-    - Nick Quaranto
-
-- id: "obie-fernandez-railsconf-2012"
-  title: "Redis Application Patterns in Rails"
-  raw_title: "Redis Application Patterns in Rails by Obie Fernandez"
-  event_name: "RailsConf 2012"
-  date: "2012-04-25"
-  published_at: "2012-07-02T08:57:33Z"
-  video_provider: "youtube"
-  video_id: "dH6VYRMRQFw"
-  description: |-
-    Redis is a darling of the NoSQL crowd and for good reasons. It's easy to setup and has blazing fast performance. In this talk, drawn on real production experience and real code straight out of the DueProps codebase, Obie will introduce and demonstrate key Redis application patterns vital to today's Rails developer. Emphasis will be placed on real-world constraints and how to leverage Redis to improve scaling and performance over plain-vanilla ActiveRecord applications.
-
-    Concepts covered: * Adding Redis-based flags and other properties to ActiveRecord objects * Event tracking with Redis sets * Graphing relationships between (User) objects with Redis sets * Time-ordered activity feeds with Redis sorted sets * Applying security restrictions to display of activity feeds with intersection of Redis sorted sets * Aggregating group activity feeds with union of Redis sorted sets * Applying Redis sorted sets to scoring and leaderboard programming * Integrating Redis with Rspec and Cucumber * Debugging tactics for when things go wrong or are unclear
-  speakers:
-    - Obie Fernandez
-
-- id: "ezra-zygmuntowicz-railsconf-2012"
-  title: "What a long Strange Trip it has been."
-  raw_title: "What a long Strange Trip it has been. by Ezra Zygmuntowicz"
-  event_name: "RailsConf 2012"
-  date: "2012-04-25"
-  published_at: "2012-06-21T17:25:00Z"
-  video_provider: "youtube"
-  video_id: "Alko6wQo8mk"
-  description: |-
-    This talk will explore the story of Ezra's travels through the history of ancient Rails 0.6 when he first picked it up in 2004 all the way through current times and extrapolate out to the future of the Rails and Ruby platform and how much of a success it has been. We will talk about the twisting path from way back then to now and beyond and explore what Rails was, is and will be as time keeps on slipping into the future.
-
-    This talk will be chock full of aqdvancxed tech as well as ramblings of a Rails industry Vet who has been "On the Rails" for 8 long years now and has played a major part in shaping what has been, is and will be(at least in his own mind where he is absolutely a legend, in reality he's just a schmuck who hacks ruby)
-
-    I want to share with the Rails community my story and experiences and hopefully impart some wisdom and some hard learned lessons about life, liberty and the pursuit of a rails app that doesn't use 400Mb of RAM per process ;)
-  speakers:
-    - Ezra Zygmuntowicz
-
-- id: "jim-weirich-railsconf-2012"
-  title: "Basic Rake"
-  raw_title: "Basic Rake by Jim Weirich"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-06-20T22:01:42Z"
-  video_provider: "youtube"
-  video_id: "AFPWDzHWjEY"
-  description: |-
-    Anyone who develops with Rails uses the Rake tool all the time. Rake will run your tests, migrate your database, and precompile your assets. But did you know you can define and build your own Rake tasks? This short talk will cover the basics of using Rake and writing simple automation tasks to make your development process smother.
-  speakers:
-    - Jim Weirich
-
-- id: "andrew-carter-railsconf-2012"
-  title: "Building Asynchronous Communication Layer w XMPP, Ruby, Javascript"
-  raw_title: "Building Asynchronous Communication Layer w XMPP, Ruby, Javascript by Andrew Carter and Steve Jang"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-06-20T20:35:26Z"
-  video_provider: "youtube"
-  video_id: "3ZynQ04BuN8"
-  description: |-
-    Although XMPP is most often used as a chat protocol, it can also provide a robust asynchronous communication channel in other application scenarios. In this presentation, we will provide introduction to Strophe.js, XMPP4R, and ejabberd, which are the XMPP components that we use to integrate our device automation framework and living room devices under test. By using these off-the-shelf components, we addressed our needs for getting around internal firewalls, application security (based on SASL), and asynchronous command-response handling.
-  speakers:
-    - Andrew Carter
-    - Steve Jang
-
-- id: "patrick-leonard-railsconf-2012"
-  title: "Preparing for Rapid Growth - Tips for Enabling Your App and Team to Grow"
-  raw_title: "Preparing for Rapid Growth - Tips for Enabling Your App and Team to Grow by Patrick Leonard"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-06-20T20:46:52Z"
-  video_provider: "youtube"
-  video_id: "kVNA6X6OD9k"
-  description: |-
-    Every young company expects to grow quickly, but is your engineering team really ready for it? In 3 years, iTriage went from a kitchen table to one of the leading mobile consumer healthcare apps with over 5 million downloads. Staying ahead of this growth didn't just mean hiring more Rails engineers.
-
-    Patrick will discuss what iTriage did (and continues to do) to stay ahead of our growth, including: - Technical architecture, including use of Rails Engines to enable a modular, RESTful service-based design - Enabling high quality iPhone, Android and Web apps - Development and release management processes - Recruiting and hiring approaches
-  speakers:
-    - Patrick Leonard
 
 - id: "dr-nic-williams-railsconf-2012"
   title: "Engine Yard - The Cloud, Application Support, and You - Ask Me Anything"
@@ -402,38 +251,6 @@
     This panel is made up of EY Support Engineers and Developers and they are ready to answer your questions! Want to know more about deploying to the cloud? What does PaaS mean to you? What is the EY Stack?
   speakers:
     - Dr. Nic Williams
-
-- id: "terence-lee-railsconf-2012"
-  title: "A Polygot Heroku"
-  raw_title: "A Polygot Heroku by Terence Lee"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-06-20T20:11:50Z"
-  video_provider: "youtube"
-  video_id: "jXnljOVEGKw"
-  description: |-
-    Over the past year, Heroku has expanded by going polyglot and supporting languages like Java, Clojure, Python, Node.js, and Scala in addition to Ruby. In this session, we will discuss major updates to the platform and our emphasis on making the Ruby developer experience even better. We'll leave plenty of time at the end for any questions.
-  speakers:
-    - Terence Lee
-
-- id: "masahiro-ihara-railsconf-2012"
-  title: "How Rails helps make cooking more fun in Japan"
-  raw_title: "How Rails helps make cooking more fun in Japan by Masahiro Ihara"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-06-20T20:01:30Z"
-  video_provider: "youtube"
-  video_id: "w2HXbFd7QJI"
-  description: |-
-    With more than a million user submitted recipes and an active user base of 15 million monthly unique users, cookpad.com is the world's largest recipe website, and an essential tool for the 50% of all Japanese women in their 20's and 30's who use the site regularly.
-
-    The Cookpad.com service is built on Rails and is running entirely on AWS in Tokyo, where more than 30 engineers are working in small agile teams to bring more value to users every day.
-
-    As you know, Japan had a huge earthquake and tsunami last year, and some of those affected didn't have cooking facilities, water or basic foods for long time. Many Cookpad users immediately uploaded simple recipes that could be made without the basics in adverse conditions, and helped those in hardship immensely allowing them to enjoy food with their families at that difficult time.
-
-    In this session, I'll talk about the COOKPAD way of creating services and the technologies behind them, and how we improve peoples lives through cooking every day.
-  speakers:
-    - Masahiro Ihara
 
 - id: "jacob-swanner-railsconf-2012"
   title: "Active Record Scopes and Arel"
@@ -613,7 +430,7 @@
   speakers:
     - Steve Klabnik
 
-- id: "andrew-cantino-railsconf-2012"
+- id: "andrew-cantino-ryan-stout-railsconf-2012"
   title: "Practical Machine Learning and Rails"
   raw_title: "Practical Machine Learning and Rails by Andrew Cantino and Ryan Stout"
   event_name: "RailsConf 2012"
@@ -626,6 +443,199 @@
   speakers:
     - Andrew Cantino
     - Ryan Stout
+
+- id: "mark-bates-railsconf-2012"
+  title: "CoffeeScript for the Rubyist"
+  raw_title: "CoffeeScript for the Rubyist by Mark Bates"
+  event_name: "RailsConf 2012"
+  date: "2012-04-23"
+  published_at: "2012-06-04T21:43:54Z"
+  video_provider: "youtube"
+  video_id: "aER4_AP3S4E"
+  description: |-
+    CoffeeScript is taking the world, and particularly the Rails eco system, by storm. This little language has provided an almost Ruby like abstraction onto of JavaScript. CoffeeScript is trying to make writing front end code as much fun as Ruby makes writing backend code.
+
+    In this talk we start with the basic concepts of CoffeeScript and move on to the more powerful and fun features of the language. While we're looking at CoffeeScript we'll see how it relates to the Ruby code we write everyday. What do Ruby 1.9 lambdas and CoffeeScript functions have in common? Which of the two languages supports splats, default arguments, and ranges? The answers may surprise you.
+  speakers:
+    - Mark Bates
+
+- id: "sarah-mei-railsconf-2012"
+  title: "Using Backbone.js with Rails: Patterns from the Wild"
+  raw_title: "Using Backbone.js with Rails: Patterns from the Wild by Sarah Mei"
+  event_name: "RailsConf 2012"
+  date: "2012-04-23"
+  published_at: "2012-06-04T18:40:12Z"
+  video_provider: "youtube"
+  video_id: "lPiM4T1lR58"
+  description: |-
+    Backbone.js is a flexible, lightweight tool for structuring the JavaScript in a modern web application. It goes great with Rails! But beware - "flexible and lightweight" are code words for "you build your own plumbing." Backbone is new enough that we haven't established strong patterns for that plumbing yet, so different Backbone codebases look very different, and when you're new to the idea of structuring your JavaScript, it can be tough to tell where the win is.
+
+    So in this talk I'll demystify Backbone. I'll show several very different ways I've used it on real Rails apps. You'll get a feel for the circumstances when Backbone makes sense, and moreover, when each of the different approaches to Backbone make sense.
+  speakers:
+    - Sarah Mei
+
+- id: "hampton-catlin-railsconf-2012"
+  title: "The Future of Sass"
+  raw_title: "The Future of Sass by Hampton Catlin"
+  event_name: "RailsConf 2012"
+  date: "2012-04-23"
+  published_at: "2012-05-03T14:38:03Z"
+  video_provider: "youtube"
+  video_id: "MFwId6xSh2o"
+  description: |-
+    A glimpse of some of the features coming to Sass in the pending 3.2 release. Plus, a huge announcement about the project that's been months in the making as we have secretly toiled away on something that we think will be awesome. Hear it first at this talk. Repositories will be made public when the talk is over. Shh! Its a secret!
+  speakers:
+    - Hampton Catlin
+
+- id: "john-bender-railsconf-2012"
+  title: "Progressive Enhancement on the Mobile Web"
+  raw_title: "Progressive Enhancement on the Mobile Web by John Bender"
+  event_name: "RailsConf 2012"
+  date: "2012-04-23"
+  published_at: "2012-05-03T12:43:59Z"
+  video_provider: "youtube"
+  video_id: "mEivOr3fcMs"
+  description: |-
+    Progressive Enhancement isn't important on the mobile web because it's all Webkit right? Not so fast. Even among Webkit implementations events, css, and performance vary widely. We'll talk about the darker corners of the mobile web and show how jQuery Mobile can help you build Rails applications that are reliable, accessible, and support more devices.
+  speakers:
+    - John Bender
+
+- id: "lori-m-olson-railsconf-2012"
+  title: "Mobile Rage - What causes it & how to fix it."
+  raw_title: "Mobile Rage - What causes it & how to fix it. by Lori Olson"
+  event_name: "RailsConf 2012"
+  date: "2012-04-23"
+  published_at: "2012-05-03T10:28:40Z"
+  video_provider: "youtube"
+  video_id: "qev9PSaNLSA"
+  description: |-
+    Most of us have been there. That website you want to use, from your mobile device, that just refuses to cooperate. From the Flash-only, to the can't f**king log in, to the redirect-to-mobile-and-stay-there sites, there's more than enough websites out there to invoke Mobile Rage.
+
+    Although we all know that the best mobile development strategy is "mobile-first", we also all know how many sites and applications out there were designed and built by people who didn't imagine how fast mobile would take over.
+
+    Come learn about the common mistakes most people make for mobile, and some of the simple solutions you can use to help reduce Mobile Rage, without having to do a complete rewrite.
+  speakers:
+    - Lori M Olson
+
+- id: "daniel-azuma-railsconf-2012"
+  title: "Getting Down To Earth: Geospatial Analysis With Rails"
+  raw_title: "Rails Conf 2012 Getting Down To Earth: Geospatial Analysis With Rails by Daniel Azuma"
+  event_name: "RailsConf 2012"
+  date: "2012-04-23"
+  published_at: "2012-05-03T07:52:21Z"
+  video_provider: "youtube"
+  video_id: "QI0e2jkUbkk"
+  description: |-
+    It is no secret that location has become ubiquitous. Mobile GPS, available data sets, and easy-to-use mapping services have brought geospatial information within reach of web developers. Location already plays a significant role in many of the major services such as Twitter, Facebook, and Google, not to mention legions of startups.
+
+    However, for those of us implementing more than the most trivial features, it is also true that location is challenging. A significant learning curve awaits us, involving spatial databases, coordinate systems, interchange formats, and plenty of math. Our Ruby-based tools lag a bit behind those available to our Java- and Python-oriented colleagues, and effective documentation is scarce.
+
+    This presentation aims to jump-start Rails developers hoping to go beyond putting a few pushpins on a Google Map. Rather than spending a lot of time explaining the many concepts involved, we'll bypass the learning curve and jump straight into walking through code for a few nontrivial applications. The hope is that the conceptual knowledge will come naturally as a result of seeing it in action, but pointers to online resources will also be provided to fill in any gaps.
+
+    A thorough understanding of Ruby, Rails, ActiveRecord, and SQL will be assumed. No prior knowledge of GIS or computational geometry will be required, though it may be helpful.
+  speakers:
+    - Daniel Azuma
+
+- id: "rich-hickey-railsconf-2012"
+  title: "Keynote: Simplicity Matters"
+  raw_title: "Rails Conf 2012 Keynote: Simplicity Matters by Rich Hickey"
+  kind: "keynote"
+  event_name: "RailsConf 2012"
+  date: "2012-04-23"
+  published_at: "2012-05-01T23:42:20Z"
+  video_provider: "youtube"
+  video_id: "rI8tNMsozo0"
+  description: |-
+    Rich Hickey, the author of Clojure and designer of Datomic, is a software developer with over 20 years of experience in various domains. Rich has worked on scheduling systems, broadcast automation, audio analysis and fingerprinting, database design, yield management, exit poll systems, and machine listening, in a variety of languages.
+  speakers:
+    - Rich Hickey
+
+- id: "nathan-bibler-railsconf-2012"
+  title: "How to Find Valuable Gems"
+  raw_title: "How to Find Valuable Gems by Nathan Bibler"
+  event_name: "RailsConf 2012"
+  date: "2012-04-24"
+  published_at: "2012-08-14T18:00:15Z"
+  video_provider: "youtube"
+  video_id: "SbOmrlVG5Ik"
+  description: |-
+    There's no need to reinvent the wheel. There are over 30,000 RubyGems available on just RubyGems.org, alone. But with so many out there, it must be impossible to find the right one, right? In this talk we'll learn about some resources which help you find the right gems, as well as how to intelligently decide if a library is right for your project.
+  speakers:
+    - Nathan Bibler
+
+- id: "jim-weirich-railsconf-2012"
+  title: "Basic Rake"
+  raw_title: "Basic Rake by Jim Weirich"
+  event_name: "RailsConf 2012"
+  date: "2012-04-24"
+  published_at: "2012-06-20T22:01:42Z"
+  video_provider: "youtube"
+  video_id: "AFPWDzHWjEY"
+  description: |-
+    Anyone who develops with Rails uses the Rake tool all the time. Rake will run your tests, migrate your database, and precompile your assets. But did you know you can define and build your own Rake tasks? This short talk will cover the basics of using Rake and writing simple automation tasks to make your development process smother.
+  speakers:
+    - Jim Weirich
+
+- id: "andrew-carter-steve-jang-railsconf-2012"
+  title: "Building Asynchronous Communication Layer w XMPP, Ruby, Javascript"
+  raw_title: "Building Asynchronous Communication Layer w XMPP, Ruby, Javascript by Andrew Carter and Steve Jang"
+  event_name: "RailsConf 2012"
+  date: "2012-04-24"
+  published_at: "2012-06-20T20:35:26Z"
+  video_provider: "youtube"
+  video_id: "3ZynQ04BuN8"
+  description: |-
+    Although XMPP is most often used as a chat protocol, it can also provide a robust asynchronous communication channel in other application scenarios. In this presentation, we will provide introduction to Strophe.js, XMPP4R, and ejabberd, which are the XMPP components that we use to integrate our device automation framework and living room devices under test. By using these off-the-shelf components, we addressed our needs for getting around internal firewalls, application security (based on SASL), and asynchronous command-response handling.
+  speakers:
+    - Andrew Carter
+    - Steve Jang
+
+- id: "patrick-leonard-railsconf-2012"
+  title: "Preparing for Rapid Growth - Tips for Enabling Your App and Team to Grow"
+  raw_title: "Preparing for Rapid Growth - Tips for Enabling Your App and Team to Grow by Patrick Leonard"
+  event_name: "RailsConf 2012"
+  date: "2012-04-24"
+  published_at: "2012-06-20T20:46:52Z"
+  video_provider: "youtube"
+  video_id: "kVNA6X6OD9k"
+  description: |-
+    Every young company expects to grow quickly, but is your engineering team really ready for it? In 3 years, iTriage went from a kitchen table to one of the leading mobile consumer healthcare apps with over 5 million downloads. Staying ahead of this growth didn't just mean hiring more Rails engineers.
+
+    Patrick will discuss what iTriage did (and continues to do) to stay ahead of our growth, including: - Technical architecture, including use of Rails Engines to enable a modular, RESTful service-based design - Enabling high quality iPhone, Android and Web apps - Development and release management processes - Recruiting and hiring approaches
+  speakers:
+    - Patrick Leonard
+
+- id: "terence-lee-railsconf-2012"
+  title: "A Polygot Heroku"
+  raw_title: "A Polygot Heroku by Terence Lee"
+  event_name: "RailsConf 2012"
+  date: "2012-04-24"
+  published_at: "2012-06-20T20:11:50Z"
+  video_provider: "youtube"
+  video_id: "jXnljOVEGKw"
+  description: |-
+    Over the past year, Heroku has expanded by going polyglot and supporting languages like Java, Clojure, Python, Node.js, and Scala in addition to Ruby. In this session, we will discuss major updates to the platform and our emphasis on making the Ruby developer experience even better. We'll leave plenty of time at the end for any questions.
+  speakers:
+    - Terence Lee
+
+- id: "masahiro-ihara-railsconf-2012"
+  title: "How Rails helps make cooking more fun in Japan"
+  raw_title: "How Rails helps make cooking more fun in Japan by Masahiro Ihara"
+  event_name: "RailsConf 2012"
+  date: "2012-04-24"
+  published_at: "2012-06-20T20:01:30Z"
+  video_provider: "youtube"
+  video_id: "w2HXbFd7QJI"
+  description: |-
+    With more than a million user submitted recipes and an active user base of 15 million monthly unique users, cookpad.com is the world's largest recipe website, and an essential tool for the 50% of all Japanese women in their 20's and 30's who use the site regularly.
+
+    The Cookpad.com service is built on Rails and is running entirely on AWS in Tokyo, where more than 30 engineers are working in small agile teams to bring more value to users every day.
+
+    As you know, Japan had a huge earthquake and tsunami last year, and some of those affected didn't have cooking facilities, water or basic foods for long time. Many Cookpad users immediately uploaded simple recipes that could be made without the basics in adverse conditions, and helped those in hardship immensely allowing them to enjoy food with their families at that difficult time.
+
+    In this session, I'll talk about the COOKPAD way of creating services and the technologies behind them, and how we improve peoples lives through cooking every day.
+  speakers:
+    - Masahiro Ihara
 
 - id: "piotr-sarnacki-railsconf-2012"
   title: "Using Rails without Rails"
@@ -706,35 +716,251 @@
   speakers:
     - Mike Moore
 
-- id: "mark-bates-railsconf-2012"
-  title: "CoffeeScript for the Rubyist"
-  raw_title: "CoffeeScript for the Rubyist by Mark Bates"
+- id: "david-czarnecki-railsconf-2012"
+  title: "Stack Smashing"
+  raw_title: "Rails Conf 2012 Stack Smashing by David Czarnecki"
   event_name: "RailsConf 2012"
-  date: "2012-04-23"
-  published_at: "2012-06-04T21:43:54Z"
+  date: "2012-04-24"
+  published_at: "2012-05-12T05:32:55Z"
   video_provider: "youtube"
-  video_id: "aER4_AP3S4E"
+  video_id: "p-uWNZdK7Gs"
   description: |-
-    CoffeeScript is taking the world, and particularly the Rails eco system, by storm. This little language has provided an almost Ruby like abstraction onto of JavaScript. CoffeeScript is trying to make writing front end code as much fun as Ruby makes writing backend code.
+    "Stack Smashing" refers to an internal project where I took our production Rails application environment down from over 100 virtual machines to 2 physical machines. Our application environment for Major League Gaming consists of 13+ inter-connected applications with millions of users to provide functionality such as single-sign on, online video (both video on demand and UGC), news and live competition information, photo galleries, profiles, and much more. We simply needed a simpler infrastructure in which to develop and deploy our applications. In this talk, we will cover the following:
 
-    In this talk we start with the basic concepts of CoffeeScript and move on to the more powerful and fun features of the language. While we're looking at CoffeeScript we'll see how it relates to the Ruby code we write everyday. What do Ruby 1.9 lambdas and CoffeeScript functions have in common? Which of the two languages supports splats, default arguments, and ranges? The answers may surprise you.
+    Network topology before and after, as well as the makeup of our virtual and physical machines. Detailed discussion of Chef recipes, NGINX, HAProxy configurations and updates to standard configurations. Application and service monitoring and configuration. Application migration from the old stack to the new stack. Rails 3 to Rails 3.1 upgrade insights. Unicorns! Strategies for service configuration to handle failure. Offline processing with queueing and queue management. Simplifying, standardizing and sexy-fying your Capistrano-based deployment tasks into a reusable gem. Behavior driven infrastructure monitoring and validation. Adopting an opt-in continuous deployment strategy that is integrated with our continuous integration environment. This will be a very code and example-focused talk. Come and learn about the ways that you can simplify your existing infrastructure.
   speakers:
-    - Mark Bates
+    - David Czarnecki
 
-- id: "sarah-mei-railsconf-2012"
-  title: "Using Backbone.js with Rails: Patterns from the Wild"
-  raw_title: "Using Backbone.js with Rails: Patterns from the Wild by Sarah Mei"
+- id: "matt-sanders-railsconf-2012"
+  title: "Digging Deep with ActiveSupport::Notifications"
+  raw_title: "Digging Deep with ActiveSupport::Notifications by Matt Sanders"
   event_name: "RailsConf 2012"
-  date: "2012-04-23"
-  published_at: "2012-06-04T18:40:12Z"
+  date: "2012-04-24"
+  published_at: "2012-05-11T22:24:39Z"
   video_provider: "youtube"
-  video_id: "lPiM4T1lR58"
+  video_id: "sKrrsF0MZ7Q"
   description: |-
-    Backbone.js is a flexible, lightweight tool for structuring the JavaScript in a modern web application. It goes great with Rails! But beware - "flexible and lightweight" are code words for "you build your own plumbing." Backbone is new enough that we haven't established strong patterns for that plumbing yet, so different Backbone codebases look very different, and when you're new to the idea of structuring your JavaScript, it can be tough to tell where the win is.
+    Rails 3 and above includes a powerful instrumentation system, ActiveSupport::Notifications, which can be used to track performance and event information for all aspects of your application. Notifications are light-weight, easy to setup, and can be consumed by multiple subscribers (logs, audit trails, consolidated metrics, other parts of your application).
 
-    So in this talk I'll demystify Backbone. I'll show several very different ways I've used it on real Rails apps. You'll get a feel for the circumstances when Backbone makes sense, and moreover, when each of the different approaches to Backbone make sense.
+    In this session we'll start with the basics of ActiveSupport::Notifications and work our way to powerful advanced use cases. Topics we'll explore include:
+
+    How to set up and use notifications Logging what you want from any tier of your system How to capture and aggregate performance/business data for the metrics you care about most Conditional monitoring in production: flag on and off data by system or customer to get to the root of problems more quickly Using ActiveSupport::Notifications in non-Rails applications and your own libraries
   speakers:
-    - Sarah Mei
+    - Matt Sanders
+
+- id: "james-edward-gray-ii-railsconf-2012"
+  title: "Ten Things You Didn't Know Rails Could Do"
+  raw_title: "Ten Things You Didn't Know Rails Could Do by James Edward Gray II"
+  event_name: "RailsConf 2012"
+  date: "2012-04-24"
+  published_at: "2012-05-11T11:07:33Z"
+  video_provider: "youtube"
+  video_id: "GRfJ9lni4QA"
+  description: |-
+    Rails is huge. Even if you have worked with it for a long time, it's unlikely that you have stumbled across everything yet.
+
+    Do you really know what all of the built-in Rake tasks do? Have you seen all of the methods ActiveSupport makes available to you? Are you aware of all the queries ActiveRecord is capable of?
+
+    In this talk, I'll dig into the extras of Rails and see if I can't turn up some features that you don't see all of the time, but that might just be handy to know about anyway. I'll make sure you come out of this able to impress your friends at the hackfest.
+  speakers:
+    - James Edward Gray II
+
+- id: "ilya-grigorik-railsconf-2012"
+  title: "Let's make the web faster - tips from trenches @ Google"
+  raw_title: "Let's make the web faster - tips from trenches @ Google by Ilya Grigorick"
+  event_name: "RailsConf 2012"
+  date: "2012-04-24"
+  published_at: "2012-05-03T23:35:00Z"
+  video_provider: "youtube"
+  video_id: "pxrj1a1PS94"
+  description: |-
+    Google loves speed, and we want to make the entire web faster - yes, that includes your Rails app! We'll explore what we've learned from running our own services at scale, as well as cover the research, projects, and open sourced tools we've developed in the process.
+
+    We'll start at the top with website optimization best practices, take a look at what the browser and HTML5 can do for us, take a detour into the optimizations for the mobile web, and finally dive deep into the SPDY and TCP protocol optimizations.
+
+    We'll cover a lot of ground, so bring a coffee. By the end of the session, you should have a good checklist to help you optimize your own site.
+  speakers:
+    - Ilya Grigorik
+
+- id: "nathen-harvey-railsconf-2012"
+  title: "Taming the Kraken - How Operations enables developer productivity"
+  raw_title: "Taming the Kraken - How Operations enables developer productivity by Nathen Harvey"
+  event_name: "RailsConf 2012"
+  date: "2012-04-24"
+  published_at: "2012-05-03T15:54:18Z"
+  video_provider: "youtube"
+  video_id: "5vzNzQzmAk0"
+  description: |-
+    Are you having trouble launching new features because of friction between development and operations? At CustomInk, we've reduced this friction by making changes to our teams, processes, and tools. Come find out what we've been up to and learn how you can implement similar changes in your own environment.
+
+    There's always a bit of tension when getting features from idea to production. In this talk, we'll look at some of the changes CustomInk has made to reduce this friction and keep the new features coming. Gone are the days of bi-monthly deploys, office pools dedicated to guessing when this deploy will be rolled back, and the ceremony surrounding the deploy-rollback-fix-deploy cycle. Today, ideas flow from product managers to developers to production with ease thanks to a number of changes that we've made to our teams, processes and tools.
+
+    During this talk, we'll look at:
+
+    How product managers drive the release cycle
+
+    Ideas and customer feedback
+    Prioritizing development requests
+    Managing branch merges and deployments (yes, product managers can help here!)
+    How operations enables developer productivity
+
+    Spinning up development environments - Vagrant, Chef
+    Infrastructure Automation - Chef
+    Enabling Continuous Deployment - Capistrano and caphub
+    Failing gracefully - Fault-tolerant load balancing with ldirectord
+    How developers get their code running in production
+
+    Staging environments
+    Continuous Integration - Jenkins, Green Screen
+    Staying on topic: Deploying changes when they're ready
+    Getting rid of the over-the-wall mentality - Dev & Ops working together
+
+    Enabling developers to do it themselves
+    Pair programing infrastructure automation
+    Keeping the process light and the communication flowing
+  speakers:
+    - Nathen Harvey
+
+- id: "david-cohen-railsconf-2012"
+  title: "Keynote: 12 Tips Learned From Doing More Faster at TechStars"
+  raw_title: "Keynote by David Cohen of TechStars"
+  kind: "keynote"
+  event_name: "RailsConf 2012"
+  date: "2012-04-24"
+  published_at: "2012-05-03T04:52:35Z"
+  video_provider: "youtube"
+  video_id: "Ok7YH8_48pc"
+  description: |-
+    David Cohen is the founder and CEO of TechStars. Previously, David was a founder of several software and web technology companies. He was the founder and CTO of Pinpoint Technologies which was acquired by ZOLL Medical Corporation (NASDAQ: ZOLL) in 1999. You can read about it in No Vision, All Drive [Amazon]. David was also the founder and CEO of earFeeder.com, a music service which was sold to SonicSwap.com in 2006. He also had what he likes to think of as a "graceful failure" in between.
+
+    David is a active startup advocate, advisor, board member, and technology advisor who comments on these topics on his blog at DavidGCohen.com. He recently co-authored Do More Faster with Brad Feld. He is also very active at the University of Colorado, serving as a member of the Board of Advisors of the Computer Science Department, the Entrepreneurial Advisory Board at Silicon Flatirons, and the Board of Advisors of the Deming Center Venture Fund. He is a member of the selection committee for Venture Capital in the Rockies, and runs the Colorado chapter of the Open Angel Forum. His hobbies are technology, software/web startups, business history, and tennis. He is married to the coolest girl he's ever met and has three amazing kids who always seem to be teaching him something new.
+  speakers:
+    - David Cohen
+
+- id: "gregg-pollack-aaron-patterson-railsconf-2012"
+  title: "Ruby Hero Awards 2012"
+  raw_title: "2012 Ruby Hero Awards"
+  kind: "award"
+  event_name: "RailsConf 2012"
+  date: "2012-04-24"
+  published_at: "2012-05-02T02:30:39Z"
+  video_provider: "youtube"
+  video_id: "tWmh4m2a4FI"
+  description: |-
+    This is the presentation of the 2012 Ruby Hero Awards
+  speakers:
+    - Gregg Pollack
+    - Aaron Patterson
+
+- id: "aaron-patterson-railsconf-2012"
+  title: "Keynote: I've made a huge mistake"
+  raw_title: "Keynote: I've made a huge mistake by Aaron Patterson"
+  kind: "keynote"
+  event_name: "RailsConf 2012"
+  date: "2012-04-24"
+  published_at: "2012-05-02T01:36:08Z"
+  video_provider: "youtube"
+  video_id: "8kSfGgiFk48"
+  description: |-
+    When he isn't ruining people's lives by writing software like phuby, enterprise, and neversaydie, Aaron can be found writing slightly more useful software like nokogiri. To keep up his Gameboy Lifestyle, Aaron spends his weekdays writing high quality software for ATTi. Be sure to catch him on Karaoke night, where you can watch him sing his favorite smooth rock hits of the 70's and early 80's.
+  speakers:
+    - Aaron Patterson
+
+- id: "joseph-ruscio-railsconf-2012"
+  title: "It's Not in Production Unless it's Monitored"
+  raw_title: "Rails Conf 2012 It's Not in Production Unless it's Monitored by Joseph Ruscio (improved audio)"
+  event_name: "RailsConf 2012"
+  date: "2012-04-25"
+  published_at: "2012-07-28T10:41:15Z"
+  video_provider: "youtube"
+  video_id: "0spo9hvDz_4"
+  description: |-
+    In the 21st century successful teams are data-driven. We'll present a complete introduction to everything you need to start monitoring your service at every level from business drivers to per-request metrics in Rails/Rack, down to server memory/cpu. Provides a high-level overview of the fundamental components that comprise a holistic monitoring system and then drills into real-world examples with tools like ActiveSupport::Notifications, statsd/rack-statsd, and CollectD. Also covers best practices for active alerting on custom monitoring data.
+  speakers:
+    - Joseph Ruscio
+  alternative_recordings:
+    - note: "Version with bad audio"
+      title: "It's not in Production Unless it's Monitored"
+      date: "2012-04-25"
+      video_provider: "youtube"
+      video_id: "YXEdd7_IbEc"
+
+- id: "michael-fairley-railsconf-2012"
+  title: "Extending Ruby with Ruby"
+  raw_title: "Rails Conf 2012 Extending Ruby with Ruby by Michael Fairley"
+  event_name: "RailsConf 2012"
+  date: "2012-04-25"
+  published_at: "2012-07-15T01:52:24Z"
+  video_provider: "youtube"
+  video_id: "ZjYgNnCtpg4"
+  description: |-
+    Other programming languages have powerful features that are often enviable while working in Ruby: Python's function decorators, Scala's partial evaluation, and Haskell's lazy evaluation, among others. Fortunately, Ruby's metaprogramming facilities give us the ability to add these features to Ruby ourselves, without the need for the core language to be changed.
+
+    This talk will walk through adding simple (yet functional) versions of the previously mentioned features to Ruby, using Ruby, and discuss the dos and don'ts of responsible Ruby metaprogramming.
+  speakers:
+    - Michael Fairley
+
+- id: "jared-ning-railsconf-2012"
+  title: "MiniTest: Refactoring Test Unit and RSpec back to version 0.0.1"
+  raw_title: "MiniTest: Refactoring Test  Unit and RSpec back to version 0.0.1 by Jared Ning"
+  event_name: "RailsConf 2012"
+  date: "2012-04-25"
+  published_at: "2012-07-13T15:17:42Z"
+  video_provider: "youtube"
+  video_id: "IHB__duBuT0"
+  description: |-
+    MiniTest is the no-nonsense testing framework you already know how to use. If we strive for cleaner and simpler code in our own work, wouldn't it be nice to have that in our test framework too? Whether you're a Test Unit fan or RSpec fan, you'll feel right at home using MiniTest. Its simplicity makes it fast, easy to use, extendable, and maybe most importantly, easy to understand. Plus, Rails 4 uses MiniTest.
+  speakers:
+    - Jared Ning
+
+- id: "nick-quaranto-railsconf-2012"
+  title: "Code spelunking in the All New Basecamp"
+  raw_title: "Code spelunking in the All New Basecamp by Nick Quaranto"
+  event_name: "RailsConf 2012"
+  date: "2012-04-25"
+  published_at: "2012-07-13T15:35:49Z"
+  video_provider: "youtube"
+  video_id: "oXTzFCXE66M"
+  description: |-
+    Heard about the big Basecamp launch this March? Wondering what's new, how it's shaping Rails, and the tech behind it? We're going to go over some the practices and patterns in the new Basecamp's code base and you can learn how to improve your app with them.
+
+    Some of what we'll go over:
+
+    Employing concerns to share code across models/controllers Stacker, the CoffeeScript component behind the "page" based layout Why polling for updates still works at scale Client side testing without the hassle Using jbuilder to keep view data out of models Keeping your team's sanity with a single setup script Debugging painful JavaScript performance slowdowns How to keep your app alive even if external dependencies like Redis are down Why tagged request logging and action/controller SQL query logging can make finding bugs easier
+  speakers:
+    - Nick Quaranto
+
+- id: "obie-fernandez-railsconf-2012"
+  title: "Redis Application Patterns in Rails"
+  raw_title: "Redis Application Patterns in Rails by Obie Fernandez"
+  event_name: "RailsConf 2012"
+  date: "2012-04-25"
+  published_at: "2012-07-02T08:57:33Z"
+  video_provider: "youtube"
+  video_id: "dH6VYRMRQFw"
+  description: |-
+    Redis is a darling of the NoSQL crowd and for good reasons. It's easy to setup and has blazing fast performance. In this talk, drawn on real production experience and real code straight out of the DueProps codebase, Obie will introduce and demonstrate key Redis application patterns vital to today's Rails developer. Emphasis will be placed on real-world constraints and how to leverage Redis to improve scaling and performance over plain-vanilla ActiveRecord applications.
+
+    Concepts covered: * Adding Redis-based flags and other properties to ActiveRecord objects * Event tracking with Redis sets * Graphing relationships between (User) objects with Redis sets * Time-ordered activity feeds with Redis sorted sets * Applying security restrictions to display of activity feeds with intersection of Redis sorted sets * Aggregating group activity feeds with union of Redis sorted sets * Applying Redis sorted sets to scoring and leaderboard programming * Integrating Redis with Rspec and Cucumber * Debugging tactics for when things go wrong or are unclear
+  speakers:
+    - Obie Fernandez
+
+- id: "ezra-zygmuntowicz-railsconf-2012"
+  title: "What a long Strange Trip it has been."
+  raw_title: "What a long Strange Trip it has been. by Ezra Zygmuntowicz"
+  event_name: "RailsConf 2012"
+  date: "2012-04-25"
+  published_at: "2012-06-21T17:25:00Z"
+  video_provider: "youtube"
+  video_id: "Alko6wQo8mk"
+  description: |-
+    This talk will explore the story of Ezra's travels through the history of ancient Rails 0.6 when he first picked it up in 2004 all the way through current times and extrapolate out to the future of the Rails and Ruby platform and how much of a success it has been. We will talk about the twisting path from way back then to now and beyond and explore what Rails was, is and will be as time keeps on slipping into the future.
+
+    This talk will be chock full of aqdvancxed tech as well as ramblings of a Rails industry Vet who has been "On the Rails" for 8 long years now and has played a major part in shaping what has been, is and will be(at least in his own mind where he is absolutely a legend, in reality he's just a schmuck who hacks ruby)
+
+    I want to share with the Rails community my story and experiences and hopefully impart some wisdom and some hard learned lessons about life, liberty and the pursuit of a rails app that doesn't use 400Mb of RAM per process ;)
+  speakers:
+    - Ezra Zygmuntowicz
 
 - id: "josh-kalderimis-railsconf-2012"
   title: "Deconstructing Travis"
@@ -810,234 +1036,10 @@
   speakers:
     - Yehuda Katz
 
-- id: "david-czarnecki-railsconf-2012"
-  title: "Stack Smashing"
-  raw_title: "Rails Conf 2012 Stack Smashing by David Czarnecki"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-05-12T05:32:55Z"
-  video_provider: "youtube"
-  video_id: "p-uWNZdK7Gs"
-  description: |-
-    "Stack Smashing" refers to an internal project where I took our production Rails application environment down from over 100 virtual machines to 2 physical machines. Our application environment for Major League Gaming consists of 13+ inter-connected applications with millions of users to provide functionality such as single-sign on, online video (both video on demand and UGC), news and live competition information, photo galleries, profiles, and much more. We simply needed a simpler infrastructure in which to develop and deploy our applications. In this talk, we will cover the following:
-
-    Network topology before and after, as well as the makeup of our virtual and physical machines. Detailed discussion of Chef recipes, NGINX, HAProxy configurations and updates to standard configurations. Application and service monitoring and configuration. Application migration from the old stack to the new stack. Rails 3 to Rails 3.1 upgrade insights. Unicorns! Strategies for service configuration to handle failure. Offline processing with queueing and queue management. Simplifying, standardizing and sexy-fying your Capistrano-based deployment tasks into a reusable gem. Behavior driven infrastructure monitoring and validation. Adopting an opt-in continuous deployment strategy that is integrated with our continuous integration environment. This will be a very code and example-focused talk. Come and learn about the ways that you can simplify your existing infrastructure.
-  speakers:
-    - David Czarnecki
-
-- id: "matt-sanders-railsconf-2012"
-  title: "Digging Deep with ActiveSupport::Notifications"
-  raw_title: "Digging Deep with ActiveSupport::Notifications by Matt Sanders"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-05-11T22:24:39Z"
-  video_provider: "youtube"
-  video_id: "sKrrsF0MZ7Q"
-  description: |-
-    Rails 3 and above includes a powerful instrumentation system, ActiveSupport::Notifications, which can be used to track performance and event information for all aspects of your application. Notifications are light-weight, easy to setup, and can be consumed by multiple subscribers (logs, audit trails, consolidated metrics, other parts of your application).
-
-    In this session we'll start with the basics of ActiveSupport::Notifications and work our way to powerful advanced use cases. Topics we'll explore include:
-
-    How to set up and use notifications Logging what you want from any tier of your system How to capture and aggregate performance/business data for the metrics you care about most Conditional monitoring in production: flag on and off data by system or customer to get to the root of problems more quickly Using ActiveSupport::Notifications in non-Rails applications and your own libraries
-  speakers:
-    - Matt Sanders
-
-- id: "james-edward-gray-ii-railsconf-2012"
-  title: "Ten Things You Didn't Know Rails Could Do"
-  raw_title: "Ten Things You Didn't Know Rails Could Do by James Edward Gray II"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-05-11T11:07:33Z"
-  video_provider: "youtube"
-  video_id: "GRfJ9lni4QA"
-  description: |-
-    Rails is huge. Even if you have worked with it for a long time, it's unlikely that you have stumbled across everything yet.
-
-    Do you really know what all of the built-in Rake tasks do? Have you seen all of the methods ActiveSupport makes available to you? Are you aware of all the queries ActiveRecord is capable of?
-
-    In this talk, I'll dig into the extras of Rails and see if I can't turn up some features that you don't see all of the time, but that might just be handy to know about anyway. I'll make sure you come out of this able to impress your friends at the hackfest.
-  speakers:
-    - James Edward Gray II
-
-- id: "ilya-grigorick-railsconf-2012"
-  title: "Let's make the web faster - tips from trenches @ Google"
-  raw_title: "Let's make the web faster - tips from trenches @ Google by Ilya Grigorick"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-05-03T23:35:00Z"
-  video_provider: "youtube"
-  video_id: "pxrj1a1PS94"
-  description: |-
-    Google loves speed, and we want to make the entire web faster - yes, that includes your Rails app! We'll explore what we've learned from running our own services at scale, as well as cover the research, projects, and open sourced tools we've developed in the process.
-
-    We'll start at the top with website optimization best practices, take a look at what the browser and HTML5 can do for us, take a detour into the optimizations for the mobile web, and finally dive deep into the SPDY and TCP protocol optimizations.
-
-    We'll cover a lot of ground, so bring a coffee. By the end of the session, you should have a good checklist to help you optimize your own site.
-  speakers:
-    - Ilya Grigorick
-
-- id: "nathen-harvey-railsconf-2012"
-  title: "Taming the Kraken - How Operations enables developer productivity"
-  raw_title: "Taming the Kraken - How Operations enables developer productivity by Nathen Harvey"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-05-03T15:54:18Z"
-  video_provider: "youtube"
-  video_id: "5vzNzQzmAk0"
-  description: |-
-    Are you having trouble launching new features because of friction between development and operations? At CustomInk, we've reduced this friction by making changes to our teams, processes, and tools. Come find out what we've been up to and learn how you can implement similar changes in your own environment.
-
-    There's always a bit of tension when getting features from idea to production. In this talk, we'll look at some of the changes CustomInk has made to reduce this friction and keep the new features coming. Gone are the days of bi-monthly deploys, office pools dedicated to guessing when this deploy will be rolled back, and the ceremony surrounding the deploy-rollback-fix-deploy cycle. Today, ideas flow from product managers to developers to production with ease thanks to a number of changes that we've made to our teams, processes and tools.
-
-    During this talk, we'll look at:
-
-    How product managers drive the release cycle
-
-    Ideas and customer feedback
-    Prioritizing development requests
-    Managing branch merges and deployments (yes, product managers can help here!)
-    How operations enables developer productivity
-
-    Spinning up development environments - Vagrant, Chef
-    Infrastructure Automation - Chef
-    Enabling Continuous Deployment - Capistrano and caphub
-    Failing gracefully - Fault-tolerant load balancing with ldirectord
-    How developers get their code running in production
-
-    Staging environments
-    Continuous Integration - Jenkins, Green Screen
-    Staying on topic: Deploying changes when they're ready
-    Getting rid of the over-the-wall mentality - Dev & Ops working together
-
-    Enabling developers to do it themselves
-    Pair programing infrastructure automation
-    Keeping the process light and the communication flowing
-  speakers:
-    - Nathen Harvey
-
-- id: "hampton-catlin-railsconf-2012"
-  title: "The Future of Sass"
-  raw_title: "The Future of Sass by Hampton Catlin"
-  event_name: "RailsConf 2012"
-  date: "2012-04-23"
-  published_at: "2012-05-03T14:38:03Z"
-  video_provider: "youtube"
-  video_id: "MFwId6xSh2o"
-  description: |-
-    A glimpse of some of the features coming to Sass in the pending 3.2 release. Plus, a huge announcement about the project that's been months in the making as we have secretly toiled away on something that we think will be awesome. Hear it first at this talk. Repositories will be made public when the talk is over. Shh! Its a secret!
-  speakers:
-    - Hampton Catlin
-
-- id: "john-bender-railsconf-2012"
-  title: "Progressive Enhancement on the Mobile Web"
-  raw_title: "Progressive Enhancement on the Mobile Web by John Bender"
-  event_name: "RailsConf 2012"
-  date: "2012-04-23"
-  published_at: "2012-05-03T12:43:59Z"
-  video_provider: "youtube"
-  video_id: "mEivOr3fcMs"
-  description: |-
-    Progressive Enhancement isn't important on the mobile web because it's all Webkit right? Not so fast. Even among Webkit implementations events, css, and performance vary widely. We'll talk about the darker corners of the mobile web and show how jQuery Mobile can help you build Rails applications that are reliable, accessible, and support more devices.
-  speakers:
-    - John Bender
-
-- id: "lori-m-olson-railsconf-2012"
-  title: "Mobile Rage - What causes it & how to fix it."
-  raw_title: "Mobile Rage - What causes it & how to fix it. by Lori Olson"
-  event_name: "RailsConf 2012"
-  date: "2012-04-23"
-  published_at: "2012-05-03T10:28:40Z"
-  video_provider: "youtube"
-  video_id: "qev9PSaNLSA"
-  description: |-
-    Most of us have been there. That website you want to use, from your mobile device, that just refuses to cooperate. From the Flash-only, to the can't f**king log in, to the redirect-to-mobile-and-stay-there sites, there's more than enough websites out there to invoke Mobile Rage.
-
-    Although we all know that the best mobile development strategy is "mobile-first", we also all know how many sites and applications out there were designed and built by people who didn't imagine how fast mobile would take over.
-
-    Come learn about the common mistakes most people make for mobile, and some of the simple solutions you can use to help reduce Mobile Rage, without having to do a complete rewrite.
-  speakers:
-    - Lori M Olson
-
-- id: "daniel-azuma-railsconf-2012"
-  title: "Getting Down To Earth: Geospatial Analysis With Rails"
-  raw_title: "Rails Conf 2012 Getting Down To Earth: Geospatial Analysis With Rails by Daniel Azuma"
-  event_name: "RailsConf 2012"
-  date: "2012-04-23"
-  published_at: "2012-05-03T07:52:21Z"
-  video_provider: "youtube"
-  video_id: "QI0e2jkUbkk"
-  description: |-
-    It is no secret that location has become ubiquitous. Mobile GPS, available data sets, and easy-to-use mapping services have brought geospatial information within reach of web developers. Location already plays a significant role in many of the major services such as Twitter, Facebook, and Google, not to mention legions of startups.
-
-    However, for those of us implementing more than the most trivial features, it is also true that location is challenging. A significant learning curve awaits us, involving spatial databases, coordinate systems, interchange formats, and plenty of math. Our Ruby-based tools lag a bit behind those available to our Java- and Python-oriented colleagues, and effective documentation is scarce.
-
-    This presentation aims to jump-start Rails developers hoping to go beyond putting a few pushpins on a Google Map. Rather than spending a lot of time explaining the many concepts involved, we'll bypass the learning curve and jump straight into walking through code for a few nontrivial applications. The hope is that the conceptual knowledge will come naturally as a result of seeing it in action, but pointers to online resources will also be provided to fill in any gaps.
-
-    A thorough understanding of Ruby, Rails, ActiveRecord, and SQL will be assumed. No prior knowledge of GIS or computational geometry will be required, though it may be helpful.
-  speakers:
-    - Daniel Azuma
-
-- id: "david-cohen-railsconf-2012"
-  title: "Keynote: 12 Tips Learned From Doing More Faster at TechStars"
-  raw_title: "Keynote by David Cohen of TechStars"
-  kind: "keynote"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-05-03T04:52:35Z"
-  video_provider: "youtube"
-  video_id: "Ok7YH8_48pc"
-  description: |-
-    David Cohen is the founder and CEO of TechStars. Previously, David was a founder of several software and web technology companies. He was the founder and CTO of Pinpoint Technologies which was acquired by ZOLL Medical Corporation (NASDAQ: ZOLL) in 1999. You can read about it in No Vision, All Drive [Amazon]. David was also the founder and CEO of earFeeder.com, a music service which was sold to SonicSwap.com in 2006. He also had what he likes to think of as a "graceful failure" in between.
-
-    David is a active startup advocate, advisor, board member, and technology advisor who comments on these topics on his blog at DavidGCohen.com. He recently co-authored Do More Faster with Brad Feld. He is also very active at the University of Colorado, serving as a member of the Board of Advisors of the Computer Science Department, the Entrepreneurial Advisory Board at Silicon Flatirons, and the Board of Advisors of the Deming Center Venture Fund. He is a member of the selection committee for Venture Capital in the Rockies, and runs the Colorado chapter of the Open Angel Forum. His hobbies are technology, software/web startups, business history, and tennis. He is married to the coolest girl he's ever met and has three amazing kids who always seem to be teaching him something new.
-  speakers:
-    - David Cohen
-
-- id: "gregg-pollack-railsconf-2012"
-  title: "Ruby Hero Awards 2012"
-  raw_title: "2012 Ruby Hero Awards"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-05-02T02:30:39Z"
-  video_provider: "youtube"
-  video_id: "tWmh4m2a4FI"
-  description: |-
-    This is the presentation of the 2012 Ruby Hero Awards
-  speakers:
-    - Gregg Pollack
-    - Aaron Patterson
-
-- id: "aaron-patterson-railsconf-2012"
-  title: "Keynote: I've made a huge mistake"
-  raw_title: "Keynote: I've made a huge mistake by Aaron Patterson"
-  kind: "keynote"
-  event_name: "RailsConf 2012"
-  date: "2012-04-24"
-  published_at: "2012-05-02T01:36:08Z"
-  video_provider: "youtube"
-  video_id: "8kSfGgiFk48"
-  description: |-
-    When he isn't ruining people's lives by writing software like phuby, enterprise, and neversaydie, Aaron can be found writing slightly more useful software like nokogiri. To keep up his Gameboy Lifestyle, Aaron spends his weekdays writing high quality software for ATTi. Be sure to catch him on Karaoke night, where you can watch him sing his favorite smooth rock hits of the 70's and early 80's.
-  speakers:
-    - Aaron Patterson
-
-- id: "rich-hickey-railsconf-2012"
-  title: "Keynote: Simplicity Matters"
-  raw_title: "Rails Conf 2012 Keynote: Simplicity Matters by Rich Hickey"
-  kind: "keynote"
-  event_name: "RailsConf 2012"
-  date: "2012-04-23"
-  published_at: "2012-05-01T23:42:20Z"
-  video_provider: "youtube"
-  video_id: "rI8tNMsozo0"
-  description: |-
-    Rich Hickey, the author of Clojure and designer of Datomic, is a software developer with over 20 years of experience in various domains. Rich has worked on scheduling systems, broadcast automation, audio analysis and fingerprinting, database design, yield management, exit poll systems, and machine listening, in a variety of languages.
-  speakers:
-    - Rich Hickey
-
-- id: "james-edward-gray-ii-railsconf-2012-ruby-rogues-live-podcast"
-  title: "Ruby Rogues - Live Podcast!"
+- id: "podcast-railsconf-2012"
+  title: "Podcast: Ruby Rogues Live!"
   raw_title: "RailsConf 2012 - Ruby Rogues - Live Podcast!"
+  kind: "podcast"
   event_name: "RailsConf 2012"
   date: "2012-04-25"
   published_at: "2012-08-22T07:59:37Z"

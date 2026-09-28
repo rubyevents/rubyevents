@@ -11,15 +11,35 @@
 # GitHub Repo: https://github.com/marcoroth/herb
 #
 
-version: 0.9.2
+version: 0.10.3
+framework: actionview
 
 linter:
   enabled: true
+  failLevel: warning
+  logLevel: warning
 
   rules:
     erb-no-interpolated-class-names:
       enabled: false
 
+    erb-no-unused-expressions:
+      enabled: false
+
+    html-require-script-nonce:
+      enabled: false
+
+    html-no-space-in-tag:
+      exclude:
+        - public/**
 
 formatter:
-  enabled: false
+  enabled: true
+  indentWidth: 2
+  maxLineLength: 120
+
+  rewriter:
+    pre:
+      - tailwind-class-sorter
+
+    post: []

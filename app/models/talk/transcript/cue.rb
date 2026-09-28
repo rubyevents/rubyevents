@@ -23,6 +23,10 @@ class Talk::Transcript::Cue
     time_string_to_seconds(start_time)
   end
 
+  def end_time_in_seconds
+    time_string_to_seconds(end_time)
+  end
+
   def time_string_to_seconds(time_string)
     parts = time_string.split(":").map(&:to_f)
     hours = parts[0] * 3600

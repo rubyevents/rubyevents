@@ -4,23 +4,35 @@
 <%- if @talk.original_title.present? -%>
   original_title: "<%= @talk.original_title %>"
 <%- end -%>
+<%- if @talk.write_kind? -%>
+  kind: "<%= @talk.kind %>"
+<%- end -%>
+  date: "<%= @talk.date %>"
+  language: "<%= @talk.language %>"
+<%- if @talk.start_time.present? -%>
+  start_time: <%= quote @talk.start_time %>
+<%- end -%>
+<%- if @talk.end_time.present? -%>
+  end_time: <%= quote @talk.end_time %>
+<%- end -%>
+<%- if options[:announced_at] -%>
+  announced_at: "<%= @talk.announced_at %>"
+<%- end -%>
+<%- if @talk.track.present? -%>
+  track: "<%= @talk.track %>"
+<%- end -%>
+<%- if @talk.slides_url.present? -%>
+  slides_url: "<%= @talk.slides_url %>"
+<%- end -%>
+  video_provider: "scheduled"
+  video_id: "<%= @talk.id %>"
 <%- if @talk.description.blank? -%>
   description: "" # TODO
 <%- else -%>
   description: |-
 <%= optimize_indentation(@talk.description, 4) %>
 <%- end -%>
-<%- if @talk.write_kind? -%>
-  kind: "<%= @talk.kind %>"
-<%- end -%>
-  language: "<%= @talk.language %>"
-  date: "<%= @talk.date %>"
-<%- if options[:announced_at] -%>
-  announced_at: "<%= @talk.announced_at %>"
-<%- end -%>
   speakers:
   <%- @talk.speakers.each do |speaker| -%>
     - <%= speaker %>
   <%- end -%>
-  video_provider: "scheduled"
-  video_id: "<%= @talk.id %>"

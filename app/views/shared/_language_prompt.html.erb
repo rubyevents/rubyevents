@@ -8,21 +8,25 @@
     <% yes_label = given ? "Yes, add #{language_name}" : Language.understands_confirmation(code) %>
     <% no_label = given ? "No thanks" : "No, I don't understand #{language_name}" %>
 
-    <div class="bg-base-200 border-y border-base-300">
-      <div class="container py-3 flex flex-wrap items-center justify-between gap-3">
+    <div class="border-y border-base-300 bg-base-200">
+      <div class="container flex flex-wrap items-center justify-between gap-3 py-3">
         <div class="text-sm">
           <p>
             <span class="mr-1"><%= Language.emoji_flag(code) %></span>
+
             <% if given %>
-              You've given <strong><%= pluralize(prompt[:count], "talk") %></strong> in <strong><%= language_name %></strong>. Want to add it to your profile?
+              You've given <strong><%= pluralize(prompt[:count], "talk") %></strong> in
+              <strong><%= language_name %></strong>. Want to add it to your profile?
             <% else %>
-              You've watched <strong><%= pluralize(prompt[:count], "talk") %></strong> in <strong><%= language_name %></strong>. Do you understand it?
+              You've watched <strong><%= pluralize(prompt[:count], "talk") %></strong> in
+              <strong><%= language_name %></strong>. Do you understand it?
             <% end %>
           </p>
+
           <p class="text-base-content/60">We'll use this to recommend talks.</p>
         </div>
 
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+        <div class="flex w-full flex-col items-stretch gap-2 sm:w-auto sm:flex-row sm:items-center">
           <%= button_to yes_label,
                 language_preference_path(language_code: code, answer: "understands"),
                 method: :patch,
@@ -36,8 +40,8 @@
       </div>
     </div>
   <% elsif local_assigns[:just_completed] %>
-    <div class="bg-base-200 border-y border-base-300">
-      <div class="container py-3 flex flex-wrap items-center justify-between gap-3">
+    <div class="border-y border-base-300 bg-base-200">
+      <div class="container flex flex-wrap items-center justify-between gap-3 py-3">
         <p class="text-sm">
           Thanks for the information! You can always update your language preferences in your profile.
         </p>

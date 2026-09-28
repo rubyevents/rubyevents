@@ -5,8 +5,8 @@
 
   <% grouped_events.each do |display_info, date_events| %>
     <div class="mb-8" data-events-filter-target="group">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+      <div class="mb-4 flex items-center gap-2">
+        <span class="h-2 w-2 rounded-full bg-gray-400"></span>
 
         <span class="text-lg font-semibold text-gray-800">
           <% if display_info[:precision] == "day" && display_info[:date].present? %>
@@ -29,7 +29,7 @@
     </div>
   <% end %>
 <% else %>
-  <div class="text-gray-500 py-8 text-center">
+  <div class="py-8 text-center text-gray-500">
     <%= empty_message %>
   </div>
 <% end %>

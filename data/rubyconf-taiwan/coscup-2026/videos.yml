@@ -1,2 +1,175 @@
 ---
-[]
+- id: "lilith-coscup-2026"
+  title: "Your Scraper Just Broke — Again: Hard-Won Lessons from 100+ Ruby Spiders in Production"
+  date: "2026-08-08"
+  language: "Chinese"
+  video_provider: "scheduled"
+  video_id: "lilith-coscup-2026"
+  description: |-
+    Maintaining one web scraper is easy. Maintaining over 100, each targeting a different financial institution's website, is a completely different beast.
+
+    This talk is drawn from a real production Rails system that continuously downloads
+    monthly report PDFs from Japanese asset management companies. When DWS silently migrated their REST API to a Nuxt.js SPA, when JPMorgan's ReactVirtualized table only rendered 12 visible rows and your target fund wasn't one of them, when Capital Group stopped offering PDF files and switched to HTML-only reports — your spiders just
+    quietly broke.
+
+    I'll walk through the three most common failure patterns and their Ruby solutions, how Module and Concern help organize shared logic across a large spider fleet, and the most important engineering judgment of all: when to fix, and when to just delete.
+  speakers:
+    - Lilith
+
+- id: "cindy-liu-coscup-2026"
+  title: "Three Common Design Pitfalls Behind Rails' March 2026 Security Update"
+  date: "2026-08-08"
+  language: "Chinese"
+  video_provider: "scheduled"
+  video_id: "cindy-liu-coscup-2026"
+  description: |-
+    On March 23, 2026, Rails released versions 7.2.3.1, 8.0.4.1, and 8.1.2.1, patching multiple CVEs spanning XSS, ReDoS, memory exhaustion, path traversal, and glob injection — its largest security update in recent years. Rather than walking through each CVE, this talk takes a step back: are there shared design pitfalls underneath? I'll pick the most representative cases and group them into three patterns: misplaced trust boundaries (mixing internal state with external input), filesystem APIs accepting unfiltered input (path traversal and glob injection), and "one fix isn't enough" — incomplete patches that get bypassed. Each pitfall comes with vulnerable code, how it was fixed, and a checklist you can apply directly to your project. No security background required.
+  speakers:
+    - Cindy Liu
+
+- id: "sampo-kuokkanen-coscup-2026"
+  title: "Ruby on Ruby: ruby/spec, MRI Tests, and JRuby and Living on the Edge"
+  date: "2026-08-08"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "sampo-kuokkanen-coscup-2026"
+  description: |-
+    Ruby has multiple implementations. CRuby (the canonical "MRI") is the reference, but JRuby (now at Ruby 4.0 on the JVM) and TruffleRuby (at 3.4, with 4.0 underway on GraalVM) are real, production-grade alternatives. They aim to run the same Ruby code, so your gems, your Rails apps, your scripts. But they're written in different languages, on different VMs, with different internal data structures. So how do they agree on what Ruby actually is?
+  speakers:
+    - Sampo Kuokkanen
+
+- id: "nebiyu-elias-talefe-coscup-2026"
+  title: "Building Native Mobile Apps Using Rails"
+  date: "2026-08-08"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "nebiyu-elias-talefe-coscup-2026"
+  description: |-
+    We all know Rails is a very mature framework for building web applications? But can it be used to build native mobile apps as well? Remember what react native/flutter did to building mobile apps. You write your app once in those frameworks and magically your app works both in the App Store and Play Store. This significantly reduces the development effort and allow you to have a smaller team size. But what if I tell you can pretty much do the same thing using Rails. With this approach you don't maintain separate apps for your mobile and backend. You also take advantages of the power of Rails from the start. We will explore hotwire native and how it can be used to build mobile apps that are native. This way you can accelerate your mobile app development and cut down your development effort significantly. We will also explore how to use strada to build native components using web technologies. I will also share my starter template for creating a mobile app project using Rails.
+  speakers:
+    - Nebiyu Elias Talefe
+
+- id: "georgy-asfur-coscup-2026"
+  title: "Stoplight: Circuit Breakers for Ruby in the AI Era"
+  date: "2026-08-08"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "georgy-asfur-coscup-2026"
+  description: |-
+    A slow third-party API can take down your entire Rails app. One service starts timing out, requests pile up waiting for it, threads block, memory fills, and suddenly nothing responds - not even the parts of your app that have nothing to do with the failing service. This is a cascading failure.
+
+    Until recently, this was a problem for large engineering teams running dozens of services. But in 2026, even a small startup is calling out to LLMs, OCR engines, and other third-party APIs. Every one of those calls is a potential domino. Circuit breakers belong in any Ruby app shipping AI features.
+
+    This talk introduces the circuit breaker pattern through Stoplight, an MIT-licensed Ruby gem, I co-maintain with Tema Bolshakov. I'll start by unpacking how a single slow dependency cascades into a full outage, then walk through how Stoplight prevents it - and why its traffic-light metaphor (green/yellow/red) is more intuitive than the classical open/closed/half-open vocabulary.
+
+    The second half peels back the curtain on how we made Stoplight fast. Coordinating circuit breaker state across multiple Ruby processes means hitting Redis on every call, and a naive implementation incurs several round-trips per check. We'll look at how we collapsed those into single atomic Lua scripts - a technique that improved Stoplight's performance substantially and applies to anyone building Ruby tooling on top of Redis.
+  speakers:
+    - Georgy Asfur
+
+- id: "ken-chen-coscup-2026"
+  title: "Real-world observations of Rails latency caused by the GVL"
+  original_title: "GVL 對 Rails 延遲的實戰觀測"
+  date: "2026-08-08"
+  language: "Chinese"
+  video_provider: "scheduled"
+  video_id: "ken-chen-coscup-2026"
+  description: |-
+    你開了 5 個 Puma thread, 真的同時跑了 5 個嗎? MRI 的 GVL 讓答案幾乎永遠是「不」。 這場演講用 Vernier 與 gvl-tracing,把 Rails on Puma 那條看不見的 GVL 等待線直接拍出來給你看
+  speakers:
+    - Ken Chen
+
+- id: "mu-fan-teng-coscup-2026"
+  title: "Your ruby.wasm Doesn't Quite Work on Mobile"
+  date: "2026-08-08"
+  language: "Chinese"
+  video_provider: "scheduled"
+  video_id: "mu-fan-teng-coscup-2026"
+  description: |-
+    At SITCON 2026, the Ruby Taiwan booth ran a live coding game: a Jekyll static site + ruby.wasm 4.0, with students writing one-line Ruby in the browser. Simple in concept, brutal in practice.
+
+    Day one, we found out: iOS Safari froze, Android Chrome silently hung at load, students who switched apps lost their progress. The booth that served 1000 students was held together by fixes for three mobile-browser landmines.
+
+    This talk takes you into the engine room: how we replaced a giant EXPECTED_MAP with rubyVM.eval + StringIO + srand(seed) to compute answers in the browser; how zh/en/ja i18n flows from Liquid into JavaScript; how the 7 Ruby + 3 cross-language (JS/Python/PHP) format works; and the real root cause behind each mobile bug.
+
+    For anyone curious about ruby.wasm, Ruby in the browser, or pushing Ruby beyond Rails.
+  speakers:
+    - Mu-Fan Teng
+
+- id: "pawel-lisewski-coscup-2026"
+  title: "The Deterministic Rubyist: Taming Your AI Pair Programmer with Nix"
+  date: "2026-08-08"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "pawel-lisewski-coscup-2026"
+  description: |-
+    AI coding agents are the new "high-speed interns" of the Ruby world. They can be eager and fast, but leave them unconstrained and you risk wrecking your system. Tie them up too tight and they'll end up hallucinating instead of producing results.
+    The answer isn't more documentation or prompt engineering; it’s a better contract.
+
+    In this talk, we’ll explore how Nix - the functional, deterministic package manager - serves as a bridge between human developers and AI agents. We will move beyond the "it works on my machine" era into the "it works in the contract" era.
+
+    We'll discuss how a Nix Flake acts as a shared mental model: a declarative, cryptographic receipt of every dependency, compiler, and system library your project requires.
+
+    We will dive into:
+
+    - The Bundler Analogy: Translating Nix concepts into a language Rubyists already speak (Gemfile → Flake, Lockfile → Lock).
+    - Effectiveness through Shared Context: How to use Nix to ensure your AI agent has the exact tools it needs (like ruby-lsp or specific C-extensions)
+    - Security as an Enabler: Using Nix in tandem with Docker to create "principled sandboxes." We’ll look at real-world patterns from my opensource AI sandboxing tool.
+    - The "Double Gemfile" Pattern: A practical tip for managing dev-only gems and agent-specific tools within a Nix-based workflow.
+
+    By the end of this session, you’ll see that Nix is a powerful tool for the modern Rubyist to build secure, reproducible, and highly effective environments where humans and AI can collaborate without the chaos.
+  speakers:
+    - Pawel Lisewski
+
+- id: "meng-ying-tsai-coscup-2026"
+  title: "How to handle locale: From Accept-Language to UGC"
+  date: "2026-08-08"
+  language: "Chinese"
+  video_provider: "scheduled"
+  video_id: "meng-ying-tsai-coscup-2026"
+  description: |-
+    This talk explores:
+
+    What you should be aware of Accept-Language
+    Why you cannot always trust locale string from mobile app
+    How do people handle UGC in terms of localization
+  speakers:
+    - Meng-Ying Tsai
+
+- id: "kasa-hsiao-coscup-2026"
+  title: "Diving into Ruby 3 ReDoS Defense: Design Trade-offs, Rails Integration, and the Future of Regexp"
+  date: "2026-08-08"
+  language: "Chinese"
+  video_provider: "scheduled"
+  video_id: "kasa-hsiao-coscup-2026"
+  description: |-
+    "Left on read... every time I suggest a version upgrade."
+
+    Ruby 3.2 introduced significant improvements to Regexp security and performance. With Ruby 4 recently released and Ruby 3.2 now officially reaching EOL, the community’s approach to ReDoS (Regular Expression Denial of Service) has gradually extended from “how do we write safe Regex” to “how can the runtime itself help reduce risk for developers.”
+
+    However, the CVE-2026-1388 incident in GitLab and CVE-2026-33169 in Active Support in early 2026 once again remind us that in real-world web applications, Regexp can still become an unexpected source of performance and security issues.
+
+    This talk continues the discussion from the RubyJam 2026.03 Meetup around Ruby Feature #17837 and #19104, and extends it with the latest developments in 2026:
+
+    Case breakdown: Analyzing two ReDoS-related CVEs in 2026, and examining which Regexp patterns can still introduce risk under existing mitigation mechanisms.
+    Rails in practice: How to integrate Regexp Timeout into Rails applications, and what practical pitfalls to watch out for.
+    From ReDoS to Timing Attacks: Following up on questions from the RubyJam Meetup, exploring the other side of algorithmic complexity attacks, and how Ruby ecosystems implement Constant Time Comparison.
+    The latest direction of Ruby Regexp: First-hand insights from RubyKaigi 2026, looking into the ongoing progress of introducing JIT into Regexp and what it may imply for security considerations going forward.
+  speakers:
+    - Kasa Hsiao
+
+- id: "let-ai-take-over-your-app-building-a-seamless-microsecond-level-ruby-security-sandbox-coscup-2026"
+  title: "Let AI Take Over Your App: Building a Seamless, Microsecond-Level Ruby Security Sandbox"
+  date: "2026-08-08"
+  language: "Chinese"
+  video_provider: "scheduled"
+  video_id: "let-ai-take-over-your-app-building-a-seamless-microsecond-level-ruby-security-sandbox-coscup-2026"
+  description: |-
+    In the era of AI, traditional software development paradigms have shifted significantly, bringing forth entirely new opportunities. Have you ever wondered if AI could dynamically implement new features right within your Ruby or Rails environment?
+
+    Kobako was originally designed as a WebAssembly sandbox to bring the "Code Mode" mechanism into the Ruby ecosystem, allowing AI to write short scripts directly instead of orchestrating a massive number of fragmental MCP (Model Context Protocol) tools.
+
+    However, inspired by druby, Kobako leverages Ruby’s dynamic language features to interact seamlessly with arbitrary objects in the Host environment. This opens up a completely different approach for AI to assist and drive software development.
+
+    Sandbox technology is a crucial branch of "Harness Engineering," a topic being widely discussed this year. Centered on the core challenge of how to execute untrusted code safely, this talk will share the development and exploration journey of Kobako, showcasing a security sandbox born purely from embracing Ruby’s unique language features.
+  speakers:
+    - 蒼時弦也

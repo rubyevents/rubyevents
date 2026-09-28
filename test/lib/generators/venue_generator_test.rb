@@ -3,9 +3,8 @@ require "generators/venue/venue_generator"
 
 class VenueGeneratorTest < Rails::Generators::TestCase
   tests VenueGenerator
-  destination Rails.root.join("tmp/generators/venue")
-
   setup do
+    self.class.destination Dir.mktmpdir("talk_generator", Rails.root.join("tmp").to_s)
     Geocoder::Lookup::Test.set_default_stub([])
     Geocoder::Lookup::Test.add_stub(
       "Pullman Auditorium", [
@@ -34,6 +33,11 @@ class VenueGeneratorTest < Rails::Generators::TestCase
     )
   end
 
+  teardown do
+    FileUtils.remove_entry(destination_root)
+    Geocoder::Lookup::Test.reset
+  end
+
   test "minimal venue without geocoder result" do
     venue_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2027/venue.yml")
     assert_nothing_raised do
@@ -41,13 +45,12 @@ class VenueGeneratorTest < Rails::Generators::TestCase
         "--event-series", "tropical-rb",
         "--event", "tropicalrb-2027"]
     end
+    # Note: This is intentionally invalid - we want them to supply coordinates
     assert_file venue_file_path do |content|
       assert_match(/street: ""/, content)
       assert_match(/latitude: .NAN # TODO/, content)
       assert_match(/longitude: .NAN # TODO/, content)
     end
-
-    File.delete venue_file_path
   end
 
   test "venue with all flags passes schema validation" do
@@ -67,7 +70,7 @@ class VenueGeneratorTest < Rails::Generators::TestCase
       "--accessibility"]
 
     venue_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2028/venue.yml")
-    assert_file venue_file_path do |content|
+    assert_valid_file venue_file_path do |content|
       assert_match(/name: "Pullman Auditorium"/, content)
       assert_match(/description: "Pullman Auditorium!"/, content)
       assert_match(/instructions: "Enter through the main doors and check in at the front desk."/, content)
@@ -81,12 +84,10 @@ class VenueGeneratorTest < Rails::Generators::TestCase
       assert_match(/latitude: -23.59572/, content)
       assert_match(/longitude: -46.68448/, content)
     end
-    validate_venue_schema venue_file_path
-
-    File.delete venue_file_path
   end
 
   test "venue with all optional flags off passes schema validation" do
+    venue_file_path = File.join(destination_root, "data/rubyconf/2004/venue.yml")
     run_generator ["--force", # Force file creation
       "--event-series", "rubyconf",
       "--event", "2004",
@@ -98,15 +99,14 @@ class VenueGeneratorTest < Rails::Generators::TestCase
       "--no-spaces",
       "--no-accessibility"]
 
-    venue_file_path = File.join(destination_root, "data/rubyconf/2004/venue.yml")
-    validate_venue_schema venue_file_path
-
-    File.delete venue_file_path
+    assert_valid_file venue_file_path do |content|
+      assert_match(/name: "Pullman Auditorium"/, content)
+    end
   end
 
   test "venue generator updates existing event's coordinates" do
     event_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2029/event.yml")
-    venue_file_path = File.join(destination_root, "data/tropical-rb/tropicalrb-2029/venue.yml")
+    File.join(destination_root, "data/tropical-rb/tropicalrb-2029/venue.yml")
 
     capture(:stdout) do
       Rails::Generators.invoke "event", [
@@ -126,21 +126,17 @@ class VenueGeneratorTest < Rails::Generators::TestCase
       "--event", "tropicalrb-2029",
       "--name", "Pullman Auditorium"]
 
-    assert_file event_file_path do |content|
+    assert_valid_file event_file_path do |content|
       assert_match(/latitude: -23.595/, content)
       assert_match(/longitude: -46.684/, content)
     end
-  ensure
-    File.delete event_file_path if File.exist?(event_file_path)
-    File.delete venue_file_path if File.exist?(venue_file_path)
   end
 
-  def validate_venue_schema(file_path)
-    validator = Static::Validators::Schema.new(file_path: file_path)
-    assert_empty validator.errors, "Venue YAML does not conform to schema: #{validator.errors.map { |e| e.to_h["message"] }.join(", ")}"
-  end
-
-  teardown do
-    Geocoder::Lookup::Test.reset
+  def assert_valid_file(file_path, msg = nil, &block)
+    errors = Static::Validators::Validator.venue_validator_classes.flat_map do |validator|
+      validator.new(file_path:).errors
+    end
+    assert_empty errors, msg || errors.map { |e| e.to_h["message"] }.join(", ")
+    assert_file file_path, msg, &block
   end
 end

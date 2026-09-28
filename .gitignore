@@ -78,12 +78,20 @@ service_account.json
 # asdf
 .tool-versions
 
+# mise
+mise.toml
+.mise.toml
+
 .DS_Store
 
 .ssh-keys/
 
 # IDE files
 /.idea
+
+# Editor swap and backup files
+.*.sw?
+*~
 
 # Coverage reports
 /coverage

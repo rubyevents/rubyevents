@@ -1,4 +1,8 @@
 module EventsHelper
+  def event_cancelled?(event)
+    event.static_metadata.cancelled?
+  end
+
   def event_date_display(event, day_name: false)
     return "Date TBD" unless event.start_date.present?
 
@@ -43,6 +47,10 @@ module EventsHelper
 
         [display_info, group_events]
       end
+  end
+
+  def continent_filter_path(continent)
+    url_for(continent: continent&.slug)
   end
 
   def featured_cta_path(event)

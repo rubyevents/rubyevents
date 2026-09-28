@@ -35,6 +35,9 @@ jobs:
       - name: Run bin/setup
         run: bin/setup --skip-server
 
+      - name: Add gh-image extension for GH
+        run: gh extension install drogers0/gh-image
+
       - name: Validate setup
         run: |
           echo "Testing database connectivity..."

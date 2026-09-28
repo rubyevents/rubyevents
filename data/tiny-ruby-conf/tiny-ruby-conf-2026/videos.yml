@@ -1,0 +1,77 @@
+# TODO: Add all talks - docs/ADDING_UNPUBLISHED_TALKS.md
+# TODO: Reorder talks for schedule - docs/ADDING_SCHEDULES.md
+# TODO: Add recordings - docs/ADDING_VIDEOS.md
+---
+
+
+- id: "nicolo-rebughini-tiny-ruby-conf-2026"
+  title: "Accidentally building a neural network: A Ruby product recommendation journey"
+  date: "2026-10-01"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "nicolo-rebughini-tiny-ruby-conf-2026"
+  description: |-
+    Machine Learning often feels like a black box reserved for Python data scientists. But what happens when you solve a complex product recommendation problem using Plain Old Ruby Objects, only to discover you've unknowingly recreated the architecture of a Neural Network?
+  speakers:
+    - Nicolò Rebughini
+
+- id: "lauri-jutila-tiny-ruby-conf-2026"
+  title: "Agentic Programmability: An Engine with a Ruby Soul"
+  date: "2026-10-01"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "lauri-jutila-tiny-ruby-conf-2026"
+  description: |-
+    What if your personal automation agent could write its own skills, test them in a bulletproof sandbox, and deploy them, all while you sleep or are not actively interacting with it? What if the engine itself was built in Rust, but the soul of extensibility was pure Ruby?
+
+    In this talk, I'll walk through the architecture of a system where Rust and Ruby aren't competing but they're collaborating.
+  speakers:
+    - Lauri Jutila
+
+- id: "augustin-gottlieb-tiny-ruby-conf-2026"
+  title: "Turbo Desktop: Bringing Rails to desktop apps"
+  date: "2026-10-01"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "augustin-gottlieb-tiny-ruby-conf-2026"
+  description: |-
+    We all know and love the fact that with Rails and Turbo Native we can maintain one single repo and have both Android and iOS support for our app, but what about desktop?
+
+    I was asking myself this question, so I ended up using Rust to build Turbo Desktop, to bring my Rails apps to Windows, macOS and Linux. If you're curious how to bring Rails to your desktop, this talk is for you.
+  speakers:
+    - Augustin Gottlieb
+
+- id: "carme-mias-tiny-ruby-conf-2026"
+  title: "Under the hood: An exploration of the moving parts of digital accessibility"
+  date: "2026-10-01"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "carme-mias-tiny-ruby-conf-2026"
+  description: |-
+    Have you ever wondered how assistive technology interacts with a website or mobile app? Or how something showing clearly on screen can be inaccessible?
+
+    Join me on an exploration of the moving parts of digital accessibility and how they talk to each other. By looking behind the scenes, we will find out how communication flows and learn to avoid some of the most common pitfalls.
+  speakers:
+    - Carme Mias
+
+- id: "stephan-kaemper-tiny-ruby-conf-2026"
+  title: "What Rubyists should know about Unicode"
+  date: "2026-10-01"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "stephan-kaemper-tiny-ruby-conf-2026"
+  description: |-
+    Everyone uses Unicode, whether they know it or not. To reliably process and display text across cultures and software components, all parties must handle it correctly—but many still treat text like it's 1990. This talk tours Unicode's origins, encodings, normalisation, and string behaviour with Ruby examples, presents delightfully awful bugs, and suggests sources to test your own systems.
+  speakers:
+    - Stephan Kämper
+
+- id: "ismael-celis-tiny-ruby-conf-2026"
+  title: "Your request is my command: Reactive, command-driven Ruby apps"
+  date: "2026-10-01"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "ismael-celis-tiny-ruby-conf-2026"
+  description: |-
+    I'll show how architecting Ruby apps around asynchronous commands unlocks real-time, reactive and multiplayer apps with just a handful of abstractions, while unifying synchronous and asynchronous workflows under a single programming model.
+  speakers:
+    - Ismael Celis

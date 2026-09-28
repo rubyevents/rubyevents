@@ -15,6 +15,11 @@ pipeline:
       key_style: plain
       value_style: double
 
+  - escapes: {}
+
+  - final_newline:
+      count: 1
+
 rules:
   - files: "data/**/event.yml"
     pipeline:
@@ -46,7 +51,7 @@ rules:
             - pre_date
             - start_date
             - end_date
-            - published_at
+            - recordings_published_date
             - year
             - playlist
             - status
@@ -57,6 +62,7 @@ rules:
             - tickets_url
             - meetup
             - twitter
+            - facebook
             - mastodon
             - youtube
             - github
@@ -68,6 +74,7 @@ rules:
             - coordinates
             - aliases
             - youtube_channels
+            - removed_talk_ids
             - feeds
 
       - sort_keys:
@@ -85,12 +92,20 @@ rules:
           path: "[]"
 
       - quote_style:
+          path: "[].name"
+          value_style: double
+
+      - quote_style:
           path: "[].users"
           value_style: plain
 
       - quote_style:
           path: "[].organisations"
           value_style: plain
+
+      - blank_lines:
+          path: ""
+          count: 1
 
   - files: "data/topics.yml"
     pipeline: []
@@ -100,6 +115,10 @@ rules:
       - schema:
           file: "lib/schemas/cfp_schema.json"
           path: "[]"
+
+      - quote_style:
+          path: "[].name"
+          value_style: double
 
       - blank_lines:
           path: ""
@@ -131,6 +150,10 @@ rules:
       - blank_lines:
           path: "[].tiers[].sponsors"
           count: 1
+
+      - quote_style:
+          key_style: "plain"
+          value_style: "double"
 
   - files: "data/**/venue.yml"
     pipeline:
@@ -169,12 +192,14 @@ rules:
 
       - sort_keys:
           order:
+            - id
             - name
             - website
             - kind
             - frequency
             - language
             - twitter
+            - facebook
             - default_country_code
             - meetup
             - github
@@ -253,6 +278,7 @@ rules:
           path: "[]"
           order:
             - id
+            - old_id
             - title
             - original_title
             - raw_title
@@ -261,7 +287,8 @@ rules:
             - kind
             - event_name
             - date
-            - time
+            - start_time
+            - end_time
             - published_at
             - announced_at
             - status
@@ -305,6 +332,7 @@ rules:
           path: "[].talks[]"
           order:
             - id
+            - old_id
             - title
             - raw_title
             - original_title
@@ -313,7 +341,8 @@ rules:
             - kind
             - event_name
             - date
-            - time
+            - start_time
+            - end_time
             - start_cue
             - end_cue
             - thumbnail_cue
@@ -337,6 +366,9 @@ rules:
             - speakers
             - additional_resources
             - alternative_recordings
+
+      - sort:
+          by: ".date .start_time .end_time"
 
   - files: "data/speakers.yml"
     pipeline:

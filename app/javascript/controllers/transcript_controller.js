@@ -6,6 +6,25 @@ export default class extends Controller {
   connect () {
     this.live = true
     this.currentCue = null
+    this.#openTabIfDeepLinked()
+  }
+
+  #openTabIfDeepLinked () {
+    const params = new URLSearchParams(window.location.search)
+    if (!params.has('t')) return
+
+    const tab = this.element.closest('[role="tabpanel"]')?.previousElementSibling
+
+    if (tab?.matches('input[type="radio"][role="tab"]')) {
+      tab.checked = true
+    }
+
+    const time = Number(params.get('t'))
+    if (Number.isNaN(time)) return
+
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      this.#activateCue(this.#cueAt(time), true)
+    }))
   }
 
   selectLanguage (event) {
@@ -52,6 +71,10 @@ export default class extends Controller {
     const time = event.detail.time
     if (time == null) return
 
+    this.#activateCue(this.#cueAt(time))
+  }
+
+  #cueAt (time) {
     let current = null
 
     for (const cue of this.visibleCues()) {
@@ -59,14 +82,18 @@ export default class extends Controller {
       else break
     }
 
-    if (current === this.currentCue) return
+    return current
+  }
+
+  #activateCue (cue, forceScroll = false) {
+    if (cue === this.currentCue) return
 
     this.clearHighlight()
-    this.currentCue = current
+    this.currentCue = cue
 
-    if (current) {
-      current.classList.add('bg-base-300', 'font-bold')
-      if (this.live) this.scrollToCue(current)
+    if (cue) {
+      cue.classList.add('bg-base-300', 'font-bold')
+      if (this.live || forceScroll) this.scrollToCue(cue)
     }
   }
 

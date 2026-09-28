@@ -55,9 +55,47 @@ module TalksHelper
     resource["url"]
   end
 
+  def talk_transcript_snippet(talk)
+    highlight = talk.highlight_result&.find { |result| result["field"] == "transcript_text" }
+
+    highlight && highlight["snippet"]
+  end
+
+  def slides_external_link(slides_url)
+    host = URI(slides_url).host
+    link_to "See Slides on #{host}", sanitize_url(slides_url), target: "_blank", class: "btn btn-primary mt-6"
+  rescue URI::InvalidURIError
+    nil
+  end
+
+  def google_slides_embed_url(slides_url)
+    return nil if slides_url.blank?
+
+    uri = URI(slides_url)
+    return nil unless uri.host == "docs.google.com"
+    return nil unless uri.path.start_with?("/presentation/")
+
+    parts = uri.path.split("/").reject(&:empty?)
+    if %w[edit view pub embed].include?(parts.last)
+      parts[-1] = "embed"
+    else
+      parts << "embed"
+    end
+    "https://docs.google.com/#{parts.join("/")}"
+  rescue URI::InvalidURIError
+    nil
+  end
+
   def transcript_language_label(talk_transcript)
     name = Language.find(talk_transcript.language)&.english_name || talk_transcript.language.upcase
-    talk_transcript.auto_generated ? "#{name} (auto-generated)" : name
+
+    if talk_transcript.translated
+      "#{name} (auto-translated)"
+    elsif talk_transcript.auto_generated
+      "#{name} (auto-generated)"
+    else
+      name
+    end
   end
 
   def transcript_shows_hours?(cue_list)
