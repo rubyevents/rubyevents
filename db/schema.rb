@@ -297,6 +297,29 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_05_130000) do
     t.index ["user_id"], name: "index_password_reset_tokens_on_user_id"
   end
 
+  create_table "requested_talk_topic_votes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "requested_talk_topic_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["requested_talk_topic_id", "user_id"], name: "idx_on_requested_talk_topic_id_user_id_2e6363157c", unique: true
+    t.index ["requested_talk_topic_id"], name: "index_requested_talk_topic_votes_on_requested_talk_topic_id"
+    t.index ["user_id"], name: "index_requested_talk_topic_votes_on_user_id"
+  end
+
+  create_table "requested_talk_topics", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "status", default: "open", null: false
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.integer "votes_count", default: 0, null: false
+    t.index ["status"], name: "index_requested_talk_topics_on_status"
+    t.index ["user_id"], name: "index_requested_talk_topics_on_user_id"
+    t.index ["votes_count"], name: "index_requested_talk_topics_on_votes_count"
+  end
+
   create_table "rollups", force: :cascade do |t|
     t.json "dimensions", default: {}, null: false
     t.string "interval", null: false
@@ -567,6 +590,9 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_05_130000) do
   add_foreign_key "favorite_users", "users"
   add_foreign_key "favorite_users", "users", column: "favorite_user_id"
   add_foreign_key "password_reset_tokens", "users"
+  add_foreign_key "requested_talk_topic_votes", "requested_talk_topics"
+  add_foreign_key "requested_talk_topic_votes", "users"
+  add_foreign_key "requested_talk_topics", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "speakers", "speakers", column: "canonical_id"
   add_foreign_key "sponsors", "events"
