@@ -435,7 +435,13 @@ module Static
             organization.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
             organization.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && organization.logo_url.blank?
 
-            organization = ::Organization.find_by_slug_or_alias(organization.slug) || ::Organization.find_by_name_or_alias(organization.name) unless organization.persisted?
+            # The organization could not be saved, so discard the pending website and logo_url changes
+            # and fall back to the record already in the database. Whatever an admin set by hand in
+            # production wins over what a sponsors.yml file happens to say.
+            unless organization.persisted?
+              organization = ::Organization.find_by_slug_or_alias(organization.slug) ||
+                ::Organization.find_by_name_or_alias(organization.name) || organization
+            end
 
             organization.save! if organization.changed? || organization.new_record?
 
