@@ -1,7 +1,9 @@
-<%# locals: (event:, participants:, participation:, favorite_users:, checked_in_participant_ids: Set.new, unclaimed_check_ins_count: 0) %>
+<%# locals: (event:, participants:, participation:, favorite_users:, checked_in_participant_ids: Set.new, unclaimed_check_ins_count: 0, interested_participants: []) %>
 
 <% button_text = event.start_date&.future? ? "Are you going?" : "Were you there?" %>
 <% event_stamp = Stamp.for_event(event).first %>
+<% has_attending = participants.values.any?(&:any?) %>
+<% has_interested = interested_participants.any? %>
 
 <div id="participants_list">
   <% if unclaimed_check_ins_count > 0 %>
@@ -18,7 +20,7 @@
     </div>
   <% end %>
 
-  <% if participants.any? %>
+  <% if has_attending || has_interested %>
     <% if Current.user && participation.blank? %>
       <div class="mb-6 rounded-lg border-2 border-dashed border-purple-300 bg-purple-50 p-4">
         <div class="flex items-center gap-4">
@@ -26,7 +28,7 @@
 
           <div class="flex-1">
             <h3 class="text-base font-semibold text-gray-900"><%= button_text %></h3>
-            <p class="text-sm text-gray-600">Mark yourself as a participant!</p>
+            <p class="text-sm text-gray-600">Mark yourself as going, or bookmark as interested!</p>
           </div>
 
           <div class="flex-shrink-0">
@@ -36,11 +38,11 @@
       </div>
     <% end %>
 
-    <% participants.each do |key, participants| %>
-      <% unless participants.size.zero? %>
+    <% participants.each do |key, group_participants| %>
+      <% unless group_participants.size.zero? %>
         <% show_unclaimed = key == "Known Participants" && unclaimed_check_ins_count > 0 %>
         <h2 class="mb-6">
-          <%= key %> (<%= participants.size %>)
+          <%= key %> (<%= group_participants.size %>)
           <% if show_unclaimed %>
             <span class="text-base font-normal text-gray-400">+ <%= unclaimed_check_ins_count %> unclaimed</span>
           <% end %>
@@ -50,7 +52,7 @@
           id="<%= dom_id(event, key) %>"
           class="mb-12 grid h-full min-w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
         >
-          <% participants.each do |participant| %>
+          <% group_participants.each do |participant| %>
             <div class="transition-bg rounded-lg border bg-white duration-300 ease-in-out hover:bg-gray-200">
               <%= render partial: "users/card", locals: {user: participant, favorite_user: favorite_users[participant.id], checked_in: checked_in_participant_ids.include?(participant.id), stamp: event_stamp} %>
             </div>
@@ -62,9 +64,22 @@
         </div>
       <% end %>
     <% end %>
-  <% end %>
 
-  <% if participants.empty? %>
+    <% if has_interested %>
+      <h2 class="mb-6">Interested (<%= interested_participants.size %>)</h2>
+
+      <div
+        id="<%= dom_id(event, "interested") %>"
+        class="mb-12 grid h-full min-w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        <% interested_participants.each do |participant| %>
+          <div class="transition-bg rounded-lg border bg-white duration-300 ease-in-out hover:bg-gray-200">
+            <%= render partial: "users/card", locals: {user: participant, favorite_user: favorite_users[participant.id], checked_in: false, stamp: nil} %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
     <div class="py-12 text-center">
       <div class="mx-auto max-w-md">
         <div class="mb-4 text-6xl">👥</div>
@@ -72,7 +87,7 @@
         <h2 class="mb-4 text-2xl font-bold text-gray-900">No Participants Yet</h2>
 
         <p class="mb-6 text-gray-600">
-          Be the first to mark yourself as a participant of <%= event.name %>!
+          Be the first to mark yourself as going to <%= event.name %>, or bookmark it as interested!
         </p>
 
         <%= render partial: "events/participation_button", locals: {event: event, participation: participation} %>
@@ -85,9 +100,9 @@
           </p>
 
           <ul class="space-y-1 text-sm text-purple-700">
+            <li>• Mark as Going if you plan to attend</li>
+            <li>• Mark as Interested to bookmark while you decide</li>
             <li>• Connect with fellow participants</li>
-            <li>• Share your experience with the community</li>
-            <li>• Build your conference history</li>
           </ul>
         </div>
       </div>

@@ -1,16 +1,40 @@
-<% tooltip_text = event.start_date&.future? ? "Add this event to your upcoming events" : "Add this event to your list of participations" %>
 <% event_status = event.start_date&.future? ? "upcoming" : "past" %>
+<% tooltip_text = t("event_participation.tooltips.#{event_status}") %>
 
-<div class="participation_button mt-4">
+<div class="participation_button mt-4 space-y-2">
   <% if Current.user %>
     <% if participation&.attended_as_visitor? %>
-      <%= ui_tooltip "Remove your participation to this event" do %>
+      <%= ui_tooltip t("event_participation.actions.remove_participation") do %>
         <%= ui_button url: event_event_participation_path(event, participation), params: {attended_as: "visitor"}, method: :delete, kind: :neutral, size: :sm, class: "w-full", data: {turbo_frame: "modal"} do %>
           <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
 
           <span class="text-nowrap">
             <%= t("event_participation.#{event_status}.attended_as.visitor") %>
           </span>
+        <% end %>
+      <% end %>
+
+      <%= ui_tooltip t("event_participation.tooltips.interested") do %>
+        <%= ui_button url: event_event_participations_path(event), params: {attended_as: "interested"}, method: :post, outline: true, size: :sm, kind: :neutral, class: "w-full", data: {turbo_frame: "modal"} do %>
+          <%= fa("bookmark", size: :xs, style: :regular) %>
+          <span class="text-nowrap"><%= t("event_participation.actions.mark_as_interested") %></span>
+        <% end %>
+      <% end %>
+    <% elsif participation&.attended_as_interested? %>
+      <%= ui_tooltip t("event_participation.actions.remove_interest") do %>
+        <%= ui_button url: event_event_participation_path(event, participation), params: {attended_as: "interested"}, method: :delete, kind: :neutral, size: :sm, class: "w-full", data: {turbo_frame: "modal"} do %>
+          <%= fa("bookmark", size: :xs, style: :solid, class: "fill-amber-600") %>
+
+          <span class="text-nowrap">
+            <%= t("event_participation.#{event_status}.attended_as.interested") %>
+          </span>
+        <% end %>
+      <% end %>
+
+      <%= ui_tooltip tooltip_text do %>
+        <%= ui_button url: event_event_participations_path(event), params: {attended_as: "visitor"}, method: :post, outline: true, size: :sm, kind: :neutral, class: "w-full", data: {turbo_frame: "modal"} do %>
+          <%= fa("plus", size: :xs, style: :solid) %>
+          <span class="text-nowrap"><%= t("event_participation.actions.mark_as_going") %></span>
         <% end %>
       <% end %>
     <% elsif participation %>
@@ -30,7 +54,14 @@
       <%= ui_tooltip tooltip_text do %>
         <%= ui_button url: event_event_participations_path(event), params: {attended_as: "visitor"}, method: :post, outline: true, size: :sm, kind: :neutral, class: "w-full", data: {turbo_frame: "modal"} do %>
           <%= fa("plus", style: :solid, size: :sm) %>
-          <span class="text-nowrap">Add to My Events</span>
+          <span class="text-nowrap"><%= t("event_participation.actions.going") %></span>
+        <% end %>
+      <% end %>
+
+      <%= ui_tooltip t("event_participation.tooltips.interested") do %>
+        <%= ui_button url: event_event_participations_path(event), params: {attended_as: "interested"}, method: :post, outline: true, size: :sm, kind: :neutral, class: "w-full", data: {turbo_frame: "modal"} do %>
+          <%= fa("bookmark", style: :regular, size: :sm) %>
+          <span class="text-nowrap"><%= t("event_participation.actions.interested") %></span>
         <% end %>
       <% end %>
     <% end %>
@@ -45,7 +76,7 @@
 
     <% event_is_past = event.end_date.present? && event.end_date < Date.today %>
 
-    <% if participation.present? && event_is_past && event.talks.any? %>
+    <% if participation.present? && participation.attending? && event_is_past && event.talks.any? %>
       <%= link_to attendance_path(event_slug: event.slug), class: "btn btn-sm btn-outline w-full mt-2" do %>
         <%= fa("clipboard-check", size: :sm) %>
         <span class="text-nowrap">Manage My Attendance</span>
@@ -55,7 +86,7 @@
     <%= ui_tooltip tooltip_text do %>
       <%= ui_button url: new_session_path(redirect_to: request.fullpath), outline: true, size: :sm, kind: :neutral, class: "w-full", data: {turbo_frame: "modal"} do %>
         <%= fa("plus", style: :solid) %>
-        <span class="text-nowrap">Add to My Events</span>
+        <span class="text-nowrap"><%= t("event_participation.actions.add_to_my_events") %></span>
       <% end %>
     <% end %>
   <% end %>
