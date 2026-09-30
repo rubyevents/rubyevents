@@ -14,6 +14,7 @@ class Ui::SocialLinksComponent < ApplicationComponent
     {field: "bsky", label: "Bluesky", icon: "bluesky", hover: "hover:bg-[#0085FF] hover:fill-white border-base-200", url: ->(v) { v.start_with?("http") ? v : "https://bsky.app/profile/#{v}" }},
     {field: "facebook", label: "Facebook", icon: "facebook", hover: "hover:bg-[#1877F2] hover:fill-white border-base-200", url: ->(v) { v.start_with?("http") ? v : "https://www.facebook.com/#{v}" }},
     {field: "github", label: "GitHub", icon: "github", hover: "hover:bg-black hover:fill-white border-base-200", url: ->(v) { v.start_with?("http") ? v : "https://github.com/#{v}" }},
+    {field: "instagram", label: "Instagram", icon: "instagram", hover: "hover:bg-[#E4405F] hover:fill-white border-base-200", url: ->(v) { v.start_with?("http") ? v : "https://www.instagram.com/#{v}" }},
     {field: "linkedin", label: "LinkedIn", icon: "linkedin", hover: "hover:bg-[#0A66C2] hover:fill-white border-base-200", url: ->(v) { v.start_with?("http") ? v : "https://www.linkedin.com/in/#{v}" }},
     {field: "mastodon", label: "Mastodon", icon: "mastodon", hover: "hover:bg-[#6364FF] hover:fill-white border-base-200", url: ->(v) { v.start_with?("http") ? v : "https://#{v}" }},
     {field: "meetup", label: "Meetup", icon: "meetup", hover: "hover:bg-[#ED1C40] hover:fill-white border-base-200", url: ->(v) { v.start_with?("http") ? v : "https://www.meetup.com/#{v}" }},

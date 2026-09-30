@@ -29,4 +29,12 @@ class Event::StaticMetadataTest < ActiveSupport::TestCase
   test "banner_background returns default when no static repository exists" do
     assert_equal "#081625", @event_without_yaml.static_metadata.banner_background
   end
+
+  test "instagram returns nil when the YAML does not define it" do
+    assert_nil @event_with_assets.static_metadata.instagram
+  end
+
+  test "instagram returns nil when no static repository exists" do
+    assert_nil @event_without_yaml.static_metadata.instagram
+  end
 end
