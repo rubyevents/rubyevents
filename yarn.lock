@@ -191,92 +191,118 @@
   resolved "https://registry.npmjs.org/@github/combobox-nav/-/combobox-nav-3.0.1.tgz"
   integrity sha512-JEAm5qU+u/dU8H+NsPisJ5c/P+lfqIk4x0h+BvqBIjP7oVZq1ChPVRYG5uPmHu5Mq7HGD8IsASbpUhX5UIfRxQ==
 
-"@herb-tools/config@0.10.3":
-  version "0.10.3"
-  resolved "https://registry.yarnpkg.com/@herb-tools/config/-/config-0.10.3.tgz#d6fbb2bb71d1c1679ed196f027378555b52e1979"
-  integrity sha512-cSaOwuWnij1wiB4Xh9Zfx/s+lhis7cN/+PXssanT/mXQLSRU2QeYasivyCQ1tRnpIVdGGOC/rqHVJQeNmj4pqg==
+"@herb-tools/analysis@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@herb-tools/analysis/-/analysis-0.11.0.tgz#96656bad050713ace6dcac8cfd12dba28605512a"
+  integrity sha512-4Ypn7dRh/V52vuw25gtOySq/6o0eSK/RKLB88qHDR7/oVjl3FFCGVCi7ikhbbnucBUxLy2GQ/aaQVinfIYW7aQ==
   dependencies:
-    "@herb-tools/core" "0.10.3"
-    picomatch "^4.0.5"
+    "@herb-tools/core" "0.11.0"
+    picomatch "^4.0.7"
+    tinyglobby "^0.2.15"
+
+"@herb-tools/client@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@herb-tools/client/-/client-0.11.0.tgz#96ab4abd9968d91c712cb48e1a11bf9c303f6f9f"
+  integrity sha512-At1+9DaOfKAbefUheSPPqvtv+Xg0S21xXE6KKgZawJAinfYTe7YLBrSup8pWNQmgyUDln6XNMs5nnYFwzNH90Q==
+
+"@herb-tools/config@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@herb-tools/config/-/config-0.11.0.tgz#1520d608d7b7b8588aed08ba6c5eccd4eca912d4"
+  integrity sha512-RSfuGp4jd9s7ykeGJiTdtPlpXwbBkCTOElEJt7kH+JkVMpBNxFqWe5I180kdArJOxVzC8h35OkLOiBK1Kf4Whg==
+  dependencies:
+    "@herb-tools/core" "0.11.0"
+    picomatch "^4.0.7"
     tinyglobby "^0.2.16"
-    yaml "^2.9.0"
+    yaml "^2.9.1"
 
-"@herb-tools/core@0.10.3":
-  version "0.10.3"
-  resolved "https://registry.yarnpkg.com/@herb-tools/core/-/core-0.10.3.tgz#03b1bf1a5d0c5acf9841209cf0c26dae3e2d85bb"
-  integrity sha512-rtDoh6C/EMYLEtFwYpuY+IlnV7PLsF5hQszq7uMDE/bwEpLVBlPFd2Wlk9E0RB31PVQKV1MwgGqstte87XqF9g==
+"@herb-tools/core@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@herb-tools/core/-/core-0.11.0.tgz#7b475d5d1f3e955ba8673d44155d573f6a8ac829"
+  integrity sha512-WyWZHCgrGmbjkWgGXprta9nldCXe49q6/+uB2vYiGWl2kJYahd0MC8zvOFgrB9+xUO9I7HEHCEG1Mxc45G4gew==
   dependencies:
     "@ruby/prism" "^1.9.0"
 
-"@herb-tools/formatter@https://pkg.pr.new/marcoroth/herb/@herb-tools/formatter@26b1456":
-  version "0.10.3"
-  resolved "https://pkg.pr.new/marcoroth/herb/@herb-tools/formatter@26b1456#c58544a8ba6f795ed2b7830bd82f701f1696197a"
+"@herb-tools/formatter@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@herb-tools/formatter/-/formatter-0.11.0.tgz#891bb821656e975973f0c932ccbc678cc8c8e83b"
+  integrity sha512-V7yW4Nd1GmHY7yI6IvDmAnYblytIIzqFOmlYj0rgfIkVaGWzyE414hRfyueZDVZitagHj7o3PSYkWJsuu29Auw==
   dependencies:
-    "@herb-tools/config" "0.10.3"
-    "@herb-tools/core" "0.10.3"
-    "@herb-tools/printer" "0.10.3"
-    "@herb-tools/rewriter" "0.10.3"
-    "@ruby/prism" "^1.9.0"
-    tinyglobby "^0.2.15"
-
-"@herb-tools/highlighter@0.10.3":
-  version "0.10.3"
-  resolved "https://registry.yarnpkg.com/@herb-tools/highlighter/-/highlighter-0.10.3.tgz#f4b1dfb770e32055a778c4f44847111387efe98c"
-  integrity sha512-vyBPl/oWalPcXrhni6RrQzeizzC0i7An3yMAg/Xx+4HDhgU/zOlRqSUYLU7SpzjfK4OU5QhRDdc3OBI8dT5qmg==
-  dependencies:
-    "@herb-tools/core" "0.10.3"
-    "@herb-tools/node-wasm" "0.10.3"
-
-"@herb-tools/linter@https://pkg.pr.new/marcoroth/herb/@herb-tools/linter@26b1456":
-  version "0.10.3"
-  resolved "https://pkg.pr.new/marcoroth/herb/@herb-tools/linter@26b1456#4a68263b97a4eb3c45f6101ecbc154eb801f2bc5"
-  dependencies:
-    "@herb-tools/config" "0.10.3"
-    "@herb-tools/core" "0.10.3"
-    "@herb-tools/highlighter" "0.10.3"
-    "@herb-tools/node-wasm" "0.10.3"
-    "@herb-tools/printer" "0.10.3"
-    "@herb-tools/rewriter" "0.10.3"
-    "@ruby/prism" "^1.9.0"
-    picomatch "^4.0.5"
-    tinyglobby "^0.2.15"
-
-"@herb-tools/node-wasm@0.10.3":
-  version "0.10.3"
-  resolved "https://registry.yarnpkg.com/@herb-tools/node-wasm/-/node-wasm-0.10.3.tgz#dc1527c2af245f67dbe85e3ba3782aefafc70653"
-  integrity sha512-KUwHUMB6kluyvRiW0A9wbTiuO/qlvXLlSAnewmH2za7yePvYRSiThfAZEmXPqEmpmMRcIksFxaNaxUc6nBqyuA==
-  dependencies:
-    "@herb-tools/core" "0.10.3"
-    "@ruby/prism" "^1.9.0"
-
-"@herb-tools/printer@0.10.3":
-  version "0.10.3"
-  resolved "https://registry.yarnpkg.com/@herb-tools/printer/-/printer-0.10.3.tgz#df067a71a1107329eb482092db4d300fe96998b1"
-  integrity sha512-OuuIisERq3TLnms/Wm5N6w/ITYqlBPPLsc1FNHdN3qedPOA/ey1dF2rKewUzQAsAZheRCs5nem7tDYRhPb2D/Q==
-  dependencies:
-    "@herb-tools/core" "0.10.3"
-    tinyglobby "^0.2.15"
-
-"@herb-tools/rewriter@0.10.3":
-  version "0.10.3"
-  resolved "https://registry.yarnpkg.com/@herb-tools/rewriter/-/rewriter-0.10.3.tgz#54a7d41b58751cc32c9e1ac105e528a1530037da"
-  integrity sha512-UsqWOJVcmB7lptLtjUeFpVvOn44LFae+I44p5ixQ9nDLNnZiN/2+R52tJmVLOWijQORvtMInCWOHrSvXF6Bf/g==
-  dependencies:
-    "@herb-tools/core" "0.10.3"
-    "@herb-tools/tailwind-class-sorter" "0.10.3"
+    "@herb-tools/config" "0.11.0"
+    "@herb-tools/core" "0.11.0"
+    "@herb-tools/highlighter" "0.11.0"
+    "@herb-tools/node-wasm" "0.11.0"
+    "@herb-tools/printer" "0.11.0"
+    "@herb-tools/rewriter" "0.11.0"
     "@ruby/prism" "^1.9.0"
     tinyglobby "^0.2.15"
 
-"@herb-tools/tailwind-class-sorter@0.10.3":
-  version "0.10.3"
-  resolved "https://registry.yarnpkg.com/@herb-tools/tailwind-class-sorter/-/tailwind-class-sorter-0.10.3.tgz#9b552b45f749d2deb25e093afadf686bad279d62"
-  integrity sha512-KAowwSS6NmcRTQrQ591DR6dGI675KB0o/yxZt113BNDWiBB+bl4xdnd3hT19JV6Jsh3sS/0e90hYGUj/6PBW0g==
+"@herb-tools/highlighter@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@herb-tools/highlighter/-/highlighter-0.11.0.tgz#a16f40bca1963449323c150198ea5626d3a920ed"
+  integrity sha512-n7juB1wgXSJxd6leRe2xevRrh/3ZJ1zrek1Fg8FoFFhoY2EXRNASjZv/Jp4rHen51Ce8lnP3t3aKwodz1RKPVA==
+  dependencies:
+    "@herb-tools/core" "0.11.0"
+    "@herb-tools/node-wasm" "0.11.0"
+    ansi_up "^6.0.6"
+
+"@herb-tools/linter@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@herb-tools/linter/-/linter-0.11.0.tgz#9ca97f1ba1299d8080eddcf0b82ea8c24ed61061"
+  integrity sha512-lEHLMZG92JMMu/63CEKXPGkV1VgeQ4fBYTsXdXwo/vd6Fil6+LQ6NjrMv1yll1ZyykSPIcqxQG+dBgI3q/HJVQ==
+  dependencies:
+    "@herb-tools/analysis" "0.11.0"
+    "@herb-tools/client" "0.11.0"
+    "@herb-tools/config" "0.11.0"
+    "@herb-tools/core" "0.11.0"
+    "@herb-tools/highlighter" "0.11.0"
+    "@herb-tools/node-wasm" "0.11.0"
+    "@herb-tools/printer" "0.11.0"
+    "@herb-tools/rewriter" "0.11.0"
+    "@ruby/prism" "^1.9.0"
+    picomatch "^4.0.7"
+    postcss "^8.5.26"
+    postcss-selector-parser "^7.1.6"
+    tinyglobby "^0.2.15"
+
+"@herb-tools/node-wasm@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@herb-tools/node-wasm/-/node-wasm-0.11.0.tgz#7f7cab2be0a6883f248a1e9c8fa91ee48d889964"
+  integrity sha512-HZl9xxV+Dm29Qhxo0lIiF8en/xUNDZUUOFwljugZwNR3ug9v91MWSOoqKkR7WPd+IXawmROMy+Jv2v6p2roTJA==
+  dependencies:
+    "@herb-tools/core" "0.11.0"
+    "@ruby/prism" "^1.9.0"
+
+"@herb-tools/printer@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@herb-tools/printer/-/printer-0.11.0.tgz#5a669f035cfa0ccd1d955c9b4937e1167951a9e6"
+  integrity sha512-nD56MCbvYnKbkz+Zgsjo/IBgW1ED/RD1Bkc563ujbsVgDhzTeldXcwlT3LZxbJ7S1QJfq0nBXnbSY8sxnOlUOg==
+  dependencies:
+    "@herb-tools/config" "0.11.0"
+    "@herb-tools/core" "0.11.0"
+    "@herb-tools/node-wasm" "0.11.0"
+    tinyglobby "^0.2.15"
+
+"@herb-tools/rewriter@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@herb-tools/rewriter/-/rewriter-0.11.0.tgz#562a2d78a993a40fe686b618e8b29fcc997b208c"
+  integrity sha512-K2Qii1vOYOWDR7P0u/LakjvmhsifWNmzKXVu3QnvyBsStIBHNprn/IRA3XHQgGfbQ3lfn1rSpkZKm3Ffubn/cQ==
+  dependencies:
+    "@herb-tools/core" "0.11.0"
+    "@herb-tools/printer" "0.11.0"
+    "@herb-tools/tailwind-class-sorter" "0.11.0"
+    "@ruby/prism" "^1.9.0"
+    tinyglobby "^0.2.15"
+
+"@herb-tools/tailwind-class-sorter@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@herb-tools/tailwind-class-sorter/-/tailwind-class-sorter-0.11.0.tgz#6b7bd4b88216294b2221b9af1d2d66c497677800"
+  integrity sha512-wQnxcNf2wiBUTDiOv1APbr4XUvRxixw3xZTbDZHDtwC8HT6GuWiCfaBxw2iqusVDvgADsWyfAWqWUjOgnPU12A==
   dependencies:
     clear-module "^4.1.3"
     escalade "^3.2.0"
     jiti "^2.7.0"
-    postcss "^8.5.18"
-    postcss-import "^16.1.1"
+    postcss "^8.5.26"
+    postcss-import "^17.0.0"
 
 "@hotwired/hotwire-native-bridge@^1.1.0":
   version "1.1.0"
@@ -692,6 +718,11 @@ ansi-styles@^6.1.0:
   version "6.2.3"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-6.2.3.tgz#c044d5dcc521a076413472597a1acb1f103c4041"
   integrity sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==
+
+ansi_up@^6.0.6:
+  version "6.0.6"
+  resolved "https://registry.yarnpkg.com/ansi_up/-/ansi_up-6.0.6.tgz#804faf31f0385e562d2f71275ea8cff0d9dcf6dc"
+  integrity sha512-yIa1x3Ecf8jWP4UWEunNjqNX6gzE4vg2gGz+xqRGY+TBSucnYp6RRdPV4brmtg6bQ1ljD48mZ5iGSEj7QEpRKA==
 
 any-promise@^1.0.0:
   version "1.3.0"
@@ -2379,10 +2410,10 @@ nanoid@^3.3.11:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.11.tgz#4f4f112cefbe303202f2199838128936266d185b"
   integrity sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==
 
-nanoid@^3.3.16:
-  version "3.3.16"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.16.tgz#a04d8ec4b1f10009d2d533947aefe4293737816c"
-  integrity sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q==
+nanoid@^3.3.18:
+  version "3.3.19"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.19.tgz#336d4aa4bcd4fb24d2cddede7ffeae40bec03f0a"
+  integrity sha512-Y2tUNy4ouw6tq5oDSKeQYGOyhkUBhNOcGV/02KC+6kd9eDGqdZd++mjMiIDilrBYvjEnCYvVtsuHCuP+okSfug==
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -2618,10 +2649,15 @@ picomatch@^4.0.2:
   resolved "https://registry.npmjs.org/picomatch/-/picomatch-4.0.2.tgz"
   integrity sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==
 
-picomatch@^4.0.4, picomatch@^4.0.5:
+picomatch@^4.0.4:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-4.0.5.tgz#51ea57a17d86f605f81039595fbc40ed06a55fab"
   integrity sha512-RvwwcruNjI1ncT5xRakeyS9Lf8lcItv34KD+aif+VH9kduAyfYBipGh12274xtenIPZ119/R9BdTBa8gAwSh0A==
+
+picomatch@^4.0.7:
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-4.0.7.tgz#6313360034ccb36b3dc61ecbdff78121f90fe21f"
+  integrity sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==
 
 pify@^2.3.0:
   version "2.3.0"
@@ -2669,10 +2705,10 @@ postcss-import@^16.1.0:
     read-cache "^1.0.0"
     resolve "^1.1.7"
 
-postcss-import@^16.1.1:
-  version "16.1.1"
-  resolved "https://registry.yarnpkg.com/postcss-import/-/postcss-import-16.1.1.tgz#cfbe79e6c9232b0dbbe1c18f35308825cfe8ff2a"
-  integrity sha512-2xVS1NCZAfjtVdvXiyegxzJ447GyqCeEI5V7ApgQVOWnros1p5lGNovJNapwPpMombyFBfqDwt7AD3n2l0KOfQ==
+postcss-import@^17.0.0:
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-import/-/postcss-import-17.0.0.tgz#b545e9c4cfd48791e7090b3ff232b7b93d075139"
+  integrity sha512-qzVMJhcq39KweT7Fp0HcjE5YxL5yI854Q3CtufxDuZKO9HLQUp2rptB9+U0MIj3pT1ZEVXoqnpeC1mSkfYuz4Q==
   dependencies:
     postcss-value-parser "^4.0.0"
     read-cache "^1.0.0"
@@ -2716,6 +2752,14 @@ postcss-selector-parser@^6.1.1, postcss-selector-parser@^6.1.2:
     cssesc "^3.0.0"
     util-deprecate "^1.0.2"
 
+postcss-selector-parser@^7.1.6:
+  version "7.1.6"
+  resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-7.1.6.tgz#45e970f2d93d4547d6754167ed1132f43012c4bf"
+  integrity sha512-7qASPzhKF2l2KLboRZux8CCTRMdGiV08vWmyKzPz22qZ7ZjQBOeY7rNzNoCLSUiftJ7HUq0GERHmxw/t0dCdMw==
+  dependencies:
+    cssesc "^3.0.0"
+    util-deprecate "^1.0.2"
+
 postcss-value-parser@^4.0.0, postcss-value-parser@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz"
@@ -2730,12 +2774,12 @@ postcss@^8.4.38, postcss@^8.4.47, postcss@^8.5.3:
     picocolors "^1.1.1"
     source-map-js "^1.2.1"
 
-postcss@^8.5.18:
-  version "8.5.25"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.5.25.tgz#5012a598eaaa897f21bbe8553be3cb7bd2bd78cb"
-  integrity sha512-DTPx3RWSSnWyzLxQnlH0rJP+EW5ekl16ZU4/psbIhA0e53kJfdgaN5vKM+xP7yJtXVu+nfdVFmlgFDEKAe4Pyw==
+postcss@^8.5.26:
+  version "8.5.28"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.5.28.tgz#da4563a99a06e62d6c1cd1acae363224bcaed6e9"
+  integrity sha512-RRuzqDtt5Y9h3quz5hWhK+TPnsmVs6WwSU6LkJMeY4HstUEDuYTG8UJSdawMRzmzAtV+KEoG8N3Qg2qLy5vM/A==
   dependencies:
-    nanoid "^3.3.16"
+    nanoid "^3.3.18"
     picocolors "^1.1.1"
     source-map-js "^1.2.1"
 
@@ -3104,8 +3148,16 @@ stimulus-vite-helpers@^3.0.0, stimulus-vite-helpers@^3.1.0:
   resolved "https://registry.npmjs.org/stimulus-vite-helpers/-/stimulus-vite-helpers-3.1.0.tgz"
   integrity sha512-qy9vnNnu6e/1PArEndp456BuSKLQkBgc+vX2pedOHT0N4GSLQY0l5fuQ4ft56xZ8xSWqrfuYSR+GXXIPtoESww==
 
-"string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
-  name string-width-cjs
+"string-width-cjs@npm:string-width@^4.2.0":
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
+  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
+  dependencies:
+    emoji-regex "^8.0.0"
+    is-fullwidth-code-point "^3.0.0"
+    strip-ansi "^6.0.1"
+
+string-width@^4.1.0:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -3182,7 +3234,14 @@ string.prototype.trimstart@^1.0.8:
     define-properties "^1.2.1"
     es-object-atoms "^1.0.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
+  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
+  dependencies:
+    ansi-regex "^5.0.1"
+
+strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -3607,10 +3666,10 @@ yaml@^2.3.4:
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.8.2.tgz#5694f25eca0ce9c3e7a9d9e00ce0ddabbd9e35c5"
   integrity sha512-mplynKqc1C2hTVYxd0PU2xQAc22TI1vShAYGksCCfxbn/dFwnHTNi1bvYsBTkhdUNtGIf5xNOg938rrSSYvS9A==
 
-yaml@^2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.9.0.tgz#78274afd93598a1dfdd6130df6a566defcbf9aa4"
-  integrity sha512-2AvhNX3mb8zd6Zy7INTtSpl1F15HW6Wnqj0srWlkKLcpYl/gMIMJiyuGq2KeI2YFxUPjdlB+3Lc10seMLtL4cA==
+yaml@^2.9.1:
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.9.1.tgz#c16233fb31944e705cfefaff38795587f57588ce"
+  integrity sha512-3NxN8+78OdzbT7C/WjGsyfPAtJaN3FNDsWxv7Y7mcDsT/oOmgW8BpyQQFFBnvZE3j9Y2Sdz1ULFLezL7Eb2yFw==
 
 yocto-queue@^0.1.0:
   version "0.1.0"
