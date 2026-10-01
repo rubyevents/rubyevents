@@ -421,6 +421,11 @@ module Static
             organization ||= ::Organization.find_by_name_or_alias(sponsor["name"]) || ::Organization.find_by_slug_or_alias(sponsor["slug"]&.downcase)
             organization ||= ::Organization.find_or_initialize_by(name: sponsor["name"])
 
+            # Names like "フィヨルドブートキャンプ" parameterize to "", so fall back to the sponsor's slug
+            if organization.new_record? && sponsor["name"].to_s.parameterize.blank?
+              organization.slug = sponsor["slug"].to_s.parameterize
+            end
+
             organization.update(
               website: sponsor["website"],
               description: sponsor["description"],
