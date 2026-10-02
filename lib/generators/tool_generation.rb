@@ -1,6 +1,8 @@
 require "rails/generators"
 
 class ToolGeneration
+  TOOL_OPTION_GROUPS = ["Fields", "Options"].freeze
+
   # Generates RubyLLM tool classes for each provided generator
   #
   # @param generators [Array<Generators::EventBase>]
@@ -10,7 +12,7 @@ class ToolGeneration
       # Grab the generator's options that we've defined manually so that they
       # can be provided as params to the new tool class.
       options = klass.class_options.select do |option_key, option|
-        option.group == "Fields"
+        TOOL_OPTION_GROUPS.include?(option.group)
       end
 
       generator_type = klass.name.gsub("Generator", "").downcase

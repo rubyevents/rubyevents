@@ -84,16 +84,16 @@ class Static::EventTest < ActiveSupport::TestCase
     assert_equal "Party Sponsor", avo_sponsor.badge
   end
 
-  test "import_sponsors! uses the sponsor slug when the name cannot be parameterized" do
+  test "import_sponsors! imports a sponsor whose name was renamed to be slugifiable" do
     Static::EventSeries.find_by_slug("kaigi-on-rails").import_series!
     event = Static::Event.find_by_slug("kaigi-on-rails-2026")
     event_record = event.import_event!
 
-    assert_nil Organization.find_by(name: "フィヨルドブートキャンプ")
+    assert_nil Organization.find_by(name: "FjordBootCamp")
 
     event.import_sponsors!(event_record)
 
-    organization = Organization.find_by(name: "フィヨルドブートキャンプ")
+    organization = Organization.find_by(name: "FjordBootCamp")
     assert_equal "fjordbootcamp", organization.slug
     assert event_record.sponsors.exists?(organization: organization)
   end
