@@ -83,6 +83,10 @@ class ContinentTest < ActiveSupport::TestCase
     assert bounds.key?(:northeast)
   end
 
+  test "to_coordinates returns latitude and longitude" do
+    assert_equal [53.5, 17.5], Continent.find("europe").to_coordinates
+  end
+
   test "countries returns array of Country instances" do
     continent = Continent.find("europe")
     countries = continent.countries

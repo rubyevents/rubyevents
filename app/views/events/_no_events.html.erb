@@ -9,7 +9,7 @@
     </p>
 
     <% unless current_page?(without_filter_path, check_parameters: true) %>
-      <%= link_to "Show all events", without_filter_path, class: "btn btn-primary" %>
+      <%= link_to "Show all events", without_filter_path, class: "btn btn-primary", data: {turbo_action: "replace"} %>
     <% end %>
   </div>
 </div>

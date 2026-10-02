@@ -5,6 +5,10 @@ export default class extends Controller {
   static values = { storageKey: { type: String, default: 'events-view-preference' } }
 
   connect () {
+    this.restore()
+  }
+
+  restore () {
     this.switchTo(window.localStorage.getItem(this.storageKeyValue))
   }
 
