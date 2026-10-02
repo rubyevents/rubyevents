@@ -2,8 +2,6 @@
   <%= render partial: "events/event_list", locals: {events: events} %>
 
   <div class="hidden md:block">
-    <% events.each do |event| %>
-      <%= render partial: "events/featured_card", locals: {event: event} %>
-    <% end %>
+    <%= render partial: "events/featured_card", collection: events, as: :event %>
   </div>
 </div>

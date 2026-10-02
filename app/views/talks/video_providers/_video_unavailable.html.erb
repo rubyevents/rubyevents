@@ -1,4 +1,4 @@
-<%# locals: (talk:, video_provider:, video_id:, is_watched: false) %>
+<%# locals: (talk:, video_provider:) %>
 
 <div class="relative block h-full w-full max-w-full">
   <%= image_tag talk.thumbnail_xl, alt: "#{talk.title} thumbnail", class: "w-full h-full object-cover rounded-xl" %>
@@ -18,7 +18,6 @@
 
       <div class="text-sm text-white/80">
         This video is no longer available on <%= video_provider.humanize %>
-
 
         <% if talk.video_unavailable_at.present? %>
           as of <%= talk.video_unavailable_at.to_date.to_fs(:long) %>

@@ -32,7 +32,6 @@ class ContinentsController < ApplicationController
     @events = @continent.events.includes(:series).order(start_date: :desc)
     @countries = @continent.countries.sort_by(&:name)
     @users = @continent.users
-    @stamps = @continent.stamps
     @location = @continent
 
     upcoming_events = @events.upcoming.to_a

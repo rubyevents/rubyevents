@@ -11,7 +11,7 @@
 # GitHub Repo: https://github.com/marcoroth/herb
 #
 
-version: 0.10.3
+version: 0.11.0
 framework: actionview
 
 linter:
@@ -32,6 +32,11 @@ linter:
     html-no-space-in-tag:
       exclude:
         - public/**
+
+    html-no-nested-forms:
+      exclude:
+        - app/views/events/_my_attendance_talk.html.erb
+        - app/views/favorite_users/_favorite_user.html.erb
 
 formatter:
   enabled: true
