@@ -253,8 +253,6 @@
             • <%= language %>
           <% end %>
           • <%= talk.formatted_kind %>
-
-
           <article class="markdown prose mt-4"><%= markdown_to_html(talk.summary) %></article>
         </div>
       <% end %>
@@ -444,7 +442,7 @@
           role="tabpanel"
           class="tab-content mt-6 min-w-0 max-w-full overflow-x-auto rounded-xl !rounded-s-xl bg-base-200/50 p-6"
         >
-          <%= render partial: "talks/similar_talks_tab", locals: {talk: talk, similar_talks: similar_talks} %>
+          <%= render partial: "talks/similar_talks_tab", locals: {similar_talks: similar_talks} %>
         </div>
       <% end %>
     </div>

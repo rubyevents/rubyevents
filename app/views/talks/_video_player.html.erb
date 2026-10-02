@@ -35,8 +35,6 @@
           "
         >
           This talk is available to watch on <%= URI.parse(talk.external_player_url).host %>
-
-
           <%= ui_button do %>
             <%= fa("play", size: :xs, class: "fill-white") %>
             <span>Watch <span class="hidden sm:inline-block">on <%= URI.parse(talk.external_player_url).host %></span></span>
