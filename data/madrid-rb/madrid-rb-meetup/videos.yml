@@ -1,14 +1,3071 @@
 ---
-# Website: https://www.madridrb.com
+- id: "madrid-rb-event-214"
+  title: "Abril 2010"
+  event_name: "Abril 2010"
+  date: "2010-04-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-214"
+  description: |-
+    Reunión de Madrid.rb de Abril 2010
+  talks:
+    - id: "madrid-rb-event-214-topic-294"
+      title: "Por la gloria de REST"
+      event_name: "Abril 2010"
+      date: "2010-04-29"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-214-topic-294"
+      description: |-
+        Hace diez años Roy Fielding describía el concepto REST en la tesis de su doctorado. Hace tres, Rails 1.2 abrazaba el concepto y lo convertía en una de sus convenciones principales. Hoy, no hay servicio en Internet que se precie que no tenga una API que no clame seguir los principios REST.
 
-# 2024
+        Sin embargo, el observador avezado encontrará que cada una de estas APIs implementa su particular interpretación de estos principios. Desde simples RPCs en XML, pasando por APIs estructuradas en recursos que además usan los verbos HTTP, hasta gloriosos servicios en los que los recursos están hiperenlazados y son auto-descubribles, el espectro de características de los servicios restful es amplio.
 
-- id: "madrid-rb-meetup-november-2024"
+        En esta charla repasaremos los principios originales y todas estas características de las APIs restful. Lo haremos con un enfoque pragmático, desde las trincheras, tomando como referencia la implementación de una API en Rails y su cliente en Ruby.
+
+        ## Recursos
+
+        - [Roy Fielding's dissertation about REST](http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm)
+        - [The Richardson Maturity Model](http://martinfowler.com/articles/richardsonMaturityModel.html)
+        - [Theme to Nowhere Standard Time](http://www.crummy.com/music/nst/lyrics.html#02)
+      speakers:
+        - Luismi Cavallé
+
+- id: "madrid-rb-event-246"
+  title: "Mayo 2010"
+  event_name: "Mayo 2010"
+  date: "2010-05-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-246"
+  description: |-
+    Reunión de Madrid.rb de Mayo 2010
+  talks:
+    - id: "madrid-rb-event-246-topic-329"
+      title: "Madrid-rb Cine Club: Rails 3"
+      event_name: "Mayo 2010"
+      date: "2010-05-27"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-246-topic-329"
+      description: |-
+        Rails 3 está a la vuelta de la esquina y para preparar su llegada en la próxima reunión del grupo proyectaremos y charlaremos acerca de estos Railscasts:
+
+        - Rails 3 Beta and RVM
+        - Bundler
+        - Active Record Queries in Rails 3
+        - Routing in Rails 3
+        - XSS Protection in Rails 3
+        - Action Mailer in Rails 3
+        - ERB Blocks in Rails 3
+        - Validations in Rails 3
+        - Advanced Queries in Rails 3
+
+        Nos vemos!
+      speakers:
+        - Luismi Cavallé
+
+- id: "madrid-rb-event-237"
+  title: "Junio 2010"
+  event_name: "Junio 2010"
+  date: "2010-06-24"
+  video_provider: "children"
+  video_id: "madrid-rb-event-237"
+  description: |-
+    Reunión de Madrid.rb de Junio 2010
+  talks:
+    - id: "madrid-rb-event-237-topic-319"
+      title: "Planetaki powered by MongoDB"
+      event_name: "Junio 2010"
+      date: "2010-06-24"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-237-topic-319"
+      description: |-
+        Durante el último año, Sam Lown ha estado trabajado en la nueva versión de Planetaki, agregador de websites para personas que no quieren interfaces complejas, y desde hace unos días el fruto de su trabajo está en producción. El nuevo Planetaki es realmente rápido.
+
+        En esta charla Sam nos hablará de las tecnologías clave que han hecho posible esta mejora: MongoDB y RabbitMQ y de la arquitectura soportada por ellas.
+      speakers:
+        - Sam Lown
+
+- id: "madrid-rb-event-258"
+  title: "Septiembre 2010"
+  event_name: "Septiembre 2010"
+  date: "2010-09-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-258"
+  description: |-
+    Reunión de Madrid.rb de Septiembre 2010
+  talks:
+    - id: "madrid-rb-event-258-topic-342"
+      title: "RabbitMQ + Ruby #"
+      event_name: "Septiembre 2010"
+      date: "2010-09-30"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-258-topic-342"
+      description: |-
+        - RabbitMQ ¿Qué es? ¿Cómo funciona? AMQP, XMPP, y otras siglas
+        - ¿Cómo lo hace? Ejemplos desde cero
+        - Day by day. Integración y uso en aplicaciones. Librerías
+      speakers:
+        - Guillermo
+
+- id: "madrid-rb-event-251"
+  title: "Noviembre 2010"
+  event_name: "Noviembre 2010"
+  date: "2010-11-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-251"
+  description: |-
+    Reunión de Madrid.rb de Noviembre 2010
+  talks:
+    - id: "madrid-rb-event-251-topic-335"
+      title: "Fibers in Ruby 1.9"
+      event_name: "Noviembre 2010"
+      date: "2010-11-25"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-251-topic-335"
+      description: |-
+        In tonight's talk Murray Steele is going to tell you about fibers, a new feature in ruby 1.9 that provides an alternative to threads for doing concurrency. He'll cover some of the background behind what fibers are, the fibers api so you know how to use them and some examples of places where fibers are being used.
+
+        At the end of the talk, if you're interested he can talk a little about Ruby Manor as it's not a traditional conference and he'd love it if other rubyists picked up the idea and ran their own Ruby Manor style events.
+
+        ## Resources
+
+        - [Some rough fibrous material - Madrid.rb - Nov 2010.key](http://dl.dropbox.com/u/645329/Some%20rough%20fibrous%20material%20-%20Madrid.rb%20-%20Nov%202010.key)
+        - [Some rough fibrous material - Madrid.rb - Nov 2010.pdf](http://dl.dropbox.com/u/645329/Some%20rough%20fibrous%20material%20-%20Madrid.rb%20-%20Nov%202010.pdf)
+      speakers:
+        - Murray Steele
+
+- id: "madrid-rb-event-222"
+  title: "Diciembre 2010"
+  event_name: "Diciembre 2010"
+  date: "2010-12-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-222"
+  description: |-
+    Reunión de Madrid.rb de Diciembre 2010
+  talks:
+    - id: "madrid-rb-event-222-topic-302"
+      title: "Coding Dojo"
+      event_name: "Diciembre 2010"
+      date: "2010-12-30"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-222-topic-302"
+      description: |-
+        **ZOMG!** Para la quedada de Diciembre del grupo de usuarios de Ruby de Madrid, contagiados por el espíritu festivo propio de las fechas, proponemos acabar el año con estrella invitada y actividad especial.
+
+        Tenemos el lujo de contar con [Enrique Comba Riepenhausen](http://ecomba.org/), uno de los líderes del movimiento Software Craftmanship, y con su ayuda organizamos un [Coding Dojo](http://codingdojo.org/cgi-bin/wiki.pl?WhatIsCodingDojo). En particular, practicaremos una [Randori Kata](http://codingdojo.org/cgi-bin/wiki.pl?RandoriKata) en Ruby.
+
+        Las cervezas, la buena conversación y la diversión de después, ya sabéis que también están aseguradas (Nuestra última estrella invitada [da fe de ello](http://twitter.com/hlame/status/8990488170332160))
+
+        La quedada será el **Jueves, 30 de Diciembre** , a las **19:45** , en [**Utopic\_US**](http://www.utopicus.es/) ( [mapa](http://maps.google.es/maps?f=q&source=s_q&hl=es&geocode=&q=Calle+de+la+Concepci%C3%B3n+Jer%C3%B3nima,+22,+28012+Madrid&sll=40.396764,-3.713379&sspn=10.504732,23.269043&ie=UTF8&hq=&hnear=Calle+de+la+Concepci%C3%B3n+Jer%C3%B3nima,+22,+28012+Madrid,+Comunidad+de+Madrid&lr=lang_es%7Clang_en&view=map)). Recordad que hay una [lista de correo](http://groups.google.com/group/madrid-rb) y una cuenta de [twitter](http://twitter.com/madridrb) del grupo para manteneros al día.
+
+        Como siempre, cualquiera es bienvenido (sea a participar o sólo a mirar) pero esta vez os pedimos que, si tenéis previsto acercaros, os apuntéis en la lista de abajo para poder gestionar adecuadamente el tema del espacio.
+      speakers:
+        - Luismi Cavallé
+
+- id: "madrid-rb-event-226"
+  title: "Enero 2011"
+  event_name: "Enero 2011"
+  date: "2011-01-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-226"
+  description: |-
+    Reunión de Madrid.rb de Enero 2011
+  talks:
+    - id: "madrid-rb-event-226-topic-306"
+      title: "A [git] workflow"
+      event_name: "Enero 2011"
+      date: "2011-01-27"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-226-topic-306"
+      description: |-
+        Todos sabemos usar Git (o estamos a un [libro](http://progit.org/) de distancia de ello) pero, ¿cómo sacarle mayor partido?
+
+        Git es una herramienta flexible y _agnóstica de workflow_, lo que quiere decir que podemos implementar nuestro flujo de trabajo, sea cual sea, sin tener que “pelearnos” con Git para reflejar en nuestros repositorios nuestra forma de trabajar. Al contrario, Git nos puede ayudar a estar seguros de que estamos siguiendo nuestras propias reglas de trabajo.
+
+        En esta charla se propondrá un workflow, de los infinitos posibles a la hora de desarrollar software, inspirado muy de cerca en el que usamos en BeBanjo para desarrollar nuestros tres productos, basado a su vez en ideas ágiles como _continuous delivery_ y _kanban_, y se explicará también cómo hacer que Git no sólo lo soporte sino que se convierta en la herramienta clave para llevarlo a cabo.
+
+        **AVISO** : Aunque a primera vista parece que esta charla no tiene relación con Ruby, a su final habrá ingesta masiva de cerveza, quedando demostrada así la falsedad de esa apariencia.
+
+        ## Resources
+
+        - [Slides de la charla](http://slidesha.re/gvbvl5)
+        - [Wallpaper de regalo](http://bit.ly/gnPV10) (cortesía de [@bomberstudios](http://twitter.com/bomberstudios))
+      speakers:
+        - Sergio Gil Pérez de la Manga
+
+- id: "madrid-rb-event-230"
+  title: "Febrero 2011"
+  event_name: "Febrero 2011"
+  date: "2011-02-24"
+  video_provider: "children"
+  video_id: "madrid-rb-event-230"
+  description: |-
+    Reunión de Madrid.rb de Febrero 2011
+  talks:
+    - id: "madrid-rb-event-230-topic-310"
+      title: "A g[r]eek talking about Heroku"
+      event_name: "Febrero 2011"
+      date: "2011-02-24"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-230-topic-310"
+      description: |-
+        Undoubtedly, Heroku is the new black. The Salesforce guys sure think so, and so do all the cool kids on the ruby-block. So, you wonder, is it right for you?
+
+        In this short talk I plan to recount my experience migrating [Jobandtalent](http://jobandtalent.com) to Heroku.
+
+        Time permiting, I will try to cover the following subjects, some superficially, some in more detail:
+
+        - PostgreSQL; differences to MySQL, quirks, hidden features, performance considerations
+        - Heroku's read only file system, and how it might affect your application
+        - Heroku Add-Ons. The Essential, The Nice-to-have, The Rest
+        - Anecdotal tales of the platform's quality of service and support
+
+        **AVISO:** El idioma de la charla será español, inglés, griego o _spangreesh_ en función del número de cervezas que lleve encima el ponente al comienzo de la misma
+
+        ### Resources
+      speakers:
+        - Christos Zisopoulos
+
+- id: "madrid-rb-event-242"
+  title: "Marzo 2011"
+  event_name: "Marzo 2011"
+  date: "2011-03-31"
+  video_provider: "children"
+  video_id: "madrid-rb-event-242"
+  description: |-
+    Reunión de Madrid.rb de Marzo 2011
+  talks:
+    - id: "madrid-rb-event-242-topic-324"
+      title: "Sequel: una alternativa a Active Record"
+      event_name: "Marzo 2011"
+      date: "2011-03-31"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-242-topic-324"
+      description: |-
+        Los que trabajamos con Ruby on Rails estamos acostumbrados a utilizar ActiveRecord para "hablar" con la base de datos. Y con razón, Active Record es muy potente y completo, y de verdad facilita la vida del programador. Pero está bien, de vez en cuando, mirar alrededor y ver alternativas, sobre todo porque te llevas gratas sorpresas.
+
+        [Sequel](http://sequel.rubyforge.org/) es un "toolkit" escrito en Ruby para conectarse e interactuar contra una base de datos, mucho más flexible y configurable que ActiveRecord, aunque con el mismo potencial y la misma magia.
+
+        El objetivo de esta charla es darlo a conocer e introducir sus conceptos básicos, intentando que os quedéis con el mismo buen sabor de boca con el que me quedé yo cuando empecé a utilizarlo.
+
+        ### Recursos
+
+        - [Slides de la charla](http://www.slideshare.net/ferblape/sequel-madridrb)
+      speakers:
+        - Fernando Blat
+
+    - id: "madrid-rb-event-242-topic-325"
+      title: "Pair programming: una forma de desarrollar software"
+      event_name: "Marzo 2011"
+      date: "2011-03-31"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-242-topic-325"
+      description: |-
+        La idea de la charla es dar a conocer el pair programming como una herramienta de trabajo y como poder aprovecharla en nuestro trabajo en el día a día. Intentaré explicar desde mi experiencia personal las ventajas y desventajas prácticas del pair programming y en qué situaciones nos puede resultar más ventajoso. Repasaremos algunos conceptos básicos, distintas modalidades y setups de trabajo distintos, tanto para trabajar en un local como en remoto.
+
+        ### Recursos
+
+        - [Slides de la charla](http://diasjorge.github.com/pair-programming-slides)
+      speakers:
+        - Jorge Dias
+
+- id: "madrid-rb-event-215"
+  title: "Abril 2011"
+  event_name: "Abril 2011"
+  date: "2011-04-28"
+  video_provider: "children"
+  video_id: "madrid-rb-event-215"
+  description: |-
+    Reunión de Madrid.rb de Abril 2011
+  talks:
+    - id: "madrid-rb-event-215-topic-295"
+      title: "Tries, la pronunciación se deja como ejercicio para el lector"
+      event_name: "Abril 2011"
+      date: "2011-04-28"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-215-topic-295"
+      description: |-
+        Que sirva esto como mensaje tranquilizador: no habrá _demasiado_ contenido matemático en la charla. Hablaremos de complejidad y de estructuras de datos, principalmente del trie.
+
+        Las estructuras de datos son como los gadgets de Batman: el batrepelente de tiburones puede parecer lo más inútil del mundo hasta que el escualo se te engancha a la pierna. Por suerte, las estructuras de datos no ocupan tanto lugar (el _Art of Computer Programming_ en tapa dura no cuenta) ni las tienes que llevar en el cinturón batcinturón. Sospecho que tampoco sirve de mucho contra los [selacimorfos](http://es.wikipedia.org/wiki/Selachimorpha) [**Nota:** Pedantería patrocinada por _Saber y Ganar_]
+      speakers:
+        - Sergio Arbeo
+
+- id: "madrid-rb-event-247"
+  title: "Mayo 2011"
+  event_name: "Mayo 2011"
+  date: "2011-05-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-247"
+  description: |-
+    Reunión de Madrid.rb de Mayo 2011
+  talks:
+    - id: "madrid-rb-event-247-topic-330"
+      title: "Cosicas de Sphinx que lo mismo no sabías"
+      event_name: "Mayo 2011"
+      date: "2011-05-26"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-247-topic-330"
+      description: |-
+        Desde que @pablete nos presentó Sphinx en la conferencia rails 2007, hemos sido muchos los que nos hemos decantado por esta opción a la hora de implementar búsqueda de texto libre en nuestra aplicación. Sin embargo, gracias a lo fácil que es la integración mediante thinking sphinx, en muchos casos no se sabe muy bien cómo funciona sphinx por debajo, y qué cosas se pueden hacer con él más allá de los ejemplos simplones de la documentación de thinking sphinx.
+
+        En esta charla, aprovecharé para contar un poco cómo funciona Sphinx, algunas de las cosas que podemos hacer con él y que no se usan demasiado, y las posibles implicaciones en rendimiento de utilizar funcionalidades como el resaltado de ocurrencias en los resultados de búsqueda.
+      speakers:
+        - javier ramirez
+
+    - id: "madrid-rb-event-247-topic-331"
+      title: "Introducción a Solr-Lucene en Rails con Sunspot"
+      event_name: "Mayo 2011"
+      date: "2011-05-26"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-247-topic-331"
+      description: |-
+        No tan conocido como Sphinx para montar tu buscador en aplicaciones Rails pero basado en una solución muy potente y compleja como Solr-Lucene os contaré como montar tu buscador utilizando la gema Sunspot en tu aplicación Rails. Como introducción contaré una notas básicas sobre configuración y utilización de la gema, sin centrarnos en detalles de Solr-Lucene.
+      speakers:
+        - Paco Guzmán
+
+- id: "madrid-rb-event-238"
+  title: "Junio 2011"
+  event_name: "Junio 2011"
+  date: "2011-06-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-238"
+  description: |-
+    Reunión de Madrid.rb de Junio 2011
+  talks:
+    - id: "madrid-rb-event-238-topic-320"
+      title: "Streaming en Rails 3.1"
+      event_name: "Junio 2011"
+      date: "2011-06-30"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-238-topic-320"
+      description: |-
+        Madrid.rb se viste de gala para recibir a un miembro del core de Rails [1]
+
+        Entre las novedades de Rails 3.1 se encuentra el soporte para hacer streaming de respuestas.
+
+        En esta charla veremos qué es el streaming, cuándo usarlo, implicaciones prácticas, setups de servidores, y echaremos un vistazo a su implementación
+      speakers:
+        - Xavier Noria
+
+- id: "madrid-rb-event-234"
+  title: "Julio 2011"
+  event_name: "Julio 2011"
+  date: "2011-07-20"
+  video_provider: "children"
+  video_id: "madrid-rb-event-234"
+  description: |-
+    Reunión de Madrid.rb de Julio 2011
+  talks:
+    - id: "madrid-rb-event-234-topic-315"
+      title: "¡¡Partido de fútbol!!"
+      event_name: "Julio 2011"
+      date: "2011-07-20"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-234-topic-315"
+      description: |-
+        _Formato_: Fútbol 7, repasen el libro de táctica
+
+        _Observaciones_: Llevad una camiseta negra y otra roja, se hacen los equipos a pares-nones, los de @fxn van de negro (si no le dejamos estrenar su segunda equipación del Barça le da algo) y los otros de rojo. Teniendo en cuenta las camisetas de las últimas conferencias rails y eurukos será fácil ;)
+
+        Si es posible botas sin tacos que en ese campo no hacen falta y somos muy torpes y nos hacemos daño.
+
+        Integran la convocatoria:
+
+        1. @porras
+        2. @valakirka
+        3. @therobot
+        4. @xuanxu
+        5. @emacip
+        6. @danimataonrails (la araña de sanse)
+        7. @elafo
+        8. @voodoorai2000
+        9. @jglongaron
+        10. @raulbarrosoleon (soy malo, pero me sé las reglas)
+        11. @fxn (soy bueno llevando el botijo)
+        12. @pacoguzman
+        13. @ltello
+        14. @jjballano
+        15. @juanyque (soy bueno bebiendo el botijo)
+        16. @txarly
+        17. @tomasborrella (el cojo de Cáceres)
+        18. @amaiac
+        19. @floydzy
+      speakers:
+        - Luismi Cavallé
+
+    - id: "madrid-rb-event-234-topic-316"
+      title: "Terracismo.rb Julio 2011"
+      event_name: "Julio 2011"
+      date: "2011-07-20"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-234-topic-316"
+      description: |-
+        Siguiendo la tradición, en periodos estivales tratamos de soportar los rigores del clima de la capital en una terraza, con una cerveza (o refresco) y en compañía de lo más granado del rubismo madrileño (los que no han huido de Madrid, vaya).
+
+        - @eamodeorubio (resistiendo en Madrid)
+        - @serabe
+        - @christos (can't make it)
+        - @zipizap (acudiendo a la llamada)
+        - @otikik
+      speakers:
+        - Luismi Cavallé
+
+- id: "madrid-rb-event-219"
+  title: "Agosto 2011"
+  event_name: "Agosto 2011"
+  date: "2011-08-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-219"
+  description: |-
+    Reunión de Madrid.rb de Agosto 2011
+  talks:
+    - id: "madrid-rb-event-219-topic-299"
+      title: "Terracismo.rb Agosto 2011"
+      event_name: "Agosto 2011"
+      date: "2011-08-25"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-219-topic-299"
+      description: |-
+        Siguiendo la tradición, en periodos estivales tratamos de soportar los rigores del clima de la capital en una terraza, con una cerveza (o refresco) y en compañía de lo más granado del rubismo madrileño (los que no han huido de Madrid, vaya).
+      speakers:
+        - Luismi Cavallé
+
+- id: "madrid-rb-event-259"
+  title: "Septiembre 2011"
+  event_name: "Septiembre 2011"
+  date: "2011-09-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-259"
+  description: |-
+    Reunión de Madrid.rb de Septiembre 2011
+  talks:
+    - id: "madrid-rb-event-259-topic-343"
+      title: "Si yo fuera una API"
+      event_name: "Septiembre 2011"
+      date: "2011-09-29"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-259-topic-343"
+      description: |-
+        En esta charla filosofaremos sobre APIs en un mundo Railero. Su implementación en cliente y en servidor, los entresijos del testing, métodos de autenticación, buenas y malas prácticas, como comunicarte con los desarrolladores externos, y algún que otro sibaritismo, con la ayuda de unos amigos muy especiales...
+      speakers:
+        - Raimond Garcia
+
+- id: "madrid-rb-event-255"
+  title: "Octubre 2011"
+  event_name: "Octubre 2011"
+  date: "2011-10-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-255"
+  description: |-
+    Reunión de Madrid.rb de Octubre 2011
+  talks:
+    - id: "madrid-rb-event-255-topic-339"
+      title: "JRuby en Webpop - Rhino y Akka"
+      event_name: "Octubre 2011"
+      date: "2011-10-27"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-255-topic-339"
+      description: |-
+        Una presentacion sobre como usamos JRuby (y por qué lo usamos) en Webpop, con el enfoque en interoperación de librerías de java (o scala) y JRuby.
+      speakers:
+        - Mathias Biilmann
+
+- id: "madrid-rb-event-252"
+  title: "Noviembre 2011"
+  event_name: "Noviembre 2011"
+  date: "2011-11-24"
+  video_provider: "children"
+  video_id: "madrid-rb-event-252"
+  description: |-
+    Reunión de Madrid.rb de Noviembre 2011
+  talks:
+    - id: "madrid-rb-event-252-topic-336"
+      title: "Cómo dejé de preocuparme por ser ágil y ahora no me importa en absoluto"
+      event_name: "Noviembre 2011"
+      date: "2011-11-24"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-252-topic-336"
+      description: |-
+        En esta charla Calavera nos explicará por qué la agilidad está sobrevalorada.
+
+        ¡Zasca!
+      speakers:
+        - David Calavera
+
+- id: "madrid-rb-event-223"
+  title: "Diciembre 2011"
+  event_name: "Diciembre 2011"
+  date: "2011-12-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-223"
+  description: |-
+    Reunión de Madrid.rb de Diciembre 2011
+  talks:
+    - id: "madrid-rb-event-223-topic-303"
+      title: "Colaboración usando Eventos en Ruby"
+      event_name: "Diciembre 2011"
+      date: "2011-12-29"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-223-topic-303"
+      description: |-
+        A medida que nuestras aplicaciones evolucionan, resulta más difícil gestionar la creciente complejidad y mantener el sistema mantenible. Llega un punto en que tu aplicación monolítica es lo suficientemente grande como para que resulte beneficioso separarla en varios componentes más simples, desacoplados y cohesivos.
+
+        Una de las posibles maneras de integrar sistemas de este tipo es utilizar eventos, es decir, en lugar de que los distintos componentes tengan que hacerse peticiones entre ellos cuando necesitan saber algo de los demás, lo que hacen es lanzar eventos informando al resto cuando las cosas cambian.
+
+        En esta charla exploraremos estas arquitecturas, sus beneficios y trade-offs, y presentaré en sociedad [Eventwire](https://github.com/cavalle/eventwire), una librería que facilita implementar sistemas de este tipo en Ruby utilizando diferentes back-ends (RabbitMQ, Redis, ZeroMQ…)
+      speakers:
+        - Luismi Cavallé
+
+- id: "madrid-rb-event-227"
+  title: "Enero 2012"
+  event_name: "Enero 2012"
+  date: "2012-01-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-227"
+  description: |-
+    Reunión de Madrid.rb de Enero 2012
+  talks:
+    - id: "madrid-rb-event-227-topic-307"
+      title: "Backbone + Rails + Handlebars = Éxito"
+      event_name: "Enero 2012"
+      date: "2012-01-26"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-227-topic-307"
+      description: |-
+        En esta charla Germán nos contará su experiencia compartiendo plantillas [handlebars](http://handlebarsjs.com/) tanto en el servidor (con Rails) como en el cliente (con [Backbone](http://backbonejs.org/)).
+
+        ## Material utilizado durante la presentación:
+
+        Slides: [http://hbsdemo.heroku.com/slides/](http://hbsdemo.heroku.com/slides/)
+
+        Demo: [http://hbsdemo.heroku.com](http://hbsdemo.heroku.com)
+
+        Fuentes: [https://github.com/germandz/hbs\_demo](https://github.com/germandz/hbs_demo)
+      speakers:
+        - German DZ
+
+- id: "madrid-rb-event-231"
+  title: "Febrero 2012"
+  event_name: "Febrero 2012"
+  date: "2012-02-23"
+  video_provider: "children"
+  video_id: "madrid-rb-event-231"
+  description: |-
+    Reunión de Madrid.rb de Febrero 2012
+  talks:
+    - id: "madrid-rb-event-231-topic-311"
+      title: "Lightning talks"
+      kind: "lightning_talk"
+      event_name: "Febrero 2012"
+      date: "2012-02-23"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-231-topic-311"
+      description: |-
+        Charlas de poco tiempo (5 minutos) para hablar de cualquier tema relacionado con ruby.
+
+        El acceso es completamente abierto. Para apuntarte como ponente, [edita](?m=edit) esta página y apúntate a continuación.
+
+        La primera charla es de ejemplo, me temo. Pero puede usarse como plantilla.
+
+        - **My new gem** - David Heinemeier Hansson
+        - **La Falacia Fowler** – Luismi Cavallé
+        - **Perpetuum Temptationis** - Enrique Comba Riepenhausen
+        - **Cadenas, Símbolos y Sorpresas** - Enrique García Cota
+        - **[Ruby on a Router](https://github.com/awilliams/ruby-openwrt)** - Adam Williams
+        - **Utilizando R desde Ruby** - Javier Vidal
+        - **Indexing Nested Objects** - Paco Guzmán
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-243"
+  title: "Marzo 2012"
+  event_name: "Marzo 2012"
+  date: "2012-03-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-243"
+  description: |-
+    Reunión de Madrid.rb de Marzo 2012
+  talks:
+    - id: "madrid-rb-event-243-topic-326"
+      title: "¡Conquista el mundo con Vim y Tmux!"
+      event_name: "Marzo 2012"
+      date: "2012-03-29"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-243-topic-326"
+      description: |-
+        En esta charla intentaré mostrar los motivos que me han hecho considerar vim el mejor editor de código que he probado hasta el momento, mostrando todas su bondades, y cómo su uso conjunto con Tmux consiguen crear un entorno de desarrollo muy ágil, potente y listo para ser usado (junto con todos tus settings) en cualquier ordenador con conexión a internet :-)
+      speakers:
+        - Fer
+
+- id: "madrid-rb-event-216"
+  title: "Abril 2012"
+  event_name: "Abril 2012"
+  date: "2012-04-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-216"
+  description: |-
+    Reunión de Madrid.rb de Abril 2012
+  talks:
+    - id: "madrid-rb-event-216-topic-296"
+      title: "Extending Ruby"
+      event_name: "Abril 2012"
+      date: "2012-04-26"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-216-topic-296"
+      description: |-
+        Esta charla será una introducción a las extensiones en C para Ruby. Comenzando por el estilo clásico hasta FFI. Trataremos ventajas, inconvenientes y trade-offs de las distintas técnicas.
+
+        Hablaré sobre temas como la traducción de tipos de datos en código C, gestión de memoria, wadus...
+      speakers:
+        - Raúl Naveiras
+
+- id: "madrid-rb-event-248"
+  title: "Mayo 2012"
+  event_name: "Mayo 2012"
+  date: "2012-05-31"
+  video_provider: "children"
+  video_id: "madrid-rb-event-248"
+  description: |-
+    Reunión de Madrid.rb de Mayo 2012
+  talks:
+    - id: "madrid-rb-event-248-topic-332"
+      title: "MacRuby y RubyMotion: Programando aplicaciones en Ruby para iOS y Mac"
+      event_name: "Mayo 2012"
+      date: "2012-05-31"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-248-topic-332"
+      description: |-
+        Esta charla será una introducción a la programación de aplicaciones nativas para iOS y Mac con MacRuby y RubyMotion. Introducción a la api de Cocoa, ventajas y desventajas, futuro y sobretodo ejemplos de código.
+
+        ## Bookcrossing
+
+        No olvidéis que este mes estrenamos [el intercambio de libros](https://madridrb.jottit.com/book_crossing).
+      speakers:
+        - Mark
+
+- id: "madrid-rb-event-239"
+  title: "Junio 2012"
+  event_name: "Junio 2012"
+  date: "2012-06-28"
+  video_provider: "children"
+  video_id: "madrid-rb-event-239"
+  description: |-
+    Reunión de Madrid.rb de Junio 2012
+  talks:
+    - id: "madrid-rb-event-239-topic-321"
+      title: "Metapresentación"
+      event_name: "Junio 2012"
+      date: "2012-06-28"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-239-topic-321"
+      description: |-
+        Una presentación técnica sobre presentaciones técnicas.
+
+        En esta presentación veremos algunas sencillas pautas para realizar presentaciones de tipo técnico de forma efectiva.
+
+        Puede contener trazas de filmografía de los 80.
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-235"
+  title: "Julio 2012"
+  event_name: "Julio 2012"
+  date: "2012-07-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-235"
+  description: |-
+    Reunión de Madrid.rb de Julio 2012
+  talks:
+    - id: "madrid-rb-event-235-topic-317"
+      title: "Terracismo.rb Julio 2012"
+      event_name: "Julio 2012"
+      date: "2012-07-26"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-235-topic-317"
+      description: |-
+        En presencia de luz solar, cuerpo humano es capaz de sintetizar vitamina D a partir del colesterol. Y en Julio, en Madrid, hay gran abundancia de luz solar. Lo que podría mermar considerablemente las reservas de colesterol del organismo.
+
+        Para combatir esta trágica y desconocida dolencia veraniega, madrid-rb ofrece el servicio público terracismo.rb.
+
+        Terracismo.rb te permite reponer tus maltrechas reservas de colesterol, consumiendo cervezas y/o refrescos, con la excusa de reunirte con afamados rubystas (o quien quiera venir; es un evento abierto).
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-220"
+  title: "Agosto 2012"
+  event_name: "Agosto 2012"
+  date: "2012-08-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-220"
+  description: |-
+    Reunión de Madrid.rb de Agosto 2012
+  talks:
+    - id: "madrid-rb-event-220-topic-300"
+      title: "Una introducción al testing y al TDD."
+      event_name: "Agosto 2012"
+      date: "2012-08-30"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-220-topic-300"
+      description: |-
+        Como continuación del [curso gratuito de Ruby on Rails para programadores en paro](http://javier-ramirez.com/curso-gratuito-solidario-ruby-on-rails.html) que han ofrecido Javier Ramírez y cía, vamos a dar una pequeña introducción al testing y al TDD en Ruby y Ruby on Rails, y así completar el ciclo de desarrollo de una aplicación.
+
+        Invitamos tanto a los asistentes a ese curso como a cualquier otra persona interesado en el tema del testing en Ruby y Ruby on Rails a que se pase.
+      speakers:
+        - Raúl Naveiras
+
+- id: "madrid-rb-event-260"
+  title: "Septiembre 2012"
+  event_name: "Septiembre 2012"
+  date: "2012-09-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-260"
+  description: |-
+    Reunión de Madrid.rb de Septiembre 2012
+  talks:
+    - id: "madrid-rb-event-260-topic-344"
+      title: "The Ruby Object Model"
+      event_name: "Septiembre 2012"
+      date: "2012-09-27"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-260-topic-344"
+      description: |-
+        En ruby todo es un objeto, ¿pero es todo el mismo objeto? Con esta charla voy a intentar explicar el modelado de objetos de ruby, o lo que es lo mismo, explicar qué es lo que está haciendo ruby por debajo cuando defines una clase, creas una instancia, incluyes un módulo...
+      speakers:
+        - eLafo
+
+- id: "madrid-rb-event-256"
+  title: "Octubre 2012"
+  event_name: "Octubre 2012"
+  date: "2012-10-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-256"
+  description: |-
+    Reunión de Madrid.rb de Octubre 2012
+  talks:
+    - id: "madrid-rb-event-256-topic-340"
+      title: "Making code tastier through Refactoring"
+      event_name: "Octubre 2012"
+      date: "2012-10-25"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-256-topic-340"
+      description: |-
+        Todos hemos trabajando alguna vez con una aplicación con código legacy. Refactoring es una técnica que nos permite reestructurar y rediseñar el código de nuestra aplicación sin modificar su comportamiento de forma que sea más legible y más fácil de mantener. Veremos las ventajas e inconvenientes de refactoring así como algunas de las técnicas principales que se aplican durante una refactorización.
+      speakers:
+        - Gabriel Ortuño
+
+- id: "madrid-rb-event-253"
+  title: "Noviembre 2012"
+  event_name: "Noviembre 2012"
+  date: "2012-11-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-253"
+  description: |-
+    Reunión de Madrid.rb de Noviembre 2012
+  talks:
+    - id: "madrid-rb-event-253-topic-337"
+      title: "Coding Dojo en Madrid-rb"
+      event_name: "Noviembre 2012"
+      date: "2012-11-29"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-253-topic-337"
+      description: |-
+        En esta ocasión haremos un [Coding Dojo](http://codingdojo.org/). Un coding dojo es un tipo de reunión en la cual un grupo de programadores resuelve un problema de forma iterativa. El objetivo es pasarlo bien y practicar algunas técnicas de programación.
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-224"
+  title: "Diciembre 2012"
+  event_name: "Diciembre 2012"
+  date: "2012-12-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-224"
+  description: |-
+    Reunión de Madrid.rb de Diciembre 2012
+  talks:
+    - id: "madrid-rb-event-224-topic-304"
+      title: "Modelotes ActiveRecord"
+      event_name: "Diciembre 2012"
+      date: "2012-12-27"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-224-topic-304"
+      description: |-
+        “Skinny Controllers” es una práctica habitual en la comunidad Rails. Todo el mundo parece de acuerdo en que resulta beneficioso mantener los controladores lo más delgados posible. Sin embargo, lo que no genera tanto acuerdo es cómo de grandes es razonable que sean nuestros modelos y qué podemos hacer para evitar que acaben creciendo demasiado.
+
+        En esta charla exploraremos esta problemática y discutiremos algunas de las variadas soluciones que propone la comunidad. En función de lo que permita el tiempo hablaremos de **Rails vs OOP** , **SOLID** , **ceremonia vs esencia** , **cohesión** , **el coste de la indirección** , **objetos de servicio (en varios sabores)** , **concerns** , **DCI** …
+      speakers:
+        - Luismi Cavallé
+
+- id: "madrid-rb-event-228"
+  title: "Enero 2013"
+  event_name: "Enero 2013"
+  date: "2013-01-31"
+  video_provider: "children"
+  video_id: "madrid-rb-event-228"
+  description: |-
+    Reunión de Madrid.rb de Enero 2013
+  talks:
+    - id: "madrid-rb-event-228-topic-308"
+      title: "Continuous Delivery con Rails, Hudson y Heroku"
+      event_name: "Enero 2013"
+      date: "2013-01-31"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-228-topic-308"
+      description: |-
+        _Continuous Delivery_ es una vuelta de tuerca a la práctica de integración continua. Busca conseguir la liberación fiable y predecible de versiones a través de la automatización total de los pasos implicados. En esta charla contaré nuestras aventuras y desventuras al implementarla en una aplicación Rails que corre sobre Heroku utilizando para ello Hudson y diversos sistemas de testing como Jasmine, RSpec o Cucumber.
+      speakers:
+        - Jorge Manrubia
+
+- id: "madrid-rb-event-232"
+  title: "Febrero 2013"
+  event_name: "Febrero 2013"
+  date: "2013-02-28"
+  video_provider: "children"
+  video_id: "madrid-rb-event-232"
+  description: |-
+    Reunión de Madrid.rb de Febrero 2013
+  talks:
+    - id: "madrid-rb-event-232-topic-312"
+      title: "MongoDB & Rails"
+      event_name: "Febrero 2013"
+      date: "2013-02-28"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-232-topic-312"
+      description: |-
+        Introducción a MongoDB y a sus ventajas e inconvenientes respecto a una base de datos relacional en aplicaciones Rails.
+      speakers:
+        - Amaia Castro
+
+    - id: "madrid-rb-event-232-topic-313"
+      title: "Videojuegos 2D con Ruby + Competición"
+      event_name: "Febrero 2013"
+      date: "2013-02-28"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-232-topic-313"
+      description: |-
+        Tradicionalmente no se usa Ruby para el desarrollo de videojuegos, pero en esta charla veremos lo fácil que es crear un videojuego 2D con Ruby y también las limitaciones que tiene. Al tener esa base, os voy a proponer una pequeña competición de programación para todos en que se trata de programar el mejor tanque para una batalla entre todos de los participantes. ¡Venid para ver los detalles!
+      speakers:
+        - Adam Williams
+
+- id: "madrid-rb-event-244"
+  title: "Marzo 2013"
+  event_name: "Marzo 2013"
+  date: "2013-03-21"
+  video_provider: "children"
+  video_id: "madrid-rb-event-244"
+  description: |-
+    Reunión de Madrid.rb de Marzo 2013
+  talks:
+    - id: "madrid-rb-event-244-topic-327"
+      title: "The Javascript Horror Show"
+      event_name: "Marzo 2013"
+      date: "2013-03-21"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-244-topic-327"
+      description: |-
+        ¿Programador de Ruby? ¿Te ves forzado a hacer algunas cosillas con JavaScript? ¿Piensas que te basta con saber algo jQuery, backbone o programar en CoffeeScript? En esta charla el ponente mostrará los WTFs más comunes e importantes de JS y tratará de explicar porqué se producen. Abstenerse programadores sensibles o con problemas cardíacos.
+      speakers:
+        - Enrique Amodeo Rubio
+
+- id: "madrid-rb-event-217"
+  title: "Abril 2013"
+  event_name: "Abril 2013"
+  date: "2013-04-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-217"
+  description: |-
+    Reunión de Madrid.rb de Abril 2013
+  talks:
+    - id: "madrid-rb-event-217-topic-297"
+      title: "Érase una vez, Ruby"
+      event_name: "Abril 2013"
+      date: "2013-04-25"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-217-topic-297"
+      description: |-
+        Esta charla es como un cuento de hadas. Es una charla sobre detalles internos de la implementación de Ruby (MRI). Bueno, mejor olvídate de las hadas. Hay un montón de cosas debajo de los intérpretes de Ruby que se usan en producción. La capa de C que interactúa con el sistema operativo es un zafarrancho inescrutable, lleno de bugs y problemas arcanos; el tipo de problemas que no levantan excepciones, sino que matan procesos enteros. Esta es una charla sobre como descubrimos, nos enfrentamos y solucionamos algunos de estos problemas inherentes a la implementación de Ruby en GitHub. Más bien una historia de miedo, vamos.
+      speakers:
+        - Vicent Martí
+
+- id: "madrid-rb-event-249"
+  title: "Mayo 2013"
+  event_name: "Mayo 2013"
+  date: "2013-05-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-249"
+  description: |-
+    Reunión de Madrid.rb de Mayo 2013
+  talks:
+    - id: "madrid-rb-event-249-topic-333"
+      title: "Mi dominio es mío y no lo comparto..."
+      event_name: "Mayo 2013"
+      date: "2013-05-30"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-249-topic-333"
+      description: |-
+        ¿Qué es realmente la lógica de negocio? ¿Qué es un modelo de dominio? ¿Qué verdades se esconden detrás de patrones como “fat model - skinny controller”? ¿Cómo afecta el uso de un framework como Rails a la hora de implementar nuestro dominio?
+
+        En esta charla abordaremos los problemas que surgen cuando ponemos una herramienta en el centro de nuestra aplicación y debatiremos si el precio que pagamos por los raíles resulta demasiado alto.
+      speakers:
+        - Javier Acero
+
+- id: "madrid-rb-event-240"
+  title: "Junio 2013"
+  event_name: "Junio 2013"
+  date: "2013-06-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-240"
+  description: |-
+    Reunión de Madrid.rb de Junio 2013
+  talks:
+    - id: "madrid-rb-event-240-topic-322"
+      title: "Introduction to RubyMotion"
+      event_name: "Junio 2013"
+      date: "2013-06-27"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-240-topic-322"
+      description: |-
+        In this talk, Laurent will introduce what RubyMotion is, how it works, and what you can do with it.
+      speakers:
+        - Laurent Sansonetti
+
+- id: "madrid-rb-event-236"
+  title: "Julio 2013"
+  event_name: "Julio 2013"
+  date: "2013-07-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-236"
+  description: |-
+    Reunión de Madrid.rb de Julio 2013
+  talks:
+    - id: "madrid-rb-event-236-topic-318"
+      title: "Explotando relaciones de forma escalable con Neo4j"
+      event_name: "Julio 2013"
+      date: "2013-07-25"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-236-topic-318"
+      description: |-
+        Las bases de datos de grafos no son tan populares entre otras bases de datos NoSQL, pero su adopción está creciendo rápidamente. Este tipo de base de datos es una navaja suiza para datos altamente interrelacionados (linked data).
+
+        En esta charla veremos algunos conceptos básicos de teoría de grafos. Con Neo4j, la base de datos de grafos más popular, exploraremos el modelado y veremos lo fácil que es hacer consultas en base a relaciones. Como último paso comentaremos las opciones para usarlo en Ruby.
+
+        ## Extra
+
+        Tambíen haremos una batalla de [RTanque](https://groups.google.com/forum/?hl=en#!topic/madrid-rb/0H84KsjkuV0) en la que puedes participar.
+      speakers:
+        - Alberto Perdomo
+
+- id: "madrid-rb-event-221"
+  title: "Agosto 2013"
+  event_name: "Agosto 2013"
+  date: "2013-08-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-221"
+  description: |-
+    Reunión de Madrid.rb de Agosto 2013
+  talks:
+    - id: "madrid-rb-event-221-topic-301"
+      title: "Terracismo.rb Agosto 2013"
+      event_name: "Agosto 2013"
+      date: "2013-08-29"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-221-topic-301"
+      description: |-
+        En verano no hay charlas de madrid-rb, porque hay muy poca gente y está todo el mundo de vacaciones. ¡Pero siempre queda alguien! Los que podamos, nos reuniremos para tomar un vermut y unos altramuces con pepinillos en vinagre hablando de cosicas divertidas de las que nos gustan.
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-257"
+  title: "Octubre 2013"
+  event_name: "Octubre 2013"
+  date: "2013-10-24"
+  video_provider: "children"
+  video_id: "madrid-rb-event-257"
+  description: |-
+    Reunión de Madrid.rb de Octubre 2013
+  talks:
+    - id: "madrid-rb-event-257-topic-341"
+      title: "Bajar del monorraíl: microservicios"
+      event_name: "Octubre 2013"
+      date: "2013-10-24"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-257-topic-341"
+      description: |-
+        Durante 6 años, [SoundCloud](https://soundcloud.com/) ha corrido sobre Rails, mientras crecía de 0 a millones de usuarios. También, de un puñado de gente a más de 200 empleados. Como parte del reto, tuvimos que separar nuestra aplicación Rails monolítica en muchos microservicios. En esta charla compartiremos lo que hemos aprendido acerca de ejecutar e integrar servicios, mientras escalábamos no sólo en tráfico sino también en tamaño del equipo.
+      speakers:
+        - Sergio Gil Pérez de la Manga
+
+    - id: "madrid-rb-event-257-topic-345"
+      title: "Croupier: probabilidades, muestras y enumerables."
+      event_name: "Octubre 2013"
+      date: "2013-10-24"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-257-topic-345"
+      description: |-
+        Croupier es una gema que permite trabajar con muestras aleatorias de forma fácil. Como no sólo de distribuciones de probabilidad viven los datos aleatorios, también cuenta con otro tipo de "distribuciones" (por ejemplo, tarjetas de crédito).
+
+        En esta charla veremos no sólo cómo trabajar con la gema sino cómo son sus tripas y cómo añadir nuestras propias distribuciones. Todo nos servirá como excusa para familiarizarnos con la creación de Enumerators.
+
+        ## Extra
+
+        Haremos la segunda batalla de [RTanque](https://groups.google.com/forum/?hl=en#!topic/madrid-rb/0H84KsjkuV0) en la que todo el mundo puede participar.
+      speakers:
+        - Sergio Arbeo
+
+- id: "madrid-rb-event-254"
+  title: "Noviembre 2013"
+  event_name: "Noviembre 2013"
+  date: "2013-11-28"
+  video_provider: "children"
+  video_id: "madrid-rb-event-254"
+  description: |-
+    Reunión de Madrid.rb de Noviembre 2013
+  talks:
+    - id: "madrid-rb-event-254-topic-338"
+      title: "Ruby y Ciencia"
+      event_name: "Noviembre 2013"
+      date: "2013-11-28"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-254-topic-338"
+      description: |-
+        En el mundo científico hoy en día, en todos los campos de investigación existen tareas que necesitan programación y desarrollos a medida a la hora de analizar datos o producir resultados. Sin embargo cuando un científico sin experiencia en programación se encuentra con un problema que requiere código en casi ningún caso utiliza Ruby ¿Por qué? En esta charla intentaremos responder a esta pregunta, veremos cual es el estado actual de Ruby como herramienta para usos científicos e intentaremos ver qué podemos hacer para convertir a Ruby en el lenguaje preferido para la ciencia.
+      speakers:
+        - Juanjo Bazán
+
+- id: "madrid-rb-event-225"
+  title: "Diciembre 2013"
+  event_name: "Diciembre 2013"
+  date: "2013-12-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-225"
+  description: |-
+    Reunión de Madrid.rb de Diciembre 2013
+  talks:
+    - id: "madrid-rb-event-225-topic-305"
+      title: "Catacrockea a cascoporro con redis"
+      event_name: "Diciembre 2013"
+      date: "2013-12-26"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-225-topic-305"
+      description: |-
+        Todo el mundo está usando Redis, y con motivo: Es rápido, es fácil y es web scale. Pero Redis puede hacer muchas más cosas de las típicas para las que lo usa la comunidad Ruby. En esta charla hablaré sobre lo que se puede hacer con Redis, cómo lo están usando empresas como twitter o pinterest, las cosas que no deberías hacer con redis, algunos patrones interesantes de uso, y cómo lo estamos usando en teowaki para resolver un montón de problemas.
+      speakers:
+        - javier ramirez
+
+- id: "madrid-rb-event-229"
+  title: "Enero 2014"
+  event_name: "Enero 2014"
+  date: "2014-01-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-229"
+  description: |-
+    Reunión de Madrid.rb de Enero 2014
+  talks:
+    - id: "madrid-rb-event-229-topic-309"
+      title: "Lua for Rubysts"
+      event_name: "Enero 2014"
+      date: "2014-01-30"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-229-topic-309"
+      description: |-
+        Lua is a small, fast language that is discretely being embedded in an increasing number of systems. On this talk, we'll learn what problems does it solve, what are its main assumptions, and how it compares with ruby. We'll also explore some of its real-life scenarios and tools where it's used, and how it can help you as ruby developers.
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-233"
+  title: "Febrero 2014"
+  event_name: "Febrero 2014"
+  date: "2014-02-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-233"
+  description: |-
+    Reunión de Madrid.rb de Febrero 2014
+  talks:
+    - id: "madrid-rb-event-233-topic-314"
+      title: "Hacking social: tras las líneas enemigas"
+      event_name: "Febrero 2014"
+      date: "2014-02-27"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-233-topic-314"
+      description: |-
+        Como desarrolladores nos pasamos la mayoría del tiempo hackeando: optimizando bases de datos, configurando servicios, integrándonos con APIs de terceros. Normalmente nos sentimos mucho más cómodos trabajando con máquinas que con personas. Sin embargo, tarde o temprano acabamos en un proyecto en el que tenemos que gestionar un equipo, un cliente o, peor, a nuestro jefe.
+
+        Nadie nos explica cómo se hace y tenemos la idea de que esto puede ser la guerra. Voy a intentar dar una visión diferente (y muy personal) de la que normalmente tenemos acerca de este tipo de trabajo. Intentaré explicar por qué esto puede llegar a ser un reto apasionante y por qué, en el fondo, no está tan alejado de nuestro día a día como solemos creer.
+
+        Contaré lo que nadie me contó a mí y que hubiera agradecido que alguien me hubiera contado en su momento.
+      speakers:
+        - eLafo
+
+- id: "madrid-rb-event-245"
+  title: "Marzo 2014"
+  event_name: "Marzo 2014"
+  date: "2014-03-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-245"
+  description: |-
+    Reunión de Madrid.rb de Marzo 2014
+  talks:
+    - id: "madrid-rb-event-245-topic-328"
+      title: "Ordenando las vistas. Decorator y Presenters"
+      event_name: "Marzo 2014"
+      date: "2014-03-27"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-245-topic-328"
+      description: |-
+        Todos usamos Vistas en nuestros proyectos, está claro, pero la cuestión es, ¿cómo las estamos utilizando? En mi opinión, nos encontramos con vistas demasiado sobrecargadas de lógica y las complementamos con helpers para ayudar, pero ¿es la única alternativa?. En esta charla quiero aportar algunas ideas de cómo y cuándo hacer uso de algunos patrones interesantes para ordenar nuestras vistas, Decorador y Presenter, pero hablaré también de Exhibit, introducido por Avdi Grimm, que merece la pena conocer.
+      speakers:
+        - Carlos Sánchez Pérez
+
+- id: "madrid-rb-event-218"
+  title: "Abril 2014"
+  event_name: "Abril 2014"
+  date: "2014-04-24"
+  video_provider: "children"
+  video_id: "madrid-rb-event-218"
+  description: |-
+    Reunión de Madrid.rb de Abril 2014
+  talks:
+    - id: "madrid-rb-event-218-topic-298"
+      title: "Finding Restfulness"
+      event_name: "Abril 2014"
+      date: "2014-04-24"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-218-topic-298"
+      description: |-
+        Like me, you may have noticed that something is a little "off" when creating REST APIs in Ruby and Rails. In this talk we'll take a journey to discover some of the confusing parts of the existing popular solutions and take a good look at the concept of interfaces orientated around resources. We'll then discover how the Restulfness library might be the panacea you can incorporate into your own projects and help you find the RESTful zen you've been searching for.
+
+        **Venue:** [The Irish Rover](http://www.theirishrover.com/)- [Avenida de Brasil, 7](https://www.google.com/maps/place/The+Irish+Rover/@40.4549437,-3.6936623,17z/data=!4m7!1m4!3m3!1s0xd422902b93a7b4f:0xcdf2773b21bd0810!2sAv+de+Brasil,+7!3b1!3m1!1s0x0:0xac5dccb9e6db0dd5)
+
+        **Time:** 19:45h
+      speakers:
+        - Sam Lown
+
+- id: "madrid-rb-event-250"
+  title: "Mayo 2014"
+  event_name: "Mayo 2014"
+  date: "2014-05-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-250"
+  description: |-
+    Reunión de Madrid.rb de Mayo 2014
+  talks:
+    - id: "madrid-rb-event-250-topic-334"
+      title: "¿TDD como problema?"
+      event_name: "Mayo 2014"
+      date: "2014-05-29"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-250-topic-334"
+      description: |-
+        David Heinemeier(DHH), un importante referente de la comunidad de desarrollo de Ruby y creador de Rails, ha generado mucha polémica entorno al mundo de los Tests. DHH afirmó que TDD está en vías de extinción — al menos para él —, lo cual ha tenido una repercusión considerable a nivel mundial. ¿Está realmente TDD muerto? ¿Que conclusiones podemos sacar? ¿Cómo afecta esto al entorno Español?... ¡anótate al debate y lo averiguaremos juntos!.
+
+        **Lugar:** [The Irish Rover](http://www.theirishrover.com/)- [Avenida de Brasil, 7](https://www.google.com/maps/place/The+Irish+Rover/@40.4549437,-3.6936623,17z/data=!4m7!1m4!3m3!1s0xd422902b93a7b4f:0xcdf2773b21bd0810!2sAv+de+Brasil,+7!3b1!3m1!1s0x0:0xac5dccb9e6db0dd5)
+
+        **Hora:** 19:45h
+      speakers:
+        - Gerardo Barcia
+
+- id: "madrid-rb-event-241"
+  title: "Junio 2014"
+  event_name: "Junio 2014"
+  date: "2014-06-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-241"
+  description: |-
+    Reunión de Madrid.rb de Junio 2014
+  talks:
+    - id: "madrid-rb-event-241-topic-323"
+      title: "RubyMotion, desarrollo móvil en Ruby"
+      event_name: "Junio 2014"
+      date: "2014-06-26"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-241-topic-323"
+      description: |-
+        Introducción al desarrollo móvil en RubyMotion, toolchain, primeros pasos, y por qué es una herramienta perfecta para desarrolladores de Ruby.
+
+        **Lugar:** [The Irish Rover](http://www.theirishrover.com/)- [Avenida de Brasil, 7](https://www.google.com/maps/place/The+Irish+Rover/@40.4549437,-3.6936623,17z/data=!4m7!1m4!3m3!1s0xd422902b93a7b4f:0xcdf2773b21bd0810!2sAv+de+Brasil,+7!3b1!3m1!1s0x0:0xac5dccb9e6db0dd5)
+
+        **Hora:** 19:45h
+      speakers:
+        - Mark
+
+- id: "madrid-rb-event-263"
+  title: "Julio 2014"
+  event_name: "Julio 2014"
+  date: "2014-07-31"
+  video_provider: "children"
+  video_id: "madrid-rb-event-263"
+  description: |-
+    Reunión de Madrid.rb de Julio 2014
+  talks:
+    - id: "madrid-rb-event-263-topic-348"
+      title: "Terracismo.rb Julio 2014"
+      event_name: "Julio 2014"
+      date: "2014-07-31"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-263-topic-348"
+      description: |-
+        No todo el mundo se va de vacaciones a la vez. Y los que se quedan en Madrid, puede que echen de menos un Madrid.rb.
+
+        Para eso existe el Terracismo.rb.
+
+        En una reunión normal de Madrid.rb hay una charla dada por algún ponente, seguida de unas preguntas, y luego charlas con comida y bebida, mayormente cervezas.
+
+        Terracismo.rb es más minimalista; no hay charla ni ponente, vamos directamente a las cervezas. Todos son bienvenidos. Juntemos nuestros jarros de cerveza y llamemos al Capitán Planeta, para que nos haga una tarde digna del mejor terracismo.
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-264"
+  title: "Agosto 2014"
+  event_name: "Agosto 2014"
+  date: "2014-08-28"
+  video_provider: "children"
+  video_id: "madrid-rb-event-264"
+  description: |-
+    Reunión de Madrid.rb de Agosto 2014
+  talks:
+    - id: "madrid-rb-event-264-topic-349"
+      title: "Terracismo.rb Agosto 2014"
+      event_name: "Agosto 2014"
+      date: "2014-08-28"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-264-topic-349"
+      description: |-
+        Madrid está estupendo en Agosto. Lugares que habitualmente están masificados de gente y tráfico, tienen unos niveles de ocupación mucho más razonables.
+
+        Además, el tiempo es menos caluroso de lo que cabría esperar. Hace una temperatura estupenda para ir a un bar o una terracita al aire libre, tomarse algo y charlar.
+
+        Y en eso consiste el terracismo.rb. Nos reunimos y charlamos en agradable compañía, sin ponente ni charla ni nada. Todo el mundo es bienvenido.
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-262"
+  title: "Septiembre 2014"
+  event_name: "Septiembre 2014"
+  date: "2014-09-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-262"
+  description: |-
+    Reunión de Madrid.rb de Septiembre 2014
+  talks:
+    - id: "madrid-rb-event-262-topic-347"
+      title: "Integración Continua fuera de la alargada sombra de Jenkins"
+      event_name: "Septiembre 2014"
+      date: "2014-09-25"
+      slides_url: "https://vimeo.com/110343463"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-262-topic-347"
+      description: |-
+        En [BeBanjo](http://www.bebanjo.com/) algunas de nuestras aplicaciones tienen suites de tests, llamémoslas "curiosas", y por unas o por otras la agilidad en el desarrollo se estaba viendo afectad por una Integración Continua que no estaba a la altura. Os contaré nuestra andadura hacia una solución que creemos escalable y ágil sin muchas pretensiones; pero con detalles técnicos que me han parecido muy interesantes.
+      speakers:
+        - Paco Guzmán
+
+- id: "madrid-rb-event-261"
+  title: "Octubre 2014"
+  event_name: "Octubre 2014"
+  date: "2014-10-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-261"
+  description: |-
+    Reunión de Madrid.rb de Octubre 2014
+  talks:
+    - id: "madrid-rb-event-261-topic-346"
+      title: "Hackeando redacciones con Ruby"
+      event_name: "Octubre 2014"
+      date: "2014-10-30"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-261-topic-346"
+      description: |-
+        El Open Data prometía abrir las administraciones a los ciudadanos y generar una ola de transparencia. Pero los datos más jugosos no están en la superficie, esperando para ser tratados de forma estructurada y en formatos reutilizables, sino que se esconden en tablas imposibles y PDFs puñeteros. Hablaremos de cómo aplicar Ruby a la extracción y tratamiento de información pública para realizar investigaciones (con ejemplos internacionales y del trabajo que realizamos en [Civio](http://www.civio.es/)) y cómo los informáticos se han convertido en un elemento indispensable –y codiciado- en las redacciones.
+      speakers:
+        - David Cabo
+
+- id: "madrid-rb-event-265"
+  title: "Noviembre 2014"
+  event_name: "Noviembre 2014"
+  date: "2014-11-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-265"
+  description: |-
+    Reunión de Madrid.rb de Noviembre 2014
+  talks:
+    - id: "madrid-rb-event-265-topic-350"
+      title: "Deuda técnica: achicando agua, que el barco se hunde"
+      event_name: "Noviembre 2014"
+      date: "2014-11-27"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-265-topic-350"
+      description: |-
+        El concepto de deuda técnica no es nuevo. En todos los proyectos quien más quien menos, tenemos deuda técnica, pero ¿dónde se encuentra? ¿de dónde viene? ¿por qué se crea? y sobre todo, ¿se puede gestionar? Contaré cuáles han sido mis experiencias a lo largo de mi vida como desarrollador y lo que he aprendido durante este tiempo.
+      speakers:
+        - eLafo
+
+- id: "madrid-rb-event-266"
+  title: "Diciembre 2014"
+  event_name: "Diciembre 2014"
+  date: "2014-12-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-266"
+  description: |-
+    Reunión de Madrid.rb de Diciembre 2014
+  talks:
+    - id: "madrid-rb-event-266-topic-351"
+      title: "Event your life with Kafka"
+      event_name: "Diciembre 2014"
+      date: "2014-12-29"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-266-topic-351"
+      description: |-
+        En esta charla analizaremos un poco qué es [Apache Kafka](http://kafka.apache.org/), qué problemas trata de resolver, lo compararemos a alto nivel con otras posibles soluciones, veremos algunos ejemplos de configuración y como usarlo desde Ruby mediante [Poseidon](https://github.com/bpot/poseidon). Y luego beberemos unas cañas para celebrar mi primera charla ever :D
+      speakers:
+        - valakirka
+
+- id: "madrid-rb-event-267"
+  title: "Enero 2015"
+  event_name: "Enero 2015"
+  date: "2015-01-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-267"
+  description: |-
+    Reunión de Madrid.rb de Enero 2015
+  talks:
+    - id: "madrid-rb-event-267-topic-352"
+      title: "Hacking your bank with Ruby and reverse engineering"
+      event_name: "Enero 2015"
+      date: "2015-01-29"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-267-topic-352"
+      description: |-
+        Os contaremos la historia que hay detrás de [bank\_scrap](https://github.com/ismaGNU/bank_scrap), una gema Ruby para acceder a información bancaria como transacciones o saldos de diferentes bancos. Desde como utilizamos ingeniería inversa sobre una aplicación móvil, hasta como creamos una abstracción para ampliar bank\_scrap a múltiples bancos.
+      speakers:
+        - Javier Cuevas
+
+- id: "madrid-rb-event-204"
+  title: "Febrero 2015"
+  event_name: "Febrero 2015"
+  date: "2015-02-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-204"
+  description: |-
+    Reunión de Madrid.rb de Febrero (El Irish Rover)
+  talks:
+    - id: "madrid-rb-event-204-topic-282"
+      title: "El camino a los 10 millones de usuarios, partiendo el monolito"
+      event_name: "Febrero 2015"
+      date: "2015-02-26"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-204-topic-282"
+      description: |-
+        ¿Cómo escalar una aplicación hasta los 10 millones de usuarios?
+
+        [Jobandtalent](http://www.jobandtalent.com)  es un caso real de crecimiento explosivo. Veremos como hemos conseguido dar servicio a más de 3,5M de usuarios, con picos sostenidos de hasta 30.000 rpm al backend. Una historia de aciertos y errores que nos permiten seguir creciendo hacia los 10 millones de usuarios.
+
+        ¿Se puede romper el monolito? ¿Rails no escala?
+      speakers:
+        - Sergio Espeja
+
+- id: "madrid-rb-event-210"
+  title: "Marzo 2015"
+  event_name: "Marzo 2015"
+  date: "2015-03-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-210"
+  description: |-
+    Reunión de Madrid.rb de Marzo (Irish Rover)
+  talks:
+    - id: "madrid-rb-event-210-topic-288"
+      title: "Growing alive things... Like software"
+      event_name: "Marzo 2015"
+      date: "2015-03-26"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-210-topic-288"
+      description: |-
+        El mundo del desarrollo del software se ha venido transformando en los últimos años y se han estado rescatando ideas viejas junto con conclusiones nuevas. La más importante y eje central es que el software es un sistema complejo adaptativo. Un ente vivo. En ese sentido: No podemos crear cosas vivas, solo podemos hacerlas crecer; entonces, no podemos hablar de crear software, solo podemos hablar de hacerlo crecer. ¿Qué implicaciones tiene esto sobre lo que ya conocenos como desarrollo de software? ¿Qué consecuencias directas pone este nuevo tópico sobre la mesa? Apúntate a la discusión y lo descubriremos juntos...
+      speakers:
+        - Gerardo Barcia
+
+- id: "madrid-rb-event-270"
+  title: "Abril 2015"
+  event_name: "Abril 2015"
+  date: "2015-04-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-270"
+  description: |-
+    Reunión de Madrid.rb de Abril 2015
+  talks:
+    - id: "madrid-rb-event-270-topic-353"
+      title: "Diseño Orientado a Objetos con Ruby"
+      event_name: "Abril 2015"
+      date: "2015-04-30"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-270-topic-353"
+      description: |-
+        *Diseño* es una de esas palabras que puede significar muchas cosas. En esta charla utilizaremos la definición de Sandi Metz en [POODR](http://www.poodr.com/). Explicaremos qué entiende ella por diseño, y veremos algunos conceptos partes de su libro.
+
+        Para venir a la charla no es necesario haber leído POODR previamente (aunque siempre es recomendable, es un libro excelente). Si estás empezando con ruby (o con otro lenguaje de programación orientado a objetos), esta charla es especialmente recomendable. Si ya tienes experiencia o ya has leído POODR puede servir para repasar conceptos o debatirlos.
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-276"
+  title: "Mayo 2015"
+  event_name: "Mayo 2015"
+  date: "2015-05-28"
+  video_provider: "children"
+  video_id: "madrid-rb-event-276"
+  description: |-
+    Reunión de Madrid.rb de Mayo 2015
+  talks:
+    - id: "madrid-rb-event-276-topic-365"
+      title: "GitHub presenta a Monolito Gafotas en \"Pobre Monolito!\""
+      event_name: "Mayo 2015"
+      date: "2015-05-28"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-276-topic-365"
+      description: |-
+        En el capítulo de hoy hablamos de arquitectura de aplicaciones web basadas en Rails, usando como ejemplo una de las apps de Rails más grandes y con más tráfico del mundo: GitHub.com.
+
+        Veremos los límites de escalabilidad de una app monolítica en Ruby, trucos y consejos para extraer servicios de una app existente, la cosa esa del SOA que está muy de moda ahora, historias de batalla del Tio Pepe (de cuando GitHub corría en una sola máquina virtual -- os acordáis de aquellos tiempos?) y una larga lista de errores que hemos cometido y lecciones que hemos aprendido al diseñar la arquitectura de GitHub.
+
+        Guaymente.
+      speakers:
+        - Vicent Martí
+
+- id: "madrid-rb-event-282"
+  title: "Junio 2015"
+  event_name: "Junio 2015"
+  date: "2015-06-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-282"
+  description: |-
+    Reunión de Madrid.rb de Junio 2015
+  talks:
+    - id: "madrid-rb-event-282-topic-371"
+      title: "JSON API"
+      event_name: "Junio 2015"
+      date: "2015-06-25"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-282-topic-371"
+      description: |-
+        Uno de los aspectos principales al realizar una API con Ruby (ya sea en Rails, Sinatra o lo que esté en auge ahora mismo) es cómo organizar nuestro JSON. Existen algunas especificaciones por ahí (por ejemplo, HAL, OData o JSONRequest) pero hace bien poquito ha aparecido una nueva: JSON API.
+
+        JSON API nace hace más de dos años de la mano de Yehuda "Omnipresente" Katz cuando se encontraba creando el RESTAdapter de Ember Data.
+
+        Si te pica la curiosidad por este nuevo formato y quieres más información o cerveza gratis, pásate por la charla.
+      speakers:
+        - Sergio Arbeo
+
+- id: "madrid-rb-event-285"
+  title: "Julio 2015"
+  event_name: "Julio 2015"
+  date: "2015-07-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-285"
+  description: |-
+    Reunión de Madrid.rb de Julio 2015
+  talks:
+    - id: "madrid-rb-event-285-topic-376"
+      title: "Rails & React: A Hipster Love Story"
+      event_name: "Julio 2015"
+      date: "2015-07-30"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-285-topic-376"
+      description: |-
+        Una de las principales batallas donde parece que Ruby on Rails empieza a perder terreno es en la parte de front-end. Nuestras apps cada día son más complejas a nivel de front y en ocasiones necesitamos buscar soluciones adicionales fuera del stack habitual de Rails para poder manejar dicha complejidad.
+
+        En esta charla haremos una breve introducción a [React.js](http://facebook.github.io/react/), la librería javascript de moda creada por Facebook para construir componentes reutilizables para vuestras UIs.
+
+        Os contaremos diferentes tipos de integración de Rails + React que hemos realizado en proyectos de [Diacode](https://diacode.com) y [Gudog](https://gudog.com): desde utilizar React solo para pequeños componentes como datepickers, hasta crear verdaderas Single Page Apps apoyándonos en Flux (gracias a [Marty.js](http://martyjs.org/)).
+      speakers:
+        - Javier Cuevas
+
+- id: "madrid-rb-event-291"
+  title: "Agosto 2015"
+  event_name: "Agosto 2015"
+  date: "2015-08-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-291"
+  description: |-
+    Terracismo.rb de Agosto 2015
+  talks:
+    - id: "madrid-rb-event-291-topic-387"
+      title: "Terracismo.rb"
+      event_name: "Agosto 2015"
+      date: "2015-08-27"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-291-topic-387"
+      description: |-
+        Normalmente la estructura de Madrid.rb es: primero una charla y después una sesión de networking, normalmente utilizando algún líquido como catalizador.
+
+        En verano es distinto: nos saltamos la charla y vamos directamente al <del>líquido catalizador</del> networking. A esto se le llama Terracismo.rb.
+
+        Esta sesión del Terracismo.rb tendrá lugar en el Irish Rover, en el que ya hemos celebrado Madrid.rb con anterioridad.
+
+        Todo el mundo es bienvenido, si estáis en Madrid en Agosto, venid!
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-297"
+  title: "Septiembre 2015"
+  event_name: "Septiembre 2015"
+  date: "2015-09-24"
+  video_provider: "children"
+  video_id: "madrid-rb-event-297"
+  description: |-
+    Madrid.rb de Septiembre 2015
+  talks:
+    - id: "madrid-rb-event-297-topic-394"
+      title: "Enumerator.is_an(Enumerable)"
+      event_name: "Septiembre 2015"
+      date: "2015-09-24"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-297-topic-394"
+      description: |-
+        Todo el mundo ama Enumerable, pero ¿Enumerator? Enumerator es una parte relativamente poco conocida de Ruby, que es el complemento perfecto a Enumerable: si Enumerable nos permite realizar todo tipo de tareas útiles con listas de cosas, Enumerator nos permite tratar casi cualquier cosa como una lista. Juntos son muy potentes.
+
+        ¡Ah! Y no te preocupes si no controlas Enumerable del todo porque empezaremos la charla con un repasito 😊
+      speakers:
+        - Sergio Gil Pérez de la Manga
+
+- id: "madrid-rb-event-306"
+  title: "Octubre 2015"
+  event_name: "Octubre 2015"
+  date: "2015-10-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-306"
+  description: |-
+    Madrid.rb de Octubre 2015
+  talks:
+    - id: "madrid-rb-event-306-topic-403"
+      title: "Probando la web: Capybara vs Watir"
+      event_name: "Octubre 2015"
+      date: "2015-10-29"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-306-topic-403"
+      description: |-
+        Cuando hablamos de browser testing solemos hacerlo de dos librerías diferentes: Capybara (https://github.com/jnicklas/capybara) y Watir (https://github.com/watir/watir), cada una tiene sus ventajas y sus desventajas, su forma de trabajar y de implementar. En esta charla hablaremos sobre cada una de las librerías centrándonos en lo que nos aportan a la hora de automatizar.
+      speakers:
+        - Enrique Sánchez
+
+- id: "madrid-rb-event-308"
+  title: "Noviembre 2015"
+  event_name: "Noviembre 2015"
+  date: "2015-11-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-308"
+  description: |-
+    Madrid.rb Noviembre 2015
+  talks:
+    - id: "madrid-rb-event-308-topic-406"
+      title: "Carga masiva de datos con AR y NoSQL, mi experiencia"
+      event_name: "Noviembre 2015"
+      date: "2015-11-26"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-308-topic-406"
+      description: |-
+        En esta charla quiero explicar mi experiencia en la carga masiva de datos en distintos proyectos con Active Record y NoSQL. Voy a tratar temas como la velocidad de la carga inicial y sucesivas, fuentes de carga de datos en csv's, datos externos de otros sistemas, problemas encontrados, ajustes de rendimiento y algunos trucos aprendidos....
+      speakers:
+        - Carlos Sánchez Pérez
+
+- id: "madrid-rb-event-314"
+  title: "Diciembre 2015"
+  event_name: "Diciembre 2015"
+  date: "2015-12-22"
+  video_provider: "children"
+  video_id: "madrid-rb-event-314"
+  description: |-
+    Diciembre 2015
+  talks:
+    - id: "madrid-rb-event-314-topic-415"
+      title: "Stop running containers with sticks and duct tape"
+      event_name: "Diciembre 2015"
+      date: "2015-12-22"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-314-topic-415"
+      description: |-
+        Containers han cambiado la forma de ejecutar aplicaciones. Empaquetar nuestras aplicaciones en una imagen de docker es solo el primer paso. Cómo lo vas a desplegar? cuántos containers vas a poner en producción? cómo se van a comunicar entre ellos? cómo los vas a actualizar?
+
+        En esta charla veremos cómo Kubernetes te ayuda a gestionar todos tus containers en producción para que puedas sacarle el máximo partido.
+      speakers:
+        - Raúl Naveiras
+
+- id: "madrid-rb-event-322"
+  title: "Enero 2016"
+  event_name: "Enero 2016"
+  date: "2016-01-28"
+  video_provider: "children"
+  video_id: "madrid-rb-event-322"
+  description: |-
+    Enero 2016
+  talks:
+    - id: "madrid-rb-event-322-topic-419"
+      title: "Qué es la arquitectura kappa y como la usamos en nuestros proyectos"
+      event_name: "Enero 2016"
+      date: "2016-01-28"
+      slides_url: "https://vimeo.com/158343906"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-322-topic-419"
+      description: |-
+        Desde que descubrimos las arquitectura kappa, la usamos prácticamente en todos nuestros proyectos.
+        Aunque encaja muy bien para proyectos de big data, nos parece que es un patrón de arquitectura que se reusar en otro tipo de proyectos.
+
+        http://es.slideshare.net/juantomas/aspgems-kappa-architecture
+      speakers:
+        - juantomas
+
+- id: "madrid-rb-event-327"
+  title: "Febrero 2016"
+  event_name: "Febrero 2016"
+  date: "2016-02-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-327"
+  description: |-
+    Madrid.rb Febrero 2016
+  talks:
+    - id: "madrid-rb-event-327-topic-437"
+      title: "Integración Continua con Ruby"
+      event_name: "Febrero 2016"
+      date: "2016-02-25"
+      slides_url: "https://vimeo.com/157427268"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-327-topic-437"
+      description: |-
+        Esta charla tendrá dos partes diferenciadas:
+
+        * Qué es y para qué sirve la integración continua
+        * Cómo aplicarla en proyectos ruby (y si hay tiempo, con Rails también)
+
+        El nivel de la charla será de iniciación. ¡Si estás empezando con ruby, no dudes en venir!
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-332"
+  title: "Marzo 2016"
+  event_name: "Marzo 2016"
+  date: "2016-03-31"
+  video_provider: "children"
+  video_id: "madrid-rb-event-332"
+  description: |-
+    Madrid.rb Marzo 2016
+  talks:
+    - id: "madrid-rb-event-332-topic-410"
+      title: "shrine: un toolkit para gestionar uploads en ruby"
+      event_name: "Marzo 2016"
+      date: "2016-03-31"
+      slides_url: "https://vimeo.com/161742211"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-332-topic-410"
+      description: |-
+        En esta charla me gustaría hablar de [shrine](http://shrinerb.com). En extremadura.com  hemos sustituido recientemente carrierwave por esta librería y estamos muy contentos con el resultado. Lo mejor: lo facilísimo que resulta realizar el procesado de ficheros en background.
+      speakers:
+        - Alfonso Alba
+
+- id: "madrid-rb-event-337"
+  title: "Abril 2016"
+  event_name: "Abril 2016"
+  date: "2016-04-28"
+  video_provider: "children"
+  video_id: "madrid-rb-event-337"
+  description: |-
+    Madrid.rb Abril 2016
+  talks:
+    - id: "madrid-rb-event-337-topic-452"
+      title: "The Rails Boot Process"
+      event_name: "Abril 2016"
+      date: "2016-04-28"
+      slides_url: "https://vimeo.com/166169766"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-337-topic-452"
+      description: |-
+        Rails viene con una serie de componentes, Active Record, Active Support, etc., bastante independientes uno del otro, pero cuando lanzas una aplicacion o abres una consola de algun modo las cosas se han organizado para tener una experiencia integrada del sistema. Como funciona esto?
+
+        Luego tenemos una serie de ficheros como config/boot.rb, config/application.rb, ..., que hacen? Initializers, configuraciones por entorno, engines, ..., que corre cuando?
+
+        Entender como funciona todo esto es un punto de inflexion para cualquier programador Rails. Pasas de una idea un tanto nebulosa del sistema a una vision ordenada de lo que sucede.
+      speakers:
+        - Xavier Noria
+
+- id: "madrid-rb-event-340"
+  title: "Mayo 2016"
+  event_name: "Mayo 2016"
+  date: "2016-05-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-340"
+  description: |-
+    Madrid.rb Mayo 2016
+  talks:
+    - id: "madrid-rb-event-340-topic-450"
+      title: "Crystal"
+      event_name: "Mayo 2016"
+      date: "2016-05-26"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-340-topic-450"
+      description: |-
+        Crystal es un lenguaje relativamente nuevo y relativamente parecido a Ruby, pero con algunas diferencias importantes que lo hacen relativamente interesante. En esta charla haremos un recorrido general por el lenguaje, aprovechando que estamos entre rubyistas para centrarnos en esas similitudes y diferencias con Ruby, viendo también ejemplos y casos de uso donde quizás (¡tachán!), Crystal puede ser una mejor solución que Ruby.
+      speakers:
+        - Sergio Gil Pérez de la Manga
+
+- id: "madrid-rb-event-344"
+  title: "Junio 2016"
+  event_name: "Junio 2016"
+  date: "2016-06-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-344"
+  description: |-
+    Madrid.rb Junio 2016
+  talks:
+    - id: "madrid-rb-event-344-topic-469"
+      title: "Hackeando Jekyll"
+      event_name: "Junio 2016"
+      date: "2016-06-30"
+      slides_url: "https://vimeo.com/181905002"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-344-topic-469"
+      description: |-
+        [Jekyll](https://jekyllrb.com) es una de las herramientas más populares entre desarrolladores para crear blogs, especialmente gracias a Github pages. Pero Jekyll puede ir mucho más allá, gracias a sus gran flexibilidad para ser extendido y personalizado.
+
+        En [Populate](http://populate.tools) lo hemos utilizado para crear webs como la de los [Papeles de Panamá](https://panamapapers.icij.org) y alguno más que contaremos durante la charla.
+
+        Además de introducir Jekyll y explicar los modelos de datos que lleva de serie, veremos cómo se puede extender usando las propias clases de Jekyll para generar sites a partir de APIs externas y una seria rápida de buenas prácticas relacionadas con testing, hosting y deploy.
+      speakers:
+        - Fernando Blat
+
+- id: "madrid-rb-event-348"
+  title: "Terracismo.rb Julio 2016"
+  event_name: "Terracismo.rb Julio 2016"
+  date: "2016-07-28"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-348"
+  description: |-
+    Terracismo.rb Julio 2016
+  talks: []
+
+- id: "madrid-rb-event-353"
+  title: "Terracismo.rb Agosto 2016"
+  event_name: "Terracismo.rb Agosto 2016"
+  date: "2016-08-25"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-353"
+  description: |-
+    Terracismo.rb Agosto 2016
+  talks: []
+
+- id: "madrid-rb-event-357"
+  title: "Septiembre 2016"
+  event_name: "Septiembre 2016"
+  date: "2016-09-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-357"
+  description: |-
+    Madrid.rb Septiembre 2016
+  talks:
+    - id: "madrid-rb-event-357-topic-475"
+      title: "Closures, how are they possible?"
+      event_name: "Septiembre 2016"
+      date: "2016-09-29"
+      slides_url: "https://vimeo.com/189320242"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-357-topic-475"
+      description: |-
+        Closures are everywhere in Ruby, we all use them continuously, sometimes even without noticing it, but do we really understand them? Do we know how they work?
+
+        In this talk we'll go all the way down from the Ruby code we write to how it is internally executed to deeply understand what closures are and how they work so that next time you use them, you'll be completely confident on what your program is doing.
+      speakers:
+        - Carlos Alonso
+
+- id: "madrid-rb-event-361"
+  title: "Octubre 2016"
+  event_name: "Octubre 2016"
+  date: "2016-10-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-361"
+  description: |-
+    Madrid.rb Octubre 2016
+  talks:
+    - id: "madrid-rb-event-361-topic-453"
+      title: "Chewy - Elasticsearch"
+      event_name: "Octubre 2016"
+      date: "2016-10-27"
+      slides_url: "https://vimeo.com/189769626"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-361-topic-453"
+      description: |-
+        Chewy es una gema para la integración de Elasticsearch. Elasticsearch es un motor de búsqueda basada en documentos donde puedes realizar búsquedas no estructuradas, búsquedas estructuradas, aggregations y cualquier combinación de las anteriores. Y todo esto en "casi" tiempo real. Muy util para tiendas online, o cualquiera que no quiera sobrecargar su base de datos en búsquedas.
+      speakers:
+        - Rafael Ramón Fraga
+
+- id: "madrid-rb-event-369"
+  title: "Noviembre 2016"
+  event_name: "Noviembre 2016"
+  date: "2016-11-24"
+  video_provider: "children"
+  video_id: "madrid-rb-event-369"
+  description: |-
+    Madrid.rb Noviembre 2016
+  talks:
+    - id: "madrid-rb-event-369-topic-508"
+      title: "bdd/tdd con cucumber y rspec"
+      event_name: "Noviembre 2016"
+      date: "2016-11-24"
+      slides_url: "https://github.com/lascar/presentation_testing"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-369-topic-508"
+      description: |-
+        El behaviour driven development y el testing driven development son 2 metodologías complementarias. Abordaremos la necesidad del testing y el ciclo de esas 2 metodologías con la ayuda de cucumber y rspec
+      speakers:
+        - lascar (Pascal Carrié)
+
+- id: "madrid-rb-event-374"
+  title: "Diciembre 2016"
+  event_name: "Diciembre 2016"
+  date: "2016-12-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-374"
+  description: |-
+    Madrid.rb Diciembre 2016
+  talks:
+    - id: "madrid-rb-event-374-topic-513"
+      title: "Working effectively with legacy code"
+      event_name: "Diciembre 2016"
+      date: "2016-12-29"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-374-topic-513"
+      description: |-
+        ¿Alguna vez te ha tocado o has evitado un proyecto anticuado?
+        ¿Cómo lidiar con este código?
+
+        Inspirado por el libro "Working effectively with legacy code" y por esta charla del codemotion del 2015 [1] decidí dar un paso adelante y convertir un marrón en una oportunidad.
+
+        En esta charla contaré mi experiencia trabajando con un proyecto en rails 2.3
+
+        [1] https://2015.codemotion.es/agenda.html#5699289732874240/49534006
+      speakers:
+        - hermesdt
+
+- id: "madrid-rb-event-378"
+  title: "Enero 2017"
+  event_name: "Enero 2017"
+  date: "2017-01-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-378"
+  description: |-
+    Madrid.rb Enero 2017
+  talks:
+    - id: "madrid-rb-event-378-topic-518"
+      title: "Restricted Ruby - A CTF story"
+      event_name: "Enero 2017"
+      date: "2017-01-26"
+      slides_url: "https://speakerdeck.com/rosapolis/restricted-ruby-a-ctf-story"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-378-topic-518"
+      description: |-
+        Encontrarse con problemas que usen Ruby en competiciones CTF (Capture The Flag) de seguridad no es muy común, pero afortunadamente hay algunos por ahí. Este tipo de problemas siempre son una gran oportunidad para aprender sobre funcionalidad o características internas del lenguaje que no son tan conocidas o usadas normalmente. También son la excusa perfecta para hacer cosas raras o al menos mucho más creativas. En esta charla presentaré algunos problemas del CTF organizado por un famoso grupo de seguridad japonés en 2016 y algunas maneras de resolverlos.
+      speakers:
+        - Rosa
+
+- id: "madrid-rb-event-384"
+  title: "Febrero 2017"
+  event_name: "Febrero 2017"
+  date: "2017-02-23"
+  video_provider: "children"
+  video_id: "madrid-rb-event-384"
+  description: |-
+    Madrid.rb . Febrero 2017
+  talks:
+    - id: "madrid-rb-event-384-topic-522"
+      title: "Cosas que hacer en Postgres cuando estás Devops"
+      event_name: "Febrero 2017"
+      date: "2017-02-23"
+      slides_url: "https://kikito.github.io/things-to-do-with-postgresql/#/"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-384-topic-522"
+      description: |-
+        PostgreSQL es un software complejo. Se puede utilizar como simple base de datos relacional, haciendo de backend de ActiveRecord. Sin embargo, tiene otras funcionalidades que pueden ser muy útiles especialmente en proyectos que están empezando y con poco presupuesto para infraestructura. En esta charla hablaremos de tres: NoSQL, búsqueda textual y gestión de colas.
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-386"
+  title: "Marzo 2017"
+  event_name: "Marzo 2017"
+  date: "2017-03-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-386"
+  description: |-
+    Madrid.rb Marzo 2017
+  talks:
+    - id: "madrid-rb-event-386-topic-531"
+      title: "Hanami"
+      event_name: "Marzo 2017"
+      date: "2017-03-30"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-386-topic-531"
+      description: |-
+        Hanami es un nuevo framework web escrito en ruby escrito por Luca Guidi. Sus características son la ligereza, la simplicidad y con una arquitectura parecida a Rails pero que fuerza a encapsular mejor el comportamiento de las piezas.
+
+        http://hanamirb.org/
+      speakers:
+        - joshka
+
+- id: "madrid-rb-event-392"
+  title: "Terracismo.rb Abril 2017"
+  event_name: "Terracismo.rb Abril 2017"
+  date: "2017-04-27"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-392"
+  description: |-
+    Terracismo.rb no es una charla. Es una reunión de puro networking - nos reunimos en un bar, pub, u otro lugar similar, y hablamos de ruby, rails, o lo que se tercie. Todo el mundo está invitado a venir.
+
+    Celebraremos este terracismo.rb en el Irish Rover. Por regla general, solemos ir al "patio trasero" del local (subiendo a la primera planta, al fondo).
+  talks: []
+
+- id: "madrid-rb-event-394"
+  title: "Mayo 2017"
+  event_name: "Mayo 2017"
+  date: "2017-05-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-394"
+  description: |-
+    Madrid.rb Mayo 2017
+  talks:
+    - id: "madrid-rb-event-394-topic-538"
+      title: "Introducción a Vue.js"
+      event_name: "Mayo 2017"
+      date: "2017-05-25"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-394-topic-538"
+      description: |-
+        Venga va. En el fondo sabes que el desarrollo front con rails da bastante pena. Que para hacer interfaces CRUD va sobrado, pero en cuanto queremos implementar una UI un poco más complicada... Alrededor todo el mundo está que si React, que si Angular... Y tú sigues ahí con tu aplicación Rails mirando de reojo con envidia el front de otras aplicaciones mucho más molonas. Pues desde rails 5.1 ya tenemos la posibilidad de utilizar herramientas de build para front "de verdad" como webpack, así que es la excusa perfecta para empezar a familiarizarse con el desarrollo front.
+
+        En esta charla veremos qué problema trata de solucionar Vue.js en el desarrollo web, qué piezas fundamentales provee y cómo las tenemos que utilizar en nuestros proyectos para desarrollar aplicaciones front complejas. El objetivo de esta charla es tener más o menos claro cuándo deberíamos utilizar un framework de front en nuestros proyectos rails y cómo pensar a la hora de realizar el desarrollo.
+
+        ### Disclaimer
+
+        Cualquier framework de desarrollo de hoy en día daría para un curso de muchas horas de duración. Como en esta charla solo tenemos media hora y hay que filtrar contenido, NO veremos cosas tan interesantes como:
+
+        * ES2015
+        * Webpack y building
+        * JS internals
+        * Testing
+        * Deploy
+        * Autorización
+        * Plugins
+        * Routing
+        * Middleware
+        * Reactivity internals
+        * Persistencia
+        * Server Side Rendering
+        * Vuex
+        * XSS o CORS
+        * Conexión con servicios de terceros
+        * Ciclo de vida de los componentes
+        * Transiciones
+        * Animaciones
+        * Y muchas, muchas, muchas otras cosas más :-(
+
+        En cambio nos centraremos en estos otros temas:
+
+        ### ¿Por qué Vue.js?
+
+        * Complejidad de UI
+        * Rapid Prototyping
+        * JS Spaguetti
+
+        ### ¿Qué es Vue.js?
+
+        * Patrón MVVM
+        * Vistas declarativas
+        * Reactivity
+        * Virtual DOM
+        * Componentes
+        * Directivas
+
+        ### ¿Cómo desarrollar con Vue.js?
+
+        * Implementing a component
+        * Composing components
+        * State management
+        * Project structure
+        * Directives
+        * Y alguna otra cosa más aún por decidir ;-)
+      speakers:
+        - eLafo
+
+- id: "madrid-rb-event-398"
+  title: "Junio 2017"
+  event_name: "Junio 2017"
+  date: "2017-06-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-398"
+  description: |-
+    Madrid.rb Junio 2017
+  talks:
+    - id: "madrid-rb-event-398-topic-544"
+      title: "Tu aplicación rails en Kubernetes"
+      event_name: "Junio 2017"
+      date: "2017-06-29"
+      slides_url: "https://vimeo.com/224164411"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-398-topic-544"
+      description: |-
+        Soy desarrolladora de Software y me cuesta estar al día de todo lo que se cuece en desarrollo y en sistemas. Pero cuando trabajas en un equipo pequeño en una startup necesitas aprender un poco más de todo. En esta charla veremos las diferentes herramientas que **Kubernetes** y **Google Compute Engine** nos proveen para ayudarnos a crear una infraestructura escalable para nuestras aplicaciones rails (o node! o python! o con un poco de todo!).
+      speakers:
+        - Laura Morillo-Velarde
+
+- id: "madrid-rb-event-403"
+  title: "Julio 2017"
+  event_name: "Julio 2017"
+  date: "2017-07-27"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-403"
+  description: |-
+    Terracismo.rb
+  talks: []
+
+- id: "madrid-rb-event-408"
+  title: "Agosto 2017"
+  event_name: "Agosto 2017"
+  date: "2017-08-31"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-408"
+  description: |-
+    Terracismo.rb Agosto 2017
+  talks: []
+
+- id: "madrid-rb-event-409"
+  title: "Septiembre 2017"
+  event_name: "Septiembre 2017"
+  date: "2017-09-28"
+  video_provider: "children"
+  video_id: "madrid-rb-event-409"
+  description: |-
+    Madrid.rb Septiembre 2017
+  talks:
+    - id: "madrid-rb-event-409-topic-560"
+      title: "GraphQL"
+      event_name: "Septiembre 2017"
+      date: "2017-09-28"
+      slides_url: "https://vimeo.com/252437397"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-409-topic-560"
+      description: |-
+        **GraphQL** es una tecnología relativamente nueva que plantea una nueva forma de entender las APIs. Está diseñada con el objetivo de solventar algunas de las deficiencias de las APIs REST (especialmente cuando se utilizan desde dispositivos móviles), y rompe completamente con el concepto de "endpoints".
+
+        Fue creado por Facebook en 2012, y desde entonces más y más compañías han empezado a utilizarlo (GitHub, Shopify, ...).
+
+        En esta charla veremos una introducción a GraphQL, su lenguaje de consultas, y cómo integrarlo en una aplicación Rails usando la librería `graphql-ruby`.
+
+        http://graphql.org/
+      speakers:
+        - Alberto Miedes Garcés
+
+- id: "madrid-rb-event-415"
+  title: "Terracismo.rb octubre 2017"
+  event_name: "Terracismo.rb octubre 2017"
+  date: "2017-10-26"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-415"
+  description: |-
+    Terracismo.rb octubre 2017
+  talks: []
+
+- id: "madrid-rb-event-418"
+  title: "Noviembre 2017"
+  event_name: "Noviembre 2017"
+  date: "2017-11-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-418"
+  description: |-
+    Madrid.rb Noviembre 2017
+  talks:
+    - id: "madrid-rb-event-418-topic-567"
+      title: "Mini implementación de ActivityPub en Ruby"
+      event_name: "Noviembre 2017"
+      date: "2017-11-30"
+      slides_url: "https://vimeo.com/256483933"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-418-topic-567"
+      description: |-
+        ActivityPub es el estándar de la web social federada. Este protocolo nos permite dar vida a una red distribuida de nodos donde sus usuarios independientemente del servidor o la instalación en la que están registrados pueden interactuar e intercambiar mensajes. Una red que dada su estructura distribuida es mucho más resiliente y liberadora que los grandes silos centralizadores como Twitter o Facebook.
+
+        Durante esta charla montaremos desde cero una mini implementación básica de ActivityPub. En el proceso nos familiarizaremos con los componentes y requerimientos básicos para la implementación de este protocolo en cualquier proyecto web que estés desarrollando.
+      speakers:
+        - Manuel Ortega
+
+- id: "madrid-rb-event-420"
+  title: "Diciembre 2017"
+  event_name: "Diciembre 2017"
+  date: "2018-01-04"
+  video_provider: "children"
+  video_id: "madrid-rb-event-420"
+  description: |-
+    Madrid.rb Diciembre 2017
+  talks:
+    - id: "madrid-rb-event-420-topic-573"
+      title: "Tools, tools everywhere"
+      event_name: "Diciembre 2017"
+      date: "2018-01-04"
+      slides_url: "https://vimeo.com/265281448"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-420-topic-573"
+      description: |-
+        EN:
+
+        There are a myriad of open-source tools which can help us in our day-a-day coding activities. Many of them, however, are unknown or rarely used by most professional software developers.
+
+        During this session we're gonna walk through several Ruby tools, covering interesting configuration options and some tips & tricks on how to incorporate them into our development workflow.
+
+        Feedback form: https://goo.gl/forms/VSeSCn8mJltzmJEr1
+
+        Resources, notes, slides: https://github.com/dcarral/ruby-tools
+
+        ES:
+
+        Existen muchísimas herramientas open-source que pueden ayudarnos en nuestro día a día escribiendo código. Muchas de ellas, sin embargo, son desconocidas o raramente usadas por la mayoría de desarrolladores de software.
+
+        En esta sesión pasaremos un buen rato cubriendo unas cuantas herramientas (Ruby), mostrando interesantes opciones de configuración e ideas para poder incorporarlas a nuestro flujo de desarrollo.
+
+        Formulario para feedback: https://goo.gl/forms/VSeSCn8mJltzmJEr1
+
+        Recursos, notas, slides:  https://github.com/dcarral/ruby-tools
+      speakers:
+        - Daniel Carral
+
+- id: "madrid-rb-event-424"
+  title: "Enero 2018"
+  event_name: "Enero 2018"
+  date: "2018-01-25"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-424"
+  description: |-
+    Enero 2018 - Cancelado
+  talks: []
+
+- id: "madrid-rb-event-428"
+  title: "Febrero 2018"
+  event_name: "Febrero 2018"
+  date: "2018-02-08"
+  video_provider: "children"
+  video_id: "madrid-rb-event-428"
+  description: |-
+    Madrid.rb Febrero
+  talks:
+    - id: "madrid-rb-event-428-topic-581"
+      title: "WebRTC on Rails"
+      event_name: "Febrero 2018"
+      date: "2018-02-08"
+      slides_url: "https://vimeo.com/468732049"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-428-topic-581"
+      description: |-
+        Un repaso sobre como integrar WebRTC en Rails, gemas que existen, integración a pelo, orquestación de la conexión, servicios que existen (Signaling, TURN, STUN) y problemas que te puedes encontrar.
+      speakers:
+        - Acid Tango
+
+- id: "madrid-rb-event-429"
+  title: "Febrero 2018-2"
+  event_name: "Febrero 2018-2"
+  date: "2018-02-22"
+  video_provider: "children"
+  video_id: "madrid-rb-event-429"
+  description: |-
+    Febrero 2018
+  talks:
+    - id: "madrid-rb-event-429-topic-416"
+      title: "rspec"
+      event_name: "Febrero 2018-2"
+      date: "2018-02-22"
+      slides_url: "https://vimeo.com/468078709"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-429-topic-416"
+      description: |-
+        Esto es una propuesta original de
+        [Jose Antonio Marin](http://www.madridrb.com/users/1673), que escribió:
+
+        > A mi, personalmente, me interesan las charlas de nivel introducción, y dentro de este campo creo que es muy interesante el tema de los test: qué es un test? tipos de test? gemas para ello? cuándo es realmente interesante hacer test? cómo empezarlos bien? etc etc...
+      speakers:
+        - Fernando Martínez
+
+- id: "madrid-rb-event-434"
+  title: "Marzo 2018"
+  event_name: "Marzo 2018"
+  date: "2018-04-05"
+  video_provider: "children"
+  video_id: "madrid-rb-event-434"
+  description: |-
+    Marzo 2018
+  talks:
+    - id: "madrid-rb-event-434-topic-597"
+      title: "Stimulusjs - cómo usar y por qué"
+      event_name: "Marzo 2018"
+      date: "2018-04-05"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-434-topic-597"
+      description: |-
+        En esta charla vamos a ver una librería de javascript - [stimulus](https://stimulusjs.org), que fue recientemente publicada por Basecamp, los creadores de Ruby on Rails. Veremos qué puede hacer y cómo utilizarla con (o sin) Rails. Probablemente hablemos del tamaño de las librerías y de por qué Stimulus no es un "framework".
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-437"
+  title: "Abril 2018"
+  event_name: "Abril 2018"
+  date: "2018-05-03"
+  video_provider: "children"
+  video_id: "madrid-rb-event-437"
+  description: |-
+    Madrid.rb Abril 2018
+  talks:
+    - id: "madrid-rb-event-437-topic-599"
+      title: "La mina de Ruby: gemas"
+      event_name: "Abril 2018"
+      date: "2018-05-03"
+      slides_url: "https://vimeo.com/470474937"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-437-topic-599"
+      description: |-
+        En esta charla de nivel básico hablaremos sobre qué es exactamente una gema y qué mecanismos hay detrás de ella.
+
+        Veremos como construir una gema con una funcionalidad simple, para poder usarla como herramienta desde la línea de comandos.
+      speakers:
+        - Manuel González
+
+- id: "madrid-rb-event-439"
+  title: "Mayo 2018"
+  event_name: "Mayo 2018"
+  date: "2018-06-07"
+  video_provider: "children"
+  video_id: "madrid-rb-event-439"
+  description: |-
+    Madrid.rb Mayo 2018
+  talks:
+    - id: "madrid-rb-event-439-topic-603"
+      title: "Coding Dojo"
+      event_name: "Mayo 2018"
+      date: "2018-06-07"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-439-topic-603"
+      description: |-
+        Un coding dojo es una actividad de grupo en la cual se practica sobre un problema de programación. La idea es practicar técnicas de programación en un entorno divertido.
+
+        En esta ocasión utilizaremos el método [Randori Kata](http://codingdojo.org/RandoriKata/) para resolver el problema en parejas, dando pequeños pasos.
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-447"
+  title: "Terracismo.rb Julio 2018"
+  event_name: "Terracismo.rb Julio 2018"
+  date: "2018-07-26"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-447"
+  description: |-
+    Terracismo.rb Julio 2018
+  talks: []
+
+- id: "madrid-rb-event-451"
+  title: "Terracismo.rb Agosto"
+  event_name: "Terracismo.rb Agosto"
+  date: "2018-08-30"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-451"
+  description: |-
+    Terracismo.rb
+  talks: []
+
+- id: "madrid-rb-event-454"
+  title: "Septiembre 2018"
+  event_name: "Septiembre 2018"
+  date: "2018-09-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-454"
+  description: |-
+    Madrid.rb Septiembre 2018
+  talks:
+    - id: "madrid-rb-event-454-topic-627"
+      title: "Gemología popular"
+      event_name: "Septiembre 2018"
+      date: "2018-09-27"
+      slides_url: "https://vimeo.com/477299499"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-454-topic-627"
+      description: |-
+        Esta es una charla sobre librerías externas: cómo elegirlas, y algo de lo que se habla menos: cuándo es mejor no usar ninguna. Usaré ejemplos sobre ruby y gemas, aunque los conceptos son exportables a otros lenguajes. Adecuada tanto para gente que está empezando con ruby como para gente con experiencia.
+      speakers:
+        - Enrique García Cota
+
+- id: "madrid-rb-event-457"
+  title: "Octubre 2018"
+  event_name: "Octubre 2018"
+  date: "2018-10-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-457"
+  description: |-
+    Madrid.rb Octubre 2018
+  talks:
+    - id: "madrid-rb-event-457-topic-632"
+      title: "Webpack en Rails sin rails/webpacker y Tooling en Jobandtalent"
+      event_name: "Octubre 2018"
+      date: "2018-10-25"
+      slides_url: "https://vimeo.com/479575216/47de8470b5"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-457-topic-632"
+      description: |-
+        Mi propuesta es una charla (+demo, +debate) sobre el uso de webpack sin webpacker (sorry, dhh).
+
+        En Jobandtalent hace más de 1 año que estamos trabajando fuerte en modernizar parte del frontend y buena parte es tooling y la gestión de los entornos de desarrollo, testing, staging y producción. Tenemos bastante optimizado el proceso de build-deploy-ejecución de las aplicaciones.
+
+        La charla será desde cero a tener en producción desplegada una app rails en un entorno de producción. Algunas slides y bastante código y configuraciones para ver (seguramente en vivo).
+      speakers:
+        - German DZ
+
+- id: "madrid-rb-event-494"
+  title: "Terracismo.rb Noviembre 2018"
+  event_name: "Terracismo.rb Noviembre 2018"
+  date: "2018-11-29"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-494"
+  description: |-
+    Para este mes no hemos encontrado un speaker para dar una charla, así que directamente quedamos en el bar
+  talks: []
+
+- id: "madrid-rb-event-498"
+  title: "Enero 2019"
+  event_name: "Enero 2019"
+  date: "2019-01-31"
+  video_provider: "children"
+  video_id: "madrid-rb-event-498"
+  description: |-
+    Enero 2019
+  talks:
+    - id: "madrid-rb-event-498-topic-677"
+      title: "Dockeriza tu Rails"
+      event_name: "Enero 2019"
+      date: "2019-01-31"
+      slides_url: "https://vimeo.com/479753218/bc5d49a9d9"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-498-topic-677"
+      description: |-
+        La charla será impartida por Miguel Savignano, back-end Developer en The Cocktail.
+
+        Docker y Kubernetes son ya prácticamente un estándar para el despliegue de nuestras aplicaciones Rails en diferentes entornos. El objetivo de esta charla es entender y revisar las buenas prácticas que hay que tener en cuenta para crear una imagen preparada para su despliegue en un entorno gestionado por Kubernetes
+
+        Para ello se usarán ejemplos de imagenes de Docker para entornos de desarrollo, CI y producción con Minikube
+
+        La charla será impartida en las oficinas de The Cocktail. Disponemos de un Código de Conducta el cual debe ser respetado por las personas que asistan: https://the-cocktail.com/codigo-de-conducta
+      speakers:
+        - Miguel Savignano
+
+- id: "madrid-rb-event-539"
+  title: "Marzo 2019"
+  event_name: "Marzo 2019"
+  date: "2019-03-14"
+  video_provider: "children"
+  video_id: "madrid-rb-event-539"
+  description: |-
+    Madrid.rb Marzo 2019
+  talks:
+    - id: "madrid-rb-event-539-topic-682"
+      title: "Fun with Ruby, Android and Termux"
+      event_name: "Marzo 2019"
+      date: "2019-03-14"
+      slides_url: "https://vimeo.com/482309000/1534e97efd"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-539-topic-682"
+      description: |-
+        With the advent of smartphones, **Linux/Unix** has succeeded as the most used OS worldwide.
+
+        But truth is that both Android and iOS keep most of the Unix fun under the hood, not only from users, but also from a majority of developers.
+
+        Now, thanks to **Termux**, we can get this fun back, at least in **Android**.
+
+        In this talk we'll use our tried and true **Ruby** toolchain to do plenty of wild things with our mobiles. No Android Studio needed. No Java code. No Android developer account. No app approval process.
+
+        Just your code, in your pocket. Let's have some fun!
+      speakers:
+        - Josep Egea Sánchez
+
+- id: "madrid-rb-event-550"
+  title: "Terracismo.rb Mayo 2019"
+  event_name: "Terracismo.rb Mayo 2019"
+  date: "2019-05-30"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-550"
+  description: |-
+    Terracismo.rb Mayo 2019
+  talks: []
+
+- id: "madrid-rb-event-554"
+  title: "Terracismo.rb Junio 2019"
+  event_name: "Terracismo.rb Junio 2019"
+  date: "2019-06-27"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-554"
+  description: |-
+    Terracismo.rb Junio 2019
+  talks: []
+
+- id: "madrid-rb-event-565"
+  title: "Septiembre 2019"
+  event_name: "Septiembre 2019"
+  date: "2019-09-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-565"
+  description: |-
+    Septiembre 2019
+  talks:
+    - id: "madrid-rb-event-565-topic-781"
+      title: "Banking on Rails"
+      event_name: "Septiembre 2019"
+      date: "2019-09-26"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-565-topic-781"
+      description: |-
+        Hola, somos Javier y Alejandro, formamos parte de Allfunds https://allfunds.com, un banco mayorista especializado en intermediación/brokerage de fondos de inversión con alrededor de €500B bajo administración y entorno a 70M de operaciones realizadas al año.
+
+        Hace poco más de un año comenzamos un cambio de estrategia dentro de Allfunds con intención de ampliar la oferta de servicios y realizar mejoras en nuestra operativa e infraestructura. Durante este tiempo hemos ido realizando grande cambios tanto en oferta de productos, metodología, mentalidad y tecnologías.
+
+        Creemos que nuestro caso puede ser muy interesante contaros como hemos llevado estos cambios en una organización de 500 personas, casi 20 años operando y supervisada por Banco de España y CNMV.
+
+        Los topics que más interesantes nos parecen son los siguientes:
+
+        - XP (Extreme Programming)
+        	- CI/CD (con una única rama y directamente a producción)
+        	- Full Test Coverage
+        	- Equipos multidisciplinares
+        	- Short Iteration Cycles
+        - Infraestructura en Cloud (con legacy existente en Mainframe)
+        - Service Oriented Architecture, usamos sobretodo Ruby, pero ciertas piezas están en Python y Javascript, aunque toda la lógica de negocio reside en Ruby e interopera con distintos servicios.
+        - Utilizando Sidekiq (y escalándolo con Kubernetes) para procesar entre 3-20M de Jobs al día.
+        - Utilizando Rails con GraphQL como interfaz para API y manteniendo el código desacoplado del framework
+        - Actions (una interpretación de Interactors y como nos permite testar fácilmente todos los procesos de negocio)
+        - Migrando paulatinamente piezas de legacy (Java y Cobol corriendo en Mainframes con Oracle + db2), sin ocasionar pérdidas de servicio.
+        - Exprimiendo PostgreSQL (JSONB y FullTextSearch) y BigTable (trillones de rows de históricos)
+
+        Esperamos que os resulte interesante, y si algún punto os parece interesante, destacádnoslo y prepararemos slides que profundicen más en el tema. Podéis contactarnos por email: alejandro.perez@allfunds.com o por Twitter: https://twitter.com/aperezpaya
+      speakers:
+        - Alejandro Perezpayá
+
+- id: "madrid-rb-event-577"
+  title: "Terracismo.rb noviembre"
+  event_name: "Terracismo.rb noviembre"
+  date: "2019-11-28"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-577"
+  description: |-
+    Terracismo.rb noviembre
+  talks: []
+
+- id: "madrid-rb-event-580"
+  title: "Terracismo.rb diciembre"
+  event_name: "Terracismo.rb diciembre"
+  date: "2019-12-26"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-580"
+  description: |-
+    Terracismo.rb diciembre
+  talks: []
+
+- id: "madrid-rb-event-587"
+  title: "Terracismo.rb Enero 2020"
+  event_name: "Terracismo.rb Enero 2020"
+  date: "2020-01-30"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-587"
+  description: |-
+    Terracismo.rb Enero 2020
+  talks: []
+
+- id: "madrid-rb-event-593"
+  title: "Terracismo.rb"
+  event_name: "Terracismo.rb"
+  date: "2020-02-27"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-593"
+  description: |-
+    Terracismo.rb febrero 2020
+  talks: []
+
+- id: "madrid-rb-event-597"
+  title: "Abril 2020"
+  event_name: "Abril 2020"
+  date: "2020-04-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-597"
+  description: |-
+    Evento virtual
+  talks:
+    - id: "madrid-rb-event-597-topic-856"
+      title: "Docker & rails. Where to begin? ¯\\_(ツ)_/¯"
+      event_name: "Abril 2020"
+      date: "2020-04-30"
+      slides_url: "https://learndocker.online"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-597-topic-856"
+      description: |-
+        Docker has been out for some years already. A lot has happened since its release in 2013, and today it has become a de facto standard and a fundamental part in deploying and scaling apps. How does this affect Rails? Well... to this day there's no "official way" of  dockerizing a rails app. There's plenty of online tutorials explaining custom ways to do its. It's difficult to know where to begin ... or, at least, it was difficult for me.
+
+        On this talk I want to share with you how I use Docker to develop Rails apps and how I went from not understanding anything to not having Rails installed in my dev machine at all: everything I do with ruby or Rails goes through Docker. I'll present the concepts and steps needed in order to achieve this.
+
+        Note: This talk will be done online, and in English.
+
+        ---
+
+        Docker & rails. ¿Por dónde empezar? ¯\_(ツ)_/¯
+
+
+        Docker lleva ya unos años en el mercado. Desde que se liberó en marzo de 2013 ha llovido mucho y a día de hoy se puede considerar un estándar de facto y una pieza fundamental para el despliegue y la escabilidad de aplicaciones. ¿Y qué pasa con Rails? Bueno... pues que todavía no existe una forma "oficial" de dockerizar una aplicación en rails. Existen multitud de sitios en los que se explica cómo hacerlo, pero no tenemos una manera estándar de hacerlo y que sea igual para todo el mundo. Vamos, que cuando quieres ponerte a hacerlo no sabes muy bien por dónde empezar... o eso es al menos lo que me pasó a mí.
+
+        En esta charla quiero compartir con vosotros cómo uso docker para desarrollar aplicaciones en Rails y cómo pasé de no entender nada a no tener Rails instalado en mi máquina de desarrollo: cualquier cosa que hago con ruby o rails va a través de docker. Hablaré de cuáles son todas las piezas que tenéis que conocer y cómo empezar a dar los primeros pasos.
+
+        Nota: Esta charla será online, y en inglés.
+      speakers:
+        - Alfonso Alba
+
+- id: "madrid-rb-event-644"
+  title: "Noviembre 2020"
+  event_name: "Noviembre 2020"
+  date: "2020-11-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-644"
+  description: |-
+    Evento virtual
+  talks:
+    - id: "madrid-rb-event-644-topic-907"
+      title: "Historias cortas sobre Métricas de Rendimiento"
+      event_name: "Noviembre 2020"
+      date: "2020-11-26"
+      slides_url: "https://github.com/rafadc/talk_metrics"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-644-topic-907"
+      description: |-
+        En **Stuart** gestionamos **decenas de miles de entregas simultáneas** utilizando **Ruby**, **Rails** y muchos otros ingredientes. Los últimos meses hemos crecido mucho y hemos tenido que trabajar más de lo habitual en que **todo funcione suficientemente rápido**.
+
+        En esta charla haré una pequeña compilación de **consejos** que hemos repetido a menudo a los equipos que mantienen un servicio y que creo que pueden ser interesantes para otros lugares.
+      speakers:
+        - Rafa de Castro
+
+- id: "madrid-rb-event-646"
+  title: "Terracismo Virtual"
+  event_name: "Terracismo Virtual"
+  date: "2020-12-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-646"
+  description: |-
+    El dichoso Covid nos impide vernos en persona, pero no va a impedir que nos veamos las caras.
+
+    Únete al primer Terracismo Virtual para despedir 2020 en rojo Ruby.
+
+    - Usaremos Google Meet: https://meet.google.com/sok-rzuv-vwr
+    - Tendremos preparada una actividad de entretenimiento
+    - Si quieres hacer una minipresentación / charla / discurso, avísanos y te reservaremos un espacio.
+
+    Hemos elegido el miércoles, porque hemos pensado que el jueves 31 igual tenías otros planes 😉
+
+    No olvides comprar los ingredientes para preparar el Mojito!!
+  talks:
+    - id: "madrid-rb-event-646-topic-912"
+      title: "Mojitos con Ruby"
+      event_name: "Terracismo Virtual"
+      date: "2020-12-30"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-646-topic-912"
+      description: |-
+        Ismary Cruz (@icruzalonso) nos enseñará, en riguroso directo, cómo preparar un auténtico mojito.
+
+        Ismary es una crack del Ruby, pero, según ella misma, ¡¡los mojitos los hace aún mejor!!
+
+        Si quieres tenerlo todo listo para preparar el tuyo, aquí tienes los ingredientes:
+
+        - Un vaso alto, highball glass :)
+        - Azúcar blanco
+        - Hierba buena
+        - Lima (1/2 por mojito)
+        - Ron blanco (Havana Club, Bacardí o similar, 50 ml por mojito)
+        - Casera
+        - Cubitos de hielo
+        - Unas gotas de angostura (opcional)
+      speakers:
+        - Ismary Cruz
+
+- id: "madrid-rb-event-647"
+  title: "Enero 2021: Ruby GUI Apps"
+  event_name: "Enero 2021: Ruby GUI Apps"
+  date: "2021-01-28"
+  video_provider: "children"
+  video_id: "madrid-rb-event-647"
+  description: |-
+    Evento Online
+    https://twitch.com/madridrb
+  talks:
+    - id: "madrid-rb-event-647-topic-914"
+      title: "Ruby GUI Apps: Beautiful inside AND outside"
+      event_name: "Enero 2021: Ruby GUI Apps"
+      date: "2021-01-28"
+      slides_url: "https://vimeo.com/506750901"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-647-topic-914"
+      description: |-
+        We all love the **beauty** of Ruby. It's powerful, flexible
+        and expressive. But most Ruby applications are doomed to run on
+        server farms, powering APIs and generating HTML or log messages as
+        their only visible output.
+
+        This doesn't have to be this way. **Ruby can have GUIs** and **GUIs can have
+        Ruby**.
+
+        In this talk we'll have some fun writing desktop GUI Apps using Ruby. And
+        will experience how **the end result** is **much more than the sum of the
+        parts**.
+
+        Join us and share the joy!
+
+        ![Teaser](https://i.ibb.co/FVmNdCV/Teaser.gif)
+      speakers:
+        - Josep Egea Sánchez
+
+- id: "madrid-rb-event-650"
+  title: "Febrero 2021: El mercado de trabajo Ruby, visto por un Recruiter"
+  event_name: "Febrero 2021: El mercado de trabajo Ruby, visto por un Recruiter"
+  date: "2021-02-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-650"
+  description: |-
+    Evento Online
+    https://twitch.com/madridrb
+  talks:
+    - id: "madrid-rb-event-650-topic-919"
+      title: "El mercado de trabajo Ruby, visto por un Recruiter"
+      event_name: "Febrero 2021: El mercado de trabajo Ruby, visto por un Recruiter"
+      date: "2021-02-25"
+      slides_url: "https://vimeo.com/517068977"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-650-topic-919"
+      description: |-
+        Todos los que estamos en el mundo Ruby los conocemos: ¡los recruiters!
+
+        Pueden ser un agobio cuando te escriben mucho pero ¡más te agobias si no lo hacen!
+
+        En esta charla tendremos la visión desde el otro lado. Rafael Domenech, recruiter, nos contará cómo se ve el mercado de Ruby desde su perspectiva.
+
+        Y, por supuesto, con sesión de preguntas y respuestas al final.
+
+        Te esperamos este jueves, en Madrid.rb
+      speakers:
+        - Rafael Domenech
+
+- id: "madrid-rb-event-652"
+  title: "Marzo 2021: Mesa redonda: Compartiendo lógica de negocio entre back y front"
+  event_name: "Marzo 2021: Mesa redonda: Compartiendo lógica de negocio entre back y front"
+  date: "2021-03-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-652"
+  description: |-
+    Evento Online
+    https://twitch.com/madridrb
+  talks:
+    - id: "madrid-rb-event-652-topic-920"
+      title: "Mesa redonda: Compartiendo lógica de negocio entre back y front"
+      event_name: "Marzo 2021: Mesa redonda: Compartiendo lógica de negocio entre back y front"
+      date: "2021-03-25"
+      slides_url: "https://vimeo.com/529698128"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-652-topic-920"
+      description: |-
+        Participantes:
+
+        - **Carlos Sánchez Pérez**: Histórico de Madrid.rb, Ruby y Rails, y con varios proyectos a sus espaldas conectando con clientes de todo tipo, nos contará su visión viniendo desde el "back".
+
+        - **Francisco Santorelli**: Apasionado de JavaScript y Angular, que está aprendiendo a amar Ruby. Nos traerá la visión "desde el otro lado" 😃
+
+        Una de las razones por las que Ruby on Rails triunfó fue el DRY. Don't Repeat Yourself!!
+
+        - Definías el tipo de un atributo una vez y se utilizaba en todas partes: BBDD, modelo, formularios...
+        - Ponías una validación en un modelo y los formularios la adoptaban automáticamente
+        - Definías una relación entre modelos y los "inputs" del formulario creaban "select pickers" automáticamente
+
+        Todo esto se fue al traste con al auge de los frontend puros en JavaScript.
+
+        Sí, Rails sigue encargándose del backend, a través del API, y las validaciones y modelos cuidan de que nada erróneo acabe llegando a la BBDD. Pero si queremos que esta lógica se vea en el cliente (por ejemplo, con validaciones inmediatas) tenemos que copiar toda esa lógica a la UI, en un lenguaje diferente, con un framework diferente y todo lo que ello conlleva.
+
+        ¿No hay ninguna solución mejor? ¿Estamos condenados a "repeat ourselves"?
+
+        En esta mesa redonda hablaremos de ello y trataremos de recoger las mejores experiencias y opiniones.
+
+        ¿Tienes algo que contarnos? ¡Únete!
+      speakers:
+        - Josep Egea Sánchez
+
+- id: "madrid-rb-event-654"
+  title: "Abril 2021: Using Jenkins to automate the testing of a Rails application in Google Cloud"
+  event_name: "Abril 2021: Using Jenkins to automate the testing of a Rails application in Google Cloud"
+  date: "2021-04-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-654"
+  description: |-
+    Evento Online
+    https://twitch.com/madridrb
+  talks:
+    - id: "madrid-rb-event-654-topic-927"
+      title: "Using Jenkins to automate the testing of a Rails application in Google Cloud"
+      event_name: "Abril 2021: Using Jenkins to automate the testing of a Rails application in Google Cloud"
+      date: "2021-04-29"
+      slides_url: "https://vimeo.com/544019814"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-654-topic-927"
+      description: |-
+        In this talk I'd like to share with you how we are using Jenkins and a bunch of other tools (Ansible, packer, rspec, capybara and Google Cloud) to automate the testing of our Rails applications.
+
+        We have two different kind of tests: what we call "Backend tests" and end to end tests using Capybara.
+
+        Both of them are run automatically when certain events happen in our development workflow. I'd like to show you the challenges we faced and the solutions we implemented
+      speakers:
+        - Alfonso Alba
+
+- id: "madrid-rb-event-655"
+  title: "Mayo 2021: Concurrency in Ruby 3"
+  event_name: "Mayo 2021: Concurrency in Ruby 3"
+  date: "2021-05-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-655"
+  description: |-
+    Evento Online
+    https://twitch.com/madridrb
+  talks:
+    - id: "madrid-rb-event-655-topic-933"
+      title: "Concurrency in Ruby 3"
+      event_name: "Mayo 2021: Concurrency in Ruby 3"
+      date: "2021-05-27"
+      slides_url: "https://vimeo.com/556879297"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-655-topic-933"
+      description: |-
+        **Ruby 3** introduced 2 interesting novelties: The **Fiber Scheduler** and **Ractors**
+
+        In this talk we'll review all the concurrency options available in Ruby, both before and after Ruby 3, including **Threads**, **Fibers** and **Ractors**, and we'll try to **visualize** how each of them can be used with **live coding** examples.
+
+        Join us and discover why **one execution flow per program is not enough**!!
+      speakers:
+        - Josep Egea Sánchez
+
+- id: "madrid-rb-event-656"
+  title: "Junio 2021: Mesa Redonda: Trabajando en remoto, para una compañía americana"
+  event_name: "Junio 2021: Mesa Redonda: Trabajando en remoto, para una compañía americana"
+  date: "2021-06-24"
+  video_provider: "children"
+  video_id: "madrid-rb-event-656"
+  description: |-
+    Evento Online
+    https://twitch.com/madridrb
+  talks:
+    - id: "madrid-rb-event-656-topic-936"
+      title: "Mesa Redonda: Trabajando en remoto, para una compañía americana"
+      event_name: "Junio 2021: Mesa Redonda: Trabajando en remoto, para una compañía americana"
+      date: "2021-06-24"
+      slides_url: "https://vimeo.com/567869678"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-656-topic-936"
+      description: |-
+        Participantes
+
+        - **Raul Murciano**, desarrollador y manager en **Heroku**
+        - **Jorge Manrubia**, programmer en **Basecamp**
+        - **Juan Salvador Pérez García**, full stack developer en **Getro**
+
+        En los últimos meses, hemos sido testigos del aumento de **movimiento en el mercado laboral** del desarrollo, y específicamente en el desarrollo Ruby. Los recruiters se hacen más insistentes y las empresas multiplican los medios en los que publican sus ofertas, incluida nuestra propia lista de correo. Y esta tendencia incluye a **empresas americanas y canadienses**, además de europeas.
+
+        Todos hemos oído mucho y variado sobre lo que supone trabajar para una empresa americana. Y entre tanto ruido, no es fácil distinguir **qué es real y qué es mito**.
+
+        Así que vamos a ir directamente a la fuente. Vamos a tener una charla con tres desarrolladores que están trabajando desde España para empresas americanas y les vamos a **preguntar sobre su experiencia**.
+
+        ¿Cómo lo han conseguido? ¿En qué es mejor? ¿En qué es más difícil? ¿Lo recomiendan?
+
+        ¿Tienes más preguntas? ¡Únete a la charla y las trataremos!
+
+        Moderador: Josep Egea
+      speakers:
+        - Josep Egea Sánchez
+
+- id: "madrid-rb-event-661"
+  title: "Terracismo virtual"
+  event_name: "Terracismo virtual"
+  date: "2021-08-26"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-661"
+  description: |-
+    El verano se acaba (que no el calor) y una terraza apetece más que nunca!!
+
+    Nos encantaría programar un terracismo real y disfrutar de una cerveza real, viéndonos fuera de una pantalla... pero no parece la mejor idea, todavía.
+
+    No obstante, todos hemos cogido ya mucha experiencia en hacer de todo por videoconferencia, incluso divertirnos, así que hemos pensado que podemos hacer un nuevo Terracismo virtual!!
+
+    El programa es sencillo: coge tu bebida favorita, conéctate al Meet, enciende la cámara y prepárate a echar unas risas con otros compañeros de batallas rubystas!!
+
+    No tenemos ninguna actividad específica preparada, aunque sí algún recurso para romper el hielo. Si tienes alguna idea que te gustaría contar, avísanos y lo encajamos!!
+
+    Nota: Para evitar el "meet-bombing", la URL de la reunión sólo es visible una vez te has inscrito.
+  talks: []
+
+- id: "madrid-rb-event-662"
+  title: "September 2021: How denormalizing our Postgres turned great"
+  event_name: "September 2021: How denormalizing our Postgres turned great"
+  date: "2021-09-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-662"
+  description: |-
+    Evento Online
+    https://twitch.com/madridrb
+  talks:
+    - id: "madrid-rb-event-662-topic-939"
+      title: "How denormalizing our Postgres turned great"
+      event_name: "September 2021: How denormalizing our Postgres turned great"
+      date: "2021-09-30"
+      slides_url: "https://vimeo.com/621835714"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-662-topic-939"
+      description: |-
+        It's often considered best practice to normalize the database structure to avoid data redundancy and incoherence.
+
+        In Pennylane's accounting platform we've found that this actually does not always help with data coherence, and even introduces additional complexity in managing data access.
+
+        Our combination of denormalizing some of our data, enhancing some of ActiveRecord's methods, and introducing default behaviors in our application models has enabled us to greatly simplify access control management and given us confidence that our production data is in a consistent state.
+      speakers:
+        - Quentin de Metz
+
+- id: "madrid-rb-event-664"
+  title: "Terracismo.rb Octubre 2021"
+  event_name: "Terracismo.rb Octubre 2021"
+  date: "2021-10-28"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-664"
+  description: |-
+    ¡Nuestro primer terracismo no virtual desde Febrero de 2020!
+  talks: []
+
+- id: "madrid-rb-event-665"
+  title: "Noviembre 2021: Zeitwerk"
+  event_name: "Noviembre 2021: Zeitwerk"
+  date: "2021-11-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-665"
+  description: |-
+    Madrid.rb Noviembre 2021
+  talks:
+    - id: "madrid-rb-event-665-topic-943"
+      title: "Zeitwerk"
+      event_name: "Noviembre 2021: Zeitwerk"
+      date: "2021-11-25"
+      slides_url: "https://vimeo.com/655233623"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-665-topic-943"
+      description: |-
+        Zeitwerk, el sistema más avanzado para cargar automáticamente código Ruby, ha llegado a su versión 2.5 y en Madrid.rb tendremos el lujo de contar con Xavier Noria, su autor y miembro de Rails core, para presentarnos las novedades y contarnos más sobre su funcionamiento.
+      speakers:
+        - Xavier Noria
+
+- id: "madrid-rb-event-667"
+  title: "January 2022 - Component visual testing with ViewComponents and Appraise.qa"
+  event_name: "January 2022 - Component visual testing with ViewComponents and Appraise.qa"
+  date: "2022-01-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-667"
+  description: |-
+    Madrid.rb - January 2022
+  talks:
+    - id: "madrid-rb-event-667-topic-947"
+      title: "Component visual testing with ViewComponents and Appraise.qa"
+      event_name: "January 2022 - Component visual testing with ViewComponents and Appraise.qa"
+      date: "2022-01-27"
+      slides_url: "https://docs.google.com/presentation/d/e/2PACX-1vSyxkQbTUjlf5aYwRcdNauN7zcQ5KmwABgLyb9CeJLeNpkq1oDfMfhyp8JEKRLjSxnC8CGdS58666Eh/pub?start=false&loop=false&delayms=3000&slide=id.g4b9b6d6b2b_0_71"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-667-topic-947"
+      description: |-
+        Component-driven (UI) Development is gaining track influenced by, among other things, the growing relevance of Design Systems and the increase of the complexity and number of the use cases any application has to be able to manage "looking right". **Storybook** has emerged as one of the best Open Source tools to make it possible into development teams.
+
+        In this talk i'll talk about RailsStorybookAppraise (or RSA xD), a PoC of Visual (painless) Testing using **Appraise.qa**, Storybook, and the **ViewComponents** Rails engine
+      speakers:
+        - Fernando García Samblas
+
+- id: "madrid-rb-event-668"
+  title: "February 2022 - Happiness, Lies and Rubocop"
+  event_name: "February 2022 - Happiness, Lies and Rubocop"
+  date: "2022-03-03"
+  video_provider: "children"
+  video_id: "madrid-rb-event-668"
+  description: |-
+    Madrid.rb - February 2022
+  talks:
+    - id: "madrid-rb-event-668-topic-948"
+      title: "Happiness, Lies and Rubocop"
+      event_name: "February 2022 - Happiness, Lies and Rubocop"
+      date: "2022-03-03"
+      slides_url: "https://vimeo.com/685590793"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-668-topic-948"
+      description: |-
+        Ruby is optimized for happiness, but, are we all happy with the shared
+        style guides and linting rules?
+
+        Finding the right balance between common conventions and individual
+        coding style can be a delicate subject, specially for bigger teams.
+
+        In this talk we'll explore these limits and try to find a recipe for
+        making sure that Rubocop makes us all happier developers
+      speakers:
+        - Josep Egea Sánchez
+
+- id: "madrid-rb-event-669"
+  title: "Marzo 2022"
+  event_name: "Marzo 2022"
+  date: "2022-03-31"
+  video_provider: "children"
+  video_id: "madrid-rb-event-669"
+  description: |-
+    Madrid.rb - Marzo 2022
+  talks:
+    - id: "madrid-rb-event-669-topic-950"
+      title: "De programador a Recruiter: por qué pasarse al lado oscuro"
+      event_name: "Marzo 2022"
+      date: "2022-03-31"
+      slides_url: "https://vimeo.com/697971677"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-669-topic-950"
+      description: |-
+        En la charla hablaremos un poco sobre la idea por qué es importante que los **perfiles técnicos se involucren en la selección** y aparte daremos nuestro pequeño  punto de vista sobre el **mercado de oferta de Ruby en España**.
+
+        Realizada por **Raúl Cotrina** y **Leo Poza**, a partir de su experiencia en **Manfred**
+      speakers:
+        - Raúl Cotrina Secas
+
+- id: "madrid-rb-event-672"
+  title: "Terracismo Abril/Mayo 2022"
+  event_name: "Terracismo Abril/Mayo 2022"
+  date: "2022-05-05"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-672"
+  description: |-
+    ¡Terracismo con mascarilla opcional!
+  talks: []
+
+- id: "madrid-rb-event-671"
+  title: "Mayo 2022 - Mesa Redonda: Ruby en femenino - La voz de las desarrolladoras"
+  event_name: "Mayo 2022 - Mesa Redonda: Ruby en femenino - La voz de las desarrolladoras"
+  date: "2022-05-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-671"
+  description: |-
+    Madrid.rb Mayo 2022
+  talks:
+    - id: "madrid-rb-event-671-topic-953"
+      title: "Mesa Redonda: Ruby en femenino - La voz de las desarrolladoras"
+      event_name: "Mayo 2022 - Mesa Redonda: Ruby en femenino - La voz de las desarrolladoras"
+      date: "2022-05-26"
+      slides_url: "https://vimeo.com/715355121"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-671-topic-953"
+      description: |-
+        El de Ruby es un universo relativamente reducido, especialmente en nuestro país. Pero, dentro de él, aún podemos encontrar un grupo más pequeño: **¡El de las desarrolladoras Ruby!**
+
+        Históricamente, la informática y el software han tenido predominancia masculina, y, a pesar de múltiples iniciativas para lograr un mayor equilibrio, lo cierto es que estamos lejos de la paridad.
+
+        En lugar de teorizar sobre las razones, hemos pensado que sería mejor **darles la palabra a ellas**, las desarrolladoras.
+
+        ¿Por qué entraron en este mundo? ¿Echan de menos algo? ¿Cómo animarían a futuras colegas?
+
+        Por ello hemos invitado a 4 desarrolladoras con larga experiencia trabajando con Ruby en nuestro país:
+
+        - **Ismary Cruz**, RoR Developer en Platform 161
+        - **Marina Aranda**, Software Developer en Reedsy
+        - **Heyling Márquez**, Junior Backend Ruby on Rails Developer en Kelisto
+        - **Verónica Castro**, Senior Backend Developer en The Cocktail
+
+        Moderador: Josep Egea, organizador de Madrid.rb
+
+        En la mesa trataremos estas y otras cuestiones, y, sobre todo, nos interesaremos por su experiencia.
+
+        Esperamos vuestra asistencia, en persona o a través de Twitch!
+      speakers:
+        - Josep Egea Sánchez
+
+- id: "madrid-rb-event-712"
+  title: "Terracismo.rb - Agosto 2022"
+  event_name: "Terracismo.rb - Agosto 2022"
+  date: "2022-08-25"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-712"
+  description: |-
+    La vuelta al cole!! 😃
+  talks: []
+
+- id: "madrid-rb-event-713"
+  title: "September 2022 - Data Warehouses with ClickHouse and Ruby"
+  event_name: "September 2022 - Data Warehouses with ClickHouse and Ruby"
+  date: "2022-10-04"
+  video_provider: "children"
+  video_id: "madrid-rb-event-713"
+  description: |-
+    Madrid.rb - September 2022
+  talks:
+    - id: "madrid-rb-event-713-topic-997"
+      title: "Data Warehouses with ClickHouse and Ruby"
+      event_name: "September 2022 - Data Warehouses with ClickHouse and Ruby"
+      date: "2022-10-04"
+      slides_url: "https://vimeo.com/763075163"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-713-topic-997"
+      description: |-
+        Every organization that produces large amounts of data needs a way to analyze that data efficiently. Traditional transactional databases can be very slow when we have to crunch terabytes of historical records. For this purpose we can use OLAP databases such as ClickHouse.
+
+        In this talk we will review key data warehousing concepts, I will present the benefits of using ClickHouse to build reporting systems and we will see how we can use Ruby to load and query the data. I will also share the main technical challenges we have encountered at Verve Group building our reporting system using ClickHouse and Ruby.
+      speakers:
+        - Javier Vidal
+
+- id: "madrid-rb-event-715"
+  title: "October 2022 - Playing with Music: Ruby and Sonic Pi"
+  event_name: "October 2022 - Playing with Music: Ruby and Sonic Pi"
+  date: "2022-10-25"
+  video_provider: "children"
+  video_id: "madrid-rb-event-715"
+  description: |-
+    Madrid.rb - October 2022
+  talks:
+    - id: "madrid-rb-event-715-topic-998"
+      title: "Playing with Music: Ruby and Sonic Pi"
+      event_name: "October 2022 - Playing with Music: Ruby and Sonic Pi"
+      date: "2022-10-25"
+      slides_url: "https://vimeo.com/770226468"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-715-topic-998"
+      description: |-
+        Sonic Pi is a fantastic tool for playing music and learning to code. And it uses Ruby!!!
+
+        In this talk we'll have a quick overview of Sonic Pi's capabilities and explore how much it can benefit from the power and flexibility provided by Ruby.
+
+        And we'll try to play some music while we're at it!!
+      speakers:
+        - Josep Egea Sánchez
+
+- id: "madrid-rb-event-716"
+  title: "November 2022 - Template-based PDF generation in Ruby with Prawn"
+  event_name: "November 2022 - Template-based PDF generation in Ruby with Prawn"
+  date: "2022-11-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-716"
+  description: |-
+    Madrid.rb - November 2022
+  talks:
+    - id: "madrid-rb-event-716-topic-999"
+      title: "Template-based PDF generation in Ruby with Prawn"
+      event_name: "November 2022 - Template-based PDF generation in Ruby with Prawn"
+      date: "2022-11-29"
+      slides_url: "https://vimeo.com/792001294"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-716-topic-999"
+      description: |-
+        For almost every web application, there is a moment when it needs to generate PDF content. There are many options to achieve that in Ruby, but none are simple or easy to use. This talk will examine how, with the help of the Prawn library, to create PDFs programmatically with Ruby. By defining a generic templating tool and using data objects to ease the generation of documents
+      speakers:
+        - David Lilue
+
+- id: "madrid-rb-event-1046"
+  old_id: "madrid-rb-meetup-november-2024"
   title: "Madrid.rb November 2024"
   event_name: "Madrid.rb November 2024"
   date: "2024-11-07"
-  video_provider: "children"
-  video_id: "madrid-rb-meetup-november-2024"
+  video_provider: "not_recorded"
+  video_id: "madrid-rb-event-1046"
   thumbnail_xs: "https://pbs.twimg.com/media/GajqNFcWkAQGTpb?format=jpg&name=small"
   thumbnail_sm: "https://pbs.twimg.com/media/GajqNFcWkAQGTpb?format=jpg&name=small"
   thumbnail_md: "https://pbs.twimg.com/media/GajqNFcWkAQGTpb?format=jpg"
@@ -89,14 +3146,13 @@
       speakers:
         - Paweł Strzałkowski
 
-# 2025
-
-- id: "madrid-rb-meetup-january-2025"
+- id: "madrid-rb-event-1145"
+  old_id: "madrid-rb-meetup-january-2025"
   title: "Madrid.rb January 2025"
   event_name: "Madrid.rb January 2025"
   date: "2025-01-30"
   video_provider: "children"
-  video_id: "madrid-rb-meetup-january-2025"
+  video_id: "madrid-rb-event-1145"
   description: |-
     hosted by Josep Egea Sánchez by SNGULAR StageONE (www.sngular.com) - 30.01.2025 at 19:30
 
@@ -104,12 +3160,14 @@
 
     https://www.madridrb.com/events/january-2025-solid-queue-internals-externals-and-all-the-things-in-between-1145
   talks:
-    - id: "madrid-rb-meetup-january-2024-rosa-gutierrez"
+    - id: "madrid-rb-event-1145-topic-1623"
+      old_id: "madrid-rb-meetup-january-2024-rosa-gutierrez"
       title: "Solid Queue internals, externals and all the things in between"
       event_name: "Madrid.rb January 2025"
       date: "2025-01-30"
-      video_provider: "scheduled"
-      video_id: "madrid-rb-meetup-january-2024-rosa-gutierrez"
+      slides_url: "https://vimeo.com/1055017375?share=copy#t=0"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-1145-topic-1623"
       description: |-
         We’ve used Resque and Redis to run background jobs in multiple apps for many years at 37signals.
 
@@ -122,3 +3180,256 @@
         In this talk, I’ll present Solid Queue, explain some of the problems we had over the years, how we designed Solid Queue to address them, and all the Fun™ we had doing that.
       speakers:
         - Rosa Gutiérrez
+
+- id: "madrid-rb-event-1310"
+  title: "February 2025 - How to Build a Boring(TM) Pub-Sub System"
+  event_name: "February 2025 - How to Build a Boring(TM) Pub-Sub System"
+  date: "2025-02-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-1310"
+  description: |-
+    Madrid.rb - February 2025
+  talks:
+    - id: "madrid-rb-event-1310-topic-1722"
+      title: "How to Build a Boring(TM) Pub-Sub System"
+      event_name: "February 2025 - How to Build a Boring(TM) Pub-Sub System"
+      date: "2025-02-27"
+      slides_url: "https://speakerdeck.com/christos/building-a-boring-pub-sub-madrid-dot-rb-feb-2025"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-1310-topic-1722"
+      description: |-
+        As a proud member of the boringtechnology.club, I want to share with you how we built our own pub sub system for *Lingokids*.
+
+        In this talk, I’ll cover:
+
+        - *What a pub-sub system is* (brief but necessary)
+        - *How we use it* at Lingokids (real-world use cases)
+        - The *“less boring”* options we considered
+        - *Why* we built our own “boring” version (and how we did it)
+        - The *trade-offs* and drawbacks of our approach
+
+        Expect some code, diagrams, and real production numbers—all wrapped up in a practical, no-nonsense breakdown of what worked (and what didn’t).
+      speakers:
+        - Christos Zisopoulos
+
+- id: "madrid-rb-event-1376"
+  title: "March 2025 - Intro to the TimescaleDB gem"
+  event_name: "March 2025 - Intro to the TimescaleDB gem"
+  date: "2025-03-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-1376"
+  description: |-
+    Madrid.rb - March 2025
+  talks:
+    - id: "madrid-rb-event-1376-topic-1887"
+      title: "Intro to the TimescaleDB gem"
+      event_name: "March 2025 - Intro to the TimescaleDB gem"
+      date: "2025-03-27"
+      slides_url: "https://vimeo.com/1130821216"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-1376-topic-1887"
+      description: |-
+        Join me for a practical dive into TimescaleDB, the open-source time-series database built on PostgreSQL, and its Ruby integration!
+
+        We'll explore:
+
+        - What makes TimescaleDB unique for time-series data (hypertables, compression, retention)
+        - Getting started with the timescaledb gem in Rails/Ruby apps
+        - Tips for working with continuous aggregates and time-based queries
+        - Performance optimization techniques
+
+        I'll share real examples of production use, and we'll have time for a Q&A. Whether you're new to time-series data or looking to level up your analytics stack, you'll walk away with practical knowledge you can use.
+      speakers:
+        - Jônatas Davi Paganini
+
+- id: "madrid-rb-event-1508"
+  title: "Abril 2025 - Evento conjunto Madrid.rb - Elixir Madrid"
+  event_name: "Abril 2025 - Evento conjunto Madrid.rb - Elixir Madrid"
+  date: "2025-04-24"
+  video_provider: "children"
+  video_id: "madrid-rb-event-1508"
+  description: |-
+    Este mes vamos a tener un evento conjunto entre Madrid.rb y [Elixir Madrid](https://www.meetup.com/madrid-elixir/events/307180031/), el grupo de usuarios de Elixir de la ciudad.
+  talks:
+    - id: "madrid-rb-event-1508-topic-2052"
+      title: "Starting your own SaaS"
+      event_name: "Abril 2025 - Evento conjunto Madrid.rb - Elixir Madrid"
+      date: "2025-04-24"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-1508-topic-2052"
+      description: |-
+        Have you ever dreamed about starting your own SaaS or side project but didn't know where to start? Let's change that.
+
+        Topics we will cover:
+
+        * Nothing Ruby related, you already have that covered.
+        * Idea creation. Get the right idea for the right market.
+        * Motivation
+        * Stair stepping your way into SaaS
+        * How to talk to potential customers
+        * How to find a niche
+        * How to do marketing and sales
+
+        By the end of this talk, you will have a better understanding of building your way to recurring revenue.
+      speakers:
+        - Michael Koper
+
+    - id: "madrid-rb-event-1508-topic-2085"
+      title: "¿Pero qué demonios es un GenServer?"
+      event_name: "Abril 2025 - Evento conjunto Madrid.rb - Elixir Madrid"
+      date: "2025-04-24"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-1508-topic-2085"
+      description: |-
+        Si vienes del mundo Ruby, en especial del mundo de Ruby on Rails seguro que has oído hablar de Elixir. Seguro que has oído maravillas sobre el modelo de concurrencia y comunicación. Quizás incluso has oído hablar de uno de sus patrones de diseño: GenServer.
+
+        Te llevaremos de la mano desde lo básico de la concurrencia en Elixir (procesos) hasta el misterioso y poderoso mundo de GenServer y Supervisor.  Veremos un ejemplo sencillo primero a lo bruto... y luego al estilo OTP, como manda la tradición.
+
+        Ideal para profundizar en por qué Elixir no solo es cool, sino también robusto como pocos
+      speakers:
+        - Ángel Herranz
+
+- id: "madrid-rb-event-1640"
+  title: 'Mayo 2025 - Roundtable: "Real world usage of LLMs and AI in software development"'
+  event_name: 'Mayo 2025 - Roundtable: "Real world usage of LLMs and AI in software
+    development"'
+  date: "2025-05-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-1640"
+  description: |-
+    Madrid.rb Mayo 2025
+  talks:
+    - id: "madrid-rb-event-1640-topic-2316"
+      title: 'Roundtable: "Real world usage of LLMs and AI in software development"'
+      event_name: 'Mayo 2025 - Roundtable: "Real world usage of LLMs and AI in software
+        development"'
+      date: "2025-05-29"
+      slides_url: "https://vimeo.com/1130823376"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-1640-topic-2316"
+      description: |-
+        With:
+
+        - **Rafael de Castro**, Staff Engineer at  Amenitiz
+        - **German Del Zotto**, Senior Software Engineer at Workato
+        - **Izel Nakri**, Entrepreneur
+
+        Moderator: *Josep Egea*
+
+        Since ChatGPT appeared into the public scene, the amount of news, predictions and new products around the usage of LLMs in software development has been rivaled only by an equal amount of FUD spread among software developers and how our job is going to be impacted.
+
+        In this roundtable we'd like to share the experience of real-world, close-to-home, Ruby developers using these technologies in their day-to-day work. What is being used in real life, what works, and what doesn't and how much it has affected our lives.
+
+        Some of the topics we'd like to discuss:
+
+        - Are we happy with LLMs as a knowledge source
+        - How much we're using LLM generated code in our projects
+        - What kind of workflows are emerging around tools like Copilot, Cursor, Aider, Windsurf, etc
+        - Code reviews: Who's reviewing whom
+        - What about managers: are they pushing for more or less AI
+        - Are LLMs impacting the size of development teams
+
+        Together with Rafael, Germán and Izel, we'll discuss this topics, trying to bring some light into this brave new world.
+      speakers:
+        - Josep Egea Sánchez
+
+- id: "madrid-rb-event-2069"
+  title: "Octubre 2025: Building a ruby gem for OpenFGA"
+  event_name: "Octubre 2025: Building a ruby gem for OpenFGA"
+  date: "2025-10-30"
+  video_provider: "children"
+  video_id: "madrid-rb-event-2069"
+  description: |-
+    Madrid.rb - Octubre 2025
+  talks:
+    - id: "madrid-rb-event-2069-topic-2943"
+      title: "Building a ruby gem for OpenFGA"
+      event_name: "Octubre 2025: Building a ruby gem for OpenFGA"
+      date: "2025-10-30"
+      slides_url: "https://vimeo.com/1147732476?share=copy&fl=sv&fe=ci"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-2069-topic-2943"
+      description: |-
+        In this talk, I'll share my experience comparing hand-written and generated code, exploring the trade-offs between automation and readability. We'll discuss how any approach might have an impact on developer experience-- how it affects maintainability, debugging and long-term sustainability.
+
+        But how did I get here? Well, after working for a bit with OpenFGA, an open source authorization solution, I learned that you could use SDK generators, this is something OpenAPI does, for example.
+
+        When I tried to use it, the code felt like a foreign language. You could tell it was machine-made rather than human- friendly. So I tried to implement the gem myself, and that led me to ask myself the question: which is better? generated code or human written code? Whether you're deciding between writing your own gem or letting a generator do the work for you, this talk will give you the insights to make an informed decision and improve the developer experience along the way.
+      speakers:
+        - Carla Urrea Stabile
+
+- id: "madrid-rb-event-2201"
+  title: "November 2025: Creating a Ruby gem with a Rust native extension"
+  event_name: "November 2025: Creating a Ruby gem with a Rust native extension"
+  date: "2025-11-27"
+  video_provider: "children"
+  video_id: "madrid-rb-event-2201"
+  description: |-
+    Madrid.rb - Noviembre 2025
+  talks:
+    - id: "madrid-rb-event-2201-topic-3075"
+      title: "Creating a Ruby gem with a Rust native extension"
+      event_name: "November 2025: Creating a Ruby gem with a Rust native extension"
+      date: "2025-11-27"
+      slides_url: "https://vimeo.com/1147756247?share=copy&fl=sv&fe=ci"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-2201-topic-3075"
+      description: |-
+        It’s such a great time to be a Ruby developer! The language is evolving with features like Prism and YJIT GC, and the ecosystem is growing stronger with fresh initiatives like Herb — a real game changer in terms of DX for Ruby developers.
+
+        Even when we rarely hit the boundaries of the language, we no longer need to default to C. Extending our gems using modern and fast tooling from the Rust ecosystem is now easier than ever.
+
+        In this talk, I’ll share my journey at Shopify creating a Ruby gem with a Rust native extension. I’ll cover the advantages, challenges, best practices, and how to avoid common pitfalls.
+      speakers:
+        - Guilherme Carreiro
+
+- id: "madrid-rb-event-2300"
+  title: "January 2026 - Git tips from the trenches"
+  event_name: "January 2026 - Git tips from the trenches"
+  date: "2026-01-29"
+  video_provider: "children"
+  video_id: "madrid-rb-event-2300"
+  description: |-
+    Madrid.rb - Enero 2026
+  talks:
+    - id: "madrid-rb-event-2300-topic-3504"
+      title: "Git tips from the trenches"
+      event_name: "January 2026 - Git tips from the trenches"
+      date: "2026-01-29"
+      slides_url: "https://vimeo.com/1166997785"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-2300-topic-3504"
+      description: |-
+        In this talk, I’ll share practical, real-world Git strategies that I’ve picked up through hands-on experience.
+
+        You’ll learn tips to work more efficiently—like handy aliases and ways to better visualize your commit history.
+
+        I’ll also show how I use Git to make pull requests easier for teammates to review and to avoid AI slop.
+
+        Plus, I’ll introduce some tools and tricks that go beyond the basics and have helped me boost my productivity with Git.
+      speakers:
+        - Alfonso Alba
+
+- id: "madrid-rb-event-2399"
+  title: "February 2026 - Closing the Gap Between You and Your Coding Agent with Tidewave"
+  event_name: "February 2026 - Closing the Gap Between You and Your Coding Agent with Tidewave"
+  date: "2026-02-26"
+  video_provider: "children"
+  video_id: "madrid-rb-event-2399"
+  description: |-
+    Madrid.rb - Febrero 2026
+  talks:
+    - id: "madrid-rb-event-2399-topic-3768"
+      title: "Closing the Gap Between You and Your Coding Agent with Tidewave"
+      event_name: "February 2026 - Closing the Gap Between You and Your Coding Agent with Tidewave"
+      date: "2026-02-26"
+      video_provider: "not_recorded"
+      video_id: "madrid-rb-event-2399-topic-3768"
+      description: |-
+        Coding agents are powerful, but they’re missing half the picture — they can read your code but can’t see your app running.
+
+        In this session, Paulo Alves Pereira (VP of Engineering at Lingokids, co-author of Microservices in Action and author of Elixir Cookbook) will show how Tidewave bridges that gap by connecting agents like Claude Code to your application’s runtime, giving them access to logs, database queries, and live application state.
+
+        The demo uses Elixir/Phoenix, but Tidewave fully supports Rails, so every technique shown applies directly to your stack.
+      speakers:
+        - Paulo A Pereira
