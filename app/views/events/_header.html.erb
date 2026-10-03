@@ -42,6 +42,7 @@
         </h3>
 
         <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website, class: "break-all" %>
+        <%= render Ui::SocialLinksComponent.new(event.static_metadata, variant: :inline) %>
       </div>
     </div>
 

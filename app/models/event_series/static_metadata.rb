@@ -1,4 +1,11 @@
 class EventSeries::StaticMetadata < ActiveRecord::AssociatedObject
+  delegate :bsky, :facebook, :github, :guild, :luma, :linkedin, :mastodon,
+    :meetup, :twitter, :vimeo, :website, to: :static_repository, allow_nil: true
+
+  def instagram
+    static_repository.try(:instagram)
+  end
+
   def ended?
     static_repository.try(:ended) || false
   end

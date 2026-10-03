@@ -1,0 +1,13 @@
+<div class="flex items-center <%= VARIANT_MAPPING[variant] %>">
+  <% platforms.each do |p| %>
+    <% if inline? %>
+      <%= link_to p.url, target: "_blank", rel: "noopener noreferrer", class: INLINE_CLASS, aria: {label: p.label} do %>
+        <%= helpers.fab(p.icon, size: :sm) %>
+      <% end %>
+    <% else %>
+      <%= helpers.ui_button url: p.url, kind: :circle, size: :sm, target: "_blank", class: p.hover do %>
+        <%= helpers.fab(p.icon, size: :md) %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
