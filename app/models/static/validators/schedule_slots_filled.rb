@@ -36,7 +36,7 @@ module Static
 
         @talks_by_time = talks.group_by { |talk| [talk.value_at("date"), talk.value_at("start_time"), talk.value_at("end_time")] }
 
-        grid_rows.filter_map { |day, row| error_for(day, row, talks_by_time) }
+        grid_rows.filter_map { |day, row| error_for(day, row) }
       end
 
       private
@@ -80,7 +80,7 @@ module Static
         unclaimed_slots_left = unclaimed_slots_left(day, row)
 
         case unclaimed_slots_left
-        when ...-1
+        when (..-1)
           error(
             row,
             "#{row_name(day, row)} has #{-unclaimed_slots_left} too many items. Update the slot count, remove items from the schedule.yml, or reschedule talks in the videos.yml."
@@ -95,13 +95,18 @@ module Static
 
       def unclaimed_slots_left(day, row)
         slots_left = row.value_at("slots")
-        slots_left -= row["items"].length
+        slots_left -= row["items"]&.length.to_i
         scheduled_talks_count = @talks_by_time[[day.value_at("date"), row.value_at("start_time"), row.value_at("end_time")]]&.count || 0
         slots_left -= scheduled_talks_count
-        unscheduled_talks = @talks_by_time[[day.value_at("date"), nil, nil]]&.shift(slots_left)
+        unscheduled_talks = untimed_talks(day)&.shift(slots_left) if slots_left.positive?
         slots_left -= unscheduled_talks&.count || 0
 
         slots_left
+      end
+
+      # Talks without a start_time and end_time can fill any slot on their date.
+      def untimed_talks(day)
+        @talks_by_time[[day.value_at("date"), nil, nil]]
       end
 
       def row_name(day, row)
