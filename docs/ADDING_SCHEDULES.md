@@ -85,6 +85,10 @@ tracks:
     text_color: "#ffffff"
 ```
 
+### Overlapping Schedules
+
+If you have overlapping events on the schedule, eg. a workshop track that spans 3 talk slots, or a lightning talk block over lunch, order them by the start time and then end time.
+
 ### Unrecorded Activities
 
 Typical schedule-only items (activities without recordings, simple string format):
