@@ -97,6 +97,9 @@ application.register("talks-filter-pill", TalksFilterPillController)
 import TalksNavigationController from "./talks_navigation_controller"
 application.register("talks-navigation", TalksNavigationController)
 
+import TheaterController from "./theater_controller"
+application.register("theater", TheaterController)
+
 import ToggableController from "./toggable_controller"
 application.register("toggable", ToggableController)
 
