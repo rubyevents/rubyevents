@@ -43,9 +43,13 @@
       <% end %>
     <% else %>
       <% if talk.video_unavailable? %>
-        <%= render partial: "talks/video_providers/video_unavailable", locals: {talk: talk, video_provider: video_provider, video_id: video_id, is_watched: is_watched} %>
-      <% elsif video_provider.in?(["mp4", "youtube", "vimeo", "scheduled", "not_published", "not_recorded", "children"]) %>
-        <%= render partial: "talks/video_providers/#{video_provider}", locals: {talk: talk, video_provider: video_provider, video_id: video_id, is_watched: is_watched} %>
+        <%= render partial: "talks/video_providers/video_unavailable", locals: {talk: talk, video_provider: video_provider} %>
+      <% elsif video_provider == "youtube" %>
+        <%= render partial: "talks/video_providers/youtube", locals: {talk: talk, video_id: video_id} %>
+      <% elsif video_provider == "vimeo" %>
+        <%= render partial: "talks/video_providers/vimeo", locals: {talk: talk, video_id: video_id, is_watched: is_watched} %>
+      <% elsif video_provider.in?(["mp4", "scheduled", "not_published", "not_recorded", "children"]) %>
+        <%= render partial: "talks/video_providers/#{video_provider}", locals: {talk: talk} %>
       <% else %>
         Provider <%= video_provider.inspect %> is not configured.
       <% end %>

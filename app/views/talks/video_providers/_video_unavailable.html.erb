@@ -18,7 +18,6 @@
 
       <div class="text-sm text-white/80">
         This video is no longer available on <%= video_provider.humanize %>
-
         <% if talk.video_unavailable_at.present? %>
           as of <%= talk.video_unavailable_at.to_date.to_fs(:long) %>
         <% end %>
