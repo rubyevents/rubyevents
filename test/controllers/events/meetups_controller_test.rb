@@ -8,5 +8,6 @@ class Events::MeetupsControllerTest < ActionDispatch::IntegrationTest
     get meetups_events_url
     assert_response :success
     assert_match active_meetup.name, response.body
+    assert_select "#events-globe a[data-event-list-target=caption][data-event-id=?]", active_meetup.slug
   end
 end

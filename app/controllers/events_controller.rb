@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   include WatchedTalks
   include ContinentFilterable
+  include EventMapMarkers
   include Pagy::Backend
 
   skip_before_action :authenticate_user!, only: %i[index show]
@@ -15,7 +16,7 @@ class EventsController < ApplicationController
     ).order(start_date: :asc)
 
     respond_to do |format|
-      format.html
+      format.html { @globe_markers = event_map_markers(@events) }
       format.ics do
         calendar = Icalendar::Calendar.new
 
