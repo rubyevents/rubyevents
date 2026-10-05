@@ -61,7 +61,8 @@
                           }
                         },
                         "required": [
-                          "title"
+                          "title",
+                          "description"
                         ],
                         "additionalProperties": false
                       }
@@ -71,7 +72,8 @@
               },
               "required": [
                 "start_time",
-                "end_time"
+                "end_time",
+                "slots"
               ],
               "additionalProperties": false
             }

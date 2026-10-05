@@ -28,8 +28,9 @@ class Static::Validators::Validator
   end
 
   def self.schedule_validator_classes
-    @sponsor_validators ||= [
-      Static::Validators::Schema
+    @schedule_validators ||= [
+      Static::Validators::Schema,
+      Static::Validators::ScheduleSlotsFilled
     ]
   end
 

@@ -157,6 +157,19 @@ namespace :validate do
     )
   end
 
+  def validate_schedule_files
+    validate_files(
+      files: Dir.glob(Rails.root.join("data/**/schedule.yml")),
+      validators: Static::Validators::Validator.schedule_validator_classes,
+      success_message: "✓ All schedule.yml files passed validations!"
+    )
+  end
+
+  desc "Validate schedule.yml files"
+  task schedules: :environment do
+    exit 1 if validate_schedule_files.any?
+  end
+
   def validate_video_files
     validate_files(
       files: Dir.glob(Rails.root.join("data/**/videos.yml")),
@@ -444,6 +457,7 @@ namespace :validate do
       "Validating venue.yml files" => -> { validate_venue_files.none? },
       "Validating speakers.yml file" => -> { validate_speakers_file.none? },
       "Validating involvements.yml file" => -> { validate_involvements_file.none? },
+      "Validating schedule.yml files" => -> { validate_schedule_files.none? },
       "Validating speakers.yml is in sync" => -> { validate_speakers_in_sync },
       "Validating data file locations" => -> { validate_data_files.none? },
       "Validating unique video ids" => -> { validate_unique_video_ids },
