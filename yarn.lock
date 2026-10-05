@@ -191,112 +191,104 @@
   resolved "https://registry.npmjs.org/@github/combobox-nav/-/combobox-nav-3.0.1.tgz"
   integrity sha512-JEAm5qU+u/dU8H+NsPisJ5c/P+lfqIk4x0h+BvqBIjP7oVZq1ChPVRYG5uPmHu5Mq7HGD8IsASbpUhX5UIfRxQ==
 
-"@herb-tools/analysis@0.11.0":
+"@herb-tools/analysis@https://pkg.pr.new/marcoroth/herb/@herb-tools/analysis@c0674af":
   version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@herb-tools/analysis/-/analysis-0.11.0.tgz#96656bad050713ace6dcac8cfd12dba28605512a"
-  integrity sha512-4Ypn7dRh/V52vuw25gtOySq/6o0eSK/RKLB88qHDR7/oVjl3FFCGVCi7ikhbbnucBUxLy2GQ/aaQVinfIYW7aQ==
+  resolved "https://pkg.pr.new/marcoroth/herb/@herb-tools/analysis@c0674af#77512f2550a6ec6fac4cc0cba50015733ecf483d"
   dependencies:
-    "@herb-tools/core" "0.11.0"
+    "@herb-tools/core" "https://pkg.pr.new/marcoroth/herb/@herb-tools/core@c0674af"
     picomatch "^4.0.7"
     tinyglobby "^0.2.15"
 
-"@herb-tools/client@0.11.0":
+"@herb-tools/client@https://pkg.pr.new/marcoroth/herb/@herb-tools/client@c0674af":
   version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@herb-tools/client/-/client-0.11.0.tgz#96ab4abd9968d91c712cb48e1a11bf9c303f6f9f"
-  integrity sha512-At1+9DaOfKAbefUheSPPqvtv+Xg0S21xXE6KKgZawJAinfYTe7YLBrSup8pWNQmgyUDln6XNMs5nnYFwzNH90Q==
+  resolved "https://pkg.pr.new/marcoroth/herb/@herb-tools/client@c0674af#927553323a7fa2c79372555c2e14022f8edfa926"
 
-"@herb-tools/config@0.11.0":
+"@herb-tools/config@https://pkg.pr.new/marcoroth/herb/@herb-tools/config@c0674af":
   version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@herb-tools/config/-/config-0.11.0.tgz#1520d608d7b7b8588aed08ba6c5eccd4eca912d4"
-  integrity sha512-RSfuGp4jd9s7ykeGJiTdtPlpXwbBkCTOElEJt7kH+JkVMpBNxFqWe5I180kdArJOxVzC8h35OkLOiBK1Kf4Whg==
+  resolved "https://pkg.pr.new/marcoroth/herb/@herb-tools/config@c0674af#a0e5dddf25a1a8b7dd92af35cd2f721879938a78"
   dependencies:
-    "@herb-tools/core" "0.11.0"
+    "@herb-tools/core" "https://pkg.pr.new/marcoroth/herb/@herb-tools/core@c0674af"
     picomatch "^4.0.7"
     tinyglobby "^0.2.16"
     yaml "^2.9.1"
 
-"@herb-tools/core@0.11.0":
+"@herb-tools/core@https://pkg.pr.new/marcoroth/herb/@herb-tools/core@c0674af":
   version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@herb-tools/core/-/core-0.11.0.tgz#7b475d5d1f3e955ba8673d44155d573f6a8ac829"
-  integrity sha512-WyWZHCgrGmbjkWgGXprta9nldCXe49q6/+uB2vYiGWl2kJYahd0MC8zvOFgrB9+xUO9I7HEHCEG1Mxc45G4gew==
+  uid "007f51980b9581348e8a82878a88cb21add81a26"
+  resolved "https://pkg.pr.new/marcoroth/herb/@herb-tools/core@c0674af#007f51980b9581348e8a82878a88cb21add81a26"
   dependencies:
     "@ruby/prism" "^1.9.0"
 
-"@herb-tools/formatter@^0.11.0":
+"@herb-tools/formatter@https://pkg.pr.new/marcoroth/herb/@herb-tools/formatter@c0674af":
   version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@herb-tools/formatter/-/formatter-0.11.0.tgz#891bb821656e975973f0c932ccbc678cc8c8e83b"
-  integrity sha512-V7yW4Nd1GmHY7yI6IvDmAnYblytIIzqFOmlYj0rgfIkVaGWzyE414hRfyueZDVZitagHj7o3PSYkWJsuu29Auw==
+  resolved "https://pkg.pr.new/marcoroth/herb/@herb-tools/formatter@c0674af#2e9602db45638850ab662df5d38e39a24d83b5f7"
   dependencies:
-    "@herb-tools/config" "0.11.0"
-    "@herb-tools/core" "0.11.0"
-    "@herb-tools/highlighter" "0.11.0"
-    "@herb-tools/node-wasm" "0.11.0"
-    "@herb-tools/printer" "0.11.0"
-    "@herb-tools/rewriter" "0.11.0"
+    "@herb-tools/config" "https://pkg.pr.new/marcoroth/herb/@herb-tools/config@c0674af"
+    "@herb-tools/core" "https://pkg.pr.new/marcoroth/herb/@herb-tools/core@c0674af"
+    "@herb-tools/highlighter" "https://pkg.pr.new/marcoroth/herb/@herb-tools/highlighter@c0674af"
+    "@herb-tools/node-wasm" "https://pkg.pr.new/marcoroth/herb/@herb-tools/node-wasm@c0674af"
+    "@herb-tools/printer" "https://pkg.pr.new/marcoroth/herb/@herb-tools/printer@c0674af"
+    "@herb-tools/rewriter" "https://pkg.pr.new/marcoroth/herb/@herb-tools/rewriter@c0674af"
     "@ruby/prism" "^1.9.0"
     tinyglobby "^0.2.15"
 
-"@herb-tools/highlighter@0.11.0":
+"@herb-tools/highlighter@https://pkg.pr.new/marcoroth/herb/@herb-tools/highlighter@c0674af":
   version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@herb-tools/highlighter/-/highlighter-0.11.0.tgz#a16f40bca1963449323c150198ea5626d3a920ed"
-  integrity sha512-n7juB1wgXSJxd6leRe2xevRrh/3ZJ1zrek1Fg8FoFFhoY2EXRNASjZv/Jp4rHen51Ce8lnP3t3aKwodz1RKPVA==
+  resolved "https://pkg.pr.new/marcoroth/herb/@herb-tools/highlighter@c0674af#9950e50b1560b61d939d15685f22ebcf11a83802"
   dependencies:
-    "@herb-tools/core" "0.11.0"
-    "@herb-tools/node-wasm" "0.11.0"
+    "@herb-tools/core" "https://pkg.pr.new/marcoroth/herb/@herb-tools/core@c0674af"
+    "@herb-tools/node-wasm" "https://pkg.pr.new/marcoroth/herb/@herb-tools/node-wasm@c0674af"
     ansi_up "^6.0.6"
 
-"@herb-tools/linter@^0.11.0":
+"@herb-tools/linter@https://pkg.pr.new/marcoroth/herb/@herb-tools/linter@c0674af":
   version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@herb-tools/linter/-/linter-0.11.0.tgz#9ca97f1ba1299d8080eddcf0b82ea8c24ed61061"
-  integrity sha512-lEHLMZG92JMMu/63CEKXPGkV1VgeQ4fBYTsXdXwo/vd6Fil6+LQ6NjrMv1yll1ZyykSPIcqxQG+dBgI3q/HJVQ==
+  resolved "https://pkg.pr.new/marcoroth/herb/@herb-tools/linter@c0674af#2f6e6a35e1c8287c4f83bf47a5ca69fb02ecce8a"
   dependencies:
-    "@herb-tools/analysis" "0.11.0"
-    "@herb-tools/client" "0.11.0"
-    "@herb-tools/config" "0.11.0"
-    "@herb-tools/core" "0.11.0"
-    "@herb-tools/highlighter" "0.11.0"
-    "@herb-tools/node-wasm" "0.11.0"
-    "@herb-tools/printer" "0.11.0"
-    "@herb-tools/rewriter" "0.11.0"
+    "@herb-tools/analysis" "https://pkg.pr.new/marcoroth/herb/@herb-tools/analysis@c0674af"
+    "@herb-tools/client" "https://pkg.pr.new/marcoroth/herb/@herb-tools/client@c0674af"
+    "@herb-tools/config" "https://pkg.pr.new/marcoroth/herb/@herb-tools/config@c0674af"
+    "@herb-tools/core" "https://pkg.pr.new/marcoroth/herb/@herb-tools/core@c0674af"
+    "@herb-tools/highlighter" "https://pkg.pr.new/marcoroth/herb/@herb-tools/highlighter@c0674af"
+    "@herb-tools/node-wasm" "https://pkg.pr.new/marcoroth/herb/@herb-tools/node-wasm@c0674af"
+    "@herb-tools/printer" "https://pkg.pr.new/marcoroth/herb/@herb-tools/printer@c0674af"
+    "@herb-tools/rewriter" "https://pkg.pr.new/marcoroth/herb/@herb-tools/rewriter@c0674af"
     "@ruby/prism" "^1.9.0"
     picomatch "^4.0.7"
     postcss "^8.5.26"
     postcss-selector-parser "^7.1.6"
     tinyglobby "^0.2.15"
 
-"@herb-tools/node-wasm@0.11.0":
+"@herb-tools/node-wasm@https://pkg.pr.new/marcoroth/herb/@herb-tools/node-wasm@c0674af":
   version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@herb-tools/node-wasm/-/node-wasm-0.11.0.tgz#7f7cab2be0a6883f248a1e9c8fa91ee48d889964"
-  integrity sha512-HZl9xxV+Dm29Qhxo0lIiF8en/xUNDZUUOFwljugZwNR3ug9v91MWSOoqKkR7WPd+IXawmROMy+Jv2v6p2roTJA==
+  uid "0f281affc478eee39a0ca4963d7960647d7905f9"
+  resolved "https://pkg.pr.new/marcoroth/herb/@herb-tools/node-wasm@c0674af#0f281affc478eee39a0ca4963d7960647d7905f9"
   dependencies:
-    "@herb-tools/core" "0.11.0"
+    "@herb-tools/core" "https://pkg.pr.new/marcoroth/herb/@herb-tools/core@c0674af"
     "@ruby/prism" "^1.9.0"
 
-"@herb-tools/printer@0.11.0":
+"@herb-tools/printer@https://pkg.pr.new/marcoroth/herb/@herb-tools/printer@c0674af":
   version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@herb-tools/printer/-/printer-0.11.0.tgz#5a669f035cfa0ccd1d955c9b4937e1167951a9e6"
-  integrity sha512-nD56MCbvYnKbkz+Zgsjo/IBgW1ED/RD1Bkc563ujbsVgDhzTeldXcwlT3LZxbJ7S1QJfq0nBXnbSY8sxnOlUOg==
+  uid "03275993477f6d13b8380043a0521bc9fc469a47"
+  resolved "https://pkg.pr.new/marcoroth/herb/@herb-tools/printer@c0674af#03275993477f6d13b8380043a0521bc9fc469a47"
   dependencies:
-    "@herb-tools/config" "0.11.0"
-    "@herb-tools/core" "0.11.0"
-    "@herb-tools/node-wasm" "0.11.0"
+    "@herb-tools/config" "https://pkg.pr.new/marcoroth/herb/@herb-tools/config@c0674af"
+    "@herb-tools/core" "https://pkg.pr.new/marcoroth/herb/@herb-tools/core@c0674af"
+    "@herb-tools/node-wasm" "https://pkg.pr.new/marcoroth/herb/@herb-tools/node-wasm@c0674af"
     tinyglobby "^0.2.15"
 
-"@herb-tools/rewriter@0.11.0":
+"@herb-tools/rewriter@https://pkg.pr.new/marcoroth/herb/@herb-tools/rewriter@c0674af":
   version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@herb-tools/rewriter/-/rewriter-0.11.0.tgz#562a2d78a993a40fe686b618e8b29fcc997b208c"
-  integrity sha512-K2Qii1vOYOWDR7P0u/LakjvmhsifWNmzKXVu3QnvyBsStIBHNprn/IRA3XHQgGfbQ3lfn1rSpkZKm3Ffubn/cQ==
+  resolved "https://pkg.pr.new/marcoroth/herb/@herb-tools/rewriter@c0674af#e4084cafd2fd86e9e3ea817075488fbca6691748"
   dependencies:
-    "@herb-tools/core" "0.11.0"
-    "@herb-tools/printer" "0.11.0"
-    "@herb-tools/tailwind-class-sorter" "0.11.0"
+    "@herb-tools/core" "https://pkg.pr.new/marcoroth/herb/@herb-tools/core@c0674af"
+    "@herb-tools/printer" "https://pkg.pr.new/marcoroth/herb/@herb-tools/printer@c0674af"
+    "@herb-tools/tailwind-class-sorter" "https://pkg.pr.new/marcoroth/herb/@herb-tools/tailwind-class-sorter@c0674af"
     "@ruby/prism" "^1.9.0"
     tinyglobby "^0.2.15"
 
-"@herb-tools/tailwind-class-sorter@0.11.0":
+"@herb-tools/tailwind-class-sorter@https://pkg.pr.new/marcoroth/herb/@herb-tools/tailwind-class-sorter@c0674af":
   version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@herb-tools/tailwind-class-sorter/-/tailwind-class-sorter-0.11.0.tgz#6b7bd4b88216294b2221b9af1d2d66c497677800"
-  integrity sha512-wQnxcNf2wiBUTDiOv1APbr4XUvRxixw3xZTbDZHDtwC8HT6GuWiCfaBxw2iqusVDvgADsWyfAWqWUjOgnPU12A==
+  resolved "https://pkg.pr.new/marcoroth/herb/@herb-tools/tailwind-class-sorter@c0674af#c35ebec1e28b7687cab57a64d876b6290a53222f"
   dependencies:
     clear-module "^4.1.3"
     escalade "^3.2.0"

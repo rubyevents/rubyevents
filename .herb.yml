@@ -33,11 +33,6 @@ linter:
       exclude:
         - public/**
 
-    html-no-nested-forms:
-      exclude:
-        - app/views/events/_my_attendance_talk.html.erb
-        - app/views/favorite_users/_favorite_user.html.erb
-
 formatter:
   enabled: true
   indentWidth: 2
