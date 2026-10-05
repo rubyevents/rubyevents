@@ -13,7 +13,7 @@
 <% end %>
 
 <%= turbo_stream.replace "attendance-counter" do %>
-  <% attendance_talks = @talk.event.talks_in_running_order(child_talks: false) %>
+  <% attendance_talks = @talk.event.attendance_talks %>
   <% attended_count = attendance_talks.joins(:watched_talks).where(watched_talks: {user: Current.user, watched_on: "in_person"}).count %>
 
   <%= render "events/attendance_counter", attended_count: attended_count, total_talks: attendance_talks.count %>

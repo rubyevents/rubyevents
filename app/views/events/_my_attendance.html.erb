@@ -45,6 +45,21 @@
 
         <% talk_offset += day_talk_count %>
       <% end %>
+
+      <%# Schedule slots can be shorter than videos.yml; still show every counted talk. %>
+      <% remaining_talks = talks.from(talk_offset) %>
+      <% if remaining_talks.any? %>
+        <div class="mt-4 grid gap-2">
+          <% remaining_talks.each do |talk| %>
+            <%= render "events/my_attendance_talk",
+                  talk: talk,
+                  track: nil,
+                  attended_in_person: in_person_talk_ids.include?(talk.id),
+                  watched_online: online_talk_ids.include?(talk.id),
+                  has_feedback: feedback_talk_ids.include?(talk.id) %>
+          <% end %>
+        </div>
+      <% end %>
     <% else %>
       <div class="grid gap-2">
         <% talks.each do |talk| %>

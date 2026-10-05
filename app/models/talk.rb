@@ -325,7 +325,13 @@ class Talk < ApplicationRecord
   end
 
   def published?
-    video_provider.in?(WATCHABLE_PROVIDERS) || parent_talk&.published?
+    video_provider.in?(WATCHABLE_PROVIDERS) || parent_talk&.published? || child_talks.watchable.exists?
+  end
+
+  # Attendance "watched online" — parent lightning blocks count when any
+  # nested segment has a playable recording.
+  def watchable_online?
+    video_provider.in?(WATCHABLE_PROVIDERS) || child_talks.watchable.exists?
   end
 
   def video_available?

@@ -269,7 +269,7 @@
                 <%= link_to event_path(event), class: "flex items-center gap-3 text-white hover:text-red-200 transition" do %>
                   <span class="text-2xl font-bold text-red-400"><%= index + 1 %></span>
                   <span class="truncate font-medium"><%= event.name %></span>
-                  <span class="text-sm text-red-300"><%= event.talks_count %></span>
+                  <span class="text-sm text-red-300"><%= event.public_talks_count %></span>
                 <% end %>
               <% end %>
             </div>

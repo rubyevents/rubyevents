@@ -24,30 +24,44 @@ class Events::AttendancesControllerTest < ActionDispatch::IntegrationTest
     sign_in_as @user
   end
 
-  test "top_level talks exclude nested child talks" do
-    assert_includes @event.top_level_talks, @parent_talk
-    assert_not_includes @event.top_level_talks, @child_talk
-    assert_equal @event.talks.count - 1, @event.top_level_talks.count
+  test "attendance_talks treats lightning blocks as one parent talk" do
+    attendance_ids = @event.attendance_talks.pluck(:id)
+
+    assert_includes attendance_ids, @parent_talk.id
+    assert_not_includes attendance_ids, @child_talk.id
+    assert_equal attendance_ids.size, @event.attendance_talks_count
+    assert_operator @event.talks.count, :>, @event.attendance_talks_count
   end
 
-  test "index stats count only top-level watched talks" do
+  test "attendance stats ignore watched nested child talks" do
     @user.watched_talks.create!(talk: @parent_talk, watched: true, watched_on: "in_person", watched_at: @parent_talk.date)
     @user.watched_talks.create!(talk: @child_talk, watched: true, watched_on: "in_person", watched_at: @child_talk.date)
 
-    watched = @user.watched_talks.joins(:talk).merge(Talk.top_level).where(talks: {event_id: @event.id})
+    attendance_talk_ids = @event.attendance_talks.pluck(:id)
+    watched = @user.watched_talks.where(talk_id: attendance_talk_ids)
+
     assert_equal 1, watched.count
     assert_equal [@parent_talk.id], watched.pluck(:talk_id)
   end
 
-  test "toggle attendance turbo counter ignores nested child talks" do
+  test "toggle attendance turbo counter uses the same parent-only total" do
     @user.watched_talks.create!(talk: @child_talk, watched: true, watched_on: "in_person", watched_at: @child_talk.date)
 
     post toggle_attendance_talk_watched_talk_path(@parent_talk), as: :turbo_stream
 
     assert_response :success
 
-    total_talks = @event.talks_in_running_order(child_talks: false).count
+    total_talks = @event.attendance_talks_count
     assert_includes @response.body, ">1/#{total_talks}<"
-    assert_not_includes @response.body, ">#{@event.talks.count}<"
+    assert_not_includes @response.body, "/#{@event.talks.count}<"
+  end
+
+  test "watchable_online is true when a nested lightning segment is recorded" do
+    @parent_talk.update!(video_provider: "not_recorded")
+    @child_talk.update!(video_provider: "youtube", video_id: "abc123")
+
+    assert_not @parent_talk.video_provider.in?(Talk::WATCHABLE_PROVIDERS)
+    assert @parent_talk.watchable_online?
+    assert @parent_talk.published?
   end
 end
