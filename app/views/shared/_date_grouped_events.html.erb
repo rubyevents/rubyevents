@@ -22,9 +22,7 @@
       </div>
 
       <div class="space-y-3 pl-4">
-        <% date_events.each do |event| %>
-          <%= render "shared/event_row", event: event %>
-        <% end %>
+        <%= render partial: "shared/event_row", collection: date_events, as: :event %>
       </div>
     </div>
   <% end %>

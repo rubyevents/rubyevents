@@ -421,6 +421,11 @@ module Static
             organization ||= ::Organization.find_by_name_or_alias(sponsor["name"]) || ::Organization.find_by_slug_or_alias(sponsor["slug"]&.downcase)
             organization ||= ::Organization.find_or_initialize_by(name: sponsor["name"])
 
+            # Names like "フィヨルドブートキャンプ" parameterize to "", so fall back to the sponsor's slug
+            if organization.new_record? && sponsor["name"].to_s.parameterize.blank?
+              organization.slug = sponsor["slug"].to_s.parameterize
+            end
+
             organization.update(
               website: sponsor["website"],
               description: sponsor["description"],
@@ -430,7 +435,13 @@ module Static
             organization.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
             organization.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && organization.logo_url.blank?
 
-            organization = ::Organization.find_by_slug_or_alias(organization.slug) || ::Organization.find_by_name_or_alias(organization.name) unless organization.persisted?
+            # The organization could not be saved, so discard the pending website and logo_url changes
+            # and fall back to the record already in the database. Whatever an admin set by hand in
+            # production wins over what a sponsors.yml file happens to say.
+            unless organization.persisted?
+              organization = ::Organization.find_by_slug_or_alias(organization.slug) ||
+                ::Organization.find_by_name_or_alias(organization.name) || organization
+            end
 
             organization.save! if organization.changed? || organization.new_record?
 
