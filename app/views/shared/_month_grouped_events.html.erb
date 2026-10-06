@@ -18,9 +18,7 @@
       </div>
 
       <div class="space-y-3 pl-4">
-        <% month_events.sort_by { |e| e.start_date || Date.new(9999) }.reverse.each do |event| %>
-          <%= render "shared/event_row", event: event %>
-        <% end %>
+        <%= render partial: "shared/event_row", collection: month_events.sort_by { |e| e.start_date || Date.new(9999) }.reverse, as: :event %>
       </div>
     </div>
   <% end %>

@@ -3,7 +3,6 @@
     <%= render partial: "talks/card_horizontal",
           collection: @talks,
           as: :talk,
-          locals: {compact: true,
-                   user_watched_talks: user_watched_talks} %>
+          locals: {user_watched_talks: user_watched_talks} %>
   </div>
 <% end %>
