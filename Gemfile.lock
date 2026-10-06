@@ -406,14 +406,14 @@ GEM
     hashdiff (1.2.1)
     hashie (5.1.0)
       logger
-    herb (0.10.4-aarch64-linux-gnu)
-    herb (0.10.4-aarch64-linux-musl)
-    herb (0.10.4-arm-linux-gnu)
-    herb (0.10.4-arm-linux-musl)
-    herb (0.10.4-arm64-darwin)
-    herb (0.10.4-x86_64-darwin)
-    herb (0.10.4-x86_64-linux-gnu)
-    herb (0.10.4-x86_64-linux-musl)
+    herb (0.11.0-aarch64-linux-gnu)
+    herb (0.11.0-aarch64-linux-musl)
+    herb (0.11.0-arm-linux-gnu)
+    herb (0.11.0-arm-linux-musl)
+    herb (0.11.0-arm64-darwin)
+    herb (0.11.0-x86_64-darwin)
+    herb (0.11.0-x86_64-linux-gnu)
+    herb (0.11.0-x86_64-linux-musl)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     icalendar (2.12.2)
@@ -660,10 +660,11 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
-    reactionview (0.4.1)
+    reactionview (0.6.0)
       actionview (>= 7.0)
-      cruise
-      herb (>= 0.10.4, < 0.11.0)
+      cruise (>= 0.3.0)
+      herb (>= 0.11.0)
+      websocket (~> 1.2)
     redcarpet (3.6.1)
     regexp_parser (2.12.0)
     reline (0.6.3)
@@ -896,7 +897,7 @@ DEPENDENCIES
   grepfruit
   groupdate
   guard
-  herb (~> 0.10.4)
+  herb (~> 0.11.0)
   icalendar (~> 2.12)
   image_processing (~> 1.2)
   iso-639
@@ -923,7 +924,7 @@ DEPENDENCIES
   rails-controller-testing
   rails-i18n (~> 8.0)
   rails_autolink (~> 1.1)
-  reactionview (~> 0.4.1)
+  reactionview (~> 0.6.0)
   redcarpet (~> 3.6)
   rouge (~> 4.4)
   rss (~> 0.3.1)

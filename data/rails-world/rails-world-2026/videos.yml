@@ -5,6 +5,8 @@
   kind: "keynote"
   event_name: "Rails World 2026"
   date: "2026-09-23"
+  start_time: "09:45"
+  end_time: "10:45"
   published_at: "2026-09-24T01:34:01Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -20,6 +22,8 @@
   title: "Active Search"
   raw_title: "Active Search - Donal McBreen"
   date: "2026-09-23"
+  start_time: "11:15"
+  end_time: "11:45"
   published_at: "2026-10-01T16:03:39Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -37,6 +41,8 @@
   title: "Ractors, Rails, and Robots: Automating the Path to Ractor-safety"
   raw_title: "Ractors, Rails, and Robots: Automating the Path to Ractor-safety - Andrew Novoselac"
   date: "2026-09-23"
+  start_time: "11:15"
+  end_time: "11:45"
   published_at: "2026-10-01T16:03:39Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -50,10 +56,47 @@
   speakers:
     - Andrew Novoselac
 
+- id: "lightning-talks-block-1-rails-world-2026"
+  title: "Lightning Talks (Block 1)"
+  kind: "lightning_talk"
+  date: "2026-09-23"
+  start_time: "12:00"
+  end_time: "12:30"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "lightning-talks-block-1-rails-world-2026"
+  description: ""
+  talks:
+    - id: "john-athayde-rails-world-2026"
+      title: "UI Guardrails Gem: Static cleanup on agents"
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "john-athayde-rails-world-2026"
+      speakers:
+        - John Athayde
+
+    - id: "jacob-daddario-rails-world-2026"
+      title: "Validate data at the boundary for you and your agent"
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "jacob-daddario-rails-world-2026"
+      speakers:
+        - Jacob Daddario
+
+    - id: "adam-mccrea-rails-world-2026"
+      title: "5 steps to resilient job queues"
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "adam-mccrea-rails-world-2026"
+      speakers:
+        - Adam McCrea
+
 - id: "ryan-sherlock-rails-world-2026"
   title: "Shipping is your heartbeat: Rails in the agentic era"
   raw_title: "Shipping is your heartbeat: Rails in the agentic era - Ryan Sherlock"
   date: "2026-09-23"
+  start_time: "13:00"
+  end_time: "13:30"
   published_at: "2026-10-01T16:03:39Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -69,6 +112,8 @@
   title: "Practical Hotwire: Stimulus & Turbo on the Ground"
   raw_title: "Practical Hotwire: Stimulus & Turbo on the Ground - Jeremy Smith"
   date: "2026-09-23"
+  start_time: "13:00"
+  end_time: "13:30"
   published_at: "2026-10-01T16:03:42Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -85,6 +130,8 @@
   title: "Lexxy: a new text editor for Action Text"
   raw_title: "Lexxy: a new text editor for Action Text - Jorge Manrubia Díez"
   date: "2026-09-23"
+  start_time: "13:45"
+  end_time: "14:15"
   published_at: "2026-10-01T16:03:42Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -100,6 +147,8 @@
   title: "Custom Rails Generators in RubyEvents"
   raw_title: "Custom Rails Generators in RubyEvents - Rachael Wright Munn"
   date: "2026-09-23"
+  start_time: "13:45"
+  end_time: "14:15"
   published_at: "2026-10-01T16:03:42Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -112,10 +161,39 @@
   speakers:
     - Rachael Wright-Munn
 
+- id: "lightning-talks-block-2-rails-world-2026"
+  title: "Lightning Talks (Block 2)"
+  kind: "lightning_talk"
+  date: "2026-09-23"
+  start_time: "14:15"
+  end_time: "14:45"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "lightning-talks-block-2-rails-world-2026"
+  description: ""
+  talks:
+    - id: "raj-kumar-rails-world-2026"
+      title: "Your Active Record queries are too clean"
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "raj-kumar-rails-world-2026"
+      speakers:
+        - Raj Kumar
+
+    - id: "travis-dockter-rails-world-2026"
+      title: "Blastoff Rails: The Game"
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "travis-dockter-rails-world-2026"
+      speakers:
+        - Travis Dockter
+
 - id: "alicia-rojas-arely-rivera-rails-world-2026"
   title: "Layered Design, Layered Trust: How a Designer Started Shipping Production Rails"
   raw_title: "How a Designer started shipping production Rails - Alicia Rojas & Arely Rivera"
   date: "2026-09-23"
+  start_time: "14:45"
+  end_time: "15:15"
   published_at: "2026-10-01T16:03:39Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -134,6 +212,8 @@
   title: "From Prompt to Rails: An Online Rails App Generator"
   raw_title: "From Prompt to Rails: An Online Rails App Generator - Paweł Strzałkowski"
   date: "2026-09-23"
+  start_time: "14:45"
+  end_time: "15:15"
   published_at: "2026-10-01T16:03:39Z"
   language: "English"
   track: "Track 2"
@@ -144,10 +224,39 @@
   speakers:
     - Paweł Strzałkowski
 
+- id: "lightning-talks-block-3-rails-world-2026"
+  title: "Lightning Talks (Block 3)"
+  kind: "lightning_talk"
+  date: "2026-09-23"
+  start_time: "15:15"
+  end_time: "15:45"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "lightning-talks-block-3-rails-world-2026"
+  description: "" # TODO
+  talks:
+    - id: "david-paluy-rails-world-2026"
+      title: "Your LLM changed. Did it get better?"
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "david-paluy-rails-world-2026"
+      speakers:
+        - David Paluy
+
+    - id: "madison-sites-rails-world-2026"
+      title: "Neurodivergent on AI: Help or Hindrance?"
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "madison-sites-rails-world-2026"
+      speakers:
+        - Madison Sites
+
 - id: "mike-dalessio-rails-world-2026"
   title: "Hot Cell: Securing Active Storage in the age of AI"
   raw_title: "Hot Cell: Securing Active Storage in the age of AI - Mike Dalessio"
   date: "2026-09-23"
+  start_time: "15:45"
+  end_time: "16:15"
   published_at: "2026-10-01T16:03:42Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -166,6 +275,8 @@
   title: "Sharding Is Hard: Let's Make It Easier!"
   raw_title: "Sharding Is Hard: Let's Make It Easier! - Tess Griffin"
   date: "2026-09-23"
+  start_time: "15:45"
+  end_time: "16:15"
   published_at: "2026-10-01T16:03:42Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -182,6 +293,8 @@
   raw_title: "The Most Valuable Engineer Isn’t Shipping Features - Robby Russell"
   kind: "keynote"
   date: "2026-09-23"
+  start_time: "16:30"
+  end_time: "17:30"
   published_at: "2026-09-27T19:32:43Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -201,6 +314,8 @@
   raw_title: "Ruby, Rails, and the future of programming - Matz, DHH & Jeremy Daer"
   kind: "fireside_chat"
   date: "2026-09-24"
+  start_time: "10:00"
+  end_time: "11:00"
   published_at: "2026-09-27T22:30:22Z"
   announced_at: "2026-08-07"
   language: "English"
@@ -220,6 +335,8 @@
   title: "Agents on Rails: Building AI Pipelines in plain Ruby"
   raw_title: "Agents on Rails: Building AI Pipelines in plain Ruby - Daniela Velasquez"
   date: "2026-09-24"
+  start_time: "11:15"
+  end_time: "11:45"
   published_at: "2026-10-01T16:03:39Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -237,6 +354,8 @@
   title: "Distributing Rails applications with ONCE"
   raw_title: "Distributing Rails applications with ONCE - Kevin McConnell"
   date: "2026-09-24"
+  start_time: "11:15"
+  end_time: "11:45"
   published_at: "2026-10-01T16:03:43Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -248,10 +367,47 @@
   speakers:
     - Kevin McConnell
 
+- id: "lightning-talks-block-4-rails-world-2026"
+  title: "Lightning Talks (Block 4)"
+  kind: "lightning_talk"
+  date: "2026-09-24"
+  start_time: "12:00"
+  end_time: "12:30"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "lightning-talks-block-4-rails-world-2026"
+  description: "" # TODO
+  talks:
+    - id: "adam-moussa-rails-world-2026"
+      title: "Build native mobile apps with Ruby & Rails"
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "adam-moussa-rails-world-2026"
+      speakers:
+        - Adam Moussa
+
+    - id: "joe-leo-rails-world-2026"
+      title: "The GUIDE Principles of Software Engineering"
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "joe-leo-rails-world-2026"
+      speakers:
+        - Joe Leo
+
+    - id: "claudio-baccigalupo-rails-world-2026"
+      title: "Omen"
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "claudio-baccigalupo-rails-world-2026"
+      speakers:
+        - Claudio Baccigalupo
+
 - id: "marco-roth-rails-world-2026"
   title: "Herb in Rails 8.2: Your ERB views, now HTML-aware"
   raw_title: "Herb in Rails 8.2: Your ERB views, now HTML-aware - Marco Roth"
   date: "2026-09-24"
+  start_time: "13:00"
+  end_time: "13:30"
   published_at: "2026-10-01T16:03:43Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -270,6 +426,8 @@
   title: "Durable orchestration on Rails: from continuation to workflow"
   raw_title: "Durable orchestration on Rails: From continuation to workflow - Vladimir Dementyev"
   date: "2026-09-24"
+  start_time: "13:00"
+  end_time: "13:30"
   published_at: "2026-10-01T16:03:39Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -285,6 +443,8 @@
   title: "Agent-Proof Your Rails App: Your Codebase Is the Prompt"
   raw_title: "Agent-Proof Your Rails App: Your Codebase Is the Prompt - Kinsey Durham Grace"
   date: "2026-09-24"
+  start_time: "13:45"
+  end_time: "14:15"
   published_at: "2026-10-01T16:03:43Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -302,6 +462,8 @@
   title: "A deep dive into Solid Cable"
   raw_title: "A deep dive into Solid Cable - Nick Pezza"
   date: "2026-09-24"
+  start_time: "13:45"
+  end_time: "14:15"
   published_at: "2026-10-01T16:03:40Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -315,10 +477,39 @@
   speakers:
     - Nick Pezza
 
+- id: "lightning-talks-block-5-rails-world-2026"
+  title: "Lightning Talks (Block 5)"
+  kind: "lightning_talk"
+  date: "2026-09-24"
+  start_time: "14:15"
+  end_time: "14:45"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "lightning-talks-block-5-rails-world-2026"
+  description: "" # TODO
+  talks:
+    - id: "joe-stein-rails-world-2026"
+      title: "Heirloom: Inheriting and maintaining SuperDiff"
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "joe-stein-rails-world-2026"
+      speakers:
+        - Joe Stein
+
+    - id: "joseph-hale-rails-world-2026"
+      title: "The Parable of the Calendar: Taming scary code"
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "joseph-hale-rails-world-2026"
+      speakers:
+        - Joseph Hale
+
 - id: "josef-strzibny-rails-world-2026"
   title: "Kamal Deep Dive"
   raw_title: "Kamal Deep Dive - Josef Strzibny"
   date: "2026-09-24"
+  start_time: "14:45"
+  end_time: "15:15"
   published_at: "2026-10-01T16:03:39Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -334,6 +525,8 @@
   title: "I Didn't Get MCP, So I Built My Way Through It"
   raw_title: "I Didn't Get MCP, So I Built My Way Through It - Enrique Mogollan"
   date: "2026-09-24"
+  start_time: "14:45"
+  end_time: "15:15"
   published_at: "2026-10-01T16:03:42Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -345,10 +538,39 @@
   speakers:
     - Enrique Mogollán
 
+- id: "lightning-talks-block-6-rails-world-2026"
+  title: "Lightning Talks (Block 6)"
+  kind: "lightning_talk"
+  date: "2026-09-24"
+  start_time: "15:15"
+  end_time: "15:45"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "lightning-talks-block-6-rails-world-2026"
+  description: "" # TODO
+  talks:
+    - id: "sam-schmidt-rails-world-2026"
+      title: "PHP is your favorite language"
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "sam-schmidt-rails-world-2026"
+      speakers:
+        - Sam Schmidt
+
+    - id: "rich-steinmetz-rails-world-2026"
+      title: "Next-level community building: How the Rails.Builders build Rails.Builders in the \"Slack IDE\""
+      kind: "lightning_talk"
+      video_provider: "parent"
+      video_id: "rich-steinmetz-rails-world-2026"
+      speakers:
+        - Rich Steinmetz
+
 - id: "jenny-shen-rails-world-2026"
   title: "The RubyGems Compact Index: What Powers Every bundle install"
   raw_title: "The RubyGems Compact Index: What Powers Every `bundle install` - Jenny Shen"
   date: "2026-09-24"
+  start_time: "15:45"
+  end_time: "16:15"
   published_at: "2026-10-01T16:03:42Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -364,6 +586,8 @@
   title: "Harness Engineering on Rails"
   raw_title: "Harness Engineering on Rails - Joël Quenneville"
   date: "2026-09-24"
+  start_time: "15:45"
+  end_time: "16:15"
   published_at: "2026-10-01T16:03:39Z"
   announced_at: "2026-06-22"
   language: "English"
@@ -380,6 +604,8 @@
   raw_title: "Rails World 2026 Closing Keynote - Aaron Patterson"
   kind: "keynote"
   date: "2026-09-24"
+  start_time: "16:30"
+  end_time: "17:30"
   published_at: "2026-09-27T23:01:35Z"
   announced_at: "2026-06-22"
   language: "English"
