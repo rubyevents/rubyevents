@@ -21,6 +21,8 @@
             <%= @event_series.static_metadata.all_youtube_channels.filter_map { |c| c["handle"].presence || c["name"].presence }.join(", ") %>
           <% end %>
         </h3>
+
+        <%= render Ui::SocialLinksComponent.new(@event_series.static_metadata, variant: :inline) %>
       </div>
     </div>
 

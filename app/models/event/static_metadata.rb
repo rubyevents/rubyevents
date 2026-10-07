@@ -4,6 +4,7 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
   end
 
   delegate :published_date, :home_sort_date, :time_zone, to: :static_repository, allow_nil: true
+  delegate :facebook, :github, :luma, :mastodon, :meetup, :twitter, to: :static_repository, allow_nil: true
 
   def kind
     return static_repository.kind if static_repository&.kind
