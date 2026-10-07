@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
-class VideoSchema < RubyLLM::Schema
+class VideoSchema < ApplicationSchema
+  data_file "**/videos.yml", selector: "[]"
+
   string :id, description: "Unique identifier for the video", required: true
+  string :old_id, description: "Previous id, kept so production records can be migrated to the new id on the next seed", required: false
   string :title, description: "Title of the talk"
   string :raw_title, description: "Original/raw title from the video source", required: false
   string :original_title, description: "Original title in native language", required: false
@@ -15,7 +18,8 @@ class VideoSchema < RubyLLM::Schema
 
   string :event_name, description: "Name of the event (e.g., 'RailsConf 2024')", required: false
   string :date, description: "Date of the talk (YYYY-MM-DD format)", required: true, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
-  string :time, description: "Time of the talk", required: false
+  string :start_time, description: "Scheduled start time of the talk", required: false, pattern: "^\\d{2}:\\d{2}$"
+  string :end_time, description: "Scheduled end time of the talk", required: false, pattern: "^\\d{2}:\\d{2}$"
   string :published_at, description: "Date when the video was published (YYYY-MM-DD format)", required: false, min_length: 1
   string :announced_at, description: "Date when the talk was announced", required: false, min_length: 1
   string :location, description: "Location within the venue", required: false

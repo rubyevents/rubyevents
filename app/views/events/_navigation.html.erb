@@ -1,4 +1,8 @@
-<div role="tablist" class="mb-12 tabs tabs-bordered">
+<% if (yaml_link = data_file_link_for(event, file: current_event_data_file)) %>
+  <div class="mb-2 flex justify-end"><%= yaml_link %></div>
+<% end %>
+
+<div role="tablist" class="tabs tabs-bordered mb-12">
   <%= active_link_to "Overview", event_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
 
   <% if event.meetup? %>
@@ -58,10 +62,11 @@
   <% if event.conference? || event.cfps.any? %>
     <%= active_link_to event_cfp_index_path(event), class: class_names("tab", {"text-red-500" => event.cfps.none?}), active_class: "tab-active", role: "tab" do %>
       <% if event.cfps.open.any? %>
-        CFP <span class="text-green-600 ml-1"> (open)</span>
+        CFP <span class="ml-1 text-green-600"> (open)</span>
       <% else %>
         CFP
       <% end %>
+
       <% if event.cfps.none? %>
         <%= fa("question-circle", size: :xs, class: "ml-1 fill-red-500") %>
       <% end %>

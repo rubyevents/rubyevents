@@ -5,7 +5,7 @@ module Static
     class AssetDimensions
       PATTERNS = ["**/*.webp"].freeze
 
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path.to_s
       end
 

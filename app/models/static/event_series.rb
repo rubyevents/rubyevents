@@ -36,13 +36,17 @@ module Static
         all.each { |series| series.import_series!(index: index) }
       end
 
+      def create(name:, slug: nil, **attributes)
+        super(id: slug || name.parameterize, name: name, **attributes)
+      end
+
       def find_or_create_by(name:, **attributes)
-        find_by_slug(name.parameterize) || create(name: name, **attributes)
+        find_by_slug(attributes[:slug] || name.parameterize) || create(name: name, **attributes)
       end
     end
 
     def slug
-      @slug ||= File.basename(File.dirname(file_path))
+      @slug ||= self["id"]
     end
 
     def event_series_record
@@ -86,10 +90,9 @@ module Static
     has_many :events, foreign_key: :series_slug
 
     def persist_path
-      slug_value = self["name"]&.parameterize
-      return nil unless slug_value
+      return nil if self["id"].blank?
 
-      File.join(self.class.base_path, slug_value, "series.yml")
+      File.join(self.class.base_path, self["id"], "series.yml")
     end
   end
 end

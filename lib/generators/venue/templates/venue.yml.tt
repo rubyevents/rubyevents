@@ -18,10 +18,12 @@ coordinates:
   latitude: <%= @geocoded_address&.latitude %><%- if @geocoded_address&.latitude.nil? -%>.NAN # TODO<%- end %>
   longitude: <%= @geocoded_address&.longitude %><%- if @geocoded_address&.longitude.nil? -%>.NAN # TODO<%- end %>
 
+<%- if geocoded_address.present? -%>
 maps:
-  google: ""
-  apple: ""
-  openstreetmap: ""
+  google: <%= quote google_maps %>
+  apple: <%= quote apple_maps %>
+  openstreetmap: <%= quote openstreetmap_maps %>
+<%- end -%>
 
 <%- if options[:locations] -%>
 locations:

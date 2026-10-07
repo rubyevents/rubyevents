@@ -9,6 +9,19 @@ class CFPController < ApplicationController
       cfps = cfps.joins(:event).where(events: {kind: params[:kind]})
     end
 
-    @events = cfps.map(&:event).group_by(&:kind).values.flatten
+    respond_to do |format|
+      format.html do
+        @events = cfps.map(&:event).group_by(&:kind).values.flatten
+      end
+      format.ics do
+        calendar = Icalendar::Calendar.new
+
+        cfps.with_dates.each do |cfp|
+          calendar.add_event(cfp.to_ical)
+        end
+
+        render plain: calendar.to_ical
+      end
+    end
   end
 end

@@ -30,6 +30,7 @@
 #  thumbnail_xl                  :string           default(""), not null
 #  thumbnail_xs                  :string           default(""), not null
 #  title                         :string           default(""), not null, indexed
+#  transcript_checked_at         :datetime
 #  video_availability_checked_at :datetime
 #  video_provider                :string           default("youtube"), not null, indexed => [date]
 #  video_unavailable_at          :datetime
@@ -97,15 +98,15 @@ class Talk < ApplicationRecord
 
   has_many :aliases, as: :aliasable, dependent: :destroy
 
-  has_one :talk_transcript, class_name: "Talk::Transcript", dependent: :destroy
-  accepts_nested_attributes_for :talk_transcript
-  delegate :transcript, :raw_transcript, :enhanced_transcript, to: :talk_transcript, allow_nil: true
+  has_many :talk_transcripts, class_name: "Talk::Transcript", dependent: :destroy
+  accepts_nested_attributes_for :talk_transcripts
 
   # associated objects
   has_object :agents
   has_object :downloader
   has_object :thumbnails
   has_object :similar_recommender
+  has_object :youtube_transcript
 
   # validations
   validates :title, presence: true
@@ -122,11 +123,16 @@ class Talk < ApplicationRecord
   WATCHABLE_PROVIDERS = ["youtube", "mp4", "vimeo"]
   UNPUBLISHED_PROVIDERS = ["not_recorded", "scheduled", "not_published"]
   SUPPLEMENTARY_KINDS = ["trailer", "recap", "aftermovie"]
+  NON_RECOMMENDABLE_KINDS = SUPPLEMENTARY_KINDS + ["intro", "outro", "trailer", "recap", "aftermovie"]
+  TRANSCRIPT_RECHECK_AFTER = 3.months
 
   KIND_LABELS = {
     "keynote" => "Keynote",
     "talk" => "Talk",
     "lightning_talk" => "Lightning Talk",
+    "open_mic" => "Open Mic",
+    "announcement" => "Announcement",
+    "city_pitch" => "City Pitch",
     "panel" => "Panel",
     "workshop" => "Workshop",
     "gameshow" => "Gameshow",
@@ -149,14 +155,17 @@ class Talk < ApplicationRecord
 
   attribute :kind, :string
   enum :kind,
-    %w[keynote talk lightning_talk panel workshop gameshow podcast q_and_a discussion fireside_chat
-      interview award demo trailer recap aftermovie intro outro].index_by(&:itself)
+    %w[keynote talk lightning_talk open_mic announcement city_pitch panel workshop gameshow podcast
+      q_and_a discussion fireside_chat interview award demo trailer recap aftermovie intro outro].index_by(&:itself)
 
   def self.speaker_role_titles
     {
       keynote: "Keynote Speaker",
       talk: "Speaker",
       lightning_talk: "Lightning Talk Speaker",
+      open_mic: "Open Mic Speaker",
+      announcement: "Presenter",
+      city_pitch: "City Pitcher",
       panel: "Panelist",
       discussion: "Panelist",
       gameshow: "Game Show Host",
@@ -194,7 +203,6 @@ class Talk < ApplicationRecord
 
   # jobs
   performs :update_from_yml_metadata!
-  performs :fetch_and_update_raw_transcript!, retries: 3
   performs :fetch_duration_from_youtube!
 
   # normalization
@@ -204,36 +212,51 @@ class Talk < ApplicationRecord
 
   # ensure that during the reindex process the associated records are eager loaded
   scope :without_raw_transcript, -> {
-    joins(:talk_transcript)
+    joins(:talk_transcripts)
       .where(%(
         talk_transcripts.raw_transcript IS NULL
         OR talk_transcripts.raw_transcript = ''
         OR talk_transcripts.raw_transcript = '[]'
       ))
+      .distinct
   }
+
   scope :with_raw_transcript, -> {
-    joins(:talk_transcript)
+    joins(:talk_transcripts)
       .where(%(
         talk_transcripts.raw_transcript IS NOT NULL
         AND talk_transcripts.raw_transcript != '[]'
       ))
+      .distinct
   }
+
   scope :without_enhanced_transcript,
     -> {
-      joins(:talk_transcript)
+      joins(:talk_transcripts)
         .where(%(
           talk_transcripts.enhanced_transcript IS NULL
           OR talk_transcripts.enhanced_transcript = ''
           OR talk_transcripts.enhanced_transcript = '[]'
         ))
+        .distinct
     }
+
   scope :with_enhanced_transcript, -> {
-    joins(:talk_transcript)
+    joins(:talk_transcripts)
       .where(%(
         talk_transcripts.enhanced_transcript IS NOT NULL
         AND talk_transcripts.enhanced_transcript != '[]'
       ))
+      .distinct
   }
+
+  scope :pending_transcript, -> {
+    youtube
+      .left_joins(:talk_transcripts)
+      .where(talk_transcripts: {id: nil})
+      .where("transcript_checked_at IS NULL OR transcript_checked_at < ?", TRANSCRIPT_RECHECK_AFTER.ago)
+  }
+
   scope :with_summary, -> { where("summary IS NOT NULL AND summary != ''") }
   scope :without_summary, -> { where("summary IS NULL OR summary = ''") }
   scope :with_duration, -> { where.not(duration_in_seconds: nil) }
@@ -274,6 +297,30 @@ class Talk < ApplicationRecord
 
   def orphaned?
     static_id.blank? || self.class.all_static_ids.exclude?(static_id)
+  end
+
+  def transcript_languages
+    talk_transcripts.map(&:language)
+  end
+
+  def talk_transcript(language: self.language)
+    transcripts = talk_transcripts.to_a
+    transcripts.find { |transcript| transcript.language == language } ||
+      transcripts.find { |transcript| transcript.language == self.language } ||
+      transcripts.find { |transcript| transcript.language == "en" } ||
+      transcripts.first
+  end
+
+  def transcript(language: self.language)
+    talk_transcript(language:)&.transcript
+  end
+
+  def raw_transcript(language: self.language)
+    talk_transcript(language:)&.raw_transcript
+  end
+
+  def enhanced_transcript(language: self.language)
+    talk_transcript(language:)&.enhanced_transcript
   end
 
   def published?
@@ -388,7 +435,7 @@ class Talk < ApplicationRecord
       return url
     end
 
-    "#{request.protocol}#{request.host}:#{request.port}/#{url}"
+    "#{request.protocol}#{request.host}:#{request.port}#{url}"
   end
 
   def thumbnail(size = :thumbnail_lg)
@@ -400,8 +447,12 @@ class Talk < ApplicationRecord
       end
     end
 
-    if Rails.application.assets.load_path.find("thumbnails/#{video_id}.webp")
-      return Router.image_path("thumbnails/#{video_id}.webp")
+    if event
+      asset_path = ["thumbnails", event.slug, parent_talk&.static_id, "#{video_id}.webp"].compact.join("/")
+
+      if Rails.application.assets.load_path.find(asset_path)
+        return Router.image_path(asset_path)
+      end
     end
 
     if vimeo?
@@ -589,15 +640,6 @@ class Talk < ApplicationRecord
     static_metadata.try("event_name") || event.name
   end
 
-  def fetch_and_update_raw_transcript!
-    youtube_transcript = YouTube::Transcript.get(video_id)
-    transcript = talk_transcript || Talk::Transcript.new(talk: self)
-
-    if youtube_transcript.present?
-      transcript.update!(raw_transcript: ::Transcript.create_from_youtube_transcript(youtube_transcript))
-    end
-  end
-
   def fetch_duration_from_youtube!
     return unless youtube?
 
@@ -688,7 +730,9 @@ class Talk < ApplicationRecord
       event_name: event_name,
       thumbnail_url: thumbnail_url(size: :thumbnail_sm, request: request),
       speakers: speakers.map { |speaker| speaker.to_mobile_json(request) },
-      url: Router.talk_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
+      url: Router.talk_url(self, host: "#{request.protocol}#{request.host}:#{request.port}"),
+      video_provider: video_provider,
+      video_url: provider_url
     }
   end
 

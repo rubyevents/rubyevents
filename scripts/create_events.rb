@@ -1,3 +1,5 @@
+# TODO: remove this script
+
 # start this script with the rails runner command
 # $ rails runner scripts/create_events.rb
 #
@@ -7,7 +9,7 @@
 
 def create_events_for_series(series_file_path)
   series_slug = File.basename(File.dirname(series_file_path))
-  series_data = YAML.load_file(series_file_path)
+  series_data = Yerba.parse_file(series_file_path).to_h
 
   channels = Array(series_data["youtube_channels"])
   return if channels.empty?
@@ -36,7 +38,8 @@ def create_events_for_series(series_file_path)
     end
 
     FileUtils.mkdir_p(event_dir)
-    File.write(event_file, YAML.dump(playlist.to_h.except(:videos_count, :metadata_parser, :slug).stringify_keys))
+    event_data = playlist.to_h.except(:videos_count, :metadata_parser, :slug).stringify_keys
+    Yerba::Document.from(event_data, path: event_file).save!
     puts "  Created: #{playlist.slug}/event.yml"
   end
 end

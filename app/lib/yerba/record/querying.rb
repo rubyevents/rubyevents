@@ -82,11 +82,13 @@ module Yerba
           records = Dir.glob(resolved_glob).sort.flat_map do |absolute_path|
             document = Yerba::Record::Document.new(absolute_path)
             data = document.yerba.to_a
-            items = data.is_a?(Array) ? data : [data]
+            items = data.is_a?(Array) ? data : [data].compact
 
             items.each_with_index.map do |_item, index|
               new(document: document, index: index)
             end
+          rescue Errno::ENOENT
+            []
           end
 
           RecordCollection.new(records)

@@ -5,7 +5,7 @@ module Static
     class SpeakerExists
       PATTERNS = ["**/videos.yml"].freeze
 
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path.to_s.sub("#{Rails.root}/", "")
       end
 
@@ -31,6 +31,10 @@ module Static
             line: scalar.line || 1
           )
         end
+      end
+
+      def self.warmup
+        errors
       end
 
       def self.reset!

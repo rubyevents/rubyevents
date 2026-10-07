@@ -35,11 +35,10 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-  # Enable serving of images with full URLs
-  config.asset_host = "http://localhost:3000"
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  port = ENV.fetch("PORT") { 3000 }
   config.asset_host = lambda { |source, request = nil|
-    request&.host&.include?("localhost") ? "http://localhost:3000" : "#{request&.protocol}#{request&.host_with_port}"
+    request&.host&.include?("localhost") ? "http://localhost:#{port}" : "#{request&.protocol}#{request&.host_with_port}"
   }
 
   # Don't care if the mailer can't send.
@@ -49,7 +48,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # Set localhost to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = {host: "localhost", port: 3000}
+  config.action_mailer.default_url_options = {host: "localhost", port: port}
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

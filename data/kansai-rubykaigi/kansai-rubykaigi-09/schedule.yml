@@ -1,0 +1,96 @@
+# docs/ADDING_SCHEDULES.md
+---
+days:
+  - name: "Day 1"
+    date: "2026-07-18"
+    grid:
+      - start_time: "09:00"
+        end_time: "10:00"
+        slots: 1
+        items:
+          - "Door Open & 受付"
+
+      - start_time: "10:00"
+        end_time: "10:10"
+        slots: 1
+        items:
+          - "Opening"
+
+      - start_time: "10:10"
+        end_time: "10:40"
+        slots: 1
+
+      - start_time: "10:50"
+        end_time: "11:10"
+        slots: 1
+
+      - start_time: "11:20"
+        end_time: "11:40"
+        slots: 1
+
+      - start_time: "11:40"
+        end_time: "13:10"
+        slots: 1
+        items:
+          - "ランチ"
+
+      - start_time: "13:10"
+        end_time: "13:30"
+        slots: 1
+
+      - start_time: "13:40"
+        end_time: "14:00"
+        slots: 1
+
+      - start_time: "14:10"
+        end_time: "14:30"
+        slots: 1
+
+      - start_time: "14:30"
+        end_time: "14:50"
+        slots: 1
+        items:
+          - "休憩"
+
+      - start_time: "14:50"
+        end_time: "15:10"
+        slots: 1
+
+      - start_time: "15:20"
+        end_time: "15:40"
+        slots: 1
+
+      - start_time: "15:50"
+        end_time: "16:10"
+        slots: 1
+
+      - start_time: "16:10"
+        end_time: "16:30"
+        slots: 1
+        items:
+          - "休憩"
+
+      - start_time: "16:30"
+        end_time: "17:20"
+        slots: 1
+
+      - start_time: "17:30"
+        end_time: "17:35"
+        slots: 1
+
+      - start_time: "17:35"
+        end_time: "18:05"
+        slots: 1
+
+      - start_time: "18:05"
+        end_time: "18:20"
+        slots: 1
+        items:
+          - "Closing"
+
+      - start_time: "19:00"
+        end_time: "21:00"
+        slots: 1
+        items:
+          - title: "AfterParty"
+            description: "Join us for drinks and networking!"

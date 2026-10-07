@@ -1,33 +1,24 @@
 # Website: https://rubyconf.africa/
 ---
 
-- id: "sanmi-amos-keynote-rubyconf-africa-2026"
+- id: "sanmi-amos-rubyconf-africa-2026"
   title: "Keynote: Sanmi Amos"
   kind: "keynote"
   date: "2026-08-21"
   language: "English"
   video_provider: "scheduled"
-  video_id: "sanmi-amos-keynote-rubyconf-africa-2026"
+  video_id: "sanmi-amos-rubyconf-africa-2026"
   description: "" # TODO
   speakers:
     - Sanmi Amos
 
-- id: "denis-sellu-rubyconf-africa-2026"
-  title: "Talk by Denis Sellu" # TODO
-  date: "2026-08-21"
-  language: "English"
-  video_provider: "scheduled"
-  video_id: "denis-sellu-rubyconf-africa-2026"
-  description: "" # TODO
-  speakers:
-    - Denis Sellu
-
 - id: "valeria-bosibori-rubyconf-africa-2026"
   title: "Building a Community"
   date: "2026-08-21"
+  published_at: "2026-09-14T21:00:26Z"
   language: "English"
-  video_provider: "scheduled"
-  video_id: "valeria-bosibori-rubyconf-africa-2026"
+  video_provider: "youtube"
+  video_id: "r9Q8syWkuqE"
   description: |-
     Community can start small but with intention, it can grow into an ecosystem that develops people, not just gathers them.
 
@@ -35,24 +26,23 @@
   speakers:
     - Valeria Bosibori
 
-- id: "okura-masafumi-workshop-rubyconf-africa-2026"
-  title: "Ruby for complete beginners WORKSHOP"
-  kind: "workshop"
+- id: "cristian-planas-rubyconf-africa-2026"
+  title: "The Three Villains of Rails Scalability, and How to Defeat Them"
   date: "2026-08-21"
   language: "English"
   video_provider: "scheduled"
-  video_id: "okura-masafumi-workshop-rubyconf-africa-2026"
-  description: |-
-    This is a workshop for beginners. Not only for "Ruby" beginners, but programming beginners as well. Ruby is the best language to learn modern concepts of programming and how code works. Having run more than 10 Ruby workshops in Japan, I prepare failing test cases with Minitest and let attendees write the code that makes the tests green.
+  video_id: "cristian-planas-rubyconf-africa-2026"
+  description: "" # TODO
   speakers:
-    - OKURA Masafumi
+    - Cristian Planas
 
 - id: "victor-turuthi-rubyconf-africa-2026"
   title: "The Reviewable Codebase: Architecture and Performance Gates in Ruby"
   date: "2026-08-21"
+  published_at: "2026-09-10T09:01:13Z"
   language: "English"
-  video_provider: "scheduled"
-  video_id: "victor-turuthi-rubyconf-africa-2026"
+  video_provider: "youtube"
+  video_id: "A6q4_yDPXNE"
   description: |-
     The bottleneck has shifted from writing code to trusting it. We'll cover:
 
@@ -66,37 +56,72 @@
 - id: "bernard-banta-rubyconf-africa-2026"
   title: "Sanarei: Offline Web Browsing with Ruby"
   date: "2026-08-21"
+  published_at: "2026-09-22T10:23:47Z"
   language: "English"
-  video_provider: "scheduled"
-  video_id: "bernard-banta-rubyconf-africa-2026"
+  video_provider: "youtube"
+  video_id: "_-xry-fF9Pk"
   description: |-
     This talk introduces Sanarei, a Ruby middleware that leverages USSD to enable offline-friendly web experiences on basic mobile phones. Attendees will learn how to build web applications that function without internet access and how to extend digital services to billions of underserved users worldwide. Discover how Ruby can help drive meaningful financial and digital inclusion.
   speakers:
     - Bernard Banta
 
-- id: "cristian-planas-rubyconf-africa-2026"
-  title: "The Three Villains of Rails Scalability, and How to Defeat Them"
+- id: "annglorious-mueni-rubyconf-africa-2026"
+  title: "From Frontend to Full Stack: Building Real-World Applications That Actually Work"
   date: "2026-08-21"
+  published_at: "2026-09-07T09:37:08Z"
   language: "English"
-  video_provider: "scheduled"
-  video_id: "cristian-planas-rubyconf-africa-2026"
-  description: "" # TODO
-  speakers:
-    - Cristian Planas
+  video_provider: "youtube"
+  video_id: "kxM6HEkqs0E"
+  description: |-
+    What does it really take to move from frontend development to building complete, real-world applications?
 
-- id: "nicolo-rebughini-rubyconf-africa-2026"
-  title: "Accidentally Building a Neural Network: A Ruby Product Recommendation Journey"
+    In this talk at RubyConf Africa 2026, AnnGlorius Mweni explores the journey from frontend development to fullstack engineering, focusing on what it takes to build applications that work beyond the demo.
+
+    AnnGlorius shares practical insights into connecting the different pieces of an application, thinking beyond the user interface, and approaching fullstack development with a focus on building reliable, useful products.
+
+    Whether you're a frontend developer looking to expand your skills or an aspiring fullstack engineer, this talk offers practical perspectives on making that transition and building applications for the real world.
+  speakers:
+    - AnnGlorious Mueni
+
+- id: "denis-sellu-rubyconf-africa-2026"
+  title: "Your Agent Doesn't Need a Bigger Model"
   date: "2026-08-21"
   language: "English"
   video_provider: "scheduled"
-  video_id: "nicolo-rebughini-rubyconf-africa-2026"
+  video_id: "denis-sellu-rubyconf-africa-2026"
   description: "" # TODO
   speakers:
-    - Nicolò Rebughini
+    - Denis Sellu
+
+- id: "okura-masafumi-rubyconf-africa-2026"
+  title: "Ruby for complete beginners WORKSHOP"
+  kind: "workshop"
+  date: "2026-08-22"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "okura-masafumi-rubyconf-africa-2026"
+  description: |-
+    This is a workshop for beginners. Not only for "Ruby" beginners, but programming beginners as well. Ruby is the best language to learn modern concepts of programming and how code works. Having run more than 10 Ruby workshops in Japan, I prepare failing test cases with Minitest and let attendees write the code that makes the tests green.
+  speakers:
+    - OKURA Masafumi
+
+- id: "amani-kanu-rubyconf-africa-2026"
+  title: "Beyond Code: From Ruby Engineers to AI-Native Builders"
+  date: "2026-08-22"
+  published_at: "2026-09-18T12:49:10Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "eVVStzqpSb4"
+  description: |-
+    AI is changing how software teams build, ship, and scale products. But the future does not belong to developers who only use AI tools. It belongs to engineers who can rethink workflows, lead with clarity, and combine technical skill with product thinking, community, and business impact.
+
+    In this session, I will share practical lessons from engineering, solution architecture, DevRel, and community building across African tech ecosystems. The talk will explore how Ruby and Rails developers can grow beyond writing code into becoming AI-native builders who design better systems, move faster, mentor others, and create stronger opportunities for the next generation of African developers.
+  speakers:
+    - Amani Kanu
 
 - id: "chris-hasinski-rubyconf-africa-2026"
   title: "Cool Things You Can Do With Embeddings"
-  date: "2026-08-21"
+  date: "2026-08-22"
   language: "English"
   video_provider: "scheduled"
   video_id: "chris-hasinski-rubyconf-africa-2026"
@@ -104,9 +129,30 @@
   speakers:
     - Chris Hasinski
 
+- id: "mike-dalton-rubyconf-africa-2026"
+  title: "Hotwire Native: Develop iOS and Android apps with Ruby on Rails"
+  date: "2026-08-22"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "mike-dalton-rubyconf-africa-2026"
+  description: "" # TODO
+  speakers:
+    - Mike Dalton
+
+- id: "paul-ogunda-rubyconf-africa-2026"
+  title: "Let's not talk about Rails"
+  date: "2026-08-22"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "paul-ogunda-rubyconf-africa-2026"
+  description: |-
+    Many of us use Rails, but what else exists in terms of web development, hanami is an exciting web framework, that has a different take on what Rails does. I will tell you more about hanami and why you should take a look at it.
+  speakers:
+    - Paul Ogunda
+
 - id: "fh-ndiritu-rubyconf-africa-2026"
   title: "In the Age of abundance, are we bottlenecks?"
-  date: "2026-08-21"
+  date: "2026-08-22"
   language: "English"
   video_provider: "scheduled"
   video_id: "fh-ndiritu-rubyconf-africa-2026"
@@ -121,33 +167,68 @@
   speakers:
     - FH Ndiritu
 
-- id: "mike-dalton-rubyconf-africa-2026"
-  title: "Hotwire Native: Develop iOS and Android apps with Ruby on Rails"
-  date: "2026-08-21"
+- id: "naijeria-toweett-rubyconf-africa-2026"
+  title: "Panel: Women Shaping The Tech African Future"
+  kind: "panel"
+  date: "2026-08-22"
   language: "English"
   video_provider: "scheduled"
-  video_id: "mike-dalton-rubyconf-africa-2026"
+  video_id: "naijeria-toweett-rubyconf-africa-2026"
   description: "" # TODO
   speakers:
-    - Mike Dalton
+    - Naijeria Toweett
 
-- id: "paul-ogunda-rubyconf-africa-2026"
-  title: "Let's not talk about Rails"
-  date: "2026-08-21"
+- id: "charles-muthui-rubyconf-africa-2026"
+  title: "MC/ Lightning Talks"
+  kind: "lightning_talk"
+  date: "2026-08-22"
   language: "English"
   video_provider: "scheduled"
-  video_id: "paul-ogunda-rubyconf-africa-2026"
-  description: |-
-    Many of us use Rails, but what else exists in terms of web development, hanami is an exciting web framework, that has a different take on what Rails does. I will tell you more about hanami and why you should take a look at it.
-  speakers:
-    - Paul Ogunda
-
-- id: "annglorious-mueni-rubyconf-africa-2026"
-  title: "From Frontend to Full Stack: Building Real-World Applications That Actually Work"
-  date: "2026-08-21"
-  language: "English"
-  video_provider: "scheduled"
-  video_id: "annglorious-mueni-rubyconf-africa-2026"
+  video_id: "charles-muthui-rubyconf-africa-2026"
   description: "" # TODO
   speakers:
-    - AnnGlorious Mueni
+    - Charles Muthui
+
+- id: "peter-mghendi-rubyconf-africa-2026"
+  title: "Lightning Talk: Kopokopo"
+  kind: "lightning_talk"
+  date: "2026-08-22"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "peter-mghendi-rubyconf-africa-2026"
+  description: "" # TODO
+  speakers:
+    - Peter Mghendi
+
+- id: "brandon-kimathi-rubyconf-africa-2026"
+  title: "Lightning Talk: Kodes"
+  kind: "lightning_talk"
+  date: "2026-08-22"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "brandon-kimathi-rubyconf-africa-2026"
+  description: "" # TODO
+  speakers:
+    - Brandon Kimathi
+
+- id: "joseph-mwaniki-rubyconf-africa-2026"
+  title: "Lightning Talk: EasyQ&A"
+  kind: "lightning_talk"
+  date: "2026-08-22"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "joseph-mwaniki-rubyconf-africa-2026"
+  description: "" # TODO
+  speakers:
+    - Joseph Mwaniki
+
+- id: "saeki-mototsune-rubyconf-africa-2026"
+  title: "Lightning Talk: Playing with Spinel"
+  kind: "lightning_talk"
+  date: "2026-08-22"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "saeki-mototsune-rubyconf-africa-2026"
+  description: "" # TODO
+  speakers:
+    - Saeki Mototsune

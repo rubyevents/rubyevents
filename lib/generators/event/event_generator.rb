@@ -4,15 +4,17 @@ require "generators/event_base"
 
 class EventGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
+  TOOL_DESC = "Create an event.yml file for an event series, and optionally generate a venue.yml file for the venue."
+
   class_option :title, type: :string, desc: "Event name", group: "Fields", required: true
   class_option :description, type: :string, desc: "Event description", group: "Fields"
   class_option :kind, type: :string, enum: Event.kinds.keys, desc: "Event kind (e.g. conference, meetup, workshop)", default: "conference", group: "Fields"
 
   # Dates
-  class_option :start_date, type: :string, desc: "Start date (YYYY-MM-DD)", required: true, group: "Fields"
-  class_option :end_date, type: :string, desc: "End date (YYYY-MM-DD)", required: true, group: "Fields"
+  class_option :start_date, type: :string, desc: "Start date (YYYY-MM-DD)", group: "Fields"
+  class_option :end_date, type: :string, desc: "End date (YYYY-MM-DD)", group: "Fields"
   class_option :announced_on, type: :string, desc: "Date when the event was announced (YYYY-MM-DD)", group: "Fields"
-  class_option :published_at, type: :string, desc: "Date when videos were published (YYYY-MM-DD)", group: "Fields"
+  class_option :recordings_published_date, type: :string, desc: "Date when the event's recordings were published (YYYY-MM-DD)", group: "Fields"
   class_option :date_precision, type: :string, enum: ["year", "month", "day"], desc: "Precision of the date (when exact dates are unknown)", group: "Fields"
 
   # Websites
@@ -38,8 +40,15 @@ class EventGenerator < Generators::EventBase
     @event_file_path ||= File.join(event_directory, "event.yml")
   end
 
+  def validate_options
+    return if meetup?
+
+    raise Thor::RequiredArgumentMissingError, "No value provided for required options '--start-date'" if options[:start_date].blank?
+    raise Thor::RequiredArgumentMissingError, "No value provided for required options '--end-date'" if options[:end_date].blank?
+  end
+
   def initialize_values
-    @year = Date.parse(options[:start_date]).year
+    @year = options[:start_date].present? ? Date.parse(options[:start_date]).year : nil
     @geocoded_address = nil
     @location = if options[:online]
       "online"
@@ -56,6 +65,10 @@ class EventGenerator < Generators::EventBase
 
   def copy_event_file
     template "event.yml.tt", event_file_path
+  end
+
+  def meetup?
+    options[:kind] == "meetup"
   end
 
   def generate_venue_file

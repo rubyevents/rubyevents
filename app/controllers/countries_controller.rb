@@ -39,7 +39,6 @@ class CountriesController < ApplicationController
     @cities = @country.cities.order(:name)
 
     @users = @country.users
-    @stamps = @country.stamps
     @continent = @country.continent
     @location = @country
 

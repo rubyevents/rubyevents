@@ -1,4 +1,4 @@
 <%= turbo_frame_tag "daily_visits" do %>
-  <h2 class="text-center mb-4">Daily visits</h2>
+  <h2 class="mb-4 text-center">Daily visits</h2>
   <%= area_chart @daily_visits, id: :daily_visits_chart, points: false, library: {showLine: false} %>
 <% end %>

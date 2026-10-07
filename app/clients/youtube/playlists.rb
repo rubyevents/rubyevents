@@ -29,6 +29,10 @@ module YouTube
       items
     end
 
+    def search(channel_id:, query:, limit: 25)
+      all(channel_id: channel_id, title_matcher: query).take(limit)
+    end
+
     private
 
     def string_to_regex(str)

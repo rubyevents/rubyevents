@@ -25,7 +25,7 @@ class Avo::Resources::Talk < Avo::BaseResource
       record.speakers.map(&:name)
     end
 
-    field :topics, as: :tags, hide_on: [:index, :forms] do
+    field :topic_tags, for_attribute: :topics, name: "Topics", as: :tags, hide_on: [:index, :forms] do
       record.topics.map(&:name)
     end
     field :updated_at, as: :date, sortable: true
@@ -81,6 +81,7 @@ class Avo::Resources::Talk < Avo::BaseResource
     field :thumbnail_lg, as: :external_image, hide_on: :index
     field :thumbnail_xl, as: :external_image, hide_on: :index
     field :speakers, as: :has_many, through: :user_talks, searchable: true, attach_scope: -> { query.order(name: :asc) }
+    field :topics, as: :has_many, searchable: true, attach_scope: -> { query.order(name: :asc) }
     field :raw_transcript, as: :textarea, hide_on: :index, format_using: -> { value&.to_text }, readonly: true
     field :enhanced_transcript, as: :textarea, hide_on: :index, format_using: -> { value&.to_text }, readonly: true
   end

@@ -1,60 +1,206 @@
 ---
-- id: "samuel-williams-deccan-queen-on-rails-2026"
-  title: "Talk by Samuel Williams" # TODO
+- id: "vipul-a-m-deccan-queen-on-rails-2026"
+  title: "Opening speech: How Deccan Queen began and why “Deccan Queen”"
+  kind: "intro"
   date: "2026-10-08"
+  start_time: "10:10"
+  end_time: "10:20"
   language: "English"
   video_provider: "scheduled"
-  video_id: "samuel-williams-deccan-queen-on-rails-2026"
+  video_id: "vipul-a-m-deccan-queen-on-rails-2026"
   description: "" # TODO
+  speakers:
+    - Vipul A M
+
+- id: "amanda-perino-deccan-queen-on-rails-2026"
+  title: "Welcome address"
+  kind: "intro"
+  date: "2026-10-08"
+  start_time: "10:20"
+  end_time: "10:30"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "amanda-perino-deccan-queen-on-rails-2026"
+  description: "" # TODO
+  speakers:
+    - Amanda Perino
+
+- id: "keynote-deccan-queen-on-rails-2026"
+  old_id: "samuel-williams-deccan-queen-on-rails-2026"
+  title: "Opening Keynote: When Rails Met Fibers: Migrating Sidekick from Puma to Falcon"
+  kind: "keynote"
+  date: "2026-10-08"
+  start_time: "10:30"
+  end_time: "11:15"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "keynote-deccan-queen-on-rails-2026"
+  description: ""
   speakers:
     - Samuel Williams
+    - Katie Lawhorn
+    - Tavian Barnes
 
-- id: "marco-roth-deccan-queen-on-rails-2026"
-  title: "Talk by Marco Roth" # TODO
+- id: "ratnadeep-deshmane-deccan-queen-on-rails-2026"
+  title: "Loop Engineering for Rails Devs: Teaching an AI Agent to Check Its Own Homework"
   date: "2026-10-08"
+  start_time: "11:25"
+  end_time: "11:55"
   language: "English"
   video_provider: "scheduled"
-  video_id: "marco-roth-deccan-queen-on-rails-2026"
-  description: "" # TODO
+  video_id: "ratnadeep-deshmane-deccan-queen-on-rails-2026"
+  description: ""
   speakers:
-    - Marco Roth
+    - Ratnadeep Deshmane
 
-- id: "adrian-marin-deccan-queen-on-rails-2026"
-  title: "Talk by Adrian Marin" # TODO
+- id: "pawel-strzalkowski-deccan-queen-on-rails-2026"
+  title: "From Prompt to Rails: An Online Rails App Generator"
   date: "2026-10-08"
+  start_time: "12:05"
+  end_time: "12:35"
   language: "English"
   video_provider: "scheduled"
-  video_id: "adrian-marin-deccan-queen-on-rails-2026"
-  description: "" # TODO
+  video_id: "pawel-strzalkowski-deccan-queen-on-rails-2026"
+  description: ""
   speakers:
-    - Adrian Marin
+    - Paweł Strzałkowski
 
-- id: "irina-nazarova-deccan-queen-on-rails-2026"
-  title: "Talk by Irina Nazarova" # TODO
+- id: "keshav-biswa-deccan-queen-on-rails-2026"
+  title: "Rails.event in Action: Subscribers and Dashboards"
   date: "2026-10-08"
+  start_time: "14:00"
+  end_time: "14:30"
   language: "English"
   video_provider: "scheduled"
-  video_id: "irina-nazarova-deccan-queen-on-rails-2026"
-  description: "" # TODO
+  video_id: "keshav-biswa-deccan-queen-on-rails-2026"
+  description: ""
   speakers:
-    - Irina Nazarova
-
-- id: "sam-ruby-deccan-queen-on-rails-2026"
-  title: "Talk by Sam Ruby" # TODO
-  date: "2026-10-08"
-  language: "English"
-  video_provider: "scheduled"
-  video_id: "sam-ruby-deccan-queen-on-rails-2026"
-  description: "" # TODO
-  speakers:
-    - Sam Ruby
+    - Keshav Biswa
 
 - id: "carmine-paolino-deccan-queen-on-rails-2026"
-  title: "Talk by Carmine Paolino" # TODO
+  title: "RubyLLM 2.0: Beyond Agents"
   date: "2026-10-08"
+  start_time: "14:40"
+  end_time: "15:10"
   language: "English"
   video_provider: "scheduled"
   video_id: "carmine-paolino-deccan-queen-on-rails-2026"
-  description: "" # TODO
+  description: ""
   speakers:
     - Carmine Paolino
+
+- id: "guest-panel-international-speakers-deccan-queen-on-rails-2026"
+  title: "Guest panel: international speakers"
+  kind: "panel"
+  date: "2026-10-08"
+  start_time: "15:20"
+  end_time: "15:50"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "guest-panel-international-speakers-deccan-queen-on-rails-2026"
+  description: ""
+  speakers:
+    - TODO
+
+- id: "marco-roth-deccan-queen-on-rails-2026"
+  title: "Closing Keynote: Herb in Rails 8.2: Your ERB Views, Now HTML-Aware"
+  kind: "keynote"
+  date: "2026-10-08"
+  start_time: "16:10"
+  end_time: "16:55"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "marco-roth-deccan-queen-on-rails-2026"
+  description: |-
+    With teams, companies, and open source projects adopting Herb in their daily workflows, the foundation is proving itself at scale and is on track to become an opt-in view engine in Rails 8.2.
+
+    This talk covers what Herb brings to Rails. How we made the integration possible, how we adapted and extended ActionView, and the toolchain and dev tools every Rails developer gets out of the box as a result.
+  speakers:
+    - Marco Roth
+
+- id: "sam-ruby-deccan-queen-on-rails-2026"
+  title: "Opening Keynote: The Hidden 4GL"
+  kind: "keynote"
+  date: "2026-10-09"
+  start_time: "10:30"
+  end_time: "11:15"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "sam-ruby-deccan-queen-on-rails-2026"
+  description: ""
+  speakers:
+    - Sam Ruby
+
+- id: "manu-janardhanan-deccan-queen-on-rails-2026"
+  title: "To Inertia or Not to Inertia"
+  date: "2026-10-09"
+  start_time: "11:25"
+  end_time: "11:55"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "manu-janardhanan-deccan-queen-on-rails-2026"
+  description: ""
+  speakers:
+    - Manu Janardhanan
+
+- id: "rohit-joshi-deccan-queen-on-rails-2026"
+  title: "Scaling Tool Calling in Rails: Semantic Discovery with RubyLLM and pgvector"
+  date: "2026-10-09"
+  start_time: "12:05"
+  end_time: "12:35"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "rohit-joshi-deccan-queen-on-rails-2026"
+  description: ""
+  speakers:
+    - Rohit Joshi
+
+- id: "vishwajeetsingh-desurkar-deccan-queen-on-rails-2026"
+  title: "I See Dead Models: what nobody tells you about running AI features in production"
+  date: "2026-10-09"
+  start_time: "12:45"
+  end_time: "13:15"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "vishwajeetsingh-desurkar-deccan-queen-on-rails-2026"
+  description: ""
+  speakers:
+    - Vishwajeetsingh Desurkar
+
+- id: "adrian-marin-deccan-queen-on-rails-2026"
+  title: "Show up"
+  date: "2026-10-09"
+  start_time: "14:15"
+  end_time: "15:00"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "adrian-marin-deccan-queen-on-rails-2026"
+  description: ""
+  speakers:
+    - Adrian Marin
+
+- id: "guest-panel-indian-speakers-deccan-queen-on-rails-2026"
+  title: "Guest panel: Indian speakers"
+  kind: "panel"
+  date: "2026-10-09"
+  start_time: "15:10"
+  end_time: "15:50"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "guest-panel-indian-speakers-deccan-queen-on-rails-2026"
+  description: ""
+  speakers:
+    - TODO
+
+- id: "irina-nazarova-deccan-queen-on-rails-2026"
+  title: "Closing Keynote: Agents on Rails: learnings from benchmarking AI models for the Rails Foundation"
+  kind: "keynote"
+  date: "2026-10-09"
+  start_time: "16:10"
+  end_time: "16:55"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "irina-nazarova-deccan-queen-on-rails-2026"
+  description: ""
+  speakers:
+    - Irina Nazarova

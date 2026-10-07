@@ -50,13 +50,30 @@ module Static
         record
       end
 
+      def create(series_slug:, title:, id: nil, slug: nil, **attributes)
+        series = Static::EventSeries.find_by_slug(series_slug)
+        raise ArgumentError, "Event series '#{series_slug}' not found" unless series
+
+        slug ||= title.parameterize
+
+        if id.present? && id != slug
+          raise ArgumentError, "id must match the event folder name ('#{slug}'), got '#{id}'"
+        end
+
+        record = new(id: slug, title: title, **attributes.reject { |_, value| value.nil? || value == "" || value == [] })
+        record.instance_variable_set(:@series_slug_override, series_slug)
+        record.save!
+
+        unload!
+
+        record
+      end
+
       def find_or_create_by(series_slug:, title:, **attributes)
         slug = attributes[:slug] || title.parameterize
 
         find_by_slug(slug) || create(series_slug: series_slug, title: title, **attributes)
       end
-
-      public
 
       def unload!
         super
@@ -143,7 +160,7 @@ module Static
     end
 
     def slug
-      @slug ||= self["slug"].presence || File.basename(File.dirname(file_path))
+      @slug ||= self["id"]
     end
 
     def imported?
@@ -167,7 +184,7 @@ module Static
     end
 
     def published_date
-      Date.parse(published_at)
+      Date.parse(recordings_published_date)
     rescue TypeError, Date::Error
       nil
     end
@@ -198,15 +215,17 @@ module Static
         return published_date
       end
 
-      if conference? && end_date.present?
+      if meetup?
+        return event_record.end_date if event_record.present?
+
+        return Time.at(0)
+      end
+
+      if end_date.present?
         return end_date
       end
 
-      if meetup? && event_record.present?
-        return event_record.end_date
-      end
-
-      if conference? && start_date.present?
+      if start_date.present?
         return start_date
       end
 
@@ -226,7 +245,6 @@ module Static
       import_videos!(event, index: index)
       import_sponsors!(event)
       import_involvements!(event)
-      import_transcripts!(event)
 
       Search::Backend.index(event) if index
 
@@ -251,6 +269,7 @@ module Static
         featured_background: featured_background,
         featured_color: featured_color,
         banner_background: banner_background,
+        recordings_published_date: published_date,
         home_sort_date: home_sort_date(event_record: event)
       )
 
@@ -284,15 +303,13 @@ module Static
 
       return unless File.exist?(cfp_file_path)
 
-      cfps = YAML.load_file(cfp_file_path)
+      cfps = Yerba.parse_file(cfp_file_path.to_s).to_a
 
       cfps.each do |cfp_data|
-        cfp = event.cfps.find_or_initialize_by(
-          link: cfp_data["link"],
-          open_date: cfp_data["open_date"]
-        )
+        cfp = event.cfps.find_or_initialize_by(link: cfp_data["link"])
         cfp.assign_attributes(
           name: cfp_data["name"],
+          open_date: cfp_data["open_date"],
           close_date: cfp_data["close_date"]
         )
 
@@ -307,10 +324,23 @@ module Static
       Static::Video.where_event_slug(slug).each do |video|
         video.import!(event: event, index: index)
       end
+
+      destroy_removed_talks!(event)
     rescue ActiveRecord::RecordInvalid => e
       puts "Couldn't save: #{talk_data["title"]} (#{talk_data["id"]}), error: #{e.message}"
       error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
       puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
+    end
+
+    def destroy_removed_talks!(event)
+      ids = Array(attributes["removed_talk_ids"])
+      return if ids.empty?
+
+      event.talks.where(static_id: ids).find_each do |talk|
+        puts "Removing talk #{talk.static_id}" unless Rails.env.test?
+
+        talk.destroy!
+      end
     end
 
     def import_sponsors!(event)
@@ -341,6 +371,11 @@ module Static
             organization ||= ::Organization.find_by_name_or_alias(sponsor["name"]) || ::Organization.find_by_slug_or_alias(sponsor["slug"]&.downcase)
             organization ||= ::Organization.find_or_initialize_by(name: sponsor["name"])
 
+            # Names like "フィヨルドブートキャンプ" parameterize to "", so fall back to the sponsor's slug
+            if organization.new_record? && sponsor["name"].to_s.parameterize.blank?
+              organization.slug = sponsor["slug"].to_s.parameterize
+            end
+
             organization.update(
               website: sponsor["website"],
               description: sponsor["description"],
@@ -350,7 +385,13 @@ module Static
             organization.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
             organization.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && organization.logo_url.blank?
 
-            organization = ::Organization.find_by_slug_or_alias(organization.slug) || ::Organization.find_by_name_or_alias(organization.name) unless organization.persisted?
+            # The organization could not be saved, so discard the pending website and logo_url changes
+            # and fall back to the record already in the database. Whatever an admin set by hand in
+            # production wins over what a sponsors.yml file happens to say.
+            unless organization.persisted?
+              organization = ::Organization.find_by_slug_or_alias(organization.slug) ||
+                ::Organization.find_by_name_or_alias(organization.name) || organization
+            end
 
             organization.save! if organization.changed? || organization.new_record?
 
@@ -440,41 +481,8 @@ module Static
       event.update!(event_involvements_attributes: event_involvements_attributes)
     end
 
-    def import_transcripts!(event)
-      return unless imported?
-      return unless event.transcripts_file.exist?
-
-      transcripts = event.transcripts_file.entries
-      return if transcripts.blank?
-
-      transcripts.each do |transcript_data|
-        video_id = transcript_data["video_id"]
-        cues = transcript_data["cues"]
-
-        next if video_id.blank? || cues.blank?
-
-        talk = event.talks.find_by(video_id: video_id)
-        next unless talk
-
-        transcript = ::Transcript.new
-        cues.each do |cue_data|
-          transcript.add_cue(
-            Cue.new(
-              start_time: cue_data["start_time"],
-              end_time: cue_data["end_time"],
-              text: cue_data["text"]
-            )
-          )
-        end
-
-        transcript_record = talk.talk_transcript || ::Talk::Transcript.new(talk: talk)
-        transcript_record.update_attributes(raw_transcript: transcript)
-        transcript_record.save! if transcript_record.changed? || transcript_record.new_record?
-      end
-    end
-
     def series_slug
-      @series_slug ||= relative_file_path.split("/")[-3]
+      @series_slug ||= @series_slug_override || relative_file_path&.split("/")&.[](-3)
     end
 
     def event_dir
@@ -482,15 +490,14 @@ module Static
     end
 
     def persist_path
-      series = @series_slug_override || self["series_slug"] || series_slug
-      event = self["slug"] || self["title"]&.parameterize
+      return nil if series_slug.blank? || self["id"].blank?
 
-      return nil unless series && event
-
-      File.join(self.class.base_path, series, event, "event.yml")
+      File.join(self.class.base_path, series_slug, self["id"], "event.yml")
     end
 
     def save!
+      self["id"] = self["title"]&.parameterize if new_record? && self["id"].blank?
+
       super
 
       if @was_new_record

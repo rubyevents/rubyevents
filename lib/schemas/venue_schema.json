@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VenueSchema",
   "type": "object",
   "properties": {
     "name": {
@@ -426,6 +428,5 @@
     "address",
     "coordinates"
   ],
-  "additionalProperties": false,
-  "strict": true
+  "additionalProperties": false
 }

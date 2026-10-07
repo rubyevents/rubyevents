@@ -479,10 +479,6 @@ class User < ApplicationRecord
     }
   end
 
-  def to_combobox_display
-    name
-  end
-
   def meta_description
     return "#{name}'s profile on RubyEvents.org" if talks_count.zero?
 

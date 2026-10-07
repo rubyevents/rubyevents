@@ -16,6 +16,9 @@ application.register("bookmark", BookmarkController)
 import Bridge__ButtonController from "./bridge/button_controller"
 application.register("bridge--button", Bridge__ButtonController)
 
+import Bridge__LiveActivityController from "./bridge/live_activity_controller"
+application.register("bridge--live-activity", Bridge__LiveActivityController)
+
 import Bridge__OauthController from "./bridge/oauth_controller"
 application.register("bridge--oauth", Bridge__OauthController)
 
@@ -73,6 +76,9 @@ application.register("scroll", ScrollController)
 import ScrollIntoViewController from "./scroll_into_view_controller"
 application.register("scroll-into-view", ScrollIntoViewController)
 
+import SlidesEmbedController from "./slides_embed_controller"
+application.register("slides-embed", SlidesEmbedController)
+
 import SplideController from "./splide_controller"
 application.register("splide", SplideController)
 
@@ -99,6 +105,9 @@ application.register("tooltip", TooltipController)
 
 import TopBannerController from "./top_banner_controller"
 application.register("top-banner", TopBannerController)
+
+import TranscriptController from "./transcript_controller"
+application.register("transcript", TranscriptController)
 
 import TransitionController from "./transition_controller"
 application.register("transition", TransitionController)

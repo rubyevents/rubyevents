@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ScheduleSchema",
   "type": "object",
   "properties": {
     "days": {
@@ -56,25 +58,11 @@
                           "description": {
                             "type": "string",
                             "description": "Description of the session"
-                          },
-                          "speakers": {
-                            "type": "array",
-                            "description": "List of speaker names",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "track": {
-                            "type": "string",
-                            "description": "Track name"
-                          },
-                          "room": {
-                            "type": "string",
-                            "description": "Room name/number"
                           }
                         },
                         "required": [
-                          "title"
+                          "title",
+                          "description"
                         ],
                         "additionalProperties": false
                       }
@@ -84,7 +72,8 @@
               },
               "required": [
                 "start_time",
-                "end_time"
+                "end_time",
+                "slots"
               ],
               "additionalProperties": false
             }
@@ -126,6 +115,5 @@
   "required": [
     "days"
   ],
-  "additionalProperties": false,
-  "strict": true
+  "additionalProperties": false
 }

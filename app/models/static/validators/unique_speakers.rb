@@ -3,8 +3,9 @@
 module Static
   module Validators
     class UniqueSpeakers
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       PATTERNS = [
@@ -26,7 +27,7 @@ module Static
       def validate
         return [] unless applicable?
 
-        speakers = Static::SpeakersFile.new(@file_path)
+        speakers = Static::SpeakersFile.new(@file_path, document: @document)
         errors = []
 
         errors += validate_same_name_duplicates(speakers)

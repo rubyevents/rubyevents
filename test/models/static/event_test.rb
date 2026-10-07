@@ -36,6 +36,35 @@ class Static::EventTest < ActiveSupport::TestCase
     assert event_record.talks.exists?
   end
 
+  test "import_videos! destroys talks listed under removed_talk_ids" do
+    Static::EventSeries.find_by_slug("helveticruby").import_series!
+    event = Static::Event.find_by_slug(SLUG)
+    event_record = event.import_event!
+    event.import_videos!(event_record)
+
+    removed_id = event_record.talks.first.static_id
+    kept_count = event_record.talks.count - 1
+
+    event.stub(:attributes, event.attributes.merge("removed_talk_ids" => [removed_id])) do
+      event.import_videos!(event_record)
+    end
+
+    assert_nil ::Talk.find_by(static_id: removed_id)
+    assert_equal kept_count, event_record.talks.reload.count
+  end
+
+  test "import_videos! leaves talks alone when removed_talk_ids is empty" do
+    Static::EventSeries.find_by_slug("helveticruby").import_series!
+    event = Static::Event.find_by_slug(SLUG)
+    event_record = event.import_event!
+    event.import_videos!(event_record)
+
+    count = event_record.talks.count
+    event.import_videos!(event_record)
+
+    assert_equal count, event_record.talks.reload.count
+  end
+
   test "import_sponsors!" do
     Static::EventSeries.find_by_slug("helveticruby").import_series!
     event = Static::Event.find_by_slug(SLUG)
@@ -55,13 +84,18 @@ class Static::EventTest < ActiveSupport::TestCase
     assert_equal "Party Sponsor", avo_sponsor.badge
   end
 
-  test "import_transcripts!" do
-    Static::EventSeries.find_by_slug("helveticruby").import_series!
-    event = Static::Event.find_by_slug(SLUG)
+  test "import_sponsors! imports a sponsor whose name was renamed to be slugifiable" do
+    Static::EventSeries.find_by_slug("kaigi-on-rails").import_series!
+    event = Static::Event.find_by_slug("kaigi-on-rails-2026")
     event_record = event.import_event!
-    event.import_videos!(event_record)
-    event.import_transcripts!(event_record)
-    assert ::Talk::Transcript.exists?
+
+    assert_nil Organization.find_by(name: "FjordBootCamp")
+
+    event.import_sponsors!(event_record)
+
+    organization = Organization.find_by(name: "FjordBootCamp")
+    assert_equal "fjordbootcamp", organization.slug
+    assert event_record.sponsors.exists?(organization: organization)
   end
 
   test "import_involvements!" do
@@ -72,11 +106,26 @@ class Static::EventTest < ActiveSupport::TestCase
     involvements = event_record.reload.event_involvements.pluck(:id)
     event.import_involvements!(event_record)
     assert_equal involvements, event_record.reload.event_involvements.pluck(:id)
-    assert_equal 6, event_record.event_involvements.count
+    assert_equal 7, event_record.event_involvements.count
   end
 
   test "today? returns false if event is in the past" do
     event = Static::Event.find_by_slug("railsconf-2025")
     assert_not event.today?
+  end
+
+  test "home_sort_date uses the event's own dates for non-conference, non-meetup events" do
+    event = Static::Event.find_by_slug("ceru-camp-2009")
+    stub_record = Event.new(start_date: Date.new(2000, 1, 1))
+
+    assert_equal "retreat", event.kind
+    assert_equal event.end_date, event.home_sort_date(event_record: stub_record)
+  end
+
+  test "home_sort_date prefers recordings_published_date when present" do
+    event = Static::Event.find_by_slug("brightonruby-2025")
+    stub_record = Event.new(start_date: Date.new(2000, 1, 1))
+
+    assert_equal event.published_date, event.home_sort_date(event_record: stub_record)
   end
 end
