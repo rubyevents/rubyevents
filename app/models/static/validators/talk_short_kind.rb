@@ -50,7 +50,7 @@ module Static
         formatted = Duration.seconds_to_formatted_duration(duration, raise: false)
         location = node["start_cue"]&.location || node["title"]&.location
 
-        message = "is only #{formatted} long (under 10 minutes) but has no explicit kind. Short segments are usually not regular talks. Add a `kind` (#{Talk.kinds.keys}) to classify it, or set `kind: \"talk\"` if it really is a short talk."
+        message = "is only #{formatted} long (under 10 minutes) but has no explicit kind. Short segments are usually not regular talks. Add a `kind` (#{::Talk.kinds.keys}) to classify it, or set `kind: \"talk\"` if it really is a short talk."
 
         [
           Static::Validators::Error.new(

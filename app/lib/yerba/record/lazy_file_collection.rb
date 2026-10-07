@@ -45,8 +45,10 @@ module Yerba
         end
       end
 
-      def pluck(field)
-        @document.yerba.pluck(field.to_sym)
+      def pluck(*fields)
+        return @document.yerba.pluck(fields.first.to_sym) if fields.one?
+
+        map { |record| fields.map { |field| record.public_send(field) } }
       end
 
       def select

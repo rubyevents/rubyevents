@@ -258,7 +258,7 @@ module Static
         name: title,
         date: attributes["date"],
         date_precision: attributes["date_precision"] || "day",
-        series: static_series.event_series_record,
+        series: series.event_series_record,
         website: website,
         country_code: country&.alpha2,
         city: city,

@@ -7,7 +7,7 @@ module Static
         "**/videos.yml"
       ].freeze
 
-      PROVIDERS_WITHOUT_PUBLISHED_AT = (Talk::UNPUBLISHED_PROVIDERS + ["children", "parent"]).freeze
+      PROVIDERS_WITHOUT_PUBLISHED_AT = (::Talk::UNPUBLISHED_PROVIDERS + ["children", "parent"]).freeze
       SCOPES = ["[]", "[].talks[]"].freeze
 
       def initialize(file_path:, document: nil)

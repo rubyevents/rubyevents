@@ -152,7 +152,7 @@ module Static
       end
 
       def watchable_video?(node)
-        node.value_at("video_provider").in?(Talk::WATCHABLE_PROVIDERS)
+        node.value_at("video_provider").in?(::Talk::WATCHABLE_PROVIDERS)
       end
 
       def rename_thumbnails(from, to)

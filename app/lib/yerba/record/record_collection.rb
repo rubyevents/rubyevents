@@ -32,8 +32,12 @@ module Yerba
         @records.select { |record| criteria.all? { |key, value| record[key.to_s] == value } }
       end
 
-      def pluck(field)
-        @records.map { |record| record.send(field) }
+      def pluck(*fields)
+        if fields.one?
+          @records.map { |record| record.public_send(fields.first) }
+        else
+          @records.map { |record| fields.map { |field| record.public_send(field) } }
+        end
       end
 
       def to_a = @records.dup

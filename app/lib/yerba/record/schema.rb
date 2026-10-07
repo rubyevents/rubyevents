@@ -8,7 +8,7 @@ module Yerba
       class_methods do
         def schema(schema_class = nil, &block)
           if block
-            @schema = Class.new(RubyLLM::Schema, &block)
+            @schema = Class.new(Schematist::Schema, &block)
             define_schema_methods
           elsif schema_class
             @schema = schema_class

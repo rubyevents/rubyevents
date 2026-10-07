@@ -55,6 +55,7 @@ module Yerba
         if new_record?
           path = persist_path
           raise "Cannot save: no persist_path defined" unless path
+          raise ArgumentError, "#{self.class.name} already exists at #{path}" if File.exist?(path)
 
           dir = File.dirname(path)
           FileUtils.mkdir_p(dir) unless File.directory?(dir)
@@ -92,12 +93,10 @@ module Yerba
       def validate!
         return unless self.class.schema
 
-        json_schema = JSON.parse(self.class.schema.new.to_json_schema[:schema].to_json)
-        schemer = JSONSchemer.schema(json_schema)
-        errors = schemer.validate(to_h).to_a
+        errors = Yerba::Document.from(to_h).validate(self.class.schema.json_schema)
 
         if errors.any?
-          error_messages = errors.map { |error| "#{error["error"]} at #{error["data_pointer"]}" }
+          error_messages = errors.map { |error| "#{error["message"]} at #{error["path"]}" }
           raise ArgumentError, "Validation failed: #{error_messages.join(", ")}"
         end
       end
@@ -114,6 +113,13 @@ module Yerba
         return nil unless file_path && self.class.base_path
 
         Pathname.new(file_path).relative_path_from(self.class.base_path).to_s
+      end
+
+      # Path relative to Rails.root, matching what FrozenRecord exposed as `__file_path`
+      def __file_path
+        return nil unless file_path
+
+        Pathname.new(file_path).relative_path_from(Rails.root).to_s
       end
 
       def attributes

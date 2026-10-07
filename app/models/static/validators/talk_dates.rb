@@ -58,7 +58,7 @@ module Static
       end
 
       def talk_errors(node)
-        return [] if Talk::SUPPLEMENTARY_KINDS.include?(node.value_at("kind"))
+        return [] if ::Talk::SUPPLEMENTARY_KINDS.include?(node.value_at("kind"))
 
         errors = []
 
