@@ -47,7 +47,8 @@ class Static::Validators::Validator
       Static::Validators::SimilarSpeakerNames,
       Static::Validators::SpeakerSlugMatchesName,
       Static::Validators::UniqueSpeakerFields,
-      Static::Validators::UniqueSpeakers
+      Static::Validators::UniqueSpeakers,
+      Static::Validators::WebsiteURL
     ]
   end
 

@@ -20,27 +20,29 @@ module Static
       end
 
       def as_error
-        prefix = if ENV["GITHUB_ACTIONS"] == "true"
-          "::error file=#{file_path},line=#{line},endLine=#{end_line}::"
+        if ENV["GITHUB_ACTIONS"] == "true"
+          "::error file=#{file_path},line=#{line},endLine=#{end_line}::#{annotation_message}"
         elsif line > 1
-          "❌ line #{line}:"
+          "❌ line #{line}: #{message}"
         else
-          "❌"
+          "❌ #{message}"
         end
-
-        "#{prefix} #{message}"
       end
 
       def as_warning
-        prefix = if ENV["GITHUB_ACTIONS"] == "true"
-          "::warning file=#{file_path},line=#{line},endLine=#{end_line}::"
+        if ENV["GITHUB_ACTIONS"] == "true"
+          "::warning file=#{file_path},line=#{line},endLine=#{end_line}::#{annotation_message}"
         elsif line > 1
-          "⚠️ line #{line}:"
+          "⚠️ line #{line}: #{message}"
         else
-          "⚠️"
+          "⚠️ #{message}"
         end
+      end
 
-        "#{prefix}  #{message}"
+      private
+
+      def annotation_message
+        (line > 1) ? "line #{line}: #{message}" : message
       end
     end
   end
