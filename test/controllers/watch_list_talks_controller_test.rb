@@ -8,27 +8,25 @@ class WatchListTalksControllerTest < ActionDispatch::IntegrationTest
     sign_in_as @user
   end
 
-  test "should add talk to watch_list and redirect for turbo submissions" do
+  test "adds and removes a bookmark without replacing its frame" do
     assert_difference("WatchListTalk.count") do
       post watch_list_talks_url(@watch_list), params: {talk_id: @talk.id}, as: :turbo_stream
     end
 
-    assert_redirected_to watch_list_url(@watch_list)
+    assert_response :success
+    assert_select bookmark_update_selector
     assert_includes @watch_list.talks, @talk
-  end
-
-  test "should remove talk from watch_list and redirect for turbo submissions" do
-    WatchListTalk.create!(watch_list: @watch_list, talk: @talk)
 
     assert_difference("WatchListTalk.count", -1) do
       delete watch_list_talk_url(@watch_list, @talk.id), as: :turbo_stream
     end
 
-    assert_redirected_to watch_list_url(@watch_list)
+    assert_response :success
+    assert_select bookmark_update_selector
     assert_not_includes @watch_list.talks, @talk
   end
 
-  test "should ack with no content for xhr (request.js) toggles" do
+  test "acks with no content for xhr toggles" do
     assert_difference("WatchListTalk.count") do
       post watch_list_talks_url(@watch_list), params: {talk_id: @talk.id}, xhr: true
     end
@@ -43,5 +41,12 @@ class WatchListTalksControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :no_content
+  end
+
+  private
+
+  def bookmark_update_selector
+    target = ActionView::RecordIdentifier.dom_id(@talk, :bookmark_button)
+    "turbo-stream[action='update'][target='#{target}']"
   end
 end
