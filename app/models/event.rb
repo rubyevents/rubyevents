@@ -61,6 +61,7 @@ class Event < ApplicationRecord
   # associations
   belongs_to :series, class_name: "EventSeries", foreign_key: :event_series_id, strict_loading: false
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
+  has_many :top_level_talks, -> { top_level }, class_name: "Talk", inverse_of: :event, foreign_key: :event_id
   has_many :watchable_talks, -> { watchable }, class_name: "Talk"
   has_many :speakers, -> { distinct }, through: :talks, class_name: "User"
   has_many :keynote_talks, -> { where(kind: "keynote") }, class_name: "Talk", foreign_key: :event_id, inverse_of: :event
@@ -384,7 +385,8 @@ class Event < ApplicationRecord
   end
 
   def talks_text
-    talks.size.positive? ? " and features #{talks.size} #{"talk".pluralize(talks.size)} from various speakers" : ""
+    count = public_talks_count
+    count.positive? ? " and features #{count} #{"talk".pluralize(count)} from various speakers" : ""
   end
 
   def to_meta_tags
@@ -415,6 +417,22 @@ class Event < ApplicationRecord
 
   def sort_date
     start_date || end_date || Time.at(0)
+  end
+
+  # Attendance UI lists top-level videos.yml entries only, so a lightning
+  # talk block counts as 1 talk (nested child segments are excluded).
+  def attendance_talks
+    talks_in_running_order(child_talks: false)
+  end
+
+  def attendance_talks_count
+    attendance_talks.count
+  end
+
+  # Canonical public talk total: lightning blocks count as 1.
+  # Prefer this over talks_count (counter cache includes nested child talks).
+  def public_talks_count
+    top_level_talks.count
   end
 
   def watchable_talks?

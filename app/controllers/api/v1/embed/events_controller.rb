@@ -50,7 +50,7 @@ module Api
             banner_url: event_banner_url(event),
             featured_background: event.static_metadata&.featured_background,
             featured_color: event.static_metadata&.featured_color,
-            talks_count: event.talks_count,
+            talks_count: event.public_talks_count,
             speakers_count: event.speakers.count,
             series: event.series ? {
               name: event.series.name,

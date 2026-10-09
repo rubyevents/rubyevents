@@ -272,6 +272,7 @@ class Talk < ApplicationRecord
   scope :youtube, -> { where(video_provider: "youtube") }
   scope :video_available, -> { watchable.where(video_unavailable_at: nil) }
   scope :video_unavailable, -> { watchable.where.not(video_unavailable_at: nil) }
+  scope :top_level, -> { where(parent_talk_id: nil) }
   scope :upcoming, -> { where(date: Date.today...) }
   scope :today, -> { where(date: Date.today) }
   scope :past, -> { where(date: ...Date.today) }
@@ -324,7 +325,13 @@ class Talk < ApplicationRecord
   end
 
   def published?
-    video_provider.in?(WATCHABLE_PROVIDERS) || parent_talk&.published?
+    video_provider.in?(WATCHABLE_PROVIDERS) || parent_talk&.published? || child_talks.watchable.exists?
+  end
+
+  # Attendance "watched online" — parent lightning blocks count when any
+  # nested segment has a playable recording.
+  def watchable_online?
+    video_provider.in?(WATCHABLE_PROVIDERS) || child_talks.watchable.exists?
   end
 
   def video_available?
