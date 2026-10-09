@@ -116,7 +116,6 @@ module Yerba
         @relative_file_path ||= Pathname.new(file_path).relative_path_from(self.class.base_path).to_s
       end
 
-      # Path relative to Rails.root, matching what FrozenRecord exposed as `__file_path`
       def __file_path
         return nil unless file_path
 
