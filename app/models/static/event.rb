@@ -208,6 +208,37 @@ module Static
       parts.first if parts.size >= 2
     end
 
+    def state_code
+      parsed_state_code || featured_city&.state_code.presence
+    end
+
+    def resolved_city
+      featured_city&.name || city
+    end
+
+    def featured_city
+      return @featured_city if defined?(@featured_city)
+
+      @featured_city = find_featured_city
+    end
+
+    def find_featured_city
+      return nil if city.blank?
+
+      Static::City.find_by_name_or_alias(city, country_code: country&.alpha2)
+    end
+
+    def parsed_state_code
+      return nil if location.blank? || country.blank?
+      return nil unless State.supported_country?(country)
+
+      parts = location.to_s.split(",").map(&:strip)
+      return nil if parts.size < 3
+
+      state = State.find(country: country, term: parts[-2])
+      state&.code
+    end
+
     def home_sort_date(event_record: nil)
       event_record ||= self.event_record
 
@@ -261,7 +292,8 @@ module Static
         series: series.event_series_record,
         website: website,
         country_code: country&.alpha2,
-        city: city,
+        city: resolved_city,
+        state_code: state_code,
         location: location,
         start_date: start_date,
         end_date: end_date,
