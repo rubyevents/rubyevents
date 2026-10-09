@@ -1,6 +1,8 @@
 require "test_helper"
 
 class Static::ReferencesProxyTest < ActiveSupport::TestCase
+  include StaticSpeakersSandbox
+
   setup do
     @tmp_file = Tempfile.new(["videos", ".yml"])
     @tmp_file.write(<<~YAML)
@@ -96,8 +98,6 @@ class Static::ReferencesProxyTest < ActiveSupport::TestCase
     speaker = Static::Speakers.find_by(name: unique_name)
     assert_not_nil speaker, "Expected speaker to be auto-created in speakers.yml"
     assert_equal unique_name.parameterize, speaker.slug
-  ensure
-    Static::Speakers.reset!
   end
 
   test "<< does not duplicate existing speaker in speakers.yml" do

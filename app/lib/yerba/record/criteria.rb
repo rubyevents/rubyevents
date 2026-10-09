@@ -2,8 +2,6 @@
 
 module Yerba
   module Record
-    # Matches records against `where`/`find_by` criteria. Like ActiveRecord, an Array, Set, or Range
-    # value matches when the record's value is included in it.
     module Criteria
       module_function
 

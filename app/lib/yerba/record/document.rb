@@ -14,7 +14,6 @@ module Yerba
         @yerba ||= Yerba.parse_file(@path)
       end
 
-      # Plain Ruby values for the whole document, materialized with a single call into Yerba
       def values
         @values = yerba.value_at("") unless defined?(@values)
         @values

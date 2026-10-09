@@ -43,6 +43,7 @@ module Yerba
 
       def delete(name)
         index = values.index(name)
+
         if index
           raw.delete_at(index)
           reset_entry_cache!

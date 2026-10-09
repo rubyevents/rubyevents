@@ -1,6 +1,8 @@
 require "test_helper"
 
 class Yerba::Record::CollectionTest < ActiveSupport::TestCase
+  include StaticSpeakersSandbox
+
   setup do
     @tmp_file = Tempfile.new(["videos", ".yml"])
     @tmp_file.write(<<~YAML)

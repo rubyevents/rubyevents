@@ -158,8 +158,6 @@ module Yerba
 
       private
 
-      # Reading through the CST crosses into Yerba's native extension on every access, so the
-      # record's values are materialized once and served from Ruby until the record is written to.
       def attributes_cache
         @attributes_cache ||= if scalar_node?
           {self.class.scalar_field => unwrap(node)}

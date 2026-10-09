@@ -8,7 +8,6 @@ module Yerba
       class_methods do
         def references(name, class_name: nil, resolver: nil, creator: nil)
           define_method(name) do
-            # Reads are served from the cached values, the CST node is only looked up when writing
             raw = lambda do
               raw_value = node[name.to_s]
 
