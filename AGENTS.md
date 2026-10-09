@@ -99,6 +99,7 @@ Conference data is stored in YAML files under `/data/`:
 - Counter caches (`counter_cache: :talks_count`), `inverse_of`, and scoped associations
 - Normalize data with `normalizes`; encrypt sensitive fields (`encrypts :email, deterministic: true`)
 - Use Rails `enum` for status/kind fields
+- `Static::*` models (e.g. `Static::Talk`, `Static::Event`) are `Yerba::Record` models backed by the YAML files in `data/`. Inside `module Static`, a bare `Talk`/`Event` resolves to the `Static::` class, so reference the ActiveRecord models as `::Talk`, `::Event`, etc.
 
 **Controllers:**
 
@@ -150,6 +151,7 @@ Conference data is stored in YAML files under `/data/`:
 - Parallel test execution
 - Search indexes are reset in test setup
 - System tests use Capybara with Selenium
+- In a fresh checkout or worktree, run `yarn install` and `bin/vite build --mode=test` before running controller or system tests, otherwise they fail with "Vite Ruby can't find entrypoints/application.js in the manifests"
 
 ### Data Import Flow
 
