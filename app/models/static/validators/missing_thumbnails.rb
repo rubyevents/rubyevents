@@ -14,7 +14,7 @@ module Static
       def applicable?
         return false unless File.exist?(@file_path)
 
-        PATTERNS.any? { |pattern| File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME) }
+        PATTERNS.any? { |pattern| File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH) }
       end
 
       def errors

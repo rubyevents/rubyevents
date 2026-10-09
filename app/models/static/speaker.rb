@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
 module Static
-  class Speaker < FrozenRecord::Base
-    self.backend = Backends::FileBackend.new("speakers.yml")
+  class Speaker < Yerba::Record::Base
+    self.path = "speakers.yml"
     self.base_path = Rails.root.join("data")
+
+    schema SpeakerSchema
+
+    add_index :name
+    add_index :slug
 
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 

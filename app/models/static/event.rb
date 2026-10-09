@@ -1,18 +1,30 @@
 # frozen_string_literal: true
 
 module Static
-  class Event < FrozenRecord::Base
+  class Event < Yerba::Record::Base
     include ActionView::Helpers::DateHelper
 
-    self.backend = Backends::MultiFileBackend.new("**/**/event.yml")
+    self.glob = "**/event.yml"
     self.base_path = Rails.root.join("data")
+
+    schema EventSchema
+
+    belongs_to :series, class_name: "Static::EventSeries", foreign_key: :series_slug
+
+    has_many :talks, in_file: "videos.yml", class_name: "Static::Talk"
+    has_many :videos, in_file: "videos.yml", class_name: "Static::Talk" # TODO: remove, use :talks instead
+    has_many :cfps, in_file: "cfp.yml"
+    has_many :sponsors, in_file: "sponsors.yml"
+    has_many :involvements, in_file: "involvements.yml"
+
+    has_one :venue, in_file: "venue.yml"
+    has_one :schedule, in_file: "schedule.yml"
 
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
     class << self
       def find_by_slug(slug)
-        @slug_index ||= all.index_by(&:slug)
-        @slug_index[slug]
+        slug_index[slug]
       end
 
       def import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
@@ -25,110 +37,53 @@ module Static
 
       def import_recent!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
         import_cutoff = 6.months.ago
+
         all.select { |event| event.end_date && event.end_date >= import_cutoff }.each { |event| event.import!(index: index) }
       end
 
-      def create(
-        series_slug:,
-        title:,
-        kind:,
-        id: nil,
-        slug: nil,
-        description: nil,
-        aliases: nil,
-        hybrid: nil,
-        status: nil,
-        last_edition: nil,
-        start_date: nil,
-        end_date: nil,
-        recordings_published_date: nil,
-        announced_on: nil,
-        year: nil,
-        date_precision: nil,
-        frequency: nil,
-        location: nil,
-        venue: nil,
-        youtube_channels: nil,
-        playlist: nil,
-        website: nil,
-        original_website: nil,
-        twitter: nil,
-        mastodon: nil,
-        github: nil,
-        meetup: nil,
-        luma: nil,
-        youtube: nil,
-        coordinates: nil,
-        tickets_url: nil,
-        banner_background: nil,
-        featured_background: nil,
-        featured_color: nil
-      )
+      def build(series_slug:)
+        document = Yerba::Record::Document.from({})
+        record = new(document: document)
+
+        record.instance_variable_set(:@series_slug_override, series_slug)
+
+        record
+      end
+
+      def create(series_slug:, title:, id: nil, slug: nil, **attributes)
         series = Static::EventSeries.find_by_slug(series_slug)
         raise ArgumentError, "Event series '#{series_slug}' not found" unless series
 
         slug ||= title.parameterize
 
-        series_dir = base_path.join(series_slug)
-        event_dir = series_dir.join(slug)
-        event_file = event_dir.join("event.yml")
-
-        if event_file.exist?
-          raise ArgumentError, "Event '#{slug}' already exists at #{event_file}"
-        end
-
         if id.present? && id != slug
           raise ArgumentError, "id must match the event folder name ('#{slug}'), got '#{id}'"
         end
 
-        data = {"id" => slug, "title" => title, "kind" => kind}
-        data["description"] = description if description.present?
-        data["aliases"] = Array(aliases) if aliases.present?
-        data["hybrid"] = hybrid unless hybrid.nil?
-        data["status"] = status if status.present?
-        data["last_edition"] = last_edition unless last_edition.nil?
-        data["start_date"] = start_date if start_date.present?
-        data["end_date"] = end_date if end_date.present?
-        data["recordings_published_date"] = recordings_published_date if recordings_published_date.present?
-        data["announced_on"] = announced_on if announced_on.present?
-        data["year"] = year if year.present?
-        data["date_precision"] = date_precision if defined?(date_precision) && date_precision.present?
-        data["frequency"] = frequency if frequency.present?
-        data["location"] = location if location.present?
-        data["venue"] = venue if venue.present?
-        data["youtube_channels"] = youtube_channels if youtube_channels.present?
-        data["playlist"] = playlist if playlist.present?
-        data["website"] = website if website.present?
-        data["original_website"] = original_website if original_website.present?
-        data["twitter"] = twitter if twitter.present?
-        data["mastodon"] = mastodon if mastodon.present?
-        data["github"] = github if github.present?
-        data["meetup"] = meetup if meetup.present?
-        data["luma"] = luma if luma.present?
-        data["youtube"] = youtube if youtube.present?
-        data["coordinates"] = coordinates if coordinates.present?
-        data["tickets_url"] = tickets_url if tickets_url.present?
-        data["banner_background"] = banner_background if banner_background.present?
-        data["featured_background"] = featured_background if featured_background.present?
-        data["featured_color"] = featured_color if featured_color.present?
+        record = new(id: slug, title: title, **attributes.reject { |_, value| value.nil? || value == "" || value == [] })
+        record.instance_variable_set(:@series_slug_override, series_slug)
+        record.save!
 
-        errors = Yerba.parse(data.to_yaml).validate(EventSchema.json_schema)
-
-        if errors.any?
-          error_messages = errors.map { |error| "#{error["message"]} at #{error["path"]}" }
-          raise ArgumentError, "Validation failed: #{error_messages.join(", ")}"
-        end
-
-        FileUtils.mkdir_p(event_dir)
-        File.write(event_file, content)
-
-        videos_file = event_dir.join("videos.yml")
-        File.write(videos_file, "[]\n") unless videos_file.exist?
-
-        @slug_index = nil
         unload!
 
-        find_by_slug(slug)
+        record
+      end
+
+      def find_or_create_by(series_slug:, title:, **attributes)
+        slug = attributes[:slug] || title.parameterize
+
+        find_by_slug(slug) || create(series_slug: series_slug, title: title, **attributes)
+      end
+
+      def unload!
+        super
+        @slug_index = nil
+      end
+
+      private
+
+      def slug_index
+        @slug_index ||= all.index_by(&:slug)
       end
     end
 
@@ -205,7 +160,7 @@ module Static
     end
 
     def slug
-      @slug ||= attributes["id"]
+      @slug ||= self["id"]
     end
 
     def imported?
@@ -217,15 +172,15 @@ module Static
     end
 
     def start_date
-      Date.parse(super)
+      Date.parse(self["start_date"])
     rescue TypeError, Date::Error
-      super
+      self["start_date"]
     end
 
     def end_date
-      Date.parse(super)
+      Date.parse(self["end_date"])
     rescue TypeError, Date::Error
-      super
+      self["end_date"]
     end
 
     def published_date
@@ -281,12 +236,8 @@ module Static
       Time.at(0)
     end
 
-    def static_series
-      @static_series ||= Static::EventSeries.find_by_slug(series_slug)
-    end
-
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
-      return if Rails.env.test? && !ENV["SEED_SMOKE_TEST"] # this method slowdown a lot of the test suite
+      return if Rails.env.test? && !ENV["SEED_SMOKE_TEST"]
 
       event = import_event!
 
@@ -307,7 +258,7 @@ module Static
         name: title,
         date: attributes["date"],
         date_precision: attributes["date_precision"] || "day",
-        series: static_series.event_series_record,
+        series: series.event_series_record,
         website: website,
         country_code: country&.alpha2,
         city: city,
@@ -414,7 +365,6 @@ module Static
 
                 organization = ::Organization.find_by(domain: domain) if domain.present?
               rescue PublicSuffix::Error, URI::InvalidURIError
-                # If parsing fails, continue with other matching methods
               end
             end
 
@@ -453,6 +403,7 @@ module Static
           end
         end
       end
+
       event.sponsors.where.not(organization_id: organisation_ids).destroy_all
     rescue ActiveRecord::RecordInvalid => e
       error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
@@ -466,7 +417,6 @@ module Static
 
       event_involvements = event.event_involvements
 
-      # Mark existing involvements for destruction
       event_involvements_attributes = event_involvements.map { it.attributes.merge(_destroy: true) }
 
       involvements = event.involvements_file.entries
@@ -480,22 +430,18 @@ module Static
           user = ::User.find_by_name_or_alias(user_name)
 
           unless user
-            # raise "User '#{user_name}' not found in speakers.yml" if Rails.env.development?
             puts "Creating user: #{user_name}" unless Rails.env.test?
             user = ::User.create!(name: user_name)
           end
 
-          # Get index if involvement already exists in the attributes array
           attributes_index = event_involvements_attributes.index do |attrs|
             attrs["role"] == role && attrs["involvementable_type"] == "User" &&
               attrs["involvementable_id"] == user.id
           end
 
           if attributes_index.present?
-            # Replace the involvement attributes to avoid destroying it (update position if necessary)
             event_involvements_attributes[attributes_index].update(position: index, _destroy: false)
           else
-            # Add new involvement
             event_involvements_attributes << {
               role: role,
               involvementable: user,
@@ -512,22 +458,18 @@ module Static
           organization = ::Organization.find_by_name_or_alias(org_name) || ::Organization.find_by_slug_or_alias(org_name.parameterize)
 
           unless organization
-            # raise "Organization '#{org_name}' not found" if Rails.env.development?
             puts "Creating organization: #{org_name}" unless Rails.env.test?
             organization = ::Organization.create!(name: org_name)
           end
 
-          # Get index if involvement already exists in the attributes array
           attributes_index = event_involvements_attributes.index do |attrs|
             attrs["role"] == role && attrs["involvementable_type"] == "Organization" &&
               attrs["involvementable_id"] == organization.id
           end
 
           if attributes_index.present?
-            # Replace the involvement attributes to avoid destroying it (update position if necessary)
             event_involvements_attributes[attributes_index].update(position: index + user_count, _destroy: false)
           else
-            # Add new involvement
             event_involvements_attributes << {
               role: role,
               involvementable: organization,
@@ -540,11 +482,29 @@ module Static
     end
 
     def series_slug
-      @series_slug ||= __file_path.split("/")[-3]
+      @series_slug ||= @series_slug_override || relative_file_path&.split("/")&.[](-3)
     end
 
-    def __file_path
-      attributes["__file_path"]
+    def event_dir
+      File.dirname(file_path)
+    end
+
+    def persist_path
+      return nil if series_slug.blank? || self["id"].blank?
+
+      File.join(self.class.base_path, series_slug, self["id"], "event.yml")
+    end
+
+    def save!
+      self["id"] = self["title"]&.parameterize if new_record? && self["id"].blank?
+
+      super
+
+      if @was_new_record
+        videos_path = File.join(File.dirname(file_path), "videos.yml")
+
+        Yerba::Document.from([]).save_to!(videos_path) unless File.exist?(videos_path)
+      end
     end
   end
 end
