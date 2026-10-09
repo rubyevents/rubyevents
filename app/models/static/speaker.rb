@@ -7,6 +7,9 @@ module Static
 
     schema SpeakerSchema
 
+    add_index :name
+    add_index :slug
+
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
     def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)

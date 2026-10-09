@@ -36,14 +36,13 @@ module Yerba
       end
 
       def [](key)
-        if scalar_node?
-          (key.to_s == self.class.scalar_field) ? unwrap(node) : nil
-        else
-          unwrap(node[key.to_s])
-        end
+        attributes_cache[key.to_s]
       end
 
       def []=(key, value)
+        reset_attributes_cache!
+        document&.reset_values!
+
         if scalar_node?
           document.root[@index] = value if key.to_s == self.class.scalar_field
         else
@@ -69,6 +68,8 @@ module Yerba
         else
           document.save!
         end
+
+        reset_attributes_cache!
       end
 
       def destroy
@@ -112,7 +113,7 @@ module Yerba
       def relative_file_path
         return nil unless file_path && self.class.base_path
 
-        Pathname.new(file_path).relative_path_from(self.class.base_path).to_s
+        @relative_file_path ||= Pathname.new(file_path).relative_path_from(self.class.base_path).to_s
       end
 
       # Path relative to Rails.root, matching what FrozenRecord exposed as `__file_path`
@@ -127,11 +128,12 @@ module Yerba
       end
 
       def to_h
-        if scalar_node?
-          {self.class.scalar_field => unwrap(node)}
-        else
-          document&.yerba&.value_at(node.respond_to?(:selector) ? node.selector : "") || {}
-        end
+        attributes_cache.dup
+      end
+
+      def reset_attributes_cache!
+        @attributes_cache = nil
+        @relative_file_path = nil
       end
 
       def to_yaml
@@ -156,6 +158,18 @@ module Yerba
 
       private
 
+      # Reading through the CST crosses into Yerba's native extension on every access, so the
+      # record's values are materialized once and served from Ruby until the record is written to.
+      def attributes_cache
+        @attributes_cache ||= if scalar_node?
+          {self.class.scalar_field => unwrap(node)}
+        else
+          values = document&.values
+          values = values[@index] if @index && values.is_a?(Array)
+          values.is_a?(Hash) ? values : {}
+        end
+      end
+
       def unwrap(value)
         case value
         when Yerba::Scalar then value.value
@@ -172,7 +186,7 @@ module Yerba
           self[field.chomp("=")] = args.first
         elsif field.end_with?("?")
           self[field.chomp("?")].present?
-        elsif node.respond_to?(:key?) && node.key?(field)
+        elsif attributes_cache.key?(field)
           self[field]
         elsif @attributes&.key?(field)
           self[field]
@@ -185,7 +199,7 @@ module Yerba
         field = name.to_s.chomp("=").chomp("?")
 
         return true if name.to_s.end_with?("=")
-        return true if node.respond_to?(:key?) && node.key?(field)
+        return true if attributes_cache.key?(field)
         return true if @attributes&.key?(field)
 
         false

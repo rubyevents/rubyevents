@@ -14,6 +14,16 @@ module Yerba
         @yerba ||= Yerba.parse_file(@path)
       end
 
+      # Plain Ruby values for the whole document, materialized with a single call into Yerba
+      def values
+        @values = yerba.value_at("") unless defined?(@values)
+        @values
+      end
+
+      def reset_values!
+        remove_instance_variable(:@values) if defined?(@values)
+      end
+
       def root
         yerba.root
       end
@@ -28,11 +38,13 @@ module Yerba
 
       def save!
         yerba.save!(apply: true)
+        reset_values!
       end
 
       def save_to!(path)
         @path = path.to_s
         yerba.save_to!(path.to_s)
+        reset_values!
       end
 
       def self.create(path, content)

@@ -53,11 +53,11 @@ module Yerba
       end
 
       def find_by(**criteria)
-        each.find { |entry| criteria.all? { |key, value| entry[key] == value } }
+        each.find { |entry| Criteria.match?(entry, criteria) }
       end
 
       def where(**criteria)
-        select { |entry| criteria.all? { |key, value| entry[key] == value } }
+        select { |entry| Criteria.match?(entry, criteria) }
       end
 
       def create(**attributes)

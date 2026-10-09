@@ -12,7 +12,7 @@ module Yerba
 
         def not(**criteria)
           records = @collection.reject do |record|
-            criteria.any? { |key, value| record[key.to_s] == value }
+            criteria.any? { |key, value| Criteria.value_matches?(record[key.to_s], value) }
           end
 
           RecordCollection.new(records)

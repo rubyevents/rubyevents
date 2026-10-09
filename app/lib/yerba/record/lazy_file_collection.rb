@@ -31,6 +31,8 @@ module Yerba
       def empty? = count.zero?
 
       def find_by(**criteria)
+        return find { |record| Criteria.match?(record, criteria) } unless Criteria.plain?(criteria)
+
         result = @document.yerba.find_by(**criteria)
         return nil unless result
 
@@ -39,6 +41,8 @@ module Yerba
       end
 
       def where(**criteria)
+        return select { |record| Criteria.match?(record, criteria) } unless Criteria.plain?(criteria)
+
         @document.yerba.where(**criteria).filter_map do |result|
           index = index_from_selector(result.selector)
           record_at(index) if index

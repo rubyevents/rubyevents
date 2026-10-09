@@ -137,7 +137,7 @@ module Static
     end
 
     def meta_talk?
-      self["talks"].present?
+      attributes.key?("talks")
     end
 
     def import!(event: nil, parent_talk: nil, index: SEARCH_INDEX_ON_IMPORT_DEFAULT)

@@ -8,11 +8,15 @@ module Yerba
       class_methods do
         def references(name, class_name: nil, resolver: nil, creator: nil)
           define_method(name) do
-            raw_value = node[name.to_s]
-            raw = if raw_value.respond_to?(:each)
-              raw_value
-            else
-              (raw_value ? [raw_value] : [])
+            # Reads are served from the cached values, the CST node is only looked up when writing
+            raw = lambda do
+              raw_value = node[name.to_s]
+
+              if raw_value.respond_to?(:each)
+                raw_value
+              else
+                (raw_value ? [raw_value] : [])
+              end
             end
 
             resolved_resolver = resolver || default_resolver_for(name, class_name)
@@ -20,6 +24,7 @@ module Yerba
 
             ReferencesProxy.new(
               raw: raw,
+              values: Array(self[name.to_s]),
               resolver: resolved_resolver,
               creator: resolved_creator,
               entry: self

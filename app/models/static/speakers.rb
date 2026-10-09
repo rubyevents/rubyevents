@@ -3,8 +3,14 @@
 module Static
   class Speakers
     class << self
+      attr_writer :path
+
+      def path
+        (@path || Rails.root.join(SpeakersFile::SPEAKERS_PATH)).to_s
+      end
+
       def document
-        @document ||= Yerba::Record::Document.new(Rails.root.join(SpeakersFile::SPEAKERS_PATH).to_s)
+        @document ||= Yerba::Record::Document.new(path)
       end
 
       def all
@@ -16,16 +22,7 @@ module Static
         index ||= speakers_file.index_by(:slug)[slug] if slug
         index ||= speakers_file.index_by(:github)[github] if github
 
-        if index.nil? && name
-          speakers_file.document.value_at("").each_with_index do |entry, i|
-            next unless entry.is_a?(Hash)
-
-            if Array(entry["aliases"]).any? { |a| a.respond_to?(:key?) && a["name"] == name }
-              index = i
-              break
-            end
-          end
-        end
+        index ||= alias_index[name] if name
 
         return nil unless index
 
@@ -51,12 +48,23 @@ module Static
       def reset!
         @document = nil
         @speakers_file = nil
+        @alias_index = nil
       end
 
       private
 
       def speakers_file
-        @speakers_file ||= Static::SpeakersFile.new
+        @speakers_file ||= Static::SpeakersFile.new(path)
+      end
+
+      def alias_index
+        @alias_index ||= speakers_file.entries.each_with_index.with_object({}) do |(entry, index), result|
+          next unless entry.is_a?(Hash)
+
+          Array(entry["aliases"]).each do |alias_entry|
+            result[alias_entry["name"]] ||= index if alias_entry.respond_to?(:key?) && alias_entry["name"]
+          end
+        end
       end
     end
   end

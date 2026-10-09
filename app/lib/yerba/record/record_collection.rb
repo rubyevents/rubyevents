@@ -17,19 +17,19 @@ module Yerba
         @records[index]
       end
 
-      def first = @records.first
-      def last = @records.last
+      def first(...) = @records.first(...)
+      def last(...) = @records.last(...)
       def count = @records.count
       alias_method :size, :count
       alias_method :length, :count
       def empty? = @records.empty?
 
       def find_by(**criteria)
-        @records.find { |record| criteria.all? { |key, value| record[key.to_s] == value } }
+        @records.find { |record| Criteria.match?(record, criteria) }
       end
 
       def where(**criteria)
-        @records.select { |record| criteria.all? { |key, value| record[key.to_s] == value } }
+        @records.select { |record| Criteria.match?(record, criteria) }
       end
 
       def pluck(*fields)
