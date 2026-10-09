@@ -27,7 +27,7 @@ class Talk::Agents < ActiveRecord::AssociatedObject
       task_name: "summarize"
     )
 
-    summary = JSON.parse(response.dig("choices", 0, "message", "content")).dig("summary")
+    summary = JSON.parse(response).dig("summary")
     talk.update!(summary: summary)
   end
 
@@ -41,7 +41,7 @@ class Talk::Agents < ActiveRecord::AssociatedObject
     )
 
     topics = begin
-      JSON.parse(response.dig("choices", 0, "message", "content"))["topics"]
+      JSON.parse(response)["topics"]
     rescue
       []
     end
