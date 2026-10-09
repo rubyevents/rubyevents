@@ -1028,10 +1028,11 @@
   title: "Ruby Sydney Meetup August 2026"
   event_name: "Ruby Sydney Meetup August 2026"
   date: "2026-08-11"
-  video_provider: "scheduled"
+  video_provider: "not_recorded"
   video_id: "ruby-sydney-meetup-august-2026"
   description: |-
-    Hosted at Mable, Level 12/255 Pitt Street, Sydney.
+    Casual drinks instead of talks, in the rabbit bar at The Arthouse.
+    Hosted at The Arthouse, 275 Pitt Street, Sydney.
     https://www.meetup.com/ruby-on-rails-oceania-sydney/events/313967950/
   talks: []
 
@@ -1039,12 +1040,31 @@
   title: "Ruby Sydney Meetup September 2026"
   event_name: "Ruby Sydney Meetup September 2026"
   date: "2026-09-08"
-  video_provider: "scheduled"
+  video_provider: "children"
   video_id: "ruby-sydney-meetup-september-2026"
   description: |-
-    Hosted at Mable, Level 12/255 Pitt Street, Sydney.
+    Hosted at Pair People, AON building, 201 Kent Street, Sydney.
     https://www.meetup.com/ruby-on-rails-oceania-sydney/events/313967951/
-  talks: []
+  talks:
+    - id: "tarun-mookhey-ruby-sydney-meetup-september-2026"
+      title: "Talk by Tarun Mookhey"
+      event_name: "Ruby Sydney Meetup September 2026"
+      date: "2026-09-08"
+      video_provider: "not_recorded"
+      video_id: "tarun-mookhey-ruby-sydney-meetup-september-2026"
+      speakers:
+        - Tarun Mookhey
+
+    - id: "james-crisp-ruby-sydney-meetup-september-2026"
+      title: "Generating QR Codes in pure Ruby"
+      event_name: "Ruby Sydney Meetup September 2026"
+      date: "2026-09-08"
+      video_provider: "not_recorded"
+      video_id: "james-crisp-ruby-sydney-meetup-september-2026"
+      description: |-
+        QR Codes are useful and easy to generate in Ruby using the rqrcode gem. Generating one and rendering it in a Rails template only takes a few lines, but I'll show you a few tips plus how to shave off the gem dependencies, and how to write simple tests to make sure your QR Codes keep generating safely into the future.
+      speakers:
+        - James Crisp
 
 - id: "ruby-sydney-meetup-october-2026"
   title: "Ruby Sydney Meetup October 2026"
@@ -1054,7 +1074,7 @@
   video_id: "ruby-sydney-meetup-october-2026"
   description: |-
     Hosted at Mable, Level 12/255 Pitt Street, Sydney.
-    https://www.meetup.com/ruby-on-rails-oceania-sydney/events/qfkhwtyjcnbrb/
+    https://www.meetup.com/ruby-on-rails-oceania-sydney/events/316411829/
   talks: []
 
 - id: "ruby-sydney-meetup-november-2026"
@@ -1066,4 +1086,26 @@
   description: |-
     Hosted at Mable, Level 12/255 Pitt Street, Sydney.
     https://www.meetup.com/ruby-on-rails-oceania-sydney/events/qfkhwtyjcpbnb/
+  talks: []
+
+- id: "ruby-sydney-meetup-december-2026"
+  title: "Ruby Sydney Meetup December 2026"
+  event_name: "Ruby Sydney Meetup December 2026"
+  date: "2026-12-08"
+  video_provider: "scheduled"
+  video_id: "ruby-sydney-meetup-december-2026"
+  description: |-
+    Hosted at Mable, Level 12/255 Pitt Street, Sydney.
+    https://www.meetup.com/ruby-on-rails-oceania-sydney/events/qfkhwtyjcqblb/
+  talks: []
+
+- id: "ruby-sydney-meetup-january-2027"
+  title: "Ruby Sydney Meetup January 2027"
+  event_name: "Ruby Sydney Meetup January 2027"
+  date: "2027-01-12"
+  video_provider: "scheduled"
+  video_id: "ruby-sydney-meetup-january-2027"
+  description: |-
+    Hosted at Mable, Level 12/255 Pitt Street, Sydney.
+    https://www.meetup.com/ruby-on-rails-oceania-sydney/events/qfkhwtykccbqb/
   talks: []

@@ -19,7 +19,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -152,7 +152,7 @@ module Static
       end
 
       def watchable_video?(node)
-        node.value_at("video_provider").in?(Talk::WATCHABLE_PROVIDERS)
+        node.value_at("video_provider").in?(::Talk::WATCHABLE_PROVIDERS)
       end
 
       def rename_thumbnails(from, to)

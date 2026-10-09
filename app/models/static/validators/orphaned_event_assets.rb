@@ -16,7 +16,7 @@ module Static
         return false unless @file_path.include?("#{ASSETS_BASE}/")
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 

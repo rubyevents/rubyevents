@@ -150,8 +150,7 @@ class Talks::WatchedTalksController < ApplicationController
       target: dom_id(@talk, :card_horizontal),
       partial: "talks/card_horizontal",
       method: :replace,
-      locals: {compact: true,
-               talk: @talk,
+      locals: {talk: @talk,
                current_talk: @talk,
                turbo_frame: "talk",
                user_watched_talks: user_watched_talks}

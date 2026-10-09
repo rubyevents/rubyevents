@@ -67,7 +67,7 @@ gem "minisky", "~> 0.4.0"
 gem "ruby_llm", "~> 1.15.0"
 
 # A simple and clean Ruby DSL for creating JSON schemas.
-gem "ruby_llm-schema", "~> 0.4.0"
+gem "schematist", "~> 1.1"
 
 # YouTube V3 API client.
 gem "yt"
@@ -79,10 +79,10 @@ gem "rss", "~> 0.3.1"
 gem "yerba", "~> 0.9.0"
 
 # Powerful and seamless HTML-aware ERB parsing and tooling.
-gem "herb", "~> 0.10.4"
+gem "herb", "~> 0.11.0"
 
 # An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
-gem "reactionview", "~> 0.4.1"
+gem "reactionview", "~> 0.6.0"
 
 # Agnostic pagination in plain ruby.
 gem "pagy"
@@ -168,9 +168,6 @@ gem "marksmith"
 
 # A fast, safe, extensible parser for CommonMark. This wraps the comrak Rust crate.
 gem "commonmarker", ">= 2.6.1"
-
-# ActiveRecord like interface to read only access and query static YAML files
-gem "frozen_record", "~> 0.27.2"
 
 # ActiveRecord soft-deletes done right
 gem "discard"

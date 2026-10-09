@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InvolvementSchema",
   "type": "object",
   "properties": {
     "name": {
@@ -23,6 +25,5 @@
   "required": [
     "name"
   ],
-  "additionalProperties": false,
-  "strict": true
+  "additionalProperties": false
 }

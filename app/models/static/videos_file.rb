@@ -240,7 +240,7 @@ module Static
     private
 
     def watchable_provider?(provider)
-      (provider || "youtube").in?(Talk::WATCHABLE_PROVIDERS)
+      (provider || "youtube").in?(::Talk::WATCHABLE_PROVIDERS)
     end
 
     def attribute_changes(before, after)

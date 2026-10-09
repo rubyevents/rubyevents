@@ -1,15 +1,97 @@
 # TODO: Add all talks - docs/ADDING_UNPUBLISHED_TALKS.md
-# TODO: Reorder talks for schedule - docs/ADDING_SCHEDULES.md
 # TODO: Add recordings - docs/ADDING_VIDEOS.md
 ---
-
-
 - id: "paolo-perrotta-xoruby-toronto-2026"
-  title: "Talk by Paolo Perrotta" # TODO
+  title: "The Man Who Built a Brain"
   date: "2026-10-03"
+  start_time: "10:45"
+  end_time: "11:15"
   language: "English"
   video_provider: "scheduled"
   video_id: "paolo-perrotta-xoruby-toronto-2026"
-  description: "" # TODO
+  description: |-
+    Computer programming comes from a dream and a war. The dream is the notion that a machine can think. The war is an intellectual clash between two rival factions. It lasted for over 60 years, and it shaped today's computing.
+
+    The first faction, the "symbolists", gave us modern programming languages, Ruby included. The other faction, the "connectionists", were disgraced for decades, only to come back with a vengeance in recent years.
+
+    The story of those two factions involved a lot of geeky inventions, technical challenges, and good old-fashioned human flaws. It's an amazing story that every programmer should know. Let me tell it, with some juicy technical details.
   speakers:
     - Paolo Perrotta
+
+- id: "mohammad-moahid-xoruby-toronto-2026"
+  title: "The Chief Agent Officer: How to Manage a Workforce of AI Agents"
+  date: "2026-10-03"
+  start_time: "11:15"
+  end_time: "11:45"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "mohammad-moahid-xoruby-toronto-2026"
+  description: |-
+    Ruby teams can already build agents that call tools, query records, and kick off jobs. The harder problem begins when several agents share context, touch the same systems, and ask for permission at different moments. Someone has to assign the work, carry state between steps, decide which actions can run unattended, and know when a person must step in.
+  speakers:
+    - Mohammad Moahid
+
+- id: "ahmed-nadar-xoruby-toronto-2026"
+  title: "Building Solve Canada"
+  date: "2026-10-03"
+  start_time: "13:30"
+  end_time: "14:00"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "ahmed-nadar-xoruby-toronto-2026"
+  description: |-
+    Solve Canada started as one Rails app solving one problem in one place. This talk covers what happened between then and now: the choices that let the app take on five more cities without a rewrite, the point where six cities became a country, and the tradeoffs that held at city scale but broke at national scale.
+  speakers:
+    - Ahmed Nadar
+
+- id: "subhashree-parthasarathy-xoruby-toronto-2026"
+  title: "Agent Mission Control: Watching Your AI Agents Work, Live"
+  date: "2026-10-03"
+  start_time: "14:00"
+  end_time: "14:30"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "subhashree-parthasarathy-xoruby-toronto-2026"
+  description: |-
+    Your AI agents are working right now: writing code, running tests, opening PRs, mostly invisible. In this live demo, Subhashree shows a Rails app built to make that visible: live status, current task, and a running log and timeline for every agent, updating in real time.
+  speakers:
+    - Subhashree Parthasarathy
+
+- id: "michael-carroll-xoruby-toronto-2026"
+  title: "Stop Being the Boss You Hate: Build AI Functions, Not Chatbots"
+  date: "2026-10-03"
+  start_time: "15:00"
+  end_time: "15:30"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "michael-carroll-xoruby-toronto-2026"
+  description: |-
+    Most AI agents get built like chatbots. A human sits in the loop for every decision, and every conversation starts from a fresh context. This talk makes the case for designing AI like software functions instead: an input, an output, and a process in between that gets tuned over time. It covers why chat UX pushes engineers into that antipattern, what an AI function looks like in Ruby, and how to debug and evaluate one in production.
+  speakers:
+    - Michael Carroll
+
+- id: "roel-bondoc-xoruby-toronto-2026"
+  title: "Don't Make Your Developers Think About Observability"
+  date: "2026-10-03"
+  start_time: "15:30"
+  end_time: "16:00"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "roel-bondoc-xoruby-toronto-2026"
+  description: |-
+    The best observability tooling is the one developers don't have to think about. As a platform engineer, your job is to provide your team with reliable tools and systems to help them succeed. In this talk, we'll dive into some practical examples of how to design your software with observability baked in and how to get value from your data after it has landed.
+  speakers:
+    - Roel Bondoc
+
+- id: "kristine-mcbride-xoruby-toronto-2026"
+  title: "One Monolith, Two Countries: Going Multi-Region Without a Rewrite"
+  date: "2026-10-03"
+  start_time: "16:15"
+  end_time: "16:45"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "kristine-mcbride-xoruby-toronto-2026"
+  description: |-
+    Our team was tasked with building a new internal tools platform for many teams across the company. There was just one problem. Our monolith ran as two separate deployments, one for the US and one for Canada, and each only ever talked to its own database. This new platform needed to display US and Canada data together in one place. So we had a decision to make: spin up a separate external app, or lean into the monolith and do the infrastructure work to turn it into a multi-region app. We chose the monolith.
+  speakers:
+    - Kristine McBride

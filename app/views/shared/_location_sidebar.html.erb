@@ -1,4 +1,4 @@
-<%# locals: (location:, users:, nearby_users: [], nearby_events: [], cities: [], countries: {}, show_cities: true, show_countries: false, event_map_markers: [], geo_layers: [], country_events: [], continent_events: [], state: nil, state_users: [], map_title: "Upcoming Events Map") %>
+<%# locals: (location:, users:, nearby_users: [], cities: [], countries: {}, show_cities: true, show_countries: false, event_map_markers: [], geo_layers: [], state: nil, state_users: [], map_title: "Upcoming Events Map") %>
 
 <div class="space-y-8">
   <% if location.is_a?(OnlineLocation) %>
@@ -61,7 +61,6 @@
     <%= render "shared/rubyists_preview",
           users: users.limit(24),
           title: "Rubyists in #{location.name}",
-          total_count: users.count,
           view_all_path: location_users_path(location) %>
   <% end %>
 

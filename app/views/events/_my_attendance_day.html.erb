@@ -1,22 +1,11 @@
-<%# locals: (event:, day:, day_index:, tracks:, talks:, in_person_talk_ids:, online_talk_ids:, feedback_talk_ids:) %>
+<%# locals: (day:, day_index:, tracks:, talks:, in_person_talk_ids:, online_talk_ids:, feedback_talk_ids:) %>
 
 <% talk_count = 0 %>
 <% date_string = Date.parse(day.dig("date")).strftime("%a %b %d") %>
 <% day_string = day.dig("name") ? "#{day.dig("name")} - #{date_string}" : date_string %>
-<% unique_slot_counts = day.dig("grid").map { |grid| grid["slots"] }.uniq %>
 
 <div id="attendance-day-<%= day_index %>" class="mt-4">
   <h3 class="mb-2 text-center text-sm font-semibold text-gray-700"><%= day_string %></h3>
-
-  <style>
-    <% unique_slot_counts.each do |slot_count| %>
-      @media (min-width: 768px) {
-        #attendance-day-<%= day_index %> [data-slots="<%= slot_count %>"] {
-          grid-template-columns: repeat(<%= slot_count %>, minmax(0, 1fr));
-        }
-      }
-    <% end %>
-  </style>
 
   <div class="divide-y overflow-hidden rounded border">
     <% day.dig("grid").each do |grid| %>
@@ -36,7 +25,10 @@
           <span class="hidden md:inline"><%= start_time %></span>
         </div>
 
-        <div class="grid flex-1 grid-cols-1 md:divide-x" data-slots="<%= slots %>">
+        <div
+          class="grid flex-1 grid-cols-1 md:grid-cols-[repeat(var(--slots),minmax(0,1fr))] md:divide-x"
+          style="--slots: <%= slots %>"
+        >
           <% slots.times do |i| %>
             <% talk = items.any? ? nil : talks[talk_count] %>
 

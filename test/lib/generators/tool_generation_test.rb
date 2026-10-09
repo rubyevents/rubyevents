@@ -37,10 +37,10 @@ class ToolGenerationTest < ActiveSupport::TestCase
     assert_equal "Runs the sample generator.", tool.description
   end
 
-  test "builds tool params from the generator's Fields class_options" do
+  test "builds tool params from the generator's Fields and Options class_options" do
     tool = ToolGeneration.generate_tools([build_generator]).first
 
-    assert_equal %i[event_series event title tags kind], tool.parameters.keys
+    assert_equal %i[event_series event title tags kind alternate_format], tool.parameters.keys
 
     title_param = tool.parameters[:title]
     assert_equal "string", title_param.type.to_s
@@ -55,6 +55,13 @@ class ToolGenerationTest < ActiveSupport::TestCase
     assert_equal "string", kind_param.type.to_s
     assert_equal "Kind of the thing", kind_param.description
     refute kind_param.required
+  end
+
+  test "excludes the generator's default framework options" do
+    tool = ToolGeneration.generate_tools([build_generator]).first
+
+    refute_includes tool.parameters.keys, :force
+    refute_includes tool.parameters.keys, :skip_collision_check
   end
 
   test "registers a Generate<Type>Tool constant for the generator" do
@@ -72,6 +79,7 @@ class ToolGenerationTest < ActiveSupport::TestCase
       class_option :title, type: :string, desc: "Title of the thing", group: "Fields", required: true
       class_option :tags, type: :array, desc: "Tags for the thing", group: "Fields"
       class_option :kind, type: :string, enum: %w[foo bar], desc: "Kind of the thing", group: "Fields"
+      class_option :alternate_format, type: :string, desc: "Alternate format of the thing", group: "Options"
     end
 
     generator.define_singleton_method(:name) { "#{GENERATOR_NAME}Generator" }

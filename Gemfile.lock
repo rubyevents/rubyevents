@@ -367,8 +367,6 @@ GEM
     ffi (1.17.4-x86_64-linux-musl)
     formatador (1.2.3)
       reline
-    frozen_record (0.27.4)
-      activemodel
     fugit (1.12.1)
       et-orbi (~> 1.4)
       raabro (~> 1.4)
@@ -406,14 +404,14 @@ GEM
     hashdiff (1.2.1)
     hashie (5.1.0)
       logger
-    herb (0.10.4-aarch64-linux-gnu)
-    herb (0.10.4-aarch64-linux-musl)
-    herb (0.10.4-arm-linux-gnu)
-    herb (0.10.4-arm-linux-musl)
-    herb (0.10.4-arm64-darwin)
-    herb (0.10.4-x86_64-darwin)
-    herb (0.10.4-x86_64-linux-gnu)
-    herb (0.10.4-x86_64-linux-musl)
+    herb (0.11.0-aarch64-linux-gnu)
+    herb (0.11.0-aarch64-linux-musl)
+    herb (0.11.0-arm-linux-gnu)
+    herb (0.11.0-arm-linux-musl)
+    herb (0.11.0-arm64-darwin)
+    herb (0.11.0-x86_64-darwin)
+    herb (0.11.0-x86_64-linux-gnu)
+    herb (0.11.0-x86_64-linux-musl)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     icalendar (2.12.2)
@@ -660,10 +658,11 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
-    reactionview (0.4.1)
+    reactionview (0.6.0)
       actionview (>= 7.0)
-      cruise
-      herb (>= 0.10.4, < 0.11.0)
+      cruise (>= 0.3.0)
+      herb (>= 0.11.0)
+      websocket (~> 1.2)
     redcarpet (3.6.1)
     regexp_parser (2.12.0)
     reline (0.6.3)
@@ -717,6 +716,7 @@ GEM
     ruby_llm-schema (0.4.0)
     rubyzip (3.2.2)
     safely_block (0.5.0)
+    schematist (1.1.0)
     securerandom (0.4.1)
     selenium-webdriver (4.41.0)
       base64 (~> 0.2)
@@ -889,13 +889,12 @@ DEPENDENCIES
   erb_lint
   fastimage (~> 2.4)
   ferrum (~> 0.17.2)
-  frozen_record (~> 0.27.2)
   gems
   geocoder!
   grepfruit
   groupdate
   guard
-  herb (~> 0.10.4)
+  herb (~> 0.11.0)
   icalendar (~> 2.12)
   image_processing (~> 1.2)
   iso-639
@@ -922,14 +921,14 @@ DEPENDENCIES
   rails-controller-testing
   rails-i18n (~> 8.0)
   rails_autolink (~> 1.1)
-  reactionview (~> 0.4.1)
+  reactionview (~> 0.6.0)
   redcarpet (~> 3.6)
   rouge (~> 4.4)
   rss (~> 0.3.1)
   ruby-lsp-rails
   ruby-openai
   ruby_llm (~> 1.15.0)
-  ruby_llm-schema (~> 0.4.0)
+  schematist (~> 1.1)
   selenium-webdriver
   simplecov
   sitemap_generator (~> 6.3)

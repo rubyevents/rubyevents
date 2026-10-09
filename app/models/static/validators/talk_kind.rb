@@ -16,7 +16,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -47,7 +47,7 @@ module Static
 
       def talk_errors(node)
         kind = node.value_at("kind").to_s.strip
-        inferred = Talk::Kind.from_title(node.value_at("title")).to_s
+        inferred = ::Talk::Kind.from_title(node.value_at("title")).to_s
 
         if kind.empty?
           return [] if inferred == DEFAULT_KIND

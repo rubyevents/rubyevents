@@ -18,7 +18,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -58,7 +58,7 @@ module Static
       end
 
       def talk_errors(node)
-        return [] if Talk::SUPPLEMENTARY_KINDS.include?(node.value_at("kind"))
+        return [] if ::Talk::SUPPLEMENTARY_KINDS.include?(node.value_at("kind"))
 
         errors = []
 
