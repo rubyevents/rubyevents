@@ -225,14 +225,7 @@ module Static
     def find_featured_city
       return nil if city.blank?
 
-      Static::City.all.detect do |featured_city|
-        if country.present?
-          next unless featured_city.country_code.to_s.upcase == country.alpha2
-        end
-
-        featured_city.name.casecmp?(city) ||
-          Array(featured_city.aliases).any? { |alias_name| alias_name.casecmp?(city) }
-      end
+      Static::City.find_by_name_or_alias(city, country_code: country&.alpha2)
     end
 
     def parsed_state_code
