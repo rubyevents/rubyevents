@@ -1,0 +1,21 @@
+<%# locals: (languages:) %>
+
+<section class="flex flex-col gap-4" data-section="talk-languages">
+  <div class="flex items-end justify-between">
+    <div>
+      <h2 class="text-xl font-bold">Browse by Language</h2>
+      <p class="text-sm text-gray-500">Find talks in your preferred language</p>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <% languages.each do |code, count| %>
+      <%= link_to talks_path(language: code), class: "btn btn-outline btn-sm gap-2 hover:btn-primary", data: {turbo_frame: "_top"} do %>
+        <%= Language.emoji_flag(code) %>
+        <%= Language.by_code(code) || code %>
+
+        <span class="badge badge-ghost badge-sm"><%= count %></span>
+      <% end %>
+    <% end %>
+  </div>
+</section>

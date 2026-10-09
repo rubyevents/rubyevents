@@ -14,10 +14,12 @@ class Search::Backend::SQLiteFTS
       case options[:status]
       when "scheduled"
         talks = talks.scheduled
+      when "no_video"
+        talks = talks.where.not(video_provider: Talk::WATCHABLE_PROVIDERS)
       when "all"
         # Show all talks
       else
-        talks = talks.ft_watchable unless options[:include_unwatchable]
+        talks = talks.watchable unless options[:include_unwatchable]
       end
 
       total_count = talks.except(:select).count
@@ -38,10 +40,12 @@ class Search::Backend::SQLiteFTS
       case options[:status]
       when "scheduled"
         talks = talks.scheduled
+      when "no_video"
+        talks = talks.where.not(video_provider: Talk::WATCHABLE_PROVIDERS)
       when "all"
         # Show all talks
       else
-        talks = talks.ft_watchable unless options[:include_unwatchable]
+        talks = talks.watchable unless options[:include_unwatchable]
       end
 
       talks = apply_sort(talks, query, options[:sort])
@@ -144,6 +148,10 @@ class Search::Backend::SQLiteFTS
 
     def search_kinds(query, limit:)
       [[], 0]
+    end
+
+    def search_transcript_passages(query, limit:, page: 1)
+      [[], 0, 0]
     end
 
     def available?

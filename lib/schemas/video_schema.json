@@ -1,9 +1,15 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VideoSchema",
   "type": "object",
   "properties": {
     "id": {
       "type": "string",
       "description": "Unique identifier for the video"
+    },
+    "old_id": {
+      "type": "string",
+      "description": "Previous id, kept so production records can be migrated to the new id on the next seed"
     },
     "title": {
       "type": "string",
@@ -27,7 +33,30 @@
     },
     "kind": {
       "type": "string",
-      "description": "Type of video (e.g., 'keynote', 'lightning')"
+      "enum": [
+        "keynote",
+        "talk",
+        "lightning_talk",
+        "open_mic",
+        "announcement",
+        "city_pitch",
+        "panel",
+        "workshop",
+        "gameshow",
+        "podcast",
+        "q_and_a",
+        "discussion",
+        "fireside_chat",
+        "interview",
+        "award",
+        "demo",
+        "trailer",
+        "recap",
+        "aftermovie",
+        "intro",
+        "outro"
+      ],
+      "description": "Type of video (e.g., 'keynote', 'lightning_talk')"
     },
     "status": {
       "type": "string",
@@ -49,17 +78,48 @@
           "id": {
             "type": "string"
           },
+          "old_id": {
+            "type": "string",
+            "description": "Previous id, kept so production records can be migrated to the new id on the next seed"
+          },
           "title": {
             "type": "string"
           },
           "raw_title": {
             "type": "string"
           },
+          "original_title": {
+            "type": "string",
+            "description": "Original title in native language"
+          },
           "description": {
             "type": "string"
           },
           "kind": {
             "type": "string",
+            "enum": [
+              "keynote",
+              "talk",
+              "lightning_talk",
+              "open_mic",
+              "announcement",
+              "city_pitch",
+              "panel",
+              "workshop",
+              "gameshow",
+              "podcast",
+              "q_and_a",
+              "discussion",
+              "fireside_chat",
+              "interview",
+              "award",
+              "demo",
+              "trailer",
+              "recap",
+              "aftermovie",
+              "intro",
+              "outro"
+            ],
             "description": "Type of video (e.g., 'keynote', 'lightning')"
           },
           "speakers": {
@@ -72,16 +132,28 @@
             "type": "string"
           },
           "date": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
           },
           "published_at": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "announced_at": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "video_provider": {
             "type": "string",
+            "enum": [
+              "youtube",
+              "mp4",
+              "vimeo",
+              "scheduled",
+              "not_published",
+              "not_recorded",
+              "parent"
+            ],
             "description": "Use 'parent' if there is one video"
           },
           "video_id": {
@@ -285,15 +357,18 @@
           },
           "start_cue": {
             "type": "string",
-            "description": "Start time cue in video"
+            "description": "Start time cue in video (MM:SS, HH:MM:SS, or 'TODO')",
+            "pattern": "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
           },
           "end_cue": {
             "type": "string",
-            "description": "End time cue in video"
+            "description": "End time cue in video (MM:SS, HH:MM:SS, or 'TODO')",
+            "pattern": "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
           },
           "thumbnail_cue": {
             "type": "string",
-            "description": "Thumbnail time cue"
+            "description": "Thumbnail time cue (MM:SS, HH:MM:SS, or 'TODO')",
+            "pattern": "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
           },
           "slides_url": {
             "type": "string"
@@ -598,9 +673,14 @@
                 },
                 "external_url": {
                   "type": "string"
+                },
+                "note": {
+                  "type": "string"
                 }
               },
-              "required": [],
+              "required": [
+                "note"
+              ],
               "additionalProperties": false
             }
           }
@@ -624,9 +704,6 @@
               ]
             },
             "then": {
-              "required": [
-                "published_at"
-              ],
               "properties": {
                 "published_at": {
                   "type": "string",
@@ -634,13 +711,16 @@
                     "const": "TODO"
                   },
                   "minLength": 1,
-                  "pattern": "^\\d{4}-\\d{2}-\\d{2}"
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
                 },
                 "video_id": {
                   "type": "string",
                   "pattern": "^[A-Za-z0-9_-]{11}$"
                 }
-              }
+              },
+              "required": [
+                "published_at"
+              ]
             }
           },
           {
@@ -683,7 +763,20 @@
               }
             }
           }
-        ]
+        ],
+        "dependentSchemas": {
+          "published_at": {
+            "properties": {
+              "video_provider": {
+                "enum": [
+                  "youtube",
+                  "mp4",
+                  "vimeo"
+                ]
+              }
+            }
+          }
+        }
       }
     },
     "event_name": {
@@ -692,19 +785,28 @@
     },
     "date": {
       "type": "string",
-      "description": "Date of the talk (YYYY-MM-DD format)"
+      "description": "Date of the talk (YYYY-MM-DD format)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
-    "time": {
+    "start_time": {
       "type": "string",
-      "description": "Time of the talk"
+      "description": "Scheduled start time of the talk",
+      "pattern": "^\\d{2}:\\d{2}$"
+    },
+    "end_time": {
+      "type": "string",
+      "description": "Scheduled end time of the talk",
+      "pattern": "^\\d{2}:\\d{2}$"
     },
     "published_at": {
       "type": "string",
-      "description": "Date when the video was published (YYYY-MM-DD format)"
+      "description": "Date when the video was published (YYYY-MM-DD format)",
+      "minLength": 1
     },
     "announced_at": {
       "type": "string",
-      "description": "Date when the talk was announced"
+      "description": "Date when the talk was announced",
+      "minLength": 1
     },
     "location": {
       "type": "string",
@@ -714,13 +816,12 @@
       "type": "string",
       "enum": [
         "youtube",
-        "vimeo",
-        "not_recorded",
-        "scheduled",
         "mp4",
-        "parent",
-        "children",
-        "not_published"
+        "vimeo",
+        "scheduled",
+        "not_published",
+        "not_recorded",
+        "children"
       ],
       "description": "Video hosting provider"
     },
@@ -1164,9 +1265,14 @@
           },
           "external_url": {
             "type": "string"
+          },
+          "note": {
+            "type": "string"
           }
         },
-        "required": [],
+        "required": [
+          "note"
+        ],
         "additionalProperties": false
       }
     },
@@ -1258,7 +1364,6 @@
     "video_id"
   ],
   "additionalProperties": false,
-  "strict": true,
   "allOf": [
     {
       "if": {
@@ -1272,9 +1377,6 @@
         ]
       },
       "then": {
-        "required": [
-          "published_at"
-        ],
         "properties": {
           "published_at": {
             "type": "string",
@@ -1282,13 +1384,16 @@
               "const": "TODO"
             },
             "minLength": 1,
-            "pattern": "^\\d{4}-\\d{2}-\\d{2}"
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
           },
           "video_id": {
             "type": "string",
             "pattern": "^[A-Za-z0-9_-]{11}$"
           }
-        }
+        },
+        "required": [
+          "published_at"
+        ]
       }
     },
     {
@@ -1331,5 +1436,18 @@
         }
       }
     }
-  ]
+  ],
+  "dependentSchemas": {
+    "published_at": {
+      "properties": {
+        "video_provider": {
+          "enum": [
+            "youtube",
+            "mp4",
+            "vimeo"
+          ]
+        }
+      }
+    }
+  }
 }

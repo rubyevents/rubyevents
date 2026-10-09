@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class LocationSchema < RubyLLM::Schema
+class LocationSchema < ApplicationSchema
   string :name, description: "Location name"
   string :kind, description: "Type of location (e.g., 'After Party Location')"
   string :description, description: "Location description", required: false

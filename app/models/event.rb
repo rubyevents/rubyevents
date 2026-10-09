@@ -3,27 +3,32 @@
 # Table name: events
 # Database name: primary
 #
-#  id               :integer          not null, primary key
-#  city             :string
-#  country_code     :string           indexed => [state_code]
-#  date             :date
-#  date_precision   :string           default("day"), not null
-#  end_date         :date
-#  geocode_metadata :json             not null
-#  kind             :string           default("event"), not null, indexed
-#  latitude         :decimal(10, 6)
-#  location         :string
-#  longitude        :decimal(10, 6)
-#  name             :string           default(""), not null, indexed
-#  slug             :string           default(""), not null, indexed
-#  start_date       :date
-#  state_code       :string           indexed => [country_code]
-#  talks_count      :integer          default(0), not null
-#  website          :string           default("")
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  canonical_id     :integer          indexed
-#  event_series_id  :integer          not null, indexed
+#  id                        :integer          not null, primary key
+#  banner_background         :string
+#  city                      :string
+#  country_code              :string           indexed => [state_code]
+#  date                      :date
+#  date_precision            :string           default("day"), not null
+#  end_date                  :date
+#  featured_background       :string
+#  featured_color            :string
+#  geocode_metadata          :json             not null
+#  home_sort_date            :date
+#  kind                      :string           default("event"), not null, indexed
+#  latitude                  :decimal(10, 6)
+#  location                  :string
+#  longitude                 :decimal(10, 6)
+#  name                      :string           default(""), not null, indexed
+#  recordings_published_date :date
+#  slug                      :string           default(""), not null, uniquely indexed
+#  start_date                :date
+#  state_code                :string           indexed => [country_code]
+#  talks_count               :integer          default(0), not null
+#  website                   :string           default("")
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  canonical_id              :integer          indexed
+#  event_series_id           :integer          not null, indexed
 #
 # Indexes
 #
@@ -32,7 +37,7 @@
 #  index_events_on_event_series_id              (event_series_id)
 #  index_events_on_kind                         (kind)
 #  index_events_on_name                         (name)
-#  index_events_on_slug                         (slug)
+#  index_events_on_slug                         (slug) UNIQUE
 #
 # Foreign Keys
 #
@@ -45,6 +50,11 @@ class Event < ApplicationRecord
   include Todoable
   include Event::TypesenseSearchable
 
+  FEATURED_RECENTLY_PUBLISHED_WINDOW = 30.days
+  FEATURED_RECENTLY_ENDED_WINDOW = 2.days
+  FEATURED_UPCOMING_WINDOW = 2.weeks
+  FEATURED_CFP_CLOSING_WINDOW = 5.days
+
   geocodeable :location_and_country_code
   configure_slug(attribute: :name, auto_suffix_on_collision: false)
 
@@ -53,8 +63,8 @@ class Event < ApplicationRecord
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
   has_many :watchable_talks, -> { watchable }, class_name: "Talk"
   has_many :speakers, -> { distinct }, through: :talks, class_name: "User"
-  has_many :keynote_speakers, -> { joins(:talks).where(talks: {kind: "keynote"}).distinct },
-    through: :talks, source: :speakers
+  has_many :keynote_talks, -> { where(kind: "keynote") }, class_name: "Talk", foreign_key: :event_id, inverse_of: :event
+  has_many :keynote_speakers, -> { distinct }, through: :keynote_talks, source: :speakers
   has_many :topics, -> { distinct }, through: :talks
   has_many :sponsors, dependent: :destroy
   has_many :organizations, through: :sponsors
@@ -90,7 +100,6 @@ class Event < ApplicationRecord
   has_object :sponsors_file
   has_object :cfp_file
   has_object :involvements_file
-  has_object :transcripts_file
   has_object :venue
   has_object :videos_file
 
@@ -106,6 +115,7 @@ class Event < ApplicationRecord
   scope :with_talks, -> { where.associated(:talks) }
   scope :with_watchable_talks, -> { where.associated(:watchable_talks) }
   scope :canonical, -> { where(canonical_id: nil) }
+  scope :featurable, -> { where.not(featured_background: nil).where.not(featured_color: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
   scope :ft_search, ->(query) {
     joins(<<~SQL.squish)
@@ -143,6 +153,83 @@ class Event < ApplicationRecord
 
   def past?
     end_date.present? && end_date < Date.today
+  end
+
+  def happening?
+    start_date.present? && end_date.present? && (start_date..end_date).cover?(Date.today)
+  end
+
+  def live?
+    happening? && schedule.exist?
+  end
+
+  def happening_tomorrow?
+    start_date.present? && start_date == Date.today + 1
+  end
+
+  def recently_ended?
+    past? && end_date >= FEATURED_RECENTLY_ENDED_WINDOW.ago.to_date
+  end
+
+  def featured_cfp
+    cfps.select { |cfp| cfp.link.present? && cfp.close_date && cfp.close_date.between?(Date.today, Date.today + FEATURED_CFP_CLOSING_WINDOW) }.min_by(&:close_date)
+  end
+
+  def featured_reason
+    if happening?
+      :happening
+    elsif happening_tomorrow?
+      :happening_tomorrow
+    elsif featured_cfp
+      :cfp_closing
+    elsif upcoming?
+      :upcoming
+    elsif recently_ended? && !watchable_talks?
+      :recently_ended
+    elsif home_sort_date && home_sort_date >= FEATURED_RECENTLY_PUBLISHED_WINDOW.ago.to_date
+      :recently_published
+    else
+      :available
+    end
+  end
+
+  def featured_distance(today: Date.today)
+    cfp = featured_cfp
+
+    if happening?
+      0
+    elsif cfp
+      (cfp.close_date - today).to_i
+    elsif upcoming?
+      (start_date - today).to_i
+    elsif home_sort_date
+      (today - home_sort_date).to_i
+    else
+      Float::INFINITY
+    end
+  end
+
+  def self.featured(limit: 15, today: Date.today)
+    base = distinct.not_meetup.featurable.where.not(home_sort_date: nil)
+
+    ids = (
+      base.where.not(recordings_published_date: nil).pluck(:id) +
+      base.where(start_date: ..today, end_date: today..).pluck(:id) +
+      base.where(end_date: (today - FEATURED_RECENTLY_ENDED_WINDOW)..today.prev_day).pluck(:id) +
+      base.where(start_date: today.next_day..(today + FEATURED_UPCOMING_WINDOW)).pluck(:id) +
+      base.joins(:cfps).where(cfps: {close_date: today..(today + FEATURED_CFP_CLOSING_WINDOW)}).where.not(cfps: {link: nil}).pluck(:id)
+    ).uniq
+
+    ordered_ids = where(id: ids)
+      .includes(:cfps)
+      .sort_by { |event| event.featured_distance(today: today) }
+      .reject { |event| event.static_metadata.cancelled? }
+      .first(limit)
+      .map(&:id)
+
+    where(id: ordered_ids)
+      .includes(:series, :keynote_speakers, :speakers, :cfps)
+      .in_order_of(:id, ordered_ids)
   end
 
   def self.find_by_name_or_alias(name)
@@ -214,13 +301,31 @@ class Event < ApplicationRecord
   end
 
   def location_and_country_code
-    default_country = series&.static_metadata&.default_country_code
+    return location if location.blank?
+    return location if location_includes_country?
 
+    default_country = series&.static_metadata&.default_country_code
     [location, default_country].compact.join(", ")
   end
 
   def location_and_country_code_previously_changed?
     location_previously_changed?
+  end
+
+  # True when the location string already names a country. Ignores Country.find's
+  # US-subdivision fallback (e.g. "NY" => US) so short state codes still get the
+  # series default_country_code appended for geocoding.
+  def location_includes_country?
+    term = location.to_s.split(",").last&.strip
+    return false if term.blank?
+    return false if term.downcase.in?(%w[online earth unknown])
+
+    if term.length == 2
+      iso = ISO3166::Country.new(term.upcase)
+      return iso&.alpha2.present?
+    end
+
+    Country.find(term).present?
   end
 
   def today?
@@ -337,6 +442,7 @@ class Event < ApplicationRecord
         host: "#{request.protocol}#{request.host}:#{request.port}"),
       featured_background: static_metadata.featured_background,
       featured_color: static_metadata.featured_color,
+      live: live?,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end

@@ -1,53 +1,74 @@
-require "protobuf/message_type"
-
 module YouTube
   class Transcript
-    attr_reader :response
+    Track = Data.define(:language_code, :is_generated, :translated, :snippets)
 
-    def get(video_id)
-      message = {one: "asr", two: "en"}
-      typedef = MessageType
-      two = get_base64_protobuf(message, typedef)
-
-      message = {one: video_id, two: two}
-      params = get_base64_protobuf(message, typedef)
-
-      url = "https://www.youtube.com/youtubei/v1/get_transcript"
-      headers = {"Content-Type" => "application/json"}
-      body = {
-        context: {
-          client: {
-            clientName: "WEB",
-            clientVersion: "2.20240313"
-          }
-        },
-        params: params
-      }
-
-      uri = URI(url)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      request = Net::HTTP::Post.new(uri.request_uri, headers)
-      request.body = body.to_json
-      @response = http.request(request)
-
-      JSON.parse(@response.body)
+    def self.get(video_id, languages: ["en"])
+      new.get(video_id, languages:)
     end
 
-    def self.get(video_id)
-      new.get(video_id)
+    def get(video_id, languages: ["en"])
+      YoutubeRb::Transcript::YouTubeTranscriptApi.new.fetch(video_id, languages:)
+    rescue YoutubeRb::Transcript::CouldNotRetrieveTranscript
+      nil
+    end
+
+    def self.list(video_id)
+      new.list(video_id)
+    end
+
+    def list(video_id)
+      api.list(video_id)
+    rescue YoutubeRb::Transcript::CouldNotRetrieveTranscript
+      nil
+    end
+
+    def self.tracks(video_id, languages:)
+      new.tracks(video_id, languages:)
+    end
+
+    def tracks(video_id, languages:)
+      list = api.list(video_id)
+
+      languages.filter_map { |language| track_for(list, language) }.uniq(&:language_code)
+    rescue YoutubeRb::Transcript::CouldNotRetrieveTranscript
+      []
     end
 
     private
 
-    def encode_message(message, typedef)
-      encoded_message = typedef.new(message)
-      encoded_message.to_proto
+    def api
+      YoutubeRb::Transcript::YouTubeTranscriptApi.new
     end
 
-    def get_base64_protobuf(message, typedef)
-      encoded_data = encode_message(message, typedef)
-      Base64.encode64(encoded_data).delete("\n")
+    def track_for(list, language)
+      transcript, translated = resolve(list, language)
+      return unless transcript
+
+      fetched = transcript.fetch
+
+      Track.new(
+        language_code: fetched.language_code,
+        is_generated: transcript.is_generated,
+        translated: translated,
+        snippets: fetched.snippets
+      )
+    rescue YoutubeRb::Transcript::CouldNotRetrieveTranscript
+      nil
+    end
+
+    def resolve(list, language)
+      native = native_transcript(list, language)
+      return [native, false] if native
+
+      source = list.find(&:translatable?)
+
+      source ? [source.translate(language), true] : [nil, nil]
+    end
+
+    def native_transcript(list, language)
+      list.find_transcript([language])
+    rescue YoutubeRb::Transcript::CouldNotRetrieveTranscript
+      nil
     end
   end
 end

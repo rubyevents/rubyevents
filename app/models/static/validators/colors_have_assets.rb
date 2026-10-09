@@ -11,15 +11,16 @@ module Static
         "featured_color" => "featured.webp"
       }.freeze
 
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       def applicable?
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -30,7 +31,6 @@ module Static
       def validate
         return [] unless applicable?
 
-        document = Yerba.parse_file(@file_path)
         path_parts = @file_path.split("/")
         series_slug = path_parts[-3]
         event_slug = path_parts[-2]
@@ -46,12 +46,18 @@ module Static
             location = document[field].location
 
             Static::Validators::Error.new(
-              "Color field configured but asset '#{asset}' not found in #{asset_dir} or #{default_asset_dir}",
+              "#{field} is defined but '#{asset}' exists neither in #{asset_dir} nor in #{default_asset_dir}, events falling back to the global default #{asset} must not define brand colors",
               file_path: @file_path,
               line: location&.start_line || 1,
               end_line: location&.end_line
             )
           end.compact
+      end
+
+      private
+
+      def document
+        @document ||= Yerba.parse_file(@file_path.to_s)
       end
     end
   end

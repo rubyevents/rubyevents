@@ -32,6 +32,10 @@ class SitemapsController < ApplicationController
           add event_path(event_slug), priority: 0.9, lastmod: updated_at
         end
 
+        add attend_path, priority: 0.8, changefreq: "weekly"
+        add speak_path, priority: 0.8, changefreq: "weekly"
+        add organize_path, priority: 0.7, changefreq: "monthly"
+
         add topics_path, priority: 0.7, changefreq: "weekly"
 
         Topic.approved.pluck(:slug, :updated_at).each do |topic_slug, updated_at|

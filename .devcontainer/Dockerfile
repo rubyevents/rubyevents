@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=4.0.1
+ARG RUBY_VERSION=4.0.6
 FROM docker.io/library/ruby:$RUBY_VERSION
 
 # Rails app lives here
@@ -38,7 +38,7 @@ RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz
     rm -rf /tmp/node-build-master
 
 # Setup dependencies
-RUN bin/setup --skip-server
+RUN bin/setup --skip-server --skip-db
 
 # Default command
 CMD ["sleep", "infinity"]

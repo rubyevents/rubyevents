@@ -7,7 +7,7 @@ import { get } from '@rails/request.js'
 export default class extends Controller {
   static targets = ['searchInput', 'form', 'searchResults', 'talksSearchResults',
     'speakersSearchResults', 'eventsSearchResults', 'topicsSearchResults', 'seriesSearchResults',
-    'organizationsSearchResults', 'locationsSearchResults', 'languagesSearchResults', 'kindsSearchResults', 'allSearchResults', 'searchQuery', 'loading', 'clear', 'searchBackendBadge', 'backendToggle', 'sqliteBadge', 'typesenseBadge']
+    'organizationsSearchResults', 'locationsSearchResults', 'languagesSearchResults', 'kindsSearchResults', 'transcriptsSearchResults', 'allSearchResults', 'searchQuery', 'loading', 'clear', 'searchBackendBadge', 'backendToggle', 'sqliteBadge', 'typesenseBadge']
 
   static debounces = ['search']
   static values = {
@@ -20,6 +20,7 @@ export default class extends Controller {
     urlSpotlightLocations: String,
     urlSpotlightLanguages: String,
     urlSpotlightKinds: String,
+    urlSpotlightTranscripts: String,
     mainResourcePath: String,
     defaultBackend: String
   }
@@ -143,6 +144,15 @@ export default class extends Controller {
       }
       this.kindsAbortController = new AbortController()
       searchPromises.push(this.#handleSearch(this.urlSpotlightKindsValue, query, this.kindsAbortController))
+    }
+
+    if (this.hasUrlSpotlightTranscriptsValue) {
+      if (this.transcriptsAbortController) {
+        this.transcriptsAbortController.abort()
+      }
+
+      this.transcriptsAbortController = new AbortController()
+      searchPromises.push(this.#handleSearch(this.urlSpotlightTranscriptsValue, query, this.transcriptsAbortController))
     }
 
     try {
@@ -299,6 +309,10 @@ export default class extends Controller {
       this.kindsAbortController.abort()
     }
 
+    if (this.transcriptsAbortController) {
+      this.transcriptsAbortController.abort()
+    }
+
     this.talksSearchResultsTarget.innerHTML = ''
     this.speakersSearchResultsTarget.innerHTML = ''
     this.eventsSearchResultsTarget.innerHTML = ''
@@ -331,6 +345,11 @@ export default class extends Controller {
     if (this.hasKindsSearchResultsTarget) {
       this.kindsSearchResultsTarget.innerHTML = ''
       this.kindsSearchResultsTarget.classList.add('hidden')
+    }
+
+    if (this.hasTranscriptsSearchResultsTarget) {
+      this.transcriptsSearchResultsTarget.innerHTML = ''
+      this.transcriptsSearchResultsTarget.classList.add('hidden')
     }
 
     this.allSearchResultsTarget.classList.add('hidden')

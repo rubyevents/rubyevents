@@ -21,7 +21,7 @@ class GeocodeTool < RubyLLM::Tool
         longitude: result.longitude
       },
       address: {
-        formatted: result.formatted_address,
+        formatted: result.respond_to?(:formatted_address) ? result.formatted_address : result.address,
         street: result.street_address,
         city: result.city,
         state: result.state,
@@ -30,7 +30,6 @@ class GeocodeTool < RubyLLM::Tool
         country_code: result.country_code
       },
       place_id: result.place_id,
-      types: result.types,
       maps: {
         google: "https://www.google.com/maps/search/?api=1&query=#{result.latitude},#{result.longitude}",
         openstreetmap: "https://www.openstreetmap.org/?mlat=#{result.latitude}&mlon=#{result.longitude}&zoom=17"

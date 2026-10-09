@@ -1,8 +1,8 @@
 <%# locals: (talks:) %>
 
 <%= render "browse/content_row",
-      title: "Recently Published",
+      title: "Recently Uploaded",
       subtitle: "Latest uploads",
       talks: talks,
-      view_all_path: nil,
+      view_all_path: talks_path(section: "recently_published"),
       data_section: "recently-published" %>

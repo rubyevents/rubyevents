@@ -22,7 +22,7 @@ export default class extends Controller {
     watched: { default: false, type: Boolean }
   }
 
-  static targets = ['player', 'playerWrapper', 'watchedOverlay', 'resumeOverlay', 'playOverlay']
+  static targets = ['player', 'playerWrapper', 'watchedOverlay', 'resumeOverlay', 'playOverlay', 'playLabel']
   playbackRateOptions = [1, 1.25, 1.5, 1.75, 2]
 
   initialize () {
@@ -31,6 +31,28 @@ export default class extends Controller {
 
   connect () {
     this.init()
+    this.#showDeepLinkOnPlayButton()
+  }
+
+  #showDeepLinkOnPlayButton () {
+    if (!this.hasPlayLabelTarget) return
+
+    const value = new URLSearchParams(window.location.search).get('t')
+    if (!value) return
+
+    const seconds = Number(value)
+    if (Number.isNaN(seconds)) return
+
+    this.playLabelTarget.textContent = `Play from ${this.#formatTimestamp(seconds)}`
+  }
+
+  #formatTimestamp (totalSeconds) {
+    const seconds = Math.floor(totalSeconds)
+    const secs = String(seconds % 60).padStart(2, '0')
+    const mins = Math.floor(seconds / 60) % 60
+    const hours = Math.floor(seconds / 3600)
+
+    return hours > 0 ? `${hours}:${String(mins).padStart(2, '0')}:${secs}` : `${String(mins).padStart(2, '0')}:${secs}`
   }
 
   // methods
@@ -148,6 +170,8 @@ export default class extends Controller {
     // for seekTo to work we need to store again the player instance
     this.player = player
 
+    this.startTimeBroadcast()
+
     const controlBar = player.elements.container.querySelector('.v-controlBar')
 
     if (controlBar) {
@@ -179,6 +203,17 @@ export default class extends Controller {
 
     if (this.hasProgressSecondsValue && this.progressSecondsValue > 0 && !this.isFullyWatched()) {
       this.player.seekTo(this.progressSecondsValue)
+    }
+
+    if (this.pendingSeek != null) {
+      this.player.seekTo(this.pendingSeek)
+      this.pendingSeek = null
+    }
+
+    const urlTimestamp = new URLSearchParams(window.location.search).get('t')
+
+    if (urlTimestamp) {
+      this.player.seekTo(Number(urlTimestamp))
     }
 
     if (this.autoplay) {
@@ -305,9 +340,30 @@ export default class extends Controller {
 
     const { time } = event.params
 
-    if (time) {
+    if (time == null) return
+
+    this.player.seekTo(time)
+
+    if (!this.isPlaying) this.player.play()
+  }
+
+  seekToTime (event) {
+    const time = event.detail?.time
+
+    if (time == null) return
+
+    if (this.ready) {
       this.player.seekTo(time)
+      if (!this.isPlaying) this.player.play()
+      return
     }
+
+    if (!this.hasPlayerTarget) return
+
+    this.pendingSeek = time
+    this.autoplay = true
+    this.removeOverlays()
+    this.player = new Vlitejs(this.playerTarget, this.options)
   }
 
   pause () {
@@ -318,6 +374,25 @@ export default class extends Controller {
 
   disconnect () {
     this.stopProgressTracking()
+    this.stopTimeBroadcast()
+  }
+
+  startTimeBroadcast () {
+    if (this.timeBroadcast) return
+
+    this.timeBroadcast = setInterval(async () => {
+      if (!this.ready || !this.isPlaying) return
+
+      const time = await this.getCurrentTime()
+      this.dispatch('timeupdate', { target: window, detail: { time } })
+    }, 500)
+  }
+
+  stopTimeBroadcast () {
+    if (!this.timeBroadcast) return
+
+    clearInterval(this.timeBroadcast)
+    this.timeBroadcast = null
   }
 
   #togglePictureInPicturePlayer (enabled) {

@@ -3,8 +3,9 @@
 module Static
   module Validators
     class UniqueSpeakerFields
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       PATTERNS = [
@@ -24,7 +25,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -35,7 +36,7 @@ module Static
       def validate
         return [] unless applicable?
 
-        speakers = Static::SpeakersFile.new(@file_path)
+        speakers = Static::SpeakersFile.new(@file_path, document: @document)
         errors = []
 
         UNIQUE_FIELDS.each do |field|

@@ -78,9 +78,23 @@ service_account.json
 # asdf
 .tool-versions
 
+# mise
+mise.toml
+.mise.toml
+
 .DS_Store
 
 .ssh-keys/
 
+# Dev Container
+.devcontainer/devcontainer-lock.json
+
 # IDE files
 /.idea
+
+# Editor swap and backup files
+.*.sw?
+*~
+
+# Coverage reports
+/coverage

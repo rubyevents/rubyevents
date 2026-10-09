@@ -1,7 +1,256 @@
-# TODO: Add talks and videos
-
-# https://web.archive.org/web/20091231043249/http://2009.rubyenrails.nl/
-# https://www.vimeo.com/7643075
-# https://vimeo.com/user2623183
+# Website: https://web.archive.org/web/20091231043249/http://2009.rubyenrails.nl/
+# Schedule: https://web.archive.org/web/20091226233816/http://2009.rubyenrails.nl/programma?locale=en
+# Speakers: https://web.archive.org/web/20091226233816/http://2009.rubyenrails.nl/speakers?locale=en
+# Videos: https://vimeo.com/user2623183
 ---
-[]
+
+- id: "yehuda-katz-rubyenrails-2009"
+  title: "Merging Merb into Rails"
+  raw_title: "ReR09 - Yehuda Katz, Merging Rails"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-30"
+  published_at: "2009-11-16"
+  language: "English"
+  track: "Centre room"
+  video_provider: "vimeo"
+  video_id: "7643075"
+  description: "" # TODO
+  speakers:
+    - Yehuda Katz
+
+- id: "edwin-vlieg-rubyenrails-2009"
+  title: "Advanced Rails testing Techniques"
+  raw_title: "ReR09 - Edwin Vlieg - Advanced Testing"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-30"
+  published_at: "2009-12-12"
+  language: "English"
+  track: "Centre room"
+  video_provider: "vimeo"
+  video_id: "8134503"
+  description: |-
+    During the development of the MoneyBird application, Edwin and the MoneyBird team experienced how testing should be done. In his 'Advanced testing' session he will share the experiences of the MoneyBird team with you! Prepare for a talk full of RSpec, Cucumber, Webrat and FactoryGirl.
+  speakers:
+    - Edwin Vlieg
+
+- id: "jonathan-weiss-rubyenrails-2009"
+  title: "Rails Security"
+  raw_title: "ReR 09 - Jonathan Weiss - Rails Security"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-30"
+  published_at: "2009-11-16"
+  language: "English"
+  track: "Centre room"
+  video_provider: "vimeo"
+  video_id: "7643672"
+  description: |-
+    Even though Ruby on Rails introduces a lot of best practices to the developer, it is still quite easy for an imprudent programmer to forget that every web application is a potential target. Web application attacks like Cross Site Scripting or Cross Site Request Forgery are very popular these days and every Rails developer should have an idea about the different possibilities that his application presents to an attacker.
+
+    This talk will cover most of the common web application vulnerabilities like Cross Site Scripting and Cross Site Request Forgery, SQL and Code injection, and deployment security and how they apply to Rails. Further Ruby on Rails specific issues like Rails plugin security, JavaScript/Ajax security, and Rails deployment security will be examined and best practices introduced.
+  speakers:
+    - Jonathan Weiss
+
+- id: "dax-huiberts-rubyenrails-2009"
+  title: "DRY up your views"
+  raw_title: "ReR09 - Dax Huiberts - DRYing up your views"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-30"
+  published_at: "2009-11-16"
+  language: "English"
+  track: "Side room"
+  video_provider: "vimeo"
+  video_id: "7642674"
+  description: "" # TODO
+  speakers:
+    - Dax Huiberts
+
+- id: "stijn-mathysen-rubyenrails-2009"
+  title: "JQuery for Rails"
+  raw_title: "ReR09 - Stijn Mathysen - JQuery on Rails"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-30"
+  published_at: "2009-11-16"
+  language: "English"
+  track: "Centre room"
+  video_provider: "vimeo"
+  video_id: "7643109"
+  description: |-
+    Stijn's talk on JQuery on Rails.
+  speakers:
+    - Stijn Mathysen
+
+- id: "julio-javier-cicchelli-rubyenrails-2009"
+  title: "The Rubyists.EU Initiative: Stairway to Ruby Community Integration"
+  raw_title: "ReR09 - Julio Javier Cichelli - The Rubyists.EU Initiative"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-30"
+  published_at: "2009-12-12"
+  language: "English"
+  track: "Side room"
+  video_provider: "vimeo"
+  video_id: "8135849"
+  description: "" # TODO
+  speakers:
+    - Julio Javier Cicchelli
+
+- id: "eloy-duran-rubyenrails-2009"
+  title: "MacRuby and RubyCocoa"
+  raw_title: "ReR09 - Eloy Duran - MacRuby"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-30"
+  published_at: "2009-12-11"
+  language: "English"
+  track: "Centre room"
+  video_provider: "vimeo"
+  video_id: "8123251"
+  description: |-
+    Eloys presentation on MacRuby.
+  speakers:
+    - Eloy Duran
+
+- id: "julian-fischer-rubyenrails-2009"
+  title: "Genetic Algorithms with Ruby"
+  raw_title: "ReR09 - Julian Fisher - Evolutionary Algorithms"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-30"
+  published_at: "2009-12-12"
+  language: "English"
+  track: "Side room"
+  video_provider: "vimeo"
+  video_id: "8134854"
+  description: "" # TODO
+  speakers:
+    - Julian Fischer
+
+- id: "bart-ten-brinke-willem-van-bergen-rubyenrails-2009"
+  title: "Tuning your rails application - to measure is to know"
+  raw_title: "ReR09 - Bart ten Brinke - To Measure is to Know"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-30"
+  published_at: "2009-11-16"
+  language: "English"
+  track: "Centre room"
+  video_provider: "vimeo"
+  video_id: "7642650"
+  description: |-
+    In their talk, Bart and Willem will discuss an often neglected part in BDD: performance. Because performance doesn't matter, until it does.
+
+    We will explain how to prepare for the time when the shit does hit the fan, so you won't be caught with your pants down. How to drill down to the core of the problem, and then how to solve it. In performance there is no such thing as a silver bullet, but after this talk you will know which tools should be in your toolbox. And more important: how they should be used.
+  speakers:
+    - Bart ten Brinke
+    - Willem van Bergen
+
+- id: "norbert-crombach-rubyenrails-2009"
+  title: "EventMachine"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-30"
+  language: "English"
+  track: "Side room"
+  video_provider: "not_recorded"
+  video_id: "norbert-crombach-rubyenrails-2009"
+  description: "" # TODO
+  speakers:
+    - Norbert Crombach
+
+- id: "jeremy-kemper-rubyenrails-2009"
+  title: "What's hot in Rails 3"
+  raw_title: "ReR09 - Jeremy Kemper - Rails 3"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-30"
+  published_at: "2009-11-16"
+  language: "English"
+  track: "Centre room"
+  video_provider: "vimeo"
+  video_id: "7643710"
+  description: |-
+    Jeremy Kemper (37signals) gives an overview of things to come in Rails 3 and Ruby 1.9. He furthermore talks about the relationships between the ruby and the rails community in the past years and years to come.
+  speakers:
+    - Jeremy Kemper
+
+- id: "michael-dirolf-rubyenrails-2009"
+  title: "MongoDB on Rails"
+  raw_title: "ReR09 - Michael Dirolf - MongoDB"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-31"
+  published_at: "2009-11-16"
+  language: "English"
+  track: "Centre room"
+  video_provider: "vimeo"
+  video_id: "7643422"
+  description: "" # TODO
+  speakers:
+    - Michael Dirolf
+
+- id: "justin-halsall-rubyenrails-2009"
+  title: "DSL's in the front end"
+  raw_title: "ReR09 - Justin Halsall - DSLs in the Front End"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-31"
+  published_at: "2009-11-16"
+  language: "English"
+  track: "Centre room"
+  video_provider: "vimeo"
+  video_id: "7643491"
+  description: "" # TODO
+  speakers:
+    - Justin Halsall
+
+- id: "dmitry-jemerov-rubyenrails-2009"
+  title: "Using RubyMine for Rails"
+  raw_title: "ReR09 - Dmitry Jemerov - Using RubyMine for Rails"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-31"
+  published_at: "2009-11-16"
+  language: "English"
+  track: "Centre room"
+  video_provider: "vimeo"
+  video_id: "7643497"
+  description: "" # TODO
+  speakers:
+    - Dmitry Jemerov
+
+- id: "dirkjan-bussink-rubyenrails-2009"
+  title: "Datamapper"
+  raw_title: "ReR09 - Dirkjan Bussink - Datamapper"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-31"
+  published_at: "2009-11-16"
+  language: "English"
+  track: "Centre room"
+  video_provider: "vimeo"
+  video_id: "7643064"
+  description: |-
+    Dirkjan presents the current state of affairs of Datamapper.
+  speakers:
+    - Dirkjan Bussink
+
+- id: "bart-zonneveld-sjoerd-tieleman-rubyenrails-2009"
+  title: "Lessons learned while building omroep.nl"
+  raw_title: "ReR09 - Bart Zonneveld & Sjoerd Tieleman"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-31"
+  published_at: "2009-11-16"
+  language: "English"
+  track: "Centre room"
+  video_provider: "vimeo"
+  video_id: "7642657"
+  description: |-
+    Omroep.nl is the largest of many Ruby on Rails applications we have built for the Dutch Public Broadcasting organisation. In this talk we will give an overview of tools and technologies we used in the process of building this website. Also, we will present various strategies we used to get the best performance and stability for incorporating various sources of external data.
+  speakers:
+    - Bart Zonneveld
+    - Sjoerd Tieleman
+
+- id: "wes-oldenbeuving-rubyenrails-2009"
+  title: "Dry cross-browser compatible css with sass."
+  raw_title: "ReR09 - Wes Oldenbeuving - DRY Cross-Browser CSS With SASS"
+  event_name: "RubyEnRails 2009"
+  date: "2009-10-31"
+  published_at: "2009-11-16"
+  language: "English"
+  track: "Centre room"
+  video_provider: "vimeo"
+  video_id: "7643107"
+  description: |-
+    Wes's talk on using SASS to DRY up your cross-browser CSS generation.
+  speakers:
+    - Wes Oldenbeuving

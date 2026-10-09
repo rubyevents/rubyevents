@@ -117,6 +117,7 @@ class Sessions::OmniauthControllerTest < ActionDispatch::IntegrationTest
 
   test "full oauth flow" do
     OmniAuth.config.mock_auth[:github] = @github_auth
+    OmniAuth.config.request_validation_phase = nil
     state = "connect_id:123456"
 
     # Start the auth request with the state

@@ -3,8 +3,9 @@
 module Static
   module Validators
     class EventCityNames
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       PATTERNS = [
@@ -15,7 +16,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -26,7 +27,6 @@ module Static
       def validate
         return [] unless applicable?
 
-        document = Yerba.parse_file(@file_path)
         location = document["location"]
 
         city_part = location&.value&.split(",")&.first&.strip
@@ -45,6 +45,12 @@ module Static
             end_line: location&.location&.end_line
           )
         ]
+      end
+
+      private
+
+      def document
+        @document ||= Yerba.parse_file(@file_path.to_s)
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AlternativeRecordingSchema < RubyLLM::Schema
+class AlternativeRecordingSchema < ApplicationSchema
   string :title, required: false
   string :raw_title, required: false
   string :language, enum: Language.english_names, required: false
@@ -13,4 +13,5 @@ class AlternativeRecordingSchema < RubyLLM::Schema
   string :video_id, required: false
   string :url, required: false
   string :external_url, required: false
+  string :note, required: true
 end

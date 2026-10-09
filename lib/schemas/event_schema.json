@@ -1,9 +1,11 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EventSchema",
   "type": "object",
   "properties": {
     "id": {
       "type": "string",
-      "description": "Unique identifier for the event (YouTube playlist ID or custom slug)"
+      "description": "Unique identifier for the event, matches the event folder name"
     },
     "title": {
       "type": "string",
@@ -49,6 +51,10 @@
       "type": "boolean",
       "description": "Whether this is the last edition of the event"
     },
+    "pre_date": {
+      "type": "string",
+      "description": "Date of pre-conference activities (workshops, pre-party) held before start_date (YYYY-MM-DD format)"
+    },
     "start_date": {
       "type": "string",
       "description": "Start date of the event (YYYY-MM-DD format)"
@@ -57,9 +63,9 @@
       "type": "string",
       "description": "End date of the event (YYYY-MM-DD format)"
     },
-    "published_at": {
+    "recordings_published_date": {
       "type": "string",
-      "description": "Date when videos were published (YYYY-MM-DD format)"
+      "description": "Date when the event's recordings were published (YYYY-MM-DD format)"
     },
     "announced_on": {
       "type": "string",
@@ -725,6 +731,13 @@
         "additionalProperties": false
       }
     },
+    "removed_talk_ids": {
+      "type": "array",
+      "description": "Ids of talks that were intentionally removed from videos.yml, so the removal is not mistaken for an unrecorded rename",
+      "items": {
+        "type": "string"
+      }
+    },
     "playlist": {
       "type": "string",
       "description": "YouTube playlist/Vimeo showcase link"
@@ -740,6 +753,10 @@
     "twitter": {
       "type": "string",
       "description": "Twitter/X handle (without @)"
+    },
+    "facebook": {
+      "type": "string",
+      "description": "Facebook Page URL"
     },
     "mastodon": {
       "type": "string",
@@ -808,6 +825,5 @@
     "timezone",
     "coordinates"
   ],
-  "additionalProperties": false,
-  "strict": true
+  "additionalProperties": false
 }

@@ -1,10 +1,10 @@
 <%# locals: (stamps:, min_rows: 3) %>
 
 <div class="mx-auto w-full overflow-hidden rounded-[40px] bg-gradient-to-b from-gray-600 via-gray-600 to-gray-400 p-[12px]">
-  <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 p-4 rounded-[32px] bg-white auto-rows-fr">
+  <div class="grid auto-rows-fr grid-cols-3 gap-4 rounded-[32px] bg-white p-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
     <% stamps.each do |stamp| %>
-      <div class="w-full h-full border-4 border-dotted border-gray-300 rounded-xl p-2 bg-white">
-        <div class="w-full h-full rounded-xl flex items-center justify-center relative overflow-hidden lg:p-2">
+      <div class="h-full w-full rounded-xl border-4 border-dotted border-gray-300 bg-white p-2">
+        <div class="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl lg:p-2">
           <%= ui_stamp(stamp, rotate: true, zoom_effect: true, class: "hover:lg:opacity-70") %>
         </div>
       </div>
@@ -12,13 +12,13 @@
 
     <% cols_per_row = 6 %>
     <% remaining = [min_rows * cols_per_row - stamps.count, (cols_per_row - (stamps.count % cols_per_row)) % cols_per_row].max %>
+
     <%# remaining = (cols_per_row - (stamps.count % cols_per_row)) % cols_per_row %>
 
     <% remaining.times do %>
-      <div class="aspect-square flex items-center justify-center">
-        <div class="w-full h-full border-4 border-dotted border-gray-300 rounded-xl p-2 bg-white">
-          <div class="w-full h-full rounded-xl flex items-center justify-center relative overflow-hidden">
-          </div>
+      <div class="flex aspect-square items-center justify-center">
+        <div class="h-full w-full rounded-xl border-4 border-dotted border-gray-300 bg-white p-2">
+          <div class="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl"></div>
         </div>
       </div>
     <% end %>

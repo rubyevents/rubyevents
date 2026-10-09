@@ -12,12 +12,12 @@
 <%= render "shared/location_navigation", location: @country, current_tab: "states", show_cities: true, show_states: true, show_stamps: @country.stamps.any? %>
 
 <div class="container py-8">
-  <div class="flex items-center justify-between mb-6">
+  <div class="mb-6 flex items-center justify-between">
     <h2 class="text-xl font-bold text-gray-900">States in <%= @country.name %></h2>
     <%= ui_badge(@states.count { |s| s.events.any? || s.users.any? }, kind: :secondary, outline: true) %>
   </div>
 
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     <% @states.each do |state| %>
       <% event_count = state.events.count %>
       <% user_count = state.users.count %>
@@ -25,7 +25,7 @@
       <% next if event_count == 0 && user_count == 0 %>
 
       <%= link_to state_path(state_alpha2: state.country.code, state_slug: state.slug), class: "flex flex-col p-4 bg-white rounded-xl border hover:border-gray-400 transition-colors" do %>
-        <div class="flex items-center justify-between mb-2">
+        <div class="mb-2 flex items-center justify-between">
           <span class="font-semibold text-gray-900"><%= state.name %></span>
         </div>
 

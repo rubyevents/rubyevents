@@ -21,7 +21,7 @@ module GitHub
 
         break if batch.empty?
 
-        contributors.concat(batch.reject { |c| c.login.include?("[bot]") })
+        contributors.concat(batch.reject { |c| c.login.include?("[bot]") || c.login.include?("Copilot") })
         page += 1
       end
 

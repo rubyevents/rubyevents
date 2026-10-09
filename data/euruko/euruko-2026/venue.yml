@@ -1,6 +1,7 @@
 # https://www.hotelpassage.eu/en/
 ---
 name: "Hotel Passage"
+description: "Hotel Passage is a contemporary boutique hotel in the very center of Brno, offering stylish design rooms, a first-class restaurant, and a generous congress center under one roof. With its warm atmosphere, elegant interiors, and top-notch conference facilities, it is an inviting place to stay, meet, and enjoy the city."
 address:
   street: "23 Lidická"
   city: "Brno"
@@ -16,3 +17,75 @@ maps:
   google: "https://maps.google.com/?q=Hotel+Passage,49.202154,16.6070931"
   apple: "https://maps.apple.com/?q=Hotel+Passage&ll=49.202154,16.6070931"
   openstreetmap: "https://www.openstreetmap.org/?mlat=49.202154&mlon=16.6070931"
+hotels:
+  - name: "Hotel Passage"
+    kind: "Venue"
+    description: |-
+      The conference takes place here, and a limited number of rooms are reserved exclusively for EuRuKo attendees. Rooms are not bookable online, contact the hotel directly and quote the reservation code. Availability is limited; book early.
+    url: "https://www.hotelpassage.eu/en/"
+    distance: "At the venue"
+    address:
+      street: "23 Lidická"
+      city: "Brno"
+      region: "Jihomoravský kraj"
+      postal_code: "602 00"
+      country: "Czechia"
+      country_code: "CZ"
+      display: "Lidická 23, 602 00 Brno, Czechia"
+    coordinates:
+      latitude: 49.202154
+      longitude: 16.6070931
+
+  - name: "Hotel Continental"
+    kind: "Alternative"
+    description: |-
+      4★ hotel within walking distance. No special rate, book direct.
+    url: "https://www.continentalbrno.cz"
+    distance: "5 min walk"
+    address:
+      street: "680/6 Kounicova"
+      city: "Brno"
+      region: "Jihomoravský kraj"
+      postal_code: "602 00"
+      country: "Czechia"
+      country_code: "CZ"
+      display: "Kounicova 680/6, 602 00 Brno-střed-Veveří, Czechia"
+    coordinates:
+      latitude: 49.2005461
+      longitude: 16.6046511
+
+  - name: "EFI Hotel"
+    kind: "Alternative"
+    description: |-
+      Spa hotel within walking distance. No special rate, book direct.
+    url: "https://www.efihotel.cz/efispahotel"
+    distance: "8 min walk"
+    address:
+      street: "1903/23 náměstí 28. října"
+      city: "Brno"
+      region: "Jihomoravský kraj"
+      postal_code: "602 00"
+      country: "Czechia"
+      country_code: "CZ"
+      display: "nám. 28. října 1903/23, 602 00 Brno-střed, Czechia"
+    coordinates:
+      latitude: 49.2018331
+      longitude: 16.6139021
+
+  - name: "Avanti Hotel"
+    kind: "Alternative"
+    description: |-
+      4★ hotel within walking distance. No special rate, book direct.
+    url: "https://www.hotelavanti.cz"
+    distance: "10 min walk"
+    address:
+      street: "61 Střední"
+      city: "Brno"
+      region: "Jihomoravský kraj"
+      postal_code: "602 00"
+      country: "Czechia"
+      country_code: "CZ"
+      display: "Střední 61, 602 00 Brno-Královo Pole, Czechia"
+    coordinates:
+      latitude: 49.2125214
+      longitude: 16.6047246

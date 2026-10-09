@@ -1,10 +1,12 @@
 <div
   id="<%= id %>"
-  class="flex items-center gap-2 cursor-pointer"
+  class="flex cursor-pointer items-center gap-2"
   data-controller="event tooltip"
   data-action="click->event#dispatchEvent"
   data-event-name-value="spotlight"
-  data-tooltip-content-value="⌘ k">
+  data-tooltip-content-value="⌘ k"
+>
   <%= fa("magnifying-glass", size: :sm, style: :regular) %>
+
   <div class="sr-only">Search</div>
 </div>

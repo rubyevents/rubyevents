@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
+require "did_you_mean"
+
 module Static
   class SpeakersFile
     attr_reader :document
+
+    NameCluster = Struct.new(:names, :score, keyword_init: true)
+
+    SOCIAL_HANDLE_FIELDS = %w[github twitter mastodon bluesky linkedin speakerdeck].freeze
 
     SPEAKERS_PATH = "data/speakers.yml"
     VIDEOS_GLOB = "data/**/videos.yml"
@@ -15,8 +21,12 @@ module Static
       "[].talks[].alternative_recordings[].speakers[]"
     ].freeze
 
-    def initialize(path = Rails.root.join(SPEAKERS_PATH).to_s)
-      @document = Yerba.parse_file(path)
+    class InvalidSpeakerError < StandardError; end
+    class DuplicateSpeakerError < StandardError; end
+
+    def initialize(path = Rails.root.join(SPEAKERS_PATH).to_s, document: nil)
+      @path = path
+      @document = document || Yerba.parse_file(path)
     end
 
     def count
@@ -40,13 +50,17 @@ module Static
       @known_names ||= Set.new(names + aliases)
     end
 
+    def entries
+      @entries ||= Array(document.value_at(""))
+    end
+
     def index_by(field)
       @indexes ||= {}
 
       @indexes[field] ||= begin
         result = {}
 
-        document.value_at("").each_with_index do |entry, index|
+        entries.each_with_index do |entry, index|
           result[entry[field.to_s]] = index if entry.is_a?(Hash) && entry[field.to_s]
         end
 
@@ -55,26 +69,63 @@ module Static
     end
 
     def find_by(name: nil, slug: nil, github: nil)
-      index = (slug && index_by(:slug)[slug]) ||
-        (github && index_by(:github)[github]) ||
-        (name && index_by(:name)[name])
+      index = index_for(name:, slug:, github:)
 
       document[index] if index
+    end
+
+    def attributes_for(name: nil, slug: nil, github: nil)
+      index = index_for(name:, slug:, github:)
+
+      entries[index] if index
     end
 
     def where(**criteria)
       document.where(**criteria)
     end
 
+    def upsert(name:, github: "", **attributes)
+      raise InvalidSpeakerError, "Speaker name cannot be blank" if name.blank?
+
+      index = index_for(name: name, github: github)
+
+      if index
+        update_entry(document[index], github: github, attributes: attributes)
+      else
+        add(name: name, github: github, **attributes)
+      end
+    end
+
     def add(name:, github: "", slug: nil, **attributes)
+      name = name.to_s.strip
+      github = github.to_s.strip
+      slug = slug&.strip
+
+      raise InvalidSpeakerError, "Speaker name cannot be blank" if name.blank?
+      raise DuplicateSpeakerError, "Speaker '#{name}' already exists" if known_names.include?(name)
+      raise DuplicateSpeakerError, "A speaker with GitHub handle '#{github}' already exists" if github.present? && index_by(:github)[github]
+
       slug ||= name.parameterize
 
-      entry = {name: name, github: github, slug: slug}
-      entry.merge!(attributes.reject { |_, value| value.nil? || value.to_s.empty? })
+      entry = {name: name, github: github, slug: slug}.merge!(clean_attributes(attributes))
 
       document << entry
 
+      reset_cache
+
       entry
+    end
+
+    def update_entry(entry, github:, attributes:)
+      updates = clean_attributes({"github" => github}.merge!(attributes))
+
+      updates.each do |key, value|
+        entry[key] = value
+      end
+
+      reset_cache
+
+      entry.to_h
     end
 
     def all_speaker_references
@@ -116,7 +167,7 @@ module Static
       missing = missing_speakers
 
       entries = missing.map do |name|
-        {name: name, github: "", slug: name.parameterize}
+        {name:, github: "", slug: name.parameterize}
       end
 
       document.concat(entries) if entries.any?
@@ -156,9 +207,37 @@ module Static
       end.values
     end
 
+    def near_duplicate_names(threshold: 0.85)
+      (@near_duplicate_names ||= {})[threshold] ||= begin
+        entries = names.compact.reject(&:empty?)
+        pairs = similar_name_pairs(entries, threshold)
+
+        similar_name_clusters(pairs, entries.size).map do |indices|
+          best = indices.combination(2).filter_map { |i, j| pairs[[i, j]] }.max
+          NameCluster.new(names: indices.map { |i| entries[i] }.sort, score: best)
+        end.sort_by { |cluster| -cluster.score }
+      end
+    end
+
+    def name_similarity(a, b)
+      a = a.downcase
+      b = b.downcase
+      return 1.0 if a == b
+
+      max = [a.length, b.length].max
+      return 1.0 if max.zero?
+
+      1.0 - (DidYouMean::Levenshtein.distance(a, b).to_f / max)
+    end
+
+    def social_handle?(name)
+      social_handles.fetch(name, false)
+    end
+
     def save!
       document.sort(by: :name)
       document.save!(apply: true)
+      reset_cache
     end
 
     def changed?
@@ -166,6 +245,130 @@ module Static
     end
 
     private
+
+    def index_for(name: nil, slug: nil, github: nil)
+      name = name&.strip
+      slug = slug&.strip
+      github = github&.strip
+
+      (slug.present? && index_by(:slug)[slug]) ||
+        (github.present? && index_by(:github)[github]) ||
+        (name.present? && index_by(:name)[name]) ||
+        (name.present? && index_aliases[name])
+    end
+
+    def index_aliases
+      @index_aliases ||= begin
+        result = {}
+
+        entries.each_with_index do |entry, index|
+          next unless entry.is_a?(Hash)
+
+          Array(entry["aliases"]).each do |alias_entry|
+            result[alias_entry["name"]] = index if alias_entry.is_a?(Hash) && alias_entry["name"]
+          end
+        end
+
+        result
+      end
+    end
+
+    def clean_attributes(attributes)
+      attributes
+        .reject { |_, value| value.blank? }
+        .transform_values { |value| value.is_a?(String) ? value.strip : value }
+    end
+
+    def reset_cache
+      @known_names = nil
+      @entries = nil
+      @indexes = nil
+      @index_aliases = nil
+      @all_speaker_references = nil
+      @all_referenced_names = nil
+      @near_duplicate_names = nil
+      @social_handles = nil
+    end
+
+    def social_handles
+      @social_handles ||= document.value_at("").to_h do |entry|
+        [entry["name"], SOCIAL_HANDLE_FIELDS.any? { |field| entry[field].to_s.strip.present? }]
+      end
+    end
+
+    def similar_name_pairs(entries, threshold)
+      normalized = entries.map(&:downcase)
+      blocks = Hash.new { |hash, key| hash[key] = [] }
+      pairs = {}
+
+      entries.each_with_index do |name, index|
+        name_blocking_keys(name).each { |key| blocks[key] << index }
+      end
+
+      blocks.each_value do |indices|
+        indices.combination(2) do |i, j|
+          a, b = normalized[i], normalized[j]
+          next if a == b
+
+          max = [a.length, b.length].max
+          distance = bounded_levenshtein(a, b, ((1.0 - threshold) * max).floor)
+          pairs[[i, j]] = 1.0 - (distance.to_f / max) if distance
+        end
+      end
+      pairs
+    end
+
+    def name_blocking_keys(name)
+      compact = name.downcase.gsub(/[^a-z0-9]/, "")
+      return [] if compact.empty?
+
+      ["f:#{compact[0, 3]}", "l:#{compact[-4..] || compact}"]
+    end
+
+    def bounded_levenshtein(a, b, max_distance)
+      return nil if (a.length - b.length).abs > max_distance
+
+      previous = (0..a.length).to_a
+
+      (1..b.length).each do |j|
+        current = Array.new(a.length + 1)
+        current[0] = j
+        b_char = b[j - 1]
+        row_min = j
+
+        (1..a.length).each do |i|
+          cost = (a[i - 1] == b_char) ? 0 : 1
+          value = previous[i] + 1
+          left = current[i - 1] + 1
+          diagonal = previous[i - 1] + cost
+          value = left if left < value
+          value = diagonal if diagonal < value
+          current[i] = value
+          row_min = value if value < row_min
+        end
+
+        return nil if row_min > max_distance
+        previous = current
+      end
+
+      (previous[a.length] <= max_distance) ? previous[a.length] : nil
+    end
+
+    def similar_name_clusters(pairs, count)
+      parent = Array.new(count) { |i| i }
+      root = lambda do |x|
+        x = parent[x] while parent[x] != x
+
+        x
+      end
+
+      pairs.each_key { |i, j| parent[root.call(i)] = root.call(j) }
+
+      groups = Hash.new { |hash, key| hash[key] = [] }
+      pairs.each_key { |i, j| [i, j].each { |x| groups[root.call(x)] << x } }
+
+      groups.values.map(&:uniq)
+    end
 
     def videos_glob
       Rails.root.join(VIDEOS_GLOB).to_s

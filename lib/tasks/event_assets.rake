@@ -1,4 +1,4 @@
-require "mini_magick"
+require "fastimage"
 require "fileutils"
 require "gum"
 
@@ -118,8 +118,11 @@ class EventAssetWizard
     end
 
     begin
-      image = MiniMagick::Image.open(expanded_path)
-      puts Gum.style("✓ #{File.basename(path)} (#{image.width}x#{image.height} #{image.type})", foreground: "2")
+      size = FastImage.size(expanded_path)
+      type = FastImage.type(expanded_path)
+      raise "Could not read image" unless size
+
+      puts Gum.style("✓ #{File.basename(path)} (#{size[0]}x#{size[1]} #{type})", foreground: "2")
     rescue => e
       puts Gum.style("Invalid image: #{e.message}", foreground: "1")
       if Gum.confirm("Try again?")
@@ -266,8 +269,8 @@ class EventAssetGenerator
   def generate_asset(name, width, height)
     output_path = output_dir.join("#{name}.webp")
 
-    logo = MiniMagick::Image.open(logo_path)
-    logo_aspect = logo.width.to_f / logo.height.to_f
+    logo_width, logo_height = FastImage.size(logo_path)
+    logo_aspect = logo_width.to_f / logo_height.to_f
 
     padding = [width, height].min * LOGO_PADDING_RATIO
     max_logo_width = width - (padding * 2)

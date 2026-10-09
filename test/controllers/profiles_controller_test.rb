@@ -15,6 +15,9 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     get profile_url(@user_with_talk)
     assert_response :success
     assert_equal @user_with_talk.talks_count, assigns(:talks).length
+
+    talk = assigns(:talks).first
+    assert_select "a##{dom_id(talk, :card_horizontal)}[data-turbo-frame='_top']"
   end
 
   test "should redirect to canonical user" do
@@ -122,5 +125,28 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
 
     get profile_url("duplicate-controller")
     assert_redirected_to profile_url(canonical_user)
+  end
+
+  test "owner can set language preferences via the tri-state form" do
+    sign_in_as @user
+
+    patch profile_url(@user), params: {
+      user: {
+        language_preferences: {
+          "ja" => "understands",
+          "pt" => "does_not_understand",
+          "de" => "unset"
+        }
+      }
+    }
+
+    assert_redirected_to profile_url(@user)
+
+    @user.reload
+
+    assert_equal ["ja"], @user.languages.understood
+    assert_equal ["pt"], @user.languages.not_understood
+    assert_not @user.language_preferences.key?("de")
+    assert_equal({"understands" => true}, @user.language_preferences["ja"])
   end
 end

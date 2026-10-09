@@ -1,0 +1,11 @@
+Description:
+    Generate the newsletter for the specified month. The newsletter will be created in the `content/announcements` directory with the filename format `YYYY-MM-DD-month-newsletter.md`. The generated newsletter will include a list of events for the specified month, as well as a list of contributors who have merged pull requests during that month.
+
+    **YOU MUST SEED THE DB BEFORE GENERATING THE NEWSLETTER**
+    **Run `bin/rails db:seed`.**
+
+Example:
+    bin/rails generate newsletter Month
+
+    This will create:
+        content/announcements/YYYY-MM-DD-month-newsletter.md

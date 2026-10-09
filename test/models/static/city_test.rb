@@ -24,6 +24,20 @@ class Static::CityTest < ActiveSupport::TestCase
     City.find_by(id: city.id)
   end
 
+  test "find_by_name_or_alias finds a featured city by name or alias, case-insensitively" do
+    assert_equal "montreal", Static::City.find_by_name_or_alias("Montréal")&.slug
+    assert_equal "montreal", Static::City.find_by_name_or_alias("montréal")&.slug
+    assert_equal "montreal", Static::City.find_by_name_or_alias("Montreal")&.slug
+    assert_equal "montreal", Static::City.find_by_name_or_alias("MTL")&.slug
+  end
+
+  test "find_by_name_or_alias scopes the lookup to a country when given" do
+    assert_equal "montreal", Static::City.find_by_name_or_alias("Montréal", country_code: "CA")&.slug
+    assert_equal "montreal", Static::City.find_by_name_or_alias("Montréal", country_code: "ca")&.slug
+    assert_nil Static::City.find_by_name_or_alias("Montréal", country_code: "US")
+    assert_nil Static::City.find_by_name_or_alias("Not A Featured City")
+  end
+
   test "import! creates a new city when none exists" do
     static_city = Static::City.find_by(slug: "zurich")
 
