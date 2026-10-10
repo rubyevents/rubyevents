@@ -9,6 +9,8 @@ module RuboCop
       # Runs the RubyEvents Static::Validations on data/**/*.yml files and
       # reports errors as RuboCop findings.
       class Validations < Base
+        extend AutoCorrector
+
         def on_new_investigation
           investigate_rubyevents
         end
@@ -26,8 +28,9 @@ module RuboCop
           document = Yerba.parse_file(file_path.to_s)
 
           ::Static::Validators::Validator.all_validator_classes.each do |validator_class|
-            validator_class.new(file_path:, document:).errors.each do |error|
-              build_offense(error)
+            validator = validator_class.new(file_path:, document:)
+            validator.errors.each do |error|
+              build_offense(validator, error)
             end
           end
         end
@@ -41,12 +44,14 @@ module RuboCop
           file_path.include?("/data/") || file_path.start_with?("data/")
         end
 
-        def build_offense(error)
+        def build_offense(validator, error)
           add_offense(
             build_range(error),
             message: error.message,
             severity: :error
-          )
+          ) do |corrector|
+            validator.fix
+          end
         end
 
         def build_range(error)
