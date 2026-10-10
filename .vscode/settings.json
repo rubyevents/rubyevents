@@ -25,16 +25,17 @@
     "*.html.erb": "erb"
   },
   "[ruby]": {
-    "editor.defaultFormatter": "Shopify.ruby-lsp"
-  },
-  "rubyLsp.enabledFeatures": {
-    "diagnostics": false
+    "editor.defaultFormatter": "testdouble.vscode-standard-ruby"
   },
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": "explicit"
     }
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "testdouble.vscode-standard-ruby",
+    "editor.formatOnSave": true
   },
   "tailwindCSS.includeLanguages": {
     "erb": "html"
@@ -49,8 +50,12 @@
     "lib/schemas/venue_schema.json": "data/**/venue.yml",
     "lib/schemas/videos_schema.json": "data/**/videos.yml",
   },
-  "yaml.format.enable": false,
+  "rubyLsp.enabledFeatures": {
+    "diagnostics": false
+  },
   "standardRuby.mode": "enableUnconditionally",
   "standardRuby.commandPath": "mise exec -- bundle exec standardrb",
-  "standardRuby.additionalLanguages": ["yaml"]
+  "standardRuby.additionalLanguages": [
+    "yaml"
+  ]
 }
