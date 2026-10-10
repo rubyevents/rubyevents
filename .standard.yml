@@ -4,3 +4,61 @@ parallel: true
 plugins:
   - lib/rubocop/rubyevents/plugin:
       plugin_class_name: RuboCop::RubyEvents::Plugin
+
+# This feels... fragile
+ignore:
+  - "**/*.yml":
+      - Layout/ArgumentAlignment
+      - Layout/ArrayAlignment
+      - Layout/BlockAlignment
+      - Layout/ClosingParenthesisIndentation
+      - Layout/CommentIndentation
+      - Layout/InitialIndentation
+      - Layout/EmptyLineAfterGuardClause
+      - Layout/EndAlignment
+      - Layout/FirstArgumentIndentation
+      - Layout/FirstArrayElementIndentation
+      - Layout/FirstArrayElementLineBreak
+      - Layout/FirstHashElementIndentation
+      - Layout/FirstHashElementLineBreak
+      - Layout/FirstMethodArgumentLineBreak
+      - Layout/FirstParameterIndentation
+      - Layout/HashAlignment
+      - Layout/IndentationConsistency
+      - Layout/IndentationWidth
+      - Layout/LeadingEmptyLine
+      - Layout/LeadingEmptyLines
+      - Layout/LineEndStringConcatenationIndentation
+      - Layout/LineLength
+      - Layout/MultilineArrayBraceLayout
+      - Layout/MultilineAssignmentLayout
+      - Layout/MultilineHashBraceLayout
+      - Layout/MultilineMethodCallBraceLayout
+      - Layout/MultilineMethodCallIndentation
+      - Layout/MultilineMethodDefinitionBraceLayout
+      - Layout/MultilineOperationIndentation
+      - Layout/ParameterAlignment
+      - Layout/TrailingEmptyLines
+      - Layout/TrailingWhitespace
+      - Lint/EmptyFile
+      - Lint/OutOfRangeRegexpRef
+      - Lint/Syntax
+      - Lint/UselessAssignment
+      - Lint/Void
+      - Metrics/BlockLength
+      - Metrics/BlockNesting
+      - Naming/FileName
+      - Style/FrozenStringLiteralComment
+      - Style/IdenticalConditionalBranches
+      - Style/IfUnlessModifier
+      - Style/MultilineTernaryOperator
+      - Style/NestedTernaryOperator
+      - Style/Next
+      - Style/ParallelAssignment
+      - Style/RescueModifier
+      - Style/Semicolon
+      - Style/TrailingCommaInArguments
+      - Style/TrailingCommaInArrayLiteral
+      - Style/TrailingCommaInHashLiteral
+      - Style/WhileUntilDo
+      - Style/WhileUntilModifier
