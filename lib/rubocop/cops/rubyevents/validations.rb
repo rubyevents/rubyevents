@@ -23,8 +23,9 @@ module RuboCop
 
         def investigate_rubyevents
           return unless data_yaml_file?
+          return # Too slow to run on file changes, but let's preserve the wiring
 
-          file_path = processed_source.file_path
+          file_path = processed_source.file_path # rubocop:disable Lint/UnreachableCode
           document = Yerba.parse_file(file_path.to_s)
 
           ::Static::Validators::Validator.all_validator_classes.each do |validator_class|
