@@ -6,7 +6,7 @@ module Static
   class SpeakersFile
     attr_reader :document
 
-    NameCluster = Struct.new(:names, :score, keyword_init: true)
+    NameCluster = Struct.new(:names, :score)
 
     SOCIAL_HANDLE_FIELDS = %w[github twitter mastodon bluesky linkedin speakerdeck].freeze
 

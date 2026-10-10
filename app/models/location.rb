@@ -220,6 +220,6 @@ class Location
   end
 
   def join_parts(parts, separator)
-    parts.compact.map(&:to_s).join(separator).html_safe
+    parts.compact.join(separator).html_safe
   end
 end

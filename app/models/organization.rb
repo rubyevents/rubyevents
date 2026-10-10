@@ -142,7 +142,7 @@ class Organization < ApplicationRecord
     return if url.blank?
 
     self.logo_urls ||= []
-    self.logo_urls << url unless logo_urls.include?(url)
+    logo_urls << url unless logo_urls.include?(url)
 
     logo_urls.uniq!
   end
