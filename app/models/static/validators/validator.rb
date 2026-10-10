@@ -10,7 +10,7 @@ class Static::Validators::Validator
       *sponsor_validator_classes,
       *venue_validator_classes,
       *video_validator_classes
-    ]
+    ].uniq
   end
 
   def self.cfp_validator_classes

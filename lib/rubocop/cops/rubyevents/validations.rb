@@ -23,9 +23,10 @@ module RuboCop
           return unless data_yaml_file?
 
           file_path = processed_source.file_path
+          document = Yerba.parse_file(file_path.to_s)
 
           ::Static::Validators::Validator.all_validator_classes.each do |validator_class|
-            validator_class.new(file_path:).errors.each do |error|
+            validator_class.new(file_path:, document:).errors.each do |error|
               build_offense(error)
             end
           end
