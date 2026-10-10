@@ -46,8 +46,7 @@ module Static
           errors << Static::Validators::Error.new(
             "youtube_channels contains channel \"#{channel["id"]}\" (#{channel["name"] || "unknown"}) which is already defined in series.yml — remove it from event.yml",
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         end
 

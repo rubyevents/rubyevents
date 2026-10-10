@@ -1,4 +1,18 @@
 class Static::Validators::Validator
+  def self.all_validator_classes
+    @all_validators ||= [
+      *cfp_validator_classes,
+      *event_validator_classes,
+      *involvement_validator_classes,
+      *schedule_validator_classes,
+      *series_validator_classes,
+      *speaker_validator_classes,
+      *sponsor_validator_classes,
+      *venue_validator_classes,
+      *video_validator_classes
+    ].uniq
+  end
+
   def self.cfp_validator_classes
     @cfp_validators ||= [
       Static::Validators::Schema

@@ -1,13 +1,15 @@
 module Static
   module Validators
     class Error
-      attr_reader :message, :file_path, :line, :end_line
+      attr_reader :message, :file_path, :line, :end_line, :column, :end_column
 
-      def initialize(message, file_path:, line:, end_line: nil)
+      def initialize(message, file_path:, location: nil, line: nil, end_line: nil, column: nil, end_column: nil)
         @message = message
         @file_path = file_path.sub("#{Rails.root}/", "")
-        @line = line
-        @end_line = end_line || line
+        @line = line || location&.start_line || 1
+        @end_line = end_line || location&.end_line || @line
+        @column = column || location&.start_column
+        @end_column = end_column || location&.end_column
       end
 
       def to_h
@@ -15,7 +17,9 @@ module Static
           "message" => message,
           "file_path" => file_path,
           "line" => line,
-          "end_line" => end_line
+          "end_line" => end_line,
+          "column" => column,
+          "end_column" => end_column
         }
       end
 

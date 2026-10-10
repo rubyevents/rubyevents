@@ -25,7 +25,8 @@ module Static
           Static::Validators::Error.new(
             message_for(error),
             file_path: @file_path,
-            line: error["line"] || 1
+            line: error["line"],
+            end_line: error["line"]
           )
         end
       end

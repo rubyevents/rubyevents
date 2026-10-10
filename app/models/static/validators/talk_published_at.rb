@@ -62,8 +62,7 @@ module Static
             Static::Validators::Error.new(
               "published_at (#{scalar.value}) must not be set when video_provider is \"#{provider}\"",
               file_path: scalar.file_path,
-              line: scalar.location&.start_line || 1,
-              end_line: scalar.location&.end_line
+              location: scalar.location
             )
           end
         end

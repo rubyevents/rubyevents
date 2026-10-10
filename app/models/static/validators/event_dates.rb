@@ -36,8 +36,7 @@ module Static
           errors << Static::Validators::Error.new(
             "start_date is required for non-meetup events at /start_date",
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         end
 
@@ -46,8 +45,7 @@ module Static
           errors << Static::Validators::Error.new(
             "end_date is required for non-meetup events at /end_date",
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         end
 

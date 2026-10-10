@@ -1,0 +1,41 @@
+AllCops:
+  Include:
+    - "data/**/*.yml"
+    - "data/**/*.yaml"
+  Exclude: []
+
+Lint:
+  Exclude:
+    - "**/*.yml"
+    - "**/*.yaml"
+
+Style:
+  Exclude:
+    - "**/*.yml"
+    - "**/*.yaml"
+
+Layout:
+  Exclude:
+    - "**/*.yml"
+    - "**/*.yaml"
+
+Metrics:
+  Exclude:
+    - "**/*.yml"
+    - "**/*.yaml"
+
+Naming:
+  Exclude:
+    - "**/*.yml"
+    - "**/*.yaml"
+
+Security:
+  Exclude:
+    - "**/*.yml"
+    - "**/*.yaml"
+
+RubyEvents/Validations:
+  Enabled: true
+  Include:
+    - "data/**/*.yml"
+    - "data/**/*.yaml"
