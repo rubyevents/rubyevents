@@ -32,6 +32,11 @@ jobs:
         with:
           bundler-cache: true
       
+      - name: Install Playwright browsers
+        run: |
+          npm install -g playwright
+          playwright install chromium
+
       - name: Run bin/setup
         run: bin/setup --skip-server
 
