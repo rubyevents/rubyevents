@@ -41,8 +41,7 @@ module Static
           Static::Validators::Error.new(
             "Location uses city alias \"#{city_part}\" instead of canonical name \"#{canonical}\"",
             file_path: @file_path,
-            line: location&.location&.start_line || 1,
-            end_line: location&.location&.end_line
+            location: location&.location
           )
         ]
       end

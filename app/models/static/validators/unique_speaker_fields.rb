@@ -46,8 +46,7 @@ module Static
             errors << Static::Validators::Error.new(
               "Duplicate #{field}: #{value} (#{count} occurrences)",
               file_path: @file_path,
-              line: location&.start_line || 1,
-              end_line: location&.end_line
+              location: location
             )
           end
         end
@@ -86,8 +85,7 @@ module Static
           errors << Static::Validators::Error.new(
             "Alias slug '#{slug}' shared across speakers: #{owners.to_a.join(", ")}",
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         end
 
@@ -104,8 +102,7 @@ module Static
           errors << Static::Validators::Error.new(
             "Alias slug '#{slug}' on #{conflicting.to_a.join(", ")} conflicts with main slug of '#{main_owner}'",
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         end
 

@@ -48,8 +48,7 @@ module Static
             Static::Validators::Error.new(
               "#{field} is defined but '#{asset}' exists neither in #{asset_dir} nor in #{default_asset_dir}, events falling back to the global default #{asset} must not define brand colors",
               file_path: @file_path,
-              line: location&.start_line || 1,
-              end_line: location&.end_line
+              location: location
             )
           end.compact
       end

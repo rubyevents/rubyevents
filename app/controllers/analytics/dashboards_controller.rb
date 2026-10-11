@@ -54,7 +54,7 @@ class Analytics::DashboardsController < ApplicationController
         .map do |landing_page, count|
           uri = URI.parse(landing_page)
           [uri.path, count]
-      end
+        end
         .group_by { |path, _| path }
         .transform_values { |entries| entries.sum { |_, count| count } }
         .to_a

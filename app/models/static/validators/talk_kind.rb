@@ -68,8 +68,7 @@ module Static
           Static::Validators::Error.new(
             message,
             file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
+            location: location
           )
         ]
       end
