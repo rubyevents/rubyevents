@@ -5,15 +5,15 @@ class SpeakerUpdateTool < RubyLLM::Tool
 
   description "Update a speaker's profile fields in data/speakers.yml. Use speaker_lookup first to find the speaker. Only provided fields are updated, others are left unchanged. When changing slug, an alias for the old slug is automatically created."
 
-  param :name, desc: "Exact speaker name to find (must match exactly)"
-  param :slug, desc: "New URL-friendly slug (automatically creates alias for old slug)", required: false
-  param :github, desc: "GitHub username (not a URL)", required: false
-  param :twitter, desc: "Twitter/X handle (without @, not a URL)", required: false
-  param :linkedin, desc: "LinkedIn username (the part after /in/, not a URL)", required: false
-  param :website, desc: "Personal website URL", required: false
-  param :mastodon, desc: "Full Mastodon profile URL (e.g. https://ruby.social/@username)", required: false
-  param :bluesky, desc: "Bluesky handle (not a URL)", required: false
-  param :speakerdeck, desc: "Speakerdeck username (not a URL)", required: false
+  parameter :name, description: "Exact speaker name to find (must match exactly)"
+  parameter :slug, description: "New URL-friendly slug (automatically creates alias for old slug)", required: false
+  parameter :github, description: "GitHub username (not a URL)", required: false
+  parameter :twitter, description: "Twitter/X handle (without @, not a URL)", required: false
+  parameter :linkedin, description: "LinkedIn username (the part after /in/, not a URL)", required: false
+  parameter :website, description: "Personal website URL", required: false
+  parameter :mastodon, description: "Full Mastodon profile URL (e.g. https://ruby.social/@username)", required: false
+  parameter :bluesky, description: "Bluesky handle (not a URL)", required: false
+  parameter :speakerdeck, description: "Speakerdeck username (not a URL)", required: false
 
   UPDATABLE_FIELDS = %w[slug github twitter linkedin website mastodon bluesky speakerdeck].freeze
 

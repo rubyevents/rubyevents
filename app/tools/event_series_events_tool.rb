@@ -2,7 +2,7 @@
 
 class EventSeriesEventsTool < RubyLLM::Tool
   description "Get all events from an event series by name or slug. Returns the list of events within a conference series or meetup group."
-  param :query, desc: "Event series slug (e.g., 'rails-world') or name (e.g., 'Rails World')"
+  parameter :query, description: "Event series slug (e.g., 'rails-world') or name (e.g., 'Rails World')"
 
   def execute(query:)
     series = Static::EventSeries.find_by_slug(query)

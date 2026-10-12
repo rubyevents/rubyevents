@@ -5,9 +5,9 @@ class SpeakerAddAliasTool < RubyLLM::Tool
 
   description "Add an alias (alternative name) for a speaker in data/speakers.yml. Aliases allow speakers to be found by different names or slugs. Use speaker_lookup first to find the speaker."
 
-  param :name, desc: "Exact speaker name to find (must match exactly)"
-  param :alias_name, desc: "The alternative name for this speaker"
-  param :alias_slug, desc: "URL-friendly slug for the alias (auto-generated from alias_name if not provided)", required: false
+  parameter :name, description: "Exact speaker name to find (must match exactly)"
+  parameter :alias_name, description: "The alternative name for this speaker"
+  parameter :alias_slug, description: "URL-friendly slug for the alias (auto-generated from alias_name if not provided)", required: false
 
   def execute(name:, alias_name:, alias_slug: nil)
     speaker = speakers_file.find_by(name: name)

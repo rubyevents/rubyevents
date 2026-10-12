@@ -2,7 +2,7 @@
 
 class EventLookupTool < RubyLLM::Tool
   description "Search for events by name, slug, location. Returns matching events with their file paths for easy data updates."
-  param :query, desc: "Search query (matches against title, slug, location). Case-insensitive."
+  parameter :query, description: "Search query (matches against title, slug, location). Case-insensitive."
 
   def execute(query:)
     events = Static::Event.all

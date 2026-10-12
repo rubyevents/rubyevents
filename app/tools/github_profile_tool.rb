@@ -2,7 +2,7 @@
 
 class GitHubProfileTool < RubyLLM::Tool
   description "Fetch GitHub profile information by username/handle"
-  param :username, desc: "GitHub username/handle (without @)"
+  parameter :username, description: "GitHub username/handle (without @)"
 
   def execute(username:)
     handle = username.delete_prefix("@")

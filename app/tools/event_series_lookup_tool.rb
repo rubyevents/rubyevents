@@ -2,7 +2,7 @@
 
 class EventSeriesLookupTool < RubyLLM::Tool
   description "Search for event series (conference organizers/recurring events) by name, slug, or kind. Returns matching series with their file paths for easy data updates."
-  param :query, desc: "Search query (matches against name, slug, kind). Case-insensitive."
+  parameter :query, description: "Search query (matches against name, slug, kind). Case-insensitive."
 
   def execute(query:)
     series = Static::EventSeries.all
