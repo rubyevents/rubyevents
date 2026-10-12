@@ -8,7 +8,7 @@ namespace :backfill do
 
     Static::Event.all.each do |static_event|
       next unless static_event.imported?
-      next unless static_event.event_record.involvements_file.exist?
+      next unless static_event.involvements.exist?
 
       events_processed += 1
       print "."

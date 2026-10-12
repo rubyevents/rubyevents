@@ -1,9 +1,7 @@
 # -*- SkipSchemaAnnotations
 
-class Event::CFPFile < ActiveRecord::AssociatedObject
-  include YAMLFile
-
-  yaml_file "cfp.yml"
+class Event::CFPFile < Event::DataFile
+  data_file :cfps, file_name: "cfp.yml"
 
   def find_by_link(link)
     entries.find { |cfp| cfp["link"] == link }

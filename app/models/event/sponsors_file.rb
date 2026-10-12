@@ -1,19 +1,17 @@
 # -*- SkipSchemaAnnotations
-class Event::SponsorsFile < ActiveRecord::AssociatedObject
-  include YAMLFile
+class Event::SponsorsFile < Event::DataFile
+  data_file :sponsors, file_name: "sponsors.yml"
 
-  yaml_file "sponsors.yml"
+  def tiers
+    entries.flat_map { |entry| entry["tiers"] || [] }
+  end
 
   def tier_names
-    tiers = file[:tiers] || file["tiers"] || []
-
-    tiers.map { |tier| tier[:name] || tier["name"] }
+    tiers.map { |tier| tier["name"] }
   end
 
   def sponsors
-    tiers = file[:tiers] || file["tiers"] || []
-
-    tiers.flat_map { |tier| tier[:sponsors] || tier["sponsors"] || [] }
+    tiers.flat_map { |tier| tier["sponsors"] || [] }
   end
 
   # Option 1: Use event website as base URL

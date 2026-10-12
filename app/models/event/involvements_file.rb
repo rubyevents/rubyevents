@@ -1,9 +1,7 @@
 # -*- SkipSchemaAnnotations
 
-class Event::InvolvementsFile < ActiveRecord::AssociatedObject
-  include YAMLFile
-
-  yaml_file "involvements.yml"
+class Event::InvolvementsFile < Event::DataFile
+  data_file :involvements, file_name: "involvements.yml"
 
   def roles
     entries.map { |entry| entry["name"] }
