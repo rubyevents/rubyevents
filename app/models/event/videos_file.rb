@@ -1,9 +1,7 @@
 # -*- SkipSchemaAnnotations
 
-class Event::VideosFile < ActiveRecord::AssociatedObject
-  include YAMLFile
-
-  yaml_file "videos.yml"
+class Event::VideosFile < Event::DataFile
+  data_file :talks, file_name: "videos.yml"
 
   extension do
     def talks_in_running_order(child_talks: true)

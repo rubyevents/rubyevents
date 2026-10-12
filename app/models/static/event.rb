@@ -305,10 +305,12 @@ module Static
         home_sort_date: home_sort_date(event_record: event)
       )
 
-      if event.venue.exist?
+      if (venue_record = venue)
+        venue_coordinates = venue_record["coordinates"] || {}
+
         event.assign_attributes(
-          latitude: event.venue.latitude,
-          longitude: event.venue.longitude
+          latitude: venue_coordinates["latitude"],
+          longitude: venue_coordinates["longitude"]
         )
       else
         event.assign_attributes(
@@ -331,12 +333,6 @@ module Static
     end
 
     def import_cfps!(event)
-      cfp_file_path = Rails.root.join("data", series_slug, slug, "cfp.yml")
-
-      return unless File.exist?(cfp_file_path)
-
-      cfps = Yerba.parse_file(cfp_file_path.to_s).to_a
-
       cfps.each do |cfp_data|
         cfp = event.cfps.find_or_initialize_by(link: cfp_data["link"])
         cfp.assign_attributes(
@@ -351,7 +347,7 @@ module Static
 
     def import_videos!(event, index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       return unless imported?
-      return unless event.videos_file.exist?
+      return unless talks.exist?
 
       Static::Video.where_event_slug(slug).each do |video|
         video.import!(event: event, index: index)
@@ -377,13 +373,14 @@ module Static
 
     def import_sponsors!(event)
       return unless imported?
-      return unless event.sponsors_file.exist?
+      sponsors_collection = sponsors
+      return unless sponsors_collection.exist?
 
       require "public_suffix"
 
       organisation_ids = []
-      event.sponsors_file.file.each do |sponsors|
-        sponsors["tiers"].each do |tier|
+      sponsors_collection.each do |sponsors_entry|
+        sponsors_entry["tiers"].each do |tier|
           tier["sponsors"].each do |sponsor|
             organization = nil
             domain = nil
@@ -445,15 +442,14 @@ module Static
 
     def import_involvements!(event)
       return unless imported?
-      return unless event.involvements_file.exist?
+      involvements_collection = involvements
+      return unless involvements_collection.exist?
 
       event_involvements = event.event_involvements
 
       event_involvements_attributes = event_involvements.map { it.attributes.merge(_destroy: true) }
 
-      involvements = event.involvements_file.entries
-
-      involvements.each do |involvement_data|
+      involvements_collection.each do |involvement_data|
         role = involvement_data["name"]
 
         Array.wrap(involvement_data["users"]).each_with_index do |user_name, index|
