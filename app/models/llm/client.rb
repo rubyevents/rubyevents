@@ -13,7 +13,7 @@ class LLM::Client
     system_message = messages.find { |m| m[:role] == "system" }&.dig(:content)
     user_message = messages.find { |m| m[:role] == "user" }&.dig(:content)
 
-    chat = RubyLLM.chat(model: model)
+    chat = RubyLLM.chat(model: model, protocol: :chat_completions)
     chat.with_instructions(system_message) if system_message
     chat.with_provider_options(params) if params.any?
     chat.ask(user_message).content
