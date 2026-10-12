@@ -67,17 +67,17 @@ class ContributionsController < ApplicationController
   def events_without_videos
     @events_without_videos = Event.past.not_retreat.includes(:series).left_joins(:talks).where(talks_count: 0).reject { |e| e.static_metadata.cancelled? }.group_by(&:series)
 
-    @events_without_location = Static::Event.where(location: nil).group_by(&:__file_path)
+    @events_without_location = Static::Event.where(location: nil).group_by(&:project_file_path)
 
-    @events_without_dates = Static::Event.where(start_date: nil).reject(&:meetup?).group_by(&:__file_path)
+    @events_without_dates = Static::Event.where(start_date: nil).reject(&:meetup?).group_by(&:project_file_path)
   end
 
   def events_without_location
-    @events_without_location = Static::Event.where(location: nil).group_by(&:__file_path)
+    @events_without_location = Static::Event.where(location: nil).group_by(&:project_file_path)
   end
 
   def events_without_dates
-    @events_without_dates = Static::Event.where(start_date: nil).reject(&:meetup?).group_by(&:__file_path)
+    @events_without_dates = Static::Event.where(start_date: nil).reject(&:meetup?).group_by(&:project_file_path)
   end
 
   def talks_dates_out_of_bounds
@@ -95,7 +95,7 @@ class ContributionsController < ApplicationController
   end
 
   def missing_videos_cue
-    videos_with_missing_cues = Static::Video.all.select { |video| video.talks.any? { |t| t.start_cue == "TODO" || t.end_cue == "TODO" } }
+    videos_with_missing_cues = Static::Talk.all.select { |video| video.talks.any? { |t| t.start_cue == "TODO" || t.end_cue == "TODO" } }
     videos_with_missing_cues_ids = videos_with_missing_cues.map(&:video_id)
     @missing_videos_cue = Talk.includes(:child_talks, :event).where(video_id: videos_with_missing_cues_ids).group_by(&:event)&.select { |_event, talks| talks.any? } || []
     @missing_videos_cue_count = videos_with_missing_cues.count

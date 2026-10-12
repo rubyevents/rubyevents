@@ -33,7 +33,7 @@ class Static::Event < Yerba::Record::Base
   schema EventSchema
 
   belongs_to :series, class_name: "Static::EventSeries", foreign_key: :series_slug
-  has_many :videos, in_file: "videos.yml", class_name: "Static::Video"
+  has_many :talks, in_file: "videos.yml", class_name: "Static::Talk"
   has_many :cfps, in_file: "cfp.yml", class_name: "Static::CFP"
   has_one :venue, in_file: "venue.yml", class_name: "Static::Venue"
   has_one :schedule, in_file: "schedule.yml", class_name: "Static::Schedule"
@@ -43,7 +43,7 @@ end
 For multi-file globs where each file contains an array of records:
 
 ```ruby
-class Static::Video < Yerba::Record::Base
+class Static::Talk < Yerba::Record::Base
   self.glob = "**/videos.yml"
   self.base_path = Rails.root.join("data")
   self.flatten = true
@@ -191,14 +191,14 @@ event.series
 When no `foreign_key:` is given, the parent slug is derived from the directory name:
 
 ```ruby
-class Static::Video < Yerba::Record::Base
+class Static::Talk < Yerba::Record::Base
   belongs_to :event
 end
 ```
 
 ```ruby
-video.event
-video.event_slug
+talk.event
+talk.event_slug
 ```
 
 ### `has_many` (query-based)
