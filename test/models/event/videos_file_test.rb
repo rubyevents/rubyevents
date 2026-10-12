@@ -110,7 +110,7 @@ class Event::VideosFileTest < ActiveSupport::TestCase
       Yerba::Document.from({"id" => File.basename(dir)}).save_to!(event_path)
       Yerba::Document.from(videos).save_to!(File.join(dir, "videos.yml"))
 
-      yield Static::Event.new(document: Yerba::Record::Document.new(event_path))
+      yield Static::Event.new(document: Yerba.parse_file(event_path))
     end
   end
 end

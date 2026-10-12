@@ -17,8 +17,9 @@ class Static::Speaker < Yerba::Record::Base
 
   schema SpeakerSchema
 
-  add_index :name
+  add_index :name, include: "aliases[].name"
   add_index :slug
+  add_index :github
 end
 ```
 
@@ -302,15 +303,16 @@ talk.save!
 
 ```ruby
 class Static::Speaker < Yerba::Record::Base
-  add_index :name
+  add_index :name, include: "aliases[].name"
   add_index :slug
 end
 
 Static::Speaker.find_by(name: "Aaron Patterson")  # => O(1) via LazyIndex
-Static::Speaker.find_by(github: "tenderlove")     # => Linear Scan
+Static::Speaker.find_by(name: "Matz")             # => O(1), matches an alias
+Static::Speaker.find_by(twitter: "tenderlove")    # => Linear Scan
 ```
 
-Indexes are built lazily on first use via Yerba's `pluck`.
+Indexes are built lazily on first use from the document's parsed values and cached on the collection until `unload!`. Values at the `include:` selector resolve to the record that lists them, and a value of the field itself wins over an included one.
 
 ## Raw Yerba Access
 
@@ -342,7 +344,6 @@ Yerba::Record::Base             # Record class (read + write + schema)
   include Associations          # belongs_to, has_many, has_one (in_file:, through:)
   include Schema                # schema, create, field method generation
 
-Yerba::Record::Document         # Lazy Yerba document wrapper
 Yerba::Record::Collection       # Per-file CRUD collection
 Yerba::Record::Entry            # Single-record wrapper
 Yerba::Record::ReferencesProxy  # Resolved cross-file references

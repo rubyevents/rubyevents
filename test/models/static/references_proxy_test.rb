@@ -14,7 +14,7 @@ class Static::ReferencesProxyTest < ActiveSupport::TestCase
           - Aaron Patterson
     YAML
     @tmp_file.flush
-    @document = Yerba::Record::Document.new(@tmp_file.path)
+    @document = Yerba.parse_file(@tmp_file.path)
   end
 
   teardown do
@@ -67,7 +67,7 @@ class Static::ReferencesProxyTest < ActiveSupport::TestCase
     YAML
     @tmp_file.flush
 
-    document = Yerba::Record::Document.new(@tmp_file.path)
+    document = Yerba.parse_file(@tmp_file.path)
     video = Static::Video.new(document: document, index: 0)
 
     assert video.speakers.empty?
@@ -95,7 +95,7 @@ class Static::ReferencesProxyTest < ActiveSupport::TestCase
 
     video.speakers << unique_name
 
-    speaker = Static::Speakers.find_by(name: unique_name)
+    speaker = Static::Speaker.find_by(name: unique_name)
     assert_not_nil speaker, "Expected speaker to be auto-created in speakers.yml"
     assert_equal unique_name.parameterize, speaker.slug
   end
@@ -103,7 +103,7 @@ class Static::ReferencesProxyTest < ActiveSupport::TestCase
   test "<< does not duplicate existing speaker in speakers.yml" do
     video = Static::Video.new(document: @document, index: 0)
 
-    speaker_before = Static::Speakers.find_by(name: "Matz")
+    speaker_before = Static::Speaker.find_by(name: "Matz")
     assert_not_nil speaker_before
 
     video.speakers << "Matz"
@@ -144,7 +144,7 @@ class Static::ReferencesProxyTest < ActiveSupport::TestCase
     video.speakers << "DHH"
     video.save!
 
-    reloaded = Yerba::Record::Document.new(@tmp_file.path)
+    reloaded = Yerba.parse_file(@tmp_file.path)
     reloaded_video = Static::Video.new(document: reloaded, index: 0)
 
     assert_includes reloaded_video.speakers.names, "DHH"

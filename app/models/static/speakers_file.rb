@@ -4,8 +4,6 @@ require "did_you_mean"
 
 module Static
   class SpeakersFile
-    attr_reader :document
-
     NameCluster = Struct.new(:names, :score, keyword_init: true)
 
     SOCIAL_HANDLE_FIELDS = %w[github twitter mastodon bluesky linkedin speakerdeck].freeze
@@ -24,9 +22,17 @@ module Static
     class InvalidSpeakerError < StandardError; end
     class DuplicateSpeakerError < StandardError; end
 
-    def initialize(path = Rails.root.join(SPEAKERS_PATH).to_s, document: nil)
+    def initialize(path = Rails.root.join(SPEAKERS_PATH).to_s, document: nil, collection: nil)
       @path = path
-      @document = document || Yerba.parse_file(path)
+
+      @collection = collection || Yerba::Record::LazyFileCollection.new(
+        document: document || Yerba.parse_file(path.to_s),
+        record_class: Static::Speaker
+      )
+    end
+
+    def document
+      collection.document
     end
 
     def count
@@ -51,21 +57,11 @@ module Static
     end
 
     def entries
-      @entries ||= Array(document.value_at(""))
+      Array(document.values)
     end
 
     def index_by(field)
-      @indexes ||= {}
-
-      @indexes[field] ||= begin
-        result = {}
-
-        entries.each_with_index do |entry, index|
-          result[entry[field.to_s]] = index if entry.is_a?(Hash) && entry[field.to_s]
-        end
-
-        result
-      end
+      collection.index_on(field).positions
     end
 
     def find_by(name: nil, slug: nil, github: nil)
@@ -160,6 +156,8 @@ module Static
 
       entries.map(&:first).reverse_each { |index| document.root.delete_at(index) }
 
+      reset_cache
+
       entries.map(&:last)
     end
 
@@ -170,7 +168,10 @@ module Static
         {name:, github: "", slug: name.parameterize}
       end
 
-      document.concat(entries) if entries.any?
+      if entries.any?
+        document.concat(entries)
+        reset_cache
+      end
 
       missing
     end
@@ -244,8 +245,6 @@ module Static
       document.changed?
     end
 
-    private
-
     def index_for(name: nil, slug: nil, github: nil)
       name = name&.strip
       slug = slug&.strip
@@ -253,25 +252,12 @@ module Static
 
       (slug.present? && index_by(:slug)[slug]) ||
         (github.present? && index_by(:github)[github]) ||
-        (name.present? && index_by(:name)[name]) ||
-        (name.present? && index_aliases[name])
+        (name.present? && collection.index_on(:name).position(name))
     end
 
-    def index_aliases
-      @index_aliases ||= begin
-        result = {}
+    private
 
-        entries.each_with_index do |entry, index|
-          next unless entry.is_a?(Hash)
-
-          Array(entry["aliases"]).each do |alias_entry|
-            result[alias_entry["name"]] = index if alias_entry.is_a?(Hash) && alias_entry["name"]
-          end
-        end
-
-        result
-      end
-    end
+    attr_reader :collection
 
     def clean_attributes(attributes)
       attributes
@@ -280,10 +266,8 @@ module Static
     end
 
     def reset_cache
+      collection.reset!
       @known_names = nil
-      @entries = nil
-      @indexes = nil
-      @index_aliases = nil
       @all_speaker_references = nil
       @all_referenced_names = nil
       @near_duplicate_names = nil
@@ -291,7 +275,7 @@ module Static
     end
 
     def social_handles
-      @social_handles ||= document.value_at("").to_h do |entry|
+      @social_handles ||= entries.to_h do |entry|
         [entry["name"], SOCIAL_HANDLE_FIELDS.any? { |field| entry[field].to_s.strip.present? }]
       end
     end
@@ -380,9 +364,8 @@ module Static
 
     def orphaned_entries
       referenced = all_referenced_names
-      all_values = document.value_at("")
 
-      all_values.each_with_index.filter_map do |entry, index|
+      entries.each_with_index.filter_map do |entry, index|
         next unless entry.is_a?(Hash)
 
         entry_names = [entry["name"]].compact

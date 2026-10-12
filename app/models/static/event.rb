@@ -42,7 +42,7 @@ module Static
       end
 
       def build(series_slug:)
-        document = Yerba::Record::Document.from({})
+        document = Yerba::Document.from({})
         record = new(document: document)
 
         record.instance_variable_set(:@series_slug_override, series_slug)

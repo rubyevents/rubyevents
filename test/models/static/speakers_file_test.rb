@@ -65,6 +65,19 @@ class Static::SpeakersFileTest < ActiveSupport::TestCase
     assert_includes speakers_file.index_by(:slug), "aaron-patterson"
   end
 
+  test "finds a speaker added before saving" do
+    speakers_file = Static::SpeakersFile.new(@tmp_file.path)
+
+    assert_nil speakers_file.attributes_for(name: "Aaron Patterson")
+
+    speakers_file.add(name: "Aaron Patterson", github: "tenderlove", aliases: [{"name" => "tenderlove", "slug" => "tenderlove"}])
+
+    assert_equal 2, speakers_file.count
+    assert_equal "Aaron Patterson", speakers_file.attributes_for(name: "Aaron Patterson")["name"]
+    assert_equal "Aaron Patterson", speakers_file.attributes_for(name: "tenderlove")["name"]
+    assert_equal "Aaron Patterson", speakers_file.attributes_for(github: "tenderlove")["name"]
+  end
+
   test "near_duplicate_names clusters near-identical names" do
     file = speakers_file_with(<<~YAML)
       ---
