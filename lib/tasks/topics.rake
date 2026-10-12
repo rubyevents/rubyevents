@@ -26,11 +26,7 @@ namespace :topics do
     puts "Sending to LLM for suggestions...\n\n"
 
     prompt = Prompts::Topic::SuggestGems.new(topics: topics)
-    client = OpenAI::Client.new
-
-    response = client.chat(parameters: prompt.to_params)
-
-    content = response.dig("choices", 0, "message", "content")
+    content = LLM::Client.new.complete(prompt.to_params)
     suggestions = JSON.parse(content)["suggestions"]
 
     puts "=" * 60
