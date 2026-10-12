@@ -4,7 +4,6 @@ class LLM::Client
       {"content" => complete(parameters)}
     end
 
-    # Handle both new format and legacy OpenAI format from cached responses
     response.dig("choices", 0, "message", "content") || response["content"]
   end
 
