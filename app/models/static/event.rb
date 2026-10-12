@@ -12,7 +12,6 @@ module Static
     belongs_to :series, class_name: "Static::EventSeries", foreign_key: :series_slug
 
     has_many :talks, in_file: "videos.yml", class_name: "Static::Talk"
-    has_many :videos, in_file: "videos.yml", class_name: "Static::Talk" # TODO: remove, use :talks instead
     has_many :cfps, in_file: "cfp.yml"
     has_many :sponsors, in_file: "sponsors.yml"
     has_many :involvements, in_file: "involvements.yml"
@@ -349,7 +348,7 @@ module Static
       return unless imported?
       return unless talks.exist?
 
-      Static::Video.where_event_slug(slug).each do |video|
+      Static::Talk.where_event_slug(slug).each do |video|
         video.import!(event: event, index: index)
       end
 

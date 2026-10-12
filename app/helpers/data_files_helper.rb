@@ -12,6 +12,8 @@ module DataFilesHelper
     "events/participants" => "videos.yml"
   }.freeze
 
+  GITHUB_EDIT_URL = "https://github.com/rubyevents/rubyevents/edit/main"
+
   def current_event_data_file(path = controller.controller_path)
     EVENT_PAGE_DATA_FILES.fetch(path, "event.yml")
   end
@@ -46,12 +48,16 @@ module DataFilesHelper
       dir = event_data_directory(record)
       dir && File.join(dir, file || "event.yml")
     when EventSeries
-      Static::EventSeries.find_by_slug(record.slug)&.__file_path
+      Static::EventSeries.find_by_slug(record.slug)&.project_file_path
     when Talk
       return if record.event.blank?
 
       data_file_path_for(record.event, file: file || "videos.yml")
     end
+  end
+
+  def github_edit_url(project_file_path)
+    "#{GITHUB_EDIT_URL}/#{project_file_path}"
   end
 
   def editor_url_for(repo_relative_path, line: 1)
@@ -87,8 +93,8 @@ module DataFilesHelper
 
   def event_data_directory(event)
     static = Static::Event.find_by_slug(event.slug)
-    return if static&.__file_path.blank?
+    return if static&.project_file_path.blank?
 
-    File.dirname(static.__file_path)
+    File.dirname(static.project_file_path)
   end
 end

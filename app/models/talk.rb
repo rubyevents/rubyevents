@@ -718,7 +718,7 @@ class Talk < ApplicationRecord
   end
 
   def static_metadata
-    @static_metadata ||= Static::Video.find_by_static_id(static_id)
+    @static_metadata ||= Static::Talk.find_by_static_id(static_id)
   end
 
   def to_mobile_json(request)

@@ -48,8 +48,8 @@ module Static
       end
 
       def self.talk_lookup
-        @talk_lookup ||= Static::Video.all.each_with_object({}) do |video, lookup|
-          event_slug = File.basename(File.dirname(video.__file_path.to_s))
+        @talk_lookup ||= Static::Talk.all.each_with_object({}) do |video, lookup|
+          event_slug = File.basename(File.dirname(video.file_path.to_s))
 
           register = lambda do |talk, parent_id|
             [talk.id, talk.video_id].compact.each do |key|

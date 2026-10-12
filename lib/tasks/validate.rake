@@ -207,7 +207,7 @@ namespace :validate do
   def validate_unique_video_ids
     all_ids = []
 
-    Static::Video.all.each do |video|
+    Static::Talk.all.each do |video|
       all_ids << video.id
       video.talks.each { |talk| all_ids << talk.id }
     end
@@ -232,7 +232,7 @@ namespace :validate do
     end
   end
 
-  desc "Validate that all Static::Video records have unique ids"
+  desc "Validate that all Static::Talk records have unique ids"
   task unique_video_ids: :environment do
     exit 1 unless validate_unique_video_ids
   end

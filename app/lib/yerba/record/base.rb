@@ -115,7 +115,7 @@ module Yerba
         @relative_file_path ||= Pathname.new(file_path).relative_path_from(self.class.base_path).to_s
       end
 
-      def __file_path
+      def project_file_path
         return nil unless file_path
 
         Pathname.new(file_path).relative_path_from(Rails.root).to_s

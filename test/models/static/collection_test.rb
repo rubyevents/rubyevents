@@ -123,10 +123,10 @@ class Yerba::Record::CollectionTest < ActiveSupport::TestCase
   end
 
   test "works with custom entry class" do
-    collection = Yerba::Record::Collection.new(document: @document, entry_class: Static::Video)
+    collection = Yerba::Record::Collection.new(document: @document, entry_class: Static::Talk)
     video = collection.first
 
-    assert_instance_of Static::Video, video
+    assert_instance_of Static::Talk, video
     assert_equal ["Alice"], video.speakers.names
   end
 
@@ -194,14 +194,14 @@ class Yerba::Record::CollectionTest < ActiveSupport::TestCase
   end
 
   test "speakers can be appended via <<" do
-    collection = Yerba::Record::Collection.new(document: @document, entry_class: Static::Video)
+    collection = Yerba::Record::Collection.new(document: @document, entry_class: Static::Talk)
     video = collection.first
 
     video.speakers << "NewSpeaker"
     collection.save!
 
     reloaded = Yerba.parse_file(@tmp_file.path)
-    reloaded_collection = Yerba::Record::Collection.new(document: reloaded, entry_class: Static::Video)
+    reloaded_collection = Yerba::Record::Collection.new(document: reloaded, entry_class: Static::Talk)
 
     assert_includes reloaded_collection.first.speakers.names, "NewSpeaker"
   end
