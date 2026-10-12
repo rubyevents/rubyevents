@@ -64,7 +64,7 @@ gem "iso-639"
 gem "minisky", "~> 0.4.0"
 
 # A single delightful Ruby way to work with AI.
-gem "ruby_llm", "~> 1.15.0"
+gem "ruby_llm", "~> 2.1.0"
 
 # A simple and clean Ruby DSL for creating JSON schemas.
 gem "schematist", "~> 1.1"
