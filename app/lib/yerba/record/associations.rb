@@ -40,10 +40,9 @@ module Yerba
           if in_file
             define_method(name) do
               path = File.join(event_dir, in_file)
-              document = Yerba::Record::Document.new(path)
               klass = class_name.is_a?(String) ? class_name.constantize : class_name
 
-              Yerba::Record::Collection.new(document: document, entry_class: klass)
+              Yerba::Record::Collection.new(path: path, entry_class: klass)
             end
           else
             define_method(name) do
@@ -69,7 +68,7 @@ module Yerba
             path = File.join(event_dir, in_file)
             return nil unless File.exist?(path)
 
-            document = Yerba::Record::Document.new(path)
+            document = Yerba.parse_file(path)
             klass = class_name.is_a?(String) ? class_name.constantize : class_name
 
             klass.new(document: document)

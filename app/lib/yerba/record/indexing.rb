@@ -6,53 +6,39 @@ module Yerba
       extend ActiveSupport::Concern
 
       class_methods do
-        def add_index(field)
-          @indexed_fields ||= []
-          @indexed_fields << field.to_s
+        def add_index(field, include: nil)
+          index_options[field.to_s] = {include: include}
+        end
+
+        def index_options
+          @index_options ||= {}
         end
 
         def find_by(**criteria)
           if criteria.size == 1
             field, value = criteria.first
 
-            if indexed_field?(field.to_s)
-              return indexes[field.to_s][value.to_s]
-            end
+            return index_on(field)[value] if indexed_field?(field)
           end
 
           all.find_by(**criteria)
         end
 
         def indexed_field?(field)
-          @indexed_fields&.include?(field.to_s)
+          index_options.key?(field.to_s)
         end
 
-        def indexes
-          @indexes ||= build_indexes
-        end
-
-        private
-
-        def build_indexes
-          result = {}
+        def index_on(field)
           collection = all
 
-          (@indexed_fields || []).each do |field|
-            if collection.respond_to?(:build_index)
-              result[field] = collection.build_index(field)
-            else
-              index = {}
+          return collection.index_on(field) if collection.respond_to?(:index_on)
 
-              collection.each { |record|
-                value = record[field]
-                index[value.to_s] = record if value
-              }
+          @indexes ||= {}
 
-              result[field] = index
-            end
+          @indexes[field.to_s] ||= collection.each_with_object({}) do |record, index|
+            value = record[field.to_s]
+            index[value.to_s] = record if value.present?
           end
-
-          result
         end
       end
     end

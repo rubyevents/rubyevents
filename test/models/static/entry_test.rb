@@ -12,7 +12,7 @@ class Yerba::Record::EntryTest < ActiveSupport::TestCase
         slug: "bob"
     YAML
     @tmp_file.flush
-    @document = Yerba::Record::Document.new(@tmp_file.path)
+    @document = Yerba.parse_file(@tmp_file.path)
   end
 
   teardown do
@@ -97,7 +97,7 @@ class Yerba::Record::EntryTest < ActiveSupport::TestCase
     YAML
     tmp.flush
 
-    document = Yerba::Record::Document.new(tmp.path)
+    document = Yerba.parse_file(tmp.path)
     entry = Yerba::Record::Entry.new(document: document)
 
     assert_equal "Venue", entry.name

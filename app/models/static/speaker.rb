@@ -7,10 +7,35 @@ module Static
 
     schema SpeakerSchema
 
-    add_index :name
+    add_index :name, include: "aliases[].name"
     add_index :slug
+    add_index :github
 
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
+
+    def self.find_or_create_by(name:)
+      find_by(name: name) || create(name: name)
+    end
+
+    def self.create(name:, **attributes)
+      begin
+        speakers_file.add(name: name, **attributes)
+        speakers_file.save!
+      ensure
+        unload!
+      end
+
+      find_by(name: name)
+    end
+
+    def self.speakers_file
+      @speakers_file ||= Static::SpeakersFile.new(all.document.path, collection: all)
+    end
+
+    def self.unload!
+      super
+      @speakers_file = nil
+    end
 
     def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       imported_users = []

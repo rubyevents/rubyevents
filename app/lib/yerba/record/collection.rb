@@ -5,11 +5,16 @@ module Yerba
     class Collection
       include Enumerable
 
-      attr_reader :document
+      attr_reader :path
 
-      def initialize(document:, entry_class: Entry)
+      def initialize(path: nil, document: nil, entry_class: Entry)
+        @path = (path || document&.path).to_s
         @document = document
         @entry_class = entry_class
+      end
+
+      def document
+        @document ||= Yerba.parse_file(path) if exist?
       end
 
       def each(&block)
@@ -62,21 +67,20 @@ module Yerba
 
       def create(**attributes)
         unless exist?
-          dir = File.dirname(document.path)
+          dir = File.dirname(path)
           FileUtils.mkdir_p(dir) unless File.directory?(dir)
 
-          Yerba::Document.from([]).save_to!(document.path)
-          @document = Yerba::Record::Document.new(document.path)
+          Yerba::Document.from([]).save_to!(path)
         end
 
-        document.yerba << attributes
-        document.save!
+        document << attributes
+        document.save!(apply: true)
 
         last
       end
 
       def save!
-        document.save!
+        document.save!(apply: true)
       end
 
       def changed?
@@ -84,7 +88,7 @@ module Yerba
       end
 
       def exist?
-        document.exist?
+        !@document.nil? || File.exist?(path)
       end
 
       def pluck(field)

@@ -34,7 +34,7 @@ class Static::WritableTest < ActiveSupport::TestCase
       location: "Portland, USA"
     YAML
 
-    document = Yerba::Record::Document.new(File.join(event_dir, "event.yml"))
+    document = Yerba.parse_file(File.join(event_dir, "event.yml"))
     entry = Yerba::Record::Entry.new(document: document)
 
     entry["title"] = "Updated Event"

@@ -5,6 +5,8 @@ module Yerba
     class LazyFileCollection
       include Enumerable
 
+      attr_reader :document
+
       def initialize(document:, record_class:)
         @document = document
         @record_class = record_class
@@ -33,7 +35,7 @@ module Yerba
       def find_by(**criteria)
         return find { |record| Criteria.match?(record, criteria) } unless Criteria.plain?(criteria)
 
-        result = @document.yerba.find_by(**criteria)
+        result = @document.find_by(**criteria)
         return nil unless result
 
         index = index_from_selector(result.selector)
@@ -43,14 +45,14 @@ module Yerba
       def where(**criteria)
         return select { |record| Criteria.match?(record, criteria) } unless Criteria.plain?(criteria)
 
-        @document.yerba.where(**criteria).filter_map do |result|
+        @document.where(**criteria).filter_map do |result|
           index = index_from_selector(result.selector)
           record_at(index) if index
         end
       end
 
       def pluck(*fields)
-        return @document.yerba.pluck(fields.first.to_sym) if fields.one?
+        return @document.pluck(fields.first.to_sym) if fields.one?
 
         map { |record| fields.map { |field| record.public_send(field) } }
       end
@@ -89,15 +91,14 @@ module Yerba
         each.to_a
       end
 
-      def build_index(field)
-        values = @document.yerba.pluck(field.to_sym)
-        raw_index = {}
+      def index_on(field)
+        @indexes ||= {}
+        @indexes[field.to_s] ||= build_index(field)
+      end
 
-        values.each_with_index do |value, position|
-          raw_index[value.to_s] = position if value
-        end
-
-        LazyIndex.new(raw_index, collection: self)
+      def reset!
+        @indexes = nil
+        @cached_count = nil
       end
 
       private
@@ -106,6 +107,38 @@ module Yerba
         return nil if index.nil? || index.negative? || index >= cached_count
 
         @record_class.new(document: @document, index: index)
+      end
+
+      def build_index(field)
+        field = field.to_s
+        list_field, item_field = included_selector(field)
+        positions = {}
+        included_positions = {}
+
+        Array(@document.values).each_with_index do |entry, position|
+          next unless entry.is_a?(Hash)
+
+          value = entry[field]
+          positions[value.to_s] = position if value.present?
+
+          next unless list_field
+
+          Array(entry[list_field]).each do |item|
+            included = item_field ? (item[item_field] if item.is_a?(Hash)) : item
+            included_positions[included.to_s] ||= position if included.present?
+          end
+        end
+
+        LazyIndex.new(positions, included_positions, collection: self)
+      end
+
+      def included_selector(field)
+        selector = @record_class.try(:index_options)&.dig(field, :include)
+        return unless selector
+
+        list_field, item_field = selector.to_s.split("[]", 2)
+
+        [list_field, item_field.delete_prefix(".").presence]
       end
 
       def cached_count
@@ -118,26 +151,33 @@ module Yerba
     end
 
     class LazyIndex
-      def initialize(raw_index, collection:)
-        @raw_index = raw_index
+      attr_reader :positions, :included_positions
+
+      def initialize(positions, included_positions = {}, collection:)
+        @positions = positions
+        @included_positions = included_positions
         @collection = collection
       end
 
       def [](key)
-        position = @raw_index[key.to_s]
+        position = position(key)
         position ? @collection.send(:record_at, position) : nil
       end
 
+      def position(key)
+        @positions[key.to_s] || @included_positions[key.to_s]
+      end
+
       def key?(key)
-        @raw_index.key?(key.to_s)
+        !position(key).nil?
       end
 
       def keys
-        @raw_index.keys
+        (@positions.keys + @included_positions.keys).uniq
       end
 
       def size
-        @raw_index.size
+        keys.size
       end
     end
   end

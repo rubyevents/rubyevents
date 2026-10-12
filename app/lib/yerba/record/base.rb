@@ -19,7 +19,7 @@ module Yerba
           @new_record = false
         elsif attributes.is_a?(Hash) || kwargs.any?
           attrs = (attributes || {}).merge(kwargs).transform_keys(&:to_s)
-          @document = Yerba::Record::Document.from(attrs)
+          @document = Yerba::Document.from(attrs)
           @new_record = true
         else
           @document = document
@@ -41,7 +41,6 @@ module Yerba
 
       def []=(key, value)
         reset_attributes_cache!
-        document&.reset_values!
 
         if scalar_node?
           document.root[@index] = value if key.to_s == self.class.scalar_field
@@ -66,7 +65,7 @@ module Yerba
           @new_record = false
           @was_new_record = true
         else
-          document.save!
+          document.save!(apply: true)
         end
 
         reset_attributes_cache!
@@ -76,7 +75,7 @@ module Yerba
         raise "Cannot destroy a record without an index" if @index.nil?
 
         document.root.delete_at(@index)
-        document.save!
+        document.save!(apply: true)
       end
 
       def update(**attributes)

@@ -91,7 +91,6 @@ module Yerba
 
       def reset_entry_cache!
         @values = nil
-        @entry.document&.reset_values! if @entry.respond_to?(:document)
         @entry.reset_attributes_cache! if @entry.respond_to?(:reset_attributes_cache!)
       end
     end

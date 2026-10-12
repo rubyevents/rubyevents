@@ -71,8 +71,7 @@ module Yerba
 
         def load_from_glob_single(resolved_glob)
           records = Dir.glob(resolved_glob).sort.map do |absolute_path|
-            document = Yerba::Record::Document.new(absolute_path)
-            new(document: document)
+            new(document: Yerba.parse_file(absolute_path))
           end
 
           RecordCollection.new(records)
@@ -80,8 +79,8 @@ module Yerba
 
         def load_from_glob_flattened(resolved_glob)
           records = Dir.glob(resolved_glob).sort.flat_map do |absolute_path|
-            document = Yerba::Record::Document.new(absolute_path)
-            data = document.yerba.to_a
+            document = Yerba.parse_file(absolute_path)
+            data = document.to_a
             items = data.is_a?(Array) ? data : [data].compact
 
             items.each_with_index.map do |_item, index|
@@ -95,8 +94,8 @@ module Yerba
         end
 
         def load_from_file
-          resolved_path = base_path ? File.join(base_path, path) : path
-          document = Yerba::Record::Document.new(resolved_path)
+          resolved_path = base_path ? File.expand_path(path, base_path) : path
+          document = Yerba.parse_file(resolved_path)
 
           if scalar_field
             records = document.root.each_with_index.map do |_node, index|

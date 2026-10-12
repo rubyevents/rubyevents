@@ -35,21 +35,21 @@ module Yerba
       private
 
       def default_resolver_for(field_name, class_name)
-        collection_class = resolve_collection_class(field_name, class_name)
-        return ->(value) { value } unless collection_class
+        record_class = resolve_record_class(field_name, class_name)
+        return ->(value) { value } unless record_class
 
-        ->(value) { collection_class.find_by(name: value) }
+        ->(value) { record_class.find_by(name: value) }
       end
 
       def default_creator_for(field_name, class_name)
-        collection_class = resolve_collection_class(field_name, class_name)
-        return nil unless collection_class
+        record_class = resolve_record_class(field_name, class_name)
+        return nil unless record_class.respond_to?(:find_or_create_by)
 
-        ->(value) { collection_class.find_or_create_by(name: value) }
+        ->(value) { record_class.find_or_create_by(name: value) }
       end
 
-      def resolve_collection_class(field_name, class_name)
-        name = class_name || field_name.to_s.classify.pluralize
+      def resolve_record_class(field_name, class_name)
+        name = class_name || field_name.to_s.classify
         "Static::#{name}".safe_constantize
       end
     end

@@ -7,7 +7,7 @@ class Yerba::Record::AttributeCacheTest < ActiveSupport::TestCase
     @tmp_file = Tempfile.new(["videos", ".yml"])
     @tmp_file.write(videos_yaml(50))
     @tmp_file.flush
-    @document = Yerba::Record::Document.new(@tmp_file.path)
+    @document = Yerba.parse_file(@tmp_file.path)
     @records = (0...50).map { |index| Static::Talk.new(document: @document, index: index) }
   end
 
@@ -32,7 +32,7 @@ class Yerba::Record::AttributeCacheTest < ActiveSupport::TestCase
     small_file = Tempfile.new(["videos", ".yml"])
     small_file.write(videos_yaml(5))
     small_file.flush
-    small_document = Yerba::Record::Document.new(small_file.path)
+    small_document = Yerba.parse_file(small_file.path)
     small_records = (0...5).map { |index| Static::Talk.new(document: small_document, index: index) }
 
     small_calls = count_yerba_calls { small_records.each { |record| [record.title, record.speakers.names] } }
@@ -88,7 +88,7 @@ class Yerba::Record::AttributeCacheTest < ActiveSupport::TestCase
     record.title = "Saved Title"
     record.save!
 
-    reloaded = Static::Talk.new(document: Yerba::Record::Document.new(@tmp_file.path), index: 0)
+    reloaded = Static::Talk.new(document: Yerba.parse_file(@tmp_file.path), index: 0)
 
     assert_equal "Saved Title", record.title
     assert_equal "Saved Title", reloaded.title
@@ -119,6 +119,8 @@ class Yerba::Record::AttributeCacheTest < ActiveSupport::TestCase
       owner = point.defined_class
       owner = owner.attached_object if owner.respond_to?(:singleton_class?) && owner.singleton_class?
       name = owner.is_a?(Module) ? owner.name.to_s : ""
+
+      next if name == "Yerba::Document" && point.method_id == :values
 
       count += 1 if name.start_with?("Yerba::") && !name.start_with?("Yerba::Record")
     end
