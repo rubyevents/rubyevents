@@ -2,7 +2,7 @@
 
 class EventTalksTool < RubyLLM::Tool
   description "Get all talks/videos from an event using the Static::Talk model. Search by event slug or name."
-  param :query, desc: "Event slug (e.g., 'railsconf-2024') or event name (e.g., 'RailsConf 2024')"
+  parameter :query, description: "Event slug (e.g., 'railsconf-2024') or event name (e.g., 'RailsConf 2024')"
 
   def execute(query:)
     event = Static::Event.find_by_slug(query)

@@ -2,8 +2,8 @@
 
 class GitHubSearchTool < RubyLLM::Tool
   description "Search for GitHub users by name, optionally filtering by language (e.g., Ruby)"
-  param :query, desc: "Search query (e.g., 'Firstname Lastname')"
-  param :language, desc: "Programming language to filter by (e.g., 'Ruby')", required: false
+  parameter :query, description: "Search query (e.g., 'Firstname Lastname')"
+  parameter :language, description: "Programming language to filter by (e.g., 'Ruby')", required: false
 
   def execute(query:, language: nil)
     search_query = language ? "#{query} language:#{language}" : query

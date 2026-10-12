@@ -4,7 +4,7 @@ class SpeakerLookupTool < RubyLLM::Tool
   include SpeakersFileCheck
 
   description "Search for speakers in data/speakers.yml by name, slug, alias, github, or twitter handle. Returns matching speakers with their info."
-  param :query, desc: "Search query (matches against name, slug, github, twitter, aliases). Case-insensitive."
+  parameter :query, description: "Search query (matches against name, slug, github, twitter, aliases). Case-insensitive."
 
   def execute(query:)
     q = query.downcase

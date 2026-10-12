@@ -338,7 +338,7 @@ GEM
     et-orbi (1.4.0)
       tzinfo
     event_stream_parser (1.0.0)
-    faraday (2.14.3)
+    faraday (2.14.4)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -441,7 +441,7 @@ GEM
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    json (2.20.0)
+    json (2.21.2)
     jwt (3.2.0)
       base64
     kamal (2.7.0)
@@ -515,14 +515,15 @@ GEM
     multipart-post (2.4.1)
     mutex_m (0.3.0)
     nenv (0.3.0)
-    net-http (0.9.1)
+    net-http (0.10.0)
+      net-protocol (>= 0.3.0)
       uri (>= 0.11.1)
     net-imap (0.6.4.1)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
-    net-protocol (0.2.2)
+    net-protocol (0.4.0)
       timeout
     net-scp (4.1.0)
       net-ssh (>= 2.6.5, < 8.0.0)
@@ -703,17 +704,16 @@ GEM
     ruby-vips (2.3.0)
       ffi (~> 1.12)
       logger
-    ruby_llm (1.15.0)
+    ruby_llm (2.1.1)
       base64
-      event_stream_parser (~> 1)
-      faraday (>= 1.10.0)
+      faraday (>= 1.10.0, != 2.0.0)
       faraday-multipart (>= 1)
       faraday-net_http (>= 1)
       faraday-retry (>= 1)
-      marcel (~> 1)
-      ruby_llm-schema (~> 0)
+      json (< 4)
+      marcel (>= 1.0, < 3)
+      schematist (~> 1.1)
       zeitwerk (~> 2)
-    ruby_llm-schema (0.4.0)
     rubyzip (3.2.2)
     safely_block (0.5.0)
     schematist (1.1.0)
@@ -802,7 +802,7 @@ GEM
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.2.0)
-    uri (1.1.1)
+    uri (1.1.2)
     useragent (0.16.11)
     vcr (6.4.0)
     version_gem (1.1.13)
@@ -849,7 +849,7 @@ GEM
       nokogiri (~> 1.15)
     yt (0.34.1)
       activesupport
-    zeitwerk (2.8.2)
+    zeitwerk (2.8.3)
 
 PLATFORMS
   aarch64-linux
@@ -927,7 +927,7 @@ DEPENDENCIES
   rss (~> 0.3.1)
   ruby-lsp-rails
   ruby-openai
-  ruby_llm (~> 1.15.0)
+  ruby_llm (~> 2.1.0)
   schematist (~> 1.1)
   selenium-webdriver
   simplecov
