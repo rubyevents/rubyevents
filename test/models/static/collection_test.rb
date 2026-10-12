@@ -24,7 +24,7 @@ class Yerba::Record::CollectionTest < ActiveSupport::TestCase
           - Charlie
     YAML
     @tmp_file.flush
-    @document = Yerba::Record::Document.new(@tmp_file.path)
+    @document = Yerba.parse_file(@tmp_file.path)
     @collection = Yerba::Record::Collection.new(document: @document)
   end
 
@@ -81,7 +81,7 @@ class Yerba::Record::CollectionTest < ActiveSupport::TestCase
   test "create appends entry and saves" do
     @collection.create(id: "talk-4", title: "New Talk", language: "English")
 
-    reloaded = Yerba::Record::Document.new(@tmp_file.path)
+    reloaded = Yerba.parse_file(@tmp_file.path)
     collection = Yerba::Record::Collection.new(document: reloaded)
 
     assert_equal 4, collection.count
@@ -91,7 +91,7 @@ class Yerba::Record::CollectionTest < ActiveSupport::TestCase
   test "destroy removes entry and saves" do
     @collection.first.destroy
 
-    reloaded = Yerba::Record::Document.new(@tmp_file.path)
+    reloaded = Yerba.parse_file(@tmp_file.path)
     collection = Yerba::Record::Collection.new(document: reloaded)
 
     assert_equal 2, collection.count
@@ -113,7 +113,7 @@ class Yerba::Record::CollectionTest < ActiveSupport::TestCase
     tmp.write("---\n[]\n")
     tmp.flush
 
-    document = Yerba::Record::Document.new(tmp.path)
+    document = Yerba.parse_file(tmp.path)
     collection = Yerba::Record::Collection.new(document: document)
 
     assert collection.empty?
@@ -135,7 +135,7 @@ class Yerba::Record::CollectionTest < ActiveSupport::TestCase
     @collection.last["title"] = "Also Modified"
     @collection.save!
 
-    reloaded = Yerba::Record::Document.new(@tmp_file.path)
+    reloaded = Yerba.parse_file(@tmp_file.path)
     assert_equal "Modified", reloaded.root[0]["title"]
     assert_equal "Also Modified", reloaded.root[2]["title"]
   end
@@ -175,7 +175,7 @@ class Yerba::Record::CollectionTest < ActiveSupport::TestCase
   test "create then find_by returns the new entry" do
     @collection.create(id: "talk-new", title: "Brand New", language: "English")
 
-    reloaded_document = Yerba::Record::Document.new(@tmp_file.path)
+    reloaded_document = Yerba.parse_file(@tmp_file.path)
     reloaded = Yerba::Record::Collection.new(document: reloaded_document)
     entry = reloaded.find_by(id: "talk-new")
 
@@ -187,7 +187,7 @@ class Yerba::Record::CollectionTest < ActiveSupport::TestCase
     @collection.find_by(id: "talk-1")["title"] = "Ruby 5.0"
     @collection.save!
 
-    reloaded = Yerba::Record::Document.new(@tmp_file.path)
+    reloaded = Yerba.parse_file(@tmp_file.path)
     collection = Yerba::Record::Collection.new(document: reloaded)
 
     assert_equal "Ruby 5.0", collection.find_by(id: "talk-1")["title"]
@@ -200,7 +200,7 @@ class Yerba::Record::CollectionTest < ActiveSupport::TestCase
     video.speakers << "NewSpeaker"
     collection.save!
 
-    reloaded = Yerba::Record::Document.new(@tmp_file.path)
+    reloaded = Yerba.parse_file(@tmp_file.path)
     reloaded_collection = Yerba::Record::Collection.new(document: reloaded, entry_class: Static::Video)
 
     assert_includes reloaded_collection.first.speakers.names, "NewSpeaker"

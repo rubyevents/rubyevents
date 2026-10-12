@@ -5,7 +5,4 @@ RubyLLM.configure do |config|
   config.openai_organization_id = Rails.application.credentials.open_ai&.dig(:organization_id) || ENV["OPENAI_ORGANIZATION_ID"]
   config.request_timeout = 1800 # with flex tier we can have very long requests
   # config.default_model = "gpt-4.1-nano"
-
-  # Enable the new Rails-like API
-  config.use_new_acts_as = true
 end

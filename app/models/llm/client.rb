@@ -15,7 +15,7 @@ class LLM::Client
 
     chat = RubyLLM.chat(model: model)
     chat.with_instructions(system_message) if system_message
-    chat.with_params(**params) if params.any?
+    chat.with_provider_options(params) if params.any?
     chat.ask(user_message).content
   end
 end

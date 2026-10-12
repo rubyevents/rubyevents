@@ -37,14 +37,14 @@ module Yerba
       end
 
       def save!
-        document.save!
+        document.save!(apply: true)
       end
 
       def destroy
         raise "Cannot destroy an entry without an index" if @index.nil?
 
         document.root.delete_at(@index)
-        document.save!
+        document.save!(apply: true)
       end
 
       def to_h

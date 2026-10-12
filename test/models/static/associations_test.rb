@@ -88,7 +88,7 @@ class Static::AssociationsTest < ActiveSupport::TestCase
 
     File.write(File.join(event_dir, "event.yml"), "---\ntitle: Test\nkind: conference\n")
 
-    document = Yerba::Record::Document.new(File.join(event_dir, "event.yml"))
+    document = Yerba.parse_file(File.join(event_dir, "event.yml"))
     event = Static::Event.new(document: document)
     event.define_singleton_method(:event_dir) { event_dir }
 

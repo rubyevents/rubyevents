@@ -3,6 +3,11 @@ require "test_helper"
 class Static::EventTest < ActiveSupport::TestCase
   SLUG = "helveticruby-2025"
 
+  teardown do
+    Static::EventSeries.unload!
+    Static::Event.unload!
+  end
+
   test "import!" do
     Static::EventSeries.find_by_slug("helveticruby").import_series!
     event = Static::Event.find_by_slug(SLUG)

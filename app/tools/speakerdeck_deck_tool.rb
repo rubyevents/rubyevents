@@ -2,7 +2,7 @@
 
 class SpeakerdeckDeckTool < RubyLLM::Tool
   description "Fetch SpeakerDeck slide deck metadata by URL or username/slug using the oEmbed API"
-  param :url, desc: "Full SpeakerDeck URL (e.g., 'https://speakerdeck.com/username/slug') or path as 'username/slug'"
+  parameter :url, description: "Full SpeakerDeck URL (e.g., 'https://speakerdeck.com/username/slug') or path as 'username/slug'"
 
   def execute(url:)
     normalized_url = normalize_url(url)

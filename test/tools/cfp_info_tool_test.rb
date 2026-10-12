@@ -176,7 +176,7 @@ class CFPInfoToolTest < ActiveSupport::TestCase
   def build_tool_with_tmp_data_folder
     data_folder = @data_folder
     event = @event
-    static_event = Static::Event.new(document: Yerba::Record::Document.new(data_folder.join("event.yml")))
+    static_event = Static::Event.new(document: Yerba::Document.from({}, path: data_folder.join("event.yml").to_s))
 
     tool = CFPInfoTool.new
     tool.define_singleton_method(:find_event) do |query|
