@@ -1,7 +1,5 @@
-class Event::Schedule < ActiveRecord::AssociatedObject
-  include YAMLFile
-
-  yaml_file "schedule.yml"
+class Event::Schedule < Event::DataFile
+  data_file :schedule, file_name: "schedule.yml"
 
   def days
     file.fetch("days", [])

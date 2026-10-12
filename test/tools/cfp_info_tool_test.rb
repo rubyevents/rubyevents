@@ -176,6 +176,7 @@ class CFPInfoToolTest < ActiveSupport::TestCase
   def build_tool_with_tmp_data_folder
     data_folder = @data_folder
     event = @event
+    static_event = Static::Event.new(document: Yerba::Record::Document.new(data_folder.join("event.yml")))
 
     tool = CFPInfoTool.new
     tool.define_singleton_method(:find_event) do |query|
@@ -187,7 +188,7 @@ class CFPInfoToolTest < ActiveSupport::TestCase
       return nil unless found
       return found unless found.id == event.id
 
-      found.define_singleton_method(:data_folder) { data_folder }
+      found.cfp_file.define_singleton_method(:static_event) { static_event }
       found
     end
 
