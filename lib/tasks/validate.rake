@@ -141,6 +141,35 @@ namespace :validate do
     exit 1 if errors.any?
   end
 
+  desc "Fix the issues that validators know how to fix automatically"
+  task fix: :environment do
+    validator_classes = Static::Validators::Validator.fixable_validators
+    changed = 0
+    fixed_files = 0
+
+    Dir.glob(Rails.root.join("data/**/*.yml")).sort.each do |path|
+      document = parse_document(path)
+      next unless document
+
+      validator_classes.each do |validator_class|
+        validator = validator_class.new(file_path: path, document: document)
+        next unless validator.applicable?
+
+        result = validator.fix
+        next unless result
+
+        changed += result[:changed]
+        fixed_files += 1
+
+        puts "#{path.to_s.sub("#{Rails.root}/", "")}: #{validator_class.name.demodulize} fixed #{result[:changed]}"
+      end
+    end
+
+    puts
+    puts Gum.style(changed.zero? ? "✓ Nothing to fix" : "Fixed #{changed} issue(s) across #{fixed_files} file(s)", foreground: "2")
+    puts Gum.style("Run bin/rails validate:all to confirm", foreground: "3") if changed.positive?
+  end
+
   def validate_involvements_file
     validate_files(
       files: Dir.glob(Rails.root.join("data/**/involvements.yml")),

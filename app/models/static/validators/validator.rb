@@ -80,4 +80,21 @@ class Static::Validators::Validator
       Static::Validators::MissingThumbnails
     ]
   end
+
+  # Registered validators that can fix themselves. `fix` is an instance method, so a
+  # class never responds to it and the check has to be method_defined?. New scopes
+  # have to be added here.
+  def self.fixable_validators
+    [
+      cfp_validator_classes,
+      event_validator_classes,
+      involvement_validator_classes,
+      schedule_validator_classes,
+      series_validator_classes,
+      speaker_validator_classes,
+      sponsor_validator_classes,
+      venue_validator_classes,
+      video_validator_classes
+    ].flatten.uniq.select { |validator_class| validator_class.method_defined?(:fix) }
+  end
 end
