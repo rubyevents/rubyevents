@@ -82,18 +82,11 @@ class Ui::SocialLinksComponentTest < ViewComponent::TestCase
     assert_selector("a[href='https://github.com/rails'][target='_blank']")
   end
 
-  def test_inline_variant_renders_inline_styles
+  def test_renders_links_with_inline_styles
     source = OpenStruct.new(twitter: "railsconf")
-    render_inline(Ui::SocialLinksComponent.new(source, variant: :inline))
+    render_inline(Ui::SocialLinksComponent.new(source))
 
     assert_selector("a.inline-flex")
-  end
-
-  def test_circle_variant_renders_button_styles
-    source = OpenStruct.new(twitter: "railsconf")
-    render_inline(Ui::SocialLinksComponent.new(source, variant: :circle))
-
-    refute_selector("a.inline-flex")
   end
 
   def test_renders_nothing_when_no_social_fields_present
