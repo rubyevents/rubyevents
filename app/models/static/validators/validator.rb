@@ -81,9 +81,9 @@ class Static::Validators::Validator
     ]
   end
 
-  # Registered validators that can fix themselves. `fix` is an instance method, so a
-  # class never responds to it and the check has to be method_defined?. New scopes
-  # have to be added here.
+  # Registered validators that can fix themselves.
+  # Defining a fix method and registering it in one of the *_validator_classes
+  # methods is enough to make it show up here.
   def self.fixable_validators
     [
       cfp_validator_classes,
