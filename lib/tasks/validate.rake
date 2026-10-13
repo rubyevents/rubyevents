@@ -368,22 +368,25 @@ namespace :validate do
   task all: :environment do
     ENV["VALIDATE_FILE_WORKERS"] ||= [Parallel.processor_count / 2, 2].max.to_s
 
+    # The two slowest sections come first so they start as early as possible,
+    # the rest are alphabetized
     sections = {
-      "Running yerba check (schemas, formatting, uniqueness)" => -> { run_yerba_check },
       "Validating videos.yml files" => -> { validate_video_files.none? },
-      "Validating event.yml files" => -> { validate_event_files.none? },
-      "Validating series.yml files" => -> { validate_series_files.none? },
-      "Validating sponsors.yml files" => -> { validate_sponsor_files.none? },
-      "Validating venue.yml files" => -> { validate_venue_files.none? },
-      "Validating speakers.yml file" => -> { validate_speakers_file.none? },
-      "Validating involvements.yml file" => -> { validate_involvements_file.none? },
-      "Validating schedule.yml files" => -> { validate_schedule_files.none? },
       "Validating speakers.yml is in sync" => -> { validate_speakers_in_sync },
+      "Running yerba check (schemas, formatting, uniqueness)" => -> { run_yerba_check },
+      "Validating cfp.yml files" => -> { validate_cfp_files.none? },
       "Validating data file locations" => -> { validate_data_files.none? },
-      "Validating SpeakerDeck slides URLs" => -> { validate_speakerdeck_urls },
-      "Validating SpeakerDeck handles" => -> { validate_speakerdeck_handles },
       "Validating event asset dimensions" => -> { validate_event_assets.none? },
-      "Validating redundant thumbnails" => -> { validate_thumbnails.none? }
+      "Validating event.yml files" => -> { validate_event_files.none? },
+      "Validating involvements.yml file" => -> { validate_involvements_file.none? },
+      "Validating redundant thumbnails" => -> { validate_thumbnails.none? },
+      "Validating schedule.yml files" => -> { validate_schedule_files.none? },
+      "Validating series.yml files" => -> { validate_series_files.none? },
+      "Validating SpeakerDeck handles" => -> { validate_speakerdeck_handles },
+      "Validating SpeakerDeck slides URLs" => -> { validate_speakerdeck_urls },
+      "Validating speakers.yml file" => -> { validate_speakers_file.none? },
+      "Validating sponsors.yml files" => -> { validate_sponsor_files.none? },
+      "Validating venue.yml files" => -> { validate_venue_files.none? }
     }
 
     passed = if $stdout.tty? && ENV["VALIDATE_TUI"] != "0"
