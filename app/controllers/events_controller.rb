@@ -48,7 +48,7 @@ class EventsController < ApplicationController
 
     @sponsors = @event.sponsors.includes(:organization).joins(:organization).order(level: :asc)
 
-    @participation = Current.user&.main_participation_to(@event)
+    @participation = Current.user&.participation_for(@event)
   end
 
   # POST /events/:slug/reimport

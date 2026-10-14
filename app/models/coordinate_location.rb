@@ -153,7 +153,7 @@ class CoordinateLocation
   def nearby_events(radius_km: 250, limit: 12, exclude_ids: [])
     return [] unless coordinates.present?
 
-    scope = Event.includes(:series, :participants).where.not(latitude: nil, longitude: nil)
+    scope = Event.includes(:series, :going_participants).where.not(latitude: nil, longitude: nil)
     scope = scope.where.not(id: exclude_ids) if exclude_ids.any?
 
     scope.map do |event|

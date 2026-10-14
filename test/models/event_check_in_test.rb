@@ -72,7 +72,7 @@ class EventCheckInTest < ActiveSupport::TestCase
     assert_includes checkin.errors[:checked_in_at], "can't be blank"
   end
 
-  test "creates a visitor participation when the passport resolves to a user" do
+  test "creates an attendee participation when the passport resolves to a user" do
     user = users(:one)
     user.connected_accounts.create!(provider: :passport, uid: "PASS123")
 
@@ -81,7 +81,7 @@ class EventCheckInTest < ActiveSupport::TestCase
     end
 
     participation = user.event_participations.find_by(event: @event)
-    assert participation.attended_as_visitor?
+    assert participation.attendee?
   end
 
   test "does not create a participation for an unclaimed passport" do
@@ -93,20 +93,20 @@ class EventCheckInTest < ActiveSupport::TestCase
   test "does not create a duplicate participation when one already exists" do
     user = users(:one)
     user.connected_accounts.create!(provider: :passport, uid: "PASS123")
-    user.event_participations.create!(event: @event, attended_as: :speaker)
+    user.event_participations.create!(event: @event, role: :speaker)
 
     assert_no_difference -> { user.event_participations.count } do
       EventCheckIn.create!(connect_id: "PASS123", event: @event, checked_in_at: Time.current)
     end
   end
 
-  test "upgrades an interested participation to visitor on check-in" do
+  test "upgrades an interested participation to attendee on check-in" do
     user = users(:one)
     user.connected_accounts.create!(provider: :passport, uid: "PASS123")
-    user.event_participations.create!(event: @event, attended_as: :interested)
+    user.event_participations.create!(event: @event, role: :interested)
 
     EventCheckIn.create!(connect_id: "PASS123", event: @event, checked_in_at: Time.current)
 
-    assert_equal ["visitor"], user.event_participations.where(event: @event).pluck(:attended_as)
+    assert_equal ["attendee"], user.event_participations.where(event: @event).pluck(:role)
   end
 end

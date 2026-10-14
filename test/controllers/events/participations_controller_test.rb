@@ -4,7 +4,7 @@ class Events::ParticipationsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @event = events(:rails_world_2023)
     @user = users(:one)
-    @event.event_participations.create!(user: @user, attended_as: "visitor")
+    @event.event_participations.create!(user: @user, role: "attendee")
   end
 
   test "should get index" do

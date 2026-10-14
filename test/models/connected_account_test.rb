@@ -56,13 +56,13 @@ class ConnectedAccountTest < ActiveSupport::TestCase
       @user.connected_accounts.create!(provider: "passport", uid: "PASS123")
     end
 
-    assert @user.event_participations.find_by(event: event).attended_as_visitor?
+    assert @user.event_participations.find_by(event: event).attendee?
   end
 
   test "claiming a passport does not duplicate existing participations" do
     event = events(:future_conference)
     EventCheckIn.create!(connect_id: "PASS123", event: event, checked_in_at: Time.current)
-    @user.event_participations.create!(event: event, attended_as: :speaker)
+    @user.event_participations.create!(event: event, role: :speaker)
 
     assert_no_difference -> { @user.event_participations.count } do
       @user.connected_accounts.create!(provider: "passport", uid: "PASS123")

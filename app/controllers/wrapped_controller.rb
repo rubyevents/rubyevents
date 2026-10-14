@@ -29,7 +29,7 @@ class WrappedController < ApplicationController
         languages: languages,
         passports_issued: ConnectedAccount.passport.where(created_at: @year_range).count,
         unique_sponsors: unique_sponsors,
-        event_participations: EventParticipation.attending.joins(:event).where(events: {start_date: @year_range}).count,
+        event_participations: EventParticipation.going.joins(:event).where(events: {start_date: @year_range}).count,
         people_involved: people_involved,
         total_talks_watched: WatchedTalk.where(watched_at: @year_range).count,
         new_users: ConnectedAccount.github.where(created_at: @year_range).count,
@@ -181,7 +181,7 @@ class WrappedController < ApplicationController
     @events_by_attendees = events_by_attendees_source
       .where(start_date: @year_range)
       .joins(:event_participations)
-      .merge(EventParticipation.attending)
+      .merge(EventParticipation.going)
       .group(:id)
       .select("events.*, COUNT(event_participations.id) as attendees_count")
       .order("COUNT(event_participations.id) DESC")

@@ -38,24 +38,8 @@ namespace :backfill do
 
           next unless user && talk && event
 
-          # Determine participation type based on talk kind
-          participation_type = case talk.kind
-          when "keynote"
-            "keynote_speaker"
-          else
-            "speaker"
-          end
-
-          # Create EventParticipation record if it doesn't exist
-          participation = EventParticipation.find_or_create_by(user: user, event: event, attended_as: participation_type)
-
-          if participation.persisted?
-            created_count += 1 if participation.previously_new_record?
-          else
-            print "\r\e[K"
-            puts Gum.style("❌ Failed: user #{user.id} at event #{event.id}: #{participation.errors.full_messages.join(", ")}", foreground: "1")
-            error_count += 1
-          end
+          participation = EventParticipation.record(user:, event:, role: :speaker)
+          created_count += 1 if participation.previously_new_record?
         rescue => e
           print "\r\e[K"
           puts Gum.style("❌ Error processing user_talk #{user_talk.id}: #{e.message}", foreground: "1")

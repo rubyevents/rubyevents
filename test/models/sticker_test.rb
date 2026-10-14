@@ -6,8 +6,8 @@ class StickerTest < ActiveSupport::TestCase
   end
 
   test ".for_user returns every sticker for each event the user attended" do
-    @user.event_participations.create!(event: events(:railsconf_2025), attended_as: :visitor)
-    @user.event_participations.create!(event: events(:rails_world_2023), attended_as: :visitor)
+    @user.event_participations.create!(event: events(:railsconf_2025), role: :attendee)
+    @user.event_participations.create!(event: events(:rails_world_2023), role: :attendee)
 
     slug_counts = Sticker.for_user(@user).map(&:event_slug).tally
 

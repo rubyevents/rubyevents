@@ -1,181 +1,113 @@
 require "test_helper"
 
 class EventParticipationTest < ActiveSupport::TestCase
-  test "validates the main participation" do
-    user = users(:one)
-    user2 = users(:two)
-    event = events(:rails_world_2023)
-    EventParticipation.create(user: user2, event: event, attended_as: "keynote_speaker")
-    EventParticipation.create(user: user, event: event, attended_as: "speaker")
-    EventParticipation.create(user: user, event: event, attended_as: "keynote_speaker")
-    EventParticipation.create(user: user, event: event, attended_as: "visitor")
-    EventParticipation.create(user: user2, event: event, attended_as: "speaker")
-    EventParticipation.create(user: user2, event: event, attended_as: "visitor")
-
-    assert_equal 2, user.event_participations.count
-    assert_equal "keynote_speaker", user.main_participation_to(event).attended_as
+  setup do
+    @user = users(:one)
+    @event = events(:rails_world_2023)
   end
 
-  test "creating a speaker participation removes an existing visitor participation" do
-    user = users(:one)
-    event = events(:rails_world_2023)
-    visitor = EventParticipation.create!(user: user, event: event, attended_as: "visitor")
+  test "allows only one participation per user and event" do
+    EventParticipation.create!(user: @user, event: @event, role: :attendee)
 
-    EventParticipation.create!(user: user, event: event, attended_as: "speaker")
+    duplicate = EventParticipation.new(user: @user, event: @event, role: :speaker)
 
-    assert_not EventParticipation.exists?(visitor.id)
-    assert_equal ["speaker"], user.event_participations.where(event: event).pluck(:attended_as)
+    assert_not duplicate.valid?
+    assert_includes duplicate.errors[:user_id], "has already been taken"
   end
 
-  test "creating a keynote_speaker participation removes an existing visitor participation" do
-    user = users(:one)
-    event = events(:rails_world_2023)
-    EventParticipation.create!(user: user, event: event, attended_as: "visitor")
+  test "rejects unknown roles" do
+    participation = EventParticipation.new(user: @user, event: @event, role: :keynote_speaker)
 
-    EventParticipation.create!(user: user, event: event, attended_as: "keynote_speaker")
-
-    assert_equal ["keynote_speaker"], user.event_participations.where(event: event).pluck(:attended_as)
+    assert_not participation.valid?
+    assert_includes participation.errors[:role], "is not included in the list"
   end
 
-  test "creating a visitor participation is dropped when a speaker role already exists" do
-    user = users(:one)
-    event = events(:rails_world_2023)
-    EventParticipation.create!(user: user, event: event, attended_as: "speaker")
+  test "record creates a participation" do
+    participation = EventParticipation.record(user: @user, event: @event, role: :interested)
 
-    visitor = EventParticipation.create(user: user, event: event, attended_as: "visitor")
-
-    assert_not EventParticipation.exists?(visitor.id)
-    assert_equal ["speaker"], user.event_participations.where(event: event).pluck(:attended_as)
+    assert participation.persisted?
+    assert participation.interested?
   end
 
-  test "a visitor participation is kept when no speaker role exists" do
-    user = users(:one)
-    event = events(:rails_world_2023)
+  test "record upgrades interested to attendee" do
+    EventParticipation.create!(user: @user, event: @event, role: :interested)
 
-    visitor = EventParticipation.create!(user: user, event: event, attended_as: "visitor")
+    EventParticipation.record(user: @user, event: @event, role: :attendee)
 
-    assert EventParticipation.exists?(visitor.id)
-    assert_equal "visitor", user.main_participation_to(event).attended_as
+    assert_equal ["attendee"], @user.event_participations.where(event: @event).pluck(:role)
   end
 
-  test "dedupe is scoped to the same event" do
-    user = users(:one)
-    event = events(:rails_world_2023)
-    other_event = events(:railsconf_2025)
-    other_visitor = EventParticipation.create!(user: user, event: other_event, attended_as: "visitor")
+  test "record upgrades attendee to speaker" do
+    EventParticipation.create!(user: @user, event: @event, role: :attendee)
 
-    EventParticipation.create!(user: user, event: event, attended_as: "speaker")
+    EventParticipation.record(user: @user, event: @event, role: :speaker)
 
-    assert EventParticipation.exists?(other_visitor.id), "visitor participation for a different event must be untouched"
+    assert_equal ["speaker"], @user.event_participations.where(event: @event).pluck(:role)
   end
 
-  test "dedupe is scoped to the same user" do
-    user = users(:one)
-    other_user = users(:two)
-    event = events(:rails_world_2023)
-    other_visitor = EventParticipation.create!(user: other_user, event: event, attended_as: "visitor")
+  test "record never downgrades" do
+    EventParticipation.create!(user: @user, event: @event, role: :speaker)
 
-    EventParticipation.create!(user: user, event: event, attended_as: "speaker")
+    EventParticipation.record(user: @user, event: @event, role: :attendee)
+    EventParticipation.record(user: @user, event: @event, role: :interested)
 
-    assert EventParticipation.exists?(other_visitor.id), "another user's visitor participation must be untouched"
+    assert_equal ["speaker"], @user.event_participations.where(event: @event).pluck(:role)
   end
 
-  test "creating interested participation succeeds" do
-    user = users(:one)
-    event = events(:railsconf_2025)
-
-    interested = EventParticipation.create!(user: user, event: event, attended_as: "interested")
-
-    assert EventParticipation.exists?(interested.id)
-    assert_equal "interested", user.main_participation_to(event).attended_as
-    assert interested.attended_as_interested?
-    assert_not interested.attending?
+  test "going? is true for speakers and attendees only" do
+    assert EventParticipation.new(role: :speaker).going?
+    assert EventParticipation.new(role: :attendee).going?
+    assert_not EventParticipation.new(role: :interested).going?
   end
 
-  test "creating visitor removes existing interested participation" do
-    user = users(:one)
-    event = events(:railsconf_2025)
-    interested = EventParticipation.create!(user: user, event: event, attended_as: "interested")
+  test "going scope excludes interested" do
+    EventParticipation.create!(user: @user, event: @event, role: :attendee)
+    EventParticipation.create!(user: @user, event: events(:railsconf_2025), role: :interested)
 
-    EventParticipation.create!(user: user, event: event, attended_as: "visitor")
-
-    assert_not EventParticipation.exists?(interested.id)
-    assert_equal ["visitor"], user.event_participations.where(event: event).pluck(:attended_as)
+    assert_equal ["attendee"], @user.event_participations.going.pluck(:role)
   end
 
-  test "creating interested removes existing visitor participation" do
-    user = users(:one)
-    event = events(:railsconf_2025)
-    visitor = EventParticipation.create!(user: user, event: event, attended_as: "visitor")
+  test "going participants include speakers and attendees but not interested users" do
+    speaker = users(:two)
+    interested = User.create!(name: "Interested User", github_handle: "interested-user")
+    EventParticipation.create!(user: @user, event: @event, role: :attendee)
+    EventParticipation.create!(user: speaker, event: @event, role: :speaker)
+    EventParticipation.create!(user: interested, event: @event, role: :interested)
 
-    EventParticipation.create!(user: user, event: event, attended_as: "interested")
-
-    assert_not EventParticipation.exists?(visitor.id)
-    assert_equal ["interested"], user.event_participations.where(event: event).pluck(:attended_as)
+    assert_equal [@user, speaker].sort_by(&:id), @event.going_participants.sort_by(&:id)
+    assert_equal [interested], @event.interested_participants.to_a
+    assert_equal 3, @event.participants.count
   end
 
-  test "creating interested is dropped when a speaker role already exists" do
-    user = users(:one)
-    event = events(:rails_world_2023)
-    EventParticipation.create!(user: user, event: event, attended_as: "speaker")
+  test "going_events and attended_events exclude interested events" do
+    EventParticipation.create!(user: @user, event: @event, role: :interested)
 
-    interested = EventParticipation.create(user: user, event: event, attended_as: "interested")
-
-    assert_not EventParticipation.exists?(interested.id)
-    assert_equal ["speaker"], user.event_participations.where(event: event).pluck(:attended_as)
+    assert_includes @user.interested_events, @event
+    assert_includes @user.participated_events, @event
+    assert_not_includes @user.going_events, @event
+    assert_not_includes @user.attended_events, @event
   end
 
-  test "creating speaker removes existing interested participation" do
-    user = users(:one)
-    event = events(:rails_world_2023)
-    interested = EventParticipation.create!(user: user, event: event, attended_as: "interested")
+  test "attended_events only includes past events" do
+    upcoming = events(:future_conference)
+    EventParticipation.create!(user: @user, event: @event, role: :attendee)
+    EventParticipation.create!(user: @user, event: upcoming, role: :attendee)
 
-    EventParticipation.create!(user: user, event: event, attended_as: "speaker")
-
-    assert_not EventParticipation.exists?(interested.id)
-    assert_equal ["speaker"], user.event_participations.where(event: event).pluck(:attended_as)
+    assert_equal [@event, upcoming].sort_by(&:id), @user.going_events.sort_by(&:id)
+    assert_equal [@event], @user.attended_events.to_a
   end
 
-  test "visitor attending? is true and interested attending? is false" do
-    user = users(:one)
-    event = events(:railsconf_2025)
+  test "attended_events includes undated events" do
+    meetup = events(:wnb_rb_meetup)
+    EventParticipation.create!(user: @user, event: meetup, role: :speaker)
 
-    visitor = EventParticipation.create!(user: user, event: event, attended_as: "visitor")
-    assert visitor.attending?
-
-    visitor.destroy
-    interested = EventParticipation.create!(user: user, event: event, attended_as: "interested")
-    assert_not interested.attending?
+    assert_includes @user.attended_events, meetup
   end
 
-  test "interested users are excluded from event participants" do
-    user = users(:one)
-    event = events(:railsconf_2025)
-    EventParticipation.create!(user: user, event: event, attended_as: "interested")
+  test "speaking_events only includes speaker participations" do
+    EventParticipation.create!(user: @user, event: @event, role: :speaker)
+    EventParticipation.create!(user: @user, event: events(:railsconf_2025), role: :attendee)
 
-    assert_includes event.interested_participants, user
-    assert_not_includes event.participants, user
-  end
-
-  test "going_events excludes interested events" do
-    user = users(:one)
-    event = events(:railsconf_2025)
-    EventParticipation.create!(user: user, event: event, attended_as: "interested")
-
-    assert_includes user.interested_events, event
-    assert_includes user.participated_events, event
-    assert_not_includes user.going_events, event
-  end
-
-  test "attending scope includes visitor and speaker roles only" do
-    user = users(:one)
-    event = events(:rails_world_2023)
-    EventParticipation.create!(user: user, event: event, attended_as: "visitor")
-
-    other_event = events(:railsconf_2025)
-    EventParticipation.create!(user: user, event: other_event, attended_as: "interested")
-
-    assert_equal ["visitor"], user.event_participations.attending.pluck(:attended_as)
-    assert_equal ["interested"], user.event_participations.interested.pluck(:attended_as)
+    assert_equal [@event], @user.speaking_events.to_a
   end
 end

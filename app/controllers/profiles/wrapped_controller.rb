@@ -89,19 +89,19 @@ class Profiles::WrappedController < ApplicationController
       .where(watch_lists: {user_id: @user.id})
       .count
 
-    @events_attended_in_year = @user.going_events
+    @events_attended_in_year = @user.attended_events
       .where(start_date: year_range)
       .includes(:series)
       .order(start_date: :asc)
 
     @events_as_speaker = @user.event_participations
-      .where(attended_as: [:speaker, :keynote_speaker])
+      .speaker
       .joins(:event)
       .where(events: {start_date: year_range})
       .count
 
-    @events_as_visitor = @user.event_participations
-      .where(attended_as: :visitor)
+    @events_as_attendee = @user.event_participations
+      .attendee
       .joins(:event)
       .where(events: {start_date: year_range})
       .count
@@ -166,7 +166,7 @@ class Profiles::WrappedController < ApplicationController
       @achievement_stamps << Stamp.conference_speaker_stamp
     end
 
-    if @user.event_participations.joins(:event).where(attended_as: [:speaker, :keynote_speaker], events: {kind: :meetup, start_date: year_range}).exists? && Stamp.meetup_speaker_stamp
+    if @user.event_participations.joins(:event).speaker.where(events: {kind: :meetup, start_date: year_range}).exists? && Stamp.meetup_speaker_stamp
       @achievement_stamps << Stamp.meetup_speaker_stamp
     end
 
@@ -201,7 +201,7 @@ class Profiles::WrappedController < ApplicationController
 
     @ruby_friends_met = User
       .joins(:event_participations)
-      .merge(EventParticipation.attending)
+      .merge(EventParticipation.going)
       .where(event_participations: {event_id: @events_attended_in_year.pluck(:id)})
       .where.not(id: @user.id)
       .where.not("LOWER(users.name) IN (?)", ["tbd", "todo", "tba", "speaker tbd", "speaker tba"])
@@ -241,7 +241,7 @@ class Profiles::WrappedController < ApplicationController
     @total_watch_time_seconds = @watched_talks_in_year.sum(&:progress_seconds)
     @total_watch_time_hours = (@total_watch_time_seconds / 3600.0).round(1)
 
-    @events_attended_in_year = @user.going_events.where(start_date: year_range)
+    @events_attended_in_year = @user.attended_events.where(start_date: year_range)
     @talks_given_in_year = @user.kept_talks.where(date: year_range)
     @countries_visited = @events_attended_in_year.map(&:country).compact.uniq
 
@@ -268,7 +268,7 @@ class Profiles::WrappedController < ApplicationController
 
     @watched_talks_in_year = @user.watched_talks.where(watched_at: year_range)
     @total_talks_watched = @watched_talks_in_year.count
-    @events_attended_in_year = @user.going_events.where(start_date: year_range)
+    @events_attended_in_year = @user.attended_events.where(start_date: year_range)
     @talks_given_in_year = @user.kept_talks.where(date: year_range)
     @countries_visited = @events_attended_in_year.map(&:country).compact.uniq
     @share_url = profile_wrapped_index_url(profile_slug: @user.to_param)
@@ -427,7 +427,7 @@ class Profiles::WrappedController < ApplicationController
 
     User
       .joins(:event_participations)
-      .merge(EventParticipation.attending)
+      .merge(EventParticipation.going)
       .where(event_participations: {event_id: event_ids})
       .where.not(id: @user.id)
       .where.not("LOWER(users.name) IN (?)", ["tbd", "todo", "tba", "speaker tbd", "speaker tba"])
@@ -437,7 +437,7 @@ class Profiles::WrappedController < ApplicationController
       .limit(10)
       .map do |buddy|
         shared_events = @events_attended_in_year.where(
-          id: buddy.event_participations.attending.where(event_id: event_ids).pluck(:event_id)
+          id: buddy.event_participations.going.where(event_id: event_ids).pluck(:event_id)
         )
         OpenStruct.new(
           user: buddy,
@@ -510,7 +510,7 @@ class Profiles::WrappedController < ApplicationController
       talk_kinds: @talk_kinds,
       bookmarks_in_year: @bookmarks_in_year,
       events_as_speaker: @events_as_speaker,
-      events_as_visitor: @events_as_visitor,
+      events_as_attendee: @events_as_attendee,
       total_views_on_talks: @total_views_on_talks,
       total_likes_on_talks: @total_likes_on_talks,
       total_speaking_minutes: @total_speaking_minutes,

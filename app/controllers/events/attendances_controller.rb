@@ -4,11 +4,8 @@ class Events::AttendancesController < ApplicationController
   before_action :set_event, only: [:show]
 
   def index
-    @events = Current.user.going_events
+    @events = Current.user.attended_events
       .includes(:series, :talks)
-      .where.not(end_date: nil)
-      .where(end_date: ..Date.today)
-      .distinct
       .order(start_date: :desc)
 
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
@@ -29,9 +26,9 @@ class Events::AttendancesController < ApplicationController
 
   def show
     event_is_past = @event.end_date.present? && @event.end_date < Date.today
-    @participation = Current.user.main_participation_to(@event)
+    @participation = Current.user.participation_for(@event)
 
-    unless @participation.present? && @participation.attending? && event_is_past && @event.talks.any?
+    unless @participation.present? && @participation.going? && event_is_past && @event.talks.any?
       redirect_to event_path(@event), alert: "You can only mark attendance for past events you participated in"
       return
     end
