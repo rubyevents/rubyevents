@@ -19,7 +19,7 @@ module ProfileData
     @stamps = Stamp.for_user(@user)
     @stickers = Sticker.for_user(@user, events: @user.attended_events)
     @involvements_by_role = @user.event_involvements.group_by(&:role).transform_values(&:any?)
-    @countries_with_events = @events.group_by(&:country_code).any? ? [true] : []
+    @countries_with_events = @user.all_attended_events.exists? ? [true] : []
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
     @aliases = Current.user&.admin? ? @user.aliases : []
     @back_path = speakers_path

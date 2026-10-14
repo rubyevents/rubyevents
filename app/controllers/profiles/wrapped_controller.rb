@@ -201,6 +201,7 @@ class Profiles::WrappedController < ApplicationController
 
     @ruby_friends_met = User
       .joins(:event_participations)
+      .merge(EventParticipation.attending)
       .where(event_participations: {event_id: @events_attended_in_year.pluck(:id)})
       .where.not(id: @user.id)
       .where.not("LOWER(users.name) IN (?)", ["tbd", "todo", "tba", "speaker tbd", "speaker tba"])
@@ -426,6 +427,7 @@ class Profiles::WrappedController < ApplicationController
 
     User
       .joins(:event_participations)
+      .merge(EventParticipation.attending)
       .where(event_participations: {event_id: event_ids})
       .where.not(id: @user.id)
       .where.not("LOWER(users.name) IN (?)", ["tbd", "todo", "tba", "speaker tbd", "speaker tba"])
@@ -435,7 +437,7 @@ class Profiles::WrappedController < ApplicationController
       .limit(10)
       .map do |buddy|
         shared_events = @events_attended_in_year.where(
-          id: buddy.event_participations.where(event_id: event_ids).pluck(:event_id)
+          id: buddy.event_participations.attending.where(event_id: event_ids).pluck(:event_id)
         )
         OpenStruct.new(
           user: buddy,

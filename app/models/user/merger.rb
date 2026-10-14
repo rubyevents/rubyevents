@@ -67,6 +67,10 @@ class User::Merger < ActiveRecord::AssociatedObject
         participation.update!(user: user)
       end
     end
+
+    user.event_participations.interested
+      .where(event_id: user.event_participations.attending.select(:event_id))
+      .delete_all
   end
 
   def transfer_event_involvements

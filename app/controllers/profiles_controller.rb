@@ -75,8 +75,7 @@ class ProfilesController < ApplicationController
       @events = @events.to_a + checked_in_only_events.to_a
     end
 
-    country_scope = @events.is_a?(Array) ? Event.where(id: @events.map(&:id)) : @events
-    @countries_with_events = country_scope.grouped_by_country
+    @countries_with_events = @user.all_attended_events.grouped_by_country
 
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
