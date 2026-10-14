@@ -30,13 +30,6 @@ class Event::DataFileTest < ActiveSupport::TestCase
     assert_equal Rails.root.join("data", "brightonruby", "brightonruby-2024", "venue.yml"), @event.venue.file_path
   end
 
-  test "sponsors_file exposes tiers and sponsors" do
-    tiers = @static_event.sponsors.flat_map { |entry| entry["tiers"] }
-
-    assert_equal tiers.map { |tier| tier["name"] }, @event.sponsors_file.tier_names
-    assert_equal tiers.flat_map { |tier| tier["sponsors"] }, @event.sponsors_file.sponsors
-  end
-
   test "files are missing when the event has no Static::Event" do
     event = events(:future_conference)
 

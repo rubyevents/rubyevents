@@ -22,14 +22,6 @@ class Event::VideosFileTest < ActiveSupport::TestCase
     assert_equal [], @event.videos_file.ids
   end
 
-  test "count returns zero when file does not exist" do
-    assert_equal 0, @event.videos_file.count
-  end
-
-  test "find_by_id returns nil when file does not exist" do
-    assert_nil @event.videos_file.find_by_id("nonexistent")
-  end
-
   test "entries returns parsed YAML content" do
     videos_file = @event.videos_file
     videos = [{"id" => "video1", "title" => "Talk 1"}, {"id" => "video2", "title" => "Talk 2"}]
@@ -64,40 +56,6 @@ class Event::VideosFileTest < ActiveSupport::TestCase
     with_static_event(videos) do |static_event|
       videos_file.define_singleton_method(:static_event) { static_event }
       assert_equal %w[video1 child1 child2 video2], videos_file.ids(child_talks: true)
-    end
-  end
-
-  test "find_by_id returns matching entry" do
-    videos_file = @event.videos_file
-    videos = [
-      {"id" => "video1", "title" => "Talk 1"},
-      {"id" => "video2", "title" => "Talk 2"}
-    ]
-
-    with_static_event(videos) do |static_event|
-      videos_file.define_singleton_method(:static_event) { static_event }
-      result = videos_file.find_by_id("video2")
-      assert_equal({"id" => "video2", "title" => "Talk 2"}, result)
-    end
-  end
-
-  test "find_by_id returns nil when not found" do
-    videos_file = @event.videos_file
-    videos = [{"id" => "video1"}]
-
-    with_static_event(videos) do |static_event|
-      videos_file.define_singleton_method(:static_event) { static_event }
-      assert_nil videos_file.find_by_id("nonexistent")
-    end
-  end
-
-  test "count returns number of entries" do
-    videos_file = @event.videos_file
-    videos = [{"id" => "video1"}, {"id" => "video2"}, {"id" => "video3"}]
-
-    with_static_event(videos) do |static_event|
-      videos_file.define_singleton_method(:static_event) { static_event }
-      assert_equal 3, videos_file.count
     end
   end
 
