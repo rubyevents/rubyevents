@@ -11,7 +11,7 @@ module Yerba
         end
 
         def not(**criteria)
-          @collection.subset(@collection.reject { |record| criteria.any? { |key, value| Criteria.value_matches?(Criteria.value_for(record, key), value) } })
+          @collection.subset(@collection.reject { |record| Criteria.match?(record, criteria) })
         end
 
         def missing(*associations)

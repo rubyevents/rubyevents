@@ -22,6 +22,14 @@ class Yerba::Record::QueryingTest < ActiveSupport::TestCase
     assert results.none? { |event| event.kind == "conference" }
   end
 
+  test "where.not with several keys excludes only records matching all of them, like ActiveRecord" do
+    results = Static::Event.where.not(kind: "conference", featured_background: nil)
+
+    assert results.any? { |event| event.kind == "conference" }
+    assert results.any? { |event| event.featured_background.nil? }
+    assert results.none? { |event| event.kind == "conference" && event.featured_background.nil? }
+  end
+
   test "where.not with nil excludes records without the field" do
     results = Static::Event.where.not(featured_background: nil)
 

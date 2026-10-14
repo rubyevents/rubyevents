@@ -119,7 +119,7 @@ Static::Speaker.pluck(:name)                  # => ["Aaron Patterson", ...]
 
 `find_by` on indexed fields is O(1) via `LazyIndex`; other lookups scan the records. Reads are served from one materialized value tree per document, so iterating thousands of records doesn't call into Yerba per record.
 
-`where` returns a chainable collection (`where.not(...)`, `where(...).where(...)`, `pluck`). An Array, Set or Range value matches like SQL `IN`.
+`where` returns a chainable collection (`where.not(...)`, `where(...).where(...)`, `pluck`). An Array, Set or Range value matches like SQL `IN`. Like ActiveRecord, `where.not` with several keys only excludes records that match all of them.
 
 ## Collections
 
