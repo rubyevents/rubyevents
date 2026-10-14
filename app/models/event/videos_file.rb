@@ -12,22 +12,6 @@ class Event::VideosFile < Event::DataFile
   def ids(child_talks: true)
     return [] unless exist?
 
-    if child_talks
-      entries.flat_map { |talk|
-        [talk.dig("id"), *talk["talks"]&.map { |child_talk|
-          child_talk.dig("id")
-        }]
-      }
-    else
-      entries.map { |talk| talk.dig("id") }
-    end
-  end
-
-  def find_by_id(id)
-    entries.find { |talk| talk["id"] == id }
-  end
-
-  def count
-    entries.size
+    (child_talks ? static_association : static_association.top_level).ids
   end
 end
