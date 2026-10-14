@@ -5,7 +5,7 @@ namespace :talk_ids do
   task backfill_old_ids: :environment do
     written = 0
 
-    Dir.glob(Rails.root.join("data/**/videos.yml")).sort.each do |path|
+    Dir.glob(Static::Talk.file_glob).sort.each do |path|
       validator = Static::Validators::TalkRenames.new(file_path: path)
       next unless validator.applicable?
 

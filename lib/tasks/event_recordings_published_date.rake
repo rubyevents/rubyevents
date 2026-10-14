@@ -24,7 +24,7 @@ namespace :event_recordings_published_date do
 
     changes = []
 
-    Dir.glob(Rails.root.join("data/**/event.yml")).sort.each do |path|
+    Dir.glob(Static::Event.file_glob).sort.each do |path|
       document = Yerba.parse_file(path)
       present = document["recordings_published_date"].present?
       videos_path = File.join(File.dirname(path), "videos.yml")
