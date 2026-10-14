@@ -16,11 +16,6 @@ namespace :event_recordings_published_date do
 
     scalar = ->(node) { node.respond_to?(:value) ? node.value : node }
 
-    top_level_items = ->(videos_path) do
-      document = Yerba.parse_file(videos_path)
-      document.root ? document.root.each.to_a : []
-    end
-
     majority_published = ->(providers) do
       watchable = providers.count { |p| validator::WATCHABLE_PROVIDERS.include?(p) }
       resolvable = providers.count { |p| !validator::TERMINAL_PROVIDERS.include?(p) }
@@ -41,16 +36,11 @@ namespace :event_recordings_published_date do
         next
       end
 
-      next unless File.exist?(videos_path)
-
-      items = top_level_items.call(videos_path)
-
-      next if items.empty?
-
-      providers = items.map { |item| item.value_at("video_provider") }
+      talks = Static::Talk.in_file(videos_path).top_level
+      providers = talks.pluck(:video_provider)
 
       if majority_published.call(providers)
-        dates = items.filter_map { |item| parse_date.call(item.value_at("published_at")) }
+        dates = talks.filter_map { |talk| parse_date.call(talk.published_at) }
         target = [validator.percentile(dates), parse_date.call(scalar.call(document["end_date"]))].compact.max
 
         next unless target
