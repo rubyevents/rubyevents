@@ -76,7 +76,7 @@ gem "yt"
 gem "rss", "~> 0.3.1"
 
 # YAML Editing and Refactoring with Better Accuracy
-gem "yerba", "~> 0.9.2"
+gem "yerba", "~> 0.10.0"
 
 # Powerful and seamless HTML-aware ERB parsing and tooling.
 gem "herb", "~> 0.11.0"
