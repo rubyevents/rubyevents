@@ -24,7 +24,7 @@ class Stamp::EventCheckInTest < ActiveSupport::TestCase
   end
 
   test "same event in both self-reported and checked-in does not duplicate stamps" do
-    EventParticipation.create!(user: @user, event: @event, attended_as: "visitor")
+    EventParticipation.create!(user: @user, event: @event, role: "attendee")
     EventCheckIn.create!(connect_id: "STAMP01", event: @event, checked_in_at: Time.current)
 
     stamps = Stamp.for_user(@user)
@@ -34,7 +34,7 @@ class Stamp::EventCheckInTest < ActiveSupport::TestCase
 
   test "user without passport gets stamps from self-reported only" do
     user_no_passport = users(:two)
-    EventParticipation.create!(user: user_no_passport, event: @event, attended_as: "visitor")
+    EventParticipation.create!(user: user_no_passport, event: @event, role: "attendee")
 
     stamps = Stamp.for_user(user_no_passport)
     country_codes = stamps.select(&:has_country?).map(&:code)

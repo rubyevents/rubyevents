@@ -47,7 +47,7 @@ module Api
                 date: event.start_date&.iso8601,
                 end_date: event.end_date&.iso8601,
                 location: event.location,
-                attended_as: participation.attended_as,
+                role: participation.role,
                 avatar_url: event_avatar_url(event),
                 featured_background: event.static_metadata&.featured_background
               }

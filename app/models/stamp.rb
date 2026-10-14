@@ -144,11 +144,11 @@ class Stamp
     end
 
     def user_spoke_at_conference?(user)
-      user.speaker_events.where(kind: :conference).exists?
+      user.speaking_events.where(kind: :conference).exists?
     end
 
     def user_spoke_at_meetup?(user)
-      user.speaker_events.where(kind: :meetup).exists?
+      user.speaking_events.where(kind: :meetup).exists?
     end
 
     def user_attended_conference?(user_events)

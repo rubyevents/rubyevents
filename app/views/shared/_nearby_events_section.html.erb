@@ -52,9 +52,9 @@
                 </div>
               </div>
 
-              <% if event.participants.any? %>
+              <% if event.attendees.any? %>
                 <div class="flex-shrink-0">
-                  <%= render Ui::AvatarGroupComponent.new(event.participants.to_a, max: 4, size: :md, overlap: "-space-x-3") %>
+                  <%= render Ui::AvatarGroupComponent.new(event.attendees.to_a, max: 4, size: :md, overlap: "-space-x-3") %>
                 </div>
               <% end %>
             </div>

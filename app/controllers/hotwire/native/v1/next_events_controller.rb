@@ -26,7 +26,7 @@ module Hotwire::Native::V1
           featured_url: Router.image_path(event.featured_image_path, host: host),
           keynote_avatars: keynote_speakers.first(3).map(&:avatar_url).compact,
           speakers_count: event.speakers.count,
-          participants_count: event.participants.count
+          participants_count: event.attendees.count
         },
         upcoming: events.map { |upcoming_event| upcoming_json(upcoming_event) }
       }

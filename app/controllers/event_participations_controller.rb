@@ -8,8 +8,8 @@ class EventParticipationsController < ApplicationController
 
   # POST /events/:event_slug/event_participations
   def create
-    @participation = @event.event_participations.build(participation_params)
-    @participation.user = Current.user
+    @participation = Current.user.event_participations.find_or_initialize_by(event: @event)
+    @participation.role = participation_role unless @participation.speaker?
 
     if @participation.save
       set_participants
@@ -27,9 +27,10 @@ class EventParticipationsController < ApplicationController
 
   # DELETE /events/:event_slug/event_participations/:id
   def destroy
-    redirect_to event_path(@event), alert: "Participation not found." unless @participation
+    return redirect_to event_path(@event), alert: "Participation not found." unless @participation
+
     @participation.destroy
-    @participation = Current.user&.main_participation_to(@event)
+    @participation = nil
     set_participants
 
     respond_to do |format|
@@ -40,7 +41,7 @@ class EventParticipationsController < ApplicationController
 
   private
 
-  def participation_params
-    params.permit(:attended_as)
+  def participation_role
+    params[:role].presence_in(%w[attendee interested])
   end
 end

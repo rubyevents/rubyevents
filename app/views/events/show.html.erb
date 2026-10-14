@@ -41,7 +41,7 @@
 
           <div class="text-center">
             <% if @event.retreat? %>
-              <div class="mb-1 text-3xl font-bold text-primary"><%= @event.participants.count %></div>
+              <div class="mb-1 text-3xl font-bold text-primary"><%= @event.attendees.count %></div>
               <div class="text-sm font-medium text-gray-600">Known Participants</div>
             <% else %>
               <div class="mb-1 text-3xl font-bold text-primary"><%= @event.speakers.count %></div>
