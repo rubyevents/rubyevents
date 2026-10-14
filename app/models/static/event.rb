@@ -90,6 +90,18 @@ module Static
       within_next_days? || today? || past?
     end
 
+    def banner_background
+      self["banner_background"].presence || series&.banner_background
+    end
+
+    def featured_background
+      self["featured_background"].presence || series&.featured_background
+    end
+
+    def featured_color
+      self["featured_color"].presence || series&.featured_color
+    end
+
     def today?
       if start_date.present?
         return start_date.today?

@@ -35,6 +35,18 @@ class SeriesSchema < ApplicationSchema
   string :guild, description: "Guild.host URL", required: false
   string :vimeo, description: "Vimeo channel URL", required: false
 
+  string :banner_background,
+    description: "CSS background value for the banner of events using the series default banner.webp (color or gradient)",
+    required: false
+
+  string :featured_background,
+    description: "CSS background color for featured cards of events using the series default featured.webp",
+    required: false
+
+  string :featured_color,
+    description: "CSS text color for featured cards of events using the series default featured.webp",
+    required: false
+
   array :youtube_channels, of: YouTubeChannelSchema, description: "YouTube channels associated with this series", required: false
 
   array :aliases, of: :string, description: "Alternative names for the series", required: false

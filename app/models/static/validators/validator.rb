@@ -16,8 +16,7 @@ class Static::Validators::Validator
       Static::Validators::EventDates,
       Static::Validators::EventRecordingsPublishedDate,
       Static::Validators::IdMatchesFolder,
-      Static::Validators::RemovedTalkIds,
-      Static::Validators::SeriesDefaultColors
+      Static::Validators::RemovedTalkIds
     ]
   end
 
@@ -38,7 +37,8 @@ class Static::Validators::Validator
   def self.series_validator_classes
     @series_validators ||= [
       Static::Validators::Schema,
-      Static::Validators::IdMatchesFolder
+      Static::Validators::IdMatchesFolder,
+      Static::Validators::SeriesDefaultColors
     ]
   end
 
