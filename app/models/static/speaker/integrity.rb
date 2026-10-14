@@ -7,9 +7,6 @@ module Static
     module Integrity
       NameCluster = Struct.new(:names, :score, keyword_init: true)
 
-      VIDEOS_GLOB = "data/**/videos.yml"
-      INVOLVEMENTS_GLOB = "data/**/involvements.yml"
-
       VIDEO_SPEAKER_SELECTORS = [
         "[].speakers[]",
         "[].alternative_recordings[].speakers[]",
@@ -35,8 +32,8 @@ module Static
 
       def all_speaker_references
         all.cached(:all_speaker_references) do
-          video_refs = VIDEO_SPEAKER_SELECTORS.flat_map { |selector| Yerba::Collection.get(Rails.root.join(VIDEOS_GLOB).to_s, selector) }
-          involvement_refs = Yerba::Collection.get(Rails.root.join(INVOLVEMENTS_GLOB).to_s, "[].users[]")
+          video_refs = VIDEO_SPEAKER_SELECTORS.flat_map { |selector| Yerba::Collection.get(Static::Talk.file_glob, selector) }
+          involvement_refs = Yerba::Collection.get(Static::Involvement.file_glob, "[].users[]")
 
           (video_refs + involvement_refs).reject { |scalar| scalar.value.blank? }
         end

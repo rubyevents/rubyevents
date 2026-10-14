@@ -43,9 +43,9 @@ module Yerba
 
       def first(...) = records.first(...)
       def last(...) = records.last(...)
-      def count = records.size
-      alias_method :size, :count
-      alias_method :length, :count
+      def count(...) = records.count(...)
+      def size = records.size
+      alias_method :length, :size
       def empty? = records.empty?
       def to_a = records.dup
 

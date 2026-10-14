@@ -8,7 +8,6 @@ module Static
       ].freeze
 
       PROVIDERS_WITHOUT_PUBLISHED_AT = (::Talk::UNPUBLISHED_PROVIDERS + ["children", "parent"]).freeze
-      SCOPES = ["[]", "[].talks[]"].freeze
 
       def initialize(file_path:, document: nil)
         @file_path = file_path.to_s.sub("#{Rails.root}/", "")
@@ -28,57 +27,25 @@ module Static
         self.class.errors.select { |error| error.file_path == @file_path }
       end
 
-      class << self
-        def errors
-          @errors ||= SCOPES.flat_map { |scope| errors_in(scope) }
+      def self.errors
+        talks = Static::Talk.all
+        return @errors if @talks.equal?(talks)
+
+        @talks = talks
+        @errors = talks.where(video_provider: PROVIDERS_WITHOUT_PUBLISHED_AT).where.not(published_at: [nil, ""]).map do |talk|
+          location = talk.source_location("published_at")
+
+          Static::Validators::Error.new(
+            "published_at (#{talk["published_at"]}) must not be set when video_provider is \"#{talk["video_provider"]}\"",
+            file_path: talk.file_path.to_s,
+            line: location&.start_line || 1,
+            end_line: location&.end_line
+          )
         end
+      end
 
-        def warmup
-          errors
-        end
-
-        def reset!
-          @errors = nil
-          remove_instance_variable(:@glob) if defined?(@glob)
-        end
-
-        attr_writer :glob
-
-        def glob
-          @glob ||= Rails.root.join(Static::Talk::VIDEOS_GLOB).to_s
-        end
-
-        private
-
-        def errors_in(scope)
-          providers = values_at(scope, "video_provider")
-
-          scalars_at(scope, "published_at").filter_map do |scalar|
-            next if scalar.value.to_s.strip.empty?
-
-            provider = providers[entry_key(scalar)]
-            next unless PROVIDERS_WITHOUT_PUBLISHED_AT.include?(provider)
-
-            Static::Validators::Error.new(
-              "published_at (#{scalar.value}) must not be set when video_provider is \"#{provider}\"",
-              file_path: scalar.file_path,
-              line: scalar.location&.start_line || 1,
-              end_line: scalar.location&.end_line
-            )
-          end
-        end
-
-        def values_at(scope, field)
-          scalars_at(scope, field).to_h { |scalar| [entry_key(scalar), scalar.value] }
-        end
-
-        def scalars_at(scope, field)
-          Array(Yerba::Collection.get(glob, "#{scope}.#{field}"))
-        end
-
-        def entry_key(scalar)
-          [scalar.file_path, scalar.selector.rpartition(".").first]
-        end
+      def self.warmup
+        errors
       end
     end
   end

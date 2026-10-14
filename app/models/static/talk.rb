@@ -2,7 +2,6 @@
 
 module Static
   class Talk < Yerba::Record::Base
-    VIDEOS_GLOB = "data/**/videos.yml"
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
     self.glob = "**/videos.yml"
@@ -16,6 +15,8 @@ module Static
     has_many :talks, nested: true
 
     scope :top_level, -> { where.missing(:parent) }
+    scope :youtube, -> { where(video_provider: "youtube") }
+    scope :youtube_missing_published_at, -> { youtube.where(published_at: [nil, "", "TODO"]) }
 
     references :speakers
 
@@ -28,18 +29,6 @@ module Static
 
     def self.find_by_video_id(video_id)
       find_by(video_id: video_id)
-    end
-
-    def self.youtube_missing_published_at
-      glob = Rails.root.join(VIDEOS_GLOB).to_s
-
-      top_level = Yerba::Collection.find(glob, "[]", condition: ".video_provider == youtube")
-      talks = Yerba::Collection.find(glob, "[].talks[]", condition: ".video_provider == youtube")
-
-      (Array(top_level) + Array(talks)).select do |entry|
-        published_at = entry["published_at"]
-        published_at.nil? || published_at.to_s.strip.empty? || published_at == "TODO"
-      end
     end
 
     def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)

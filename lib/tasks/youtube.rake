@@ -13,9 +13,8 @@ namespace :youtube do
       puts Gum.style("YouTube videos missing published_at (#{missing.size}):", foreground: "1")
       puts
 
-      missing.each do |entry|
-        file = entry["__file"].sub("#{Rails.root}/", "")
-        puts Gum.style("  ❌ #{entry["id"]} (#{entry["video_id"]}) in #{file}", foreground: "1")
+      missing.each do |talk|
+        puts Gum.style("  ❌ #{talk["id"]} (#{talk["video_id"]}) in #{talk.project_file_path}", foreground: "1")
       end
 
       puts
@@ -53,9 +52,7 @@ namespace :youtube do
     entries = []
 
     Static::Talk.all.files.each do |file|
-      file.each do |talk|
-        next unless talk["video_provider"] == "youtube"
-
+      file.youtube.each do |talk|
         entries << {file:, talk:, video_id: talk["video_id"].to_s, stored: talk["published_at"].to_s.strip}
       end
     end

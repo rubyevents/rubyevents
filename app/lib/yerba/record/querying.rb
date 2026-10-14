@@ -76,6 +76,12 @@ module Yerba
           base_path ? File.expand_path(path, base_path) : path
         end
 
+        def file_glob
+          return nil unless glob
+
+          base_path ? File.join(base_path, glob) : glob
+        end
+
         def unload!
           @all = nil
           @indexes = nil
@@ -101,9 +107,7 @@ module Yerba
 
         def default_sources
           if glob
-            resolved_glob = base_path ? File.join(base_path, glob) : glob
-
-            Dir.glob(resolved_glob).sort.map { |file| Collection::Source.new(path: file, mode: source_mode) }
+            Dir.glob(file_glob).sort.map { |file| Collection::Source.new(path: file, mode: source_mode) }
           elsif path
             [Collection::Source.new(path: file_path, mode: source_mode)]
           else

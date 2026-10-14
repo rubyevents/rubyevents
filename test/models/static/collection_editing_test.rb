@@ -71,6 +71,11 @@ class Yerba::Record::CollectionEditingTest < ActiveSupport::TestCase
     assert_equal %w[opening lightning-talks closing], collection.top_level.map(&:id)
   end
 
+  test "count takes a block like Enumerable#count" do
+    assert_equal 5, talks.count
+    assert_equal 2, talks.count(&:parent)
+  end
+
   test "nested children are writable records sharing the document" do
     lightning_talks = talks.find_by(id: "lightning-talks")
     child = lightning_talks.talks.find_by(id: "lightning-two")
