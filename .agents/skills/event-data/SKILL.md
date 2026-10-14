@@ -28,7 +28,7 @@ This is a historical record and index of events for the Ruby community, and pres
 - [ ] Start the dev server with `bin/dev` to review the changes locally.
 - [ ] Commit the changes.
 - [ ] Take a screenshot with playwright of any pages that were affected by the update.
-- [ ] Create a PR on the rubyevents/rubyevents repo using the .github/pull_request_template.md and include the screenshots in your PR description using gh cli and --attach flag.
+- [ ] Create a PR on the rubyevents/rubyevents repo. Use the `create-pr` skill: it fills .github/pull_request_template.md, attaches the screenshots with the gh cli --attach flag, and opens the PR as a draft.
 
 # Adding Event Data with the Generators
 
