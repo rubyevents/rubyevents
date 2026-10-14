@@ -9,7 +9,7 @@ module StaticSpeakersSandbox
   included do
     setup do
       @sandboxed_speakers_file = Tempfile.new(["speakers", ".yml"])
-      FileUtils.cp(Rails.root.join(Static::SpeakersFile::SPEAKERS_PATH), @sandboxed_speakers_file.path)
+      FileUtils.cp(Static::Speaker.file_path, @sandboxed_speakers_file.path)
 
       @original_speakers_path = Static::Speaker.path
       Static::Speaker.path = @sandboxed_speakers_file.path

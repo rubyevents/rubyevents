@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Yerba::Record::EntryTest < ActiveSupport::TestCase
+class Yerba::Record::BaseTest < ActiveSupport::TestCase
   setup do
     @tmp_file = Tempfile.new(["test", ".yml"])
     @tmp_file.write(<<~YAML)
@@ -21,34 +21,34 @@ class Yerba::Record::EntryTest < ActiveSupport::TestCase
   end
 
   test "reads fields via method_missing" do
-    entry = Yerba::Record::Entry.new(document: @document, index: 0)
+    entry = Yerba::Record::Base.new(document: @document, index: 0)
 
     assert_equal "Alice", entry.name
     assert_equal "alice", entry.slug
   end
 
   test "reads fields via bracket access" do
-    entry = Yerba::Record::Entry.new(document: @document, index: 0)
+    entry = Yerba::Record::Base.new(document: @document, index: 0)
 
     assert_equal "Alice", entry["name"]
   end
 
   test "writes fields via setter" do
-    entry = Yerba::Record::Entry.new(document: @document, index: 0)
+    entry = Yerba::Record::Base.new(document: @document, index: 0)
     entry.name = "Updated"
 
     assert_equal "Updated", entry.name
   end
 
   test "writes fields via bracket assignment" do
-    entry = Yerba::Record::Entry.new(document: @document, index: 0)
+    entry = Yerba::Record::Base.new(document: @document, index: 0)
     entry["name"] = "Updated"
 
     assert_equal "Updated", entry["name"]
   end
 
   test "save! persists changes to file" do
-    entry = Yerba::Record::Entry.new(document: @document, index: 0)
+    entry = Yerba::Record::Base.new(document: @document, index: 0)
     entry.name = "Updated"
     entry.save!
 
@@ -57,7 +57,7 @@ class Yerba::Record::EntryTest < ActiveSupport::TestCase
   end
 
   test "destroy removes entry from array" do
-    entry = Yerba::Record::Entry.new(document: @document, index: 0)
+    entry = Yerba::Record::Base.new(document: @document, index: 0)
     entry.destroy
 
     reloaded = Yerba.parse_file(@tmp_file.path)
@@ -66,7 +66,7 @@ class Yerba::Record::EntryTest < ActiveSupport::TestCase
   end
 
   test "to_h returns hash representation" do
-    entry = Yerba::Record::Entry.new(document: @document, index: 0)
+    entry = Yerba::Record::Base.new(document: @document, index: 0)
 
     hash = entry.to_h
     assert_equal "Alice", hash["name"]
@@ -74,7 +74,7 @@ class Yerba::Record::EntryTest < ActiveSupport::TestCase
   end
 
   test "respond_to_missing? works for existing fields" do
-    entry = Yerba::Record::Entry.new(document: @document, index: 0)
+    entry = Yerba::Record::Base.new(document: @document, index: 0)
 
     assert entry.respond_to?(:name)
     assert entry.respond_to?(:slug)
@@ -83,12 +83,12 @@ class Yerba::Record::EntryTest < ActiveSupport::TestCase
   end
 
   test "raises NoMethodError for missing fields" do
-    entry = Yerba::Record::Entry.new(document: @document, index: 0)
+    entry = Yerba::Record::Base.new(document: @document, index: 0)
 
     assert_raises(NoMethodError) { entry.nonexistent }
   end
 
-  test "works as single-object entry without index" do
+  test "works as a single-object record without a selector" do
     tmp = Tempfile.new(["single", ".yml"])
     tmp.write(<<~YAML)
       ---
@@ -98,7 +98,7 @@ class Yerba::Record::EntryTest < ActiveSupport::TestCase
     tmp.flush
 
     document = Yerba.parse_file(tmp.path)
-    entry = Yerba::Record::Entry.new(document: document)
+    entry = Yerba::Record::Base.new(document: document)
 
     assert_equal "Venue", entry.name
     assert_equal "Portland", entry.city

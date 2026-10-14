@@ -70,6 +70,15 @@ class Static::Topic < Yerba::Record::Base
 end
 ```
 
+`file_path` and `file_glob` return the full path or glob of a model's files, for code that reads them with Yerba directly:
+
+```ruby
+Static::Speaker.file_path  # => "/.../data/speakers.yml"
+Static::Talk.file_glob     # => "/.../data/**/videos.yml"
+
+Yerba::Collection.get(Static::Talk.file_glob, "[].speakers[]")
+```
+
 ## Schemas
 
 Schemas define the fields on a record. They reuse `RubyLLM::Schema` and serve triple duty: field definitions, validation on save, and MCP tool parameter generation.
@@ -108,7 +117,76 @@ Static::Speaker.where(github: "tenderlove")   # => Linear search
 Static::Speaker.pluck(:name)                  # => ["Aaron Patterson", ...]
 ```
 
-Queries are lazy, `.all` returns a collection object without creating record objects. `find_by` on indexed fields is O(1) via `LazyIndex`. Non-indexed `find_by` and `where` use Yerba's search-backed.
+`find_by` on indexed fields is O(1) via `LazyIndex`; other lookups scan the records. Reads are served from one materialized value tree per document, so iterating thousands of records doesn't call into Yerba per record.
+
+`where` returns a chainable collection (`where.not(...)`, `where(...).where(...)`, `pluck`). An Array, Set or Range value matches like SQL `IN`.
+
+## Collections
+
+`Model.all` (every file of the model), `Model.in_file(path, document: nil)` (one file or parsed document), `Model.parse(yaml)`, `has_many ..., in_file:` associations, nested children and `where` results are all a `Yerba::Record::Collection`, spanning one or more documents:
+
+```ruby
+Static::Talk.all.count                                    # every talk across every videos.yml, nested ones included
+Static::Talk.in_file("data/rubyconf/rubyconf-2024/videos.yml").ids
+static_event.talks.find_by(id: "jane-doe-rubyconf-2024")
+Static::Talk.all.files.each { |file| file.save! if file.changed? }
+```
+
+Like an ActiveRecord relation, a collection runs the model's class methods and scopes over itself. Inside them, `all` is the collection they were called on:
+
+```ruby
+class Static::Talk < Yerba::Record::Base
+  scope :top_level, -> { where.missing(:parent) }
+  scope :youtube, -> { where(video_provider: "youtube") }
+  scope :youtube_missing_published_at, -> { youtube.where(published_at: [nil, "", "TODO"]) }
+
+  def self.ids
+    all.filter_map(&:id)
+  end
+end
+
+Static::Talk.ids                 # every videos.yml
+static_event.talks.ids           # one videos.yml
+static_event.talks.top_level
+static_event.talks.youtube_missing_published_at
+Static::Talk.where(kind: "keynote").ids
+```
+
+Single-file collections can be edited in place (each call saves):
+
+```ruby
+talks = static_event.talks
+talks.create({id: "keynote", title: "Keynote"}, after: "opening")
+talks.reorder(%w[keynote opening closing])
+talks.move("closing", to: 0)
+talks.destroy("opening")
+```
+
+A Yerbafile `sort` rule re-sorts on save (e.g. videos.yml by date and time). The sort is stable, so a running order persists between talks with the same sort keys.
+
+## Nested records
+
+Records can live inside other records, e.g. the individual `talks:` of a lightning talks block in `videos.yml`. Declare them with `has_many :talks, nested: true`. Nested records are regular records of the same model, addressed by a selector like `"[3].talks[1]"` in the same document. Every collection of the model includes them right after their parent. `where.missing(:parent)` leaves them out, `where.associated(:parent)` keeps only them:
+
+```ruby
+class Static::Talk < Yerba::Record::Base
+  has_many :talks, nested: true
+end
+
+Static::Talk.all.count                        # every talk, nested ones included
+Static::Talk.where.missing(:parent).count     # only talks without a parent
+Static::Talk.where.associated(:parent).count  # only nested talks
+
+lightning_talks = static_event.talks.find_by(id: "lightning-talks-rubyconf-2024")
+lightning_talk = lightning_talks.talks.first
+lightning_talk.parent # => lightning_talks
+
+lightning_talk["published_at"] = "2025-01-01T00:00:00Z"
+lightning_talk.insert("old_id", "previous-id", after: "id")
+lightning_talk.save!
+
+lightning_talks.talks.reorder(lightning_talks.talks.map(&:id).reverse)
+```
 
 ## Reading
 
@@ -322,6 +400,10 @@ speaker.node["name"]            # => Yerba::Scalar
 speaker.node["name"].selector   # => "[42].name"
 speaker.node["name"].source     # => '"Aaron Patterson"' (original YAML text)
 speaker.node.source             # => full YAML text of the entry
+
+speaker.source_line             # => 1234, line of the entry
+speaker.source_line("github")   # => 1235, line of a value
+speaker.source_location("name") # => Yerba::Location (start/end line and column)
 ```
 
 ## Stale File Detection
@@ -337,18 +419,15 @@ speaker.save!  # => raises Yerba::StaleFileError
 ## Architecture
 
 ```
-Yerba::Record::Base             # Record class (read + write + schema)
-  include Querying              # .all, .find_by, .where, .pluck
-  include Indexing              # add_index, LazyIndex
-  include References            # references :speakers DSL
-  include Associations          # belongs_to, has_many, has_one (in_file:, through:)
-  include Schema                # schema, create, field method generation
+Yerba::Record::Base                # Record class (read + write + schema)
+  include Querying                 # .all, .find_by, .where, .pluck
+  include Indexing                 # add_index, LazyIndex
+  include References               # references :speakers DSL
+  include Associations             # belongs_to, has_many, has_one (in_file:, through:)
+  include Schema                   # schema, create, field method generation
 
-Yerba::Record::Collection       # Per-file CRUD collection
-Yerba::Record::Entry            # Single-record wrapper
-Yerba::Record::ReferencesProxy  # Resolved cross-file references
-
-Yerba::Record::LazyFileCollection  # Lazy collection for large single-file arrays
-Yerba::Record::RecordCollection    # Eager collection for multi-file globs
+Yerba::Record::Collection          # Records of one or more documents (all, in_file, has_many in_file:, nested, where)
+Yerba::Record::Collection::Source  # One document, or a nested sequence in it, contributing records
+Yerba::Record::ReferencesProxy     # Resolved cross-file references
 Yerba::Record::LazyIndex           # value -> position index, resolves records on access
 ```

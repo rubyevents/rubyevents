@@ -4,7 +4,7 @@ class Static::AssociationsTest < ActiveSupport::TestCase
   test "event.talks returns a collection" do
     event = Static::Event.find_by_slug("rubyconf-2026")
 
-    assert_instance_of Yerba::Record::Collection, event.talks
+    assert_kind_of Yerba::Record::Collection, event.talks
     assert event.talks.count > 0
   end
 
@@ -30,7 +30,7 @@ class Static::AssociationsTest < ActiveSupport::TestCase
 
     skip "No event with CFPs in test data" unless event
 
-    assert_instance_of Yerba::Record::Collection, event.cfps
+    assert_kind_of Yerba::Record::Collection, event.cfps
     assert event.cfps.first["link"].present?
   end
 

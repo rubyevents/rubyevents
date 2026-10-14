@@ -53,7 +53,7 @@ module Static
       end
 
       def videos_file
-        @videos_file ||= Static::VideosFile.new(videos_path)
+        @videos_file ||= Static::Talk.in_file(videos_path)
       end
 
       def known_ids

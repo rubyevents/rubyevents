@@ -11,13 +11,13 @@ module SpeakersFileCheck
 
   private
 
-  def speakers_file
-    @speakers_file ||= @speakers_file_path ? Static::SpeakersFile.new(@speakers_file_path) : Static::SpeakersFile.new
+  def speakers
+    @speakers ||= Static::Speaker.in_file(@speakers_file_path || Static::Speaker.file_path)
   end
 
   def check_speakers_file(result)
-    missing = speakers_file.missing_speakers
-    orphaned = speakers_file.orphaned_speakers
+    missing = speakers.missing_speakers
+    orphaned = speakers.orphaned_speakers
 
     warnings = []
     warnings << "#{missing.length} missing speaker(s): #{missing.first(5).join(", ")}" if missing.any?

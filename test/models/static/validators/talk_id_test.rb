@@ -230,7 +230,7 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     with_temp_video(videos) do |path|
       validator = Static::Validators::TalkId.new(
         file_path: path,
-        baseline: Static::VideosFile.parse(baseline.to_yaml)
+        baseline: Static::Talk.parse(baseline.to_yaml)
       )
       validator.fix
 
@@ -251,7 +251,7 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     with_temp_video(videos) do |path|
       validator = Static::Validators::TalkId.new(
         file_path: path,
-        baseline: Static::VideosFile.parse(baseline.to_yaml)
+        baseline: Static::Talk.parse(baseline.to_yaml)
       )
       validator.fix
 
@@ -272,7 +272,7 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     with_temp_video(videos) do |path|
       validator = Static::Validators::TalkId.new(
         file_path: path,
-        baseline: Static::VideosFile.parse(baseline.to_yaml)
+        baseline: Static::Talk.parse(baseline.to_yaml)
       )
       validator.fix
 

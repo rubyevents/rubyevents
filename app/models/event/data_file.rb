@@ -32,7 +32,7 @@ class Event::DataFile < ActiveRecord::AssociatedObject
   def entries
     return [] unless exist?
 
-    @entries ||= static_association.map(&:attributes)
+    @entries ||= static_association.where.missing(:parent).map(&:attributes)
   end
 
   def reload

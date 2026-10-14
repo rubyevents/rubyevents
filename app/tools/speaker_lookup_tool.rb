@@ -9,8 +9,8 @@ class SpeakerLookupTool < RubyLLM::Tool
   def execute(query:)
     q = query.downcase
 
-    matches = speakers_file.document.value_at("").each_with_index.filter_map do |entry, index|
-      next unless entry.is_a?(Hash)
+    matches = speakers.filter_map do |speaker|
+      entry = speaker.to_h
 
       searchable = [
         entry["name"],
@@ -29,7 +29,7 @@ class SpeakerLookupTool < RubyLLM::Tool
 
       next unless searchable.compact.any? { |v| v.to_s.downcase.include?(q) }
 
-      speaker_to_hash(entry, index)
+      speaker_to_hash(entry, speaker.index)
     end
 
     matches.first(25)

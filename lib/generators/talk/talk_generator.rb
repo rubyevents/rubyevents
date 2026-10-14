@@ -129,18 +129,18 @@ class TalkGenerator < Generators::EventBase
   end
 
   def maybe_add_speaker_to_file
-    speakers = @talk.speakers
-    return if speakers.empty?
+    names = @talk.speakers
+    return if names.empty?
 
-    speakers_file = Static::SpeakersFile.new(speakers_file_path)
-    speakers.each { |name| speakers_file.upsert(name: name) }
+    speakers = Static::Speaker.in_file(speakers_file_path)
+    names.each { |name| speakers.upsert(name: name) }
 
-    return unless speakers_file.changed?
+    return unless speakers.changed?
 
-    speakers_file.save!
-    say("Added or updated #{speakers.to_sentence} in #{speakers_file_path}.", :green)
-  rescue Static::SpeakersFile::InvalidSpeakerError,
-    Static::SpeakersFile::DuplicateSpeakerError,
+    speakers.save!
+    say("Added or updated #{names.to_sentence} in #{speakers_file_path}.", :green)
+  rescue Static::Speaker::InvalidSpeakerError,
+    Static::Speaker::DuplicateSpeakerError,
     Yerba::StaleFileError => e
     say_error("Could not sync speakers to #{speakers_file_path}: #{e.message}", :red)
   end
@@ -148,7 +148,7 @@ class TalkGenerator < Generators::EventBase
   private
 
   def videos_file
-    @videos_file ||= Static::VideosFile.new(videos_file_path) if File.exist?(videos_file_path)
+    @videos_file ||= Static::Talk.in_file(videos_file_path) if File.exist?(videos_file_path)
   end
 
   def existing_ids
@@ -172,7 +172,7 @@ class TalkGenerator < Generators::EventBase
       @existing_talk[key] = value
     end
     videos_file.save!
-    Static::Validators::TalkId.new(file_path: videos_file_path, document: videos_file).fix
+    Static::Validators::TalkId.new(file_path: videos_file_path, document: videos_file.document).fix
 
     say("#{@attributes.keys.to_sentence} updated.", :green)
   end

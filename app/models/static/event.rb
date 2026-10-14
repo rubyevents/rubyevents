@@ -348,9 +348,7 @@ module Static
       return unless imported?
       return unless talks.exist?
 
-      Static::Talk.where_event_slug(slug).each do |video|
-        video.import!(event: event, index: index)
-      end
+      talks.import!(event: event, index: index)
 
       destroy_removed_talks!(event)
     rescue ActiveRecord::RecordInvalid => e

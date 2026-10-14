@@ -34,7 +34,7 @@ class DbSeedTest < ActiveSupport::TestCase
         Rake::Task["db:seed"].invoke
       end
 
-      static_video_ids = Static::Talk.pluck(:video_id)
+      static_video_ids = Static::Talk.top_level.pluck(:video_id)
       duplicate_ids = static_video_ids.tally.select { |_, count| count > 1 }
 
       assert User.speakers.count >= 3000

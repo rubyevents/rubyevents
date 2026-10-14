@@ -6,8 +6,6 @@ module Static
       PATTERNS = ["**/videos.yml"].freeze
 
       KEYS = %w[id old_id].freeze
-      SCOPES = ["[]", "[].talks[]"].freeze
-      SELECTOR = /\A\[(\d+)\](?:\.talks\[(\d+)\])?\.(#{Regexp.union(KEYS)})\z/
 
       def initialize(file_path:, document: nil)
         @file_path = file_path.to_s.sub("#{Rails.root}/", "")
@@ -27,90 +25,45 @@ module Static
         self.class.errors.select { |error| error.file_path == @file_path }
       end
 
-      class << self
-        def errors
-          @errors ||= errors_from(collection_references)
+      def self.errors
+        talks = Static::Talk.all
+        return @errors if @talks.equal?(talks)
+
+        @talks = talks
+        @errors = duplicate_errors(talks)
+      end
+
+      def self.warmup
+        errors
+      end
+
+      def self.duplicate_errors(talks)
+        references = talks.flat_map do |talk|
+          KEYS.filter_map { |key| {key: key, value: talk[key], talk: talk} if talk[key].present? }
         end
 
-        def warmup
-          errors
-        end
+        references.group_by { |reference| reference[:value] }.select { |_value, refs| refs.many? }.flat_map do |value, refs|
+          refs.each { |reference| locate(reference) }
 
-        def reset!
-          @errors = nil
-          remove_instance_variable(:@glob) if defined?(@glob)
-        end
+          refs.map do |reference|
+            others = (refs - [reference]).map { |other| "#{other[:file]}:#{other[:line]}" }.join(", ")
 
-        attr_writer :glob
-
-        def glob
-          @glob ||= Rails.root.join(Static::VideosFile::VIDEOS_GLOB).to_s
-        end
-
-        def duplicate_errors(files:)
-          errors_from(file_references(files))
-        end
-
-        private
-
-        def collection_references
-          order = Dir.glob(glob).each_with_index.to_h
-
-          SCOPES.flat_map { |scope|
-            KEYS.flat_map { |key| Array(Yerba::Collection.get(glob, "#{scope}.#{key}")) }
-          }.filter_map { |scalar| collection_reference(scalar, order) }.sort_by { |reference| reference[:order] }
-        end
-
-        def collection_reference(scalar, order)
-          match = SELECTOR.match(scalar.selector.to_s)
-          return nil unless match
-
-          index = match[1].to_i
-          nested = match[2]&.to_i
-
-          {
-            key: match[3],
-            value: scalar.value,
-            file: scalar.file_path.sub("#{Rails.root}/", ""),
-            line: scalar.location&.start_line || 1,
-            end_line: scalar.location&.end_line,
-            order: [order.fetch(scalar.file_path, Float::INFINITY), nested ? 1 : 0, index, nested || -1, KEYS.index(match[3])]
-          }
-        end
-
-        def file_references(files)
-          files.flat_map do |file|
-            file.talks.flat_map do |node|
-              KEYS.filter_map do |key|
-                scalar = node[key]
-                next unless scalar
-
-                {
-                  key: key,
-                  value: scalar.value,
-                  file: file.relative_path,
-                  line: scalar.location&.start_line || 1,
-                  end_line: scalar.location&.end_line
-                }
-              end
-            end
+            Static::Validators::Error.new(
+              %(#{reference[:key]} "#{value}" is not unique across talks, it is also used at #{others}),
+              file_path: reference[:file],
+              line: reference[:line],
+              end_line: reference[:end_line]
+            )
           end
         end
+      end
 
-        def errors_from(references)
-          references.group_by { |reference| reference[:value] }.select { |_value, refs| refs.many? }.flat_map do |value, refs|
-            refs.map do |reference|
-              others = (refs - [reference]).map { |other| "#{other[:file]}:#{other[:line]}" }.join(", ")
+      def self.locate(reference)
+        location = reference[:talk].source_location(reference[:key])
 
-              Static::Validators::Error.new(
-                %(#{reference[:key]} "#{value}" is not unique across talks, it is also used at #{others}),
-                file_path: reference[:file],
-                line: reference[:line],
-                end_line: reference[:end_line]
-              )
-            end
-          end
-        end
+        reference[:file] = reference[:talk].file_path.to_s.sub("#{Rails.root}/", "")
+        reference[:line] = location&.start_line || 1
+        reference[:end_line] = location&.end_line
       end
     end
   end

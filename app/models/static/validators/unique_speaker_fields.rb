@@ -36,7 +36,7 @@ module Static
       def validate
         return [] unless applicable?
 
-        speakers = Static::SpeakersFile.new(@file_path, document: @document)
+        speakers = Static::Speaker.in_file(@file_path, document: @document)
         errors = []
 
         UNIQUE_FIELDS.each do |field|

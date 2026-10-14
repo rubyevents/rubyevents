@@ -57,8 +57,7 @@ module Static
             end
           end
 
-          register.call(video, nil)
-          video.talks.each { |talk| register.call(talk, video.id) }
+          register.call(video, video.parent&.id)
         end
       end
 

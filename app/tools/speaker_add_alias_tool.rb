@@ -10,16 +10,13 @@ class SpeakerAddAliasTool < RubyLLM::Tool
   parameter :alias_slug, description: "URL-friendly slug for the alias (auto-generated from alias_name if not provided)", required: false
 
   def execute(name:, alias_name:, alias_slug: nil)
-    speaker = speakers_file.find_by(name: name)
+    speaker = speakers.find_by(name: name)
 
     return {error: "Speaker '#{name}' not found in speakers.yml"} unless speaker
 
-    index = speakers_file.index_by(:name)[name]
-    return {error: "Could not find index for speaker '#{name}'"} unless index
-
     slug = (alias_slug || alias_name.parameterize).to_s
 
-    existing_aliases = speaker["aliases"] || []
+    existing_aliases = Array(speaker["aliases"])
     if existing_aliases.any? { |a| a["slug"] == slug }
       return {error: "Alias with slug '#{slug}' already exists for #{name}"}
     end
@@ -28,17 +25,16 @@ class SpeakerAddAliasTool < RubyLLM::Tool
       return {error: "Alias with name '#{alias_name}' already exists for #{name}"}
     end
 
-    alias_entry = {name: alias_name, slug: slug}
-    speakers_file.document.root[index]["aliases"] = (Array(existing_aliases) + [alias_entry])
+    speaker.add_alias(name: alias_name, slug: slug)
 
-    speakers_file.save!
+    speakers.save!
 
     check_speakers_file({
       success: true,
       speaker: name,
       alias_added: {name: alias_name, slug: slug},
       total_aliases: (existing_aliases.size + 1),
-      file: Static::SpeakersFile::SPEAKERS_PATH
+      file: speakers.relative_path
     })
   rescue => e
     {error: e.message}

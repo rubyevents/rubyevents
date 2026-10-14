@@ -122,8 +122,8 @@ class Yerba::Record::CollectionTest < ActiveSupport::TestCase
     tmp&.unlink
   end
 
-  test "works with custom entry class" do
-    collection = Yerba::Record::Collection.new(document: @document, entry_class: Static::Talk)
+  test "works with a record class" do
+    collection = Yerba::Record::Collection.new(document: @document, record_class: Static::Talk)
     video = collection.first
 
     assert_instance_of Static::Talk, video
@@ -151,7 +151,8 @@ class Yerba::Record::CollectionTest < ActiveSupport::TestCase
   test "where returns empty array when no matches" do
     result = @collection.where(language: "Klingon")
 
-    assert_equal [], result
+    assert_empty result
+    assert_equal [], result.to_a
   end
 
   test "find_by with multiple criteria" do
@@ -194,14 +195,14 @@ class Yerba::Record::CollectionTest < ActiveSupport::TestCase
   end
 
   test "speakers can be appended via <<" do
-    collection = Yerba::Record::Collection.new(document: @document, entry_class: Static::Talk)
+    collection = Yerba::Record::Collection.new(document: @document, record_class: Static::Talk)
     video = collection.first
 
     video.speakers << "NewSpeaker"
     collection.save!
 
     reloaded = Yerba.parse_file(@tmp_file.path)
-    reloaded_collection = Yerba::Record::Collection.new(document: reloaded, entry_class: Static::Talk)
+    reloaded_collection = Yerba::Record::Collection.new(document: reloaded, record_class: Static::Talk)
 
     assert_includes reloaded_collection.first.speakers.names, "NewSpeaker"
   end

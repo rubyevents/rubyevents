@@ -27,7 +27,7 @@ module Static
       def validate
         return [] unless applicable?
 
-        videos_file.video_pairs.flat_map do |video, nested|
+        videos_file.pairs.flat_map do |video, nested|
           talk_errors(video) + nested.flat_map { |talk| talk_errors(talk) }
         end
       end
@@ -37,7 +37,7 @@ module Static
       DEFAULT_KIND = "talk"
 
       def videos_file
-        @videos_file ||= Static::VideosFile.wrap(@file_path, @document)
+        @videos_file ||= Static::Talk.in_file(@file_path, document: @document)
       end
 
       def short?(node)
@@ -46,18 +46,18 @@ module Static
       end
 
       def talk_errors(node)
-        kind = node.value_at("kind").to_s.strip
-        inferred = ::Talk::Kind.from_title(node.value_at("title")).to_s
+        kind = node["kind"].to_s.strip
+        inferred = ::Talk::Kind.from_title(node["title"]).to_s
 
         if kind.empty?
           return [] if inferred == DEFAULT_KIND
 
-          location = node["title"]&.location
+          location = node.source_location("title")
           message = "kind is inferred as \"#{inferred}\" from the title but is not set explicitly. Add `kind: \"#{inferred}\"` to the entry if this is a \"#{inferred}\". Otherwise you can explicitly set `kind: \"talk\"` if the title classifiier didn't get it right."
         elsif kind == DEFAULT_KIND && inferred == DEFAULT_KIND
           return [] if short?(node)
 
-          location = node["kind"]&.location
+          location = node.source_location("kind")
 
           message = "kind: \"#{DEFAULT_KIND}\" is redundant because the title already classifies as \"#{DEFAULT_KIND}\". Remove it (only keep an explicit \"#{DEFAULT_KIND}\" to override a non-default classification)."
         else

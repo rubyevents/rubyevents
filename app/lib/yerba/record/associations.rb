@@ -33,23 +33,39 @@ module Yerba
         end
 
         #   has_many :events, foreign_key: :series_slug
-        #   has_many :videos, in_file: "videos.yml"
-        def has_many(name, class_name: nil, foreign_key: nil, in_file: nil)
+        #   has_many :talks, in_file: "videos.yml"
+        #   has_many :talks, nested: true
+        def has_many(name, class_name: nil, foreign_key: nil, in_file: nil, nested: false)
           class_name ||= infer_class_name(name, singularize: true)
 
-          if in_file
+          if nested
+            @nested_key = name.to_s
+
             define_method(name) do
-              path = File.join(event_dir, in_file)
+              @nested_collections ||= {}
+
+              @nested_collections[name] ||= begin
+                klass = class_name.is_a?(String) ? class_name.constantize : class_name
+
+                if new_record? || parsed_selector.nil?
+                  Collection.new(record_class: klass, records: [])
+                else
+                  Collection.new(record_class: klass, document: document, selector: parsed_selector.join(name.to_s), parent: self)
+                end
+              end
+            end
+          elsif in_file
+            define_method(name) do
               klass = class_name.is_a?(String) ? class_name.constantize : class_name
 
-              Yerba::Record::Collection.new(path: path, entry_class: klass)
+              klass.in_file(File.join(event_dir, in_file))
             end
           else
             define_method(name) do
               klass = class_name.is_a?(String) ? class_name.constantize : class_name
               slug_value = slug
 
-              klass.all.select { |record| record.send(foreign_key) == slug_value }
+              klass.all.where { |record| record.send(foreign_key) == slug_value }
             end
           end
         end

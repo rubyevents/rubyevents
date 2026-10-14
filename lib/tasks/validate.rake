@@ -29,9 +29,7 @@ namespace :validate do
   def parse_document(file)
     return nil unless file.to_s.end_with?(".yml")
 
-    document = Yerba.parse_file(file.to_s)
-
-    file.to_s.end_with?("videos.yml") ? Static::VideosFile.wrap(file.to_s, document) : document
+    Yerba.parse_file(file.to_s)
   rescue
     nil
   end
@@ -250,7 +248,7 @@ namespace :validate do
   end
 
   def validate_speakers_in_sync
-    speakers = Static::SpeakersFile.new
+    speakers = Static::Speaker.all
     missing = speakers.missing_speakers
     orphaned = speakers.orphaned_speakers
 

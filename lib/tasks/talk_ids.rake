@@ -36,15 +36,15 @@ namespace :talk_ids do
   task remove_old_ids: :environment do
     removed = 0
 
-    Static::VideosFile.all.each do |file|
-      nodes = file.talks.select { |node| node.value_at("old_id").present? }
-      next if nodes.empty?
+    Static::Talk.all.files.each do |file|
+      talks = file.select { |talk| talk.old_id.present? }
+      next if talks.empty?
 
-      nodes.each { |node| node.delete("old_id") }
+      talks.each { |talk| talk.delete("old_id") }
       file.save!
 
-      removed += nodes.size
-      puts "#{file.relative_path}: removed #{nodes.size} old_id(s)"
+      removed += talks.size
+      puts "#{file.relative_path}: removed #{talks.size} old_id(s)"
     end
 
     puts

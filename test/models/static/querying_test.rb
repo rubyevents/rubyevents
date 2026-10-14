@@ -11,7 +11,8 @@ class Yerba::Record::QueryingTest < ActiveSupport::TestCase
   test "where returns empty for no matches" do
     results = Static::Event.where(kind: "nonexistent")
 
-    assert_equal [], results
+    assert_empty results
+    assert_equal [], results.to_a
   end
 
   test "where.not excludes matching records" do
@@ -28,10 +29,16 @@ class Yerba::Record::QueryingTest < ActiveSupport::TestCase
     assert results.all? { |event| event.featured_background.present? }
   end
 
-  test "where.not returns a RecordCollection" do
+  test "where and where.not return chainable collections" do
     results = Static::Event.where.not(kind: "conference")
 
-    assert_instance_of Yerba::Record::RecordCollection, results
+    assert_kind_of Yerba::Record::Collection, results
+    assert_kind_of Yerba::Record::Collection, Static::Event.where(kind: "conference")
+
+    meetups = Static::Event.where.not(kind: "conference").where(kind: "meetup")
+
+    assert meetups.any?
+    assert meetups.all?(&:meetup?)
   end
 
   test "where.not supports chaining pluck" do
@@ -63,5 +70,23 @@ class Yerba::Record::QueryingTest < ActiveSupport::TestCase
   test "first and last return records" do
     assert_not_nil Static::Event.first
     assert_not_nil Static::Event.last
+  end
+
+  test "where matches an association with nested criteria" do
+    talks = Static::Talk.where(event: {slug: "rubyconf-2024"})
+
+    assert talks.any?
+    assert_equal Static::Event.find_by_slug("rubyconf-2024").talks.map(&:id), talks.map(&:id)
+  end
+
+  test "where falls back to the record's method for values that aren't stored" do
+    assert_equal Static::Talk.where(event: {slug: "rubyconf-2024"}).map(&:id), Static::Talk.where(event_slug: "rubyconf-2024").map(&:id)
+  end
+
+  test "where.not works with association criteria" do
+    excluded = Static::Talk.where.not(event: {slug: "rubyconf-2024"})
+
+    assert_equal Static::Talk.count - Static::Talk.where(event_slug: "rubyconf-2024").count, excluded.count
+    assert excluded.none? { |talk| talk.event_slug == "rubyconf-2024" }
   end
 end
