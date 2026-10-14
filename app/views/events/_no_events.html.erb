@@ -1,0 +1,15 @@
+<% without_filter_path = continent_filter_path(nil) %>
+
+<div class="py-12 text-center">
+  <div class="mx-auto max-w-md">
+    <h2 class="mb-4 text-2xl font-bold text-gray-900">No events found</h2>
+
+    <p class="mb-6 text-gray-600">
+      There are no events matching the current selection.
+    </p>
+
+    <% unless current_page?(without_filter_path, check_parameters: true) %>
+      <%= link_to "Show all events", without_filter_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

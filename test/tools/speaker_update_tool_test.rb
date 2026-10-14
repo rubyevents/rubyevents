@@ -40,7 +40,7 @@ class SpeakerUpdateToolTest < ActiveSupport::TestCase
     assert_equal "Matz", result[:speaker]
     assert_equal({twitter: "maboroshi_matz"}, result[:updated_fields])
 
-    speaker = Static::SpeakersFile.new(@tmp_file.path).find_by(name: "Matz")
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Matz")
     assert_equal "maboroshi_matz", speaker["twitter"]
     assert_equal "matz", speaker["github"]
   end
@@ -50,7 +50,7 @@ class SpeakerUpdateToolTest < ActiveSupport::TestCase
 
     assert result[:success]
 
-    speaker = Static::SpeakersFile.new(@tmp_file.path).find_by(name: "DHH")
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "DHH")
     assert_equal "dhh", speaker["twitter"]
     assert_equal "https://dhh.dk", speaker["website"]
   end
@@ -72,7 +72,7 @@ class SpeakerUpdateToolTest < ActiveSupport::TestCase
 
     assert_match(/should be a username, not a URL/, result[:error])
 
-    speaker = Static::SpeakersFile.new(@tmp_file.path).find_by(name: "Matz")
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Matz")
     assert_equal "matz", speaker["github"]
   end
 
@@ -82,7 +82,7 @@ class SpeakerUpdateToolTest < ActiveSupport::TestCase
     assert result[:success]
     assert_equal "Aaron Patterson (aaron-patterson)", result[:alias_created]
 
-    speaker = Static::SpeakersFile.new(@tmp_file.path).find_by(name: "Aaron Patterson")
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Aaron Patterson")
     assert_equal "tenderlove", speaker["slug"]
     assert_equal 1, speaker["aliases"].size
     assert_equal "aaron-patterson", speaker["aliases"].first["slug"]
@@ -94,21 +94,21 @@ class SpeakerUpdateToolTest < ActiveSupport::TestCase
     assert result[:success]
     assert_nil result[:alias_created]
 
-    speaker = Static::SpeakersFile.new(@tmp_file.path).find_by(name: "Matz")
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Matz")
     assert_nil speaker["aliases"]
   end
 
   test "allows mastodon URL" do
     @tool.execute(name: "Matz", mastodon: "https://ruby.social/@matz")
 
-    speaker = Static::SpeakersFile.new(@tmp_file.path).find_by(name: "Matz")
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Matz")
     assert_equal "https://ruby.social/@matz", speaker["mastodon"]
   end
 
   test "allows website URL" do
     @tool.execute(name: "DHH", website: "https://dhh.dk")
 
-    speaker = Static::SpeakersFile.new(@tmp_file.path).find_by(name: "DHH")
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "DHH")
     assert_equal "https://dhh.dk", speaker["website"]
   end
 end

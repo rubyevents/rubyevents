@@ -53,6 +53,10 @@ module.exports = {
           '0%': { opacity: '1' },
           '100%': { opacity: '0' }
         }
+      },
+      gridTemplateColumns: {
+        16: 'repeat(16, minmax(0, 1fr))',
+        25: 'repeat(25, minmax(0, 1fr))'
       }
     }
   },

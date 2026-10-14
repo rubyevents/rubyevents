@@ -1,7 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en" <% if hotwire_native_app? %> data-hotwire-native-app <% end %>>
   <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1<%= ",maximum-scale=1,user-scalable=0" if hotwire_native_app? %>">
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1<%= ",maximum-scale=1,user-scalable=0" if hotwire_native_app? %>"
+    >
 
     <% if Rails.env.production? || Rails.env.staging? %>
       <link rel="canonical" href="<%= canonical_url %>">
@@ -31,6 +35,7 @@
 
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
     <%= yield :head %>
   </head>
 

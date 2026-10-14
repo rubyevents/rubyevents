@@ -9,7 +9,7 @@ class Profiles::EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "shows self-reported events" do
-    EventParticipation.create!(user: @user, event: @event, attended_as: "visitor")
+    EventParticipation.create!(user: @user, event: @event, role: "attendee")
 
     get profile_events_url(@user)
     assert_response :success
@@ -35,7 +35,7 @@ class Profiles::EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "event with both self-reported and checked-in shows checked-in indicator" do
-    EventParticipation.create!(user: @user, event: @event, attended_as: "visitor")
+    EventParticipation.create!(user: @user, event: @event, role: "attendee")
     ConnectedAccount.create!(user: @user, provider: "passport", uid: "EVT003")
     EventCheckIn.create!(connect_id: "EVT003", event: @event, checked_in_at: Time.current)
 

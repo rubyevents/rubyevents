@@ -2,7 +2,7 @@
 
 class YouTubeVideoTool < RubyLLM::Tool
   description "Fetch YouTube video metadata by video ID"
-  param :id, desc: "YouTube video id"
+  parameter :id, description: "YouTube video id"
 
   def execute(id:)
     video = Yt::Video.new(id: id)

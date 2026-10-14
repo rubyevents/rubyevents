@@ -3,6 +3,11 @@ require "test_helper"
 class Static::EventTest < ActiveSupport::TestCase
   SLUG = "helveticruby-2025"
 
+  teardown do
+    Static::EventSeries.unload!
+    Static::Event.unload!
+  end
+
   test "import!" do
     Static::EventSeries.find_by_slug("helveticruby").import_series!
     event = Static::Event.find_by_slug(SLUG)
@@ -36,6 +41,35 @@ class Static::EventTest < ActiveSupport::TestCase
     assert event_record.talks.exists?
   end
 
+  test "import_videos! destroys talks listed under removed_talk_ids" do
+    Static::EventSeries.find_by_slug("helveticruby").import_series!
+    event = Static::Event.find_by_slug(SLUG)
+    event_record = event.import_event!
+    event.import_videos!(event_record)
+
+    removed_id = event_record.talks.first.static_id
+    kept_count = event_record.talks.count - 1
+
+    event.stub(:attributes, event.attributes.merge("removed_talk_ids" => [removed_id])) do
+      event.import_videos!(event_record)
+    end
+
+    assert_nil ::Talk.find_by(static_id: removed_id)
+    assert_equal kept_count, event_record.talks.reload.count
+  end
+
+  test "import_videos! leaves talks alone when removed_talk_ids is empty" do
+    Static::EventSeries.find_by_slug("helveticruby").import_series!
+    event = Static::Event.find_by_slug(SLUG)
+    event_record = event.import_event!
+    event.import_videos!(event_record)
+
+    count = event_record.talks.count
+    event.import_videos!(event_record)
+
+    assert_equal count, event_record.talks.reload.count
+  end
+
   test "import_sponsors!" do
     Static::EventSeries.find_by_slug("helveticruby").import_series!
     event = Static::Event.find_by_slug(SLUG)
@@ -53,6 +87,36 @@ class Static::EventTest < ActiveSupport::TestCase
     avo = Organization.find_by(name: "Avo")
     avo_sponsor = event_record.sponsors.find_by(organization: avo)
     assert_equal "Party Sponsor", avo_sponsor.badge
+  end
+
+  test "import_sponsors! imports a sponsor whose name was renamed to be slugifiable" do
+    Static::EventSeries.find_by_slug("kaigi-on-rails").import_series!
+    event = Static::Event.find_by_slug("kaigi-on-rails-2026")
+    event_record = event.import_event!
+
+    assert_nil Organization.find_by(name: "FjordBootCamp")
+
+    event.import_sponsors!(event_record)
+
+    organization = Organization.find_by(name: "FjordBootCamp")
+    assert_equal "fjordbootcamp", organization.slug
+    assert event_record.sponsors.exists?(organization: organization)
+  end
+
+  test "import_sponsors! imports a sponsor listed in multiple tiers" do
+    Static::EventSeries.find_by_slug("deccan-queen-on-rails").import_series!
+    event = Static::Event.find_by_slug("deccan-queen-on-rails-2026")
+    event_record = event.import_event!
+    event.import_sponsors!(event_record)
+
+    zendesk = Organization.find_by(name: "Zendesk")
+    tiers = event_record.sponsors.where(organization: zendesk).pluck(:tier)
+
+    assert_equal ["Gold", "Rails Girls Sponsor"], tiers.sort
+
+    event.import_sponsors!(event_record)
+
+    assert_equal 2, event_record.sponsors.reload.where(organization: zendesk).count
   end
 
   test "import_involvements!" do
@@ -84,5 +148,30 @@ class Static::EventTest < ActiveSupport::TestCase
     stub_record = Event.new(start_date: Date.new(2000, 1, 1))
 
     assert_equal event.published_date, event.home_sort_date(event_record: stub_record)
+  end
+
+  test "state_code is parsed from location on import" do
+    Static::EventSeries.find_by_slug("xoruby").import_series!
+    Static::City.all.detect { |city| city.slug == "montreal" }.import!
+
+    event = Static::Event.find_by_slug("xoruby-montreal-2026")
+    record = event.import_event!
+
+    assert_equal "Montréal", record.city
+    assert_equal "QC", record.state_code
+    assert_equal "CA", record.country_code
+    assert_includes City.find_by!(slug: "montreal").events, record
+  end
+
+  test "state_code falls back to featured city when location omits state" do
+    Static::EventSeries.find_by_slug("montreal-rb").import_series!
+    Static::City.all.detect { |city| city.slug == "montreal" }.import!
+
+    event = Static::Event.find_by_slug("montreal-rb-meetup")
+    record = event.import_event!
+
+    assert_equal "Montréal", record.city
+    assert_equal "QC", record.state_code
+    assert_equal "CA", record.country_code
   end
 end

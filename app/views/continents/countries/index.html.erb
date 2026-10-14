@@ -17,21 +17,21 @@
       show_stamps: @continent.stamps.any? %>
 
 <div class="container py-8">
-  <div class="flex items-center justify-between mb-6">
+  <div class="mb-6 flex items-center justify-between">
     <h2 class="text-xl font-bold text-gray-900">Countries in <%= @continent.name %></h2>
     <%= ui_badge(@countries.count, kind: :secondary, outline: true) %>
   </div>
 
   <% if @countries.any? %>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       <% @countries.each do |country| %>
         <% events_count = @events_by_country[country]&.count || 0 %>
         <% users_count = @users_by_country[country] || 0 %>
 
         <%= link_to country_path(country),
               class: "block bg-white rounded-lg border p-4 hover:border-gray-400 transition-colors" do %>
-          <div class="flex items-center gap-3 mb-2">
-            <span class="fi fi-<%= country.alpha2.downcase %> text-2xl"></span>
+          <div class="mb-2 flex items-center gap-3">
+            <span class="fi text-2xl fi-<%= country.alpha2.downcase %>"></span>
             <span class="font-semibold text-gray-900"><%= country.name %></span>
           </div>
 
@@ -54,6 +54,6 @@
       <% end %>
     </div>
   <% else %>
-    <p class="text-gray-500 py-8 text-center">No countries with Ruby events in <%= @continent.name %> yet.</p>
+    <p class="py-8 text-center text-gray-500">No countries with Ruby events in <%= @continent.name %> yet.</p>
   <% end %>
 </div>

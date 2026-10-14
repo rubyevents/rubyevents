@@ -6,6 +6,7 @@ module Api
       class ProfilesController < BaseController
         def index
           slugs = User.joins(:event_participations)
+            .merge(EventParticipation.going)
             .distinct
             .order(updated_at: :desc)
             .limit(params[:limit]&.to_i || 20)
@@ -19,7 +20,7 @@ module Api
           user ||= User.find_by_github_handle(params[:slug])
           raise ActiveRecord::RecordNotFound, "User not found" unless user
 
-          upcoming_events_scope = user.event_participations
+          upcoming_events_scope = user.event_participations.going
             .includes(:event)
             .joins(:event)
             .where("events.start_date >= ?", Date.current)
@@ -46,7 +47,7 @@ module Api
                 date: event.start_date&.iso8601,
                 end_date: event.end_date&.iso8601,
                 location: event.location,
-                attended_as: participation.attended_as,
+                role: participation.role,
                 avatar_url: event_avatar_url(event),
                 featured_background: event.static_metadata&.featured_background
               }

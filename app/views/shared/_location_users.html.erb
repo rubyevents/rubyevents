@@ -10,6 +10,7 @@
 
 <% location_preposition = location.is_a?(CoordinateLocation) ? "near" : "in" %>
 <% stats_count = location.is_a?(CoordinateLocation) ? nearby_users.count : users.count %>
+
 <%= render "shared/location_header",
       name: location.name,
       subtitle: location.to_location.to_text,
@@ -29,7 +30,7 @@
 <div class="container py-8">
   <% if location.is_a?(CoordinateLocation) %>
     <%# For coordinates, show nearby users with distances as the primary section %>
-    <div class="flex items-center justify-between mb-6">
+    <div class="mb-6 flex items-center justify-between">
       <h2 class="text-xl font-bold text-gray-900">Rubyists near <%= location.name %></h2>
       <%= ui_badge(nearby_users.count, kind: :secondary, outline: true) %>
     </div>
@@ -46,12 +47,12 @@
         <% end %>
       </div>
     <% else %>
-      <p class="text-gray-500 py-8 text-center">No Rubyists near <%= location.name %> yet.</p>
+      <p class="py-8 text-center text-gray-500">No Rubyists near <%= location.name %> yet.</p>
     <% end %>
 
     <% if country.present? && country_users.present? && country_users.any? %>
       <div class="mt-12">
-        <div class="flex items-center justify-between mb-6">
+        <div class="mb-6 flex items-center justify-between">
           <h2 class="text-xl font-bold text-gray-900">Rubyists in <%= country.name %></h2>
           <%= ui_badge(country_users.count, kind: :secondary, outline: true) %>
         </div>
@@ -65,7 +66,7 @@
     <% end %>
   <% else %>
     <%# For other location types, show standard layout %>
-    <div class="flex items-center justify-between mb-6">
+    <div class="mb-6 flex items-center justify-between">
       <h2 class="text-xl font-bold text-gray-900">Rubyists in <%= location.name %></h2>
       <%= ui_badge(users.count, kind: :secondary, outline: true) %>
     </div>
@@ -77,12 +78,12 @@
         <% end %>
       </div>
     <% else %>
-      <p class="text-gray-500 py-8 text-center">No Rubyists in <%= location.name %> yet.</p>
+      <p class="py-8 text-center text-gray-500">No Rubyists in <%= location.name %> yet.</p>
     <% end %>
 
     <% if nearby_users.present? && nearby_users.any? %>
       <div class="mt-12">
-        <div class="flex items-center justify-between mb-6">
+        <div class="mb-6 flex items-center justify-between">
           <h2 class="text-xl font-bold text-gray-900">Rubyists near <%= location.name %></h2>
           <%= ui_badge(nearby_users.count, kind: :secondary, outline: true) %>
         </div>
@@ -102,7 +103,7 @@
 
     <% if state.present? && state_users.present? && state_users.any? %>
       <div class="mt-12">
-        <div class="flex items-center justify-between mb-6">
+        <div class="mb-6 flex items-center justify-between">
           <h2 class="text-xl font-bold text-gray-900">Rubyists in <%= state.name %></h2>
           <%= ui_badge(state_users.count, kind: :secondary, outline: true) %>
         </div>

@@ -1,0 +1,7 @@
+<div class="flex items-center gap-3">
+  <% platforms.each do |p| %>
+    <%= link_to p.url, target: "_blank", rel: "noopener noreferrer", class: LINK_CLASS, aria: {label: p.label} do %>
+      <%= helpers.fab(p.icon, size: :sm) %>
+    <% end %>
+  <% end %>
+</div>

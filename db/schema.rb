@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_07_05_130000) do
+ActiveRecord::Schema[8.2].define(version: 2026_10_14_120000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -178,14 +178,14 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_05_130000) do
   end
 
   create_table "event_participations", force: :cascade do |t|
-    t.string "attended_as", null: false
     t.datetime "created_at", null: false
     t.integer "event_id", null: false
+    t.string "role", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
-    t.index ["attended_as"], name: "index_event_participations_on_attended_as"
     t.index ["event_id"], name: "index_event_participations_on_event_id"
-    t.index ["user_id", "event_id", "attended_as"], name: "idx_on_user_id_event_id_attended_as_ca0a2916e2", unique: true
+    t.index ["role"], name: "index_event_participations_on_role"
+    t.index ["user_id", "event_id"], name: "index_event_participations_on_user_id_and_event_id", unique: true
     t.index ["user_id"], name: "index_event_participations_on_user_id"
   end
 

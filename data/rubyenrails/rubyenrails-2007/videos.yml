@@ -1,6 +1,266 @@
-# TODO: Add talks and videos
-
-# https://web.archive.org/web/20070820192609/http://2007.rubyenrails.nl/
-# https://web.archive.org/web/20090308083909/http://rubyenrails.nl:80/articles/2007/03/20/rubyenrails-2007
+# RubyEnRails 2007 -- one day, two tracks (Auditorium / Groene zaal), nothing was filmed.
+#
+# Program:  https://web.archive.org/web/20070606081251/http://2007.rubyenrails.nl/sprekers/tracks
+# Speakers: https://web.archive.org/web/20070505132612/http://2007.rubyenrails.nl/sprekers
+# Slides:   https://web.archive.org/web/20071226021229/http://2007.rubyenrails.nl/sprekers/presentaties
+# Homepage: https://web.archive.org/web/20070820192609/http://2007.rubyenrails.nl/
+# Recap:    https://web.archive.org/web/20090308083909/http://rubyenrails.nl:80/articles/2007/03/20/rubyenrails-2007
+#
+# The organisers also published an MP3 per talk at http://s3.amazonaws.com/rubyenrails2007/<name>.mp3.
+# That bucket now returns 404 and has no Wayback captures, so no audio links are recorded here.
 ---
-[]
+
+- id: "dr-nic-williams-keynote-rubyenrails-2007"
+  title: "The future of Rails"
+  kind: "keynote"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Auditorium"
+  slides_url: "https://www.slideshare.net/drnic/rubyenrails2007-dr-nic-williams-keynote"
+  video_provider: "not_recorded"
+  video_id: "dr-nic-williams-keynote-rubyenrails-2007"
+  description: |-
+    Having returned from RailsConf2007 in the USA, and after reading 100s of Ruby articles each week for years, Dr Nic outlines the Future of Rails. He'll go inside Edge Rails, he'll talk about plugins and gems – what's cool and uncool, and overview the latest in deployment and hosting strategies. At the same time he'll give you the gossip on "who's who in the Ruby/Rails world".
+  speakers:
+    - Dr. Nic Williams
+
+- id: "aslak-hellesoy-rubyenrails-2007"
+  title: "Behaviour Driven Development and RSpec"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Auditorium"
+  slides_url: "https://www.slideshare.net/Robbert/bdd-rspec"
+  video_provider: "not_recorded"
+  video_id: "aslak-hellesoy-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - Aslak Hellesøy
+
+- id: "peter-dierx-rubyenrails-2007"
+  title: "Rails and the Power of RJS Templates"
+  original_title: "Rails en de kracht van RJS Templates"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "Dutch"
+  track: "Auditorium"
+  slides_url: "https://www.slideshare.net/Robbert/rails-en-de-kracht-van-rjs-templates"
+  video_provider: "not_recorded"
+  video_id: "peter-dierx-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - Peter Dierx
+
+- id: "roderick-van-domburg-sjoerd-andringa-rubyenrails-2007"
+  title: "YouTube on Rails in 45 Minutes"
+  original_title: "YouTube on Rails in 3 kwartier"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "Dutch"
+  track: "Groene zaal"
+  video_provider: "not_recorded"
+  video_id: "roderick-van-domburg-sjoerd-andringa-rubyenrails-2007"
+  description: |-
+    In een live demonstratie van minder dan een uur wordt met code en uitleg een Rails YouTube kloon ontwikkeld door Sjoerd Andringa en Roderick van Domburg. Aan bod komen onder andere: background video conversie met BackgrounDRb en ffmpeg, Flash video streaming, tagging, en mooie permalinks.
+  speakers:
+    - Roderick van Domburg
+    - Sjoerd Andringa
+
+- id: "eloy-duran-rubyenrails-2007"
+  title: "Ruby Meets Cocoa"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Auditorium"
+  slides_url: "https://www.slideshare.net/Robbert/ruby-meets-cocoa"
+  video_provider: "not_recorded"
+  video_id: "eloy-duran-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - Eloy Durán
+
+- id: "rogier-hof-daniel-steginga-rubyenrails-2007"
+  title: "Froodi.nl and RoR (case study)"
+  original_title: "Froodi.nl en RoR (case study)"
+  kind: "lightning_talk"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "Dutch"
+  track: "Groene zaal"
+  video_provider: "not_recorded"
+  video_id: "rogier-hof-daniel-steginga-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - Rogier Hof
+    - Daniël Steginga
+
+- id: "robert-bor-rubyenrails-2007"
+  title: "A CTO's story: a real businesscase of ruby (case study)"
+  kind: "lightning_talk"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Groene zaal"
+  slides_url: "https://www.slideshare.net/Robbert/a-ct-os-story"
+  video_provider: "not_recorded"
+  video_id: "robert-bor-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - Robert Bor
+
+- id: "dr-nic-williams-rubyenrails-2007"
+  title: "Extending Ruby/Rails with DSLs – “How to make your code look beautiful”"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Auditorium"
+  slides_url: "https://www.slideshare.net/drnic/rubyenrails2007-dr-nic-williams-diy-syntax"
+  video_provider: "not_recorded"
+  video_id: "dr-nic-williams-rubyenrails-2007"
+  description: |-
+    One of the reasons that development in Rails is rapid is the elegant syntax for doing common tasks: fetching database rows into objects, rendering pages and partials, routing urls to controllers and actions, or capistrano recipes. As you write your own Ruby code you can always keep in mind – you can write my own beautiful syntax.
+
+    In this session we'll discuss
+
+    - metaprogramming, with examples from Dr Nic's Magic Models, the Magic Multi-Connections, and Map by Method,
+    - creating new RubyGems to package new extensions (using the New Gem Generator and Hoe), and
+    - creating new Rails plugins to package Rails-only extensions
+  speakers:
+    - Dr. Nic Williams
+
+- id: "remco-van-t-veer-rubyenrails-2007"
+  title: "Camping for the rest of us"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Groene zaal"
+  slides_url: "https://www.slideshare.net/Robbert/camping-for-the-rest-of-us-63245"
+  video_provider: "not_recorded"
+  video_id: "remco-van-t-veer-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - "Remco van 't Veer"
+
+- id: "stephan-kaag-rubyenrails-2007"
+  title: "Betty Builder"
+  kind: "lightning_talk"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Auditorium"
+  slides_url: "https://www.slideshare.net/Robbert/betty-builder-een-gui-voor-het-maken-en-aanpassen-van-rails-models-en-migrations"
+  video_provider: "not_recorded"
+  video_id: "stephan-kaag-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - Stephan Kaag
+
+- id: "robert-gaal-wouter-broekhof-rubyenrails-2007"
+  title: "Wakoopa (case study)"
+  kind: "lightning_talk"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Groene zaal"
+  video_provider: "not_recorded"
+  video_id: "robert-gaal-wouter-broekhof-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - Robert Gaal
+    - Wouter Broekhof
+
+- id: "ernest-micklei-rubyenrails-2007"
+  title: "Flex on Rails: Rad Race Weapons"
+  kind: "lightning_talk"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Auditorium"
+  slides_url: "https://www.slideshare.net/Robbert/flex-on-rails-rad-race-weapons"
+  video_provider: "not_recorded"
+  video_id: "ernest-micklei-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - Ernest Micklei
+
+- id: "andy-lo-a-foe-rubyenrails-2007"
+  title: "Serving up your Rails app on a mongrel cluster"
+  kind: "lightning_talk"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Groene zaal"
+  slides_url: "https://www.slideshare.net/Robbert/serving-up-your-rails-app-on-a-mongrel-cluster"
+  video_provider: "not_recorded"
+  video_id: "andy-lo-a-foe-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - Andy Lo-A-Foe
+
+- id: "norbert-crombach-manfred-stienstra-rubyenrails-2007"
+  title: "Ruby Banter – Exploring the Fringes of Ruby"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Auditorium"
+  video_provider: "not_recorded"
+  video_id: "norbert-crombach-manfred-stienstra-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - Norbert Crombach
+    - Manfred Stienstra
+
+- id: "arjan-blom-rubyenrails-2007"
+  title: "JRuby Rules"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Groene zaal"
+  slides_url: "https://www.slideshare.net/Robbert/jruby-rules"
+  video_provider: "not_recorded"
+  video_id: "arjan-blom-rubyenrails-2007"
+  description: |-
+    Hoe kun je, in je Java enterprisey applicatie, business rules opstellen in natuurlijke taal? Dat kan door ze te metaprogrammeren in (J)Ruby. Maar ook voor een grotere Rails-applicatie kan deze manier van werken voordelen hebben…
+  speakers:
+    - Arjan Blom
+
+- id: "moves-on-rails-case-study-rubyenrails-2007"
+  title: "Moves On Rails (case study)"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Auditorium"
+  video_provider: "not_recorded"
+  video_id: "moves-on-rails-case-study-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - Bart ten Brinke
+    - Andre Foeken
+    - Dirkjan Bussink
+
+- id: "matthijs-langenberg-rubyenrails-2007"
+  title: "ActiveResource and REST"
+  original_title: "ActiveResource en REST"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "Dutch"
+  track: "Groene zaal"
+  slides_url: "https://www.slideshare.net/Robbert/activeresource-rest"
+  video_provider: "not_recorded"
+  video_id: "matthijs-langenberg-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - Matthijs Langenberg
+
+- id: "geoffrey-grosenbach-rubyenrails-2007"
+  title: "Page, Action, and Fragment Caching"
+  event_name: "RubyEnRails 2007"
+  date: "2007-06-07"
+  language: "English"
+  track: "Auditorium"
+  video_provider: "not_recorded"
+  video_id: "geoffrey-grosenbach-rubyenrails-2007"
+  description: "" # TODO
+  speakers:
+    - Geoffrey Grosenbach

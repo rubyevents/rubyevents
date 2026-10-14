@@ -15,6 +15,7 @@ class Static::Validators::Validator
       Static::Validators::EventDates,
       Static::Validators::EventRecordingsPublishedDate,
       Static::Validators::IdMatchesFolder,
+      Static::Validators::RemovedTalkIds,
       Static::Validators::SeriesDefaultColors
     ]
   end
@@ -27,8 +28,9 @@ class Static::Validators::Validator
   end
 
   def self.schedule_validator_classes
-    @sponsor_validators ||= [
-      Static::Validators::Schema
+    @schedule_validators ||= [
+      Static::Validators::Schema,
+      Static::Validators::ScheduleSlotsFilled
     ]
   end
 
@@ -43,6 +45,7 @@ class Static::Validators::Validator
     @speaker_validators ||= [
       Static::Validators::Schema,
       Static::Validators::SimilarSpeakerNames,
+      Static::Validators::SpeakerSlugMatchesName,
       Static::Validators::UniqueSpeakerFields,
       Static::Validators::UniqueSpeakers
     ]
@@ -50,7 +53,8 @@ class Static::Validators::Validator
 
   def self.sponsor_validator_classes
     @sponsor_validators ||= [
-      Static::Validators::Schema
+      Static::Validators::Schema,
+      Static::Validators::SponsorSlug
     ]
   end
 
@@ -75,5 +79,22 @@ class Static::Validators::Validator
       Static::Validators::UniqueTalkIds,
       Static::Validators::MissingThumbnails
     ]
+  end
+
+  # Registered validators that can fix themselves.
+  # Defining a fix method and registering it in one of the *_validator_classes
+  # methods is enough to make it show up here.
+  def self.fixable_validators
+    [
+      cfp_validator_classes,
+      event_validator_classes,
+      involvement_validator_classes,
+      schedule_validator_classes,
+      series_validator_classes,
+      speaker_validator_classes,
+      sponsor_validator_classes,
+      venue_validator_classes,
+      video_validator_classes
+    ].flatten.uniq.select { |validator_class| validator_class.method_defined?(:fix) }
   end
 end

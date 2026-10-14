@@ -31,7 +31,7 @@ class Events::ParticipantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "does not duplicate user who has both self-reported and checked-in attendance" do
-    EventParticipation.create!(user: @user, event: @event, attended_as: "visitor")
+    EventParticipation.create!(user: @user, event: @event, role: "attendee")
     ConnectedAccount.create!(user: @user, provider: "passport", uid: "PART03")
     EventCheckIn.create!(connect_id: "PART03", event: @event, checked_in_at: Time.current)
 
@@ -42,7 +42,7 @@ class Events::ParticipantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "self-reported participant without checked-in attendance has no checked-in icon" do
-    EventParticipation.create!(user: @user, event: @event, attended_as: "visitor")
+    EventParticipation.create!(user: @user, event: @event, role: "attendee")
 
     get event_participants_url(@event)
     assert_response :success

@@ -77,11 +77,9 @@ class Event < ApplicationRecord
   # Event participation associations
   has_many :event_participations, dependent: :destroy
   has_many :participants, through: :event_participations, source: :user
-  has_many :speaker_participants, -> { where(event_participations: {attended_as: :speaker}) },
+  has_many :going_participants, -> { where(event_participations: {role: EventParticipation::GOING_ROLES}) },
     through: :event_participations, source: :user
-  has_many :keynote_speaker_participants, -> { where(event_participations: {attended_as: :keynote_speaker}) },
-    through: :event_participations, source: :user
-  has_many :visitor_participants, -> { where(event_participations: {attended_as: :visitor}) },
+  has_many :interested_participants, -> { where(event_participations: {role: :interested}) },
     through: :event_participations, source: :user
 
   # Event involvement associations
@@ -209,6 +207,29 @@ class Event < ApplicationRecord
     end
   end
 
+  def self.featured(limit: 15, today: Date.today)
+    base = distinct.not_meetup.featurable.where.not(home_sort_date: nil)
+
+    ids = (
+      base.where.not(recordings_published_date: nil).pluck(:id) +
+      base.where(start_date: ..today, end_date: today..).pluck(:id) +
+      base.where(end_date: (today - FEATURED_RECENTLY_ENDED_WINDOW)..today.prev_day).pluck(:id) +
+      base.where(start_date: today.next_day..(today + FEATURED_UPCOMING_WINDOW)).pluck(:id) +
+      base.joins(:cfps).where(cfps: {close_date: today..(today + FEATURED_CFP_CLOSING_WINDOW)}).where.not(cfps: {link: nil}).pluck(:id)
+    ).uniq
+
+    ordered_ids = where(id: ids)
+      .includes(:cfps)
+      .sort_by { |event| event.featured_distance(today: today) }
+      .reject { |event| event.static_metadata.cancelled? }
+      .first(limit)
+      .map(&:id)
+
+    where(id: ordered_ids)
+      .includes(:series, :keynote_speakers, :speakers, :cfps)
+      .in_order_of(:id, ordered_ids)
+  end
+
   def self.find_by_name_or_alias(name)
     return nil if name.blank?
 
@@ -278,13 +299,31 @@ class Event < ApplicationRecord
   end
 
   def location_and_country_code
-    default_country = series&.static_metadata&.default_country_code
+    return location if location.blank?
+    return location if location_includes_country?
 
+    default_country = series&.static_metadata&.default_country_code
     [location, default_country].compact.join(", ")
   end
 
   def location_and_country_code_previously_changed?
     location_previously_changed?
+  end
+
+  # True when the location string already names a country. Ignores Country.find's
+  # US-subdivision fallback (e.g. "NY" => US) so short state codes still get the
+  # series default_country_code appended for geocoding.
+  def location_includes_country?
+    term = location.to_s.split(",").last&.strip
+    return false if term.blank?
+    return false if term.downcase.in?(%w[online earth unknown])
+
+    if term.length == 2
+      iso = ISO3166::Country.new(term.upcase)
+      return iso&.alpha2.present?
+    end
+
+    Country.find(term).present?
   end
 
   def today?

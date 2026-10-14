@@ -29,3 +29,4 @@ RubyEvents.org is jointly maintained by:
 * [Adrien Poly](https://www.rubyevents.org/profiles/adrienpoly)
 * [Marco Roth](https://github.com/marcoroth)
 * [Rachael Wright-Munn](https://www.rubyevents.org/profiles/chaelcodes)
+* [Hans Schnedlitz](https://www.rubyevents.org/profiles/hschne)

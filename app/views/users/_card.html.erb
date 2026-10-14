@@ -12,11 +12,11 @@
       </div>
     <% end %>
 
-    <div class="relative z-10 flex items-center gap-4 min-w-0 flex-1">
+    <div class="relative z-10 flex min-w-0 flex-1 items-center gap-4">
       <%= ui_avatar(user) %>
 
       <div class="min-w-0">
-        <div class="font-bold text-base line-clamp-1 flex items-center gap-1.5">
+        <div class="line-clamp-1 flex items-center gap-1.5 text-base font-bold">
           <span class="line-clamp-1"><%= user.name %></span>
 
           <% if user.verified? %>
@@ -28,15 +28,15 @@
           <% end %>
         </div>
 
-        <div class="text-xs text-gray-500 line-clamp-1">
+        <div class="line-clamp-1 text-xs text-gray-500">
           <% if defined?(content) && content.present? %>
             <%= content %>
           <% elsif user.github_handle.present? %>
-            <%= "@#{user.github_handle}" %>
+            @<%= user.github_handle %>
           <% elsif user.bsky.present? %>
-            <%= "@#{user.bsky}" %>
+            @<%= user.bsky %>
           <% else %>
-            <%= "@#{user.slug}" %>
+            @<%= user.slug %>
           <% end %>
         </div>
       </div>

@@ -1,12 +1,25 @@
 #!/usr/bin/env bash
 
-set -e  # Exit on error
+set -euo pipefail
 
 if command -v mise &> /dev/null; then
   eval "$(mise activate bash)"
 fi
 
-curl https://lrug.org/rubyevents-video-playlist.yml > data/lrug/lrug-meetup/videos.yml
-git add data/lrug/lrug-meetup/videos.yml
-bundle exec yerba apply
+playlist="data/lrug/lrug-meetup/videos.yml"
+download="$(mktemp)"
+trap 'rm -f "$download"' EXIT
+
+curl --fail --silent --show-error --location https://lrug.org/rubyevents-video-playlist.yml --output "$download"
+
+mv "$download" "$playlist"
+bundle exec yerba apply "$playlist"
+
+git add "$playlist"
+
+if git diff --cached --quiet; then
+  echo "No LRUG changes to commit."
+  exit 0
+fi
+
 git commit -m "Update LRUG Meetups"

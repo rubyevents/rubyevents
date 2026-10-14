@@ -9,7 +9,7 @@ module Api
           user ||= User.find_by_github_handle(params[:slug])
           raise ActiveRecord::RecordNotFound, "User not found" unless user
 
-          events = user.participated_events.includes(:series).select(&:sticker?)
+          events = user.attended_events.includes(:series).select(&:sticker?)
 
           stickers = events.flat_map { |event|
             Sticker.for_event(event).map { |sticker|

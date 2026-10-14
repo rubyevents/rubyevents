@@ -37,16 +37,17 @@ class User::EventCheckInTest < ActiveSupport::TestCase
   end
 
   test "all_attended_events includes both self-reported and checked-in events" do
-    EventParticipation.create!(user: @user, event: @event, attended_as: "visitor")
+    past_event = events(:rails_world_2023)
+    EventParticipation.create!(user: @user, event: past_event, role: "attendee")
     EventCheckIn.create!(connect_id: "ABC123", event: @other_event, checked_in_at: Time.current)
 
     result = @user.all_attended_events
-    assert_includes result, @event
+    assert_includes result, past_event
     assert_includes result, @other_event
   end
 
   test "all_attended_events deduplicates events present in both sources" do
-    EventParticipation.create!(user: @user, event: @event, attended_as: "visitor")
+    EventParticipation.create!(user: @user, event: @event, role: "attendee")
     EventCheckIn.create!(connect_id: "ABC123", event: @event, checked_in_at: Time.current)
 
     result = @user.all_attended_events
@@ -54,10 +55,17 @@ class User::EventCheckInTest < ActiveSupport::TestCase
   end
 
   test "all_attended_events works with only self-reported attendance" do
-    EventParticipation.create!(user: @user, event: @event, attended_as: "visitor")
+    past_event = events(:rails_world_2023)
+    EventParticipation.create!(user: @user, event: past_event, role: "attendee")
 
     result = @user.all_attended_events
-    assert_includes result, @event
+    assert_includes result, past_event
+  end
+
+  test "all_attended_events excludes self-reported upcoming events" do
+    EventParticipation.create!(user: @user, event: @event, role: "attendee")
+
+    assert_not_includes @user.all_attended_events, @event
   end
 
   test "checked_in_event_ids returns a Set of event IDs" do

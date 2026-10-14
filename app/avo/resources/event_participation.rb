@@ -10,12 +10,12 @@ class Avo::Resources::EventParticipation < Avo::BaseResource
 
   def fields
     field :id, as: :id
-    field :attended_as, as: :select, enum: ::EventParticipation.attended_as
+    field :role, as: :select, enum: ::EventParticipation.roles
     field :user, as: :belongs_to, searchable: true
     field :event, as: :belongs_to, searchable: true, attach_scope: -> { query.order(name: :asc) }
   end
 
   def filters
-    filter Avo::Filters::AttendedAs
+    filter Avo::Filters::Role
   end
 end

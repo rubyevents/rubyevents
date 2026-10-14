@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VideoSchema",
   "type": "object",
   "properties": {
     "id": {
@@ -702,9 +704,6 @@
               ]
             },
             "then": {
-              "required": [
-                "published_at"
-              ],
               "properties": {
                 "published_at": {
                   "type": "string",
@@ -718,7 +717,10 @@
                   "type": "string",
                   "pattern": "^[A-Za-z0-9_-]{11}$"
                 }
-              }
+              },
+              "required": [
+                "published_at"
+              ]
             }
           },
           {
@@ -786,9 +788,15 @@
       "description": "Date of the talk (YYYY-MM-DD format)",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
-    "time": {
+    "start_time": {
       "type": "string",
-      "description": "Time of the talk"
+      "description": "Scheduled start time of the talk",
+      "pattern": "^\\d{2}:\\d{2}$"
+    },
+    "end_time": {
+      "type": "string",
+      "description": "Scheduled end time of the talk",
+      "pattern": "^\\d{2}:\\d{2}$"
     },
     "published_at": {
       "type": "string",
@@ -1356,7 +1364,6 @@
     "video_id"
   ],
   "additionalProperties": false,
-  "strict": true,
   "allOf": [
     {
       "if": {
@@ -1370,9 +1377,6 @@
         ]
       },
       "then": {
-        "required": [
-          "published_at"
-        ],
         "properties": {
           "published_at": {
             "type": "string",
@@ -1386,7 +1390,10 @@
             "type": "string",
             "pattern": "^[A-Za-z0-9_-]{11}$"
           }
-        }
+        },
+        "required": [
+          "published_at"
+        ]
       }
     },
     {

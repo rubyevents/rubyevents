@@ -4,7 +4,7 @@ class Locations::MeetupsController < Locations::BaseController
   def index
     @meetups = @location.events
       .joins(:series)
-      .where(event_series: {kind: :meetup})
+      .where(events: {kind: :meetup})
       .includes(:series)
       .order("event_series.name", start_date: :desc)
 
