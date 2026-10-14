@@ -123,6 +123,8 @@ puts "filled #{i}/#{titles.size}"
 
 Compare titles/speakers/order against the site's schedule & speakers pages. Reorder to true running order with `yerba move ... --after ...`. A clean block move shows equal insertions/deletions in `git diff --stat` and preserves block scalars. Note `published_at` stays in upload order — it's the **entry order** that drives running order.
 
+Deleting an entry fails `validate:videos` unless the id is accounted for: `old_id` on the renamed entry if it was renamed, or `removed_talk_ids` in the sibling `event.yml` if it was dropped on purpose (`videos.yml` has a sequence root, so it can't hold a top-level key).
+
 ### speaker social handles (data/speakers.yml)
 
 - Global, flat sequence, auto-sorted by name; enforced key order: `name, github, twitter, mastodon, bluesky, linkedin, website, speakerdeck, slug, aliases`. **Required: name, slug, github** (`github: ""` if unknown).

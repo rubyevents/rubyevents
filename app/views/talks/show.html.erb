@@ -35,7 +35,7 @@
 
     <div
       class="hidden w-96 flex-shrink-0 gap-4 px-4 lg:flex lg:flex-col"
-      data-turbo-permanent="true"
+      data-turbo-permanent
       id="<%= dom_id(@talk.event, :talks_wrapper) %>"
     >
       <%= link_to @talk.event.name, event_path(@talk.event), class: "pl-2 mt-8 text-neutral text-base text-lg font-bold hover:underline" %>

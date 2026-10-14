@@ -1,6 +1,8 @@
 require "rails/generators"
 
 class ToolGeneration
+  TOOL_OPTION_GROUPS = ["Fields", "Options"].freeze
+
   # Generates RubyLLM tool classes for each provided generator
   #
   # @param generators [Array<Generators::EventBase>]
@@ -10,21 +12,21 @@ class ToolGeneration
       # Grab the generator's options that we've defined manually so that they
       # can be provided as params to the new tool class.
       options = klass.class_options.select do |option_key, option|
-        option.group == "Fields"
+        TOOL_OPTION_GROUPS.include?(option.group)
       end
 
       generator_type = klass.name.gsub("Generator", "").downcase
       description = tool_description(klass, generator_type)
 
       tool = Class.new(RubyLLM::Tool) do
-        desc description
+        description description
 
         options.each do |option_key, option|
-          # Document each param for the tool using what is defined on the
+          # Document each parameter for the tool using what is defined on the
           # corresponding generator option
-          param(
+          parameter(
             option_key.to_sym,
-            desc: option.description,
+            description: option.description,
             required: option.required,
             type: option.type
           )
@@ -69,7 +71,7 @@ class ToolGeneration
   end
   private_class_method :execute_params
 
-  # Grabs the generator's TOOL_DESC to use for the RubyLLM::Tool `desc`. If that
+  # Grabs the generator's TOOL_DESC to use for the RubyLLM::Tool `description`. If that
   # constant is not defined, we fall back to a generic value.
   def self.tool_description(klass, generator_type)
     klass.const_get(:TOOL_DESC, false)

@@ -8,8 +8,7 @@
     <%= render partial: "talks/card_horizontal",
           collection: talks,
           as: :talk,
-          locals: {compact: true,
-                   current_talk: active_talk,
+          locals: {current_talk: active_talk,
                    turbo_frame: "talk",
                    user_watched_talks: user_watched_talks} %>
   </div>

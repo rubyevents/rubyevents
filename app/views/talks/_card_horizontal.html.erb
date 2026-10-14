@@ -1,4 +1,4 @@
-<%# locals: (talk:, current_talk: nil, compact: false, turbo_frame: nil, user_watched_talks:, watched_talk: nil, tag: :a, tooltip: true, show_remove_from_watched: false, show_event_name: false, variant: :default) %>
+<%# locals: (talk:, current_talk: nil, turbo_frame: nil, user_watched_talks:, watched_talk: nil, tag_name: :a, tooltip: true, show_remove_from_watched: false, show_event_name: false, variant: :default) %>
 
 <% active = talk == current_talk %>
 <% watched_talk ||= user_watched_talks.find { |wt| wt.talk_id == talk.id } %>
@@ -14,7 +14,7 @@
 <% fit_class = thumbnail_classes.match?(/(?:\A|\s)object-(?:contain|cover|fill|none|scale-down)\b/) ? nil : "object-cover" %>
 
 <%= content_tag(
-      tag,
+      tag_name,
       href: talk_path(talk),
       class: class_names("w-full flex rounded-lg hover:bg-gray-200 group", (profile ? "items-start gap-3 p-0" : "items-center gap-4 p-2"), active: active, watched: watched_talk&.watched?, not_recorded: not_recorded, scheduled: scheduled, not_published: not_published),
       id: dom_id(talk, :card_horizontal),

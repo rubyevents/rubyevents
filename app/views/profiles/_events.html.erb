@@ -1,4 +1,4 @@
-<%# locals: (user:, events:, talks:, participations:, checked_in_event_ids: Set.new) %>
+<%# locals: (user:, events:, participations:, checked_in_event_ids: Set.new) %>
 
 <% future_events = (events.respond_to?(:upcoming) ? events.upcoming : events.select(&:upcoming?)).sort_by(&:sort_date) %>
 <% past_events = (events.to_a - future_events).sort_by(&:sort_date).reverse %>

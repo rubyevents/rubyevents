@@ -14,9 +14,11 @@
 
     <div>
       <div class="line-clamp-1 text-xs text-gray-500">
+        <% held = video_provider == "not_recorded" || (video_provider == "scheduled" && event.date&.past?) %>
+
         <% if video_provider == "scheduled" && event.date&.future? %>
           Scheduled for
-        <% elsif video_provider == "not_recorded" || (video_provider == "scheduled" && event.date&.past?) %>
+        <% elsif held %>
           Held at
         <% else %>
           Recorded at

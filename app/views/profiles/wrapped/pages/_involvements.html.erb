@@ -21,7 +21,7 @@
       <div class="rounded-xl bg-purple-50 p-4">
         <div class="mb-2 flex items-center justify-between">
           <span class="font-semibold capitalize text-purple-700"><%= role %></span>
-          <span class="text-sm text-purple-500"><%= involvements.count %> <%= "event".pluralize(involvements.count) %></span>
+          <span class="text-sm text-purple-500"><%= pluralize(involvements.count, "event") %></span>
         </div>
 
         <div class="flex flex-wrap gap-1">

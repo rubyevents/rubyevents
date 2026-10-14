@@ -37,12 +37,9 @@ class StatesController < ApplicationController
     end
 
     @continent = @country.continent
-
     @events = @state.events.includes(:series).order(start_date: :desc)
     @cities = @state.cities.order(:name)
-
     @users = @state.users
-    @stamps = @state.stamps
 
     @country_events = Event.includes(:series)
       .where(country_code: @country.alpha2)

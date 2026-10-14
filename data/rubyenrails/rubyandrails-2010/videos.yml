@@ -1,3 +1,270 @@
-# TODO: Add talks and videos
 ---
-[]
+# Website: https://web.archive.org/web/20130114155815/http://rubyandrails.eu/
+# Program: https://web.archive.org/web/20130114155751/http://rubyandrails.eu/program
+# Speakers: https://web.archive.org/web/20130114155751/http://rubyandrails.eu/speakers
+
+# TODO: Add recordings - docs/ADDING_VIDEOS.md
+
+## Day 1 - 2010-10-21
+
+- id: "jon-yurek-rubyandrails-2010"
+  title: "Culture of Testing"
+  raw_title: "Culture of Testing"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-21"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_published"
+  video_id: "jon-yurek-rubyandrails-2010"
+  description: "" # TODO
+  speakers:
+    - Jon Yurek
+  additional_resources:
+    - name: "jyurek/RubyEnRails-20101021"
+      url: "https://github.com/jyurek/RubyEnRails-20101021"
+      type: "presentation"
+
+- id: "rick-olson-rubyandrails-2010"
+  title: "Git: the stupid NOSQL database"
+  raw_title: "Git: the stupid NOSQL database"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-21"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_published"
+  video_id: "rick-olson-rubyandrails-2010"
+  description: |-
+    Many of us use Git as our source control tool of choice. But the man page says Git is a “stupid content tracker.” Apps and libraries are able to use Git for all sorts of other things, such as a distributed key/value store. We’ll take a look at how you can start using Git as the canonical data store for your app, why you would want to, and what the pitfalls you might run into are.
+  speakers:
+    - Rick Olson
+
+- id: "piotr-sarnacki-rubyandrails-2010"
+  title: "Rails 3 Mountable Apps"
+  raw_title: "Rails 3 Mountable Apps"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-21"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_published"
+  video_id: "piotr-sarnacki-rubyandrails-2010"
+  description: "" # TODO
+  speakers:
+    - Piotr Sarnacki
+
+- id: "bogdan-gaza-rubyandrails-2010"
+  title: "Rails Admin the right way of doing data administration with Rails 3"
+  raw_title: "Rails Admin the right way of doing data administration with Rails 3"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-21"
+  language: "English"
+  track: "Room 2"
+  video_provider: "not_published"
+  video_id: "bogdan-gaza-rubyandrails-2010"
+  description: |-
+    Point-and-click data administration has been an important part of the success of web frameworks in general.
+
+    RailsAdmin aims to to bring an easy-to-use interface as a Rails 3 engine thus increasing the easy and speed of Ruby web application development.
+
+    This talk is going to be about what is the current state in data administration interfaces in the Rails community and how the Rails Admin fits on this scene.
+  speakers:
+    - Bogdan Gaza
+
+- id: "elise-huard-rubyandrails-2010"
+  title: "Concurrency: Rubies, plural"
+  raw_title: "Concurrency: Rubies, plural"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-21"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_published"
+  video_id: "elise-huard-rubyandrails-2010"
+  description: |-
+    In this presentation we’ll use code to explore the various traditional models for concurrent execution supported directly by Ruby – such as Threads, Processes and Fibres – and their limitations before turning to the approaches pioneered in other languages and seeing how many we can bring into the Ruby fold.
+
+    For the last few years hardware manufacturers have driven increasingly powerful multi-core processors into consumer-grade computing hardware. Power which twenty years ago was restricted to a handful of government-funded research institutes is now available on the desktop, introducing many developers to the conundrum of how best to use it with languages implemented primarily for sequential environments.
+
+    We’ll present characteristic examples of techniques drawn from a variety of languages and demonstrate how to construct similar architectures in Ruby using its native features and libraries such as EventMachine or RevActor.
+  speakers:
+    - Elise Huard
+
+- id: "sebastian-burkhard-rubyandrails-2010"
+  title: "Webscraping techniques"
+  raw_title: "Webscraping techniques"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-21"
+  language: "English"
+  track: "Room 2"
+  video_provider: "not_published"
+  video_id: "sebastian-burkhard-rubyandrails-2010"
+  description: |-
+    The past two years he has been working extensively with web scraping. It started out with extracting data from a single source and ended with a complete webscraping framework. In his talk he will show the pitfalls, patterns and techniques he learned the hard way.
+  speakers:
+    - Sebastian Burkhard
+
+- id: "dirkjan-bussink-rubyandrails-2010"
+  title: "Rubinius"
+  raw_title: "Rubinius"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-21"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_published"
+  video_id: "dirkjan-bussink-rubyandrails-2010"
+  description: |-
+    Rubinius is a bytecode virtual machine that incorporates a lot of modern techniques so it can execute your Ruby code efficiently. It uses techniques like a JIT (Just In Time) compiler (based on LLVM), inline caching, object packing and a generational compacting garbage collector.
+
+    This talk will tell you more about what these techniques are and what they can do for your Ruby code. A lot already happened in the 1.0 release, but there are also a lot of new future enhancements that are still to come.
+  speakers:
+    - Dirkjan Bussink
+
+- id: "lennart-koopmann-rubyandrails-2010"
+  title: "Gray is not boring"
+  raw_title: "Gray is not boring"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-21"
+  language: "English"
+  track: "Room 2"
+  video_provider: "not_published"
+  video_id: "lennart-koopmann-rubyandrails-2010"
+  description: |-
+    Graylog2 is an open source syslog daemon with Rails web interface that stores all your log messages to MongoDB. You can use the web interface to analyze your logs and get an overview of the state of your systems. The alternative Graylog Extended Log Format (GELF) avoids the shortcomings of classic plain syslog. Lennart is the author of Graylog2 and will talk about self-hosted Rails exception tracking with Graylog2.
+  speakers:
+    - Lennart Koopmann
+
+- id: "jeff-rose-sam-aaron-rubyandrails-2010"
+  title: "Audio Synthesizers"
+  raw_title: "The Lambda Tones"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-21"
+  published_at: "2010-10-24T13:15:13Z"
+  language: "English"
+  track: "Room 1"
+  video_provider: "vimeo"
+  video_id: "16143967"
+  description: |-
+    One of his favorite aspects of being a developer is getting to learn about all of the other domains that programs are used for, and one of these domains is music. As the lead developer of Project Overtone he is creating an environment for creating audio synthesizers and doing live-coding: creating musical programs on the fly. In this talk Jeff will give a whirlwind tour of digital audio, synthesis, and musical programming, live in Clojure. The presentation / performance will be partially supported by Sam Aaron.
+  speakers:
+    - Jeff Rose
+    - Sam Aaron
+
+## Day 2 - 2010-10-22
+
+- id: "mathias-meyer-rubyandrails-2010"
+  title: "CouchDB"
+  raw_title: "CouchDB"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-22"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_published"
+  video_id: "mathias-meyer-rubyandrails-2010"
+  description: |-
+    Amongst the crowd of alternative databases, CouchDB certainly is the most versatile, lending itself for use in lots of web applications. It’s entirely built on web technologies, using HTTP as protocol, JSON for storing data, and JavaScript for querying it. It goes far astray from what you’re used to from your relational database, sporting MapReduce, documents, an awesome offline replication, even being able to run entire web applications from within the database.
+
+    But it all starts making sense once you get an idea how it works internally, and how it can be used from Ruby and Rails applications, which is exactly what we’re going to do in this talk.
+  speakers:
+    - Mathias Meyer
+
+- id: "piotr-szotkowski-rubyandrails-2010"
+  title: "From Profiling Ruby 1.9 to Frankenstein Programming"
+  raw_title: "From Profiling Ruby 1.9 to Frankenstein Programming"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-22"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_published"
+  video_id: "piotr-szotkowski-rubyandrails-2010"
+  description: |-
+    Given that Ruby is not exactly known for its execution speeed, even sworn Rubyists hesitate before choosing it for computation-intensive tasks; Piotr’s talk – ‘From Profiling Ruby 1.9 to Frankenstein Programming’ – shows how to benefit from Ruby’s beauty, elegance and expressiveness without having to sacrifice the overall performance.
+  speakers:
+    - Piotr Szotkowski
+
+- id: "corey-haines-rubyandrails-2010"
+  title: "Software Craftmanship"
+  raw_title: "Software Craftmanship"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-22"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_published"
+  video_id: "corey-haines-rubyandrails-2010"
+  description: "" # TODO
+  speakers:
+    - Corey Haines
+
+- id: "sergei-kozlov-rubyandrails-2010"
+  title: "Netzke & ExtJS"
+  raw_title: "Netzke & ExtJS"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-22"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_published"
+  video_id: "sergei-kozlov-rubyandrails-2010"
+  description: |-
+    Netzke was born during a journey around Canadian Rockies, out of necessity for DRY, elegant, component-oriented approach to writing Ext JS applications with Rails. Among other advantages, Netzke provides for incapsulating server (Ruby) and client (JavaScript) code into powerful, extendible, easily reusable widgets.
+
+    After many iterations, Netzke has taken form of an open source project that is used by developers around the world.
+  speakers:
+    - Sergei Kozlov
+
+- id: "christopher-bertels-rubyandrails-2010"
+  title: "Fancy"
+  raw_title: "Fancy"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-22"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_published"
+  video_id: "christopher-bertels-rubyandrails-2010"
+  description: |-
+    Fancy is a dynamic, class based, pure object-oriented programming language heavily inspired by Smalltalk, Ruby and Erlang.
+
+    The language allows dynamic code evaluation and metaprogramming as it can be found in Ruby and Smalltalk, as well as actor model concurrency inspired by Erlang.
+
+    One goal of Fancy is to provide a language implementation that is easy to understand, especially for language implementor beginners, as well as achieving decent performance as a scripting language in Unix environments.
+
+    As of recently, Fancy has been ported to Rubinius, a modern bytecode virtual machine designed for Ruby. Rubinius’ architecture made porting Fancy to it quite easy. Since the vm was heavily influenced by Smalltalk virtual machine implementations, running Fancy on Rubinius was a natural fit. The language is not yet fully bootstrapped but work in that area is coming along nicely.
+
+    This talk will show Fancy’s semantics and language features, its integration with Ruby code as well as how the new implementation for the Rubinius VM works.
+  speakers:
+    - Christopher Bertels
+
+- id: "justin-halsall-rubyandrails-2010"
+  title: "HTML5"
+  raw_title: "HTML5"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-22"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_published"
+  video_id: "justin-halsall-rubyandrails-2010"
+  description: "" # TODO
+  speakers:
+    - Justin Halsall
+
+## Announced on the speakers page, but absent from the published program grid
+
+- id: "thomas-fuchs-rubyandrails-2010"
+  title: "Do epic shit"
+  raw_title: "Do epic shit"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-21"
+  language: "English"
+  video_provider: "not_published"
+  video_id: "thomas-fuchs-rubyandrails-2010"
+  description: "" # TODO
+  speakers:
+    - Thomas Fuchs
+
+- id: "joseph-wilk-rubyandrails-2010"
+  title: "Botanic testing"
+  raw_title: "Botanic testing"
+  event_name: "RubyAndRails Europe 2010"
+  date: "2010-10-21"
+  language: "English"
+  video_provider: "not_published"
+  video_id: "joseph-wilk-rubyandrails-2010"
+  description: "" # TODO
+  speakers:
+    - Joseph Wilk

@@ -3,7 +3,7 @@
 class CFPInfoTool < RubyLLM::Tool
   description "Get CFP (Call for Proposals) information for an event. Returns all CFPs with their links, dates, and status."
 
-  param :event_query, desc: "Event slug or name to find (e.g., 'tropical-on-rails-2026' or 'Tropical on Rails 2026')"
+  parameter :event_query, description: "Event slug or name to find (e.g., 'tropical-on-rails-2026' or 'Tropical on Rails 2026')"
 
   def execute(event_query:)
     event = find_event(event_query)

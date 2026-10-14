@@ -69,6 +69,12 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--timezone", "America/Chicago",
       "--online"]
 
+    File.write(File.join(File.dirname(event_file_path), "videos.yml"), <<~YAML)
+      - id: "rubyconf-2022-talk"
+        video_provider: "youtube"
+        published_at: "2022-12-01"
+    YAML
+
     assert_valid_file event_file_path do |content|
       assert_match(/title: "RubyConf 2022"/, content)
       assert_match(/description: |-\s+RubyConf 2022 description/, content)
@@ -138,6 +144,41 @@ class EventGeneratorTest < Rails::Generators::TestCase
       assert_match(/latitude: -23.59572/, content)
       assert_match(/longitude: -46.68448/, content)
     end
+  end
+
+  test "meetup event without dates passes schema validation" do
+    event_file_path = File.join(destination_root, "data/tokyo-rb/tokyo-rb-meetup/event.yml")
+    run_generator ["--force",
+      "--event-series", "tokyo-rb",
+      "--event", "tokyo-rb-meetup",
+      "--title", "Tokyo.rb Meetup",
+      "--kind", "meetup",
+      "--location", "Tokyo, Japan",
+      "--online"]
+
+    assert_valid_file event_file_path do |content|
+      assert_match(/title: "Tokyo.rb Meetup"/, content)
+      assert_match(/kind: "meetup"/, content)
+      assert_no_match(/start_date/, content)
+      assert_no_match(/end_date/, content)
+      assert_no_match(/year:/, content)
+      assert_no_match(/tickets_url/, content)
+    end
+  end
+
+  test "non-meetup event without dates does not generate a file" do
+    event_file_path = File.join(destination_root, "data/rubyconf/2030/event.yml")
+
+    stderr = capture(:stderr) do
+      run_generator ["--force",
+        "--event-series", "rubyconf",
+        "--event", "2030",
+        "--title", "RubyConf 2030",
+        "--online"]
+    end
+
+    assert_match(/start-date/, stderr)
+    assert_not File.exist?(event_file_path)
   end
 
   def assert_valid_file(file_path, msg = nil, &block)

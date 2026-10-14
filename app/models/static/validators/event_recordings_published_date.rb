@@ -29,7 +29,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -47,13 +47,7 @@ module Static
         future_start_errors = validate_absence_for_future_start
         return future_start_errors if future_start_errors.any?
 
-        videos_path = File.join(File.dirname(@file_path), "videos.yml")
-
-        return [] unless File.exist?(videos_path)
-
-        @videos = Yerba.parse_file(videos_path).to_a
-
-        return [] unless @videos.is_a?(Array) && @videos.any?
+        @talks = Static::Talk.in_file(File.join(File.dirname(@file_path), "videos.yml")).top_level
 
         errors = []
 
@@ -82,11 +76,11 @@ module Static
       end
 
       def watchable_count
-        @videos.count { |video| video["video_provider"]&.in?(WATCHABLE_PROVIDERS) }
+        @talks.where(video_provider: WATCHABLE_PROVIDERS).count
       end
 
       def resolvable_count
-        @videos.count { |video| !video["video_provider"]&.in?(TERMINAL_PROVIDERS) }
+        @talks.where.not(video_provider: TERMINAL_PROVIDERS).count
       end
 
       def validate_absence_for_meetup
@@ -186,7 +180,7 @@ module Static
 
         return [] unless published_date
 
-        video_dates = @videos.filter_map { |video| parse_date(video["published_at"]) }
+        video_dates = @talks.filter_map { |talk| parse_date(talk.published_at) }
         reference_date = self.class.percentile(video_dates)
 
         return [] unless reference_date

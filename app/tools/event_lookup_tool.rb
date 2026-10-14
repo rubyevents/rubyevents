@@ -2,7 +2,7 @@
 
 class EventLookupTool < RubyLLM::Tool
   description "Search for events by name, slug, location. Returns matching events with their file paths for easy data updates."
-  param :query, desc: "Search query (matches against title, slug, location). Case-insensitive."
+  parameter :query, description: "Search query (matches against title, slug, location). Case-insensitive."
 
   def execute(query:)
     events = Static::Event.all
@@ -24,7 +24,7 @@ class EventLookupTool < RubyLLM::Tool
   private
 
   def event_to_hash(event)
-    base_path = File.dirname(event.send(:__file_path))
+    base_path = File.dirname(event.project_file_path)
 
     {
       slug: event.slug,
@@ -35,8 +35,8 @@ class EventLookupTool < RubyLLM::Tool
       start_date: event.start_date&.to_s,
       end_date: event.end_date&.to_s,
       website: event.website,
-      data_path: base_path.sub(Rails.root.to_s + "/", ""),
-      videos_file: "#{base_path.sub(Rails.root.to_s + "/", "")}/videos.yml"
+      data_path: base_path,
+      videos_file: "#{base_path}/videos.yml"
     }
   end
 end

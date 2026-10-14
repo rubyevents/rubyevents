@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EventSchema",
   "type": "object",
   "properties": {
     "id": {
@@ -729,6 +731,13 @@
         "additionalProperties": false
       }
     },
+    "removed_talk_ids": {
+      "type": "array",
+      "description": "Ids of talks that were intentionally removed from videos.yml, so the removal is not mistaken for an unrecorded rename",
+      "items": {
+        "type": "string"
+      }
+    },
     "playlist": {
       "type": "string",
       "description": "YouTube playlist/Vimeo showcase link"
@@ -816,6 +825,5 @@
     "timezone",
     "coordinates"
   ],
-  "additionalProperties": false,
-  "strict": true
+  "additionalProperties": false
 }

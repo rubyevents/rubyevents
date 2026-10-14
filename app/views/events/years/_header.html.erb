@@ -13,22 +13,24 @@
 
     <nav aria-label="Calendar years" class="flex shrink-0 items-center gap-2 overflow-x-auto pb-2 md:pb-1">
       <% if year != Date.current.year %>
-        <%= link_to "Today", year_events_path(year: Date.current.year), class: "inline-flex h-10 items-center rounded-full bg-red-500 px-3 text-sm font-medium text-white transition-all hover:bg-red-600 md:px-4" %>
+        <%= link_to "Today", year_events_path(year: Date.current.year, continent: params[:continent]), class: "inline-flex h-10 items-center rounded-full bg-red-500 px-3 text-sm font-medium text-white transition-all hover:bg-red-600 md:px-4" %>
       <% end %>
 
       <% if has_previous_year %>
-        <%= link_to year_events_path(year: year - 1), class: "flex h-10 items-center gap-2 rounded-full border border-gray-200 px-3 text-sm text-gray-500 transition-all hover:border-gray-900 hover:text-gray-900 md:px-4 md:text-base" do %>
+        <%= link_to year_events_path(year: year - 1, continent: params[:continent]), class: "flex h-10 items-center gap-2 rounded-full border border-gray-200 px-3 text-sm text-gray-500 transition-all hover:border-gray-900 hover:text-gray-900 md:px-4 md:text-base" do %>
           <%= fa "arrow-left", class: "text-xs md:text-sm" %>
           <span class="font-medium"><%= year - 1 %></span>
         <% end %>
       <% end %>
 
       <% if has_next_year %>
-        <%= link_to year_events_path(year: year + 1), class: "flex h-10 items-center gap-2 rounded-full border border-gray-200 px-3 text-sm text-gray-500 transition-all hover:border-gray-900 hover:text-gray-900 md:px-4 md:text-base" do %>
+        <%= link_to year_events_path(year: year + 1, continent: params[:continent]), class: "flex h-10 items-center gap-2 rounded-full border border-gray-200 px-3 text-sm text-gray-500 transition-all hover:border-gray-900 hover:text-gray-900 md:px-4 md:text-base" do %>
           <span class="font-medium"><%= year + 1 %></span>
           <%= fa "arrow-right", class: "text-xs md:text-sm" %>
         <% end %>
       <% end %>
     </nav>
   </div>
+
+  <%= render "events/continent_filters", selected: selected_continent %>
 </header>

@@ -12,7 +12,7 @@ class BrowseController < ApplicationController
     inspiring most_liked recommended_community popular_topics talk_kinds topic_rows
     language_rows closing_cfps upcoming_events recent_events featured_organizations
     upcoming_events_europe upcoming_events_north_america upcoming_events_south_america
-    upcoming_events_asia upcoming_events_australia upcoming_events_africa
+    upcoming_events_asia upcoming_events_oceania upcoming_events_africa
     talk_languages always_open_cfps
   ].freeze
 
@@ -504,7 +504,7 @@ class BrowseController < ApplicationController
       .limit(15)
   end
 
-  %w[europe north_america south_america asia australia africa].each do |continent_key|
+  %w[europe north_america south_america asia oceania africa].each do |continent_key|
     define_method("load_upcoming_events_#{continent_key}") do
       slug = continent_key.tr("_", "-")
       @continent = Continent.find(slug)

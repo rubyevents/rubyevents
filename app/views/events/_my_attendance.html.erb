@@ -37,7 +37,6 @@
         <% day_talks = talks.from(talk_offset).first(day_talk_count) %>
 
         <%= render "events/my_attendance_day",
-              event: event,
               day: day,
               day_index: day_index,
               tracks: tracks,

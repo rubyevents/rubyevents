@@ -73,7 +73,6 @@ class CitiesController < ApplicationController
   def load_city_data
     @events = @city.events.includes(:series).order(start_date: :desc)
     @users = @city.users
-    @stamps = @city.stamps
 
     upcoming_events = @events.upcoming.to_a
 

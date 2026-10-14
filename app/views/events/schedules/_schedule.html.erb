@@ -8,7 +8,7 @@
       <div class="w-full">
         <div id="schedule" class="min-w-full">
           <div id="schedule-navigation" class="flex flex-wrap justify-center gap-4">
-            <% days.each_with_index do |day, index| %>
+            <% days.each do |day| %>
               <% date_string = Date.parse(day.dig("date")).strftime("%A (%b %d, %Y)") %>
               <% kind = (day == current_day) ? :primary : :none %>
 
