@@ -12,6 +12,7 @@ class Static::Validators::Validator
       Static::Validators::ColorsHaveAssets,
       Static::Validators::DuplicateYouTubeChannels,
       Static::Validators::EventCityNames,
+      Static::Validators::EventDatePrecision,
       Static::Validators::EventDates,
       Static::Validators::EventRecordingsPublishedDate,
       Static::Validators::IdMatchesFolder,
