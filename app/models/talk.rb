@@ -287,12 +287,7 @@ class Talk < ApplicationRecord
   }
 
   def self.all_static_ids
-    @all_static_ids ||= begin
-      collection = Yerba::Collection.new("data/**/videos.yml")
-      parent_ids = collection.pluck(:id).compact
-      child_ids = collection.pluck(:talks).compact.flatten.map { |t| t["id"] }
-      parent_ids + child_ids
-    end
+    @all_static_ids ||= Static::Talk.ids
   end
 
   def orphaned?

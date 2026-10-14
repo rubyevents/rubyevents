@@ -62,7 +62,7 @@ namespace :validate do
 
   def validate_cfp_files
     validate_files(
-      files: Dir.glob(Rails.root.join("data/**/cfp.yml")),
+      files: Dir.glob(Static::CFP.file_glob),
       validators: Static::Validators::Validator.cfp_validator_classes,
       success_message: "✓ All cfp.yml files passed validations!"
     )
@@ -119,7 +119,7 @@ namespace :validate do
 
   def validate_event_files
     validate_files(
-      files: Dir.glob(Rails.root.join("data/**/event.yml")),
+      files: Dir.glob(Static::Event.file_glob),
       validators: Static::Validators::Validator.event_validator_classes,
       success_message: "✓ All event.yml files passed validations!"
     )
@@ -170,7 +170,7 @@ namespace :validate do
 
   def validate_involvements_file
     validate_files(
-      files: Dir.glob(Rails.root.join("data/**/involvements.yml")),
+      files: Dir.glob(Static::Involvement.file_glob),
       validators: Static::Validators::Validator.involvement_validator_classes,
       success_message: "✓ data/**/involvements.yml passed validations!"
     )
@@ -183,7 +183,7 @@ namespace :validate do
 
   def validate_schedule_files
     validate_files(
-      files: Dir.glob(Rails.root.join("data/**/schedule.yml")),
+      files: Dir.glob(Static::Schedule.file_glob),
       validators: Static::Validators::Validator.schedule_validator_classes,
       success_message: "✓ All schedule.yml files passed validations!"
     )
@@ -196,7 +196,7 @@ namespace :validate do
 
   def validate_series_files
     validate_files(
-      files: Dir.glob(Rails.root.join("data/**/series.yml")),
+      files: Dir.glob(Static::EventSeries.file_glob),
       validators: Static::Validators::Validator.series_validator_classes,
       success_message: "✓ All series.yml files passed validations!"
     )
@@ -236,7 +236,7 @@ namespace :validate do
 
   def validate_speakers_file
     validate_files(
-      files: Dir.glob(Rails.root.join("data/speakers.yml")),
+      files: [Static::Speaker.file_path],
       validators: Static::Validators::Validator.speaker_validator_classes,
       success_message: "✓ data/speakers.yml passed validations!"
     )
@@ -277,7 +277,7 @@ namespace :validate do
 
   def validate_sponsor_files
     validate_files(
-      files: Dir.glob(Rails.root.join("data/**/sponsors.yml")),
+      files: Dir.glob(Static::Sponsor.file_glob),
       validators: Static::Validators::Validator.sponsor_validator_classes,
       success_message: "✓ All sponsors.yml files passed validations!"
     )
@@ -305,7 +305,7 @@ namespace :validate do
 
   def validate_venue_files
     validate_files(
-      files: Dir.glob(Rails.root.join("data/**/venue.yml")),
+      files: Dir.glob(Static::Venue.file_glob),
       validators: [],
       success_message: "✓ All venue.yml files passed validations!"
     )
@@ -318,7 +318,7 @@ namespace :validate do
 
   def validate_video_files
     validate_files(
-      files: Dir.glob(Rails.root.join("data/**/videos.yml")),
+      files: Dir.glob(Static::Talk.file_glob),
       validators: Static::Validators::Validator.video_validator_classes,
       success_message: "✓ All videos.yml files passed validations!"
     )

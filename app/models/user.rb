@@ -254,33 +254,17 @@ class User < ApplicationRecord
   }
 
   def self.all_speaker_identifiers
-    @all_speaker_identifiers ||= begin
-      collection = Yerba::Collection.new("data/speakers.yml")
-      githubs = collection.pluck(:github).compact
-      names = collection.pluck(:name).compact
-      [githubs, names]
-    end
+    @all_speaker_identifiers ||= [Static::Speaker.pluck(:github).compact, Static::Speaker.pluck(:name).compact]
   end
 
   def self.speaker_alias_to_main_speaker
-    @speaker_alias_to_main_speaker ||= begin
-      collection = Yerba::Collection.new("data/speakers.yml")
-      names = collection.pluck(:name)
-      githubs = collection.pluck(:github)
-      aliases_data = collection.pluck(:aliases)
+    @speaker_alias_to_main_speaker ||= Static::Speaker.all.each_with_object({}) do |speaker, mapping|
+      Array(speaker["aliases"]).each do |alias_entry|
+        alias_name = alias_entry["name"]
+        next if alias_name.nil? || alias_name == speaker.name
 
-      mapping = {}
-      names.zip(githubs, aliases_data).each do |main_name, github, aliases|
-        next if main_name.nil? || aliases.nil?
-
-        Array(aliases).each do |a|
-          alias_name = a["name"]
-          next if alias_name.nil? || alias_name == main_name
-
-          mapping[alias_name] = {name: main_name, github: github}
-        end
+        mapping[alias_name] = {name: speaker.name, github: speaker.github}
       end
-      mapping
     end
   end
 
