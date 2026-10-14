@@ -53,6 +53,26 @@ class Static::Validators::EventRecordingsPublishedDateTest < ActiveSupport::Test
     end
   end
 
+  test "forbids published_at when there is no videos.yml" do
+    with_temp_event({"kind" => "conference", "end_date" => "2024-12-31", "recordings_published_date" => "2025-01-01"}, nil) do |path|
+      errors = Static::Validators::EventRecordingsPublishedDate.new(file_path: path).errors
+      assert errors.any? { |e| e.to_h["message"].include?("must not be set unless the majority") }
+    end
+  end
+
+  test "forbids published_at when videos.yml has no talks" do
+    with_temp_event({"kind" => "conference", "end_date" => "2024-12-31", "recordings_published_date" => "2025-01-01"}, []) do |path|
+      errors = Static::Validators::EventRecordingsPublishedDate.new(file_path: path).errors
+      assert errors.any? { |e| e.to_h["message"].include?("must not be set unless the majority") }
+    end
+  end
+
+  test "no videos.yml and no published_at is valid" do
+    with_temp_event({"kind" => "conference", "end_date" => "2024-12-31"}, nil) do |path|
+      assert_empty Static::Validators::EventRecordingsPublishedDate.new(file_path: path).errors
+    end
+  end
+
   test "terminal states are excluded from the majority so an all-recorded event still requires published_at" do
     # 2 watchable + 5 not_recorded: only 2 resolvable talks, both published -> majority.
     videos = watchable(2, dates: %w[2025-01-01 2025-01-02]) + providers("not_recorded", 5)
@@ -117,7 +137,7 @@ class Static::Validators::EventRecordingsPublishedDateTest < ActiveSupport::Test
     event_path = File.join(dir, "data", "testconf", "2025", "event.yml")
     FileUtils.mkdir_p(File.dirname(event_path))
     File.write(event_path, event.to_yaml)
-    File.write(File.join(File.dirname(event_path), "videos.yml"), videos.to_yaml)
+    File.write(File.join(File.dirname(event_path), "videos.yml"), videos.to_yaml) unless videos.nil?
     yield event_path
   ensure
     FileUtils.rm_rf(dir)

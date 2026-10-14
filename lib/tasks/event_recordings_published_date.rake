@@ -41,11 +41,7 @@ namespace :event_recordings_published_date do
         next
       end
 
-      next unless File.exist?(videos_path)
-
-      items = top_level_items.call(videos_path)
-
-      next if items.empty?
+      items = File.exist?(videos_path) ? top_level_items.call(videos_path) : []
 
       providers = items.map { |item| item.value_at("video_provider") }
 

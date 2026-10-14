@@ -49,11 +49,8 @@ module Static
 
         videos_path = File.join(File.dirname(@file_path), "videos.yml")
 
-        return [] unless File.exist?(videos_path)
-
-        @videos = Yerba.parse_file(videos_path).to_a
-
-        return [] unless @videos.is_a?(Array) && @videos.any?
+        videos = Yerba.parse_file(videos_path).to_a if File.exist?(videos_path)
+        @videos = videos.is_a?(Array) ? videos : []
 
         errors = []
 
