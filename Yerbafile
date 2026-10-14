@@ -361,6 +361,10 @@ rules:
             - additional_resources
             - alternative_recordings
 
+      - sort:
+          by: ".date .start_time .end_time"
+          missing: keep
+
   - files: "data/speakers.yml"
     pipeline:
       - schema:
