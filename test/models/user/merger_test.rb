@@ -265,6 +265,17 @@ class User::MergerTest < ActiveSupport::TestCase
     assert_equal 1, @user_to_keep.event_participations.where(event: event, attended_as: :speaker).count
   end
 
+  test "drops interested participation when the merged user attended the same event" do
+    series = EventSeries.create!(name: "Test Series", slug: "test-series-interested")
+    event = Event.create!(name: "Test Event", slug: "test-event-interested", series: series, date: Date.today)
+    EventParticipation.create!(user: @user_to_keep, event: event, attended_as: :interested)
+    EventParticipation.create!(user: @user_to_merge, event: event, attended_as: :visitor)
+
+    merge
+
+    assert_equal ["visitor"], @user_to_keep.event_participations.where(event: event).pluck(:attended_as)
+  end
+
   test "does not duplicate favorite_users already on user_to_keep" do
     other_user = User.create!(name: "Other User", github_handle: "other-fav-merge")
     FavoriteUser.create!(user: @user_to_keep, favorite_user: other_user)

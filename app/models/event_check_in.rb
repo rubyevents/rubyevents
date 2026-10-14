@@ -47,7 +47,7 @@ class EventCheckIn < ApplicationRecord
   def ensure_event_participation
     return unless user
 
-    return if EventParticipation.exists?(user_id: user.id, event_id: event_id)
+    return if EventParticipation.attending.exists?(user_id: user.id, event_id: event_id)
 
     EventParticipation.create(user: user, event: event, attended_as: :visitor)
   end

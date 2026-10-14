@@ -61,7 +61,7 @@ class ProfilesController < ApplicationController
     @talks_by_kind = @talks.group_by(&:kind)
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
     @events = @user.participated_events.includes(:series).in_order_of(:attended_as, EventParticipation.attended_as.keys)
-    @stickers = Sticker.for_user(@user, events: @events)
+    @stickers = Sticker.for_user(@user, events: @user.going_events)
 
     event_participations = @user.event_participations.includes(:event).where(event: @events).in_order_of(:attended_as, EventParticipation.attended_as.keys)
 
@@ -75,8 +75,7 @@ class ProfilesController < ApplicationController
       @events = @events.to_a + checked_in_only_events.to_a
     end
 
-    country_scope = @events.is_a?(Array) ? Event.where(id: @events.map(&:id)) : @events
-    @countries_with_events = country_scope.grouped_by_country
+    @countries_with_events = @user.all_attended_events.grouped_by_country
 
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
@@ -175,7 +174,7 @@ class ProfilesController < ApplicationController
 
   def set_mutual_events
     @mutual_events = if Current.user
-      @user.participated_events.where(id: Current.user.participated_events).order(start_date: :desc)
+      @user.going_events.where(id: Current.user.going_events).order(start_date: :desc)
     else
       Event.none
     end

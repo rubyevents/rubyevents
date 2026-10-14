@@ -23,6 +23,9 @@
 #  user_id   (user_id => users.id)
 #
 class EventParticipation < ApplicationRecord
+  ATTENDING_ROLES = %w[keynote_speaker speaker visitor].freeze
+  SPEAKER_ROLES = %w[speaker keynote_speaker].freeze
+
   # associations
   belongs_to :user
   belongs_to :event
@@ -30,23 +33,41 @@ class EventParticipation < ApplicationRecord
   # validations
   validates :user_id, uniqueness: {scope: [:event_id, :attended_as]}
 
-  # enums
-  enum :attended_as, %w[keynote_speaker speaker visitor].index_by(&:itself), prefix: true
+  # enums - order defines main_participation_to priority
+  enum :attended_as, %w[keynote_speaker speaker visitor interested].index_by(&:itself), prefix: true
+
+  # scopes
+  scope :attending, -> { where(attended_as: ATTENDING_ROLES) }
+  scope :interested, -> { where(attended_as: :interested) }
 
   # callbacks
-  after_create_commit :dedupe_with_speaker_role
+  after_create_commit :dedupe_participation_status
 
   def name
     "#{user.name} - #{event.name} - #{attended_as}"
   end
 
+  def attending?
+    ATTENDING_ROLES.include?(attended_as)
+  end
+
   private
 
-  def dedupe_with_speaker_role
-    if attended_as_visitor?
-      destroy if user.event_participations.where(event_id:, attended_as: [:speaker, :keynote_speaker]).exists?
-    else
-      user.event_participations.attended_as_visitor.where(event_id:).delete_all
+  def dedupe_participation_status
+    if attended_as_keynote_speaker? || attended_as_speaker?
+      user.event_participations.where(event_id:, attended_as: [:visitor, :interested]).delete_all
+    elsif attended_as_visitor?
+      if user.event_participations.where(event_id:, attended_as: SPEAKER_ROLES).exists?
+        destroy
+      else
+        user.event_participations.attended_as_interested.where(event_id:).delete_all
+      end
+    elsif attended_as_interested?
+      if user.event_participations.where(event_id:, attended_as: SPEAKER_ROLES).exists?
+        destroy
+      else
+        user.event_participations.attended_as_visitor.where(event_id:).delete_all
+      end
     end
   end
 end

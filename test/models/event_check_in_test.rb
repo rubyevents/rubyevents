@@ -99,4 +99,14 @@ class EventCheckInTest < ActiveSupport::TestCase
       EventCheckIn.create!(connect_id: "PASS123", event: @event, checked_in_at: Time.current)
     end
   end
+
+  test "upgrades an interested participation to visitor on check-in" do
+    user = users(:one)
+    user.connected_accounts.create!(provider: :passport, uid: "PASS123")
+    user.event_participations.create!(event: @event, attended_as: :interested)
+
+    EventCheckIn.create!(connect_id: "PASS123", event: @event, checked_in_at: Time.current)
+
+    assert_equal ["visitor"], user.event_participations.where(event: @event).pluck(:attended_as)
+  end
 end

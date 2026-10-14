@@ -89,7 +89,7 @@ class Profiles::WrappedController < ApplicationController
       .where(watch_lists: {user_id: @user.id})
       .count
 
-    @events_attended_in_year = @user.participated_events
+    @events_attended_in_year = @user.going_events
       .where(start_date: year_range)
       .includes(:series)
       .order(start_date: :asc)
@@ -201,6 +201,7 @@ class Profiles::WrappedController < ApplicationController
 
     @ruby_friends_met = User
       .joins(:event_participations)
+      .merge(EventParticipation.attending)
       .where(event_participations: {event_id: @events_attended_in_year.pluck(:id)})
       .where.not(id: @user.id)
       .where.not("LOWER(users.name) IN (?)", ["tbd", "todo", "tba", "speaker tbd", "speaker tba"])
@@ -240,7 +241,7 @@ class Profiles::WrappedController < ApplicationController
     @total_watch_time_seconds = @watched_talks_in_year.sum(&:progress_seconds)
     @total_watch_time_hours = (@total_watch_time_seconds / 3600.0).round(1)
 
-    @events_attended_in_year = @user.participated_events.where(start_date: year_range)
+    @events_attended_in_year = @user.going_events.where(start_date: year_range)
     @talks_given_in_year = @user.kept_talks.where(date: year_range)
     @countries_visited = @events_attended_in_year.map(&:country).compact.uniq
 
@@ -267,7 +268,7 @@ class Profiles::WrappedController < ApplicationController
 
     @watched_talks_in_year = @user.watched_talks.where(watched_at: year_range)
     @total_talks_watched = @watched_talks_in_year.count
-    @events_attended_in_year = @user.participated_events.where(start_date: year_range)
+    @events_attended_in_year = @user.going_events.where(start_date: year_range)
     @talks_given_in_year = @user.kept_talks.where(date: year_range)
     @countries_visited = @events_attended_in_year.map(&:country).compact.uniq
     @share_url = profile_wrapped_index_url(profile_slug: @user.to_param)
@@ -426,6 +427,7 @@ class Profiles::WrappedController < ApplicationController
 
     User
       .joins(:event_participations)
+      .merge(EventParticipation.attending)
       .where(event_participations: {event_id: event_ids})
       .where.not(id: @user.id)
       .where.not("LOWER(users.name) IN (?)", ["tbd", "todo", "tba", "speaker tbd", "speaker tba"])
@@ -435,7 +437,7 @@ class Profiles::WrappedController < ApplicationController
       .limit(10)
       .map do |buddy|
         shared_events = @events_attended_in_year.where(
-          id: buddy.event_participations.where(event_id: event_ids).pluck(:event_id)
+          id: buddy.event_participations.attending.where(event_id: event_ids).pluck(:event_id)
         )
         OpenStruct.new(
           user: buddy,
