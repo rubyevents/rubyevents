@@ -84,7 +84,7 @@ module DataFilesHelper
     absolute = Rails.root.join(repo_relative_path)
     return 1 unless File.exist?(absolute)
 
-    Static::VideosFile.new(absolute.to_s).find_by(id: id)&.line || 1
+    Static::Talk.in_file(absolute.to_s).find_by(id: id)&.source_line || 1
   rescue => e
     Rails.logger.debug { "videos.yml line lookup failed for #{repo_relative_path} (#{id}): #{e.message}" }
 

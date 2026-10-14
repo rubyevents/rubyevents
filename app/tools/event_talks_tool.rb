@@ -17,9 +17,7 @@ class EventTalksTool < RubyLLM::Tool
       return {error: "No videos.yml found for event '#{event.title}'"}
     end
 
-    videos = Static::Talk.all.select do |video|
-      video.file_path == videos_file
-    end
+    videos = Static::Talk.in_file(videos_file).to_a
 
     {
       event_slug: event.slug,
@@ -38,6 +36,7 @@ class EventTalksTool < RubyLLM::Tool
   def video_to_hash(video)
     {
       title: video.title,
+      parent_talk: video.parent&.id,
       speakers: video.speakers,
       date: video.date,
       video_provider: video.video_provider,

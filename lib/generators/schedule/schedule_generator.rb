@@ -18,7 +18,7 @@ class ScheduleGenerator < Generators::EventBase
     end_date = static_event.end_date
     @days = options[:days] || (start_date..end_date).to_a
     @day_start = Time.parse(options[:day_start])
-    videos_count = options[:videos_count] || Static::Talk.where_event_slug(options[:event]).count
+    videos_count = options[:videos_count] || static_event.talks.top_level.count
     @talks_per_half_day = (videos_count / (@days.size * 2)).ceil
   end
 

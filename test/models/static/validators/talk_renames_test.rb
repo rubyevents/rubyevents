@@ -63,11 +63,11 @@ class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
     ]
 
     with_temp_video(videos) do |path|
-      baseline_file = Static::VideosFile.parse(BASELINE.to_yaml)
+      baseline_file = Static::Talk.parse(BASELINE.to_yaml)
       validator = Static::Validators::TalkRenames.new(file_path: path, baseline: baseline_file)
 
       assert_equal ["jane-doe-testconf-2024"], validator.renamed_talks.values
-      assert_equal "jane-doe-keynote-testconf-2024", validator.renamed_talks.keys.first.value_at("id")
+      assert_equal "jane-doe-keynote-testconf-2024", validator.renamed_talks.keys.first.id
       assert_empty validator.disappeared_ids
     end
   end
@@ -197,7 +197,7 @@ class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
   end
 
   def errors_for(path, baseline: BASELINE)
-    baseline_file = Static::VideosFile.parse(baseline.to_yaml)
+    baseline_file = Static::Talk.parse(baseline.to_yaml)
 
     Static::Validators::TalkRenames.new(file_path: path, baseline: baseline_file).errors
   end

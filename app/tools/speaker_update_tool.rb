@@ -18,12 +18,9 @@ class SpeakerUpdateTool < RubyLLM::Tool
   UPDATABLE_FIELDS = %w[slug github twitter linkedin website mastodon bluesky speakerdeck].freeze
 
   def execute(name:, **fields)
-    speaker = speakers_file.find_by(name: name)
+    speaker = speakers.find_by(name: name)
 
     return {error: "Speaker '#{name}' not found in speakers.yml"} unless speaker
-
-    index = speakers_file.index_by(:name)[name]
-    return {error: "Could not find index for speaker '#{name}'"} unless index
 
     updates = fields.select { |key, value| UPDATABLE_FIELDS.include?(key.to_s) && !value.nil? }
     return {error: "No fields to update. Provide at least one of: #{UPDATABLE_FIELDS.join(", ")}"} if updates.empty?
@@ -43,27 +40,24 @@ class SpeakerUpdateTool < RubyLLM::Tool
       new_slug = updates[:slug].to_s
 
       if old_slug.present? && old_slug != new_slug
-        existing_aliases = speaker["aliases"] || []
-
-        unless existing_aliases.any? { |a| a["slug"] == old_slug }
-          alias_entry = {name: name, slug: old_slug}
-          speakers_file.document.root[index]["aliases"] = (Array(existing_aliases) + [alias_entry])
+        unless Array(speaker["aliases"]).any? { |a| a["slug"] == old_slug }
+          speaker.add_alias(name: name, slug: old_slug)
           alias_created = true
         end
       end
     end
 
     updates.each do |key, value|
-      speakers_file.document.set("[#{index}].#{key}", value.to_s)
+      speaker[key] = value.to_s
     end
 
-    speakers_file.save!
+    speakers.save!
 
     result = {
       success: true,
       speaker: name,
       updated_fields: updates.transform_values(&:to_s),
-      file: Static::SpeakersFile::SPEAKERS_PATH
+      file: speakers.relative_path
     }
 
     result[:alias_created] = "#{name} (#{old_slug})" if alias_created

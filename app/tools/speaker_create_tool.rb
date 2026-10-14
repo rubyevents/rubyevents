@@ -25,13 +25,13 @@ class SpeakerCreateTool < RubyLLM::Tool
       name = profile["name"].presence || github
     end
 
-    if speakers_file.find_by(name: name)
+    if speakers.find_by(name: name)
       return {error: "Speaker '#{name}' already exists in speakers.yml"}
     end
 
     slug = (slug || name.parameterize).to_s
 
-    if speakers_file.index_by(:slug)[slug]
+    if speakers.find_by(slug: slug)
       return {error: "A speaker with slug '#{slug}' already exists in speakers.yml"}
     end
 
@@ -50,15 +50,15 @@ class SpeakerCreateTool < RubyLLM::Tool
     end
 
     attributes = fields.reject { |_, v| v.nil? }
-    speakers_file.add(name: name, github: github.to_s, slug: slug, **attributes)
-    speakers_file.save!
+    speakers.add(name: name, github: github.to_s, slug: slug, **attributes)
+    speakers.save!
 
     check_speakers_file({
       success: true,
       speaker: name,
       slug: slug,
       github: github.to_s,
-      file: Static::SpeakersFile::SPEAKERS_PATH
+      file: speakers.relative_path
     })
   rescue => e
     {error: e.message}

@@ -28,7 +28,7 @@ class SeedTest < ActiveSupport::TestCase
       # ensure that all talks have a date
       assert_equal Talk.where(date: nil).count, 0
 
-      static_video_ids = Static::Talk.pluck(:video_id)
+      static_video_ids = Static::Talk.top_level.pluck(:video_id)
       talk_video_ids = Talk.all.pluck(:video_id)
       duplicate_ids = static_video_ids.tally.select { |_, count| count > 1 }
       assert User.speakers.count >= 3000

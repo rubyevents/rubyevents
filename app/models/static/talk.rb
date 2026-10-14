@@ -2,6 +2,9 @@
 
 module Static
   class Talk < Yerba::Record::Base
+    VIDEOS_GLOB = "data/**/videos.yml"
+    SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
+
     self.glob = "**/videos.yml"
     self.base_path = Rails.root.join("data")
     self.flatten = true
@@ -9,54 +12,77 @@ module Static
     schema VideoSchema
 
     belongs_to :event
-
     has_one :series, through: :event
+    has_many :talks, nested: true
+
+    scope :top_level, -> { where.missing(:parent) }
 
     references :speakers
 
-    SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
+    add_index :id
+    add_index :video_id
 
-    class << self
-      def child_talks
-        @child_talks ||= all.flat_map(&:talks).compact
+    def self.find_by_static_id(id)
+      find_by(id: id)
+    end
+
+    def self.find_by_video_id(video_id)
+      find_by(video_id: video_id)
+    end
+
+    def self.youtube_missing_published_at
+      glob = Rails.root.join(VIDEOS_GLOB).to_s
+
+      top_level = Yerba::Collection.find(glob, "[]", condition: ".video_provider == youtube")
+      talks = Yerba::Collection.find(glob, "[].talks[]", condition: ".video_provider == youtube")
+
+      (Array(top_level) + Array(talks)).select do |entry|
+        published_at = entry["published_at"]
+        published_at.nil? || published_at.to_s.strip.empty? || published_at == "TODO"
+      end
+    end
+
+    def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+      import!(index: index)
+    end
+
+    def self.import!(event: nil, index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
+      imported = {}
+
+      all.each do |talk|
+        parent_talk = talk.parent && imported[talk.parent]
+        next if talk.parent && parent_talk.nil?
+
+        imported[talk] = talk.import!(event: event, parent_talk: parent_talk, index: index)
       end
 
-      def child_talks_map
-        @child_talks_map ||= child_talks.to_h { |talk| [talk.id, talk] }
-      end
+      imported.values.compact
+    end
 
-      def all_talks
-        @all_talks ||= all.to_a + child_talks
-      end
+    def self.pairs
+      top_level.map { |talk| [talk, talk.talks.to_a] }
+    end
 
-      def all_talks_map
-        @all_talks_map ||= all_talks.to_h { |talk| [talk.id, talk] }
-      end
+    def self.ids
+      all.filter_map(&:id)
+    end
 
-      def find_child_talk_by_id(id)
-        child_talks_map[id]
-      end
+    def self.old_ids
+      all.filter_map(&:old_id)
+    end
 
-      def find_by_static_id(id)
-        all_talks_map[id]
-      end
+    def self.removed_ids
+      all.documents.flat_map do |document|
+        next [] if document.path.blank?
 
-      def where_event_slug(event_slug)
-        all.select { |video| video.relative_file_path&.include?("/#{event_slug}/") }
-      end
+        event_file = File.join(File.dirname(document.path.to_s), "event.yml")
 
-      def import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
-        all.each { |video| video.import!(index: index) }
+        File.exist?(event_file) ? Array(Yerba.parse_file(event_file).value_at("removed_talk_ids")) : []
       end
+    end
 
-      def unload!
-        super
-
-        @child_talks = nil
-        @child_talks_map = nil
-        @all_talks = nil
-        @all_talks_map = nil
-      end
+    def self.talks_by_id
+      all.index_by(&:id).except(nil)
     end
 
     def old_id
@@ -123,19 +149,6 @@ module Static
       end
     end
 
-    def talks
-      @talks ||= begin
-        talk_data = self["talks"]
-        return [] if talk_data.blank?
-
-        Array(talk_data).filter_map do |talk|
-          Static::Talk.new(talk.freeze, file_path: file_path)
-        rescue Yerba::ParseError
-          nil
-        end
-      end
-    end
-
     def meta_talk?
       attributes.key?("talks")
     end
@@ -155,10 +168,6 @@ module Static
       talk.update_from_yml_metadata!(event: event)
 
       Search::Backend.index(talk) if index
-
-      talks.each do |child_video|
-        child_video.import!(event: event, parent_talk: talk, index: index)
-      end
 
       talk
     rescue ActiveRecord::RecordInvalid => e

@@ -9,9 +9,9 @@ module Yerba
 
       # raw      — the Yerba::Sequence (or Array) of strings from the source document, or a callable returning it
       # values   — optional plain Array of the current values, used for reads so the CST isn't touched
-      # resolver — a callable that takes a name and returns an Entry or nil
-      # creator  — a callable that takes a name and creates + returns an Entry
-      # entry    — the parent Entry (for save! delegation)
+      # resolver — a callable that takes a name and returns a record or nil
+      # creator  — a callable that takes a name and creates + returns a record
+      # entry    — the record the references belong to
       def initialize(raw:, resolver:, values: nil, creator: nil, entry: nil)
         @raw = raw
         @values = values

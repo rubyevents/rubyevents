@@ -168,4 +168,4 @@ If the speaker has multiple aliases, they'll be included as aliases.
       slug: "other-name"
 ```
 
-To update a speaker programmatically, use `Static::SpeakersFile` with a rails runner.
+To update a speaker programmatically, use `Static::Speaker` with a rails runner, e.g. `Static::Speaker.upsert(name: "Speaker Name", github: "github_handle")` followed by `Static::Speaker.save!`, or `Static::Speaker.find_by(name: "Speaker Name").add_alias(name: "Other Name")` and `save!`.

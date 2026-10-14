@@ -15,7 +15,7 @@ class Event::DataFileTest < ActiveSupport::TestCase
     assert_equal @static_event.sponsors.map(&:attributes), @event.sponsors_file.entries
     assert_equal @static_event.cfps.map(&:attributes), @event.cfp_file.entries
     assert_equal @static_event.involvements.map(&:attributes), @event.involvements_file.entries
-    assert_equal @static_event.talks.map(&:attributes), @event.videos_file.entries
+    assert_equal @static_event.talks.where.missing(:parent).map(&:attributes), @event.videos_file.entries
   end
 
   test "has_one files read through the Static::Event associations" do

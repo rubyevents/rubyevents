@@ -44,7 +44,7 @@ module Static
         attr_writer :glob
 
         def glob
-          @glob ||= Rails.root.join(Static::VideosFile::VIDEOS_GLOB).to_s
+          @glob ||= Rails.root.join(Static::Talk::VIDEOS_GLOB).to_s
         end
 
         def duplicate_errors(files:)
@@ -80,17 +80,18 @@ module Static
 
         def file_references(files)
           files.flat_map do |file|
-            file.talks.flat_map do |node|
+            file.flat_map do |talk|
               KEYS.filter_map do |key|
-                scalar = node[key]
-                next unless scalar
+                next unless talk.key?(key)
+
+                location = talk.source_location(key)
 
                 {
                   key: key,
-                  value: scalar.value,
+                  value: talk[key],
                   file: file.relative_path,
-                  line: scalar.location&.start_line || 1,
-                  end_line: scalar.location&.end_line
+                  line: location&.start_line || 1,
+                  end_line: location&.end_line
                 }
               end
             end

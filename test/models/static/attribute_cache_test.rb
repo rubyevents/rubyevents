@@ -115,14 +115,19 @@ class Yerba::Record::AttributeCacheTest < ActiveSupport::TestCase
   def count_yerba_calls(&block)
     count = 0
 
-    trace = TracePoint.new(:call, :c_call) do |point|
+    trace = TracePoint.new(:c_call) do |point|
       owner = point.defined_class
       owner = owner.attached_object if owner.respond_to?(:singleton_class?) && owner.singleton_class?
       name = owner.is_a?(Module) ? owner.name.to_s : ""
 
       next if name == "Yerba::Document" && point.method_id == :values
 
-      count += 1 if name.start_with?("Yerba::") && !name.start_with?("Yerba::Record")
+      next unless name.start_with?("Yerba::") && !name.start_with?("Yerba::Record")
+
+      # attr_readers like `Yerba::Selector#segments` are C methods too, but defined in Ruby source
+      next if point.self.method(point.method_id).source_location
+
+      count += 1
     end
 
     trace.enable(&block)

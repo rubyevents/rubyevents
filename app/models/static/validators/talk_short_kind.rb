@@ -29,7 +29,7 @@ module Static
       def validate
         return [] unless applicable?
 
-        videos_file.video_pairs.flat_map do |video, nested|
+        videos_file.pairs.flat_map do |video, nested|
           talk_errors(video) + nested.flat_map { |talk| talk_errors(talk) }
         end
       end
@@ -37,18 +37,18 @@ module Static
       private
 
       def videos_file
-        @videos_file ||= Static::VideosFile.wrap(@file_path, @document)
+        @videos_file ||= Static::Talk.in_file(@file_path, document: @document)
       end
 
       def talk_errors(node)
-        return [] unless node.value_at("kind").to_s.strip.empty?
+        return [] unless node["kind"].to_s.strip.empty?
 
         duration = CueDuration.duration_in_seconds(node)
         return [] if duration.nil?
         return [] unless duration < SHORT_DURATION_THRESHOLD
 
         formatted = Duration.seconds_to_formatted_duration(duration, raise: false)
-        location = node["start_cue"]&.location || node["title"]&.location
+        location = node.source_location("start_cue") || node.source_location("title")
 
         message = "is only #{formatted} long (under 10 minutes) but has no explicit kind. Short segments are usually not regular talks. Add a `kind` (#{::Talk.kinds.keys}) to classify it, or set `kind: \"talk\"` if it really is a short talk."
 

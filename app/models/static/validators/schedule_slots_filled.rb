@@ -34,7 +34,7 @@ module Static
       def validate
         return [] unless applicable?
 
-        @talks_by_time = talks.group_by { |talk| [talk.value_at("date"), talk.value_at("start_time"), talk.value_at("end_time")] }
+        @talks_by_time = talks.group_by { |talk| [talk["date"], talk["start_time"], talk["end_time"]] }
 
         grid_rows.filter_map { |day, row| error_for(day, row) }
       end
@@ -70,7 +70,7 @@ module Static
         return @talks if defined?(@talks)
 
         @talks = if File.exist?(videos_path)
-          Static::VideosFile.new(videos_path).top_level_talks
+          Static::Talk.in_file(videos_path).top_level.to_a
         else
           []
         end

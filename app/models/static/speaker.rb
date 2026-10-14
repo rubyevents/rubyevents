@@ -11,30 +11,100 @@ module Static
     add_index :slug
     add_index :github
 
+    self.order_by = "name"
+
+    extend Integrity
+
+    SOCIAL_HANDLE_FIELDS = %w[github twitter mastodon bluesky linkedin speakerdeck].freeze
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
+
+    class InvalidSpeakerError < StandardError; end
+    class DuplicateSpeakerError < StandardError; end
+
+    def self.find_by(**criteria)
+      if criteria.any? && criteria.keys.all? { |key| key.in?(%i[name slug github]) }
+        return find_speaker(**criteria)
+      end
+
+      super
+    end
 
     def self.find_or_create_by(name:)
       find_by(name: name) || create(name: name)
     end
 
+    def self.find_speaker(name: nil, slug: nil, github: nil)
+      name = name&.strip
+      slug = slug&.strip
+      github = github&.strip
+
+      (slug.present? && all.find_by(slug: slug)) ||
+        (github.present? && all.find_by(github: github)) ||
+        (name.present? && all.find_by(name: name)) ||
+        nil
+    end
+
+    def self.add(name:, github: "", slug: nil, **attributes)
+      name = name.to_s.strip
+      github = github.to_s.strip
+      slug = slug&.strip
+
+      raise InvalidSpeakerError, "Speaker name cannot be blank" if name.blank?
+      raise DuplicateSpeakerError, "Speaker '#{name}' already exists" if known_names.include?(name)
+      raise DuplicateSpeakerError, "A speaker with GitHub handle '#{github}' already exists" if github.present? && all.find_by(github: github)
+
+      all.build({"name" => name, "github" => github, "slug" => slug || name.parameterize}.merge(clean_attributes(attributes)))
+    end
+
+    def self.upsert(name:, github: "", **attributes)
+      raise InvalidSpeakerError, "Speaker name cannot be blank" if name.blank?
+
+      speaker = find_speaker(name: name, github: github)
+      return add(name: name, github: github, **attributes) unless speaker
+
+      speaker.assign(github: github, **attributes)
+    end
+
     def self.create(name:, **attributes)
-      begin
-        speakers_file.add(name: name, **attributes)
-        speakers_file.save!
-      ensure
-        unload!
-      end
+      speakers = all
+
+      add(name: name, **attributes)
+      speakers.save!
 
       find_by(name: name)
+    ensure
+      unload!
     end
 
-    def self.speakers_file
-      @speakers_file ||= Static::SpeakersFile.new(all.document.path, collection: all)
+    def self.save!
+      all.save!
     end
 
-    def self.unload!
-      super
-      @speakers_file = nil
+    def self.changed?
+      all.changed?
+    end
+
+    def self.clean_attributes(attributes)
+      attributes
+        .transform_keys(&:to_s)
+        .reject { |_, value| value.blank? }
+        .transform_values { |value| value.is_a?(String) ? value.strip : value }
+    end
+
+    def assign(**attributes)
+      self.class.clean_attributes(attributes).each { |key, value| self[key] = value }
+
+      self
+    end
+
+    def add_alias(name:, slug: nil)
+      self["aliases"] = Array(self["aliases"]) + [{"name" => name, "slug" => (slug || name.parameterize).to_s}]
+
+      self
+    end
+
+    def social_handle?
+      SOCIAL_HANDLE_FIELDS.any? { |field| self[field].to_s.strip.present? }
     end
 
     def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)

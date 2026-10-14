@@ -78,7 +78,7 @@ class Static::Validators::UniqueTalkIdsTest < ActiveSupport::TestCase
   private
 
   def errors_for(paths)
-    files = paths.map { |path| Static::VideosFile.new(path) }
+    files = paths.map { |path| Static::Talk.in_file(path) }
 
     Static::Validators::UniqueTalkIds.duplicate_errors(files: files)
   end

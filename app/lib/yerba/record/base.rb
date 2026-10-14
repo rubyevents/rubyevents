@@ -9,13 +9,22 @@ module Yerba
       include Associations
       include Schema
 
-      attr_reader :document, :index
+      attr_reader :document, :parent
+      attr_reader :parsed_selector
 
-      def initialize(attributes = nil, document: nil, index: nil, file_path: nil, **kwargs)
+      def self.to_selector(selector)
+        return selector if selector.is_a?(Yerba::Selector)
+        return nil if selector.blank?
+
+        Yerba::Selector.parse(selector.to_s)
+      end
+
+      def initialize(attributes = nil, document: nil, index: nil, selector: nil, file_path: nil, parent: nil, **kwargs)
         if document
           @document = document
-          @index = index
+          @parsed_selector = Base.to_selector(selector) || (index && Yerba::Selector.build([index]))
           @file_path = file_path
+          @parent = parent
           @new_record = false
         elsif attributes.is_a?(Hash) || kwargs.any?
           attrs = (attributes || {}).merge(kwargs).transform_keys(&:to_s)
@@ -43,20 +52,63 @@ module Yerba
         reset_attributes_cache!
 
         if scalar_node?
-          document.root[@index] = value if key.to_s == self.class.scalar_field
+          document.root[index] = value if key.to_s == self.class.scalar_field
         else
           node[key.to_s] = value
         end
       end
 
+      def key?(key)
+        attributes_cache.key?(key.to_s)
+      end
+
+      def insert(key, value, before: nil, after: nil)
+        reset_attributes_cache!
+
+        node.insert(key.to_s, value, before: before&.to_s, after: after&.to_s)
+      end
+
+      def delete(key)
+        return unless key?(key)
+
+        reset_attributes_cache!
+
+        node.delete(key.to_s)
+      end
+
+      def source_location(key = nil)
+        target = key ? node[key.to_s] : node
+
+        target.respond_to?(:location) ? target.location : nil
+      end
+
+      def source_line(key = nil)
+        source_location(key)&.start_line
+      end
+
+      def selector
+        @selector ||= parsed_selector&.to_s
+      end
+
+      def index
+        segment = parsed_selector&.segments&.last
+
+        segment if segment.is_a?(Integer)
+      end
+
+      def nested?
+        !parent.nil?
+      end
+
       def save!
         if new_record?
           path = persist_path
+
           raise "Cannot save: no persist_path defined" unless path
           raise ArgumentError, "#{self.class.name} already exists at #{path}" if File.exist?(path)
 
-          dir = File.dirname(path)
-          FileUtils.mkdir_p(dir) unless File.directory?(dir)
+          directory = File.dirname(path)
+          FileUtils.mkdir_p(directory) unless File.directory?(directory)
 
           validate! if self.class.schema
 
@@ -69,13 +121,18 @@ module Yerba
         end
 
         reset_attributes_cache!
+
+        self.class.reset_loaded!
       end
 
       def destroy
-        raise "Cannot destroy a record without an index" if @index.nil?
+        raise "Cannot destroy a record without an index" if index.nil?
 
-        document.root.delete_at(@index)
+        document.remove_at(parsed_selector.parent.to_s, index)
         document.save!(apply: true)
+
+        reset_attributes_cache!
+        self.class.reset_loaded!
       end
 
       def update(**attributes)
@@ -132,6 +189,19 @@ module Yerba
       def reset_attributes_cache!
         @attributes_cache = nil
         @relative_file_path = nil
+        @nested_collections = nil
+        parent&.reset_attributes_cache!
+      end
+
+      def ==(other)
+        return super if new_record? || !other.is_a?(Base)
+
+        other.class == self.class && other.document.equal?(document) && other.parsed_selector == parsed_selector
+      end
+      alias_method :eql?, :==
+
+      def hash
+        new_record? ? super : [self.class, document.object_id, parsed_selector].hash
       end
 
       def to_yaml
@@ -147,7 +217,7 @@ module Yerba
       end
 
       def node
-        @index ? document.root[@index] : document.root
+        parsed_selector ? document[selector] : document.root
       end
 
       def scalar_node?
@@ -160,18 +230,21 @@ module Yerba
         @attributes_cache ||= if scalar_node?
           {self.class.scalar_field => unwrap(node)}
         else
-          values = document&.values
-          values = values[@index] if @index && values.is_a?(Array)
+          values = parsed_selector ? parsed_selector.dig(document&.values) : document&.values
           values.is_a?(Hash) ? values : {}
         end
       end
 
       def unwrap(value)
         case value
-        when Yerba::Scalar then value.value
-        when Yerba::Sequence then value.map { |item| unwrap(item) }
-        when Yerba::Map then value.to_h
-        else value
+        when Yerba::Scalar
+          value.value
+        when Yerba::Sequence
+          value.map { |item| unwrap(item) }
+        when Yerba::Map
+          value.to_h
+        else
+          value
         end
       end
 

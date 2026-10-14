@@ -45,7 +45,7 @@ module Static
         attr_writer :glob
 
         def glob
-          @glob ||= Rails.root.join(Static::VideosFile::VIDEOS_GLOB).to_s
+          @glob ||= Rails.root.join(Static::Talk::VIDEOS_GLOB).to_s
         end
 
         private

@@ -165,7 +165,7 @@ class GitBaselineTest < ActiveSupport::TestCase
   end
 
   test "changed_since_baseline? is true when a baseline is injected" do
-    baseline = Static::VideosFile.parse([{"id" => "x"}].to_yaml)
+    baseline = Static::Talk.parse([{"id" => "x"}].to_yaml)
     host = Host.new(Rails.root.join(VIDEOS_PATH).to_s, baseline: baseline)
 
     assert host.send(:changed_since_baseline?)

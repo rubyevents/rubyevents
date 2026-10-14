@@ -35,7 +35,7 @@ class Static::WritableTest < ActiveSupport::TestCase
     YAML
 
     document = Yerba.parse_file(File.join(event_dir, "event.yml"))
-    entry = Yerba::Record::Entry.new(document: document)
+    entry = Yerba::Record::Base.new(document: document)
 
     entry["title"] = "Updated Event"
     entry.save!
