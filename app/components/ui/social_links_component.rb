@@ -9,6 +9,7 @@ class Ui::SocialLinksComponent < ApplicationComponent
     {field: "bsky", label: "Bluesky", icon: "bluesky", url: ->(v) { v.start_with?("http") ? v : "https://bsky.app/profile/#{v}" }},
     {field: "facebook", label: "Facebook", icon: "facebook", url: ->(v) { v.start_with?("http") ? v : "https://www.facebook.com/#{v}" }},
     {field: "github", label: "GitHub", icon: "github", url: ->(v) { v.start_with?("http") ? v : "https://github.com/#{v}" }},
+    {field: "instagram", label: "Instagram", icon: "instagram", url: ->(v) { v.start_with?("http") ? v : "https://www.instagram.com/#{v}" }},
     {field: "linkedin", label: "LinkedIn", icon: "linkedin", url: ->(v) { v.start_with?("http") ? v : "https://www.linkedin.com/in/#{v}" }},
     {field: "mastodon", label: "Mastodon", icon: "mastodon", url: ->(v) { v.start_with?("http") ? v : "https://#{v}" }},
     {field: "meetup", label: "Meetup", icon: "meetup", url: ->(v) { v.start_with?("http") ? v : "https://www.meetup.com/#{v}" }},
