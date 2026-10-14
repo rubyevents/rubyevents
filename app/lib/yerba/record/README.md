@@ -70,6 +70,15 @@ class Static::Topic < Yerba::Record::Base
 end
 ```
 
+`file_path` and `file_glob` return the full path or glob of a model's files, for code that reads them with Yerba directly:
+
+```ruby
+Static::Speaker.file_path  # => "/.../data/speakers.yml"
+Static::Talk.file_glob     # => "/.../data/**/videos.yml"
+
+Yerba::Collection.get(Static::Talk.file_glob, "[].speakers[]")
+```
+
 ## Schemas
 
 Schemas define the fields on a record. They reuse `RubyLLM::Schema` and serve triple duty: field definitions, validation on save, and MCP tool parameter generation.
@@ -128,6 +137,8 @@ Like an ActiveRecord relation, a collection runs the model's class methods and s
 ```ruby
 class Static::Talk < Yerba::Record::Base
   scope :top_level, -> { where.missing(:parent) }
+  scope :youtube, -> { where(video_provider: "youtube") }
+  scope :youtube_missing_published_at, -> { youtube.where(published_at: [nil, "", "TODO"]) }
 
   def self.ids
     all.filter_map(&:id)
@@ -137,6 +148,7 @@ end
 Static::Talk.ids                 # every videos.yml
 static_event.talks.ids           # one videos.yml
 static_event.talks.top_level
+static_event.talks.youtube_missing_published_at
 Static::Talk.where(kind: "keynote").ids
 ```
 
@@ -388,6 +400,10 @@ speaker.node["name"]            # => Yerba::Scalar
 speaker.node["name"].selector   # => "[42].name"
 speaker.node["name"].source     # => '"Aaron Patterson"' (original YAML text)
 speaker.node.source             # => full YAML text of the entry
+
+speaker.source_line             # => 1234, line of the entry
+speaker.source_line("github")   # => 1235, line of a value
+speaker.source_location("name") # => Yerba::Location (start/end line and column)
 ```
 
 ## Stale File Detection
