@@ -157,14 +157,14 @@ class EventParticipationTest < ActiveSupport::TestCase
     assert_not_includes event.participants, user
   end
 
-  test "attended_events excludes interested events" do
+  test "going_events excludes interested events" do
     user = users(:one)
     event = events(:railsconf_2025)
     EventParticipation.create!(user: user, event: event, attended_as: "interested")
 
     assert_includes user.interested_events, event
     assert_includes user.participated_events, event
-    assert_not_includes user.attended_events, event
+    assert_not_includes user.going_events, event
   end
 
   test "attending scope includes visitor and speaker roles only" do

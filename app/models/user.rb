@@ -112,7 +112,7 @@ class User < ApplicationRecord
   # Event participation associations
   has_many :event_participations, dependent: :destroy
   has_many :participated_events, -> { distinct }, through: :event_participations, source: :event
-  has_many :attended_events, -> {
+  has_many :going_events, -> {
     where(event_participations: {attended_as: EventParticipation::ATTENDING_ROLES}).distinct
   },
     through: :event_participations, source: :event
@@ -130,7 +130,7 @@ class User < ApplicationRecord
   end
 
   def all_attended_events
-    Event.where(id: (attended_events.pluck(:id) + checked_in_events.pluck(:id)).uniq)
+    Event.where(id: (going_events.pluck(:id) + checked_in_events.pluck(:id)).uniq)
   end
 
   def checked_in_event_ids

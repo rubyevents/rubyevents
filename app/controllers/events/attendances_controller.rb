@@ -4,7 +4,7 @@ class Events::AttendancesController < ApplicationController
   before_action :set_event, only: [:show]
 
   def index
-    @events = Current.user.attended_events
+    @events = Current.user.going_events
       .includes(:series, :talks)
       .where.not(end_date: nil)
       .where(end_date: ..Date.today)
