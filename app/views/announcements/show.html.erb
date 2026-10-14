@@ -42,9 +42,9 @@
 
         <% if @announcement.tags.any? %>
           <div class="mt-4 flex flex-wrap gap-2">
-            <% @announcement.tags.each do |tag| %>
-              <%= link_to announcements_path(tag: tag, **permitted_params), class: "badge badge-ghost hover:badge-primary px-2 py-3 text-xs transition-colors" do %>
-                <%= tag %>
+            <% @announcement.tags.each do |tag_name| %>
+              <%= link_to announcements_path(tag: tag_name, **permitted_params), class: "badge badge-ghost hover:badge-primary px-2 py-3 text-xs transition-colors" do %>
+                <%= tag_name %>
               <% end %>
             <% end %>
           </div>

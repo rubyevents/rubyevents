@@ -5,15 +5,15 @@ class SpeakerCreateTool < RubyLLM::Tool
 
   description "Add a new speaker to data/speakers.yml. Use speaker_lookup first to verify the speaker doesn't already exist."
 
-  param :name, desc: "Full name of the speaker (if omitted, fetched from GitHub profile)", required: false
-  param :github, desc: "GitHub username (not a URL). If name is omitted, the GitHub profile name is used.", required: false
-  param :twitter, desc: "Twitter/X handle (without @, not a URL)", required: false
-  param :linkedin, desc: "LinkedIn username (the part after /in/, not a URL)", required: false
-  param :website, desc: "Personal website URL", required: false
-  param :mastodon, desc: "Full Mastodon profile URL (e.g. https://ruby.social/@username)", required: false
-  param :bluesky, desc: "Bluesky handle (not a URL)", required: false
-  param :speakerdeck, desc: "Speakerdeck username (not a URL)", required: false
-  param :slug, desc: "URL-friendly slug (auto-generated from name if not provided)", required: false
+  parameter :name, description: "Full name of the speaker (if omitted, fetched from GitHub profile)", required: false
+  parameter :github, description: "GitHub username (not a URL). If name is omitted, the GitHub profile name is used.", required: false
+  parameter :twitter, description: "Twitter/X handle (without @, not a URL)", required: false
+  parameter :linkedin, description: "LinkedIn username (the part after /in/, not a URL)", required: false
+  parameter :website, description: "Personal website URL", required: false
+  parameter :mastodon, description: "Full Mastodon profile URL (e.g. https://ruby.social/@username)", required: false
+  parameter :bluesky, description: "Bluesky handle (not a URL)", required: false
+  parameter :speakerdeck, description: "Speakerdeck username (not a URL)", required: false
+  parameter :slug, description: "URL-friendly slug (auto-generated from name if not provided)", required: false
 
   def execute(name: nil, slug: nil, github: nil, **fields)
     return {error: "Provide at least a name or a github handle"} if name.blank? && github.blank?
@@ -25,13 +25,13 @@ class SpeakerCreateTool < RubyLLM::Tool
       name = profile["name"].presence || github
     end
 
-    if speakers_file.find_by(name: name)
+    if speakers.find_by(name: name)
       return {error: "Speaker '#{name}' already exists in speakers.yml"}
     end
 
     slug = (slug || name.parameterize).to_s
 
-    if speakers_file.index_by(:slug)[slug]
+    if speakers.find_by(slug: slug)
       return {error: "A speaker with slug '#{slug}' already exists in speakers.yml"}
     end
 
@@ -50,15 +50,15 @@ class SpeakerCreateTool < RubyLLM::Tool
     end
 
     attributes = fields.reject { |_, v| v.nil? }
-    speakers_file.add(name: name, github: github.to_s, slug: slug, **attributes)
-    speakers_file.save!
+    speakers.add(name: name, github: github.to_s, slug: slug, **attributes)
+    speakers.save!
 
     check_speakers_file({
       success: true,
       speaker: name,
       slug: slug,
       github: github.to_s,
-      file: Static::SpeakersFile::SPEAKERS_PATH
+      file: speakers.relative_path
     })
   rescue => e
     {error: e.message}

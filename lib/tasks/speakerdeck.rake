@@ -8,7 +8,7 @@ namespace :speakerdeck do
 
   def validate_speakerdeck_handles
     scanner = Speakerdeck::SlidesScanner.new.scan
-    speakers_file = Static::SpeakersFile.new
+    speakers = Static::Speaker.all
     candidates = scanner.candidates
     multi = scanner.multi_handle_speakers
     passed = true
@@ -30,7 +30,7 @@ namespace :speakerdeck do
     end
 
     missing = candidates.select do |name, _handles|
-      speaker = speakers_file.attributes_for(name: name)
+      speaker = speakers.find_by(name: name)
 
       speaker && speaker["speakerdeck"].nil?
     end
@@ -62,7 +62,7 @@ namespace :speakerdeck do
     puts
 
     scanner = Speakerdeck::SlidesScanner.new.scan
-    speakers_file = Static::SpeakersFile.new
+    speakers = Static::Speaker.all
     multi = scanner.multi_handle_speakers
 
     if multi.any?
@@ -84,11 +84,11 @@ namespace :speakerdeck do
     puts
 
     candidates.each do |name, handles|
-      speaker = speakers_file.find_by(name: name)
+      speaker = speakers.find_by(name: name)
       next unless speaker
 
       handle = handles.first
-      next if speaker.value_at("speakerdeck") == handle
+      next if speaker["speakerdeck"] == handle
 
       speaker["speakerdeck"] = handle
 
@@ -97,7 +97,7 @@ namespace :speakerdeck do
     end
 
     if updated > 0
-      speakers_file.save!
+      speakers.save!
       puts
       puts Gum.style("Updated #{updated} speakers in speakers.yml!", border: "rounded", padding: "0 2", foreground: "2", border_foreground: "2")
     else

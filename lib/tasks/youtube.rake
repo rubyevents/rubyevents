@@ -5,7 +5,7 @@ namespace :youtube do
 
   desc "List YouTube videos missing published_at"
   task missing_published_at: :environment do
-    missing = Static::VideosFile.youtube_videos_missing_published_at
+    missing = Static::Talk.youtube_missing_published_at
 
     if missing.empty?
       puts Gum.style("✓ All YouTube videos have a published_at date", foreground: "2")
@@ -13,9 +13,8 @@ namespace :youtube do
       puts Gum.style("YouTube videos missing published_at (#{missing.size}):", foreground: "1")
       puts
 
-      missing.each do |entry|
-        file = entry["__file"].sub("#{Rails.root}/", "")
-        puts Gum.style("  ❌ #{entry["id"]} (#{entry["video_id"]}) in #{file}", foreground: "1")
+      missing.each do |talk|
+        puts Gum.style("  ❌ #{talk["id"]} (#{talk["video_id"]}) in #{talk.project_file_path}", foreground: "1")
       end
 
       puts
@@ -52,17 +51,9 @@ namespace :youtube do
 
     entries = []
 
-    Static::VideosFile.all.each do |file|
-      file.each_video do |video, _|
-        next unless video.value_at("video_provider") == "youtube"
-
-        entries << {file:, node: video, video_id: video.value_at("video_id").to_s, stored: video.value_at("published_at").to_s.strip}
-      end
-
-      file.each_talk do |talk, _video, _|
-        next unless talk.value_at("video_provider") == "youtube"
-
-        entries << {file:, node: talk, video_id: talk.value_at("video_id").to_s, stored: talk.value_at("published_at").to_s.strip}
+    Static::Talk.all.files.each do |file|
+      file.youtube.each do |talk|
+        entries << {file:, talk:, video_id: talk["video_id"].to_s, stored: talk["published_at"].to_s.strip}
       end
     end
 
@@ -125,15 +116,15 @@ namespace :youtube do
     end
 
     writes.each do |write|
-      node = write[:node]
+      talk = write[:talk]
 
-      if node.key?("published_at")
-        node["published_at"] = write[:desired]
+      if talk.key?("published_at")
+        talk["published_at"] = write[:desired]
       else
-        node.insert("published_at", write[:desired], after: "date")
+        talk.insert("published_at", write[:desired], after: "date")
       end
 
-      node["published_at"].quote_style = "double"
+      talk.node["published_at"].quote_style = "double"
     end
 
     writes.map { |w| w[:file] }.uniq.each(&:save!)

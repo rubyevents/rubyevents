@@ -153,7 +153,7 @@
                 <ul>
                   <% talks.each do |talk| %>
                     <li>
-                      <%= link_to talk.title, "https://github.com/rubyevents/rubyevents/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %>
+                      <%= link_to talk.title, github_edit_url(talk.static_metadata.project_file_path), target: "_blank" if talk.static_metadata %>
                       (<%= link_to talk.date.to_fs(:long), talk %>, <%= time_ago_in_words(talk.date) %> ago)
                     </li>
                   <% end %>
@@ -194,14 +194,14 @@
                 </div>
 
                 <h3 class="mb-6 mt-3 line-clamp-1">
-                  <pre>Data File: <%= talks.first.static_metadata&.__file_path.inspect %></pre>
+                  <pre>Data File: <%= talks.first.static_metadata&.project_file_path.inspect %></pre>
                 </h3>
 
                 <div class="prose">
                   <ul>
                     <% talks.each do |talk| %>
                       <li>
-                        <%= link_to talk.title, "https://github.com/rubyevents/rubyevents/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %>
+                        <%= link_to talk.title, github_edit_url(talk.static_metadata.project_file_path), target: "_blank" if talk.static_metadata %>
                         (<%= link_to talk.date.to_fs(:long), talk %>)
                       </li>
                     <% end %>
@@ -247,7 +247,7 @@
                 <ul>
                   <% talks.each do |talk| %>
                     <li>
-                      <%= link_to talk.title, "https://github.com/rubyevents/rubyevents/edit/main/#{talk.static_metadata.__file_path}", target: "_blank" if talk.static_metadata %>
+                      <%= link_to talk.title, github_edit_url(talk.static_metadata.project_file_path), target: "_blank" if talk.static_metadata %>
                       (<%= link_to talk.date.to_fs(:long), talk %>, <%= time_ago_in_words(talk.date) %> ago)
                     </li>
                   <% end %>

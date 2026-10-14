@@ -13,7 +13,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -24,7 +24,7 @@ module Static
       end
 
       def self.errors
-        @errors ||= Static::SpeakersFile.new.missing_speaker_references.map do |scalar|
+        @errors ||= Static::Speaker.in_file(Static::Speaker.file_path).missing_speaker_references.map do |scalar|
           Static::Validators::Error.new(
             %(Speaker "#{scalar.value}" not found in data/speakers.yml),
             file_path: scalar.file_path || "",

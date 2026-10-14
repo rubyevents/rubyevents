@@ -2,7 +2,7 @@
 
 class YouTubePlaylistTool < RubyLLM::Tool
   description "Fetch YouTube playlist metadata by playlist ID"
-  param :id, desc: "YouTube playlist id"
+  parameter :id, description: "YouTube playlist id"
 
   def execute(id:)
     playlist = Yt::Playlist.new(id: id)

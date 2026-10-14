@@ -16,7 +16,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -53,7 +53,7 @@ module Static
       end
 
       def videos_file
-        @videos_file ||= Static::VideosFile.new(videos_path)
+        @videos_file ||= Static::Talk.in_file(videos_path)
       end
 
       def known_ids

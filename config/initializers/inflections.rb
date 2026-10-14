@@ -16,6 +16,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym "GitHub"
   inflect.acronym "IOS"
   inflect.acronym "LLM"
+  inflect.acronym "MCP"
   inflect.acronym "RubyEvents"
   inflect.acronym "SQL"
   inflect.acronym "SQLite"

@@ -6,8 +6,8 @@ module Static
       module_function
 
       def duration_in_seconds(node)
-        start_seconds = cue_to_seconds(node.value_at("start_cue"))
-        end_seconds = cue_to_seconds(node.value_at("end_cue"))
+        start_seconds = cue_to_seconds(node["start_cue"])
+        end_seconds = cue_to_seconds(node["end_cue"])
         return nil if start_seconds.nil? || end_seconds.nil?
 
         duration = end_seconds - start_seconds

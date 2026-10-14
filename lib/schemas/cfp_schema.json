@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CFPSchema",
   "type": "object",
   "properties": {
     "link": {
@@ -21,6 +23,5 @@
   "required": [
     "link"
   ],
-  "additionalProperties": false,
-  "strict": true
+  "additionalProperties": false
 }

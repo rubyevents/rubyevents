@@ -40,8 +40,7 @@
 <% end %>
 
 <% find_time_for_talk = ->(t) {
-     return nil unless t
-     slot = time_slot_talks.find { |_, s| s[:talks].any? { |st| st&.id == t.id } }
+     slot = t && time_slot_talks.find { |_, s| s[:talks].any? { |st| st&.id == t.id } }
      slot ? [slot[1][:start_time], slot[1][:end_time]].uniq.join(" - ") : nil
    } %>
 
@@ -158,7 +157,7 @@
 <div class="flex flex-col gap-6">
   <% talk_index = 0 %>
 
-  <% days.each_with_index do |day, day_index| %>
+  <% days.each do |day| %>
     <% date = Date.parse(day.dig("date")) %>
     <% date_string = date.strftime("%A, %b %d") %>
 
@@ -178,7 +177,7 @@
               <span><%= items.first.is_a?(String) ? items.first : items.first&.fetch("title", "") %></span>
             </div>
           <% else %>
-            <% slots.times do |slot_index| %>
+            <% slots.times do %>
               <% schedule_talk = all_talks[talk_index] %>
               <% is_current = schedule_talk&.id == talk.id %>
               <% talk_track = schedule_talk&.static_metadata&.track %>

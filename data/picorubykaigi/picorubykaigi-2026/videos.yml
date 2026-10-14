@@ -1,24 +1,12 @@
 # TODO: Add all talks - docs/ADDING_UNPUBLISHED_TALKS.md
-# TODO: Reorder talks for schedule - docs/ADDING_SCHEDULES.md
 # TODO: Add recordings - docs/ADDING_VIDEOS.md
 ---
-
-- id: "hasumi-hitoshi-picorubykaigi-2026"
-  title: "Keynote"
-  kind: "keynote"
-  date: "2026-10-31"
-  announced_at: "2026-07-10"
-  language: "Japanese"
-  video_provider: "scheduled"
-  video_id: "hasumi-hitoshi-picorubykaigi-2026"
-  description: "" # TODO
-  speakers:
-    - HASUMI Hitoshi
-
 - id: "yukihiro-matz-matsumoto-picorubykaigi-2026"
-  title: "Keynote"
+  title: "Keynote by Yukihiro Matsumoto"
   kind: "keynote"
   date: "2026-10-31"
+  start_time: "10:45"
+  end_time: "11:15"
   announced_at: "2026-07-10"
   language: "Japanese"
   video_provider: "scheduled"
@@ -26,3 +14,141 @@
   description: "" # TODO
   speakers:
     - "Yukihiro \"Matz\" Matsumoto"
+
+- id: "s-h-gamelinks-picorubykaigi-2026"
+  title: "Getting Started with Writing Your Own Kernel with PicoRuby"
+  original_title: "PicoRubyではじめる自作カーネル入門"
+  date: "2026-10-31"
+  start_time: "11:25"
+  end_time: "11:45"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "s-h-gamelinks-picorubykaigi-2026"
+  description: ""
+  speakers:
+    - S-H-GAMELINKS
+
+- id: "shota-osaki-picorubykaigi-2026"
+  title: "Getting Started with Microcontroller Programming with mruby/c and Node-RED"
+  original_title: "mruby/cとNode-REDで始めるマイコンプログラミング"
+  date: "2026-10-31"
+  start_time: "11:50"
+  end_time: "12:10"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "shota-osaki-picorubykaigi-2026"
+  description: ""
+  speakers:
+    - Shota Osaki
+
+- id: "showcase-picorubykaigi-2026"
+  title: "Showcase"
+  date: "2026-10-31"
+  start_time: "13:20"
+  end_time: "14:00"
+  video_provider: "scheduled"
+  video_id: "showcase-picorubykaigi-2026"
+  description: ""
+  talks:
+    - id: "shunsuke-michii-picorubykaigi-2026"
+      title: "Soft Hardware, Softer Software with PicoRuby"
+      date: "2026-10-31"
+      video_provider: "scheduled"
+      video_id: "shunsuke-michii-picorubykaigi-2026"
+      description: ""
+      speakers:
+        - Shunsuke Michii
+
+    - id: "shinta-koyanagi-picorubykaigi-2026"
+      title: "Building a Penlight Controller with PicoRuby"
+      original_title: "PicoRubyで作る制御ペンライト"
+      date: "2026-10-31"
+      video_provider: "scheduled"
+      video_id: "shinta-koyanagi-picorubykaigi-2026"
+      description: ""
+      speakers:
+        - Shinta Koyanagi
+
+    - id: "tarosa-picorubykaigi-2026"
+      title: "Running Ruby on a ¥290 Microcontroller — Challenges with UIAPruby and Can Satellites"
+      original_title: "290円のマイコンでRubyを動かす ― UIAPrubyと缶サットへの挑戦"
+      date: "2026-10-31"
+      video_provider: "scheduled"
+      video_id: "tarosa-picorubykaigi-2026"
+      description: ""
+      speakers:
+        - Tarosa
+
+    - id: "kubo-token-picorubykaigi-2026"
+      title: "Pico-Pico Sound with PicoRuby — Building a Synthesizer Controlled by Ruby"
+      original_title: "PicoRubyでピコピコサウンド -Rubyで制御するシンセサイザを作る-"
+      date: "2026-10-31"
+      video_provider: "scheduled"
+      video_id: "kubo-token-picorubykaigi-2026"
+      description: ""
+      speakers:
+        - Kubo Token
+
+- id: "yudai-takada-picorubykaigi-2026"
+  title: "$ brew update"
+  date: "2026-10-31"
+  start_time: "14:05"
+  end_time: "14:25"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "yudai-takada-picorubykaigi-2026"
+  description: ""
+  speakers:
+    - Yudai Takada
+
+- id: "khori-picorubykaigi-2026"
+  title: "Porting femtoRuby to a Cortex-M7 MCU — Configuration and Verification with Limited RAM"
+  original_title: "Cortex-M7 MCUへのfemtoRubyポーティング — 限られたRAMでの構成と検証"
+  date: "2026-10-31"
+  start_time: "14:55"
+  end_time: "15:15"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "khori-picorubykaigi-2026"
+  description: ""
+  speakers:
+    - khori
+
+- id: "yoh-osaki-picorubykaigi-2026"
+  title: "Building a PicoRuby Development Environment with PicoRuby"
+  original_title: "PicoRubyで作るPicoRuby開発環境"
+  date: "2026-10-31"
+  start_time: "15:20"
+  end_time: "15:40"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "yoh-osaki-picorubykaigi-2026"
+  description: ""
+  speakers:
+    - Yoh Osaki
+
+- id: "yuhei-okazaki-picorubykaigi-2026"
+  title: "Growing PicoRuby's Ecosystem on ESP32"
+  date: "2026-10-31"
+  start_time: "15:45"
+  end_time: "16:05"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "yuhei-okazaki-picorubykaigi-2026"
+  description: ""
+  speakers:
+    - Yuhei Okazaki
+
+- id: "hasumi-hitoshi-picorubykaigi-2026"
+  title: "Keynote by HASUMI Hitoshi"
+  kind: "keynote"
+  date: "2026-10-31"
+  start_time: "16:20"
+  end_time: "16:50"
+  announced_at: "2026-07-10"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "hasumi-hitoshi-picorubykaigi-2026"
+  description: "" # TODO
+  speakers:
+    - HASUMI Hitoshi

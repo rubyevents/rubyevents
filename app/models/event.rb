@@ -77,11 +77,9 @@ class Event < ApplicationRecord
   # Event participation associations
   has_many :event_participations, dependent: :destroy
   has_many :participants, through: :event_participations, source: :user
-  has_many :speaker_participants, -> { where(event_participations: {attended_as: :speaker}) },
+  has_many :going_participants, -> { where(event_participations: {role: EventParticipation::GOING_ROLES}) },
     through: :event_participations, source: :user
-  has_many :keynote_speaker_participants, -> { where(event_participations: {attended_as: :keynote_speaker}) },
-    through: :event_participations, source: :user
-  has_many :visitor_participants, -> { where(event_participations: {attended_as: :visitor}) },
+  has_many :interested_participants, -> { where(event_participations: {role: :interested}) },
     through: :event_participations, source: :user
 
   # Event involvement associations
@@ -301,13 +299,31 @@ class Event < ApplicationRecord
   end
 
   def location_and_country_code
-    default_country = series&.static_metadata&.default_country_code
+    return location if location.blank?
+    return location if location_includes_country?
 
+    default_country = series&.static_metadata&.default_country_code
     [location, default_country].compact.join(", ")
   end
 
   def location_and_country_code_previously_changed?
     location_previously_changed?
+  end
+
+  # True when the location string already names a country. Ignores Country.find's
+  # US-subdivision fallback (e.g. "NY" => US) so short state codes still get the
+  # series default_country_code appended for geocoding.
+  def location_includes_country?
+    term = location.to_s.split(",").last&.strip
+    return false if term.blank?
+    return false if term.downcase.in?(%w[online earth unknown])
+
+    if term.length == 2
+      iso = ISO3166::Country.new(term.upcase)
+      return iso&.alpha2.present?
+    end
+
+    Country.find(term).present?
   end
 
   def today?

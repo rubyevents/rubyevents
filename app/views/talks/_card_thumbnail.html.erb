@@ -38,6 +38,8 @@
         </div>
       <% end %>
 
+      <% status = talk_watch_status(talk) %>
+
       <% if watched_talk&.watched? %>
         <div
           class="
@@ -61,7 +63,7 @@
             <%= seconds_to_formatted_duration(talk.duration_in_seconds) %>
           <% end %>
         </div>
-      <% elsif (status = talk_watch_status(talk)) %>
+      <% elsif status %>
         <div
           class="
             absolute right-2 top-2 z-20 inline-flex items-center gap-1 rounded bg-black/70 px-1.5 py-0.5 text-xs

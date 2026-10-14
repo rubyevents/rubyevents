@@ -1,8 +1,12 @@
 
 - id: "<%= @talk.id %>"
   title: "<%= @talk.title %>"
+<%- if @talk.description.blank? -%>
+  description: "" # TODO
+<%- else -%>
   description: |-
-    <%= @talk.description %>
+<%= optimize_indentation(@talk.description, 4) %>
+<%- end -%>
   kind: "lightning_talk"
   language: "<%= @talk.language %>"
   date: "<%= @talk.date %>"

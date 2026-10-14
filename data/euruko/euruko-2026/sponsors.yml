@@ -1,8 +1,17 @@
 ---
 - tiers:
-    - name: "Silver Sponsors"
+    - name: "Gold Sponsor"
       description: ""
       level: 1
+      sponsors:
+        - name: "Ventrata"
+          website: "https://ventrata.com"
+          slug: "ventrata"
+          logo_url: "https://2026.euruko.org/img/sponsors/ventrata.png"
+
+    - name: "Silver Sponsors"
+      description: ""
+      level: 2
       sponsors:
         - name: "AppSignal"
           website: "https://www.appsignal.com"
@@ -21,7 +30,7 @@
 
     - name: "Speaker Support"
       description: ""
-      level: 2
+      level: 3
       sponsors:
         - name: "HexaPDF"
           website: "https://hexapdf.gettalong.org"
@@ -33,9 +42,28 @@
           slug: "github"
           logo_url: "https://2026.euruko.org/img/sponsors/github.png"
 
+        - name: "thoughtbot"
+          website: "https://thoughtbot.com"
+          slug: "thoughtbot"
+          logo_url: "https://2026.euruko.org/img/sponsors/thoughbot.png"
+
+        - name: "Scan.com"
+          website: "https://scan.com"
+          slug: "scan-com"
+          logo_url: "https://2026.euruko.org/img/sponsors/scan.png"
+
+    - name: "Networking Support"
+      description: ""
+      level: 4
+      sponsors:
+        - name: "Stripe"
+          website: "https://stripe.com"
+          slug: "stripe"
+          logo_url: "https://2026.euruko.org/img/sponsors/stripe.png"
+
     - name: "Community Supporter"
       description: ""
-      level: 3
+      level: 5
       sponsors:
         - name: "SerpApi"
           website: "https://serpapi.com"
@@ -49,7 +77,7 @@
 
     - name: "Digital Supporter"
       description: ""
-      level: 4
+      level: 6
       sponsors:
         - name: "Railsware"
           website: "https://railsware.com"

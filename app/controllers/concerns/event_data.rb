@@ -13,7 +13,7 @@ module EventData
   end
 
   def set_participation
-    @participation ||= Current.user&.main_participation_to(@event)
+    @participation ||= Current.user&.participation_for(@event)
   end
 
   def set_participants
@@ -29,13 +29,15 @@ module EventData
       .where.not(connect_id: ConnectedAccount.passport.select(:uid))
       .count
 
-    participants = @event.participants.preloaded.order(:name).distinct
+    participants = @event.going_participants.preloaded.order(:name)
     checked_in_only_ids = @checked_in_participant_ids - participants.map(&:id).to_set
     all_participants = participants.to_a
 
     if checked_in_only_ids.any?
       all_participants += User.preloaded.where(id: checked_in_only_ids).order(:name).to_a
     end
+
+    @interested_participants = @event.upcoming? ? @event.interested_participants.preloaded.order(:name).to_a : []
 
     if Current.user
       @participants = {

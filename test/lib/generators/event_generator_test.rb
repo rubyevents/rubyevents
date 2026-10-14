@@ -69,6 +69,12 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--timezone", "America/Chicago",
       "--online"]
 
+    File.write(File.join(File.dirname(event_file_path), "videos.yml"), <<~YAML)
+      - id: "rubyconf-2022-talk"
+        video_provider: "youtube"
+        published_at: "2022-12-01"
+    YAML
+
     assert_valid_file event_file_path do |content|
       assert_match(/title: "RubyConf 2022"/, content)
       assert_match(/description: |-\s+RubyConf 2022 description/, content)

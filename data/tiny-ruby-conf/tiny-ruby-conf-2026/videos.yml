@@ -1,36 +1,36 @@
-# TODO: Add all talks - docs/ADDING_UNPUBLISHED_TALKS.md
-# TODO: Reorder talks for schedule - docs/ADDING_SCHEDULES.md
 # TODO: Add recordings - docs/ADDING_VIDEOS.md
 ---
-
-
-- id: "nicolo-rebughini-tiny-ruby-conf-2026"
-  title: "Accidentally building a neural network: A Ruby product recommendation journey"
+- id: "ismael-celis-tiny-ruby-conf-2026"
+  title: "Your request is my command: Reactive, command-driven Ruby apps"
   date: "2026-10-01"
+  start_time: "10:30"
+  end_time: "11:15"
   language: "English"
   video_provider: "scheduled"
-  video_id: "nicolo-rebughini-tiny-ruby-conf-2026"
+  video_id: "ismael-celis-tiny-ruby-conf-2026"
   description: |-
-    Machine Learning often feels like a black box reserved for Python data scientists. But what happens when you solve a complex product recommendation problem using Plain Old Ruby Objects, only to discover you've unknowingly recreated the architecture of a Neural Network?
+    I'll show how architecting Ruby apps around asynchronous commands unlocks real-time, reactive and multiplayer apps with just a handful of abstractions, while unifying synchronous and asynchronous workflows under a single programming model.
   speakers:
-    - Nicolò Rebughini
+    - Ismael Celis
 
-- id: "lauri-jutila-tiny-ruby-conf-2026"
-  title: "Agentic Programmability: An Engine with a Ruby Soul"
+- id: "stephan-kaemper-tiny-ruby-conf-2026"
+  title: "What Rubyists should know about Unicode"
   date: "2026-10-01"
+  start_time: "11:30"
+  end_time: "12:00"
   language: "English"
   video_provider: "scheduled"
-  video_id: "lauri-jutila-tiny-ruby-conf-2026"
+  video_id: "stephan-kaemper-tiny-ruby-conf-2026"
   description: |-
-    What if your personal automation agent could write its own skills, test them in a bulletproof sandbox, and deploy them, all while you sleep or are not actively interacting with it? What if the engine itself was built in Rust, but the soul of extensibility was pure Ruby?
-
-    In this talk, I'll walk through the architecture of a system where Rust and Ruby aren't competing but they're collaborating.
+    Everyone uses Unicode, whether they know it or not. To reliably process and display text across cultures and software components, all parties must handle it correctly—but many still treat text like it's 1990. This talk tours Unicode's origins, encodings, normalisation, and string behaviour with Ruby examples, presents delightfully awful bugs, and suggests sources to test your own systems.
   speakers:
-    - Lauri Jutila
+    - Stephan Kämper
 
 - id: "augustin-gottlieb-tiny-ruby-conf-2026"
   title: "Turbo Desktop: Bringing Rails to desktop apps"
   date: "2026-10-01"
+  start_time: "13:30"
+  end_time: "14:00"
   language: "English"
   video_provider: "scheduled"
   video_id: "augustin-gottlieb-tiny-ruby-conf-2026"
@@ -44,6 +44,8 @@
 - id: "carme-mias-tiny-ruby-conf-2026"
   title: "Under the hood: An exploration of the moving parts of digital accessibility"
   date: "2026-10-01"
+  start_time: "14:15"
+  end_time: "14:45"
   language: "English"
   video_provider: "scheduled"
   video_id: "carme-mias-tiny-ruby-conf-2026"
@@ -54,24 +56,30 @@
   speakers:
     - Carme Mias
 
-- id: "stephan-kaemper-tiny-ruby-conf-2026"
-  title: "What Rubyists should know about Unicode"
+- id: "nicolo-rebughini-tiny-ruby-conf-2026"
+  title: "Accidentally building a neural network: A Ruby product recommendation journey"
   date: "2026-10-01"
+  start_time: "15:00"
+  end_time: "15:30"
   language: "English"
   video_provider: "scheduled"
-  video_id: "stephan-kaemper-tiny-ruby-conf-2026"
+  video_id: "nicolo-rebughini-tiny-ruby-conf-2026"
   description: |-
-    Everyone uses Unicode, whether they know it or not. To reliably process and display text across cultures and software components, all parties must handle it correctly—but many still treat text like it's 1990. This talk tours Unicode's origins, encodings, normalisation, and string behaviour with Ruby examples, presents delightfully awful bugs, and suggests sources to test your own systems.
+    Machine Learning often feels like a black box reserved for Python data scientists. But what happens when you solve a complex product recommendation problem using Plain Old Ruby Objects, only to discover you've unknowingly recreated the architecture of a Neural Network?
   speakers:
-    - Stephan Kämper
+    - Nicolò Rebughini
 
-- id: "ismael-celis-tiny-ruby-conf-2026"
-  title: "Your request is my command: Reactive, command-driven Ruby apps"
+- id: "lauri-jutila-tiny-ruby-conf-2026"
+  title: "Agentic Programmability: An Engine with a Ruby Soul"
   date: "2026-10-01"
+  start_time: "15:45"
+  end_time: "16:15"
   language: "English"
   video_provider: "scheduled"
-  video_id: "ismael-celis-tiny-ruby-conf-2026"
+  video_id: "lauri-jutila-tiny-ruby-conf-2026"
   description: |-
-    I'll show how architecting Ruby apps around asynchronous commands unlocks real-time, reactive and multiplayer apps with just a handful of abstractions, while unifying synchronous and asynchronous workflows under a single programming model.
+    What if your personal automation agent could write its own skills, test them in a bulletproof sandbox, and deploy them, all while you sleep or are not actively interacting with it? What if the engine itself was built in Rust, but the soul of extensibility was pure Ruby?
+
+    In this talk, I'll walk through the architecture of a system where Rust and Ruby aren't competing but they're collaborating.
   speakers:
-    - Ismael Celis
+    - Lauri Jutila

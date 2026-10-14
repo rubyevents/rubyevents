@@ -1,7 +1,5 @@
-class Event::Venue < ActiveRecord::AssociatedObject
-  include YAMLFile
-
-  yaml_file "venue.yml"
+class Event::Venue < Event::DataFile
+  data_file :venue, file_name: "venue.yml"
 
   extension do
     def geocode

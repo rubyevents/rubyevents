@@ -1,7 +1,5 @@
 <main class="container">
   <div>
-    <% @events.each do |event| %>
-      <%= render partial: "events/featured", locals: {event: event} %>
-    <% end %>
+    <%= render partial: "events/featured", collection: @events, as: :event %>
   </div>
 </main>
