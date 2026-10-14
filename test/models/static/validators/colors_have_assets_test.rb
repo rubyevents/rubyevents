@@ -45,6 +45,24 @@ class Static::Validators::ColorsHaveAssetsTest < ActiveSupport::TestCase
     end
   end
 
+  test "does not flag colors when the event has its own asset" do
+    event = {"name" => "TestConf", "banner_background" => "#ff0000"}.to_yaml
+    with_temp_event(event, event_assets: ["banner.webp"], default_assets: ["banner.webp"]) do |file_path|
+      assert_empty Static::Validators::ColorsHaveAssets.new(file_path: file_path).errors
+    end
+  end
+
+  test "returns error when colors are set but the asset comes from the series default" do
+    event = {"name" => "TestConf", "featured_background" => "#ff0000", "featured_color" => "#ffffff"}.to_yaml
+    with_temp_event(event, default_assets: ["featured.webp"]) do |file_path|
+      errors = Static::Validators::ColorsHaveAssets.new(file_path: file_path).errors
+
+      assert_equal 2, errors.size
+      assert errors.all? { |e| e.message.include?("comes from the series default 'app/assets/images/events/testconf/default/featured.webp'") }
+      assert errors.all? { |e| e.message.include?("data/testconf/series.yml instead") }
+    end
+  end
+
   test "errors are Static::Validators::Error objects" do
     event = {"name" => "TestConf", "banner_background" => "#ff0000"}.to_yaml
     with_temp_event(event) do |file_path|
@@ -62,11 +80,21 @@ class Static::Validators::ColorsHaveAssetsTest < ActiveSupport::TestCase
 
   private
 
-  def with_temp_event(event_yaml)
+  def with_temp_event(event_yaml, series_slug: "testconf", event_slug: "testconf-2025", event_assets: [], default_assets: [])
     dir = Dir.mktmpdir
-    file_path = File.join(dir, "data", "testconf", "2025", "event.yml")
+    file_path = File.join(dir, "data", series_slug, event_slug, "event.yml")
     FileUtils.mkdir_p(File.dirname(file_path))
     File.write(file_path, event_yaml)
+
+    {event_slug => event_assets, "default" => default_assets}.each do |slug, assets|
+      asset_dir = File.join(dir, "app", "assets", "images", "events", series_slug, slug)
+
+      assets.each do |asset|
+        FileUtils.mkdir_p(asset_dir)
+        FileUtils.touch(File.join(asset_dir, asset))
+      end
+    end
+
     yield file_path
   ensure
     FileUtils.rm_rf(dir)
