@@ -246,6 +246,10 @@ Removes the record from the array and saves the file:
 ```ruby
 speaker = Static::Speaker.find_by(name: "Old Speaker")
 speaker.destroy
+
+speaker.destroyed?  # => true
+speaker.name        # => "Old Speaker", the values it had before it was removed
+speaker.save!       # => raises FrozenError
 ```
 
 ## Associations
