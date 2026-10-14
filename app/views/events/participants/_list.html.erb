@@ -2,8 +2,6 @@
 
 <% button_text = event.start_date&.future? ? "Are you going?" : "Were you there?" %>
 <% event_stamp = Stamp.for_event(event).first %>
-<% has_attending = participants.values.any?(&:any?) %>
-<% has_interested = interested_participants.any? %>
 
 <div id="participants_list">
   <% if unclaimed_check_ins_count > 0 %>
@@ -20,7 +18,7 @@
     </div>
   <% end %>
 
-  <% if has_attending || has_interested %>
+  <% if participants.values.any?(&:any?) || interested_participants.any? %>
     <% if Current.user && participation.blank? %>
       <div class="mb-6 rounded-lg border-2 border-dashed border-purple-300 bg-purple-50 p-4">
         <div class="flex items-center gap-4">
@@ -65,7 +63,7 @@
       <% end %>
     <% end %>
 
-    <% if has_interested %>
+    <% if interested_participants.any? %>
       <h2 class="mb-6">Interested (<%= interested_participants.size %>)</h2>
 
       <div
