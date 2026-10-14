@@ -37,7 +37,7 @@ module EventData
       all_participants += User.preloaded.where(id: checked_in_only_ids).order(:name).to_a
     end
 
-    @interested_participants = @event.interested_participants.preloaded.order(:name).to_a
+    @interested_participants = @event.upcoming? ? @event.interested_participants.preloaded.order(:name).to_a : []
 
     if Current.user
       @participants = {

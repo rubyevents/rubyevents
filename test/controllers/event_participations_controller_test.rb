@@ -2,7 +2,7 @@ require "test_helper"
 
 class EventParticipationsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @event = events(:railsconf_2025)
+    @event = events(:future_conference)
     @user = users(:one)
   end
 
@@ -98,5 +98,44 @@ class EventParticipationsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference -> { @user.event_participations.count } do
       post event_event_participations_url(@event), params: {role: "speaker"}
     end
+  end
+
+  test "past events cannot be marked as interested" do
+    sign_in_as @user
+    past_event = events(:railsconf_2025)
+
+    assert_no_difference -> { @user.event_participations.count } do
+      post event_event_participations_url(past_event), params: {role: "interested"}
+    end
+  end
+
+  test "past events can be marked as attended" do
+    sign_in_as @user
+    past_event = events(:railsconf_2025)
+
+    post event_event_participations_url(past_event), params: {role: "attendee"}
+
+    assert_equal ["attendee"], @user.event_participations.where(event: past_event).pluck(:role)
+  end
+
+  test "past events only offer I was there" do
+    sign_in_as @user
+
+    get event_url(events(:railsconf_2025))
+
+    assert_response :success
+    assert_select ".participation_button", text: /I was there/
+    assert_select ".participation_button", text: /Interested/, count: 0
+    assert_select ".participation_button", text: /Going/, count: 0
+  end
+
+  test "upcoming events offer going and interested" do
+    sign_in_as @user
+
+    get event_url(@event)
+
+    assert_response :success
+    assert_select ".participation_button", text: /Going/
+    assert_select ".participation_button", text: /Interested/
   end
 end

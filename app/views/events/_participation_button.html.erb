@@ -1,9 +1,17 @@
-<% event_status = event.start_date&.future? ? "upcoming" : "past" %>
+<% event_status = event.upcoming? ? "upcoming" : "past" %>
 <% tooltip_text = t("event_participation.tooltips.#{event_status}") %>
 
 <div class="participation_button mt-4 space-y-2">
   <% if Current.user %>
-    <% if participation&.attendee? %>
+    <% if participation&.speaker? %>
+      <%= ui_button kind: :neutral, size: :sm, class: "w-full", disabled: true do %>
+        <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
+
+        <span class="text-nowrap">
+          <%= t("event_participation.#{event_status}.role.speaker") %>
+        </span>
+      <% end %>
+    <% elsif participation&.attendee? %>
       <%= ui_tooltip t("event_participation.actions.remove_participation") do %>
         <%= ui_button url: event_event_participation_path(event, participation), params: {role: "attendee"}, method: :delete, kind: :neutral, size: :sm, class: "w-full", data: {turbo_frame: "modal"} do %>
           <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
@@ -14,13 +22,15 @@
         <% end %>
       <% end %>
 
-      <%= ui_tooltip t("event_participation.tooltips.interested") do %>
-        <%= ui_button url: event_event_participations_path(event), params: {role: "interested"}, method: :post, outline: true, size: :sm, kind: :neutral, class: "w-full", data: {turbo_frame: "modal"} do %>
-          <%= fa("bookmark", size: :xs, style: :regular) %>
-          <span class="text-nowrap"><%= t("event_participation.actions.mark_as_interested") %></span>
+      <% if event.upcoming? %>
+        <%= ui_tooltip t("event_participation.tooltips.interested") do %>
+          <%= ui_button url: event_event_participations_path(event), params: {role: "interested"}, method: :post, outline: true, size: :sm, kind: :neutral, class: "w-full", data: {turbo_frame: "modal"} do %>
+            <%= fa("bookmark", size: :xs, style: :regular) %>
+            <span class="text-nowrap"><%= t("event_participation.actions.mark_as_interested") %></span>
+          <% end %>
         <% end %>
       <% end %>
-    <% elsif participation&.interested? %>
+    <% elsif participation&.interested? && event.upcoming? %>
       <%= ui_tooltip t("event_participation.actions.remove_interest") do %>
         <%= ui_button url: event_event_participation_path(event, participation), params: {role: "interested"}, method: :delete, kind: :neutral, size: :sm, class: "w-full", data: {turbo_frame: "modal"} do %>
           <%= fa("bookmark", size: :xs, style: :solid, class: "fill-amber-600") %>
@@ -37,15 +47,7 @@
           <span class="text-nowrap"><%= t("event_participation.actions.mark_as_going") %></span>
         <% end %>
       <% end %>
-    <% elsif participation %>
-      <%= ui_button kind: :neutral, size: :sm, class: "w-full", disabled: true do %>
-        <%= fa("circle-check", size: :xs, style: :solid, class: "fill-green-700") %>
-
-        <span class="text-nowrap">
-          <%= t("event_participation.#{event_status}.role.speaker") %>
-        </span>
-      <% end %>
-    <% else %>
+    <% elsif event.upcoming? %>
       <%= ui_tooltip tooltip_text do %>
         <%= ui_button url: event_event_participations_path(event), params: {role: "attendee"}, method: :post, outline: true, size: :sm, kind: :neutral, class: "w-full", data: {turbo_frame: "modal"} do %>
           <%= fa("plus", style: :solid, size: :sm) %>
@@ -57,6 +59,13 @@
         <%= ui_button url: event_event_participations_path(event), params: {role: "interested"}, method: :post, outline: true, size: :sm, kind: :neutral, class: "w-full", data: {turbo_frame: "modal"} do %>
           <%= fa("bookmark", style: :regular, size: :sm) %>
           <span class="text-nowrap"><%= t("event_participation.actions.interested") %></span>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= ui_tooltip tooltip_text do %>
+        <%= ui_button url: event_event_participations_path(event), params: {role: "attendee"}, method: :post, outline: true, size: :sm, kind: :neutral, class: "w-full", data: {turbo_frame: "modal"} do %>
+          <%= fa("plus", style: :solid, size: :sm) %>
+          <span class="text-nowrap"><%= t("event_participation.actions.was_there") %></span>
         <% end %>
       <% end %>
     <% end %>

@@ -42,6 +42,7 @@ class EventParticipationsController < ApplicationController
   private
 
   def participation_role
-    params[:role].presence_in(%w[attendee interested])
+    allowed_roles = @event.upcoming? ? %w[attendee interested] : %w[attendee]
+    params[:role].presence_in(allowed_roles)
   end
 end

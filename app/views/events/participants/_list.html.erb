@@ -1,6 +1,6 @@
 <%# locals: (event:, participants:, participation:, favorite_users:, checked_in_participant_ids: Set.new, unclaimed_check_ins_count: 0, interested_participants: []) %>
 
-<% button_text = event.start_date&.future? ? "Are you going?" : "Were you there?" %>
+<% button_text = event.upcoming? ? "Are you going?" : "Were you there?" %>
 <% event_stamp = Stamp.for_event(event).first %>
 
 <div id="participants_list">
@@ -26,7 +26,9 @@
 
           <div class="flex-1">
             <h3 class="text-base font-semibold text-gray-900"><%= button_text %></h3>
-            <p class="text-sm text-gray-600">Mark yourself as going, or bookmark as interested!</p>
+            <p class="text-sm text-gray-600">
+              <%= event.upcoming? ? "Mark yourself as going, or bookmark as interested!" : "Let others know you were there!" %>
+            </p>
           </div>
 
           <div class="flex-shrink-0">
@@ -85,7 +87,11 @@
         <h2 class="mb-4 text-2xl font-bold text-gray-900">No Participants Yet</h2>
 
         <p class="mb-6 text-gray-600">
-          Be the first to mark yourself as going to <%= event.name %>, or bookmark it as interested!
+          <% if event.upcoming? %>
+            Be the first to mark yourself as going to <%= event.name %>, or bookmark it as interested!
+          <% else %>
+            Be the first to let others know you were at <%= event.name %>!
+          <% end %>
         </p>
 
         <%= render partial: "events/participation_button", locals: {event: event, participation: participation} %>
@@ -98,8 +104,12 @@
           </p>
 
           <ul class="space-y-1 text-sm text-purple-700">
-            <li>• Mark as Going if you plan to attend</li>
-            <li>• Mark as Interested to bookmark while you decide</li>
+            <% if event.upcoming? %>
+              <li>• Mark as Going if you plan to attend</li>
+              <li>• Mark as Interested to bookmark while you decide</li>
+            <% else %>
+              <li>• Mark that you were there</li>
+            <% end %>
             <li>• Connect with fellow participants</li>
           </ul>
         </div>
