@@ -1,4 +1,3 @@
-# TODO: Add all talks - docs/ADDING_UNPUBLISHED_TALKS.md
 # TODO: Add recordings - docs/ADDING_VIDEOS.md
 ---
 - id: "paolo-perrotta-xoruby-new-york-city-2026"
@@ -19,7 +18,7 @@
     - Paolo Perrotta
 
 - id: "landon-gray-xoruby-new-york-city-2026"
-  title: "I Hired an AI Chief of Staff"
+  title: "Human Out of the Loop: How I Built a Software Factory to Automate Research, Building, and Deployment"
   date: "2026-10-10"
   start_time: "11:15"
   end_time: "11:45"
@@ -27,22 +26,22 @@
   video_provider: "scheduled"
   video_id: "landon-gray-xoruby-new-york-city-2026"
   description: |-
-    Landon Gray built an AI Chief of Staff that started as a Claude skill in Notion and grew into agents that track open loops, draft replies, and remember past decisions. Hear how it evolved and what it's like to feel less buried.
+    What happens when you stop prompting an AI to write code and build the assembly line around it instead? I built a software factory: a desktop app that takes an idea, researches the market, scaffolds an app, verifies it, reviews it, and deploys it to production, with an agent doing the work at every stage.
   speakers:
     - Landon Gray
 
-- id: "charles-nutter-xoruby-new-york-city-2026"
-  title: "Expand Your Ruby World with JRuby"
+- id: "mike-schwab-xoruby-new-york-city-2026"
+  title: "Viewing The Controller"
   date: "2026-10-10"
   start_time: "13:30"
   end_time: "14:00"
   language: "English"
   video_provider: "scheduled"
-  video_id: "charles-nutter-xoruby-new-york-city-2026"
+  video_id: "mike-schwab-xoruby-new-york-city-2026"
   description: |-
-    JRuby is a Ruby 4.0-compatible runtime based on the Java Virtual Machine, bringing the scalability, performance, and ecosystem of the JVM to Rubyists around the world. Deploy anywhere with confidence and all-in-one packaging that protects your intellectual property. Scale to huge datasets and thousands of concurrent users with a single process. Take advantage of 30 years of tools and libraries from the Java world. JRuby opens up a world of opportunities to Ruby!
+    LLMs can virtually understand logic, but how is this achieved using just tokens? If we know some of the techniques they use, we can give them a head start. But should we still be picking languages, libraries, conventions and names like before? And, are we even building the right things?
   speakers:
-    - Charles Nutter
+    - Mike Schwab
 
 - id: "michael-carroll-xoruby-new-york-city-2026"
   title: "Elastic Software: Calculating Tech Debt Using LLM Tokens"
@@ -59,11 +58,37 @@
   speakers:
     - Michael Carroll
 
-- id: "noel-rappin-xoruby-new-york-city-2026"
-  title: "Rubyist in the Loop"
+- id: "daniel-colson-xoruby-new-york-city-2026"
+  title: "Regex as Easy as /(abc)?/"
   date: "2026-10-10"
   start_time: "15:00"
   end_time: "15:30"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "daniel-colson-xoruby-new-york-city-2026"
+  description: |-
+    What really happens when Ruby sees a regular expression like /abc/? While many of us use regular expressions regularly, we don't necessarily think much about how they really work. In this talk we'll trace a regular expression through Ruby's internals, from parsing the pattern into a syntax tree, to compiling into bytecode, to executing that bytecode on a small virtual machine. You'll come away with a deeper understanding and appreciation for Ruby's regular expression engine, and hopefully an increased confidence in working with regular expressions in Ruby.
+  speakers:
+    - Daniel Colson
+
+- id: "charles-nutter-xoruby-new-york-city-2026"
+  title: "Expand Your Ruby World with JRuby"
+  date: "2026-10-10"
+  start_time: "15:30"
+  end_time: "16:00"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "charles-nutter-xoruby-new-york-city-2026"
+  description: |-
+    JRuby is a Ruby 4.0-compatible runtime based on the Java Virtual Machine, bringing the scalability, performance, and ecosystem of the JVM to Rubyists around the world. Deploy anywhere with confidence and all-in-one packaging that protects your intellectual property. Scale to huge datasets and thousands of concurrent users with a single process. Take advantage of 30 years of tools and libraries from the Java world. JRuby opens up a world of opportunities to Ruby!
+  speakers:
+    - Charles Nutter
+
+- id: "noel-rappin-xoruby-new-york-city-2026"
+  title: "Rubyist in the Loop"
+  date: "2026-10-10"
+  start_time: "16:15"
+  end_time: "16:45"
   language: "English"
   video_provider: "scheduled"
   video_id: "noel-rappin-xoruby-new-york-city-2026"
