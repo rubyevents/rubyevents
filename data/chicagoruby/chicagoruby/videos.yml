@@ -1028,3 +1028,50 @@
         You're paying the Anthropic subscription tax because you don't know your options. Claude Code is really three things in one - the harness, the model, the plugins. Split them up and you get the same power for way less. Here's how, and why I switched to Pi Agent.
       speakers:
         - Zeljko Dakic
+
+- id: "chicagoruby-meetup-october-2026"
+  title: "ChicagoRuby Meetup - October 2026"
+  raw_title: "ChicagoRuby Meetup – October2026: Ruby, Rails & Postgres Data Integrity"
+  event_name: "ChicagoRuby Meetup - October 2026"
+  date: "2026-10-07"
+  published_at: "2026-10-09T14:19:58Z"
+  video_provider: "youtube"
+  video_id: "_-OwJppCYE8"
+  thumbnail_lg: "https://img.youtube.com/vi/_-OwJppCYE8/hqdefault.jpg"
+  thumbnail_xl: "https://img.youtube.com/vi/_-OwJppCYE8/hqdefault.jpg"
+  description: |-
+    The October 2026 ChicagoRuby meetup, held with Prairie Postgres at Deinde Financial.
+
+    Speakers:
+    * Steve Zelaznik - "The Multi-Terabyte Trust Exercise: Validating Massive Postgres Migrations"
+    * Steve Zelaznik - "Testing Your Postgres Database Is Easier Than You Think"
+  talks:
+    - id: "steve-zelaznik-chicagoruby-meetup-october-2026"
+      title: "The Multi-Terabyte Trust Exercise: Validating Massive Postgres Migrations"
+      event_name: "ChicagoRuby Meetup - October 2026"
+      date: "2026-10-07"
+      start_cue: "19:18"
+      end_cue: "1:10:52"
+      video_provider: "parent"
+      video_id: "steve-zelaznik-chicagoruby-meetup-october-2026"
+      description: |-
+        Moving a self-hosted Postgres instance to a managed service like Azure is more than a data transfer—it’s a high-stakes mission where "spot-checking" simply won't cut it. When downtime is limited and a risk-averse client demands absolute proof of data integrity, you can’t rely on luck.
+
+        This talk tells the story of migrating a multi-terabyte database with millions of rows by building a custom, Ruby-orchestrated validation framework. We’ll move beyond simple row counts to explore how we used pgcrypto, custom aggregate functions, and information_schema introspection to generate cryptographic proof that every byte arrived safely. We’ll also dive into the "Third Act Twists"—from the hidden time-tax of generated columns to the "string paradox" of JSON and binary data—and why a successful migration is actually won during the dry run.
+      speakers:
+        - Steve Zelaznik
+
+    - id: "testing-your-postgres-database-is-easier-than-you-think-chicagoruby-meetup-october-2026"
+      title: "Testing Your Postgres Database Is Easier Than You Think"
+      event_name: "ChicagoRuby Meetup - October 2026"
+      date: "2026-10-07"
+      start_cue: "1:10:52"
+      end_cue: "1:49:03"
+      video_provider: "parent"
+      video_id: "testing-your-postgres-database-is-easier-than-you-think-chicagoruby-meetup-october-2026"
+      description: |-
+        When working with the same risk averse client, it's not enough to say "we added a unique constraint to the database." We know that Postgres's features are rock solid, but the client doesn't. They need proof.
+
+        The conventional wisdom is that database features are hard to test. That might be true when it comes to performance issues. It's not the case when it comes to business logic and data integrity. With the flexibility of RSpec custom matchers we can write database tests in the same style as the Thoughtbot shoulda-matchers, covering unique constraints (partial and multi-column too), Listen/Notify, triggers, encryption, default values, and various race conditions and locks.
+      speakers:
+        - Steve Zelaznik
