@@ -23,7 +23,7 @@
 #  user_id   (user_id => users.id)
 #
 class EventParticipation < ApplicationRecord
-  ATTENDING_ROLES = %w[speaker attendee].freeze
+  GOING_ROLES = %w[speaker attendee].freeze
 
   # associations
   belongs_to :user
@@ -36,7 +36,7 @@ class EventParticipation < ApplicationRecord
   enum :role, %w[speaker attendee interested].index_by(&:itself), validate: true
 
   # scopes
-  scope :attending, -> { where(role: ATTENDING_ROLES) }
+  scope :going, -> { where(role: GOING_ROLES) }
 
   def self.record(user:, event:, role:)
     participation = find_or_initialize_by(user:, event:)
@@ -49,8 +49,8 @@ class EventParticipation < ApplicationRecord
     "#{user.name} - #{event.name} - #{role}"
   end
 
-  def attending?
-    ATTENDING_ROLES.include?(role)
+  def going?
+    GOING_ROLES.include?(role)
   end
 
   def outranked_by?(other_role)

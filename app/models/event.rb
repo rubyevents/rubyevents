@@ -77,11 +77,9 @@ class Event < ApplicationRecord
   # Event participation associations
   has_many :event_participations, dependent: :destroy
   has_many :participants, through: :event_participations, source: :user
-  has_many :attendees, -> { where(event_participations: {role: EventParticipation::ATTENDING_ROLES}) },
+  has_many :going_participants, -> { where(event_participations: {role: EventParticipation::GOING_ROLES}) },
     through: :event_participations, source: :user
-  has_many :speaker_participants, -> { where(event_participations: {role: :speaker}) },
-    through: :event_participations, source: :user
-  has_many :interested_users, -> { where(event_participations: {role: :interested}) },
+  has_many :interested_participants, -> { where(event_participations: {role: :interested}) },
     through: :event_participations, source: :user
 
   # Event involvement associations

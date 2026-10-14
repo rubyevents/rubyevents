@@ -31,7 +31,7 @@ module Api
           event = Event.find_by!(slug: params[:slug])
 
           keynote_speakers = event.keynote_speakers.limit(20).to_a
-          speakers = event.speaker_participants.where.not(id: event.keynote_speakers.select(:id)).limit(20).to_a
+          speakers = event.speakers.where.not(id: event.keynote_speakers.select(:id)).limit(20).to_a
           attendees = event.participants.where(event_participations: {role: :attendee}).limit(20).to_a
 
           render json: {
@@ -63,9 +63,9 @@ module Api
             },
             counts: {
               keynote_speakers: event.keynote_speakers.count,
-              speakers: event.speaker_participants.where.not(id: event.keynote_speakers.select(:id)).count,
+              speakers: event.speakers.where.not(id: event.keynote_speakers.select(:id)).count,
               attendees: event.participants.where(event_participations: {role: :attendee}).count,
-              total: event.attendees.count
+              total: event.going_participants.count
             }
           }
         end
@@ -74,7 +74,7 @@ module Api
           event = Event.find_by!(slug: params[:slug])
 
           keynote_speakers = event.keynote_speakers.to_a
-          speakers = event.speaker_participants.where.not(id: event.keynote_speakers.select(:id)).to_a
+          speakers = event.speakers.where.not(id: event.keynote_speakers.select(:id)).to_a
           attendees = event.participants.where(event_participations: {role: :attendee}).to_a
 
           render json: {

@@ -2,7 +2,8 @@ require "test_helper"
 
 class Api::V1::Embed::EventsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @event = events(:rails_world_2023)
+    series = EventSeries.create!(name: "Embed Series", slug: "embed-series")
+    @event = Event.create!(name: "Embed Event", slug: "embed-event", series: series, start_date: Date.new(2025, 5, 1), end_date: Date.new(2025, 5, 2))
 
     @keynote_speaker = User.create!(name: "Keynote Speaker", github_handle: "embed-keynote-speaker")
     @speaker = User.create!(name: "Regular Speaker", github_handle: "embed-regular-speaker")
@@ -11,6 +12,9 @@ class Api::V1::Embed::EventsControllerTest < ActionDispatch::IntegrationTest
 
     keynote = Talk.create!(title: "Keynote", event: @event, kind: "keynote", date: @event.start_date, video_provider: "youtube", static_id: "embed-keynote")
     UserTalk.create!(user: @keynote_speaker, talk: keynote)
+
+    talk = Talk.create!(title: "Talk", event: @event, kind: "talk", date: @event.start_date, video_provider: "youtube", static_id: "embed-talk")
+    UserTalk.create!(user: @speaker, talk: talk)
 
     EventParticipation.create!(user: @keynote_speaker, event: @event, role: :speaker)
     EventParticipation.create!(user: @speaker, event: @event, role: :speaker)

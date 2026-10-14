@@ -29,7 +29,7 @@ module EventData
       .where.not(connect_id: ConnectedAccount.passport.select(:uid))
       .count
 
-    participants = @event.attendees.preloaded.order(:name)
+    participants = @event.going_participants.preloaded.order(:name)
     checked_in_only_ids = @checked_in_participant_ids - participants.map(&:id).to_set
     all_participants = participants.to_a
 
@@ -37,7 +37,7 @@ module EventData
       all_participants += User.preloaded.where(id: checked_in_only_ids).order(:name).to_a
     end
 
-    @interested_users = @event.interested_users.preloaded.order(:name).to_a
+    @interested_participants = @event.interested_participants.preloaded.order(:name).to_a
 
     if Current.user
       @participants = {

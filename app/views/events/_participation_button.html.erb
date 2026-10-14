@@ -71,7 +71,7 @@
 
     <% event_is_past = event.end_date.present? && event.end_date < Date.today %>
 
-    <% if participation&.attending? && event_is_past && event.talks.any? %>
+    <% if participation&.going? && event_is_past && event.talks.any? %>
       <%= link_to attendance_path(event_slug: event.slug), class: "btn btn-sm btn-outline w-full mt-2" do %>
         <%= fa("clipboard-check", size: :sm) %>
         <span class="text-nowrap">Manage My Attendance</span>

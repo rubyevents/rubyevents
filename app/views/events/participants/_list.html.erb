@@ -1,4 +1,4 @@
-<%# locals: (event:, participants:, participation:, favorite_users:, checked_in_participant_ids: Set.new, unclaimed_check_ins_count: 0, interested_users: []) %>
+<%# locals: (event:, participants:, participation:, favorite_users:, checked_in_participant_ids: Set.new, unclaimed_check_ins_count: 0, interested_participants: []) %>
 
 <% button_text = event.start_date&.future? ? "Are you going?" : "Were you there?" %>
 <% event_stamp = Stamp.for_event(event).first %>
@@ -18,7 +18,7 @@
     </div>
   <% end %>
 
-  <% if participants.values.any?(&:any?) || interested_users.any? %>
+  <% if participants.values.any?(&:any?) || interested_participants.any? %>
     <% if Current.user && participation.blank? %>
       <div class="mb-6 rounded-lg border-2 border-dashed border-purple-300 bg-purple-50 p-4">
         <div class="flex items-center gap-4">
@@ -63,14 +63,14 @@
       <% end %>
     <% end %>
 
-    <% if interested_users.any? %>
-      <h2 class="mb-6">Interested (<%= interested_users.size %>)</h2>
+    <% if interested_participants.any? %>
+      <h2 class="mb-6">Interested (<%= interested_participants.size %>)</h2>
 
       <div
         id="<%= dom_id(event, "interested") %>"
         class="mb-12 grid h-full min-w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
       >
-        <% interested_users.each do |participant| %>
+        <% interested_participants.each do |participant| %>
           <div class="transition-bg rounded-lg border bg-white duration-300 ease-in-out hover:bg-gray-200">
             <%= render partial: "users/card", locals: {user: participant, favorite_user: favorite_users[participant.id], checked_in: false, stamp: nil} %>
           </div>

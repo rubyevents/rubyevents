@@ -75,12 +75,12 @@ class EventParticipationsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "interested", @user.event_participations.find_by!(event: @event).role
   end
 
-  test "interested users are excluded from event attendees" do
+  test "interested users are excluded from going participants" do
     @user.event_participations.create!(event: @event, role: "interested")
 
-    assert_equal 0, @event.attendees.count
-    assert_equal 1, @event.interested_users.count
-    assert_includes @event.interested_users, @user
+    assert_equal 0, @event.going_participants.count
+    assert_equal 1, @event.interested_participants.count
+    assert_includes @event.interested_participants, @user
   end
 
   test "speakers cannot change their own role" do

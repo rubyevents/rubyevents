@@ -54,28 +54,28 @@ class EventParticipationTest < ActiveSupport::TestCase
     assert_equal ["speaker"], @user.event_participations.where(event: @event).pluck(:role)
   end
 
-  test "attending? is true for speakers and attendees only" do
-    assert EventParticipation.new(role: :speaker).attending?
-    assert EventParticipation.new(role: :attendee).attending?
-    assert_not EventParticipation.new(role: :interested).attending?
+  test "going? is true for speakers and attendees only" do
+    assert EventParticipation.new(role: :speaker).going?
+    assert EventParticipation.new(role: :attendee).going?
+    assert_not EventParticipation.new(role: :interested).going?
   end
 
-  test "attending scope excludes interested" do
+  test "going scope excludes interested" do
     EventParticipation.create!(user: @user, event: @event, role: :attendee)
     EventParticipation.create!(user: @user, event: events(:railsconf_2025), role: :interested)
 
-    assert_equal ["attendee"], @user.event_participations.attending.pluck(:role)
+    assert_equal ["attendee"], @user.event_participations.going.pluck(:role)
   end
 
-  test "event attendees include speakers and attendees but not interested users" do
+  test "going participants include speakers and attendees but not interested users" do
     speaker = users(:two)
     interested = User.create!(name: "Interested User", github_handle: "interested-user")
     EventParticipation.create!(user: @user, event: @event, role: :attendee)
     EventParticipation.create!(user: speaker, event: @event, role: :speaker)
     EventParticipation.create!(user: interested, event: @event, role: :interested)
 
-    assert_equal [@user, speaker].sort_by(&:id), @event.attendees.sort_by(&:id)
-    assert_equal [interested], @event.interested_users.to_a
+    assert_equal [@user, speaker].sort_by(&:id), @event.going_participants.sort_by(&:id)
+    assert_equal [interested], @event.interested_participants.to_a
     assert_equal 3, @event.participants.count
   end
 

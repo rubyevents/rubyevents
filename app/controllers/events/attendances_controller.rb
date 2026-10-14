@@ -28,7 +28,7 @@ class Events::AttendancesController < ApplicationController
     event_is_past = @event.end_date.present? && @event.end_date < Date.today
     @participation = Current.user.participation_for(@event)
 
-    unless @participation.present? && @participation.attending? && event_is_past && @event.talks.any?
+    unless @participation.present? && @participation.going? && event_is_past && @event.talks.any?
       redirect_to event_path(@event), alert: "You can only mark attendance for past events you participated in"
       return
     end

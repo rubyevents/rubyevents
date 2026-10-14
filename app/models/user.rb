@@ -112,10 +112,10 @@ class User < ApplicationRecord
   # Event participation associations
   has_many :event_participations, dependent: :destroy
   has_many :participated_events, through: :event_participations, source: :event
-  has_many :going_events, -> { where(event_participations: {role: EventParticipation::ATTENDING_ROLES}) },
+  has_many :going_events, -> { where(event_participations: {role: EventParticipation::GOING_ROLES}) },
     through: :event_participations, source: :event
   has_many :attended_events, -> {
-    where(event_participations: {role: EventParticipation::ATTENDING_ROLES}).where.not(id: Event.upcoming.select(:id))
+    where(event_participations: {role: EventParticipation::GOING_ROLES}).where.not(id: Event.upcoming.select(:id))
   },
     through: :event_participations, source: :event
   has_many :speaking_events, -> { where(event_participations: {role: :speaker}) },
