@@ -138,8 +138,8 @@ class MCPServer
   def build_input_schema(tool_class)
     schema = {type: "object", properties: {}, required: []}
 
-    if tool_class.respond_to?(:parameters)
-      tool_class.parameters.each do |name, param|
+    if tool_class.respond_to?(:declared_parameters)
+      tool_class.declared_parameters.each do |name, param|
         schema[:properties][name.to_s] = {
           type: map_type(param.type) || "string",
           description: param.description
