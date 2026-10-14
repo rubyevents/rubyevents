@@ -103,6 +103,22 @@ class Static::EventTest < ActiveSupport::TestCase
     assert event_record.sponsors.exists?(organization: organization)
   end
 
+  test "import_sponsors! imports a sponsor listed in multiple tiers" do
+    Static::EventSeries.find_by_slug("deccan-queen-on-rails").import_series!
+    event = Static::Event.find_by_slug("deccan-queen-on-rails-2026")
+    event_record = event.import_event!
+    event.import_sponsors!(event_record)
+
+    zendesk = Organization.find_by(name: "Zendesk")
+    tiers = event_record.sponsors.where(organization: zendesk).pluck(:tier)
+
+    assert_equal ["Gold", "Rails Girls Sponsor"], tiers.sort
+
+    event.import_sponsors!(event_record)
+
+    assert_equal 2, event_record.sponsors.reload.where(organization: zendesk).count
+  end
+
   test "import_involvements!" do
     event = Static::Event.find_by_slug("xoruby-portland-2025")
     event.import_event!

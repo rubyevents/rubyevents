@@ -375,7 +375,7 @@ module Static
 
       require "public_suffix"
 
-      organisation_ids = []
+      sponsor_ids = []
       sponsors_collection.each do |sponsors_entry|
         sponsors_entry["tiers"].each do |tier|
           tier["sponsors"].each do |sponsor|
@@ -421,16 +421,16 @@ module Static
 
             organization.save! if organization.changed? || organization.new_record?
 
-            organisation_ids << organization.id
-
-            sponsor_record = event.sponsors.find_or_initialize_by(organization:, event:)
-            sponsor_record.assign_attributes(tier: tier["name"], badge: sponsor["badge"], level: tier["level"])
+            sponsor_record = event.sponsors.find_or_initialize_by(organization:, event:, tier: tier["name"].presence)
+            sponsor_record.assign_attributes(badge: sponsor["badge"], level: tier["level"])
             sponsor_record.save! if sponsor_record.changed? || sponsor_record.new_record?
+
+            sponsor_ids << sponsor_record.id
           end
         end
       end
 
-      event.sponsors.where.not(organization_id: organisation_ids).destroy_all
+      event.sponsors.where.not(id: sponsor_ids).destroy_all
     rescue ActiveRecord::RecordInvalid => e
       error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
       puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
