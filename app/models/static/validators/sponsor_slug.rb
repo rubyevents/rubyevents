@@ -29,7 +29,7 @@ module Static
           location = sponsor["slug"]&.location || sponsor["name"]&.location
 
           Static::Validators::Error.new(
-            %(slug "#{slug}" does not match the parameterized name "#{expected}" for sponsor "#{name}". Run `bin/rails sponsors:fix_slugs` to update it.),
+            %(slug "#{slug}" does not match the parameterized name "#{expected}" for sponsor "#{name}". Run `bin/rails validate:fix` to update it.),
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
@@ -38,6 +38,8 @@ module Static
       end
 
       def fix
+        return unless applicable?
+
         changes = mismatched_slugs
         return if changes.empty?
 

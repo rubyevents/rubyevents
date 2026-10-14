@@ -35,7 +35,7 @@ module Static
           location = node["id"]&.location
 
           Static::Validators::Error.new(
-            %(id "#{actual}" does not match the expected id "#{expected}". Talk ids should be "firstname-lastname-#{event_slug}", with the kind added on duplicates, the kind alone for talks without one or two speakers, and the title in slug form as a last resort. Run `bin/rails talk_ids:fix` to rename it and keep the current id as old_id.),
+            %(id "#{actual}" does not match the expected id "#{expected}". Talk ids should be "firstname-lastname-#{event_slug}", with the kind added on duplicates, the kind alone for talks without one or two speakers, and the title in slug form as a last resort. Run `bin/rails validate:fix` to rename it and keep the current id as old_id.),
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
@@ -44,6 +44,8 @@ module Static
       end
 
       def fix
+        return unless applicable?
+
         changes = map_unexpected_ids do |node, expected|
           current = node.value_at("id").to_s
           node["old_id"] = current if node.value_at("old_id").blank? && id_in_baseline?(current)

@@ -1,26 +1,6 @@
 # frozen_string_literal: true
 
 namespace :talk_ids do
-  desc "Rename talk ids that don't match the id convention, keeping the current id as old_id"
-  task fix: :environment do
-    renamed = 0
-    files = 0
-
-    Dir.glob(Rails.root.join("data/**/videos.yml")).sort.each do |path|
-      validator = Static::Validators::TalkId.new(file_path: path)
-      next unless validator.applicable?
-      next unless validator.errors.any?
-
-      result = validator.fix
-      renamed += result[:changed]
-      files += 1
-      puts "#{path.to_s.sub("#{Rails.root}/", "")}: renamed #{result[:changed]} id(s)"
-    end
-
-    puts
-    puts "Renamed #{renamed} talk id(s) across #{files} file(s)"
-  end
-
   desc "Write old_id for talks whose id changed since the branch's merge-base with main"
   task backfill_old_ids: :environment do
     written = 0

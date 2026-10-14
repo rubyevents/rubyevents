@@ -320,6 +320,15 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     end
   end
 
+  test "fix does not write files it is not applicable to" do
+    file = Dir.glob(Rails.root.join("data/**/event.yml")).first
+    original_content = File.read(file)
+
+    assert_nil Static::Validators::TalkId.new(file_path: file).fix
+
+    assert_equal original_content, File.read(file)
+  end
+
   test "renames thumbnail files when fixing an id" do
     videos = [
       {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}

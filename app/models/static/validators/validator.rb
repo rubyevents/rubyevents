@@ -80,4 +80,21 @@ class Static::Validators::Validator
       Static::Validators::MissingThumbnails
     ]
   end
+
+  # Registered validators that can fix themselves.
+  # Defining a fix method and registering it in one of the *_validator_classes
+  # methods is enough to make it show up here.
+  def self.fixable_validators
+    [
+      cfp_validator_classes,
+      event_validator_classes,
+      involvement_validator_classes,
+      schedule_validator_classes,
+      series_validator_classes,
+      speaker_validator_classes,
+      sponsor_validator_classes,
+      venue_validator_classes,
+      video_validator_classes
+    ].flatten.uniq.select { |validator_class| validator_class.method_defined?(:fix) }
+  end
 end
