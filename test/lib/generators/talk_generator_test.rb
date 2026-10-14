@@ -510,8 +510,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     assert_valid_file videos_file_path do |content|
       assert_match(/id: "andy-andrea-2026"/, content)
       assert_match(/date: "2026-07-14"/, content)
-      assert_match(/start_time: 16:15/, content)
-      assert_match(/end_time: 17:00/, content)
+      assert_match(/start_time: "16:15"/, content)
+      assert_match(/end_time: "17:00"/, content)
       assert_match(/track: Workshop Studio/, content)
     end
   end

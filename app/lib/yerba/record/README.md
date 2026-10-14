@@ -162,7 +162,7 @@ talks.move("closing", to: 0)
 talks.destroy("opening")
 ```
 
-A Yerbafile `sort` rule re-sorts on save (e.g. videos.yml by date and time). The sort is stable, so a running order persists between talks with the same sort keys.
+A Yerbafile `sort` rule re-sorts on save. The sort is stable, so a running order persists between talks with the same sort keys.
 
 ## Nested records
 

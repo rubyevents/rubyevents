@@ -167,7 +167,7 @@ class Yerba::Record::CollectionEditingTest < ActiveSupport::TestCase
     assert_equal %w[opening lightning-talks], ids_on_disk
   end
 
-  test "the running order survives the videos.yml Yerbafile sort within the same date" do
+  test "the running order survives the videos.yml Yerbafile rules on save" do
     data_dir = Rails.root.join("data", "yerba-record-test", "yerba-record-test-#{SecureRandom.hex(4)}")
     FileUtils.mkdir_p(data_dir)
     path = data_dir.join("videos.yml").to_s
