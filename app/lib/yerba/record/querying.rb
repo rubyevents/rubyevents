@@ -59,9 +59,11 @@ module Yerba
           previous = scopes[self]
           scopes[self] = collection
 
-          yield
-        ensure
-          scopes[self] = previous
+          begin
+            yield
+          ensure
+            scopes[self] = previous
+          end
         end
 
         def current_scope
