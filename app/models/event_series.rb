@@ -97,7 +97,7 @@ class EventSeries < ApplicationRecord
   end
 
   def description
-    non_cancelled = events.reject { |e| e.static_metadata.cancelled? }
+    non_cancelled = events.reject(&:cancelled?)
 
     event_years = non_cancelled.filter_map { |e| (e.date || e.start_date || e.end_date)&.year }
     start_year = event_years.min

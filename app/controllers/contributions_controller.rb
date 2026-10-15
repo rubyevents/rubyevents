@@ -65,7 +65,7 @@ class ContributionsController < ApplicationController
   end
 
   def events_without_videos
-    @events_without_videos = Event.past.not_retreat.includes(:series).left_joins(:talks).where(talks_count: 0).reject { |e| e.static_metadata.cancelled? }.group_by(&:series)
+    @events_without_videos = Event.past.not_retreat.includes(:series).left_joins(:talks).where(talks_count: 0).reject(&:cancelled?).group_by(&:series)
 
     @events_without_location = Static::Event.where(location: nil).group_by(&:project_file_path)
 

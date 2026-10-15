@@ -64,7 +64,7 @@ class PageController < ApplicationController
   def featured
     @events = Event.featurable
       .order(date: :desc)
-      .reject { |event| event.static_metadata.cancelled? }
+      .reject(&:cancelled?)
   end
 
   def components
