@@ -22,7 +22,7 @@
           </p>
 
           <p class="mt-1 text-xs opacity-60">
-            <%= event.talks_count %> talks
+            <%= event.public_talks_count %> talks
 
             <% if (published_date = event.static_metadata&.published_date) %>
               <span class="mx-1">&middot;</span> <%= time_ago_in_words(published_date) %> ago
