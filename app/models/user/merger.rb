@@ -22,6 +22,8 @@ class User::Merger < ActiveRecord::AssociatedObject
       transfer_favorite_users
       transfer_favorited_by
       transfer_connected_accounts
+      transfer_requested_talk_topics
+      transfer_requested_talk_topic_votes
       clear_unique_fields_from_merged_user
       merge_profile_fields
       succeeded = true
@@ -55,6 +57,24 @@ class User::Merger < ActiveRecord::AssociatedObject
         user_talk.destroy
       else
         user_talk.update!(user: user)
+      end
+    end
+  end
+
+  def transfer_requested_talk_topics
+    @other_user.requested_talk_topics.find_each do |topic|
+      topic.update!(user: user)
+    end
+  end
+
+  def transfer_requested_talk_topic_votes
+    @other_user.requested_talk_topic_votes.find_each do |vote|
+      if user.requested_talk_topic_votes.exists?(
+        requested_talk_topic_id: vote.requested_talk_topic_id
+      )
+        vote.destroy
+      else
+        vote.update!(user: user)
       end
     end
   end

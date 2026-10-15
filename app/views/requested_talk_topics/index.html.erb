@@ -1,0 +1,59 @@
+<div class="max-w-5xl mx-auto px-4 py-10">
+
+  <div class="flex justify-between items-center mb-8">
+    <div>
+      <h1 class="text-4xl font-bold">
+        Talk Ideas
+      </h1>
+
+      <p class="text-gray-500 mt-2">
+        Vote on topics you'd love to see covered at Ruby meetups and conferences.
+      </p>
+    </div>
+
+    <% if Current.user %>
+      <%= ui_button "Request a Talk",
+            url: new_requested_talk_topic_path %>
+    <% end %>
+  </div>
+
+  <%= form_with url: requested_talk_topics_path,
+        method: :get,
+        local: true,
+        data: {controller: "requested-talk-topics-filter"} do |f| %>
+
+    <div class="flex flex-wrap items-center gap-4 mb-8">
+      <%= f.select :status,
+            requested_talk_topic_status_options,
+            {selected: params[:status]},
+            class: "select select-bordered",
+            data: {action: "change->requested-talk-topics-filter#change"} %>
+
+      <%= f.select :sort,
+            requested_talk_topic_sort_options,
+            {selected: params[:sort] || "votes"},
+            class: "select select-bordered",
+            data: {action: "change->requested-talk-topics-filter#change"} %>
+
+      <%= f.search_field :query,
+            value: params[:query],
+            placeholder: "Search ideas...",
+            class: "input input-bordered",
+            data: {
+              requested_talk_topics_filter_target: "query",
+              action: "input->requested-talk-topics-filter#submit"
+            } %>
+    </div>
+
+  <% end %>
+
+  <div class="space-y-5">
+    <% @requested_talk_topics.each do |topic| %>
+      <%= render "requested_talk_topic", topic: topic %>
+    <% end %>
+  </div>
+
+  <div class="flex justify-center mt-8">
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+  </div>
+</div>
