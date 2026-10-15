@@ -50,7 +50,7 @@
       <%= ui_button "View all #{event.series.name} events", url: series_path(event.series), kind: :secondary, size: :sm, class: "w-full" %>
       <%= render "events/participation_button", event: event, participation: participation %>
 
-      <% unless event.cancelled? %>
+      <% unless event.inactive? %>
         <%= render Tito::ButtonComponent.new(event: event) %>
       <% end %>
 
