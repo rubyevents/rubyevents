@@ -34,8 +34,14 @@ module Static
         all.cached(:github_handles) { Set.new(pluck(:github).compact_blank.map(&:downcase)) }
       end
 
+      def known_names_downcased
+        all.cached(:known_names_downcased) { Set.new(known_names.compact.map { |name| name.strip.downcase }) }
+      end
+
       def known_reference?(name)
-        known_names.include?(name) || github_handles.include?(name.to_s.downcase)
+        normalized = name.to_s.strip.downcase
+
+        known_names.include?(name) || known_names_downcased.include?(normalized) || github_handles.include?(normalized)
       end
 
       def all_speaker_references
@@ -147,12 +153,12 @@ module Static
 
       def orphaned
         referenced = all_referenced_names
-        referenced_downcased = all.cached(:all_referenced_names_downcased) { Set.new(referenced.map(&:downcase)) }
+        referenced_downcased = all.cached(:all_referenced_names_downcased) { Set.new(referenced.map { |name| name.strip.downcase }) }
 
         all.reject do |speaker|
           speaker_names = [speaker.name, *Array(speaker["aliases"]).filter_map { |alias_entry| alias_entry["name"] if alias_entry.is_a?(Hash) }].compact
 
-          speaker_names.any? { |name| referenced.include?(name) } ||
+          speaker_names.any? { |name| referenced.include?(name) || referenced_downcased.include?(name.strip.downcase) } ||
             (speaker.github.present? && referenced_downcased.include?(speaker.github.downcase))
         end
       end

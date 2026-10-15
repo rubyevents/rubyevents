@@ -40,8 +40,20 @@ module Static
 
       (slug.present? && all.find_by(slug: slug)) ||
         (github.present? && all.find_by(github: github)) ||
-        (name.present? && (all.find_by(name: name) || find_by_github_handle(name))) ||
+        (name.present? && (all.find_by(name: name) || find_by_name_ignoring_case(name) || find_by_github_handle(name))) ||
         nil
+    end
+
+    def self.find_by_name_ignoring_case(name)
+      return nil if name.blank?
+
+      all.cached(:speakers_by_downcased_name) {
+        all.each_with_object({}) do |speaker, index|
+          [speaker.name, *Array(speaker["aliases"]).filter_map { |alias_entry| alias_entry["name"] if alias_entry.is_a?(Hash) }].compact.each do |identifier|
+            index[identifier.strip.downcase] ||= speaker
+          end
+        end
+      }[name.to_s.strip.downcase]
     end
 
     def self.find_by_github_handle(handle)

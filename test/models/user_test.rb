@@ -153,6 +153,15 @@ class UserTest < ActiveSupport::TestCase
     assert_equal user.id, found_user.id
   end
 
+  test "find_by_name_or_alias ignores case and surrounding whitespace" do
+    user = User.create!(name: "Hiroshi SHIBATA", github_handle: "hsbt-case-test")
+    user.aliases.create!(name: "Hitoshi Hasumi", slug: "hitoshi-hasumi-case-test")
+
+    assert_equal user.id, User.find_by_name_or_alias("Hiroshi Shibata").id
+    assert_equal user.id, User.find_by_name_or_alias(" hiroshi shibata ").id
+    assert_equal user.id, User.find_by_name_or_alias("HITOSHI HASUMI").id
+  end
+
   test "find_by_name_or_alias falls back to the GitHub handle" do
     user = User.create!(name: "Keith Gaddis", github_handle: "karmajunkie-test")
 

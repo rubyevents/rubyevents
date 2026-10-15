@@ -333,6 +333,14 @@ class User < ApplicationRecord
     alias_record = ::Alias.find_by(aliasable_type: "User", name: name)
     return alias_record.aliasable if alias_record
 
+    normalized = name.strip.downcase
+
+    user = where(marked_for_deletion: false).find_by("lower(trim(name)) = ?", normalized)
+    return user if user
+
+    alias_record = ::Alias.where(aliasable_type: "User").find_by("lower(trim(name)) = ?", normalized)
+    return alias_record.aliasable if alias_record
+
     find_by_github_handle(name)
   end
 

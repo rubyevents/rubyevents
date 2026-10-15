@@ -28,6 +28,16 @@ class Static::SpeakerTest < ActiveSupport::TestCase
     assert_equal "Aaron Patterson", Static::Speaker.find_by(name: "TenderLove").name
   end
 
+  test "find_by name ignores case and surrounding whitespace" do
+    assert_equal "Aaron Patterson", Static::Speaker.find_by(name: "aaron patterson").name
+    assert_equal "Aaron Patterson", Static::Speaker.find_by(name: " AARON PATTERSON ").name
+  end
+
+  test "known_reference? ignores case and surrounding whitespace" do
+    assert Static::Speaker.known_reference?("aaron patterson")
+    assert Static::Speaker.known_reference?(" Aaron Patterson ")
+  end
+
   test "known_reference? includes GitHub handles" do
     assert Static::Speaker.known_reference?("Aaron Patterson")
     assert Static::Speaker.known_reference?("tenderlove")

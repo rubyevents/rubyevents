@@ -22,12 +22,22 @@ class Static::Validators::UniqueSpeakerIdentifiersTest < ActiveSupport::TestCase
     assert_empty validator.errors
   end
 
-  test "allows identifiers repeated within the same speaker" do
+  test "allows a speaker named after their own GitHub handle" do
     yaml = <<~YAML
       ---
       - name: "buty4649"
         github: "buty4649"
         slug: "buty4649"
+    YAML
+
+    with_temp_speakers_yaml(yaml) do |path|
+      assert_empty Static::Validators::UniqueSpeakerIdentifiers.new(file_path: path).errors
+    end
+  end
+
+  test "returns error when a speaker's names only differ in case" do
+    yaml = <<~YAML
+      ---
       - name: "Hiroshi SHIBATA"
         github: "hsbt"
         slug: "hiroshi-shibata"
@@ -37,7 +47,26 @@ class Static::Validators::UniqueSpeakerIdentifiersTest < ActiveSupport::TestCase
     YAML
 
     with_temp_speakers_yaml(yaml) do |path|
-      assert_empty Static::Validators::UniqueSpeakerIdentifiers.new(file_path: path).errors
+      errors = Static::Validators::UniqueSpeakerIdentifiers.new(file_path: path).errors
+
+      assert_equal 1, errors.size
+      assert_equal %(Speaker names only differ in case or whitespace on "Hiroshi SHIBATA": name "Hiroshi SHIBATA", alias "Hiroshi Shibata". Name lookups ignore case and surrounding whitespace, so keep only one of them.), errors.first.to_h["message"]
+    end
+  end
+
+  test "returns error when a speaker's aliases only differ in surrounding whitespace" do
+    yaml = <<~YAML
+      ---
+      - name: "Vishwajeetsingh Desurkar"
+        github: ""
+        slug: "vishwajeetsingh-desurkar"
+        aliases:
+          - name: "Vishwajeetsingh Desurkar "
+            slug: "vishwajeetsingh-desurkar"
+    YAML
+
+    with_temp_speakers_yaml(yaml) do |path|
+      assert_equal 1, Static::Validators::UniqueSpeakerIdentifiers.new(file_path: path).errors.size
     end
   end
 
