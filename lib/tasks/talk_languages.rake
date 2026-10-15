@@ -24,7 +24,7 @@ namespace :talk_languages do
     written = 0
     unresolved = []
 
-    Dir.glob(Rails.root.join("data/**/videos.yml")).sort.each do |path|
+    Dir.glob(Static::Talk.file_glob).sort.each do |path|
       validator = Static::Validators::TalkLanguage.new(file_path: path)
       next unless validator.applicable? && validator.errors.any?
 

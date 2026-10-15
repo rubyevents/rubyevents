@@ -40,7 +40,7 @@ class SpeakerAddAliasToolTest < ActiveSupport::TestCase
     assert result[:success]
     assert_equal 2, result[:total_aliases]
 
-    speaker = Static::SpeakersFile.new(@tmp_file.path).find_by(name: "Aaron Patterson")
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Aaron Patterson")
     alias_slugs = speaker["aliases"].map { |a| a["slug"] }
     assert_includes alias_slugs, "tenderlove"
     assert_includes alias_slugs, "aaron-p"
@@ -49,7 +49,7 @@ class SpeakerAddAliasToolTest < ActiveSupport::TestCase
   test "adds alias to speaker with existing aliases" do
     @tool.execute(name: "Matz", alias_name: "Matz-san")
 
-    speaker = Static::SpeakersFile.new(@tmp_file.path).find_by(name: "Matz")
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Matz")
     alias_names = speaker["aliases"].map { |a| a["name"] }
     assert_includes alias_names, "Yukihiro Matsumoto"
     assert_includes alias_names, "Matz-san"
@@ -58,7 +58,7 @@ class SpeakerAddAliasToolTest < ActiveSupport::TestCase
   test "uses custom slug when provided" do
     @tool.execute(name: "DHH", alias_name: "David", alias_slug: "david-h")
 
-    speaker = Static::SpeakersFile.new(@tmp_file.path).find_by(name: "DHH")
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "DHH")
     alias_entry = speaker["aliases"].find { |a| a["name"] == "David" }
     assert_equal "david-h", alias_entry["slug"]
   end
@@ -66,7 +66,7 @@ class SpeakerAddAliasToolTest < ActiveSupport::TestCase
   test "auto-generates slug from alias name" do
     @tool.execute(name: "DHH", alias_name: "David H. Hansson")
 
-    speaker = Static::SpeakersFile.new(@tmp_file.path).find_by(name: "DHH")
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "DHH")
     alias_entry = speaker["aliases"].find { |a| a["name"] == "David H. Hansson" }
     assert_equal "david-h-hansson", alias_entry["slug"]
   end
@@ -82,7 +82,7 @@ class SpeakerAddAliasToolTest < ActiveSupport::TestCase
 
     assert_match(/already exists/, result[:error])
 
-    speaker = Static::SpeakersFile.new(@tmp_file.path).find_by(name: "Matz")
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Matz")
     assert_equal 1, speaker["aliases"].size
   end
 
@@ -91,7 +91,7 @@ class SpeakerAddAliasToolTest < ActiveSupport::TestCase
 
     assert_match(/already exists/, result[:error])
 
-    speaker = Static::SpeakersFile.new(@tmp_file.path).find_by(name: "Matz")
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Matz")
     assert_equal 1, speaker["aliases"].size
   end
 end

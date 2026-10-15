@@ -56,9 +56,9 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--event", "2022",
       "--title", "RubyConf 2022",
       "--description", "RubyConf 2022 description",
-      "--start-date", "2022-11-15",
-      "--end-date", "2022-11-17",
-      "--date-precision", "year",
+      "--start-date", "2022-11-30",
+      "--end-date", "2022-11-30",
+      "--date-precision", "month",
       "--announced-on", "2022-01-01",
       "--recordings-published-date", "2022-12-01",
       "--kind", "retreat",
@@ -69,11 +69,17 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--timezone", "America/Chicago",
       "--online"]
 
+    File.write(File.join(File.dirname(event_file_path), "videos.yml"), <<~YAML)
+      - id: "rubyconf-2022-talk"
+        video_provider: "youtube"
+        published_at: "2022-12-01"
+    YAML
+
     assert_valid_file event_file_path do |content|
       assert_match(/title: "RubyConf 2022"/, content)
       assert_match(/description: |-\s+RubyConf 2022 description/, content)
-      assert_match(/start_date: "2022-11-15"/, content)
-      assert_match(/end_date: "2022-11-17"/, content)
+      assert_match(/start_date: "2022-11-30"/, content)
+      assert_match(/end_date: "2022-11-30"/, content)
       assert_match(/announced_on: "2022-01-01"/, content)
       assert_match(/recordings_published_date: "2022-12-01"/, content)
       assert_match(/year: 2022/, content)
@@ -138,6 +144,41 @@ class EventGeneratorTest < Rails::Generators::TestCase
       assert_match(/latitude: -23.59572/, content)
       assert_match(/longitude: -46.68448/, content)
     end
+  end
+
+  test "meetup event without dates passes schema validation" do
+    event_file_path = File.join(destination_root, "data/tokyo-rb/tokyo-rb-meetup/event.yml")
+    run_generator ["--force",
+      "--event-series", "tokyo-rb",
+      "--event", "tokyo-rb-meetup",
+      "--title", "Tokyo.rb Meetup",
+      "--kind", "meetup",
+      "--location", "Tokyo, Japan",
+      "--online"]
+
+    assert_valid_file event_file_path do |content|
+      assert_match(/title: "Tokyo.rb Meetup"/, content)
+      assert_match(/kind: "meetup"/, content)
+      assert_no_match(/start_date/, content)
+      assert_no_match(/end_date/, content)
+      assert_no_match(/year:/, content)
+      assert_no_match(/tickets_url/, content)
+    end
+  end
+
+  test "non-meetup event without dates does not generate a file" do
+    event_file_path = File.join(destination_root, "data/rubyconf/2030/event.yml")
+
+    stderr = capture(:stderr) do
+      run_generator ["--force",
+        "--event-series", "rubyconf",
+        "--event", "2030",
+        "--title", "RubyConf 2030",
+        "--online"]
+    end
+
+    assert_match(/start-date/, stderr)
+    assert_not File.exist?(event_file_path)
   end
 
   def assert_valid_file(file_path, msg = nil, &block)

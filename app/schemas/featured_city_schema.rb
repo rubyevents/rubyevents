@@ -13,7 +13,7 @@ class FeaturedCitySchema < ApplicationSchema
 
   def to_json_schema
     result = super
-    result[:schema][:properties][:state_code][:type] = ["string", "null"]
+    result["properties"]["state_code"]["type"] = ["string", "null"]
     result
   end
 end

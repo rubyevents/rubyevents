@@ -1,13 +1,15 @@
 <tr>
   <td class="font-bold"><%= speaker_counter + 1 %></td>
+
   <td style="view-transition-name: <%= dom_id(speaker, :Leaderboard) if speaker_counter < 10 %>">
     <%= link_to profile_path(speaker) do %>
       <div class="flex items-center gap-4">
         <%= ui_avatar(speaker) %>
-        <span class="link link-hover"><%= speaker.name %></span>
+        <span class="link-hover link"><%= speaker.name %></span>
       </div>
     <% end %>
   </td>
+
   <td style="view-transition-name: <%= dom_id(speaker, :Leaderboard_count) if speaker_counter < 10 %>">
     <%= ui_badge(speaker.talks_count_in_range, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
   </td>

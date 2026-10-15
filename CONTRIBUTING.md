@@ -296,6 +296,7 @@ There are additional guides for adding optional information:
 - [schedules](/docs/ADDING_SCHEDULES.md)
 - [sponsors](/docs/ADDING_SPONSORS.md)
 - [venues](/docs/ADDING_VENUES.md)
+- [speakers](/docs/ADDING_SPEAKERS.md)
 
 If you have questions about contributing events:
 

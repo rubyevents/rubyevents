@@ -159,6 +159,32 @@ class EventTest < ActiveSupport::TestCase
     assert_operator upcoming_soon.featured_distance, :<, just_published.featured_distance
   end
 
+  test "featured returns eligible events in priority order up to the limit" do
+    today = Date.today
+    Event.update_all(featured_background: nil, featured_color: nil, home_sort_date: nil, recordings_published_date: nil)
+
+    happening = events(:rails_world_2023)
+    happening.update!(
+      start_date: today.prev_day,
+      end_date: today.next_day,
+      home_sort_date: today,
+      featured_background: "#000000",
+      featured_color: "#ffffff"
+    )
+
+    upcoming = events(:future_conference)
+    upcoming.update!(
+      start_date: today + 2.days,
+      end_date: today + 3.days,
+      home_sort_date: today,
+      featured_background: "#000000",
+      featured_color: "#ffffff"
+    )
+
+    assert_equal [happening], Event.featured(limit: 1, today: today).to_a
+    assert_equal [happening, upcoming], Event.featured(limit: 2, today: today).to_a
+  end
+
   test "sync_aliases_from_list creates aliases from array" do
     event = events(:rails_world_2023)
     aliases = ["RW 2023", "Rails World Amsterdam", "RailsWorld23"]

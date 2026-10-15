@@ -87,6 +87,23 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
     end
   end
 
+  test "generator updates an involvement entry that is followed by another" do
+    file_path = File.join(destination_root, "data/xoruby/2029/involvements.yml")
+
+    run_generator ["--event-series", "xoruby", "--event", "2029", "--name", "Organizer", "--users", "Jim Remsik"]
+    run_generator ["--event-series", "xoruby", "--event", "2029", "--name", "Volunteer", "--users", "Alice Smith"]
+
+    assert_nothing_raised do
+      run_generator ["--event-series", "xoruby", "--event", "2029", "--name", "Organizer", "--organisations", "Flagrant"]
+    end
+
+    assert_valid_file file_path do |content|
+      assert_match(/- Alice Smith/, content)
+      assert_match(/- Flagrant/, content)
+      refute_match(/- Jim Remsik/, content)
+    end
+  end
+
   test "generator creates new involvement entry if name is different" do
     file_path = File.join(destination_root, "data/xoruby/2028/involvements.yml")
     # First run to create the file with one involvement

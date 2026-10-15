@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // empty' | grep -qE 'YAML\\.(load_file|load|parse|safe_load|dump)|\\.(to_yaml)' && echo '{\"decision\":\"block\",\"reason\":\"Do not use YAML.load_file, YAML.dump, or .to_yaml for data files. Use Yerba.parse_file to read and doc.save! to write, preserving formatting, comments, and whitespace.\"}' || true"
+            "command": "jq -r '.tool_input.command // empty' | grep -qE 'YAML\\.(load_file|load|parse|safe_load|dump)|\\.(to_yaml)' && echo '{\"decision\":\"block\",\"reason\":\"Do not use YAML.load_file, YAML.dump, or .to_yaml. To read data files use Yerba.parse_file, to write use doc.save! (preserves formatting, comments, and whitespace). To turn a Ruby Hash/Array into YAML use Yerba::Document.from(object) (e.g. Yerba::Document.from(hash).to_s or .validate(schema)).\"}' || true"
           }
         ]
       }

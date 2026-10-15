@@ -47,14 +47,10 @@ class Static::Validators::AssetsHaveColorsTest < ActiveSupport::TestCase
     end
   end
 
-  test "flags an event falling back to a series default asset without colors" do
+  test "does not flag an event falling back to a series default asset without colors" do
     event = {"name" => "TestConf", "kind" => "conference"}.to_yaml
     with_temp_event(event, default_assets: ["banner.webp"]) do |file_path|
-      errors = Static::Validators::AssetsHaveColors.new(file_path: file_path).errors
-
-      assert_equal 1, errors.size
-      assert_includes errors.first.message, "banner_background is not defined"
-      assert_includes errors.first.message, "app/assets/images/events/testconf/default/banner.webp"
+      assert_empty Static::Validators::AssetsHaveColors.new(file_path: file_path).errors
     end
   end
 

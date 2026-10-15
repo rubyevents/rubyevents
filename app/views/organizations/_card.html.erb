@@ -7,7 +7,7 @@
       <% image_size_class = grid_layout ? "w-24 h-24 sm:w-32 sm:h-32" : "w-32 h-32 sm:w-40 sm:h-40" %>
 
       <% if organization.has_logo_image? %>
-        <div class="<%= organization.logo_background_class %> rounded-lg p-2 border border-gray-200">
+        <div class="rounded-lg border border-gray-200 p-2 <%= organization.logo_background_class %>">
           <%= image_tag(
                 organization.logo_image_path,
                 alt: "#{organization.name} logo",
@@ -16,28 +16,35 @@
                 onerror: "this.style.display='none'; this.nextElementSibling.style.display='flex';"
               ) %>
 
-          <div class="<%= image_size_class %> items-center justify-center" style="display: none;">
-            <span class="text-lg font-semibold text-gray-700 text-center line-clamp-3"><%= organization.name %></span>
+          <div class="items-center justify-center <%= image_size_class %>" style="display: none;">
+            <span class="line-clamp-3 text-center text-lg font-semibold text-gray-700"><%= organization.name %></span>
           </div>
         </div>
       <% else %>
-        <div class="<%= image_size_class %> flex items-center justify-center">
-          <span class="text-lg font-semibold text-gray-700 text-center line-clamp-3"><%= organization.name %></span>
+        <div class="flex items-center justify-center <%= image_size_class %>">
+          <span class="line-clamp-3 text-center text-lg font-semibold text-gray-700"><%= organization.name %></span>
         </div>
       <% end %>
     </figure>
 
-    <div class="card-body items-center text-center pt-4 px-0 justify-center <%= "pb-6" if defined?(hide_event_count) && hide_event_count %>">
-      <h3 class="<%= grid_layout ? "text-sm sm:text-base" : "text-xl" %> font-semibold text-slate-700 line-clamp-1"><%= organization.name %></h3>
+    <div class="card-body items-center justify-center px-0 pt-4 text-center <%= "pb-6" if defined?(hide_event_count) && hide_event_count %>">
+      <h3 class="line-clamp-1 font-semibold text-slate-700 <%= grid_layout ? "text-sm sm:text-base" : "text-xl" %>">
+        <%= organization.name %>
+      </h3>
 
       <% if defined?(sponsor) && sponsor&.badge.present? %>
-        <div class="mt-2 mx-4 px-2 py-1 <%= grid_layout ? "text-xs" : "text-sm" %> bg-blue-600 text-white rounded-full font-medium truncate text-center max-w-full" aria-label="<%= sponsor.badge %>">
+        <div
+          class="mx-4 mt-2 max-w-full truncate rounded-full bg-blue-600 px-2 py-1 text-center font-medium text-white <%= grid_layout ? "text-xs" : "text-sm" %>"
+          aria-label="<%= sponsor.badge %>"
+        >
           <%= sponsor.badge %>
         </div>
       <% end %>
 
       <% unless defined?(hide_event_count) && hide_event_count %>
-        <div class="<%= grid_layout ? "text-xs sm:text-sm" : "text-base" %> text-slate-600"><%= pluralize(organization.events.size, "event") %></div>
+        <div class="text-slate-600 <%= grid_layout ? "text-xs sm:text-sm" : "text-base" %>">
+          <%= pluralize(organization.events.size, "event") %>
+        </div>
       <% end %>
     </div>
   </div>

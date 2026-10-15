@@ -1,7 +1,7 @@
-<div id="event-plain-list" class="relative group rounded-xl flex flex-col gap-2">
+<div id="event-plain-list" class="group relative flex flex-col gap-2 rounded-xl">
   <% events.each do |event| %>
     <%= link_to event, class: "event-item flex gap-4 group p-2 hover:bg-gray-200 rounded-md" do %>
-      <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left flex-shrink-0">
+      <div class="lg:justify-right flex flex-shrink-0 flex-col items-center gap-8 text-center lg:flex-row lg:text-left <%= "opacity-50 grayscale" if event_cancelled?(event) %>">
         <%= image_tag image_path(event.avatar_image_path),
               class: "rounded-xl border border-[#D9DFE3] size-16",
               alt: event.name.to_s,
@@ -9,12 +9,17 @@
               loading: :lazy %>
       </div>
 
-      <div class="flex-col flex justify-center relative overflow-hidden">
-        <div class="text-black group-hover:text-inherit font-bold text-xl"><%= event.name %></div>
-        <div class="text-[#636B74] group-hover:text-inherit"><%= event.formatted_dates %> • <%= event.to_location.to_html(show_links: false) %></div>
+      <div class="relative flex flex-col justify-center overflow-hidden">
+        <div class="text-xl font-bold text-black group-hover:text-inherit <%= "text-red-500 line-through opacity-50" if event_cancelled?(event) %>">
+          <%= event.name %>
+        </div>
+
+        <div class="text-[#636B74] group-hover:text-inherit <%= "line-through opacity-50" if event_cancelled?(event) %>">
+          <%= event.formatted_dates %> • <%= event.to_location.to_html(show_links: false) %>
+        </div>
       </div>
 
-      <div class="absolute hidden gap-2 sm:flex right-2">
+      <div class="absolute right-2 hidden gap-2 sm:flex">
         <%= render "shared/cfp_countdown_badge", event: event %>
         <%= render "shared/event_countdown_badge", event: event %>
       </div>

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ApplicationSchema < RubyLLM::Schema
+class ApplicationSchema < Schematist::Schema
   def self.schemas
     Rails.autoloaders.main.eager_load_dir(Rails.root.join("app/schemas"))
 
@@ -32,11 +32,11 @@ class ApplicationSchema < RubyLLM::Schema
   end
 
   def self.matches?(file_path)
-    data_file.present? && File.fnmatch?(data_file, file_path.to_s, File::FNM_PATHNAME)
+    data_file.present? && File.fnmatch?(data_file, file_path.to_s, File::FNM_PATHNAME | File::FNM_DOTMATCH)
   end
 
   def self.json_schema
-    new.to_json_schema[:schema].as_json
+    new.to_json_schema.as_json
   end
 
   def self.export!

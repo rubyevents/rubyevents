@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   include WatchedTalks
+  include ContinentFilterable
   include Pagy::Backend
 
   skip_before_action :authenticate_user!, only: %i[index show]
@@ -9,9 +10,9 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.includes(:series, :keynote_speakers)
-      .where(end_date: Date.today..)
-      .order(start_date: :asc)
+    @events = filter_by_continent(
+      Event.includes(:series, :keynote_speakers).where(end_date: Date.today..)
+    ).order(start_date: :asc)
 
     respond_to do |format|
       format.html
@@ -47,7 +48,7 @@ class EventsController < ApplicationController
 
     @sponsors = @event.sponsors.includes(:organization).joins(:organization).order(level: :asc)
 
-    @participation = Current.user&.main_participation_to(@event)
+    @participation = Current.user&.participation_for(@event)
   end
 
   # POST /events/:slug/reimport

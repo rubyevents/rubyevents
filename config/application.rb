@@ -45,5 +45,7 @@ module RubyEvents
 
     # disable Mission Control auth as we use the route Authenticator
     config.mission_control.jobs.http_basic_auth_enabled = false
+    # do not inherit from ApplicationController (the default), because that calls `authenticate_user!`
+    config.mission_control.jobs.base_controller_class = "ActionController::Base"
   end
 end

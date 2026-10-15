@@ -2,7 +2,7 @@
 
 class VimeoVideoTool < RubyLLM::Tool
   description "Fetch Vimeo video metadata by video ID using the oEmbed API"
-  param :id, desc: "Vimeo video ID"
+  parameter :id, description: "Vimeo video ID"
 
   OEMBED_URL = "https://vimeo.com/api/oembed.json"
 

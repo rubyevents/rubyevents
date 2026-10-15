@@ -166,7 +166,7 @@ module Static
           reload(Static::EventSeries)
         else
           reload(Static::Event)
-          reload(Static::Video)
+          reload(Static::Talk)
         end
       end
 

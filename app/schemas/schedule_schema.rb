@@ -12,7 +12,7 @@ class ScheduleSchema < ApplicationSchema
         object do
           string :start_time, description: "Start time (HH:MM format)"
           string :end_time, description: "End time (HH:MM format)"
-          integer :slots, description: "Number of parallel tracks/slots", required: false
+          integer :slots, description: "Number of parallel tracks/slots"
           string :description, description: "Description of the time slot", required: false
 
           array :items, description: "Items in this time slot", required: false do
@@ -21,10 +21,7 @@ class ScheduleSchema < ApplicationSchema
 
               object do
                 string :title, description: "Title of the session"
-                string :description, description: "Description of the session", required: false
-                array :speakers, of: :string, description: "List of speaker names", required: false
-                string :track, description: "Track name", required: false
-                string :room, description: "Room name/number", required: false
+                string :description, description: "Description of the session"
               end
             end
           end

@@ -14,7 +14,7 @@ module Static
       def applicable?
         return false unless File.exist?(@file_path)
 
-        PATTERNS.any? { |pattern| File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME) }
+        PATTERNS.any? { |pattern| File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH) }
       end
 
       def errors
@@ -23,45 +23,44 @@ module Static
 
       def validate
         return [] unless applicable?
-        return [] unless document.root
 
-        document.root.each.flat_map do |video|
-          parent_id = video.value_at("id")
+        videos_file.pairs.flat_map do |video, talks|
+          parent_id = video["id"]
 
-          Array(video["talks"]&.each&.to_a).filter_map do |child|
+          talks.filter_map do |child|
             next unless speaker?(child)
             next unless usable_start_cue?(child)
 
-            video_id = child.value_at("video_id")
+            video_id = child["video_id"]
             next if parent_id.blank? || video_id.blank?
 
             path = thumbnail_path(parent_id, video_id)
             next if File.exist?(path)
 
-            node = child["video_id"] || child["start_cue"]
+            location = child.source_location("video_id") || child.source_location("start_cue")
 
             Static::Validators::Error.new(
               %(missing thumbnail for talk "#{video_id}" at #{relative_path(path)}. Run `bin/rails extract_thumbnails` to generate it.),
               file_path: @file_path,
-              line: node&.location&.start_line || 1,
-              end_line: node&.location&.end_line
+              line: location&.start_line || 1,
+              end_line: location&.end_line
             )
           end
         end
       end
 
-      def document
-        @document ||= Yerba.parse_file(@file_path)
+      def videos_file
+        @videos_file ||= Static::Talk.in_file(@file_path, document: @document)
       end
 
       private
 
       def speaker?(child)
-        Array(child.value_at("speakers")).any? { |name| name.to_s.strip.present? }
+        Array(child["speakers"]).any? { |name| name.to_s.strip.present? }
       end
 
       def usable_start_cue?(child)
-        cue = child.value_at("start_cue")
+        cue = child["start_cue"]
         cue.present? && cue != "TODO"
       end
 

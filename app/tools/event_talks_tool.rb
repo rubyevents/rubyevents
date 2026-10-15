@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class EventTalksTool < RubyLLM::Tool
-  description "Get all talks/videos from an event using the Static::Video model. Search by event slug or name."
-  param :query, desc: "Event slug (e.g., 'railsconf-2024') or event name (e.g., 'RailsConf 2024')"
+  description "Get all talks/videos from an event using the Static::Talk model. Search by event slug or name."
+  parameter :query, description: "Event slug (e.g., 'railsconf-2024') or event name (e.g., 'RailsConf 2024')"
 
   def execute(query:)
     event = Static::Event.find_by_slug(query)
@@ -10,16 +10,14 @@ class EventTalksTool < RubyLLM::Tool
 
     return {error: "Event not found for '#{query}'"} if event.nil?
 
-    event_path = File.dirname(event.send(:__file_path))
+    event_path = File.dirname(event.file_path)
     videos_file = File.join(event_path, "videos.yml")
 
     unless File.exist?(videos_file)
       return {error: "No videos.yml found for event '#{event.title}'"}
     end
 
-    videos = Static::Video.all.select do |video|
-      video.send(:__file_path) == videos_file
-    end
+    videos = Static::Talk.in_file(videos_file).to_a
 
     {
       event_slug: event.slug,
@@ -38,6 +36,7 @@ class EventTalksTool < RubyLLM::Tool
   def video_to_hash(video)
     {
       title: video.title,
+      parent_talk: video.parent&.id,
       speakers: video.speakers,
       date: video.date,
       video_provider: video.video_provider,

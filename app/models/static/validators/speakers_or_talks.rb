@@ -16,7 +16,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -27,19 +27,15 @@ module Static
       def validate
         return [] unless applicable?
 
-        return [] unless document.root
-
-        document.root.each.flat_map do |video|
-          nested = Array(video["talks"]&.each&.to_a)
-
+        videos_file.pairs.flat_map do |video, nested|
           talk_errors(video) + nested.flat_map { |talk| talk_errors(talk) }
         end
       end
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def videos_file
+        @videos_file ||= Static::Talk.in_file(@file_path, document: @document)
       end
 
       def talk_errors(node)
@@ -48,7 +44,7 @@ module Static
 
         return [] if has_talks ^ has_speakers
 
-        location = (node["talks"] || node["speakers"] || node["title"])&.location
+        location = node.source_location("talks") || node.source_location("speakers") || node.source_location("title")
 
         message = if has_talks && has_speakers
           "an entry must have either `talks` or `speakers`, but not both."

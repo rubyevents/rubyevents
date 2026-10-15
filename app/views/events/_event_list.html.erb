@@ -1,13 +1,24 @@
-<div class="relative group">
-  <div class="absolute hidden top-0 left-0 w-full h-24 bg-gradient-to-b from-base-100 to-transparent pointer-events-none rounded-t-xl z-10"
-       data-event-list-target="topGradient"></div>
-  <div id="event-list"
-       class="border border-transparent md:hover:border-gray-200 rounded-xl flex flex-col gap-2 md:h-[75vh] md:overflow-scroll"
-       data-event-list-target="list"
-       data-action="scroll->event-list#updateGradients">
+<div class="group relative">
+  <div
+    class="
+      pointer-events-none absolute left-0 top-0 z-10 hidden h-24 w-full rounded-t-xl bg-gradient-to-b from-base-100
+      to-transparent
+    "
+    data-event-list-target="topGradient"
+  ></div>
+
+  <div
+    id="event-list"
+    class="
+      flex flex-col gap-2 rounded-xl border border-transparent md:h-[75vh] md:overflow-scroll
+      md:hover:border-gray-200
+    "
+    data-event-list-target="list"
+    data-action="scroll->event-list#updateGradients"
+  >
     <% events.each do |event| %>
       <%= link_to event, class: "event-item flex gap-4 group p-2 hover:bg-gray-200 rounded-md relative", data: {action: "mouseover->event-list#reveal", event_list_target: "item", event_id: event.slug} do %>
-        <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left flex-shrink-0">
+        <div class="lg:justify-right flex flex-shrink-0 flex-col items-center gap-8 text-center lg:flex-row lg:text-left <%= "opacity-50 grayscale" if event_cancelled?(event) %>">
           <%= image_tag image_path(event.avatar_image_path),
                 class: "rounded-xl border border-[#D9DFE3] size-16",
                 alt: event.name.to_s,
@@ -15,18 +26,29 @@
                 loading: :lazy %>
         </div>
 
-        <div class="flex-col flex justify-center relative overflow-hidden">
-          <div class="text-black font-bold text-xl <% if event.static_metadata.cancelled? %> line-through text-red-500 opacity-50 <% end %>"><%= event.name %></div>
-          <div class="text-[#636B74] group-hover:text-inherit <% if event.static_metadata.cancelled? %> line-through opacity-50 <% end %>"><%= event.formatted_dates %> • <%= event.to_location.to_html(show_links: false) %></div>
+        <div class="relative flex flex-col justify-center overflow-hidden">
+          <div class="text-xl font-bold text-black <%= "text-red-500 line-through opacity-50" if event_cancelled?(event) %>">
+            <%= event.name %>
+          </div>
+
+          <div class="text-[#636B74] group-hover:text-inherit <%= "line-through opacity-50" if event_cancelled?(event) %>">
+            <%= event.formatted_dates %> • <%= event.to_location.to_html(show_links: false) %>
+          </div>
         </div>
 
-        <div class="absolute hidden gap-2 md:flex right-2">
+        <div class="absolute right-2 hidden gap-2 md:flex">
           <%= render "shared/cfp_countdown_badge", event: event %>
           <%= render "shared/event_countdown_badge", event: event %>
         </div>
-
       <% end %>
     <% end %>
   </div>
-  <div class="absolute hidden bottom-0 left-0 w-full h-64 bg-gradient-to-t from-base-100 to-transparent pointer-events-none rounded-b-xl" data-event-list-target="bottomGradient"></div>
+
+  <div
+    class="
+      pointer-events-none absolute bottom-0 left-0 hidden h-64 w-full rounded-b-xl bg-gradient-to-t from-base-100
+      to-transparent
+    "
+    data-event-list-target="bottomGradient"
+  ></div>
 </div>

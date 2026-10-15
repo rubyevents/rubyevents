@@ -190,6 +190,25 @@ If an event doesn't have specific assets, the system will fall back to:
 1. Organization-level defaults (in `app/assets/images/events/{organization}/default/`)
 2. Global defaults (in `app/assets/images/events/default/`)
 
+Brand colors belong next to the assets they describe:
+- An event with its own `banner.webp` or `featured.webp` defines the matching colors in its `event.yml`.
+- An event using the organization-level default assets doesn't define any brand colors. The colors for the default assets are defined once in `data/{organization}/series.yml` and every event using them inherits them:
+
+```yaml
+# data/railsconf/series.yml
+---
+id: "railsconf"
+name: "RailsConf"
+# ... other fields ...
+banner_background: "#FFFFFF"      # Used with default/banner.webp
+featured_background: "#FFFFFF"    # Used with default/featured.webp
+featured_color: "#F4554E"         # Used with default/featured.webp
+```
+
+- Events using the global defaults don't define any brand colors.
+
+`bin/rails validate:all` reports colors that are defined in the wrong place, as well as missing colors for custom assets and organization-level defaults.
+
 ## Step-by-Step Guide
 
 ### 1. Prepare Your Images

@@ -1,10 +1,11 @@
-<h2 class="text-2xl font-bold mb-2 text-center">Stamps Collected</h2>
-<p class="text-gray-500 text-center mb-6">Souvenirs from your <%= year %> adventures</p>
+<h2 class="mb-2 text-center text-2xl font-bold">Stamps Collected</h2>
+<p class="mb-6 text-center text-gray-500">Souvenirs from your <%= year %> adventures</p>
 
 <div class="flex-1 space-y-6">
   <% if country_stamps.any? %>
     <div>
-      <p class="text-sm font-semibold mb-2 text-gray-600">🌍 Countries Visited</p>
+      <p class="mb-2 text-sm font-semibold text-gray-600">🌍 Countries Visited</p>
+
       <div class="stamp-grid">
         <% country_stamps.first(6).each do |stamp| %>
           <div class="stamp-item">
@@ -12,15 +13,17 @@
           </div>
         <% end %>
       </div>
+
       <% if country_stamps.count > 6 %>
-        <p class="text-xs text-gray-500 mt-2 text-center">+ <%= country_stamps.count - 6 %> more</p>
+        <p class="mt-2 text-center text-xs text-gray-500">+ <%= country_stamps.count - 6 %> more</p>
       <% end %>
     </div>
   <% end %>
 
   <% if event_stamps.any? %>
     <div>
-      <p class="text-sm font-semibold mb-2 text-gray-600">🎪 Event Stamps</p>
+      <p class="mb-2 text-sm font-semibold text-gray-600">🎪 Event Stamps</p>
+
       <div class="stamp-grid">
         <% event_stamps.first(6).each do |stamp| %>
           <div class="stamp-item">
@@ -28,15 +31,17 @@
           </div>
         <% end %>
       </div>
+
       <% if event_stamps.count > 6 %>
-        <p class="text-xs text-gray-500 mt-2 text-center">+ <%= event_stamps.count - 6 %> more</p>
+        <p class="mt-2 text-center text-xs text-gray-500">+ <%= event_stamps.count - 6 %> more</p>
       <% end %>
     </div>
   <% end %>
 
   <% if achievement_stamps.any? %>
     <div>
-      <p class="text-sm font-semibold mb-2 text-gray-600">🏆 Achievements</p>
+      <p class="mb-2 text-sm font-semibold text-gray-600">🏆 Achievements</p>
+
       <div class="stamp-grid">
         <% achievement_stamps.each do |stamp| %>
           <div class="stamp-item">

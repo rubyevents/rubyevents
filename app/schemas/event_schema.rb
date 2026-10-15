@@ -34,12 +34,15 @@ class EventSchema < ApplicationSchema
   string :venue, description: "Name of the venue", required: false
 
   array :youtube_channels, of: YouTubeChannelSchema, description: "YouTube channels associated with this event", required: false
+
+  array :removed_talk_ids, of: :string, description: "Ids of talks that were intentionally removed from videos.yml, so the removal is not mistaken for an unrecorded rename", required: false
   string :playlist, description: "YouTube playlist/Vimeo showcase link", required: false
 
   string :website, description: "Official event website URL", required: false
   string :original_website, description: "Original/archived website URL", required: false
   string :twitter, description: "Twitter/X handle (without @)", required: false
   string :facebook, description: "Facebook Page URL", required: false
+  string :instagram, description: "Instagram handle (without @)", required: false
   string :mastodon, description: "Full Mastodon profile URL", required: false
   string :github, description: "GitHub organization or repository URL", required: false
   string :meetup, description: "Meetup.com group URL", required: false

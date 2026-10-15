@@ -3,20 +3,23 @@
 module Static
   module Validators
     class TalkId
+      include GitBaseline
+
       PATTERNS = [
         "**/videos.yml"
       ].freeze
 
-      def initialize(file_path:, document: nil)
+      def initialize(file_path:, document: nil, baseline: nil)
         @file_path = file_path
-        @document = document
+        @document = document || Yerba.parse_file(@file_path)
+        @baseline = baseline
       end
 
       def applicable?
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -27,28 +30,66 @@ module Static
       def validate
         return [] unless applicable?
 
-        expected_ids.filter_map do |node, expected|
-          actual = node.value_at("id").to_s
-
-          next if actual == expected
-
-          location = node["id"]&.location
+        map_unexpected_ids do |node, expected|
+          actual = node["id"].to_s
+          location = node.source_location("id")
 
           Static::Validators::Error.new(
-            %(id "#{actual}" does not match the expected id "#{expected}". Talk ids should be "firstname-lastname-#{event_slug}", with the kind added on duplicates, the kind alone for talks without one or two speakers, and the title in slug form as a last resort. Run `bin/rails talk_ids:fix` to rename it and keep the current id as old_id.),
+            %(id "#{actual}" does not match the expected id "#{expected}". Talk ids should be "firstname-lastname-#{event_slug}", with the kind added on duplicates, the kind alone for talks without one or two speakers, and the title in slug form as a last resort. Run `bin/rails validate:fix` to rename it and keep the current id as old_id.),
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
           )
+        end.compact
+      end
+
+      def fix
+        return unless applicable?
+
+        changes = map_unexpected_ids do |node, expected|
+          current = node["id"].to_s
+          node["old_id"] = current if node["old_id"].blank? && id_in_baseline?(current)
+          node.delete("old_id") if node["old_id"] == expected
+          if node["video_id"] == current && !watchable_video?(node)
+            node["video_id"] = expected
+          end
+          rename_thumbnails(current, expected)
+          node["id"] = expected
+        end.compact
+        return unless changes.any?
+        videos_file.save!
+        {changed: changes.size, file_path: @file_path}
+      end
+
+      private
+
+      def map_unexpected_ids
+        expected_ids.map do |node, expected|
+          actual = node["id"].to_s
+          yield(node, expected) if actual != expected
         end
       end
 
-      def document
-        @document ||= Yerba.parse_file(@file_path)
+      def id_in_baseline?(id)
+        baseline_ids.include?(id)
+      end
+
+      def baseline_ids
+        @baseline_ids ||= baseline ? baseline.ids : []
+      end
+
+      def baseline
+        @baseline ||= begin
+          document = self.class.baseline_file(relative_path)
+          Static::Talk.in_file(relative_path, document: document) if document
+        end
+      end
+
+      def videos_file
+        @videos_file ||= Static::Talk.in_file(@file_path, document: @document)
       end
 
       def expected_ids
-        return {} unless document.root
         return {} if meetup_event?
 
         @expected_ids ||= nodes.group_by { |node| speaker_id(node) }.each_with_object({}) do |(id, group), result|
@@ -74,12 +115,8 @@ module Static
         end
       end
 
-      private
-
       def nodes
-        @nodes ||= document.root.each.flat_map do |video|
-          [video] + Array(video["talks"]&.each&.to_a)
-        end
+        @nodes ||= videos_file.to_a
       end
 
       def event_slug
@@ -90,7 +127,7 @@ module Static
         event_file = File.join(File.dirname(File.expand_path(@file_path)), "event.yml")
         return false unless File.exist?(event_file)
 
-        Yerba.parse_file(event_file).value_at("kind") == "meetup"
+        Yerba.parse_file(event_file)["kind"] == "meetup"
       end
 
       def id_for(node)
@@ -98,9 +135,9 @@ module Static
 
         @ids[node] ||= ::Talk::StaticID.new(
           event_slug: event_slug,
-          title: node.value_at("title"),
-          speakers: node.value_at("speakers"),
-          kind: node.value_at("kind")
+          title: node["title"],
+          speakers: node["speakers"],
+          kind: node["kind"]
         )
       end
 
@@ -116,6 +153,23 @@ module Static
         id_for(node).title_id
       end
 
+      def watchable_video?(node)
+        node["video_provider"].in?(::Talk::WATCHABLE_PROVIDERS)
+      end
+
+      def rename_thumbnails(from, to)
+        event_thumbnails = Rails.root.join("app/assets/images/thumbnails", event_slug)
+
+        Dir.glob(event_thumbnails.join("**/#{from}.webp")).each do |thumbnail|
+          renamed_thumbnail = File.join(File.dirname(thumbnail), "#{to}.webp")
+          FileUtils.mv(thumbnail, renamed_thumbnail) unless File.exist?(renamed_thumbnail)
+        end
+
+        directory = event_thumbnails.join(from)
+        renamed_directory = event_thumbnails.join(to)
+        FileUtils.mv(directory, renamed_directory) if Dir.exist?(directory) && !Dir.exist?(renamed_directory)
+      end
+
       def numbered(node, id, index)
         index += 1 until available?(node, candidate = id.sub(/-#{Regexp.escape(event_slug)}\z/, "-#{index}-#{event_slug}"))
 
@@ -128,7 +182,7 @@ module Static
 
       def reservations
         @reservations ||= nodes.each_with_object({}) do |node, result|
-          [node.value_at("id"), node.value_at("old_id")].each do |value|
+          [node["id"], node["old_id"]].each do |value|
             next if value.blank?
 
             (result[value] ||= []) << node

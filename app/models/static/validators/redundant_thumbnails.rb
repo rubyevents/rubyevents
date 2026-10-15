@@ -14,7 +14,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -48,8 +48,8 @@ module Static
       end
 
       def self.talk_lookup
-        @talk_lookup ||= Static::Video.all.each_with_object({}) do |video, lookup|
-          event_slug = File.basename(File.dirname(video.__file_path.to_s))
+        @talk_lookup ||= Static::Talk.all.each_with_object({}) do |video, lookup|
+          event_slug = File.basename(File.dirname(video.file_path.to_s))
 
           register = lambda do |talk, parent_id|
             [talk.id, talk.video_id].compact.each do |key|
@@ -57,8 +57,7 @@ module Static
             end
           end
 
-          register.call(video, nil)
-          video.talks.each { |talk| register.call(talk, video.id) }
+          register.call(video, video.parent&.id)
         end
       end
 

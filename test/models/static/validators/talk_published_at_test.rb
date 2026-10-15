@@ -55,8 +55,14 @@ class Static::Validators::TalkPublishedAtTest < ActiveSupport::TestCase
     videos_path = File.join(dir, "data", "testconf", "2024", "videos.yml")
     FileUtils.mkdir_p(File.dirname(videos_path))
     File.write(videos_path, videos.to_yaml)
+
+    Static::Talk.base_path = File.join(dir, "data")
+    Static::Talk.unload!
+
     yield videos_path
   ensure
+    Static::Talk.base_path = Rails.root.join("data")
+    Static::Talk.unload!
     FileUtils.rm_rf(dir)
   end
 end

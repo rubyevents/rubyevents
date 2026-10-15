@@ -15,7 +15,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -26,36 +26,25 @@ module Static
       end
 
       def self.errors
-        @errors ||= duplicate_errors(files: Static::VideosFile.all)
+        talks = Static::Talk.all
+        return @errors if @talks.equal?(talks)
+
+        @talks = talks
+        @errors = duplicate_errors(talks)
       end
 
       def self.warmup
         errors
       end
 
-      def self.reset!
-        @errors = nil
-      end
-
-      def self.duplicate_errors(files:)
-        references = files.flat_map do |file|
-          file.talks.flat_map do |node|
-            KEYS.filter_map do |key|
-              scalar = node[key]
-              next unless scalar
-
-              {
-                key: key,
-                value: scalar.value,
-                file: file.relative_path,
-                line: scalar.location&.start_line || 1,
-                end_line: scalar.location&.end_line
-              }
-            end
-          end
+      def self.duplicate_errors(talks)
+        references = talks.flat_map do |talk|
+          KEYS.filter_map { |key| {key: key, value: talk[key], talk: talk} if talk[key].present? }
         end
 
         references.group_by { |reference| reference[:value] }.select { |_value, refs| refs.many? }.flat_map do |value, refs|
+          refs.each { |reference| locate(reference) }
+
           refs.map do |reference|
             others = (refs - [reference]).map { |other| "#{other[:file]}:#{other[:line]}" }.join(", ")
 
@@ -67,6 +56,14 @@ module Static
             )
           end
         end
+      end
+
+      def self.locate(reference)
+        location = reference[:talk].source_location(reference[:key])
+
+        reference[:file] = reference[:talk].file_path.to_s.sub("#{Rails.root}/", "")
+        reference[:line] = location&.start_line || 1
+        reference[:end_line] = location&.end_line
       end
     end
   end

@@ -2,6 +2,8 @@
 
 Fixing speaker/profile names is a pretty common occurance, and we have a few different strategies for it.
 
+For adding social links, GitHub handles, or talk resources instead, see [ADDING_SPEAKERS.md](ADDING_SPEAKERS.md).
+
 ## Common Truths
 
 - We use the GitHub profile as a unique identifier throughout the site.

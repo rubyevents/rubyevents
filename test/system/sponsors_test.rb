@@ -84,24 +84,24 @@ class SponsorsTest < ApplicationSystemTestCase
       assert_link @organization_three.name
     end
 
-    assert_link "A"
-    click_on "A"
+    assert_link "A", exact_text: true
+    click_on "A", exact_text: true
     within "#organizations" do
       assert_link @organization_one.name
       assert_no_link @organization_two.name
       assert_no_link @organization_three.name
     end
 
-    assert_link "B"
-    click_on "B"
+    assert_link "B", exact_text: true
+    click_on "B", exact_text: true
     within "#organizations" do
       assert_no_link @organization_one.name
       assert_link @organization_two.name
       assert_no_link @organization_three.name
     end
 
-    assert_link "C"
-    click_on "C"
+    assert_link "C", exact_text: true
+    click_on "C", exact_text: true
     within "#organizations" do
       assert_no_link @organization_one.name
       assert_no_link @organization_two.name

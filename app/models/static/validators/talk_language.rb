@@ -16,7 +16,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -27,26 +27,24 @@ module Static
       def validate
         return [] unless applicable?
 
-        return [] unless document.root
-
-        pairs = document.root.each.flat_map do |video|
-          [[video, nil]] + Array(video["talks"]&.each&.to_a).map { |talk| [talk, video] }
+        pairs = videos_file.pairs.flat_map do |video, nested|
+          [[video, nil]] + nested.map { |talk| [talk, video] }
         end
 
-        with_language = pairs.map(&:first).select { |node| node.value_at("language").present? }
+        with_language = pairs.map(&:first).select { |node| node["language"].present? }
         return [] if with_language.empty?
 
         missing_language = pairs.select do |node, parent|
-          next false if node["talks"] || node.value_at("language").present?
+          next false if node["talks"] || node["language"].present?
 
           watchable?(node, parent)
         end.map(&:first)
 
         missing_language.map do |node|
-          location = node["id"]&.location
+          location = node.source_location("id")
 
           Static::Validators::Error.new(
-            %(Other talks in this file already set an explicit "language", so please add one to "#{node.value_at("id")}" as well, e.g. `language: "English"`, or run `bin/rails talk_languages:backfill` to detect it from the talk's YouTube captions. That way no talk is left guessing its language.),
+            %(Other talks in this file already set an explicit "language", so please add one to "#{node["id"]}" as well, e.g. `language: "English"`, or run `bin/rails talk_languages:backfill` to detect it from the talk's YouTube captions. That way no talk is left guessing its language.),
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
@@ -56,13 +54,13 @@ module Static
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def videos_file
+        @videos_file ||= Static::Talk.in_file(@file_path, document: @document)
       end
 
       def watchable?(node, parent)
-        provider = node.value_at("video_provider")
-        provider = parent&.value_at("video_provider") if provider == "parent"
+        provider = node["video_provider"]
+        provider = parent&.[]("video_provider") if provider == "parent"
 
         provider.in?(::Talk::WATCHABLE_PROVIDERS)
       end

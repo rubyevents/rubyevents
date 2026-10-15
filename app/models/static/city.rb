@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 module Static
-  class City < FrozenRecord::Base
-    self.backend = Backends::FileBackend.new("featured_cities.yml")
+  class City < Yerba::Record::Base
+    self.path = "featured_cities.yml"
     self.base_path = Rails.root.join("data")
+
+    schema FeaturedCitySchema
 
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
@@ -17,6 +19,29 @@ module Static
           lookup[alias_name.downcase] = city
         end
       end
+    end
+
+    def self.find_by_name_or_alias(name, country_code: nil)
+      candidates = name_lookup.fetch(name.to_s.downcase, [])
+      return candidates.first if country_code.blank?
+
+      candidates.find { |city| city.country_code.to_s.casecmp?(country_code.to_s) }
+    end
+
+    # Downcased name and alias => featured cities, in file order
+    def self.name_lookup
+      @name_lookup ||= all.each_with_object({}) do |city, lookup|
+        [city.name, *Array(city.aliases)].compact.map(&:downcase).uniq.each do |key|
+          (lookup[key] ||= []) << city
+        end
+      end
+    end
+
+    def self.unload!
+      super
+
+      @alias_lookup = nil
+      @name_lookup = nil
     end
 
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
