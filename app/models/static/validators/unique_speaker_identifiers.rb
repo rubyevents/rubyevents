@@ -40,7 +40,9 @@ module Static
           identifiers[githubs[index].downcase] << {value: githubs[index], kind: "GitHub handle", speaker: name} if githubs[index].present?
 
           Array(aliases[index]).each do |alias_entry|
-            alias_name = alias_entry["name"] if alias_entry.is_a?(Hash)
+            next unless alias_entry.is_a?(Hash)
+
+            alias_name = alias_entry["name"]
             identifiers[alias_name.downcase] << {value: alias_name, kind: "alias", speaker: name} if alias_name.present?
           end
         end

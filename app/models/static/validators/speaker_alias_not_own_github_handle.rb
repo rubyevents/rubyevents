@@ -37,7 +37,9 @@ module Static
           next [] if github.blank?
 
           Array(speaker_aliases).filter_map do |alias_entry|
-            alias_name = alias_entry["name"] if alias_entry.is_a?(Hash)
+            next unless alias_entry.is_a?(Hash)
+
+            alias_name = alias_entry["name"]
             next unless alias_name&.casecmp?(github)
 
             location = @document.find_by(name: name)&.location
