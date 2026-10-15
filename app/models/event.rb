@@ -154,6 +154,8 @@ class Event < ApplicationRecord
   end
 
   def cancelled? = static_metadata.cancelled?
+  def meetup_ended? = meetup? && series.static_metadata.ended?
+  def inactive? = cancelled? || meetup_ended?
 
   def happening?
     start_date.present? && end_date.present? && (start_date..end_date).cover?(Date.today)
@@ -337,7 +339,11 @@ class Event < ApplicationRecord
   end
 
   def formatted_dates
-    return "Recurring" if meetup?
+    if meetup?
+      return "Inactive" if meetup_ended?
+      return "Recurring"
+    end
+
     case date_precision
     when "year"
       start_date.strftime("%Y")
