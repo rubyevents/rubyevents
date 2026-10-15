@@ -331,7 +331,9 @@ class User < ApplicationRecord
     return user if user
 
     alias_record = ::Alias.find_by(aliasable_type: "User", name: name)
-    alias_record&.aliasable
+    return alias_record.aliasable if alias_record
+
+    find_by_github_handle(name)
   end
 
   def self.find_by_slug_or_alias(slug)

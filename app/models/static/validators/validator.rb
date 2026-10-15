@@ -46,8 +46,10 @@ class Static::Validators::Validator
     @speaker_validators ||= [
       Static::Validators::Schema,
       Static::Validators::SimilarSpeakerNames,
+      Static::Validators::SpeakerAliasNotOwnGitHubHandle,
       Static::Validators::SpeakerSlugMatchesName,
       Static::Validators::UniqueSpeakerFields,
+      Static::Validators::UniqueSpeakerIdentifiers,
       Static::Validators::UniqueSpeakers
     ]
   end
