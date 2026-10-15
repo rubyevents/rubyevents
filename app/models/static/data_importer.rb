@@ -2,58 +2,56 @@
 
 module Static
   class DataImporter
-    SPEAKERS = "data/speakers.yml"
-    TOPICS = "data/topics.yml"
-    FEATURED_CITIES = "data/featured_cities.yml"
+    GLOBAL_MODELS = [Static::City, Static::Speaker, Static::Topic].freeze
+
+    EVENT_FILE_IMPORTS = {
+      Static::Talk => :import_videos!,
+      Static::Sponsor => :import_sponsors!,
+      Static::CFP => :import_cfps!,
+      Static::Involvement => :import_involvements!
+    }.freeze
+
+    def self.phases
+      [
+        [Static::City],
+        [Static::Speaker],
+        [Static::EventSeries],
+        [Static::Event],
+        [Static::Venue],
+        EVENT_FILE_IMPORTS.keys,
+        [Static::Topic]
+      ]
+    end
 
     def self.import(path, reload: false)
-      relative = ImportedFile.relative_path(path)
+      absolute = Rails.root.join(ImportedFile.relative_path(path)).to_s
+      model = model_for(absolute)
+      return false unless model
 
-      reload_caches_for(relative) if reload
+      reload_caches_for(model) if reload
 
-      case relative
-      when SPEAKERS
-        Static::Speaker.import_all!
+      folder = File.basename(File.dirname(absolute))
 
-        true
-      when TOPICS
-        Static::Topic.import_all!
-
-        true
-      when FEATURED_CITIES
-        Static::City.import_all!
+      if model.in?(GLOBAL_MODELS)
+        model.import_all!
 
         true
-      when %r{\Adata/([^/]+)/series\.yml\z}
-        series = Static::EventSeries.find_by_slug($1)
+      elsif model == Static::EventSeries
+        series = Static::EventSeries.find_by_slug(folder)
+        return false unless series
 
-        if series
-          series.import_series!
-          true
-        else
-          false
-        end
-      when %r{\Adata/([^/]+)/([^/]+)/(?:event|venue)\.yml\z}
-        event = Static::Event.find_by_slug($2)
+        series.import_series!
+        true
+      elsif model.in?([Static::Event, Static::Venue])
+        event = Static::Event.find_by_slug(folder)
+        return false unless event
 
-        if event
-          event.import_event!
-          true
-        else
-          false
-        end
-      when %r{\Adata/([^/]+)/([^/]+)/videos\.yml\z}
-        with_event($2) { |static, record| static.import_videos!(record) }
-      when %r{\Adata/([^/]+)/([^/]+)/sponsors\.yml\z}
-        with_event($2) { |static, record| static.import_sponsors!(record) }
-      when %r{\Adata/([^/]+)/([^/]+)/cfp\.yml\z}
-        with_event($2) { |static, record| static.import_cfps!(record) }
-      when %r{\Adata/([^/]+)/([^/]+)/involvements\.yml\z}
-        with_event($2) { |static, record| static.import_involvements!(record) }
-      when %r{\Adata/([^/]+)/([^/]+)/schedule\.yml\z}
+        event.import_event!
+        true
+      elsif model == Static::Schedule
         true
       else
-        false
+        with_event(folder) { |static, record| static.public_send(EVENT_FILE_IMPORTS.fetch(model), record) }
       end
     end
 
@@ -136,40 +134,28 @@ module Static
     end
 
     def self.seed_phases
-      [
-        [Static::City],
-        [Static::Speaker],
-        [Static::EventSeries],
-        [Static::Event],
-        [Static::Venue],
-        [Static::Talk, Static::Sponsor, Static::CFP, Static::Involvement],
-        [Static::Topic]
-      ].map { |models| models.flat_map { |model| files_for(model) } }
+      phases.map { |models| models.flat_map { |model| files_for(model) } }
     end
 
     def self.files_for(model)
       model.file_glob ? Dir[model.file_glob].sort : [model.file_path]
     end
 
-    def self.reload_caches_for(relative)
-      case relative
-      when SPEAKERS
-        reload(Static::Speaker)
-      when TOPICS
-        reload(Static::Topic)
-      when FEATURED_CITIES
-        reload(Static::City)
-      when %r{\Adata/[^/]+/series\.yml\z}
-        reload(Static::EventSeries)
-      else
-        reload(Static::Event)
-        reload(Static::Talk)
+    # Schedules are matched (so their files count as handled) but not part of the seed phases.
+    def self.model_for(absolute_path)
+      (phases.flatten + [Static::Schedule]).find do |model|
+        if model.file_glob
+          File.fnmatch?(model.file_glob, absolute_path, File::FNM_PATHNAME)
+        else
+          model.file_path == absolute_path
+        end
       end
     end
 
-    def self.reload(model)
-      model.unload! if model.respond_to?(:unload!)
-      model.instance_variable_set(:@slug_index, nil) if model.instance_variable_defined?(:@slug_index)
+    # Event records cache their per-event files, so those need the events reloaded too.
+    def self.reload_caches_for(model)
+      model.unload!
+      Static::Event.unload! unless model.in?(GLOBAL_MODELS) || model == Static::EventSeries
     end
   end
 end
