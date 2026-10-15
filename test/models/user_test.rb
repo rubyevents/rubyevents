@@ -153,6 +153,13 @@ class UserTest < ActiveSupport::TestCase
     assert_equal user.id, found_user.id
   end
 
+  test "find_by_name_or_alias falls back to the GitHub handle" do
+    user = User.create!(name: "Keith Gaddis", github_handle: "karmajunkie-test")
+
+    assert_equal user.id, User.find_by_name_or_alias("karmajunkie-test").id
+    assert_equal user.id, User.find_by_name_or_alias("KarmaJunkie-Test").id
+  end
+
   test "find_by_name_or_alias returns nil for non-existent name" do
     found_user = User.find_by_name_or_alias("Nonexistent Person")
     assert_nil found_user

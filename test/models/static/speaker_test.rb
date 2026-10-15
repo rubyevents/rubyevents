@@ -23,6 +23,17 @@ class Static::SpeakerTest < ActiveSupport::TestCase
     assert_equal "Aaron Patterson", Static::Speaker.find_by(github: "tenderlove").name
   end
 
+  test "find_by name falls back to the GitHub handle" do
+    assert_equal "Aaron Patterson", Static::Speaker.find_by(name: "tenderlove").name
+    assert_equal "Aaron Patterson", Static::Speaker.find_by(name: "TenderLove").name
+  end
+
+  test "known_reference? includes GitHub handles" do
+    assert Static::Speaker.known_reference?("Aaron Patterson")
+    assert Static::Speaker.known_reference?("tenderlove")
+    assert_not Static::Speaker.known_reference?("Nobody #{SecureRandom.hex(4)}")
+  end
+
   test "find_by returns nil for unknown speakers" do
     assert_nil Static::Speaker.find_by(name: "Nobody #{SecureRandom.hex(4)}")
   end
