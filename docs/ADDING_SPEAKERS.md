@@ -26,13 +26,15 @@ All permitted fields are defined in [SpeakerSchema.](/app/schemas/speaker_schema
 | `name` | Yes | Full name of the speaker |
 | `slug` | Yes | URL-friendly slug, must be unique |
 | `github` | Yes | GitHub **username only**, not a URL (e.g. `"tenderlove"`, not `"https://github.com/tenderlove"`) |
+| `github_handles` | No | Additional or previous GitHub usernames of the same person, besides the primary one in `github` |
 | `twitter` | No | Twitter/X handle, no `@`, not a URL |
 | `bluesky` | No | Bluesky handle, not a URL (e.g. `"tenderlove.dev"`) |
 | `mastodon` | No | Full Mastodon profile **URL** (e.g. `"https://ruby.social/@tenderlove"`) |
 | `linkedin` | No | The part of the URL after `/in/`, not a full URL |
 | `speakerdeck` | No | Speakerdeck username, not a URL |
 | `website` | No | Personal website URL |
-| `aliases` | No | Array of `{name, slug}` pairs that redirect to this profile |
+| `aliases` | No | Other names the speaker is known by, as a list of strings. Lookups ignore case, and GitHub handles already work as aliases, so don't add case variants, the GitHub handle, typos, or bare first names |
+| `slugs` | No | Previous profile slugs that keep redirecting to this speaker. Not needed for the speaker's GitHub handles, since profile URLs already resolve them |
 | `canonical_slug` | No | Slug of another speaker this one should be merged into (deduplication) |
 
 > [!IMPORTANT]

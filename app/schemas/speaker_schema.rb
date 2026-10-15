@@ -6,6 +6,7 @@ class SpeakerSchema < ApplicationSchema
   string :name, description: "Full name of the speaker", required: true
   string :slug, description: "URL-friendly slug for the speaker", required: true
   string :github, description: "GitHub username (not a URL)", required: true, pattern: "^([^/:\\s]+)?$"
+  array :github_handles, of: :string, description: "Additional or previous GitHub usernames of the speaker, besides the primary one in github", required: false
 
   string :twitter, description: "Twitter/X handle (without @, not a URL)", required: false, pattern: "^([^/:\\s]+)?$"
   string :website, description: "Personal website URL", required: false
@@ -14,12 +15,9 @@ class SpeakerSchema < ApplicationSchema
   string :linkedin, description: "LinkedIn username (the part after /in/, not a URL)", required: false, pattern: "^([^/:\\s]+)?$"
   string :speakerdeck, description: "Speakerdeck username (not a URL)", required: false, pattern: "^([^/:\\s]+)?$"
 
-  array :aliases, description: "Alternative names for the speaker", required: false do
-    object do
-      string :name, required: true
-      string :slug, required: true
-    end
-  end
+  array :aliases, of: :string, description: "Alternative names for the speaker", required: false
+
+  array :slugs, of: :string, description: "Previous profile slugs that redirect to this speaker, for slugs that can't be derived from a name or alias", required: false
 
   string :canonical_slug, description: "Slug of the canonical speaker profile (for deduplication)", required: false
 end

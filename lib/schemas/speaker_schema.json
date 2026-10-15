@@ -16,6 +16,13 @@
       "description": "GitHub username (not a URL)",
       "pattern": "^([^/:\\s]+)?$"
     },
+    "github_handles": {
+      "type": "array",
+      "description": "Additional or previous GitHub usernames of the speaker, besides the primary one in github",
+      "items": {
+        "type": "string"
+      }
+    },
     "twitter": {
       "type": "string",
       "description": "Twitter/X handle (without @, not a URL)",
@@ -49,20 +56,14 @@
       "type": "array",
       "description": "Alternative names for the speaker",
       "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "slug": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name",
-          "slug"
-        ],
-        "additionalProperties": false
+        "type": "string"
+      }
+    },
+    "slugs": {
+      "type": "array",
+      "description": "Previous profile slugs that redirect to this speaker, for slugs that can't be derived from a name or alias",
+      "items": {
+        "type": "string"
       }
     },
     "canonical_slug": {

@@ -202,8 +202,7 @@ class Static::Speaker::CollectionTest < ActiveSupport::TestCase
       - name: Jane Doe
         slug: jane-doe
         aliases:
-          - name: JD
-            slug: jane-doe
+          - JD
     YAML
 
     entry = file.upsert(name: "JD", github: "janedoe")

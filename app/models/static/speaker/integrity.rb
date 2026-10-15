@@ -23,7 +23,7 @@ module Static
       end
 
       def aliases
-        all.flat_map { |speaker| Array(speaker["aliases"]).filter_map { |alias_entry| alias_entry["name"] if alias_entry.is_a?(Hash) } }
+        all.flat_map(&:alias_names)
       end
 
       def known_names
@@ -31,7 +31,7 @@ module Static
       end
 
       def github_handles
-        all.cached(:github_handles) { Set.new(pluck(:github).compact_blank.map(&:downcase)) }
+        all.cached(:github_handles) { Set.new(all.flat_map(&:all_github_handles).map(&:downcase)) }
       end
 
       def known_names_downcased
@@ -156,10 +156,10 @@ module Static
         referenced_downcased = all.cached(:all_referenced_names_downcased) { Set.new(referenced.map { |name| name.strip.downcase }) }
 
         all.reject do |speaker|
-          speaker_names = [speaker.name, *Array(speaker["aliases"]).filter_map { |alias_entry| alias_entry["name"] if alias_entry.is_a?(Hash) }].compact
+          speaker_names = [speaker.name, *speaker.alias_names].compact
 
           speaker_names.any? { |name| referenced.include?(name) || referenced_downcased.include?(name.strip.downcase) } ||
-            (speaker.github.present? && referenced_downcased.include?(speaker.github.downcase))
+            speaker.all_github_handles.any? { |handle| referenced_downcased.include?(handle.downcase) }
         end
       end
 

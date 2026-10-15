@@ -157,15 +157,20 @@ If the GitHub is unknown:
   slug: "speaker-name"
 ```
 
-If the speaker has multiple aliases, they'll be included as aliases.
+If the speaker is known by other names, list them as aliases (plain strings). Previous profile slugs go in `slugs`, and additional GitHub accounts of the same person go in `github_handles`.
 
 ```yaml
 - name: "Speaker Name"
   github: "github_handle"
+  github_handles:
+    - "other_github_handle"
   slug: "speaker-name"
   aliases:
-    - name: "Other Name"
-      slug: "other-name"
+    - "Other Name"
+  slugs:
+    - "old-speaker-slug"
 ```
+
+Name lookups ignore case and GitHub handles already work as aliases, so don't add case variants, the speaker's GitHub handle, typos, or bare first names as aliases.
 
 To update a speaker programmatically, use `Static::Speaker` with a rails runner, e.g. `Static::Speaker.upsert(name: "Speaker Name", github: "github_handle")` followed by `Static::Speaker.save!`, or `Static::Speaker.find_by(name: "Speaker Name").add_alias(name: "Other Name")` and `save!`.

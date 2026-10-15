@@ -29,8 +29,7 @@ class Static::Validators::SpeakerAliasNotOwnGitHubHandleTest < ActiveSupport::Te
         github: "ryosk7"
         slug: "ryosuke-uchida"
         aliases:
-          - name: "Ryosuke"
-            slug: "ryosuke"
+          - "Ryosuke"
     YAML
 
     with_temp_speakers_yaml(yaml) do |path|
@@ -45,8 +44,7 @@ class Static::Validators::SpeakerAliasNotOwnGitHubHandleTest < ActiveSupport::Te
         github: "ryosk7"
         slug: "ryosuke-uchida"
         aliases:
-          - name: "RyoSK7"
-            slug: "ryosk7"
+          - "RyoSK7"
     YAML
 
     with_temp_speakers_yaml(yaml) do |path|
@@ -56,6 +54,23 @@ class Static::Validators::SpeakerAliasNotOwnGitHubHandleTest < ActiveSupport::Te
       assert_equal 1, errors.size
       assert_equal %(Alias "RyoSK7" on "Ryosuke Uchida" is redundant, it's already the GitHub handle and GitHub handles act as aliases.), error["message"]
       assert_equal 2, error["line"]
+    end
+  end
+
+  test "returns error when an alias is one of the speaker's additional GitHub handles" do
+    yaml = <<~YAML
+      ---
+      - name: "Yatish Mehta"
+        github: "yatish27"
+        github_handles:
+          - "yatish-asana"
+        slug: "yatish-mehta"
+        aliases:
+          - "yatish-asana"
+    YAML
+
+    with_temp_speakers_yaml(yaml) do |path|
+      assert_equal 1, Static::Validators::SpeakerAliasNotOwnGitHubHandle.new(file_path: path).errors.size
     end
   end
 

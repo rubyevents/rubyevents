@@ -76,26 +76,26 @@ class SpeakerUpdateToolTest < ActiveSupport::TestCase
     assert_equal "matz", speaker["github"]
   end
 
-  test "creates alias when slug changes" do
+  test "adds the old slug to slugs when slug changes" do
     result = @tool.execute(name: "Aaron Patterson", slug: "tenderlove")
 
     assert result[:success]
-    assert_equal "Aaron Patterson (aaron-patterson)", result[:alias_created]
+    assert_equal "aaron-patterson", result[:redirect_slug_added]
 
     speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Aaron Patterson")
     assert_equal "tenderlove", speaker["slug"]
-    assert_equal 1, speaker["aliases"].size
-    assert_equal "aaron-patterson", speaker["aliases"].first["slug"]
+    assert_equal ["aaron-patterson"], speaker.redirect_slugs
+    assert_empty speaker.alias_names
   end
 
-  test "does not create alias when slug is unchanged" do
+  test "does not add a redirect slug when slug is unchanged" do
     result = @tool.execute(name: "Matz", slug: "matz")
 
     assert result[:success]
-    assert_nil result[:alias_created]
+    assert_nil result[:redirect_slug_added]
 
     speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Matz")
-    assert_nil speaker["aliases"]
+    assert_nil speaker["slugs"]
   end
 
   test "allows mastodon URL" do

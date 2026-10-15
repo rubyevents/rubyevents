@@ -59,6 +59,50 @@ class Static::Validators::UniqueSpeakerFieldsTest < ActiveSupport::TestCase
     end
   end
 
+  test "redirect slugs produce no errors when unique" do
+    yaml = [
+      {"name" => "Alice", "slug" => "alice", "github" => "alice-gh", "slugs" => ["alice-old"]},
+      {"name" => "Bob", "slug" => "bob", "github" => "bob-gh", "slugs" => ["bob-old"]}
+    ].to_yaml
+    with_temp_speakers_yaml(yaml) do |path|
+      assert_empty Static::Validators::UniqueSpeakerFields.new(file_path: path).errors
+    end
+  end
+
+  test "returns error for a redirect slug that repeats the speaker's slug" do
+    yaml = [
+      {"name" => "Alice", "slug" => "alice", "github" => "alice-gh", "slugs" => ["alice"]}
+    ].to_yaml
+    with_temp_speakers_yaml(yaml) do |path|
+      errors = Static::Validators::UniqueSpeakerFields.new(file_path: path).errors
+
+      assert_equal ["Slug 'alice' in slugs of 'Alice' is redundant, it's already the slug of the speaker"], errors.map { |e| e.to_h["message"] }
+    end
+  end
+
+  test "returns error for a redirect slug that is the speaker's GitHub handle" do
+    yaml = [
+      {"name" => "Yoh Osaki", "slug" => "yoh-osaki", "github" => "youchan", "slugs" => ["YouChan"]}
+    ].to_yaml
+    with_temp_speakers_yaml(yaml) do |path|
+      errors = Static::Validators::UniqueSpeakerFields.new(file_path: path).errors
+
+      assert_equal ["Slug 'YouChan' in slugs of 'Yoh Osaki' is redundant, it's the GitHub handle of the speaker and profile URLs already resolve GitHub handles"], errors.map { |e| e.to_h["message"] }
+    end
+  end
+
+  test "returns error for a redirect slug used by another speaker" do
+    yaml = [
+      {"name" => "Alice", "slug" => "alice", "github" => "alice-gh"},
+      {"name" => "Bob", "slug" => "bob", "github" => "bob-gh", "slugs" => ["alice"]}
+    ].to_yaml
+    with_temp_speakers_yaml(yaml) do |path|
+      errors = Static::Validators::UniqueSpeakerFields.new(file_path: path).errors
+
+      assert_equal ["Slug 'alice' in slugs of 'Bob' is already used by Alice"], errors.map { |e| e.to_h["message"] }
+    end
+  end
+
   test "errors are Static::Validators::Error objects" do
     yaml = [
       {"name" => "Alice", "slug" => "alice"},

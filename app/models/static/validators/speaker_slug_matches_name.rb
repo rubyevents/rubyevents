@@ -35,12 +35,6 @@ module Static
           @document.find_by(name: name)&.[]("slug")
         end)
 
-        alias_name_slug_pairs = @document.value_at("[].aliases[].name").compact
-          .zip(@document.value_at("[].aliases[].slug").compact)
-        errors.concat(find_errors_for_name_slug_pairs(alias_name_slug_pairs) do |name|
-          @document.find_by(aliases: {name: name})&.[]("aliases")
-            &.find_by(name: name)&.[]("slug")
-        end)
         errors
       end
 

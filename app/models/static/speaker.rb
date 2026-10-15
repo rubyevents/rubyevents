@@ -7,7 +7,7 @@ module Static
 
     schema SpeakerSchema
 
-    add_index :name, include: "aliases[].name"
+    add_index :name, include: "aliases[]"
     add_index :slug
     add_index :github
 
@@ -49,7 +49,7 @@ module Static
 
       all.cached(:speakers_by_downcased_name) {
         all.each_with_object({}) do |speaker, index|
-          [speaker.name, *Array(speaker["aliases"]).filter_map { |alias_entry| alias_entry["name"] if alias_entry.is_a?(Hash) }].compact.each do |identifier|
+          [speaker.name, *speaker.alias_names].compact.each do |identifier|
             index[identifier.strip.downcase] ||= speaker
           end
         end
@@ -60,7 +60,9 @@ module Static
       return nil if handle.blank?
 
       all.cached(:speakers_by_github_handle) {
-        all.each_with_object({}) { |speaker, index| index[speaker.github.downcase] = speaker if speaker.github.present? }
+        all.each_with_object({}) do |speaker, index|
+          speaker.all_github_handles.each { |github_handle| index[github_handle.downcase] ||= speaker }
+        end
       }[handle.to_s.strip.downcase]
     end
 
@@ -71,7 +73,7 @@ module Static
 
       raise InvalidSpeakerError, "Speaker name cannot be blank" if name.blank?
       raise DuplicateSpeakerError, "Speaker '#{name}' already exists" if known_reference?(name)
-      raise DuplicateSpeakerError, "A speaker with GitHub handle '#{github}' already exists" if github.present? && all.find_by(github: github)
+      raise DuplicateSpeakerError, "A speaker with GitHub handle '#{github}' already exists" if github.present? && find_by_github_handle(github)
 
       all.build({"name" => name, "github" => github, "slug" => slug || name.parameterize}.merge(clean_attributes(attributes)))
     end
@@ -117,8 +119,26 @@ module Static
       self
     end
 
-    def add_alias(name:, slug: nil)
-      self["aliases"] = Array(self["aliases"]) + [{"name" => name, "slug" => (slug || name.parameterize).to_s}]
+    def alias_names
+      Array(self["aliases"]).filter_map { |alias_name| alias_name.to_s.presence }
+    end
+
+    def redirect_slugs
+      Array(self["slugs"]).filter_map { |slug| slug.to_s.presence }
+    end
+
+    def all_github_handles
+      [github, *Array(self["github_handles"])].filter_map { |handle| handle.to_s.strip.presence }
+    end
+
+    def add_alias(name:)
+      self["aliases"] = alias_names + [name] unless alias_names.include?(name)
+
+      self
+    end
+
+    def add_slug(slug)
+      self["slugs"] = redirect_slugs + [slug] unless slug.blank? || redirect_slugs.include?(slug)
 
       self
     end
@@ -144,7 +164,7 @@ module Static
     end
 
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
-      user = ::User.find_by_github_handle(github) ||
+      user = all_github_handles.lazy.filter_map { |handle| ::User.find_by_github_handle(handle) }.first ||
         ::User.find_by(slug: slug) ||
         ::User.find_by_name_or_alias(name) ||
         ::User.find_by(slug: name.parameterize) ||
@@ -170,29 +190,32 @@ module Static
       user_changed = user.changed? || user.new_record?
       user.save! if user_changed
 
-      Array(aliases).each do |alias_data|
-        next if alias_data.blank?
+      alias_names.each do |alias_name|
+        next if ::Alias.exists?(aliasable: user, name: alias_name)
 
-        alias_name = alias_data["name"]
-        alias_slug = alias_data["slug"]
-
-        raise format("No name provided for alias: %s and user: %s", alias_data.inspect, user.inspect) if alias_name.blank?
-        raise format("No slug provided for alias: %s and user: %s", alias_data.inspect, user.inspect) if alias_slug.blank?
-
-        conflicting_alias = ::Alias.where(slug: alias_slug).where.not(aliasable_type: "User", aliasable_id: user.id).first
-        conflicting_user = ::User.where(slug: alias_slug).where.not(id: user.id).first
+        conflicting_alias = ::Alias.where(aliasable_type: "User", name: alias_name).where.not(aliasable_id: user.id).first
 
         if conflicting_alias
-          puts "Alias conflict: #{name} alias '#{alias_name}' (#{alias_slug}) conflicts with alias on #{conflicting_alias.aliasable_type} #{conflicting_alias.aliasable_id}"
+          puts "Alias conflict: #{name} alias '#{alias_name}' conflicts with alias on User #{conflicting_alias.aliasable_id}"
           next
         end
 
-        if conflicting_user
-          puts "Alias conflict: #{name} alias '#{alias_name}' (#{alias_slug}) conflicts with user #{conflicting_user.name} (id:#{conflicting_user.id})"
+        ::Alias.create!(aliasable: user, name: alias_name)
+      end
+
+      redirect_slugs.each do |redirect_slug|
+        next if redirect_slug.blank? || redirect_slug == user.slug
+        next if ::Alias.where(aliasable: user).where(slug: redirect_slug).or(::Alias.where(aliasable: user, name: redirect_slug)).exists?
+
+        conflicting_alias = ::Alias.where(slug: redirect_slug).or(::Alias.where(aliasable_type: "User", name: redirect_slug)).where.not(aliasable_type: "User", aliasable_id: user.id).first
+        conflicting_user = ::User.where(slug: redirect_slug).where.not(id: user.id).first
+
+        if conflicting_alias || conflicting_user
+          puts "Slug conflict: #{name} redirect slug '#{redirect_slug}' is already used by #{conflicting_alias ? "alias on #{conflicting_alias.aliasable_type} #{conflicting_alias.aliasable_id}" : "user #{conflicting_user.name} (id:#{conflicting_user.id})"}"
           next
         end
 
-        ::Alias.find_or_create_by!(aliasable: user, name: alias_name, slug: alias_slug)
+        ::Alias.create!(aliasable: user, name: redirect_slug, slug: redirect_slug)
       end
 
       Search::Backend.index(user) if index && user_changed

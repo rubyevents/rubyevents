@@ -11,9 +11,9 @@ class Static::SpeakerTest < ActiveSupport::TestCase
   end
 
   test "find_by name falls back to aliases" do
-    speaker = Static::Speaker.all.find { |record| Array(record["aliases"]).first&.dig("name") }
+    speaker = Static::Speaker.all.find { |record| record.alias_names.any? }
     speaker_name = speaker.name
-    alias_name = speaker["aliases"].first["name"]
+    alias_name = speaker.alias_names.first
 
     assert_equal speaker_name, Static::Speaker.find_by(name: alias_name).name
   end
@@ -28,6 +28,16 @@ class Static::SpeakerTest < ActiveSupport::TestCase
     assert_equal "Aaron Patterson", Static::Speaker.find_by(name: "TenderLove").name
   end
 
+  test "import! creates redirect aliases for slugs" do
+    speaker = Static::Speaker.find_by(name: "Kakutani Shintaro")
+    assert_includes Array(speaker["slugs"]), "shintaro-kakutani"
+
+    user = speaker.import!(index: false) || User.find_by(slug: speaker.slug)
+
+    assert_equal user, User.find_by_slug_or_alias("shintaro-kakutani")
+    assert_equal user, User.find_by_slug_or_alias(speaker.slug)
+  end
+
   test "find_by name ignores case and surrounding whitespace" do
     assert_equal "Aaron Patterson", Static::Speaker.find_by(name: "aaron patterson").name
     assert_equal "Aaron Patterson", Static::Speaker.find_by(name: " AARON PATTERSON ").name
@@ -36,6 +46,15 @@ class Static::SpeakerTest < ActiveSupport::TestCase
   test "known_reference? ignores case and surrounding whitespace" do
     assert Static::Speaker.known_reference?("aaron patterson")
     assert Static::Speaker.known_reference?(" Aaron Patterson ")
+  end
+
+  test "find_by name falls back to additional GitHub handles" do
+    speaker = Static::Speaker.find_by(name: "Yatish Mehta")
+    assert_includes speaker.all_github_handles, "yatish-asana"
+
+    assert_equal "Yatish Mehta", Static::Speaker.find_by(name: "yatish-asana").name
+    assert_equal "Yatish Mehta", Static::Speaker.find_by_github_handle("Yatish-Asana").name
+    assert Static::Speaker.known_reference?("yatish-asana")
   end
 
   test "known_reference? includes GitHub handles" do
@@ -103,7 +122,7 @@ class Static::SpeakerTest < ActiveSupport::TestCase
     reloaded = Static::Speaker.find_by(name: "Tenderlove Patterson")
     assert_equal "Aaron Patterson", reloaded.name
     assert_equal "https://ruby.social/@tenderlove", reloaded.mastodon
-    assert_includes reloaded["aliases"], {"name" => "Tenderlove Patterson", "slug" => "tenderlove-patterson"}
+    assert_includes reloaded.alias_names, "Tenderlove Patterson"
   end
 
   test "social_handle? is true when any social field is present" do

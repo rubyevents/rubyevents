@@ -52,61 +52,48 @@ module Static
           end
         end
 
-        errors + validate_duplicate_alias_slugs(speakers)
+        errors + validate_redirect_slugs(speakers)
       end
 
       private
 
-      def validate_duplicate_alias_slugs(speakers)
+      def validate_redirect_slugs(speakers)
         doc = speakers.document
         names = doc.value_at("[].name")
         main_slugs = doc.value_at("[].slug")
-        aliases_data = doc.value_at("[].aliases")
-        main_slug_owners = {}
+        githubs = doc.value_at("[].github")
+        github_handles = doc.value_at("[].github_handles")
+        redirect_slugs = doc.value_at("[].slugs")
 
-        main_slugs.zip(names).each do |slug, name|
-          main_slug_owners[slug] = name if slug
-        end
+        owners = Hash.new { |hash, key| hash[key] = Set.new }
 
-        alias_slug_owners = Hash.new { |h, k| h[k] = Set.new }
-
-        names.zip(aliases_data).each do |speaker_name, speaker_aliases|
-          next if speaker_aliases.nil?
-
-          Array(speaker_aliases).each do |a|
-            alias_slug_owners[a["slug"]] << speaker_name if a["slug"]
-          end
+        names.each_with_index do |name, index|
+          owners[main_slugs[index]] << name if main_slugs[index].present?
         end
 
         errors = []
 
-        alias_slug_owners.select { |_, owners| owners.size > 1 }.each do |slug, owners|
-          location = doc.find_by(slug: slug)&.location
+        names.each_with_index do |name, index|
+          handles = [githubs[index], *Array(github_handles[index])].compact_blank
 
-          errors << Static::Validators::Error.new(
-            "Alias slug '#{slug}' shared across speakers: #{owners.to_a.join(", ")}",
-            file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
-          )
-        end
+          Array(redirect_slugs[index]).each do |redirect_slug|
+            other_owners = owners[redirect_slug] - [name]
+            location = doc.find_by(name: name)&.location
 
-        alias_slug_owners.each do |slug, owners|
-          main_owner = main_slug_owners[slug]
-          next unless main_owner
-          next if owners.size == 1 && owners.include?(main_owner)
+            message = if handles.any? { |handle| redirect_slug.casecmp?(handle) }
+              "Slug '#{redirect_slug}' in slugs of '#{name}' is redundant, it's the GitHub handle of the speaker and profile URLs already resolve GitHub handles"
+            elsif owners[redirect_slug].include?(name)
+              "Slug '#{redirect_slug}' in slugs of '#{name}' is redundant, it's already the slug of the speaker"
+            elsif other_owners.any?
+              "Slug '#{redirect_slug}' in slugs of '#{name}' is already used by #{other_owners.to_a.join(", ")}"
+            end
 
-          conflicting = owners.reject { |o| o == main_owner }
-          next if conflicting.empty?
+            owners[redirect_slug] << name
 
-          location = doc.find_by(slug: slug)&.location
+            next unless message
 
-          errors << Static::Validators::Error.new(
-            "Alias slug '#{slug}' on #{conflicting.to_a.join(", ")} conflicts with main slug of '#{main_owner}'",
-            file_path: @file_path,
-            line: location&.start_line || 1,
-            end_line: location&.end_line
-          )
+            errors << Static::Validators::Error.new(message, file_path: @file_path, line: location&.start_line || 1, end_line: location&.end_line)
+          end
         end
 
         errors

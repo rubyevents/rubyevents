@@ -3,10 +3,10 @@
 class SpeakerUpdateTool < RubyLLM::Tool
   include SpeakersFileCheck
 
-  description "Update a speaker's profile fields in data/speakers.yml. Use speaker_lookup first to find the speaker. Only provided fields are updated, others are left unchanged. When changing slug, an alias for the old slug is automatically created."
+  description "Update a speaker's profile fields in data/speakers.yml. Use speaker_lookup first to find the speaker. Only provided fields are updated, others are left unchanged. When changing slug, the old slug is automatically added to slugs so it keeps redirecting."
 
   parameter :name, description: "Exact speaker name to find (must match exactly)"
-  parameter :slug, description: "New URL-friendly slug (automatically creates alias for old slug)", required: false
+  parameter :slug, description: "New URL-friendly slug (the old slug is added to slugs so it keeps redirecting)", required: false
   parameter :github, description: "GitHub username (not a URL)", required: false
   parameter :twitter, description: "Twitter/X handle (without @, not a URL)", required: false
   parameter :linkedin, description: "LinkedIn username (the part after /in/, not a URL)", required: false
@@ -33,17 +33,15 @@ class SpeakerUpdateTool < RubyLLM::Tool
       end
     end
 
-    alias_created = false
+    redirect_slug_added = false
 
     if updates[:slug]
       old_slug = speaker["slug"]
       new_slug = updates[:slug].to_s
 
-      if old_slug.present? && old_slug != new_slug
-        unless Array(speaker["aliases"]).any? { |a| a["slug"] == old_slug }
-          speaker.add_alias(name: name, slug: old_slug)
-          alias_created = true
-        end
+      if old_slug.present? && old_slug != new_slug && speaker.redirect_slugs.exclude?(old_slug)
+        speaker.add_slug(old_slug)
+        redirect_slug_added = true
       end
     end
 
@@ -60,7 +58,7 @@ class SpeakerUpdateTool < RubyLLM::Tool
       file: speakers.relative_path
     }
 
-    result[:alias_created] = "#{name} (#{old_slug})" if alias_created
+    result[:redirect_slug_added] = old_slug if redirect_slug_added
 
     check_speakers_file(result)
   rescue => e

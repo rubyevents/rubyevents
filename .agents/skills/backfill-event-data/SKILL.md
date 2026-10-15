@@ -55,7 +55,7 @@ document["hotels"]               = [ {...}, ... ] # OK for a NEW key on a map ro
 
 node = document.root.find { |s| s["slug"].value == "luis-ferreira" }  # sequence root
 
-node["aliases"] = [{"name" => "Luis Ferreira", "slug" => "luis-ferreira"}]
+node["aliases"] = ["Luis Ferreira"]
 
 document.root << {"name" => "…", "github" => "", "twitter" => "…", "slug" => "…"} # append
 document.save!                    # write; use save!(apply: true) to also validate/format
@@ -127,9 +127,9 @@ Deleting an entry fails `validate:videos` unless the id is accounted for: `old_i
 
 ### speaker social handles (data/speakers.yml)
 
-- Global, flat sequence, auto-sorted by name; enforced key order: `name, github, twitter, mastodon, bluesky, linkedin, website, speakerdeck, slug, aliases`. **Required: name, slug, github** (`github: ""` if unknown).
+- Global, flat sequence, auto-sorted by name; enforced key order: `name, github, github_handles, twitter, mastodon, bluesky, linkedin, website, speakerdeck, slug, aliases, slugs`. **Required: name, slug, github** (`github: ""` if unknown).
 - Add new speakers by appending (`doc.root << {name, github, twitter?, slug}`) then `yerba apply` (sorts + orders keys). Patch existing by setting the field on the node (or targeted awk on the `github:`/`twitter:` line following the matched `name:`).
-- **Renamed speakers use canonical merge**: the *current* name is the top-level entry and old names are `aliases: [{name, slug}]`. If a talk speaker's handles look "missing", check whether that name is an alias of a current-name entry and patch the **canonical** entry (its handles are usually already current and correct — don't downgrade them to a stale value from the site).
+- **Renamed speakers use canonical merge**: the *current* name is the top-level entry and old names are `aliases: ["Old Name"]` (plain strings; previous profile slugs go in `slugs:`). If a talk speaker's handles look "missing", check whether that name is an alias of a current-name entry and patch the **canonical** entry (its handles are usually already current and correct — don't downgrade them to a stale value from the site).
 - Verify every handle with `github_profile` (match `.name`). Watch for: twitter≠github, wrong-person handles already in the data, and site links that are stale for renamed people.
 
 ## End-to-end order of operations

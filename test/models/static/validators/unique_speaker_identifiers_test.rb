@@ -42,8 +42,7 @@ class Static::Validators::UniqueSpeakerIdentifiersTest < ActiveSupport::TestCase
         github: "hsbt"
         slug: "hiroshi-shibata"
         aliases:
-          - name: "Hiroshi Shibata"
-            slug: "hiroshi-shibata"
+          - "Hiroshi Shibata"
     YAML
 
     with_temp_speakers_yaml(yaml) do |path|
@@ -61,8 +60,7 @@ class Static::Validators::UniqueSpeakerIdentifiersTest < ActiveSupport::TestCase
         github: ""
         slug: "vishwajeetsingh-desurkar"
         aliases:
-          - name: "Vishwajeetsingh Desurkar "
-            slug: "vishwajeetsingh-desurkar"
+          - "Vishwajeetsingh Desurkar "
     YAML
 
     with_temp_speakers_yaml(yaml) do |path|
@@ -101,8 +99,7 @@ class Static::Validators::UniqueSpeakerIdentifiersTest < ActiveSupport::TestCase
         github: ""
         slug: "someone-else"
         aliases:
-          - name: "Pote"
-            slug: "pote"
+          - "Pote"
     YAML
 
     with_temp_speakers_yaml(yaml) do |path|
@@ -123,8 +120,7 @@ class Static::Validators::UniqueSpeakerIdentifiersTest < ActiveSupport::TestCase
         github: ""
         slug: "janet-doe"
         aliases:
-          - name: "jane doe"
-            slug: "jane-doe-alias"
+          - "jane doe"
     YAML
 
     with_temp_speakers_yaml(yaml) do |path|
@@ -132,6 +128,27 @@ class Static::Validators::UniqueSpeakerIdentifiersTest < ActiveSupport::TestCase
 
       assert_equal 1, errors.size
       assert_includes errors.first.to_h["message"], %(name "Jane Doe" of "Jane Doe", alias "jane doe" of "Janet Doe")
+    end
+  end
+
+  test "returns error when an additional GitHub handle belongs to another speaker" do
+    yaml = <<~YAML
+      ---
+      - name: "Yatish Mehta"
+        github: "yatish27"
+        github_handles:
+          - "yatish-asana"
+        slug: "yatish-mehta"
+      - name: "Someone Else"
+        github: "Yatish-Asana"
+        slug: "someone-else"
+    YAML
+
+    with_temp_speakers_yaml(yaml) do |path|
+      errors = Static::Validators::UniqueSpeakerIdentifiers.new(file_path: path).errors
+
+      assert_equal 1, errors.size
+      assert_includes errors.first.to_h["message"], %(GitHub handle "yatish-asana" of "Yatish Mehta")
     end
   end
 

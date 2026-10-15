@@ -31,16 +31,15 @@ module Static
 
         names = @document.value_at("[].name")
         githubs = @document.value_at("[].github")
+        github_handles = @document.value_at("[].github_handles")
         aliases = @document.value_at("[].aliases")
 
-        names.zip(githubs, aliases).flat_map do |name, github, speaker_aliases|
-          next [] if github.blank?
+        names.zip(githubs, github_handles, aliases).flat_map do |name, github, extra_handles, speaker_aliases|
+          handles = [github, *Array(extra_handles)].compact_blank
+          next [] if handles.empty?
 
-          Array(speaker_aliases).filter_map do |alias_entry|
-            next unless alias_entry.is_a?(Hash)
-
-            alias_name = alias_entry["name"]
-            next unless alias_name&.casecmp?(github)
+          Array(speaker_aliases).filter_map do |alias_name|
+            next unless alias_name.is_a?(String) && handles.any? { |handle| alias_name.casecmp?(handle) }
 
             location = @document.find_by(name: name)&.location
 

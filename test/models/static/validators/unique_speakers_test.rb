@@ -74,7 +74,7 @@ class Static::Validators::UniqueSpeakersTest < ActiveSupport::TestCase
         "name" => "Bob Jones",
         "slug" => "bob-jones",
         "aliases" => [
-          {"name" => "Alice Smith", "slug" => "alice-smith-alias"}
+          "Alice Smith"
         ]
       }
     ].to_yaml
@@ -92,14 +92,14 @@ class Static::Validators::UniqueSpeakersTest < ActiveSupport::TestCase
         "name" => "Alice Smith",
         "slug" => "alice-smith",
         "aliases" => [
-          {"name" => "A. Smith", "slug" => "a-smith-1"}
+          "A. Smith"
         ]
       },
       {
         "name" => "Bob Jones",
         "slug" => "bob-jones",
         "aliases" => [
-          {"name" => "A. Smith", "slug" => "a-smith-2"}
+          "A. Smith"
         ]
       }
     ].to_yaml
@@ -132,7 +132,7 @@ class Static::Validators::UniqueSpeakersTest < ActiveSupport::TestCase
         "name" => "Carol White",
         "slug" => "carol-white",
         "aliases" => [
-          {"name" => "Alice Smith", "slug" => "alice-alias"}
+          "Alice Smith"
         ]
       }
     ].to_yaml

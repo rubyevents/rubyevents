@@ -31,18 +31,19 @@ module Static
 
         names = @document.value_at("[].name")
         githubs = @document.value_at("[].github")
+        github_handles = @document.value_at("[].github_handles")
         aliases = @document.value_at("[].aliases")
 
         identifiers = Hash.new { |hash, key| hash[key] = [] }
 
         names.each_with_index do |name, index|
           identifiers[normalize(name)] << {value: name, kind: "name", speaker: name} if name.present?
-          identifiers[normalize(githubs[index])] << {value: githubs[index], kind: "GitHub handle", speaker: name} if githubs[index].present?
 
-          Array(aliases[index]).each do |alias_entry|
-            next unless alias_entry.is_a?(Hash)
+          [githubs[index], *Array(github_handles[index])].each do |handle|
+            identifiers[normalize(handle)] << {value: handle, kind: "GitHub handle", speaker: name} if handle.present?
+          end
 
-            alias_name = alias_entry["name"]
+          Array(aliases[index]).each do |alias_name|
             identifiers[normalize(alias_name)] << {value: alias_name, kind: "alias", speaker: name} if alias_name.present?
           end
         end

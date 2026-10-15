@@ -376,6 +376,7 @@ rules:
           order:
             - name
             - github
+            - github_handles
             - twitter
             - mastodon
             - bluesky
@@ -384,12 +385,19 @@ rules:
             - speakerdeck
             - slug
             - aliases
+            - slugs
 
-      - sort_keys:
+      - quote_style:
+          selector: "[].github_handles[]"
+          value_style: double
+
+      - quote_style:
           selector: "[].aliases[]"
-          order:
-            - name
-            - slug
+          value_style: double
+
+      - quote_style:
+          selector: "[].slugs[]"
+          value_style: double
 
       - sort:
           by: ".name"

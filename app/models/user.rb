@@ -263,9 +263,8 @@ class User < ApplicationRecord
 
   def self.speaker_alias_to_main_speaker
     @speaker_alias_to_main_speaker ||= Static::Speaker.all.each_with_object({}) do |speaker, mapping|
-      Array(speaker["aliases"]).each do |alias_entry|
-        alias_name = alias_entry["name"]
-        next if alias_name.nil? || alias_name == speaker.name
+      speaker.alias_names.each do |alias_name|
+        next if alias_name == speaker.name
 
         mapping[alias_name] = {name: speaker.name, github: speaker.github}
       end

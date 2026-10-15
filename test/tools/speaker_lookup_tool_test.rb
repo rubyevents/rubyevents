@@ -10,13 +10,16 @@ class SpeakerLookupToolTest < ActiveSupport::TestCase
         twitter: "yukihiro_matz"
         slug: "matz"
         aliases:
-          - name: "Yukihiro Matsumoto"
-            slug: "yukihiro-matsumoto"
+          - "Yukihiro Matsumoto"
+        slugs:
+          - "yukihiro-matsumoto"
       - name: "Aaron Patterson"
         github: "tenderlove"
         twitter: "tendloving"
         mastodon: "https://mastodon.social/@tenderlove"
         slug: "aaron-patterson"
+        github_handles:
+          - "tenderlove-work"
       - name: "DHH"
         github: "dhh"
         linkedin: "dhh"
@@ -50,6 +53,20 @@ class SpeakerLookupToolTest < ActiveSupport::TestCase
     assert_equal 1, result.size
     assert_equal "Matz", result.first[:name]
     assert_includes result.first[:aliases], "Yukihiro Matsumoto"
+  end
+
+  test "finds speaker by redirect slug" do
+    result = build_tool.execute(query: "yukihiro-matsumoto")
+
+    assert_equal ["Matz"], result.map { |speaker| speaker[:name] }
+    assert_equal ["yukihiro-matsumoto"], result.first[:slugs]
+  end
+
+  test "finds speaker by additional GitHub handle" do
+    result = build_tool.execute(query: "tenderlove-work")
+
+    assert_equal ["Aaron Patterson"], result.map { |speaker| speaker[:name] }
+    assert_equal ["tenderlove-work"], result.first[:github_handles]
   end
 
   test "finds speaker by slug" do

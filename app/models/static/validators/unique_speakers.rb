@@ -43,7 +43,7 @@ module Static
 
         speakers.same_name_duplicates.each do |name, count|
           location = speakers.document.find_by(name: name)&.location
-          location ||= speakers.document.find_by("aliases[].name" => name)&.location
+          location ||= speakers.document.find_by("aliases[]" => name)&.location
 
           errors << Static::Validators::Error.new(
             "Same name duplicate: #{name} (#{count} occurrences)",
@@ -61,7 +61,7 @@ module Static
 
         speakers.reversed_name_duplicates.each do |pair|
           location = speakers.document.find_by(name: pair[0])&.location
-          location ||= speakers.document.find_by("aliases[].name" => pair[0])&.location
+          location ||= speakers.document.find_by("aliases[]" => pair[0])&.location
 
           errors << Static::Validators::Error.new(
             "Reversed name duplicate: #{pair[0]} ↔ #{pair[1]}",

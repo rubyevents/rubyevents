@@ -15,18 +15,33 @@ For adding social links, GitHub handles, or talk resources instead, see [ADDING_
 ### Creating an alias
 
 In this example, we set up two aliases for Matz.
-All future talks with Matz or Yukihiro 'Matz' Matsumoto will redirect to Yukihiro "Matz" Matsumoto.
+All future talks with Yukihiro Matsumoto or Yukihiro 'Matz' Matsumoto will be associated with Yukihiro "Matz" Matsumoto.
+His GitHub handle `matz` already works as an alias, so it doesn't need to be listed.
 
 ```yaml
 - name: "Yukihiro \"Matz\" Matsumoto"
   github: "matz"
   slug: "yukihiro-matz-matsumoto"
   aliases:
-    - name: "Matz"
-      slug: "matz"
-    - name: "Yukihiro 'Matz' Matsumoto"
-      slug: "yukihiro-matz-matsumoto"
+    - "Yukihiro Matsumoto"
+    - "Yukihiro 'Matz' Matsumoto"
 ```
+
+Name lookups ignore case and surrounding whitespace, so aliases that only differ in casing aren't needed.
+
+### Keeping old profile URLs working
+
+When a speaker's slug changes, add the previous slug to `slugs` so the old profile URL keeps redirecting:
+
+```yaml
+- name: "Kakutani Shintaro"
+  github: "kakutani"
+  slug: "kakutani-shintaro"
+  slugs:
+    - "shintaro-kakutani"
+```
+
+If someone uses more than one GitHub account, list the others in `github_handles`. Every handle works as an alias, and profile URLs with any of them resolve to the speaker.
 
 ## Duplicate names in speakers.yml
 
