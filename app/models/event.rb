@@ -381,7 +381,7 @@ class Event < ApplicationRecord
     event_name = series.organisation? ? name : series.name
 
     @description = <<~DESCRIPTION
-      #{event_name} is a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
+      #{event_name} #{meetup_ended? ? "was" : "is"} a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
     DESCRIPTION
   end
 
@@ -390,7 +390,9 @@ class Event < ApplicationRecord
   end
 
   def talks_text
-    talks.size.positive? ? " and features #{talks.size} #{"talk".pluralize(talks.size)} from various speakers" : ""
+    return "" unless talks.size.positive?
+
+    " and #{meetup_ended? ? "featured" : "features"} #{talks.size} #{"talk".pluralize(talks.size)} from various speakers"
   end
 
   def to_meta_tags

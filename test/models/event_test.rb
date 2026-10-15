@@ -48,6 +48,13 @@ class EventTest < ActiveSupport::TestCase
     assert_equal "Inactive", event.formatted_dates
   end
 
+  test "description uses the past tense for a meetup of an ended series" do
+    series = EventSeries.create!(name: "Triangle.rb", slug: "triangle-rb", kind: :meetup)
+    event = Event.create!(name: "Triangle.rb Meetup", kind: :meetup, series: series)
+
+    assert_match "Triangle.rb was a", event.description
+  end
+
   test "meetup_ended? is false for a conference of an ended series" do
     event = events(:railsconf_2025)
 

@@ -112,7 +112,8 @@ class EventSeries < ApplicationRecord
     end
 
     event_type = pluralize(non_cancelled.size, meetup? ? "event-series" : "event")
-    frequency_text = (kind == "organisation") ? "" : "is a #{frequency} #{kind} and "
+    tense = (meetup? && static_metadata.ended?) ? "was" : "is"
+    frequency_text = (kind == "organisation") ? "" : "#{tense} a #{frequency} #{kind} and "
 
     <<~DESCRIPTION
       #{name} #{frequency_text}hosted #{event_type}#{time_range}. We have currently indexed #{pluralize(non_cancelled.sum(&:talks_count), "#{name} talk")}.
