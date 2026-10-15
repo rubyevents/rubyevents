@@ -171,7 +171,5 @@ module Static
       model.unload! if model.respond_to?(:unload!)
       model.instance_variable_set(:@slug_index, nil) if model.instance_variable_defined?(:@slug_index)
     end
-
-    private_class_method :compute_changes, :state_signature, :with_event, :seed_phases, :files_for, :reload_caches_for, :reload
   end
 end
