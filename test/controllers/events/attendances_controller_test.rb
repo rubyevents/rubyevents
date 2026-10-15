@@ -20,7 +20,7 @@ class Events::AttendancesControllerTest < ActionDispatch::IntegrationTest
     )
 
     @user.watched_talks.where(talk: [@parent_talk, @child_talk]).destroy_all
-    @event.event_participations.create!(user: @user, attended_as: "visitor")
+    @event.event_participations.create!(user: @user, role: :attendee)
     sign_in_as @user
   end
 
