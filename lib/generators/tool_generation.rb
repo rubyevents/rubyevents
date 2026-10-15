@@ -28,7 +28,7 @@ class ToolGeneration
             option_key.to_sym,
             description: option.description,
             required: option.required,
-            type: option.type
+            type: (option.type == :numeric) ? :number : option.type
           )
         end
       end
