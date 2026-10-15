@@ -42,12 +42,11 @@ Leave it as a draft unless the human asks for it to be marked ready.
 
 ## Screenshots
 
-Ask for the screenshot file inside the repo (`tmp/` is gitignored) or ask them to drag and drop it into the terminal.
-
-Copy it into the repo under a plain filename first, and reference that exact path in the body:
+Capture the screenshot under the repo's gitignored `tmp/` directory with a plain filename, and
+reference that exact path in the body:
 
 ```bash
-cp /rails/tmp/Screenshot*.png ./tmp/shot.png
+playwright screenshot --full-page http://127.0.0.1:3000 ./tmp/shot.png
 ```
 
 ```markdown
@@ -74,8 +73,8 @@ gh pr diff <number> --repo rubyevents/rubyevents --name-only
 gh pr view <number> --repo rubyevents/rubyevents --json body -q .body
 ```
 
-Check that the body has the image under `## Screenshots` and that no image was appended to the
-bottom.
+Check that the body has the image under `## Screenshots`, that no image was appended to the
+bottom, and that its source is an uploaded GitHub URL rather than `file://` or `./tmp/shot.png`.
 
 # Gotchas
 
