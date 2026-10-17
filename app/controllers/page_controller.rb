@@ -63,8 +63,9 @@ class PageController < ApplicationController
 
   def featured
     @events = Event.featurable
+      .includes(:series)
       .order(date: :desc)
-      .reject(&:cancelled?)
+      .reject(&:cancelled_or_inactive?)
   end
 
   def components

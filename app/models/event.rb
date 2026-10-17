@@ -225,7 +225,7 @@ class Event < ApplicationRecord
     ordered_ids = where(id: ids)
       .includes(:cfps)
       .sort_by { |event| event.featured_distance(today: today) }
-      .reject(&:cancelled?)
+      .reject(&:cancelled_or_inactive?)
       .first(limit)
       .map(&:id)
 
