@@ -20,11 +20,11 @@
     </div>
 
     <div class="join">
-      <%= link_to todos_path(view: "by_type"), class: "join-item btn btn-sm #{"btn-active" if @view == "by_type"}" do %>
+      <%= link_to data_todos_path(view: "by_type"), class: "join-item btn btn-sm #{"btn-active" if @view == "by_type"}" do %>
         By Type
       <% end %>
 
-      <%= link_to todos_path(view: "by_event"), class: "join-item btn btn-sm #{"btn-active" if @view == "by_event"}" do %>
+      <%= link_to data_todos_path(view: "by_event"), class: "join-item btn btn-sm #{"btn-active" if @view == "by_event"}" do %>
         By Series
       <% end %>
     </div>
