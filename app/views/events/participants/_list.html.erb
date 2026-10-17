@@ -41,7 +41,7 @@
 
     <% participants.each do |key, group_participants| %>
       <% unless group_participants.size.zero? %>
-        <% show_unclaimed = key == "Known Participants" && unclaimed_check_ins_count > 0 %>
+        <% show_unclaimed = key == "Attendees" && unclaimed_check_ins_count > 0 %>
         <h2 class="mb-6">
           <%= key %> (<%= group_participants.size %>)
           <% if show_unclaimed %>
