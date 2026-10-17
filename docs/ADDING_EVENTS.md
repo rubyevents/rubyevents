@@ -106,6 +106,11 @@ Like this!
 <details><summary>What about meetups?</summary>
   Meetups are modeled differently: one event per meetup group, and each monthly edition is an entry in <code>videos.yml</code>. See the dedicated guide: <a href="ADDING_MEETUPS.md">ADDING_MEETUPS.md</a>.
 </details> 
+<details><summary>Should the schedule stay inside <code>start_date</code> and <code>end_date</code>?</summary>
+  No. <code>start_date</code> and <code>end_date</code> describe the conference proper — the days the event is "on". The schedule in <code>schedule.yml</code> may legitimately reach outside that window, and when it does it is not an error.
+  Common cases are pre-conference activities on the day before (early registration, a local user group meetup, a welcome party) and post-conference extras on the day after (a city tour, a farewell brunch, a hack day).
+  Keep the event dates as the organizer frames them and let the schedule tell the fuller story. For example, EuRuKo 2026 runs <code>2026-09-16</code> to <code>2026-09-18</code>, while its schedule adds a Ruby Safari on <code>2026-09-19</code>.
+</details> 
 <details><summary>How should I handle a cancelled event?</summary>
   Cancelled events get an attribute of `status: "cancelled"` which will change how they're displayed on the site.
   We include cancelled events on the site so people have a canonical answer for whether or not an event happened and to communicate an upcoming event is cancelled.
