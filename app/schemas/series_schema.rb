@@ -15,7 +15,7 @@ class SeriesSchema < ApplicationSchema
     description: "How often the event occurs",
     enum: ["yearly", "monthly", "weekly", "irregular", "biweekly", "biyearly", "quarterly"],
     required: false
-  boolean :ended, description: "Whether the event series has ended", required: false
+  boolean :inactive, description: "Whether the event series is inactive", required: false
 
   string :default_country_code, description: "Default ISO country code (e.g., 'US', 'JP')", required: false
 
