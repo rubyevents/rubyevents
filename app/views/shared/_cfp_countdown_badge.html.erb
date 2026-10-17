@@ -1,4 +1,4 @@
-<% unless event.static_metadata.cancelled? %>
+<% unless event.inactive? %>
   <% event.cfps.each do |cfp| %>
     <% if cfp.future? %>
       <% cfp_open_days = cfp.days_until_open %>
