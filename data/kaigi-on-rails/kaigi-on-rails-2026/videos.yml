@@ -22,6 +22,7 @@
   end_time: "14:00"
   language: "Japanese"
   track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/yahonda/active-record-connection-adapters-niokeru-naganen-no-kadai-ni-futatabi-torikumu"
   video_provider: "scheduled"
   video_id: "yasuo-honda-kaigi-on-rails-2026"
   description: |-
@@ -69,6 +70,7 @@
   end_time: "14:25"
   language: "Japanese"
   track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/rira100000000/ai-ejento-no-debaggu-nouryoku-o-koujou-saseyou-ai-jidai-ni-rails-ga-kagayaku-riyuu"
   video_provider: "scheduled"
   video_id: "rira-kaigi-on-rails-2026"
   description: |-
@@ -80,6 +82,10 @@
     この解法を支えているのは、Railsが積み上げてきた資産です。ActiveSupport::Notificationsを使えば、アプリのコードに手を入れずにSQL発行やジョブ投入をAIに観測させられます。モデルのリフレクションを使えば、スキーマ、関連、バリデーション定義をAIがその場で確認できます。これらがAI時代になぜ効くのかを整理して紹介します。
   speakers:
     - rira
+  additional_resources:
+    - name: "rira100000000/debug-mcp"
+      type: "repo"
+      url: "https://github.com/rira100000000/debug-mcp"
 
 - id: "gogutan-kaigi-on-rails-2026"
   title: "Local CI × GitHub Actions ― 長所を活かすハイブリッドCIの実践"
@@ -89,6 +95,7 @@
   end_time: "14:25"
   language: "Japanese"
   track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/gogutan/local-ci-x-github-actions"
   video_provider: "scheduled"
   video_id: "gogutan-kaigi-on-rails-2026"
   description: |-
@@ -111,12 +118,17 @@
   end_time: "15:05"
   language: "English"
   track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/skryukov/inertia-rails-the-one-person-framework-with-react-and-friends"
   video_provider: "scheduled"
   video_id: "svyatoslav-kryukov-kaigi-on-rails-2026"
   description: |-
     Rails promises a small team can stay productive across the whole stack. But what if you want to build your UI in React (or Vue, or Svelte)? Reach for it the usual way and Rails loses some of its magic. It becomes a JSON API behind a separate React app, and your small application grows into two codebases you sync by hand. The Rails ecosystem has a way out. Inertia Rails turns React into a view layer: your controllers still render the pages, with no API and no tangled client-state in between. Let's see how React learns to play by the rules of the One-Person Framework!
   speakers:
     - Svyatoslav Kryukov
+  additional_resources:
+    - name: "inertiajs/inertia-rails"
+      type: "repo"
+      url: "https://github.com/inertiajs/inertia-rails"
 
 - id: "yuichi-goto-kaigi-on-rails-2026"
   title: "Domain Modeling with Vanilla Rails: 「操作」から再考するRailsの設計論"
@@ -147,6 +159,7 @@
   end_time: "16:05"
   language: "Japanese"
   track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/falcon8823/puma-kara-falcon-ni-ikou-shita-rails-apurikeshon-deno-jissen"
   video_provider: "scheduled"
   video_id: "hayato-okumoto-kaigi-on-rails-2026"
   description: |-
@@ -166,6 +179,7 @@
   end_time: "16:05"
   language: "Japanese"
   track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/siroemk/genba-to-sodateru-rails-moderingu-spreadsheet-kara-hajimeta-moderu-sekkei"
   video_provider: "scheduled"
   video_id: "emiko-ando-kaigi-on-rails-2026"
   description: |-
@@ -193,6 +207,7 @@
   end_time: "16:45"
   language: "English"
   track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/marcoroth/herb-in-rails-8-dot-2-your-erb-views-now-html-aware-at-kaigi-on-rails-2026-tokyo-japan"
   video_provider: "scheduled"
   video_id: "marco-roth-kaigi-on-rails-2026"
   description: |-
@@ -201,6 +216,10 @@
     This talk covers what Herb brings to Rails. How we made the integration possible, how we adapted and extended ActionView, and the toolchain and dev tools every Rails developer gets out of the box as a result.
   speakers:
     - Marco Roth
+  additional_resources:
+    - name: "marcoroth/herb"
+      type: "repo"
+      url: "https://github.com/marcoroth/herb"
 
 - id: "sorah-fukumori-kaigi-on-rails-2026"
   title: "ActionController meets Protocol Buffers… たのしい API スキーマ定義!"
@@ -210,6 +229,7 @@
   end_time: "16:45"
   language: "Japanese"
   track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/sorah/actioncontroller-meets-protocol-buffers"
   video_provider: "scheduled"
   video_id: "sorah-fukumori-kaigi-on-rails-2026"
   description: |-
@@ -220,6 +240,10 @@
     また、実験的にConnect RPCやgRPCをRailsで提供してみています。これまでRailsにおけるgRPCサーバーはUnicorn/Pumaではなくgrpc gemを利用する必要があり、これはRackではないため、開発や運用で難がありました。本セッションではFalconでActionControllerを通したRPCサーバーの実装も紹介します。
   speakers:
     - Sorah Fukumori
+  additional_resources:
+    - name: "sorah/protobufable"
+      type: "repo"
+      url: "https://github.com/sorah/protobufable"
 
 - id: "nobo-kaigi-on-rails-2026"
   title: "小さく作ってわかるRailsの仕組み 〜mini-rails〜"
@@ -239,6 +263,10 @@
     普段何気なく使っているRailsの内部がどうなっているのかを、一緒に覗いてみましょう。
   speakers:
     - Nobo
+  additional_resources:
+    - name: "Hitoshi-Noborikawa/mini-rails"
+      type: "repo"
+      url: "https://github.com/Hitoshi-Noborikawa/mini-rails"
 
 - id: "skytomo-kaigi-on-rails-2026"
   title: "Railsバージョンを4倍にした話 〜Rails 2系から8系へ〜"
@@ -248,6 +276,7 @@
   end_time: "17:10"
   language: "Japanese"
   track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/optim/20261016-kaigionrails-skytomo"
   video_provider: "scheduled"
   video_id: "skytomo-kaigi-on-rails-2026"
   description: |-
@@ -263,6 +292,7 @@
   end_time: "17:50"
   language: "Japanese"
   track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/moro/event-is-what-happens"
   video_provider: "scheduled"
   video_id: "morohashi-kyosuke-kaigi-on-rails-2026"
   description: |-
@@ -306,6 +336,7 @@
   end_time: "18:30"
   language: "Japanese"
   track: "Magenta Hall"
+  slides_url: "https://tkawa.github.io/true-rest-2026/ja/"
   video_provider: "scheduled"
   video_id: "toru-kawamura-kaigi-on-rails-2026"
   description: |-
@@ -316,6 +347,10 @@
     両方の特性を満たす「真のREST API」、すなわちハイパーメディアAPIは、理想だが現実には難しいと長年言われてきました。その評価が、いま反転しつつあります。真のREST APIが前提としていた、あるクライアントがついに現れたからです。後半では、同じToDoアプリをHotwire版とReact + JSON API版で用意し、そのクライアントで動作させる比較を行います。どちらのスタイルの開発者も、自分の設計の現在地と、明日から取れる一歩を持ち帰れます。
   speakers:
     - Toru Kawamura
+  additional_resources:
+    - name: "tkawa/true-rest-2026"
+      type: "repo"
+      url: "https://github.com/tkawa/true-rest-2026"
 
 - id: "ryo-kajiwara-kaigi-on-rails-2026"
   title: "全ての永続トークンを、生まれる前に消し去りたい！"
@@ -325,6 +360,7 @@
   end_time: "18:30"
   language: "Japanese"
   track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/sylph01/subete-no-eizoku-tokun-o-umareru-mae-ni-keshi-saritai"
   video_provider: "scheduled"
   video_id: "ryo-kajiwara-kaigi-on-rails-2026"
   description: |-
@@ -359,6 +395,7 @@
   end_time: "11:20"
   language: "Japanese"
   track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/chobishiba/drain-then-delete"
   video_provider: "scheduled"
   video_id: "miyuki-koshiba-kaigi-on-rails-2026"
   description: |-
@@ -420,6 +457,7 @@
   end_time: "12:00"
   language: "Japanese"
   track: "Lime Hall"
+  slides_url: "https://udzura.jp/slides/2026/kaigionrails/"
   video_provider: "scheduled"
   video_id: "kondo-uchio-kaigi-on-rails-2026"
   description: |-
@@ -495,6 +533,7 @@
   end_time: "14:25"
   language: "Japanese"
   track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/yujiteshima/actioncable-no-aite-ha-dakejanai-rails-de-debaisugun-o-riarutaimu-kansei-suru"
   video_provider: "scheduled"
   video_id: "yuji-teshima-kaigi-on-rails-2026"
   description: |-
@@ -516,6 +555,7 @@
   end_time: "14:25"
   language: "Japanese"
   track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/occhi/rails-de-idomu-tairyou-deta-eizokuka-600-okuken-o-eizokuka-suru-tame-no-sekkei-to-botorunekku-tono-tatakai"
   video_provider: "scheduled"
   video_id: "occhi-kaigi-on-rails-2026"
   description: |-
@@ -530,14 +570,15 @@
     - occhi
 
 - id: "paul-mcmahon-kaigi-on-rails-2026"
-  title: "How Reasonable Decisions Created a Security Incident"
+  title: "How Reasonable Decisions Created a Security Incident (Cancelled)"
   event_name: "Kaigi on Rails 2026"
   date: "2026-10-17"
   start_time: "14:35"
   end_time: "15:05"
+  status: "cancelled"
   language: "English"
   track: "Magenta Hall"
-  video_provider: "scheduled"
+  video_provider: "not_recorded"
   video_id: "paul-mcmahon-kaigi-on-rails-2026"
   description: |-
     A security incident exposed the resumes of 460 job seekers. The surprising part? There was no single bug or obviously wrong decision to blame. Instead, a series of reasonable technical choices interacted in unexpected ways, creating a vulnerability that went unnoticed until it was too late. In this talk, I’ll share how the incident was discovered, investigated, and resolved, along with practical lessons on security, complexity, and hidden assumptions in Ruby on Rails applications.
@@ -552,6 +593,7 @@
   end_time: "15:05"
   language: "Japanese"
   track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/takahashim/browser-spec-testing-hotwire-with-ruby"
   video_provider: "scheduled"
   video_id: "masayoshi-takahashi-kaigi-on-rails-2026"
   description: |-
@@ -563,6 +605,10 @@
     DommyはRubyで書かれたDOM実装で、Dommy::BrowserはDommy上に構築されたテスト向け軽量ブラウザです。本セッションではDommy::Browserを使って、単一のRubyプロセス内でJSを使ったWebアプリケーションのテストを行い、Railsにおけるテストの可能性を広げることに挑戦します。
   speakers:
     - Masayoshi Takahashi
+  additional_resources:
+    - name: "takahashim/dommy"
+      type: "repo"
+      url: "https://github.com/takahashim/dommy"
 
 - id: "shugo-maeda-kaigi-on-rails-2026"
   title: "Refining Active Record"
@@ -572,6 +618,7 @@
   end_time: "16:05"
   language: "Japanese"
   track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/shugo/refining-active-record"
   video_provider: "scheduled"
   video_id: "shugo-maeda-kaigi-on-rails-2026"
   description: |-
@@ -585,6 +632,10 @@
     Ruby 4.1の新機能となる予定のProc#refinedを使って、activerecord-refinementsを現代に蘇らせてみましょう。
   speakers:
     - Shugo Maeda
+  additional_resources:
+    - name: "shugo/activerecord-refined"
+      type: "repo"
+      url: "https://github.com/shugo/activerecord-refined"
 
 - id: "takafumi-onaka-kaigi-on-rails-2026"
   title: "その Valkey 使いこなしていますか？"
@@ -594,6 +645,7 @@
   end_time: "16:05"
   language: "Japanese"
   track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/onk/2026-10-17-are-you-making-the-most-of-valkey"
   video_provider: "scheduled"
   video_id: "takafumi-onaka-kaigi-on-rails-2026"
   description: |-
@@ -617,6 +669,7 @@
   end_time: "16:45"
   language: "Japanese"
   track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/willnet/how-to-design-configuration-for-rails-applications"
   video_provider: "scheduled"
   video_id: "shinichi-maeshima-kaigi-on-rails-2026"
   description: |-
@@ -636,6 +689,7 @@
   end_time: "16:45"
   language: "Japanese"
   track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/takai/i-built-a-scheduled-job-platform-three-times-and-now-i-know-the-essential-truths"
   video_provider: "scheduled"
   video_id: "naoto-takai-kaigi-on-rails-2026"
   description: |-
@@ -657,6 +711,7 @@
   end_time: "17:25"
   language: "Japanese"
   track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/a_matsuda/web-framework-benchmark-battle-2026-any-percent"
   video_provider: "scheduled"
   video_id: "akira-matsuda-kaigi-on-rails-2026"
   description: |-
@@ -680,6 +735,7 @@
   end_time: "18:05"
   language: "English"
   track: "Magenta Hall"
+  slides_url: "https://rosa.codes/sq2026/"
   video_provider: "scheduled"
   video_id: "rosa-gutierrez-kaigi-on-rails-2026"
   description: |-
