@@ -8,6 +8,7 @@ module Speakerdeck
       "guru_sp",
       "gurzu",
       "linkers_tech",
+      "optim",
       "plataformatec",
       "railsware",
       "techouse"
