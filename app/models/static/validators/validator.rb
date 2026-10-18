@@ -10,12 +10,14 @@ class Static::Validators::Validator
       Static::Validators::Schema,
       Static::Validators::AssetsHaveColors,
       Static::Validators::ColorsHaveAssets,
+      Static::Validators::DuplicateSeriesSocials,
       Static::Validators::DuplicateYouTubeChannels,
       Static::Validators::EventCityNames,
       Static::Validators::EventDatePrecision,
       Static::Validators::EventDates,
       Static::Validators::EventRecordingsPublishedDate,
       Static::Validators::IdMatchesFolder,
+      Static::Validators::MissingSeriesSocials,
       Static::Validators::RemovedTalkIds
     ]
   end
