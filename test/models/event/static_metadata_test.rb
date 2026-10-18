@@ -37,4 +37,8 @@ class Event::StaticMetadataTest < ActiveSupport::TestCase
   test "instagram returns nil when no static repository exists" do
     assert_nil @event_without_yaml.static_metadata.instagram
   end
+
+  test "twitter falls back to the series when the event does not define it" do
+    assert_equal "railsconf", @event_with_assets.static_metadata.twitter
+  end
 end

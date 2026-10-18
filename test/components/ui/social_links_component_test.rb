@@ -19,6 +19,12 @@ class Ui::SocialLinksComponentTest < ViewComponent::TestCase
     assert_equal ["twitter"], platforms.map(&:field)
   end
 
+  def test_renders_series_socials_for_an_event_without_its_own
+    render_inline(Ui::SocialLinksComponent.new(events(:railsconf_2017).static_metadata))
+
+    assert_selector "a[href='https://x.com/railsconf']"
+  end
+
   def test_platforms_excludes_fields_source_does_not_respond_to
     source = OpenStruct.new(twitter: "railsconf")
     component = Ui::SocialLinksComponent.new(source)
