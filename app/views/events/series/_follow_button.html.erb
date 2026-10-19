@@ -1,0 +1,26 @@
+<div class="follow_button">
+  <% if Current.user %>
+    <% if subscription %>
+      <%= ui_tooltip "Unfollow #{event_series.name}" do %>
+        <%= ui_button url: series_event_series_subscription_path(event_series, subscription), method: :delete, kind: :primary, size: :sm do %>
+          <%= fa("bell", size: :xs, style: :solid, class: "fill-green-700") %>
+          <span class="text-nowrap">Following</span>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= ui_tooltip "Follow #{event_series.name} to get updates about new events" do %>
+        <%= ui_button url: series_event_series_subscriptions_path(event_series), method: :post, outline: true, size: :sm, kind: :neutral do %>
+          <%= fa("bell", size: :xs) %>
+          <span class="text-nowrap">Follow Series</span>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= ui_tooltip "Sign in to follow #{event_series.name}" do %>
+      <%= ui_button url: new_session_path(redirect_to: request.fullpath), outline: true, size: :sm, kind: :neutral, data: {turbo_frame: "modal"} do %>
+        <%= fa("bell", size: :xs) %>
+        <span class="text-nowrap">Follow Series</span>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

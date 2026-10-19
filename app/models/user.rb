@@ -123,6 +123,9 @@ class User < ApplicationRecord
   has_many :interested_events, -> { where(event_participations: {role: :interested}) },
     through: :event_participations, source: :event
 
+  has_many :event_series_subscriptions, dependent: :destroy
+  has_many :subscribed_event_series, through: :event_series_subscriptions, source: :event_series
+
   def checked_in_events
     Event.where(id: EventCheckIn.where(connect_id: passports.select(:uid)).select(:event_id))
   end
