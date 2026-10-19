@@ -13,6 +13,7 @@ module Static
     belongs_to :event
     has_one :series, through: :event
     has_many :talks, nested: true
+    has_many :alternative_recordings, nested: true, class_name: "Static::Talk::AlternativeRecording"
 
     scope :top_level, -> { where.missing(:parent) }
     scope :youtube, -> { where(video_provider: "youtube") }
@@ -66,7 +67,7 @@ module Static
 
         event_file = File.join(File.dirname(document.path.to_s), "event.yml")
 
-        File.exist?(event_file) ? Array(Yerba.parse_file(event_file).value_at("removed_talk_ids")) : []
+        File.exist?(event_file) ? Array(Static::Event.in_file(event_file).first["removed_talk_ids"]) : []
       end
     end
 

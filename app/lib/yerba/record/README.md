@@ -188,7 +188,7 @@ lightning_talk.save!
 lightning_talks.talks.reorder(lightning_talks.talks.map(&:id).reverse)
 ```
 
-Nested records can also be of another model. They are then only reachable through their parent, and stay out of the other model's collections:
+Nested records can also be of another model. They stay out of the owning model's collections, and the nested model's `all` collects them from every owning record (`Static::Sponsor::Tier.all`):
 
 ```ruby
 class Static::Sponsor < Yerba::Record::Base
@@ -380,7 +380,7 @@ talk.series
 
 ### `references` (cross-file foreign keys)
 
-Declare that a field contains names that reference records in another file:
+Declare that a field contains names that reference records in another file. Like `has_many`, the referenced model defaults to the singular field name in the model's namespace (`Static::Speaker` for `Static::Talk`), and `class_name:` takes the full name of another model:
 
 ```ruby
 class Static::Talk < Yerba::Record::Base
@@ -401,6 +401,27 @@ Writing appends to the YAML and auto-creates missing records:
 speaker = talk.speakers << "New Person"
 speaker.save!
 talk.save!
+```
+
+The referenced model knows every declaration made against it, so it can collect the values that reference it, each with its record and the selector of the value. A declaration is registered when its model is loaded, so with lazy loading, load the declaring models first (RubyEvents does this in `config/initializers/static_models.rb`):
+
+```ruby
+class Static::Involvement < Yerba::Record::Base
+  references :users, class_name: "Static::Speaker"
+end
+
+class Static::Talk::AlternativeRecording < Yerba::Record::Base
+  references :speakers, class_name: "Static::Speaker"
+end
+
+Static::Speaker.inbound_references.each do |reference|
+  reference.value          # => "Aaron Patterson"
+  reference.record         # => #<Static::Talk ...>, #<Static::Involvement ...> or #<Static::Talk::AlternativeRecording ...>
+  reference.file_path      # => ".../data/rubyconf/rubyconf-2024/videos.yml"
+  reference.line           # => 42
+  reference.selector       # => "speakers[0]", relative to the record
+  reference.full_selector  # => "[6].alternative_recordings[0].speakers[0]", in the file
+end
 ```
 
 ## Indexing

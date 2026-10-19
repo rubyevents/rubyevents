@@ -20,7 +20,16 @@ module Yerba
         end
 
         def all
-          current_scope || (@all ||= Collection.new(record_class: self, sources: default_sources))
+          current_scope || nested_all || (@all ||= Collection.new(record_class: self, sources: default_sources))
+        end
+
+        def nested_all
+          owner_name, association = Associations.nested_owners[name]
+          return unless owner_name
+
+          records = owner_name.constantize.all.select { |record| record.key?(association) }.flat_map { |record| record.public_send(association).to_a }
+
+          Collection.new(record_class: self, records: records)
         end
 
         def where(...)

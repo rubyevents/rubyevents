@@ -15,12 +15,12 @@ namespace :talk_ids do
         puts "⚠ #{relative_path}: id \"#{id}\" disappeared and can't be matched to a talk, restore it manually if the talk was renamed"
       end
 
-      renames = validator.renamed_talks.select { |node, _previous_id| node.value_at("old_id").blank? }
+      renames = validator.renamed_talks.select { |talk, _previous_id| talk["old_id"].blank? }
       next if renames.empty?
 
-      renames.each do |node, previous_id|
-        node["old_id"] = previous_id
-        puts "#{relative_path}: #{node.value_at("id")} was renamed, keeping old_id: \"#{previous_id}\""
+      renames.each do |talk, previous_id|
+        talk["old_id"] = previous_id
+        puts "#{relative_path}: #{talk.id} was renamed, keeping old_id: \"#{previous_id}\""
       end
 
       validator.current.save!

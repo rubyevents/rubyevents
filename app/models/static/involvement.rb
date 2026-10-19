@@ -9,5 +9,7 @@ module Static
     schema InvolvementSchema
 
     belongs_to :event
+
+    references :users, class_name: "Static::Speaker"
   end
 end

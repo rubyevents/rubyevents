@@ -5,6 +5,10 @@ module Yerba
     module Associations
       extend ActiveSupport::Concern
 
+      def self.nested_owners
+        @nested_owners ||= {}
+      end
+
       class_methods do
         #   belongs_to :series, foreign_key: :series_slug
         #   belongs_to :event
@@ -39,7 +43,13 @@ module Yerba
           class_name ||= infer_class_name(name, singularize: true)
 
           if nested
-            @nested_key = name.to_s if (class_name.is_a?(String) ? class_name : class_name.name) == self.name
+            nested_class_name = class_name.is_a?(String) ? class_name : class_name.name
+
+            if nested_class_name == self.name
+              @nested_key = name.to_s
+            else
+              Associations.nested_owners[nested_class_name] = [self.name, name]
+            end
 
             define_method(name) do
               @nested_collections ||= {}

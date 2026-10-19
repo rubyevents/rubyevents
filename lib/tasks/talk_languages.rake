@@ -29,42 +29,37 @@ namespace :talk_languages do
       next unless validator.applicable? && validator.errors.any?
 
       relative_path = path.to_s.sub("#{Rails.root}/", "")
-      document = Yerba.parse_file(path)
-      next unless document.root
+      talks = Static::Talk.in_file(path)
 
-      pairs = document.root.each.flat_map do |video|
-        [[video, nil]] + Array(video["talks"]&.each&.to_a).map { |talk| [talk, video] }
-      end
+      detections = talks.filter_map do |talk|
+        next if talk["talks"] || talk["language"].present?
 
-      detections = pairs.filter_map do |node, parent|
-        next if node["talks"] || node.value_at("language").present?
-
-        source = (node.value_at("video_provider") == "parent") ? parent : node
-        provider = source&.value_at("video_provider")
+        source = (talk["video_provider"] == "parent") ? talk.parent : talk
+        provider = source&.[]("video_provider")
 
         next unless provider.in?(::Talk::WATCHABLE_PROVIDERS)
 
         unless provider == "youtube"
-          unresolved << "#{relative_path}: #{node.value_at("id")} (no captions to detect from on #{provider})"
+          unresolved << "#{relative_path}: #{talk.id} (no captions to detect from on #{provider})"
           next
         end
 
-        [node, detect.call(source.value_at("video_id"))]
+        [talk, detect.call(source["video_id"])]
       end
 
-      resolved, undetectable = detections.partition { |_node, language| language.present? }
+      resolved, undetectable = detections.partition { |_talk, language| language.present? }
 
-      undetectable.each do |node, _language|
-        unresolved << "#{relative_path}: #{node.value_at("id")} (no captions or ambiguous language)"
+      undetectable.each do |talk, _language|
+        unresolved << "#{relative_path}: #{talk.id} (no captions or ambiguous language)"
       end
 
-      resolved.each do |node, language|
-        node["language"] = language
+      resolved.each do |talk, language|
+        talk["language"] = language
         written += 1
-        puts %(#{relative_path}: #{node.value_at("id")} language: "#{language}")
+        puts %(#{relative_path}: #{talk.id} language: "#{language}")
       end
 
-      document.save!(apply: true) if resolved.any?
+      talks.save! if resolved.any?
     end
 
     puts
