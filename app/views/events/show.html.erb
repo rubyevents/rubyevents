@@ -26,7 +26,7 @@
 
     <div class="mt-8 flex flex-col gap-12">
       <section class="rounded-lg border bg-white p-6 shadow-sm">
-        <div class="grid items-center gap-6 <%= (!event_cancelled?(@event) && @event.start_date.present? && @event.start_date > Date.today && @event.date_precision == "day" || (@event.today? && !@event.meetup? && !event_cancelled?(@event))) ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3" %>">
+        <div class="grid items-center gap-6 <%= (!@event.cancelled_or_inactive? && @event.start_date.present? && @event.start_date > Date.today && @event.date_precision == "day" || (@event.today? && !@event.meetup? && !@event.cancelled_or_inactive?)) ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3" %>">
           <div class="text-center">
             <% if @event.retreat? %>
               <% duration = (@event.end_date - @event.start_date).to_i %>
@@ -42,7 +42,7 @@
           <div class="text-center">
             <% if @event.retreat? %>
               <div class="mb-1 text-3xl font-bold text-primary"><%= @event.going_participants.count %></div>
-              <div class="text-sm font-medium text-gray-600">Known Participants</div>
+              <div class="text-sm font-medium text-gray-600">Attendees</div>
             <% else %>
               <div class="mb-1 text-3xl font-bold text-primary"><%= @event.speakers.count %></div>
               <div class="text-sm font-medium text-gray-600">Speakers</div>
@@ -59,7 +59,7 @@
             <% end %>
           </div>
 
-          <% if !event_cancelled?(@event) && @event.start_date.present? && @event.start_date > Date.today && @event.date_precision == "day" %>
+          <% if !@event.cancelled_or_inactive? && @event.start_date.present? && @event.start_date > Date.today && @event.date_precision == "day" %>
             <% days_until = (@event.start_date - Date.today).to_i %>
             <div class="text-center">
               <div class="mb-2 flex justify-center gap-1">
@@ -86,7 +86,7 @@
 
               <div class="text-sm font-medium text-gray-600">Days Until</div>
             </div>
-          <% elsif !event_cancelled?(@event) && @event.today? && !@event.meetup? %>
+          <% elsif !@event.cancelled_or_inactive? && @event.today? && !@event.meetup? %>
             <div class="text-center">
               <div class="mb-1 animate-pulse text-2xl font-bold text-green-600">
                 LIVE
@@ -237,7 +237,7 @@
         </section>
       <% end %>
 
-      <% if @event.talks.empty? && @event.speakers.empty? && @sponsors.empty? && !@event.static_metadata.cancelled? %>
+      <% if @event.talks.empty? && @event.speakers.empty? && @sponsors.empty? && !@event.cancelled_or_inactive? %>
         <div class="py-12 text-center">
           <div class="mx-auto max-w-md">
             <div class="mb-4 text-6xl">🎤</div>

@@ -27,31 +27,25 @@ module Static
       def validate
         return [] unless applicable?
 
-        errors = []
+        speakers = Static::Speaker.in_file(@file_path.to_s, document: @document).to_a
 
-        @document ||= Yerba.parse_file(@file_path)
-        name_slug_pairs = @document.pluck(:name).zip(@document.pluck(:slug), @document.pluck(:github))
-        errors.concat(find_errors_for_name_slug_pairs(name_slug_pairs) do |name|
-          @document.find_by(name: name)&.[]("slug")
-        end)
+        name_slugs = speakers.map { |speaker| [speaker["name"], speaker["slug"], speaker["github"], speaker.source_location("slug")] }
 
-        alias_name_slug_pairs = @document.value_at("[].aliases[].name").compact
-          .zip(@document.value_at("[].aliases[].slug").compact)
-        errors.concat(find_errors_for_name_slug_pairs(alias_name_slug_pairs) do |name|
-          @document.find_by(aliases: {name: name})&.[]("aliases")
-            &.find_by(name: name)&.[]("slug")
-        end)
-        errors
+        alias_slugs = speakers.flat_map do |speaker|
+          Array(speaker["aliases"]).each_with_index.map do |alias_entry, index|
+            [alias_entry["name"], alias_entry["slug"], nil, speaker.source_location("aliases[#{index}].slug")]
+          end
+        end
+
+        find_errors_for_name_slugs(name_slugs) + find_errors_for_name_slugs(alias_slugs)
       end
 
       private
 
-      def find_errors_for_name_slug_pairs(name_slug_pairs, &block)
-        name_slug_pairs.filter_map do |name, slug, github|
+      def find_errors_for_name_slugs(name_slugs)
+        name_slugs.filter_map do |name, slug, github, location|
           expected_slug = name.parameterize
           next if slug == expected_slug
-
-          entry = block.call(name)
 
           if expected_slug.empty?
             next if github.blank?
@@ -60,15 +54,15 @@ module Static
             Static::Validators::Error.new(
               "Name cannot be parameterized. Slug must be the GitHub handle, expected: #{expected_slug}.",
               file_path: @file_path,
-              line: entry&.location&.start_line || 1,
-              end_line: entry&.location&.end_line
+              line: location&.start_line || 1,
+              end_line: location&.end_line
             )
           else
             Static::Validators::Error.new(
               "Slug must be the name parameterized, expected: #{expected_slug}",
               file_path: @file_path,
-              line: entry&.location&.start_line || 1,
-              end_line: entry&.location&.end_line
+              line: location&.start_line || 1,
+              end_line: location&.end_line
             )
           end
         end

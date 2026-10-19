@@ -4,12 +4,12 @@
   <%= link_to stamps_path, class: "block group" do %>
     <section class="relative overflow-visible rounded-2xl bg-gradient-to-br from-stone-800 to-stone-950 px-8 py-12 text-white">
       <div class="absolute inset-0 overflow-hidden rounded-2xl opacity-5">
-        <% Stamp.country_stamps.sample(20).each do |stamp| %>
+        <% Static::Stamp.country_stamps.sample(20).each do |stamp| %>
           <div
             class="absolute"
             style="top: <%= rand(0..90) %>%; left: <%= rand(0..90) %>%; transform: rotate(<%= rand(-30..30) %>deg); opacity: 0.4;"
           >
-            <%= image_tag image_path("stamps/#{stamp.file_path}"), alt: stamp.name, class: "w-16 h-16", loading: "lazy" %>
+            <%= image_tag image_path(stamp.image_path), alt: stamp.name, class: "w-16 h-16", loading: "lazy" %>
           </div>
         <% end %>
       </div>
@@ -30,9 +30,9 @@
           </div>
 
           <div class="flex flex-wrap justify-center gap-3 lg:justify-start">
-            <% Stamp.event_stamps.sample(8).each do |stamp| %>
+            <% Static::Stamp.event_stamps.sample(8).each do |stamp| %>
               <div class="h-20 w-20 rounded-lg bg-white p-2 shadow-sm">
-                <%= image_tag image_path(stamp.file_path), class: "w-full h-full object-contain", loading: "lazy", alt: stamp.name %>
+                <%= image_tag image_path(stamp.image_path), class: "w-full h-full object-contain", loading: "lazy", alt: stamp.name %>
               </div>
             <% end %>
           </div>

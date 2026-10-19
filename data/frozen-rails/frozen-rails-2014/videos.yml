@@ -1,6 +1,177 @@
-# TODO: Add talks and videos
-
-# Website: http://2014.frozenrails.eu/
-# Videos: -
 ---
-[]
+- id: "konstantin-haase-frozen-rails-2014"
+  title: "Keynote: Magenta - The Art of Abstraction"
+  kind: "keynote"
+  date: "2014-09-11"
+  start_time: "10:00"
+  end_time: "10:45"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "konstantin-haase-frozen-rails-2014"
+  description: ""
+  speakers:
+    - Konstantin Haase
+
+- id: "amy-wibowo-frozen-rails-2014"
+  title: "Sweaters as a service: adventures in machine knitting"
+  date: "2014-09-11"
+  start_time: "11:15"
+  end_time: "12:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "amy-wibowo-frozen-rails-2014"
+  description: |-
+    In the 1980's, Nintendo had plans for making a knitting add-on to the NES, with an interface that resembled Mariopaint, but with patterned mittens, sweaters, and scarves as output. Sadly, this product never saw the light of day. Devastated upon hearing this and dreaming about what could have been, a group of Airbnb engineers (who knew nothing about machine knitting) set out to hack a knitting machine from the 1980's to be computer-controlled, using a tutorial from adafruit as a starting point.
+
+    Hear about our struggles and triumphs, which ranged from learning to replace knitting machine needles and conduct basic repairs, to emulating a floppy drive and hacking together a custom cable cable to send our own patterns to the machine, to writing our own yarn printer API in ruby/rails and printing our first doge meme in yarn. And watch us as we send images and knit requests to our yarn server, and behold as it knits ugly sweaters from those images!
+  speakers:
+    - Amy Wibowo
+
+- id: "andre-arko-frozen-rails-2014"
+  title: "Extreme Makeover: Rubygems Edition"
+  date: "2014-09-11"
+  start_time: "13:00"
+  end_time: "13:45"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "andre-arko-frozen-rails-2014"
+  description: |-
+    Rubygems.org provides every Rubyist with an amazing service: all the libraries in the Ruby world. As amazing as that is, installing gems can be a time-consuming and even error-prone process. (Just ask the Travis guys.)
+
+    In this talk, you'll learn about the recent dramatic changes in Rubygems and Bundler to improve speed and reliability by rewriting the Rubygems client/server architecture. I'll show how the new system caches more information, makes fewer requests, and takes less time to install gems. Finally, I'll cover how the changes allow worldwide mirrors of rubygems.org, improving things for Rubyists around the globe.
+  speakers:
+    - André Arko
+
+- id: "arne-brasseur-frozen-rails-2014"
+  title: "Functional Programming in Ruby"
+  date: "2014-09-11"
+  start_time: "14:15"
+  end_time: "15:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "arne-brasseur-frozen-rails-2014"
+  description: |-
+    Ruby isn't exactly know for being a functional programming, but neither is it known for not being a functional programming. With lambdas, blocks, and Matz himself citing LISP as a major influence, there is very little stopping us from writing code in a functional style.
+
+    We'll cut straight through the smugness and jargon that typefies functional programming literature, and go straight to the essence. What does it mean to program "functionally", and what does it buy us. What patterns and techniques can we incorporate to write more flexible, maintainable code, and what are the caveats Rubyists specifically need to look out for.
+  speakers:
+    - Arne Brasseur
+
+- id: "milo-todorovich-frozen-rails-2014"
+  title: "API Second"
+  date: "2014-09-11"
+  start_time: "15:30"
+  end_time: "16:15"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "milo-todorovich-frozen-rails-2014"
+  description: |-
+    API's are all the rage these days. There's even a movement for "API First" development. And that sounds fantastic! But you need the ease of Rails, so that you can iterate, and pivot, and figure out if you've got a viable business. And this could take years.
+
+    So you build a web application. And you iterate. And pivot. And you've got a business! And you're growing! And NOW you want a mobile app and another client. Umm, yeah.
+
+    Let's talk about you can make the transition to API after the fact, and the things you should look out for along the way.
+  speakers:
+    - Milo Todorovich
+
+- id: "michael-ries-frozen-rails-2014"
+  title: "How I Accidentally Wrote the Best Code of my Career"
+  date: "2014-09-11"
+  start_time: "16:45"
+  end_time: "17:30"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "michael-ries-frozen-rails-2014"
+  description: |-
+    Good design is hard. We use lots of tools and conventions in ruby and rails to help us go faster, but good design can't be rushed. This is a case study of a project that had been written and re-written several times and the surprising implementation that made it beautiful.
+
+    We will discuss the characteristics we want our code to have and discover several concrete practices that we can use along the way.
+  speakers:
+    - Michael Ries
+
+- id: "michal-taszycki-frozen-rails-2014"
+  title: "Ruby – Write Once, Run Anywhere"
+  date: "2014-09-12"
+  start_time: "10:00"
+  end_time: "10:45"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "michal-taszycki-frozen-rails-2014"
+  description: |-
+    Some people say that Ruby is dying. I wouldn't… I'd rather claim that Ruby is more alive than ever!
+
+    Few years ago we could only envy Javascript programmers while their favorite language was becoming ubiquitous. Currently, thanks to RubyMotion we can write desktop and mobile apps. While Opal can execute Ruby in a browser. With these tools we can finally write cross-platform Ruby apps.
+
+    Learn how!
+  speakers:
+    - Michał Taszycki
+
+- id: "davy-stevenson-frozen-rails-2014"
+  title: "Ruby as Science, Art and Craft"
+  date: "2014-09-12"
+  start_time: "11:15"
+  end_time: "12:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "davy-stevenson-frozen-rails-2014"
+  description: |-
+    Developers are encouraged, and sometimes required, to study Computer Science, however a large percentage of us are self-taught or have entered programming through related fields. This sits in stark contrast to most other engineering disciplines, and this diversity is possibly our greatest strength.
+
+    Programming sits at the intersection of science, art, and craft. I contend that, given introspection on each of these facets, we will all improve. Learn how formal Computer Science techniques map to real-world problems. Contemplate code as an art form. Think of code as your craft, and continue learning new techniques. Take the time to look at problems through many lenses, and form diverse teams that allow us to solve problems from many different angles.
+  speakers:
+    - Davy Stevenson
+
+- id: "sam-phippen-frozen-rails-2014"
+  title: "The Maybe Monad as a replacement for nil"
+  date: "2014-09-12"
+  start_time: "13:00"
+  end_time: "13:45"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "sam-phippen-frozen-rails-2014"
+  description: |-
+    nil is an oft-discussed subject in software engineering. The presence of nil conflates many possible different cases: default values, missing values, no specific value and other such cases. The problem is: in a large system it can be difficult to determine which of those cases has occurred. It can be difficult to even know where the nil has come from. The error NoMethodError: undefined method `send_email!' for nil:NilClass could hardly be less useful.
+
+    In this talk, we're going to cover the maybe monad. "Maybe" swoops in and solves a number of the problems that are caused by nil. Unlike the "null object" pattern maybe does not specialise to any specific class or type, but instead solves nil problems in a general way. Don't fear that the word "monad" has been mentioned. The techniques behind the maybe monad translate easily, simply and obviously into the object oriented paradigm.
+  speakers:
+    - Sam Phippen
+
+- id: "terence-lee-frozen-rails-2014"
+  title: "Ruby & You"
+  date: "2014-09-12"
+  start_time: "14:15"
+  end_time: "15:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "terence-lee-frozen-rails-2014"
+  description: |-
+    On November 22, 2013, a devastating security exploit was publicized to the Ruby community: Heap Overflow in Floating Point Parsing CVE-2013-4164. There was no fixes provided for Ruby 1.9.2. In fact, Ruby 1.9.2 has never had a formal end of life announcement. At Heroku we realized this impacted our ability to provide reliable runtime support. Not wanting to leave our customers high and dry, Heroku released Ruby 1.8.7 and 1.9.2 security patches on our runtimes and pushed to get them upstream. This situation paved the way for me to join ruby-core to help maintain security fixes for 1.8.7 and 1.9.2.
+
+    Over the course of the year with help from zzak, I’ve been figuring out how to work with ruby core as well as proposing policy changes for more transparency. This talk, goes through the steps and mistakes that I learned on how to interact with members of ruby core as well as telling war stories of my experience on core. We’ll remove the opacity around getting contributions upstreamed and how you can have meaningful discussions with the implementers about the language we all know and love. Help us make Ruby better.
+  speakers:
+    - Terence Lee
+
+- id: "lightning-talk-frozen-rails-2014"
+  title: "Lightning Talks"
+  kind: "lightning_talk"
+  date: "2014-09-12"
+  start_time: "15:30"
+  end_time: "16:15"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "lightning-talk-frozen-rails-2014"
+  description: ""
+  talks: []
+
+- id: "patrick-mckenzie-frozen-rails-2014"
+  title: "Keynote: How to make a million dollars with Ruby on Rails"
+  kind: "keynote"
+  date: "2014-09-12"
+  start_time: "16:45"
+  end_time: "17:30"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "patrick-mckenzie-frozen-rails-2014"
+  description: ""
+  speakers:
+    - Patrick McKenzie

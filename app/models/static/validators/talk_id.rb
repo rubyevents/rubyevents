@@ -11,7 +11,7 @@ module Static
 
       def initialize(file_path:, document: nil, baseline: nil)
         @file_path = file_path
-        @document = document || Yerba.parse_file(@file_path)
+        @document = document
         @baseline = baseline
       end
 
@@ -53,7 +53,6 @@ module Static
           if node["video_id"] == current && !watchable_video?(node)
             node["video_id"] = expected
           end
-          rename_thumbnails(current, expected)
           node["id"] = expected
         end.compact
         return unless changes.any?
@@ -124,10 +123,7 @@ module Static
       end
 
       def meetup_event?
-        event_file = File.join(File.dirname(File.expand_path(@file_path)), "event.yml")
-        return false unless File.exist?(event_file)
-
-        Yerba.parse_file(event_file)["kind"] == "meetup"
+        nodes.first&.event&.[]("kind") == "meetup"
       end
 
       def id_for(node)
@@ -155,19 +151,6 @@ module Static
 
       def watchable_video?(node)
         node["video_provider"].in?(::Talk::WATCHABLE_PROVIDERS)
-      end
-
-      def rename_thumbnails(from, to)
-        event_thumbnails = Rails.root.join("app/assets/images/thumbnails", event_slug)
-
-        Dir.glob(event_thumbnails.join("**/#{from}.webp")).each do |thumbnail|
-          renamed_thumbnail = File.join(File.dirname(thumbnail), "#{to}.webp")
-          FileUtils.mv(thumbnail, renamed_thumbnail) unless File.exist?(renamed_thumbnail)
-        end
-
-        directory = event_thumbnails.join(from)
-        renamed_directory = event_thumbnails.join(to)
-        FileUtils.mv(directory, renamed_directory) if Dir.exist?(directory) && !Dir.exist?(renamed_directory)
       end
 
       def numbered(node, id, index)

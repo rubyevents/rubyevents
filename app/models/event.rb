@@ -153,6 +153,10 @@ class Event < ApplicationRecord
     end_date.present? && end_date < Date.today
   end
 
+  def cancelled? = static_metadata.cancelled?
+  def meetup_inactive? = meetup? && series.static_metadata.inactive?
+  def cancelled_or_inactive? = cancelled? || meetup_inactive?
+
   def happening?
     start_date.present? && end_date.present? && (start_date..end_date).cover?(Date.today)
   end
@@ -221,7 +225,7 @@ class Event < ApplicationRecord
     ordered_ids = where(id: ids)
       .includes(:cfps)
       .sort_by { |event| event.featured_distance(today: today) }
-      .reject { |event| event.static_metadata.cancelled? }
+      .reject(&:cancelled_or_inactive?)
       .first(limit)
       .map(&:id)
 
@@ -335,7 +339,11 @@ class Event < ApplicationRecord
   end
 
   def formatted_dates
-    return "Recurring" if meetup?
+    if meetup?
+      return "Inactive" if meetup_inactive?
+      return "Recurring"
+    end
+
     case date_precision
     when "year"
       start_date.strftime("%Y")
@@ -373,7 +381,7 @@ class Event < ApplicationRecord
     event_name = series.organisation? ? name : series.name
 
     @description = <<~DESCRIPTION
-      #{event_name} is a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
+      #{event_name} #{meetup_inactive? ? "was" : "is"} a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
     DESCRIPTION
   end
 
@@ -382,7 +390,9 @@ class Event < ApplicationRecord
   end
 
   def talks_text
-    talks.size.positive? ? " and features #{talks.size} #{"talk".pluralize(talks.size)} from various speakers" : ""
+    return "" unless talks.size.positive?
+
+    " and #{meetup_inactive? ? "featured" : "features"} #{talks.size} #{"talk".pluralize(talks.size)} from various speakers"
   end
 
   def to_meta_tags
@@ -459,7 +469,7 @@ class Event < ApplicationRecord
       event.description = description.strip
       event.location = static_metadata.location
       event.url = website
-      event.status = static_metadata.cancelled? ? "CANCELLED" : "CONFIRMED"
+      event.status = cancelled? ? "CANCELLED" : "CONFIRMED"
     end
   end
 

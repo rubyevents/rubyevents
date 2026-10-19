@@ -1,41 +1,52 @@
 class Static::Validators::Validator
   def self.cfp_validator_classes
-    @cfp_validators ||= [
+    @cfp_validator_classes ||= [
       Static::Validators::Schema
     ]
   end
 
+  def self.event_assets_validator_classes
+    @event_assets_validator_classes ||= [
+      Static::Validators::AssetDimensions,
+      Static::Validators::OrphanedEventAssets
+    ]
+  end
+
   def self.event_validator_classes
-    @event_validators ||= [
+    @event_validator_classes ||= [
       Static::Validators::Schema,
       Static::Validators::AssetsHaveColors,
       Static::Validators::ColorsHaveAssets,
+      Static::Validators::DuplicateSeriesSocials,
       Static::Validators::DuplicateYouTubeChannels,
       Static::Validators::EventCityNames,
+      Static::Validators::EventCityStateConsistency,
       Static::Validators::EventDatePrecision,
       Static::Validators::EventDates,
       Static::Validators::EventRecordingsPublishedDate,
       Static::Validators::IdMatchesFolder,
+      Static::Validators::MissingSeriesSocials,
       Static::Validators::RemovedTalkIds
     ]
   end
 
   def self.involvement_validator_classes
-    @involvement_validators ||= [
+    @involvement_validator_classes ||= [
       Static::Validators::Schema,
-      Static::Validators::InvolvementRoleName
+      Static::Validators::InvolvementRoleName,
+      Static::Validators::SpeakerExists
     ]
   end
 
   def self.schedule_validator_classes
-    @schedule_validators ||= [
+    @schedule_validator_classes ||= [
       Static::Validators::Schema,
       Static::Validators::ScheduleSlotsFilled
     ]
   end
 
   def self.series_validator_classes
-    @series_validators ||= [
+    @series_validator_classes ||= [
       Static::Validators::Schema,
       Static::Validators::IdMatchesFolder,
       Static::Validators::SeriesDefaultColors
@@ -43,7 +54,7 @@ class Static::Validators::Validator
   end
 
   def self.speaker_validator_classes
-    @speaker_validators ||= [
+    @speaker_validator_classes ||= [
       Static::Validators::Schema,
       Static::Validators::SimilarSpeakerNames,
       Static::Validators::SpeakerAliasNotOwnGitHubHandle,
@@ -55,20 +66,20 @@ class Static::Validators::Validator
   end
 
   def self.sponsor_validator_classes
-    @sponsor_validators ||= [
+    @sponsor_validator_classes ||= [
       Static::Validators::Schema,
       Static::Validators::SponsorSlug
     ]
   end
 
   def self.venue_validator_classes
-    @venue_validators ||= [
+    @venue_validator_classes ||= [
       Static::Validators::Schema
     ]
   end
 
   def self.video_validator_classes
-    @video_validators ||= [
+    @video_validator_classes ||= [
       Static::Validators::Schema,
       Static::Validators::SpeakerExists,
       Static::Validators::SpeakersOrTalks,
@@ -79,6 +90,7 @@ class Static::Validators::Validator
       Static::Validators::TalkPublishedAt,
       Static::Validators::TalkRenames,
       Static::Validators::TalkShortKind,
+      Static::Validators::TalkTrack,
       Static::Validators::UniqueTalkIds,
       Static::Validators::MissingThumbnails
     ]

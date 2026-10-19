@@ -12,7 +12,7 @@ module Api
           events = user.attended_events.includes(:series).select(&:sticker?)
 
           stickers = events.flat_map { |event|
-            Sticker.for_event(event).map { |sticker|
+            event.stickers.map { |sticker|
               {
                 code: sticker.code,
                 name: sticker.name,
@@ -39,9 +39,9 @@ module Api
         private
 
         def sticker_image_url(sticker)
-          return nil unless sticker.file_path.present?
+          return nil unless sticker.image_path.present?
 
-          Router.image_path(sticker.file_path, host: request.base_url)
+          Router.image_path(sticker.image_path, host: request.base_url)
         rescue
           nil
         end

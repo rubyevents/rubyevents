@@ -61,7 +61,7 @@ class ProfilesController < ApplicationController
     @talks_by_kind = @talks.group_by(&:kind)
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
     @events = @user.participated_events.includes(:series)
-    @stickers = Sticker.for_user(@user)
+    @stickers = Static::Sticker.for_user(@user)
 
     @participations = @user.event_participations.index_by(&:event_id)
     @checked_in_event_ids = @user.checked_in_event_ids
@@ -91,7 +91,7 @@ class ProfilesController < ApplicationController
       end
     end
 
-    @stamps = Stamp.for_user(@user)
+    @stamps = Static::Stamp.for_user(@user)
     @aliases = Current.user&.admin? ? @user.aliases : []
 
     @back_path = speakers_path

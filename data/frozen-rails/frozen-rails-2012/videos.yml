@@ -1,7 +1,372 @@
-# TODO: Add talks and videos
-
-# Website: https://2012.frozenrails.eu
-# Videos: -
-# https://www.youtube.com/watch?v=vaFlzd-EcRU
 ---
-[]
+- id: "keynote-what-is-a-developer-frozen-rails-2012"
+  title: "Keynote: What is a Developer?"
+  kind: "keynote"
+  date: "2012-09-20"
+  start_time: "10:00"
+  end_time: "10:45"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "keynote-what-is-a-developer-frozen-rails-2012"
+  description: ""
+  speakers:
+    - Jeff Casimir
+
+- id: "amanda-wagener-frozen-rails-2012"
+  title: "Mind your Metaphors"
+  date: "2012-09-20"
+  start_time: "11:00"
+  end_time: "11:30"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "amanda-wagener-frozen-rails-2012"
+  description: |-
+    Software development as engineering. Real world situations as objects. Development periods as sprints.
+
+    Metaphors are a powerful tool, and generally a positive one, allowing us to disregard some complexity in favour of focusing on the current situation. However, this reduction of complexity can blind us to other ways to discuss or approach a problem. Choosing the wrong metaphor can be dangerous; choosing a simplistic metaphor can be limiting.
+
+    This talk will encourage thinking about the metaphors behind the concepts we use, and what other metaphors could be considered in their place. Being aware of metaphors, consciously choosing which we use, and re-evaluating regularly will improve both our code and our discipline.
+  speakers:
+    - Amanda Wagener
+
+- id: "lourens-naude-frozen-rails-2012"
+  title: "ZeroMQ: scriptable sockets"
+  date: "2012-09-20"
+  start_time: "11:30"
+  end_time: "12:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "lourens-naude-frozen-rails-2012"
+  description: |-
+    ZeroMQ is a socket abstraction and concurrency framework that's changing the way we think and reason about distributed systems. Mailboxes, atomic message delivery and swappable transports allow for fast, flexible and resilient network topologies. It's I/O model also sits very well with all Ruby implementations. In this talk we'll discuss :
+
+    - What's wrong with socket I/O ?
+    - Supported messaging patterns
+    - Transport agnostic messaging
+    - Resiliency (operations and upgrades)
+    - Building out topologies just in time (interjection principle)
+    - Performance and throughput
+    - Mongrel2 Ruby adapter
+    - How to use it from Ruby
+    - Small case study
+  speakers:
+    - Lourens Naudé
+
+- id: "steve-klabnik-frozen-rails-2012"
+  title: "Designing Hypermedia APIs"
+  date: "2012-09-20"
+  start_time: "13:00"
+  end_time: "13:30"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "steve-klabnik-frozen-rails-2012"
+  description: |-
+    Rails did a lot to bring REST to developers, but its conception leaves the REST devotee feeling a bit empty. "Where's the hypermedia?" she says. "REST isn't RPC," he may cry. "WTF??!?!" you may think. "I have it right there! resources :posts ! What more is there? RPC? Huh?"
+
+    In this talk, Steve will explain how to design your APIs so that they truly embrace the web and HTTP. Just as there's an impedance mismatch between our databases, our ORMs, and our models, there's an equal mismatch between our applications, our APIs, and our clients. Pros and cons of this approach will be discussed, as well as why we aren't building things this way yet.
+  speakers:
+    - Steve Klabnik
+
+- id: "dennis-ushakov-frozen-rails-2012"
+  title: "“Fighting Code Smells”, Ruby Code Analysis Tools"
+  date: "2012-09-20"
+  start_time: "13:30"
+  end_time: "14:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "dennis-ushakov-frozen-rails-2012"
+  description: |-
+    Nobody likes when their code smells. To help avoid it, dozens of special tools and approaches have been designed. Efficient coding tools, refactorings, code metrics, code analysis, code testing and debugging are all crucial for creating quality, maintainable code. During this talk we’ll show you how to efficiently detect code smells, eliminate them using refactoring, and validate the changed code. By the end you’ll have a ‘swiss army knife’ full of techniques for making better code.
+  speakers:
+    - Dennis Ushakov
+
+- id: "ville-lautanala-frozen-rails-2012"
+  title: "The Tale Of A Server Infrastructure"
+  date: "2012-09-20"
+  start_time: "14:30"
+  end_time: "15:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "ville-lautanala-frozen-rails-2012"
+  description: |-
+    This talk will explain how we got drunk and lost track of our servers, how we sobered up and still had a hard time administrating them, and how we finally managed to get on top of our server infrastructure and transform the architecture into the shiny majestic thing it is today. It is a survival story of sorts, where a Zookeeper and a Chef comes to the aid of a young newcomer trying to make it big in the bustling scene of startups.
+
+    This talk will discuss the architecture of our app and server infrastructure at Flowdock. We will talk about importance of decoupling in order to:
+
+    - ease development and maintenance
+    - scale your app
+    - maintain high-availability
+    - impress your friends with your architecture layout
+    - keep a zoo
+  speakers:
+    - Ville Lautanala
+
+- id: "nick-sutterer-frozen-rails-2012"
+  title: "Off the Tracks - Challenging the Rails Mindset"
+  date: "2012-09-20"
+  start_time: "15:00"
+  end_time: "15:30"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "nick-sutterer-frozen-rails-2012"
+  description: |-
+    Rails - a word that stirs programmer's blood. It brought us testing, easy web app building, database abstraction and hundreds of extension gems. Why not take it to another level and discover how Rails turns into a real OOP framework? By exploring chosen gems let's discuss what MVC really is and how it boosts your AJAX user interface, how to apply patterns like DCI, dependency injection and POROs to your database layer and how to expose your Rails system through a real RESTful API. Also, have you ever tried using Rails helpers outside of Rails, maybe in Sinatra? Let's do it and learn about some refreshing aspects of this framework.
+  speakers:
+    - Nick Sutterer
+
+- id: "brandur-leach-frozen-rails-2012"
+  title: "Post-Rails? Composable Apps with a First-class API."
+  date: "2012-09-20"
+  start_time: "16:00"
+  end_time: "16:30"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "brandur-leach-frozen-rails-2012"
+  description: |-
+    Rails is the best framework for building web apps in the world, but is there a way we can get even greater leverage of Rails' strengths while producing a more maintainable system? Brandur talks about lessons learnt while separating API from the web, and how this pattern can be reused elsewhere for the greater good:
+
+    - More manageable codebases and healthier developers
+    - Using Rails for what it's best at—building web apps
+    - Keeping designers happy by giving them well-constructed APIs and saving them from constant operational load
+    - Using ActiveModel to face back onto your own platform
+    - Building self-service APIs for customers, but which are also reused by any number of internal components
+    - Opening the gates for the rest of the software ecosystem—Backbone apps and iOS
+  speakers:
+    - Brandur Leach
+
+- id: "joe-kutner-frozen-rails-2012"
+  title: "Deploy, Scale and Sleep at Night with JRuby"
+  date: "2012-09-20"
+  start_time: "16:30"
+  end_time: "17:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "joe-kutner-frozen-rails-2012"
+  description: |-
+    Your website has just crashed, and you're losing money. The application is built on Rails, runs on MRI, and is served up with Mongrel and Apache. Having this kind of infrastructure means that you're managing more processes than you can count on two hands. It will take a while to get back online because there are so many components in your system; including resque, monit, cron, Ruby Daemons, and more. But the website has to get up and running if you are going to stay in business.
+
+    The problem I've just described is all too common. It has happened to everyone from small start-ups to large social networking sites that use Ruby to serve millions of requests. But the recent growth and increased adoption of the Java Virtual Machine (JVM) as a platform for Ruby applications means that this is no longer the only way of doing things.
+
+    In this talk, I'll discuss the new architecture and deployment strategies that JRuby enables, and why they're better for your Rails applications. I'll talk about what makes JRuby more scalable and show some benchmarks that prove it. I'll also discuss three deployment strategies that can be used with any Rack-based JRuby application, and provide an overview of how each one works. I'll focus on the technologies that make them possible, and when it's appropriate to use each strategy. They include:
+
+    - Warbler: a gem can be used to create a self-contained web application archive file.
+    - Trinidad: a light-weight web server for creating flexible, modular deployments that still feel friendly and familiar.
+    - TorqueBox: an all-in-one environment that includes built-in support for messaging, scheduling, daemons and clustering.
+
+    Choosing the right JRuby deployment strategy will not only provide a powerful and reliable platform -- it will help you get more sleep at night.
+  speakers:
+    - Joe Kutner
+
+- id: "surprise-talk-frozen-rails-2012"
+  title: "Surprise Talk"
+  kind: "keynote"
+  date: "2012-09-20"
+  start_time: "17:30"
+  end_time: "18:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "surprise-talk-frozen-rails-2012"
+  description: ""
+  speakers:
+    - Jeff Casimir
+
+- id: "adam-hawkins-frozen-rails-2012"
+  title: "Advanced Caching in Rails"
+  date: "2012-09-21"
+  start_time: "10:15"
+  end_time: "10:50"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "adam-hawkins-frozen-rails-2012"
+  description: |-
+    Caching in rails is complicated. There is: Page caching, action caching, fragment caching, low level caching, and HTTP caching. This talk will guide you through basics and best practices of each. Caching is extremely important your app's performance so this talk will help you get it right. It will cover:
+
+    - Auto-expiring cached content
+    - Caching collections
+    - Page/Action/Fragment/Low level (Rails.cache) Caching
+    - Explaining Rack::Cache
+    - Cache warming for JSON API's
+    - Caching at the model layer
+    - Techniques for caching multiuser HTML
+    - HTTP caching for public/private APIs
+    - HTTP caching vs Page/Action caching
+    - Tag based caching for easier expiring
+  speakers:
+    - Adam Hawkins
+
+- id: "jerry-jaeppinen-frozen-rails-2012"
+  title: "Sponsored Talk: Why we ditched Rails"
+  date: "2012-09-21"
+  start_time: "10:50"
+  end_time: "11:00"
+  published_at: "2013-04-22T08:17:40Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "vaFlzd-EcRU"
+  description: ""
+  speakers:
+    - Jerry Jäppinen
+
+- id: "rogelio-j-samour-frozen-rails-2012"
+  title: "I know Kung Fu! (or neo4j on Rails without jRuby)"
+  date: "2012-09-21"
+  start_time: "11:30"
+  end_time: "12:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "rogelio-j-samour-frozen-rails-2012"
+  description: |-
+    “Reality is a graph, embrace it!” Sure graph databases are really cool and have a timestamp dated next week, but do you know when you should actually use one? Sometimes living on the bleeding edge pays off and in this talk, I'll show you how you can simplify your application and model your data more naturally with a graph database. They are suited towards a specific problem that is actually quite common in today's applications and they may even apply to that thing you'll be working on during this talk!
+
+    I will use Neo4j to demonstrate how to model graph data and integrate it with Rails. We'll start with the basics of graph databases, go over working in a polyglot environment, and get started on our first Rails app using Neo4j. The tools and practices learned here will not only dazzle your boss but make your life easier when you introduce a graph database to your application back home.
+  speakers:
+    - Rogelio J. Samour
+
+- id: "melanie-gilman-mary-cutrali-frozen-rails-2012"
+  title: "Hungry Academy: Learning to Be a Developer in Five Months"
+  date: "2012-09-21"
+  start_time: "13:00"
+  end_time: "13:30"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "melanie-gilman-mary-cutrali-frozen-rails-2012"
+  description: |-
+    Much has been said about LivingSocial's Hungry Academy by the people running it, this is the perspective of two graduates.
+
+    We started in Hungry Academy in March with almost no programming experience. We learned an incredible amount during the five months of the program, not just about Ruby and Rails, but also about what it means to be a developer and an active member of the open source community.
+
+    We'll discuss some of the highs and lows of our experience in Hungry Academy:
+
+    - Group dynamics and project teams
+    - Classroom dynamics and instruction
+    - Performance Evaluations
+    - Immersion in the Ruby and Rails community and culture
+    - Work/Life Balance
+    - Mentoring
+    - Diversity - gender, age, ethnicity, marital status, etc.
+    - Transition into development roles at LivingSocial
+
+    Despite a few rough patches, which are to be expected during a program as new, unique, and innovative as this one, we consider Hungry Academy to be one of the best experiences of our collective lives.
+  speakers:
+    - Melanie Gilman
+    - Mary Cutrali
+
+- id: "danish-khan-frozen-rails-2012"
+  title: "Γυβψ Community"
+  date: "2012-09-21"
+  start_time: "14:00"
+  end_time: "14:30"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "danish-khan-frozen-rails-2012"
+  description: |-
+    Ruby is now 18 years old. It has become a very mature project and the developers that have been using it are a lot more mature now as well. Our community has long since crossed the chasm and we are in the early majority stage. This means that even though we have many people who are well versed in the language we are again having an influx of new people.
+
+    I want to help those new people feel comfortable enough to believe they can learn and become just as mature as the oldies who are part of the community. Also, I want to educate the oldies on how they can better help out these newbies.
+
+    The Ruby community has become very much like any other close-knit community. We are very biased towards certain philosophies such as agile development, pair programming, and TDD. Some might compare our community to other close-knit organizations such as fraternities/sororities, athletic clubs and the freemasons. They all have very idealistic philosophies they run their organizations on.
+
+    I want to show how we compare to these types of organizations. I want to highlight the good things we adopted from running our community this way as well as the bad. I want to show how we can improve and fix the bad habits so that we can create a more open community for new people to join and feel welcomed.
+  speakers:
+    - Danish Khan
+
+- id: "jeremy-walker-frozen-rails-2012"
+  title: "How to be a More Productive Developer"
+  date: "2012-09-21"
+  start_time: "14:30"
+  end_time: "15:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "jeremy-walker-frozen-rails-2012"
+  description: |-
+    Developers are a unique breed of people. We're highly intelligent, creative, problem solvers who have a unique and powerful set of skills. We are often passionate, determined and confident and we love challenges. But we can also be obsessive, difficult to manage and perfectionists. We can get caught up in solving problems that distract us from what we should be doing. We can be isolated and insular.
+
+    This presentation will look at who we are as developers and how to get the most from our unique skills. We will look at the areas that we can be weak in, and how we can avoid pitfalls of those areas. We will also look at how we differ from designers, managers, marketers and other types of people we may work with, and how we can work best with them.
+
+    This will be an interactive presentation where we build a picture of the average developer in the room.
+
+    We will look at:
+
+    - What makes developers special?
+    - How can we be more productive?
+    - Why do we spend so much time on open source?
+    - How can we work better with other developers?
+    - How can we work better with non-developers?
+    - Why are we so often entrepreneurs?
+  speakers:
+    - Jeremy Walker
+
+- id: "terence-lee-frozen-rails-2012"
+  title: "Rescuing Resque"
+  date: "2012-09-21"
+  start_time: "15:30"
+  end_time: "16:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "terence-lee-frozen-rails-2012"
+  description: |-
+    Resque has been plagued by issues over the past half a year due to inactivity on the project. For instance, resque doesn't handle the cleaning up workers on distributed systems like Heroku. This issue (#319) has been open for over a year. redis.rb 3.0.0 came out on May 23rd which brings improved performance and backward incompatible changes. Also due to this inactivity, other queueing libraries like Sidekiq have come up to fill the void with new features.
+
+    This talk will journey through the takeover of Resque and the balancing act of solving the old bugs while moving the project forward. On the topic of old bugs, we'll cover the challenges of getting a stale project in order and into a solid state. Next up will be the work on Resque 2. Rails 4 introduces ActiveQueue and Resque is going to be a first class citizen in the Rails Queueing ecosystem. In order for this to happen, there will be a new Queue interface similar to stdlib's Queue class. We'll walk through reworking the Worker class so it supports both the current jailboxed Forked Consumer as well as a Threaded Consumer for heavy I/O jobs. We'll close with how the community can help with making Resque one of the best queueing libraries for Ruby.
+  speakers:
+    - Terence Lee
+
+- id: "katrina-owen-frozen-rails-2012"
+  title: "Therapeutic Refactoring"
+  date: "2012-09-21"
+  start_time: "16:00"
+  end_time: "16:30"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "katrina-owen-frozen-rails-2012"
+  description: |-
+    Enter deadline center stage, exit best practices, quietly, rear stage left.
+
+    The results are rarely pretty.
+
+    Refactoring can pry panic’s fingers away from your poor, overburdened adrenal glands and restore your sanity. Not that it went missing, of course. Never that!
+
+    This talk will cover the two reasons why refactoring works as well as (or better than) whiskey, sky diving, and massages as therapy, explore a handful of effective strategies to ensure that the rubber meets the road, and contains gory before shots and slick after shots of ruby code that has served therapeutic purpose.
+  speakers:
+    - Katrina Owen
+
+- id: "mike-burns-frozen-rails-2012"
+  title: "When Not to Use Object-Oriented Techniques"
+  date: "2012-09-21"
+  start_time: "16:45"
+  end_time: "17:15"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "mike-burns-frozen-rails-2012"
+  description: |-
+    Object-oriented Ruby is a hot topic in the Rails world and beyond, but it is not always the appropriate solution.
+
+    In this talk I discuss various OO techniques, when to use them, and when a simpler pattern exists in the functional, declarative, or procedural world — including, yes, the Rails framework itself. You will leave knowing when to use an aspect instead of a decorator, a mixin instead of a presenter, or a monoid instead of a factory.
+
+    Topics will include:
+
+    - The benefits of code coupling.
+    - What makes Rails so anti-OO, and why that is good.
+    - Testing non-object oriented code.
+    - Good uses of classical OO design patterns.
+    - How to use a continuation.
+  speakers:
+    - Mike Burns
+
+- id: "jim-weirich-frozen-rails-2012"
+  title: "Keynote: Y-Not — Adventures in Functional Programming"
+  kind: "keynote"
+  date: "2012-09-21"
+  start_time: "17:15"
+  end_time: "18:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "jim-weirich-frozen-rails-2012"
+  description: |-
+    One of the deepest mysteries in the functional programming world is the Y-Combinator. Many have heard of it, but few have mastered its mysteries. Although fairly useless in real world software, understanding how the Y-Combinator works and why it is important gives the student an important insight into the nature of functional programming.
+
+    Join with us on this journey of understanding. Be prepared to curry your functions and bind your lambdas as we delve into the whys and wherefores of this paragon of functional programming. Although you will probably never have a need for the combinator, the effort put forth to understand it will improve your functional programming chops. This talk is not for the faint of heart, but the successful student will be richly rewarded.
+
+    Also, you will understand why "Y-Combinator" is the perfect name for Paul Graham's start-up funding company.
+  speakers:
+    - Jim Weirich

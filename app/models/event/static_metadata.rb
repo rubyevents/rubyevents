@@ -4,11 +4,16 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
   end
 
   delegate :published_date, :home_sort_date, :time_zone, to: :static_repository, allow_nil: true
-  delegate :facebook, :github, :luma, :mastodon, :meetup, :twitter, to: :static_repository, allow_nil: true
 
-  def instagram
-    static_repository.try(:instagram)
-  end
+  def bsky = social(:bsky)
+  def facebook = social(:facebook)
+  def github = social(:github)
+  def instagram = social(:instagram)
+  def linkedin = social(:linkedin)
+  def luma = social(:luma)
+  def mastodon = social(:mastodon)
+  def meetup = social(:meetup)
+  def twitter = social(:twitter)
 
   def kind
     return static_repository.kind if static_repository&.kind
@@ -116,6 +121,10 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
   end
 
   private
+
+  def social(field)
+    static_repository.try(field).presence || event.series&.static_metadata&.try(field)
+  end
 
   def static_repository
     @static_repository ||= Static::Event.find_by_slug(event.slug)

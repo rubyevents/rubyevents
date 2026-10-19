@@ -17,7 +17,7 @@
   "
 >
   <a href="<%= event_path(event) %>">
-    <div class="grid-cols-[1fr_2fr] <% if event.static_metadata.cancelled? %> opacity-50 grayscale <% end %>">
+    <div class="grid-cols-[1fr_2fr] <% if event.cancelled_or_inactive? %> opacity-50 grayscale <% end %>">
       <div>
         <div class="mb-9 flex justify-center">
           <%= image_tag event.featured_image_path, class: "w-[200px] max-h-none lg:w-full", loading: "lazy", width: 615, height: 350, alt: event.name %>
@@ -39,7 +39,7 @@
     </div>
   </a>
 
-  <% if event.static_metadata.cancelled? %>
+  <% if event.cancelled? %>
     <div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
       <span
         class="
@@ -48,6 +48,19 @@
         "
       >
         Cancelled
+      </span>
+    </div>
+  <% end %>
+
+  <% if event.meetup_inactive? %>
+    <div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
+      <span
+        class="
+          -rotate-12 bg-gray-600 px-16 py-3 text-2xl font-bold uppercase tracking-widest text-white shadow-lg
+          lg:text-4xl
+        "
+      >
+        Inactive
       </span>
     </div>
   <% end %>

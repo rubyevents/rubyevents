@@ -40,7 +40,7 @@ module Static
         FIELD_ASSET_MAP.filter_map do |field, asset|
           asset_path = default_asset_dir.join(asset).relative_path_from(root)
           asset_exists = File.exist?(default_asset_dir.join(asset))
-          defined = document[field].present?
+          defined = series[field].present?
 
           if asset_exists && !defined
             Static::Validators::Error.new(
@@ -49,7 +49,7 @@ module Static
               line: 1
             )
           elsif defined && !asset_exists
-            location = document[field].location
+            location = series.source_location(field)
 
             Static::Validators::Error.new(
               "#{field} is defined but '#{asset_path}' does not exist, series without a default #{asset} must not define brand colors",
@@ -63,8 +63,8 @@ module Static
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def series
+        @series ||= Static::EventSeries.in_file(@file_path.to_s, document: @document).first
       end
     end
   end

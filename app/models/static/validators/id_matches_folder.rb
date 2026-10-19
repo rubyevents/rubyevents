@@ -29,8 +29,8 @@ module Static
         return [] unless applicable?
 
         folder_name = File.basename(File.dirname(@file_path))
-        id = document["id"]
-        location = id&.location
+        id = record["id"]
+        location = record.source_location("id")
 
         if id.nil? || id.to_s.strip.empty?
           [
@@ -57,8 +57,10 @@ module Static
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def record
+        model = (File.basename(@file_path.to_s) == "series.yml") ? Static::EventSeries : Static::Event
+
+        @record ||= model.in_file(@file_path.to_s, document: @document).first
       end
     end
   end
