@@ -2,9 +2,9 @@ class PageController < ApplicationController
   skip_before_action :authenticate_user!
 
   def home
-    home_page_cached_data = Rails.cache.fetch("home_page_content", expires_in: 1.hour) do
+    home_page_cached_data = Rails.cache.fetch("home_page_content_v2", expires_in: 1.hour) do
       {
-        talks_count: Talk.count,
+        talks_count: Talk.top_level.count,
         speakers_count: User.speakers.count,
         events_count: Event.count
       }
