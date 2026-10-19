@@ -46,7 +46,9 @@ module Static
         event = Static::Event.find_by_slug(folder)
         return false unless event
 
-        event.import_event!
+        record = event.import_event!
+        event.destroy_removed_talks!(record)
+
         true
       elsif model == Static::Schedule
         true
@@ -59,6 +61,9 @@ module Static
       log = logger || method(:puts)
       imported = 0
       skipped = 0
+      failed = []
+
+      ImportedFile.prune_missing!.each { |relative| log.call("forgot deleted #{relative}") }
 
       seed_phases.each do |paths|
         paths.each do |path|
@@ -75,13 +80,14 @@ module Static
             log.call("imported #{relative}")
           end
         rescue => e
-          log.call("error importing #{relative}: #{e.message}")
+          failed << relative
+          log.call("error importing #{relative}: #{e.class}: #{e.message}")
         end
       end
 
-      log.call("Incremental seed complete: #{imported} imported, #{skipped} unchanged")
+      log.call("Incremental seed complete: #{imported} imported, #{skipped} unchanged, #{failed.size} failed")
 
-      {imported: imported, skipped: skipped}
+      {imported: imported, skipped: skipped, failed: failed}
     end
 
     def self.changes

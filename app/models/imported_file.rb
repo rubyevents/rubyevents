@@ -47,9 +47,10 @@ class ImportedFile < ApplicationRecord
   end
 
   def self.prune_missing!
-    find_each do |imported_file|
-      imported_file.destroy unless File.exist?(absolute_path(imported_file.file_path))
-    end
+    missing = pluck(:file_path).reject { |path| File.exist?(absolute_path(path)) }
+    where(file_path: missing).delete_all
+
+    missing
   end
 
   def self.relative_path(path)

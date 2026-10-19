@@ -40,10 +40,12 @@ module Static
       series.verify
     end
 
-    test "routes event.yml and venue.yml to Event#import_event!" do
+    test "routes event.yml and venue.yml to Event#import_event! and applies removed_talk_ids" do
       %w[event venue].each do |basename|
+        record = Object.new
         static_event = Minitest::Mock.new
-        static_event.expect(:import_event!, true)
+        static_event.expect(:import_event!, record)
+        static_event.expect(:destroy_removed_talks!, nil, [record])
 
         Static::Event.stub(:find_by_slug, static_event) do
           assert Static::DataImporter.import("data/rubyconf/rubyconf-2024/#{basename}.yml")
@@ -136,6 +138,39 @@ module Static
     ensure
       File.delete(absolute) if File.exist?(absolute)
       ImportedFile.forget!(relative)
+    end
+
+    test "seed_changed! reports failed files and retries them on the next run" do
+      relative = "data/tmp_seed_failed_test.yml"
+      absolute = Rails.root.join(relative)
+      File.write(absolute, "one\n")
+
+      Static::DataImporter.stub(:seed_phases, [[absolute.to_s]]) do
+        Static::DataImporter.stub(:import, ->(_path, reload: false) { raise "boom" }) do
+          first = Static::DataImporter.seed_changed!(logger: ->(_) {})
+          assert_equal [relative], first[:failed]
+          assert_equal 0, first[:imported]
+
+          second = Static::DataImporter.seed_changed!(logger: ->(_) {})
+          assert_equal [relative], second[:failed]
+        end
+      end
+
+      assert ImportedFile.changed?(relative)
+    ensure
+      File.delete(absolute) if File.exist?(absolute)
+      ImportedFile.forget!(relative)
+    end
+
+    test "seed_changed! forgets fingerprints of deleted data files" do
+      relative = "data/tmp_seed_deleted_test.yml"
+      ImportedFile.create!(file_path: relative, fingerprint: "stale")
+
+      Static::DataImporter.stub(:seed_phases, []) do
+        Static::DataImporter.seed_changed!(logger: ->(_) {})
+      end
+
+      assert_not ImportedFile.exists?(file_path: relative)
     end
   end
 end

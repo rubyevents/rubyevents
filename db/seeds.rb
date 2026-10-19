@@ -14,3 +14,7 @@ if result[:imported].positive?
 
   Search::Backend.reindex_all
 end
+
+if result[:failed].any?
+  abort "Failed to import #{result[:failed].size} data #{"file".pluralize(result[:failed].size)}:\n#{result[:failed].map { |path| "  #{path}" }.join("\n")}"
+end
