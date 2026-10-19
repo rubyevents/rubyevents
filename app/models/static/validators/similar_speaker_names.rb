@@ -38,7 +38,7 @@ module Static
             next if speakers.social_handle?(name)
 
             others = cluster.names - [name]
-            location = speakers.document.find_by(name: name)&.location
+            location = speakers.find_by(name: name)&.source_location
 
             Static::Validators::Error.new(
               "#{name.inspect} closely matches #{others.map(&:inspect).join(", ")} but has no social handle " \
