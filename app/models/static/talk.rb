@@ -4,8 +4,7 @@ module Static
   class Talk < Yerba::Record::Base
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
-    self.glob = "**/videos.yml"
-    self.base_path = Rails.root.join("data")
+    self.path = "data/:series_id/:event_id/videos.yml"
     self.flatten = true
 
     schema VideoSchema
@@ -13,6 +12,10 @@ module Static
     belongs_to :event
     has_one :series, through: :event
     has_many :talks, nested: true
+    has_many :alternative_recordings, nested: true, class_name: "Static::Talk::AlternativeRecording"
+
+    has_file :thumbnail, "app/assets/images/thumbnails/:event_id/**/:video_id.webp"
+    has_files :child_thumbnails, "app/assets/images/thumbnails/:event_id/:id"
 
     scope :top_level, -> { where.missing(:parent) }
     scope :youtube, -> { where(video_provider: "youtube") }
@@ -64,9 +67,10 @@ module Static
       all.documents.flat_map do |document|
         next [] if document.path.blank?
 
-        event_file = File.join(File.dirname(document.path.to_s), "event.yml")
+        params = path_params_for(document.path) || {}
+        event = Static::Event.find_by_file_path(Static::Event.path_for({series_id: params[:series_id], id: params[:event_id]}))
 
-        File.exist?(event_file) ? Array(Yerba.parse_file(event_file).value_at("removed_talk_ids")) : []
+        Array(event&.[]("removed_talk_ids"))
       end
     end
 

@@ -32,7 +32,7 @@ module Static
 
       def validate
         return [] unless applicable?
-        return [] unless File.exist?(schedule_path)
+        return [] unless schedule
 
         videos_file.pairs.flat_map do |video, nested|
           talk_errors(video) + nested.flat_map { |talk| talk_errors(talk) }
@@ -45,12 +45,12 @@ module Static
         @videos_file ||= Static::Talk.in_file(@file_path, document: @document)
       end
 
-      def schedule_path
-        File.join(File.dirname(@file_path.to_s), "schedule.yml")
+      def schedule
+        @schedule ||= videos_file.first&.event&.schedule
       end
 
       def schedule_tracks
-        @schedule_tracks ||= Yerba.parse_file(schedule_path)["tracks"]&.filter_map { |track| track.value_at("name") } || []
+        @schedule_tracks ||= Array(schedule["tracks"]).filter_map { |track| track["name"] }
       end
 
       def talk_errors(node)

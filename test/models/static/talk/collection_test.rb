@@ -3,6 +3,8 @@
 require "test_helper"
 
 class Static::Talk::CollectionTest < ActiveSupport::TestCase
+  include StaticDataSandbox
+
   VIDEOS = [
     {
       "id" => "lightning-talks-testconf-2024",
@@ -140,12 +142,11 @@ class Static::Talk::CollectionTest < ActiveSupport::TestCase
   end
 
   def with_temp_file(content)
-    dir = Dir.mktmpdir
-    path = File.join(dir, "data", "testconf", "testconf-2024", "videos.yml")
-    FileUtils.mkdir_p(File.dirname(path))
-    File.write(path, content)
-    yield path
-  ensure
-    FileUtils.rm_rf(dir)
+    with_static_data_dir do |dir|
+      path = File.join(dir, "data", "testconf", "testconf-2024", "videos.yml")
+      FileUtils.mkdir_p(File.dirname(path))
+      File.write(path, content)
+      yield path
+    end
   end
 end

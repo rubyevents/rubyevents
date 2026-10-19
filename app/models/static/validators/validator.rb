@@ -33,7 +33,8 @@ class Static::Validators::Validator
   def self.involvement_validator_classes
     @involvement_validator_classes ||= [
       Static::Validators::Schema,
-      Static::Validators::InvolvementRoleName
+      Static::Validators::InvolvementRoleName,
+      Static::Validators::SpeakerExists
     ]
   end
 

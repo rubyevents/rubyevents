@@ -41,10 +41,10 @@ module Static
 
         FIELD_ASSET_MAP
           .map do |field, asset|
-            next unless document[field].present?
+            next unless event[field].present?
             next if File.exist?(asset_dir.join(asset))
 
-            location = document[field].location
+            location = event.source_location(field)
 
             message = if File.exist?(default_asset_dir.join(asset))
               "#{field} is defined but #{asset} comes from the series default '#{default_asset_dir.join(asset).relative_path_from(root)}', define #{field} in data/#{match[:series]}/series.yml instead"
@@ -62,8 +62,8 @@ module Static
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def event
+        @event ||= Static::Event.in_file(@file_path.to_s, document: @document).first
       end
     end
   end

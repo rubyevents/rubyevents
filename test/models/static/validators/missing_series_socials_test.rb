@@ -3,6 +3,8 @@
 require "test_helper"
 
 class Static::Validators::MissingSeriesSocialsTest < ActiveSupport::TestCase
+  include StaticDataSandbox
+
   test "applicable? returns false for a non-event.yml file" do
     file = Dir.glob(Rails.root.join("data/**/videos.yml")).first
     validator = Static::Validators::MissingSeriesSocials.new(file_path: file)
@@ -65,21 +67,20 @@ class Static::Validators::MissingSeriesSocialsTest < ActiveSupport::TestCase
   private
 
   def with_temp_series(series_socials, events)
-    dir = Dir.mktmpdir
-    series_path = File.join(dir, "data", "testconf", "series.yml")
-    paths = {series: series_path}
+    with_static_data_dir do |dir|
+      series_path = File.join(dir, "data", "testconf", "series.yml")
+      paths = {series: series_path}
 
-    events.each do |slug, socials|
-      path = File.join(dir, "data", "testconf", slug, "event.yml")
-      FileUtils.mkdir_p(File.dirname(path))
-      File.write(path, %(---\nid: "#{slug}"\ntitle: "TestConf"\n#{socials}\n))
-      paths[slug] = path
+      events.each do |slug, socials|
+        path = File.join(dir, "data", "testconf", slug, "event.yml")
+        FileUtils.mkdir_p(File.dirname(path))
+        File.write(path, %(---\nid: "#{slug}"\ntitle: "TestConf"\n#{socials}\n))
+        paths[slug] = path
+      end
+
+      File.write(series_path, %(---\nid: "testconf"\nname: "TestConf"\n#{series_socials}\n)) if series_socials
+
+      yield paths
     end
-
-    File.write(series_path, %(---\nid: "testconf"\nname: "TestConf"\n#{series_socials}\n)) if series_socials
-
-    yield paths
-  ensure
-    FileUtils.rm_rf(dir)
   end
 end

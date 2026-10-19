@@ -116,15 +116,7 @@ namespace :youtube do
     end
 
     writes.each do |write|
-      talk = write[:talk]
-
-      if talk.key?("published_at")
-        talk["published_at"] = write[:desired]
-      else
-        talk.insert("published_at", write[:desired], after: "date")
-      end
-
-      talk.node["published_at"].quote_style = "double"
+      write[:talk].set("published_at", write[:desired], after: "date", quote_style: :double)
     end
 
     writes.map { |w| w[:file] }.uniq.each(&:save!)

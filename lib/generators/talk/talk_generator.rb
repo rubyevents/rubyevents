@@ -172,7 +172,7 @@ class TalkGenerator < Generators::EventBase
       @existing_talk[key] = value
     end
     videos_file.save!
-    Static::Validators::TalkId.new(file_path: videos_file_path, document: videos_file.document).fix
+    Static::Validators::TalkId.new(file_path: videos_file_path).fix
 
     say("#{@attributes.keys.to_sentence} updated.", :green)
   end

@@ -9,7 +9,7 @@
       >
         <div class="grid h-full w-full grid-cols-3 gap-[5vw] p-12">
           <% stickers.shuffle.each do |sticker| %>
-            <%= link_to sticker.event, class: "max-w-[10vw]", style: "transform: rotate(#{(-20...20).to_a.sample}deg) translateY(#{(0...5).to_a.sample}vw) translateX(#{(0...5).to_a.sample}vh) scale(#{100 + (-10...10).to_a.sample}%)", data: {turbo_frame: "_top"} do %>
+            <%= link_to event_path(sticker.event_id), class: "max-w-[10vw]", style: "transform: rotate(#{(-20...20).to_a.sample}deg) translateY(#{(0...5).to_a.sample}vw) translateX(#{(0...5).to_a.sample}vh) scale(#{100 + (-10...10).to_a.sample}%)", data: {turbo_frame: "_top"} do %>
               <%= image_tag sticker.asset_path, alt: sticker.name, class: "transition transition-transform hover:scale-105" %>
             <% end %>
           <% end %>

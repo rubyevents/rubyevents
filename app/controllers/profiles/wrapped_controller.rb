@@ -154,28 +154,28 @@ class Profiles::WrappedController < ApplicationController
       @top_talk_watchers = []
     end
 
-    all_stamps = Stamp.for(events: @events_attended_in_year)
-    event_stamps = @events_attended_in_year.flat_map { |event| Stamp.for_event(event) }
+    all_stamps = Static::Stamp.for(events: @events_attended_in_year)
+    event_stamps = @events_attended_in_year.flat_map { |event| Static::Stamp.for_event(event) }
     all_stamps = (all_stamps + event_stamps).uniq(&:code)
 
     @country_stamps = all_stamps.select(&:has_country?)
     @event_stamps = all_stamps.select(&:has_event?)
     @achievement_stamps = []
 
-    if @events_as_speaker.positive? && Stamp.conference_speaker_stamp
-      @achievement_stamps << Stamp.conference_speaker_stamp
+    if @events_as_speaker.positive? && Static::Stamp.conference_speaker_stamp
+      @achievement_stamps << Static::Stamp.conference_speaker_stamp
     end
 
-    if @user.event_participations.joins(:event).speaker.where(events: {kind: :meetup, start_date: year_range}).exists? && Stamp.meetup_speaker_stamp
-      @achievement_stamps << Stamp.meetup_speaker_stamp
+    if @user.event_participations.joins(:event).speaker.where(events: {kind: :meetup, start_date: year_range}).exists? && Static::Stamp.meetup_speaker_stamp
+      @achievement_stamps << Static::Stamp.meetup_speaker_stamp
     end
 
-    if @events_attended_in_year.any? && Stamp.attend_one_event_stamp
-      @achievement_stamps << Stamp.attend_one_event_stamp
+    if @events_attended_in_year.any? && Static::Stamp.attend_one_event_stamp
+      @achievement_stamps << Static::Stamp.attend_one_event_stamp
     end
 
     @stamps_earned = (@country_stamps + @event_stamps + @achievement_stamps).uniq(&:code)
-    @stickers_earned = @events_attended_in_year.flat_map { |event| Sticker.for_event(event) }.uniq(&:code)
+    @stickers_earned = @events_attended_in_year.flat_map(&:stickers).uniq(&:code)
 
     @event_map_markers = event_map_markers(@events_attended_in_year)
 

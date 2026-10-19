@@ -2,12 +2,12 @@
 
 module Static
   class CFP < Yerba::Record::Base
-    self.glob = "**/cfp.yml"
-    self.base_path = Rails.root.join("data")
+    self.path = "data/:series_id/:event_id/cfp.yml"
     self.flatten = true
 
     schema CFPSchema
 
     belongs_to :event
+    has_one :series, through: :event
   end
 end

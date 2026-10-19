@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Stamp::EventCheckInTest < ActiveSupport::TestCase
+class Static::Stamp::EventCheckInTest < ActiveSupport::TestCase
   setup do
     @user = users(:one)
     @event = events(:no_sponsors_event) # conference in GB
@@ -10,7 +10,7 @@ class Stamp::EventCheckInTest < ActiveSupport::TestCase
   test "checked-in attendance earns country stamp" do
     EventCheckIn.create!(connect_id: "STAMP01", event: @event, checked_in_at: Time.current)
 
-    stamps = Stamp.for_user(@user)
+    stamps = Static::Stamp.for_user(@user)
     country_codes = stamps.select(&:has_country?).map(&:code)
     assert_includes country_codes, @event.country_code
   end
@@ -18,7 +18,7 @@ class Stamp::EventCheckInTest < ActiveSupport::TestCase
   test "checked-in attendance earns attend one event stamp" do
     EventCheckIn.create!(connect_id: "STAMP01", event: @event, checked_in_at: Time.current)
 
-    stamps = Stamp.for_user(@user)
+    stamps = Static::Stamp.for_user(@user)
     stamp_codes = stamps.map(&:code)
     assert_includes stamp_codes, "ATTEND-ONE-EVENT"
   end
@@ -27,7 +27,7 @@ class Stamp::EventCheckInTest < ActiveSupport::TestCase
     EventParticipation.create!(user: @user, event: @event, role: "attendee")
     EventCheckIn.create!(connect_id: "STAMP01", event: @event, checked_in_at: Time.current)
 
-    stamps = Stamp.for_user(@user)
+    stamps = Static::Stamp.for_user(@user)
     country_stamps = stamps.select { |s| s.code == @event.country_code }
     assert_equal 1, country_stamps.size
   end
@@ -36,7 +36,7 @@ class Stamp::EventCheckInTest < ActiveSupport::TestCase
     user_no_passport = users(:two)
     EventParticipation.create!(user: user_no_passport, event: @event, role: "attendee")
 
-    stamps = Stamp.for_user(user_no_passport)
+    stamps = Static::Stamp.for_user(user_no_passport)
     country_codes = stamps.select(&:has_country?).map(&:code)
     assert_includes country_codes, @event.country_code
   end

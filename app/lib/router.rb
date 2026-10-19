@@ -2,6 +2,10 @@ module Router
   class << self
     include Rails.application.routes.url_helpers
 
+    def asset_path(...)
+      ActionController::Base.helpers.asset_path(...)
+    end
+
     def image_path(...)
       ActionController::Base.helpers.image_path(...)
     end

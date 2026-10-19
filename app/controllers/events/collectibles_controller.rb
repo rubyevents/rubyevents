@@ -4,7 +4,7 @@ class Events::CollectiblesController < ApplicationController
 
   # GET /events/:event_slug/collectibles
   def index
-    @stamps = Stamp.for_event(@event)
+    @stamps = Static::Stamp.for_event(@event)
     @stickers = @event.stickers
   end
 

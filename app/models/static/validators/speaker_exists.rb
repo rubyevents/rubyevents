@@ -3,7 +3,7 @@
 module Static
   module Validators
     class SpeakerExists
-      PATTERNS = ["**/videos.yml"].freeze
+      PATTERNS = ["**/videos.yml", "**/involvements.yml"].freeze
 
       def initialize(file_path:, document: nil)
         @file_path = file_path.to_s.sub("#{Rails.root}/", "")
@@ -23,12 +23,22 @@ module Static
         self.class.errors.select { |e| e.file_path == @file_path }
       end
 
+      def fix
+        return if errors.empty?
+
+        added = Static::Speaker.add_missing_speakers
+        Static::Speaker.save!
+        self.class.reset!
+
+        {changed: added.size, file_path: @file_path}
+      end
+
       def self.errors
-        @errors ||= Static::Speaker.in_file(Static::Speaker.file_path).missing_speaker_references.map do |scalar|
+        @errors ||= Static::Speaker.in_file(Static::Speaker.file_path).missing_speaker_references.map do |reference|
           Static::Validators::Error.new(
-            %(Speaker "#{scalar.value}" not found in data/speakers.yml),
-            file_path: scalar.file_path || "",
-            line: scalar.line || 1
+            %(Speaker "#{reference.value}" not found in data/speakers.yml),
+            file_path: reference.file_path || "",
+            line: reference.line || 1
           )
         end
       end

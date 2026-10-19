@@ -62,8 +62,10 @@ class Event::VideosFileTest < ActiveSupport::TestCase
   private
 
   def with_static_event(videos)
-    Dir.mktmpdir do |dir|
+    Dir.mktmpdir do |root|
+      dir = File.join(root, "data", "test-series", "test-event")
       event_path = File.join(dir, "event.yml")
+      FileUtils.mkdir_p(dir)
 
       Yerba::Document.from({"id" => File.basename(dir)}).save_to!(event_path)
       Yerba::Document.from(videos).save_to!(File.join(dir, "videos.yml"))
