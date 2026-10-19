@@ -15,6 +15,7 @@ module Static
     has_many :sponsors
     has_many :involvements
     has_many :stickers, class_name: "Static::Sticker"
+    has_many :stamps, class_name: "Static::EventStamp"
 
     has_one :venue
     has_one :schedule
@@ -27,8 +28,6 @@ module Static
     has_file :card, "app/assets/images/events/:series_id/:id/card.webp"
     has_file :featured, "app/assets/images/events/:series_id/:id/featured.webp"
     has_file :poster, "app/assets/images/events/:series_id/:id/poster.webp"
-
-    has_files :stamps, "app/assets/images/events/:series_id/:id/stamp*.webp"
 
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 

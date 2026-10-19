@@ -102,7 +102,7 @@ class Event::Assets < ActiveRecord::AssociatedObject
   end
 
   def stamp_paths
-    static_event&.stamps.to_a.filter_map { |stamp| image_path(stamp) }
+    static_event&.stamps.to_a.map(&:image_path)
   end
 
   def stamp_path

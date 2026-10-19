@@ -478,6 +478,31 @@ sticker.event_id = "rubyconf-2025"
 sticker.save!                  # moves the file
 ```
 
+Subclasses with their own paths make a file model polymorphic. The base class lists them in order of precedence with `types`, and a file is the first of them its path matches. `constraints` restrict what a segment matches, like route constraints, and `order_by` sorts `all`:
+
+```ruby
+class Static::Stamp < Yerba::Record::FileRecord
+  types "Static::CountryStamp", "Static::UKNationStamp", "Static::EventStamp", "Static::AchievementStamp"
+  self.order_by = :name
+
+  def owner = nil   # a Country, UKNation or Static::Event in the subclasses
+end
+
+class Static::CountryStamp < Static::Stamp
+  self.path = "app/assets/images/stamps/:country_code.webp"
+  self.constraints = {country_code: /[a-z]{2}/}
+end
+
+class Static::AchievementStamp < Static::Stamp
+  self.path = "app/assets/images/stamps/:stamp_id.webp"   # the stamps the other types don't match
+end
+```
+
+```ruby
+Static::Stamp.all                  # every stamp, each as its type, sorted by name
+Static::AchievementStamp.all       # only the achievement stamps
+```
+
 ### `references` (cross-file foreign keys)
 
 Declare that a field contains names that reference records in another file. Like `has_many`, the referenced model defaults to the singular field name in the model's namespace (`Static::Speaker` for `Static::Talk`), and `class_name:` takes the full name of another model:

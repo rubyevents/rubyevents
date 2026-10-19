@@ -30,7 +30,7 @@ module Static
     end
 
     def asset_path
-      ActionController::Base.helpers.asset_path(image_path)
+      Router.asset_path(image_path)
     end
   end
 end

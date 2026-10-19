@@ -9,29 +9,86 @@ module Yerba
     #
     #     belongs_to :event
     #   end
+    #
     class FileRecord
       include Querying
       include Associations
 
       attr_reader :file_path
 
+      def self.types(*class_names)
+        @types = class_names if class_names.any?
+
+        @types || []
+      end
+
+      def self.constraints=(constraints)
+        @constraints = constraints
+      end
+
+      def self.constraints
+        @constraints || {}
+      end
+
+      def self.order_by
+        @order_by || (superclass.order_by if superclass <= FileRecord)
+      end
+
       def self.all
-        current_scope || (@all ||= Collection.new(record_class: self, records: records_matching(path_pattern.glob, root)))
+        current_scope || (@all ||= Collection.new(record_class: self, records: records_matching(record_classes.to_h { |klass| [klass, klass.path_pattern.glob] }, root)))
       end
 
       def self.find_by(**criteria)
         all.find_by(**criteria)
       end
 
-      # The records with the given path segments, like `Static::Sticker.matching({series_id: "rubyconf", event_id: "rubyconf-2024"})`
       def self.matching(params, root: self.root)
-        glob = path_pattern.expand_glob(params)
+        globs = record_classes.to_h { |klass| [klass, klass.path_pattern.expand_glob(params)] }.compact
 
-        Collection.new(record_class: self, records: glob ? records_matching(glob, root) : [])
+        Collection.new(record_class: self, records: records_matching(globs, root))
       end
 
-      def self.records_matching(glob, root)
-        Dir.glob(File.expand_path(glob, root.to_s)).sort.map { |file_path| new(file_path) }
+      def self.type_for(file_path)
+        candidates = type_root ? type_root.types.map(&:constantize) : [self]
+
+        candidates.find { |klass| klass.matches?(file_path) }
+      end
+
+      def self.matches?(file_path)
+        return false unless path
+
+        params = path_params_for(file_path)
+
+        params.present? && constraints.all? { |name, constraint| params[name].to_s.match?(/\A(?:#{constraint.source})\z/) }
+      end
+
+      def self.unload!
+        return super unless type_root
+
+        [type_root, *type_root.types.map(&:constantize)].uniq.each { |klass| klass.instance_variable_set(:@all, nil) }
+      end
+
+      def self.type_root
+        ancestors.find { |ancestor| ancestor.is_a?(Class) && ancestor <= FileRecord && ancestor.instance_variable_get(:@types).present? }
+      end
+
+      def self.record_classes
+        classes = type_root ? type_root.types.map(&:constantize).select { |klass| klass <= self } : []
+        classes = [self, *classes] if path && !classes.include?(self)
+
+        classes.select(&:path)
+      end
+
+      def self.records_matching(globs, root)
+        files = globs.values.flat_map { |glob| Dir.glob(File.expand_path(glob, root.to_s)) }.uniq.sort
+
+        records = files.filter_map do |file_path|
+          klass = type_for(file_path)
+
+          klass.new(file_path) if klass && klass <= self
+        end
+
+        order_by ? records.sort_by { |record| record.public_send(order_by).to_s } : records
       end
       private_class_method :records_matching
 
@@ -59,7 +116,6 @@ module Yerba
         self.class.path_pattern&.root_of(file_path) || self.class.root
       end
 
-      # Moves the file to the path with the changed segments: `sticker.event_id = "rubyconf-2025"; sticker.save!`
       def save!
         to = path_params.merge(path_changes)
         return self if to == path_params

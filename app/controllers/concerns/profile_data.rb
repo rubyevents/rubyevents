@@ -16,7 +16,7 @@ module ProfileData
   def load_common_data
     @talks = @user.kept_talks
     @events = @user.participated_events
-    @stamps = Stamp.for_user(@user)
+    @stamps = Static::Stamp.for_user(@user)
     @stickers = Static::Sticker.for_user(@user)
     @involvements_by_role = @user.event_involvements.group_by(&:role).transform_values(&:any?)
     @countries_with_events = @user.all_attended_events.exists? ? [true] : []

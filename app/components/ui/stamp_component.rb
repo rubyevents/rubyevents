@@ -37,7 +37,7 @@ class Ui::StampComponent < ApplicationComponent
     when :country
       stamp.country.path
     when :event
-      stamp.event ? event_path(stamp.event) : nil
+      event_path(stamp.event_id)
     when :contributor
       contributors_path
     when :other

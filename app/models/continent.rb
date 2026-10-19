@@ -111,7 +111,7 @@ class Continent
   end
 
   def stamps
-    Stamp.all.select { |stamp| stamp.has_country? && country_codes.include?(stamp.country&.alpha2) }
+    Static::Stamp.all.select { |stamp| stamp.has_country? && country_codes.include?(stamp.country&.alpha2) }
   end
 
   def ==(other)

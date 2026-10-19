@@ -12,11 +12,20 @@ class Static::FileAssociationsTest < ActiveSupport::TestCase
     end
   end
 
-  test "has_files with a wildcard lists the matching files" do
+  test "has_many of a file model lists the matching files as records" do
     with_event do |_root, event|
-      assert_equal %w[stamp-1.webp stamp-2.webp], event.stamps.map { |file| file.basename.to_s }
+      assert_equal %w[stamp-1 stamp-2], event.stamps.map(&:basename)
+      assert_equal [Static::EventStamp], event.stamps.map(&:class).uniq
       assert_equal %w[sticker], event.stickers.map(&:basename)
-      assert_equal 2, event.stamps.count
+    end
+  end
+
+  test "Files with a glob lists the matching files" do
+    with_event do |_root, event|
+      files = Yerba::Record::Files.new(event.images.path, glob: "stamp*.webp")
+
+      assert_equal %w[stamp-1.webp stamp-2.webp], files.map { |file| file.basename.to_s }
+      assert_equal 2, files.count
     end
   end
 
@@ -53,7 +62,7 @@ class Static::FileAssociationsTest < ActiveSupport::TestCase
     with_event do |root, event|
       event.rename!("testconf-2025")
 
-      assert_equal %w[stamp-1.webp stamp-2.webp], event.stamps.map { |file| file.basename.to_s }
+      assert_equal %w[stamp-1 stamp-2], event.stamps.map(&:basename)
       assert event.avatar.exist?
       assert File.exist?(File.join(root, "app/assets/images/thumbnails/testconf-2025/opening.webp"))
     end
