@@ -8,5 +8,6 @@ module Static
     schema VenueSchema
 
     belongs_to :event
+    has_one :series, through: :event
   end
 end

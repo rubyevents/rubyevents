@@ -8,6 +8,9 @@ module Static
 
     schema SponsorsSchema
 
+    belongs_to :event
+    has_one :series, through: :event
+
     has_many :tiers, nested: true, class_name: "Static::Sponsor::Tier"
   end
 end

@@ -378,6 +378,15 @@ end
 talk.series
 ```
 
+A record nested in another model has no file of its own to take the event from, so it goes through its parent:
+
+```ruby
+class Static::Talk::AlternativeRecording < Yerba::Record::Base
+  has_one :event, through: :parent
+  has_one :series, through: :parent
+end
+```
+
 ### `references` (cross-file foreign keys)
 
 Declare that a field contains names that reference records in another file. Like `has_many`, the referenced model defaults to the singular field name in the model's namespace (`Static::Speaker` for `Static::Talk`), and `class_name:` takes the full name of another model:

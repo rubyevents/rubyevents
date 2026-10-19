@@ -147,6 +147,27 @@ class Static::AssociationsTest < ActiveSupport::TestCase
     assert_equal talk.event.series.name, talk.series.name
   end
 
+  test "records in an event folder belong to the event and its series" do
+    [Static::CFP, Static::Involvement, Static::Schedule, Static::Venue, Static::Sponsor].each do |model|
+      record = model.all.first
+      event_slug, series_slug = record.relative_file_path.split("/").first(2).reverse
+
+      assert_equal event_slug, record.event.slug, model.name
+      assert_equal series_slug, record.series.slug, model.name
+    end
+  end
+
+  test "records nested in another model belong to the event and series of their parent" do
+    [Static::Talk::AlternativeRecording, Static::Sponsor::Tier, Static::Sponsor::Entry].each do |model|
+      record = model.all.first
+      owner = record.parent
+      owner = owner.parent while owner.parent
+
+      assert_equal owner.event, record.event, model.name
+      assert_equal owner.series, record.series, model.name
+    end
+  end
+
   test "talk.speakers returns a ReferencesProxy" do
     event = Static::Event.find_by_slug("rubyconf-2026")
     talk = event.talks.first
