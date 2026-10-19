@@ -55,7 +55,7 @@ module Static
         speakers = orphaned
         return [] if speakers.empty?
 
-        speakers.map(&:index).sort.reverse_each { |index| all.document.remove_at("", index) }
+        speakers.sort_by(&:index).reverse_each(&:destroy)
         all.reset!
 
         speakers.map(&:name)
