@@ -20,6 +20,7 @@ class Static::Validators::Validator
       Static::Validators::DuplicateSeriesSocials,
       Static::Validators::DuplicateYouTubeChannels,
       Static::Validators::EventCityNames,
+      Static::Validators::EventCityStateConsistency,
       Static::Validators::EventDatePrecision,
       Static::Validators::EventDates,
       Static::Validators::EventRecordingsPublishedDate,
