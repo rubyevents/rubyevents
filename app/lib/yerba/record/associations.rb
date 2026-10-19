@@ -39,7 +39,7 @@ module Yerba
           class_name ||= infer_class_name(name, singularize: true)
 
           if nested
-            @nested_key = name.to_s
+            @nested_key = name.to_s if (class_name.is_a?(String) ? class_name : class_name.name) == self.name
 
             define_method(name) do
               @nested_collections ||= {}

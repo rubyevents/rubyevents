@@ -7,5 +7,7 @@ module Static
     self.flatten = true
 
     schema SponsorsSchema
+
+    has_many :tiers, nested: true, class_name: "Static::Sponsor::Tier"
   end
 end

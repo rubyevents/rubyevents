@@ -67,6 +67,18 @@ module Yerba
         attributes_cache.key?(key.to_s)
       end
 
+      def set(key, value, before: nil, after: nil, quote_style: nil)
+        if key?(key)
+          self[key] = value
+        else
+          insert(key, value, before: before, after: after)
+        end
+
+        node[key.to_s].quote_style = quote_style.to_s if quote_style
+
+        value
+      end
+
       def insert(key, value, before: nil, after: nil)
         raise_if_destroyed!
         reset_attributes_cache!

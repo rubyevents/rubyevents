@@ -188,6 +188,22 @@ lightning_talk.save!
 lightning_talks.talks.reorder(lightning_talks.talks.map(&:id).reverse)
 ```
 
+Nested records can also be of another model. They are then only reachable through their parent, and stay out of the other model's collections:
+
+```ruby
+class Static::Sponsor < Yerba::Record::Base
+  has_many :tiers, nested: true, class_name: "Static::Sponsor::Tier"
+end
+
+class Static::Sponsor::Tier < Yerba::Record::Base
+  has_many :sponsors, nested: true, class_name: "Static::Sponsor::Entry"
+end
+
+entry = static_event.sponsors.first.tiers.first.sponsors.find_by(slug: "avo")
+entry["slug"] = "avo-hq"
+entry.save!
+```
+
 ## Reading
 
 ```ruby
@@ -213,6 +229,12 @@ Shortcut:
 
 ```ruby
 speaker.update(website: "https://ruby-lang.org", twitter: "yukihiro_matz")
+```
+
+`set` replaces a value, or inserts the key at a position when it isn't there yet, and can set the quote style of the value:
+
+```ruby
+talk.set("published_at", "2024-05-01T10:00:00Z", after: "date", quote_style: :double)
 ```
 
 ## Creating
@@ -405,9 +427,10 @@ speaker.node["name"].selector   # => "[42].name"
 speaker.node["name"].source     # => '"Aaron Patterson"' (original YAML text)
 speaker.node.source             # => full YAML text of the entry
 
-speaker.source_line             # => 1234, line of the entry
-speaker.source_line("github")   # => 1235, line of a value
-speaker.source_location("name") # => Yerba::Location (start/end line and column)
+speaker.source_line                    # => 1234, line of the entry
+speaker.source_line("github")          # => 1235, line of a value
+speaker.source_line("aliases[1].slug") # => 1240, a selector relative to the record
+speaker.source_location("name")        # => Yerba::Location (start/end line and column)
 ```
 
 ## Stale File Detection
