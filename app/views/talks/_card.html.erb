@@ -15,7 +15,7 @@
 
   <%= link_to talk_path(talk, back_to: back_to, back_to_title: back_to_title), class: "flex aspect-video overflow-hidden relative group", data: {action: "mouseover->preserve-scroll#updateLinkBackToWithScrollPosition", turbo_frame: "_top"} do %>
     <% if language && language != "English" %>
-      <div class="absolute left-0 top-0 z-20 m-3 flex rounded-full bg-black/15 p-1 px-2 backdrop-blur-md">
+      <div class="absolute left-0 top-0 z-20 m-3 flex rounded-full bg-black/35 p-1 px-2 text-white backdrop-blur-md">
         <span><%= language_to_emoji(language) %></span>
         <span class="ml-1 hidden items-center text-sm text-white lg:group-hover:flex"><%= language %></span>
       </div>

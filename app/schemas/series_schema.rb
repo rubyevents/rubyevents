@@ -15,7 +15,7 @@ class SeriesSchema < ApplicationSchema
     description: "How often the event occurs",
     enum: ["yearly", "monthly", "weekly", "irregular", "biweekly", "biyearly", "quarterly"],
     required: false
-  boolean :ended, description: "Whether the event series has ended", required: false
+  boolean :inactive, description: "Whether the event series is inactive", required: false
 
   string :default_country_code, description: "Default ISO country code (e.g., 'US', 'JP')", required: false
 
@@ -34,6 +34,18 @@ class SeriesSchema < ApplicationSchema
   string :luma, description: "Luma event URL", required: false
   string :guild, description: "Guild.host URL", required: false
   string :vimeo, description: "Vimeo channel URL", required: false
+
+  string :banner_background,
+    description: "CSS background value for the banner of events using the series default banner.webp (color or gradient)",
+    required: false
+
+  string :featured_background,
+    description: "CSS background color for featured cards of events using the series default featured.webp",
+    required: false
+
+  string :featured_color,
+    description: "CSS text color for featured cards of events using the series default featured.webp",
+    required: false
 
   array :youtube_channels, of: YouTubeChannelSchema, description: "YouTube channels associated with this series", required: false
 

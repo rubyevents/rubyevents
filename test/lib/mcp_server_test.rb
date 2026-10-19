@@ -19,12 +19,37 @@ class MCPServerTest < ActiveSupport::TestCase
     end
   end
 
+  class InProcessTransport
+    def initialize(server)
+      @server = server
+    end
+
+    def request(message, version:, timeout: nil, headers: {})
+      JSON.parse(JSON.generate(@server.handle_request(JSON.parse(JSON.generate(message)))))
+    end
+
+    def notify(message, version:)
+      @server.handle_request(JSON.parse(JSON.generate(message)))
+    end
+
+    def cancel(notification, version:)
+    end
+
+    def close
+    end
+  end
+
   def self.discovered_server
-    @discovered_server ||= MCPServer.new
+    @discovered_server ||= MCPServer.new(log: StringIO.new)
   end
 
   setup do
     @server = MCPServer.new(tools: {"echo" => EchoTool, "failing" => FailingTool})
+    @client = mcp_client(@server)
+  end
+
+  teardown do
+    @client.close
   end
 
   test "discovers every tool in app/tools and every generator tool" do
@@ -36,42 +61,60 @@ class MCPServerTest < ActiveSupport::TestCase
     assert_includes tool_names, "generate_talk"
   end
 
-  test "tools/list builds a valid input schema for every discovered tool" do
-    response = self.class.discovered_server.handle_request({"jsonrpc" => "2.0", "id" => 1, "method" => "tools/list"})
+  test "lists every discovered tool with its input schema" do
+    server = self.class.discovered_server
+    tools = mcp_client(server).tools
 
-    assert_nil response[:error]
-
-    tools = response[:result][:tools]
-    assert_equal self.class.discovered_server.tools.size, tools.size
+    assert_equal server.tools.keys, tools.map(&:name)
 
     tools.each do |tool|
-      assert tool[:description].present?, "#{tool[:name]} is missing a description"
-
-      schema = tool[:inputSchema]
-      assert_equal "object", schema[:type]
-      assert_empty schema[:required] - schema[:properties].keys, "#{tool[:name]} requires undeclared properties"
+      assert tool.description.present?, "#{tool.name} is missing a description"
+      assert_equal server.tools[tool.name].new.parameters_schema, tool.parameters_schema
     end
 
-    event_lookup = tools.find { |tool| tool[:name] == "event_lookup" }
-    assert_equal ["query"], event_lookup[:inputSchema][:properties].keys
+    event_lookup = tools.find { |tool| tool.name == "event_lookup" }
+    assert_equal ["query"], event_lookup.parameters_schema["properties"].keys
   end
 
-  test "tools/list maps declared parameters to JSON schema properties" do
-    response = @server.handle_request({"jsonrpc" => "2.0", "id" => 1, "method" => "tools/list"})
-    echo = response[:result][:tools].find { |tool| tool[:name] == "echo" }
+  test "lists declared parameters as JSON schema properties" do
+    echo = @client.tools.find { |tool| tool.name == "echo" }
 
-    assert_equal "Echoes the given message.", echo[:description]
+    assert_equal "Echoes the given message.", echo.description
     assert_equal(
       {
-        type: "object",
-        properties: {
-          "message" => {type: "string", description: "Message to echo"},
-          "times" => {type: "integer", description: "How often to repeat it"}
-        },
-        required: ["message"]
+        "message" => {"type" => "string", "description" => "Message to echo"},
+        "times" => {"type" => "integer", "description" => "How often to repeat it"}
       },
-      echo[:inputSchema]
+      echo.parameters_schema["properties"]
     )
+    assert_equal ["message"], echo.parameters_schema["required"]
+  end
+
+  test "calls a tool with the given arguments" do
+    result = @client.echo(message: "hi", times: 2)
+
+    refute result.error?
+    assert_equal({"echo" => ["hi", "hi"]}, JSON.parse(result.text))
+  end
+
+  test "reports invalid tool arguments as an error result" do
+    result = @client.echo(times: 2)
+
+    assert result.error?
+    assert_equal({"error" => "Invalid tool arguments: missing keyword: message"}, JSON.parse(result.text))
+  end
+
+  test "reports tool failures as an error result" do
+    result = @client.failing
+
+    assert result.error?
+    assert_equal({"error" => "boom"}, JSON.parse(result.text))
+  end
+
+  test "returns an error for unknown tools" do
+    response = @server.handle_request({"jsonrpc" => "2.0", "id" => 1, "method" => "tools/call", "params" => {"name" => "nope"}})
+
+    assert_equal(-32602, response[:error][:code])
   end
 
   test "initialize returns the protocol version and server info" do
@@ -95,33 +138,6 @@ class MCPServerTest < ActiveSupport::TestCase
     assert_equal(-32601, response[:error][:code])
   end
 
-  test "tools/call executes the tool with the given arguments" do
-    response = @server.handle_request({
-      "jsonrpc" => "2.0",
-      "id" => 1,
-      "method" => "tools/call",
-      "params" => {"name" => "echo", "arguments" => {"message" => "hi", "times" => 2}}
-    })
-
-    content = response[:result][:content].sole
-    assert_equal "text", content[:type]
-    assert_equal({"echo" => ["hi", "hi"]}, JSON.parse(content[:text]))
-    assert_nil response[:result][:isError]
-  end
-
-  test "tools/call returns an error for unknown tools" do
-    response = @server.handle_request({"jsonrpc" => "2.0", "id" => 1, "method" => "tools/call", "params" => {"name" => "nope"}})
-
-    assert_equal(-32602, response[:error][:code])
-  end
-
-  test "tools/call reports tool failures as error results" do
-    response = @server.handle_request({"jsonrpc" => "2.0", "id" => 1, "method" => "tools/call", "params" => {"name" => "failing"}})
-
-    assert response[:result][:isError]
-    assert_equal({"error" => "boom"}, JSON.parse(response[:result][:content].sole[:text]))
-  end
-
   test "run answers each JSON-RPC line and reports parse errors" do
     input = StringIO.new(<<~JSONL)
       {"jsonrpc":"2.0","id":1,"method":"ping"}
@@ -136,5 +152,11 @@ class MCPServerTest < ActiveSupport::TestCase
     assert_equal 2, responses.size
     assert_equal({"jsonrpc" => "2.0", "id" => 1, "result" => {}}, responses.first)
     assert_equal(-32700, responses.last.dig("error", "code"))
+  end
+
+  private
+
+  def mcp_client(server)
+    RubyLLM.mcp(name: "rubyevents", transport: InProcessTransport.new(server))
   end
 end

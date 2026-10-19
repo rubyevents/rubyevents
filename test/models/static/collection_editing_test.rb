@@ -161,13 +161,27 @@ class Yerba::Record::CollectionEditingTest < ActiveSupport::TestCase
     assert_raises(ArgumentError) { talks.reorder(%w[closing opening]) }
   end
 
+  test "a destroyed record keeps its own attributes and can't be changed" do
+    opening = talks.find_by(id: "opening")
+
+    opening.destroy
+
+    assert_equal "opening", opening.id
+    assert_equal "Opening", opening["title"]
+    assert opening.destroyed?
+    assert_not opening.persisted?
+    assert_raises(FrozenError) { opening["title"] = "Changed" }
+    assert_raises(FrozenError) { opening.save! }
+    assert_equal %w[lightning-talks closing], ids_on_disk
+  end
+
   test "destroy removes a record by id" do
     talks.destroy("closing")
 
     assert_equal %w[opening lightning-talks], ids_on_disk
   end
 
-  test "the running order survives the videos.yml Yerbafile sort within the same date" do
+  test "the running order survives the videos.yml Yerbafile rules on save" do
     data_dir = Rails.root.join("data", "yerba-record-test", "yerba-record-test-#{SecureRandom.hex(4)}")
     FileUtils.mkdir_p(data_dir)
     path = data_dir.join("videos.yml").to_s

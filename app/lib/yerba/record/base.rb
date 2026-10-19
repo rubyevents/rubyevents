@@ -41,7 +41,11 @@ module Yerba
       end
 
       def persisted?
-        !new_record?
+        !new_record? && !destroyed?
+      end
+
+      def destroyed?
+        @destroyed == true
       end
 
       def [](key)
@@ -49,6 +53,7 @@ module Yerba
       end
 
       def []=(key, value)
+        raise_if_destroyed!
         reset_attributes_cache!
 
         if scalar_node?
@@ -63,12 +68,14 @@ module Yerba
       end
 
       def insert(key, value, before: nil, after: nil)
+        raise_if_destroyed!
         reset_attributes_cache!
 
         node.insert(key.to_s, value, before: before&.to_s, after: after&.to_s)
       end
 
       def delete(key)
+        raise_if_destroyed!
         return unless key?(key)
 
         reset_attributes_cache!
@@ -101,6 +108,8 @@ module Yerba
       end
 
       def save!
+        raise_if_destroyed!
+
         if new_record?
           path = persist_path
 
@@ -126,12 +135,18 @@ module Yerba
       end
 
       def destroy
+        raise_if_destroyed!
         raise "Cannot destroy a record without an index" if index.nil?
+
+        attributes = attributes_cache.deep_dup.freeze
 
         document.remove_at(parsed_selector.parent.to_s, index)
         document.save!(apply: true)
 
         reset_attributes_cache!
+        @attributes_cache = attributes
+        @destroyed = true
+
         self.class.reset_loaded!
       end
 
@@ -187,7 +202,7 @@ module Yerba
       end
 
       def reset_attributes_cache!
-        @attributes_cache = nil
+        @attributes_cache = nil unless destroyed?
         @relative_file_path = nil
         @nested_collections = nil
         parent&.reset_attributes_cache!
@@ -225,6 +240,10 @@ module Yerba
       end
 
       private
+
+      def raise_if_destroyed!
+        raise FrozenError.new("can't modify a destroyed #{self.class.name}", receiver: self) if destroyed?
+      end
 
       def attributes_cache
         @attributes_cache ||= if scalar_node?

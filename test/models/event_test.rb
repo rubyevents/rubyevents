@@ -35,6 +35,33 @@ class EventTest < ActiveSupport::TestCase
     refute event.valid?
   end
 
+  test "formatted_dates shows a meetup as recurring" do
+    assert_equal "Recurring", events(:wnb_rb_meetup).formatted_dates
+    refute events(:wnb_rb_meetup).meetup_inactive?
+  end
+
+  test "formatted_dates shows a meetup of an inactive series as inactive" do
+    series = EventSeries.create!(name: "Triangle.rb", slug: "triangle-rb", kind: :meetup)
+    event = Event.create!(name: "Triangle.rb Meetup", kind: :meetup, series: series)
+
+    assert event.meetup_inactive?
+    assert_equal "Inactive", event.formatted_dates
+  end
+
+  test "description uses the past tense for a meetup of an inactive series" do
+    series = EventSeries.create!(name: "Triangle.rb", slug: "triangle-rb", kind: :meetup)
+    event = Event.create!(name: "Triangle.rb Meetup", kind: :meetup, series: series)
+
+    assert_match "Triangle.rb was a", event.description
+  end
+
+  test "meetup_inactive? is false for a conference of an inactive series" do
+    event = events(:railsconf_2025)
+
+    assert event.series.static_metadata.inactive?
+    refute event.meetup_inactive?
+  end
+
   test "find_by_slug_or_alias finds event by slug" do
     event = events(:rails_world_2023)
     found = Event.find_by_slug_or_alias(event.slug)

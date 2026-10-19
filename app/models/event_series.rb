@@ -97,7 +97,7 @@ class EventSeries < ApplicationRecord
   end
 
   def description
-    non_cancelled = events.reject { |e| e.static_metadata.cancelled? }
+    non_cancelled = events.reject(&:cancelled?)
 
     event_years = non_cancelled.filter_map { |e| (e.date || e.start_date || e.end_date)&.year }
     start_year = event_years.min
@@ -112,7 +112,8 @@ class EventSeries < ApplicationRecord
     end
 
     event_type = pluralize(non_cancelled.size, meetup? ? "event-series" : "event")
-    frequency_text = (kind == "organisation") ? "" : " is a #{frequency} #{kind} and "
+    tense = (meetup? && static_metadata.inactive?) ? "was" : "is"
+    frequency_text = (kind == "organisation") ? "" : "#{tense} a #{frequency} #{kind} and "
 
     <<~DESCRIPTION
       #{name} #{frequency_text}hosted #{event_type}#{time_range}. We have currently indexed #{pluralize(non_cancelled.sum(&:talks_count), "#{name} talk")}.

@@ -43,9 +43,9 @@
       ],
       "description": "How often the event occurs"
     },
-    "ended": {
+    "inactive": {
       "type": "boolean",
-      "description": "Whether the event series has ended"
+      "description": "Whether the event series is inactive"
     },
     "default_country_code": {
       "type": "string",
@@ -292,6 +292,18 @@
     "vimeo": {
       "type": "string",
       "description": "Vimeo channel URL"
+    },
+    "banner_background": {
+      "type": "string",
+      "description": "CSS background value for the banner of events using the series default banner.webp (color or gradient)"
+    },
+    "featured_background": {
+      "type": "string",
+      "description": "CSS background color for featured cards of events using the series default featured.webp"
+    },
+    "featured_color": {
+      "type": "string",
+      "description": "CSS text color for featured cards of events using the series default featured.webp"
     },
     "youtube_channels": {
       "type": "array",
