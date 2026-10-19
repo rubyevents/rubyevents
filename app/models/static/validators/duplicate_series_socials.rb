@@ -58,10 +58,7 @@ module Static
       end
 
       def series
-        return @series if defined?(@series)
-
-        series_path = File.join(File.dirname(@file_path.to_s, 2), "series.yml")
-        @series = File.exist?(series_path) ? Static::EventSeries.in_file(series_path).first : nil
+        @series ||= event.series
       end
 
       def duplicate_fields

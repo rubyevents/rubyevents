@@ -60,20 +60,12 @@ module Static
         @grid_rows
       end
 
-      def videos_path
-        File.join(File.dirname(@file_path.to_s), "videos.yml")
-      end
-
       # The talks a schedule can draw from: the top level entries of videos.yml,
       # the same ones Event::Schedule#sessions walks in running order.
       def talks
         return @talks if defined?(@talks)
 
-        @talks = if File.exist?(videos_path)
-          Static::Talk.in_file(videos_path).top_level.to_a
-        else
-          []
-        end
+        @talks = schedule.event&.talks&.top_level.to_a
       end
 
       def error_for(day, row, location)

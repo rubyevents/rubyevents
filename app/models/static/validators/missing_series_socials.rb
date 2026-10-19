@@ -62,15 +62,8 @@ module Static
         @event ||= Static::Event.in_file(@file_path.to_s, document: @document).first
       end
 
-      def series_directory
-        File.dirname(@file_path.to_s, 2)
-      end
-
       def series
-        return @series if defined?(@series)
-
-        series_path = File.join(series_directory, "series.yml")
-        @series = File.exist?(series_path) ? Static::EventSeries.in_file(series_path).first : nil
+        @series ||= event.series
       end
 
       def missing_fields
@@ -88,14 +81,12 @@ module Static
       def conflicting_sibling?(field)
         value = normalize(event[field])
 
-        sibling_paths.any? do |path|
-          sibling_value = normalize(Static::Event.in_file(path).first[field])
+        series.events.any? do |sibling|
+          next false if sibling.file_path == File.expand_path(@file_path.to_s)
+
+          sibling_value = normalize(sibling[field])
           sibling_value.present? && sibling_value != value
         end
-      end
-
-      def sibling_paths
-        Dir.glob(File.join(series_directory, "*", "event.yml")) - [@file_path.to_s]
       end
 
       def normalize(value)

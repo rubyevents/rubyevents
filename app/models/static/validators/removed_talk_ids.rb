@@ -27,7 +27,7 @@ module Static
       def validate
         return [] unless applicable?
         return [] if removed_talk_ids.nil?
-        return [] unless File.exist?(videos_path)
+        return [] unless videos_file.exist?
 
         removed_talk_ids.each_with_index.filter_map do |id, index|
           next unless known_ids.include?(id)
@@ -54,15 +54,11 @@ module Static
       end
 
       def videos_file
-        @videos_file ||= Static::Talk.in_file(videos_path)
+        @videos_file ||= event.talks
       end
 
       def known_ids
         @known_ids ||= videos_file.ids + videos_file.old_ids
-      end
-
-      def videos_path
-        @videos_path ||= File.join(File.dirname(@file_path.to_s), "videos.yml")
       end
     end
   end

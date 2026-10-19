@@ -23,10 +23,12 @@ module Yerba
           end
 
           define_method(name) do
-            slug_value = send(foreign_key || :"#{name}_slug")
-            return nil unless slug_value
-
             klass = class_name.is_a?(String) ? class_name.constantize : class_name
+
+            return file_path && klass.find_by_directory(File.dirname(file_path)) unless foreign_key
+
+            slug_value = send(foreign_key)
+            return nil unless slug_value
 
             begin
               klass.find_by_slug(slug_value)

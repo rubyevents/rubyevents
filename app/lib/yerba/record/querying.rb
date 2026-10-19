@@ -36,6 +36,10 @@ module Yerba
           all.where(...)
         end
 
+        def find_by_directory(directory)
+          all.cached(:records_by_directory) { all.index_by { |record| File.dirname(record.file_path.to_s) } }[File.expand_path(directory.to_s)]
+        end
+
         def in_file(path, document: nil)
           Collection.new(record_class: self, sources: [Collection::Source.new(path: path, document: document, mode: source_mode)])
         end

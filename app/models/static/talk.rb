@@ -65,9 +65,7 @@ module Static
       all.documents.flat_map do |document|
         next [] if document.path.blank?
 
-        event_file = File.join(File.dirname(document.path.to_s), "event.yml")
-
-        File.exist?(event_file) ? Array(Static::Event.in_file(event_file).first["removed_talk_ids"]) : []
+        Array(Static::Event.find_by_directory(File.dirname(document.path.to_s))&.[]("removed_talk_ids"))
       end
     end
 

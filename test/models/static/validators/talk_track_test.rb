@@ -3,6 +3,8 @@
 require "test_helper"
 
 class Static::Validators::TalkTrackTest < ActiveSupport::TestCase
+  include StaticDataSandbox
+
   SCHEDULE = <<~YAML
     ---
     days: []
@@ -106,15 +108,15 @@ class Static::Validators::TalkTrackTest < ActiveSupport::TestCase
   private
 
   def with_raw_video(raw, schedule: nil)
-    dir = Dir.mktmpdir
-    videos_path = File.join(dir, "data", "testconf", "2026", "videos.yml")
+    with_static_data_dir do |dir|
+      videos_path = File.join(dir, "data", "testconf", "2026", "videos.yml")
 
-    FileUtils.mkdir_p(File.dirname(videos_path))
-    File.write(videos_path, raw)
-    File.write(File.join(File.dirname(videos_path), "schedule.yml"), schedule) if schedule
+      FileUtils.mkdir_p(File.dirname(videos_path))
+      File.write(videos_path, raw)
+      File.write(File.join(File.dirname(videos_path), "event.yml"), %(---\nid: "2026"\ntitle: "TestConf 2026"\nkind: "conference"\n))
+      File.write(File.join(File.dirname(videos_path), "schedule.yml"), schedule) if schedule
 
-    yield videos_path
-  ensure
-    FileUtils.rm_rf(dir)
+      yield videos_path
+    end
   end
 end

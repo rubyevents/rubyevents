@@ -3,6 +3,8 @@
 require "test_helper"
 
 class Static::Validators::TalkIdTest < ActiveSupport::TestCase
+  include StaticDataSandbox
+
   test "applicable? returns true for a videos.yml file" do
     with_temp_video([{"id" => "x", "title" => "Something"}]) do |path|
       assert Static::Validators::TalkId.new(file_path: path).applicable?
@@ -397,14 +399,13 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
   private
 
   def with_temp_video(videos, event: nil)
-    dir = Dir.mktmpdir
-    videos_path = File.join(dir, "data", "testconf", "testconf-2024", "videos.yml")
-    FileUtils.mkdir_p(File.dirname(videos_path))
-    File.write(videos_path, videos.to_yaml)
-    File.write(File.join(File.dirname(videos_path), "event.yml"), event.to_yaml) if event
-    yield videos_path
-  ensure
-    FileUtils.rm_rf(dir)
+    with_static_data_dir do |dir|
+      videos_path = File.join(dir, "data", "testconf", "testconf-2024", "videos.yml")
+      FileUtils.mkdir_p(File.dirname(videos_path))
+      File.write(videos_path, videos.to_yaml)
+      File.write(File.join(File.dirname(videos_path), "event.yml"), event.to_yaml) if event
+      yield videos_path
+    end
   end
 
   def with_temp_thumbnails

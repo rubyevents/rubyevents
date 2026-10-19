@@ -45,7 +45,7 @@ module Static
         future_start_errors = validate_absence_for_future_start
         return future_start_errors if future_start_errors.any?
 
-        @talks = Static::Talk.in_file(File.join(File.dirname(@file_path), "videos.yml")).top_level
+        @talks = event.talks.top_level
 
         errors = []
 

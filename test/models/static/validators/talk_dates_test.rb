@@ -3,6 +3,8 @@
 require "test_helper"
 
 class Static::Validators::TalkDatesTest < ActiveSupport::TestCase
+  include StaticDataSandbox
+
   test "applicable? returns true for a videos.yml file" do
     with_temp_video([{"video_id" => "x", "date" => "2024-01-15"}]) do |path|
       assert Static::Validators::TalkDates.new(file_path: path).applicable?
@@ -140,15 +142,14 @@ class Static::Validators::TalkDatesTest < ActiveSupport::TestCase
   end
 
   def with_raw_video(raw, event: nil)
-    dir = Dir.mktmpdir
-    videos_path = File.join(dir, "data", "testconf", "2024", "videos.yml")
+    with_static_data_dir do |dir|
+      videos_path = File.join(dir, "data", "testconf", "2024", "videos.yml")
 
-    FileUtils.mkdir_p(File.dirname(videos_path))
-    File.write(videos_path, raw)
-    File.write(File.join(File.dirname(videos_path), "event.yml"), event.to_yaml) if event
+      FileUtils.mkdir_p(File.dirname(videos_path))
+      File.write(videos_path, raw)
+      File.write(File.join(File.dirname(videos_path), "event.yml"), event.to_yaml) if event
 
-    yield videos_path
-  ensure
-    FileUtils.rm_rf(dir)
+      yield videos_path
+    end
   end
 end

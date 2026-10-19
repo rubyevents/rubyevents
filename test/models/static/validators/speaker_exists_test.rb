@@ -4,6 +4,7 @@ require "test_helper"
 
 class Static::Validators::SpeakerExistsTest < ActiveSupport::TestCase
   include StaticSpeakersSandbox
+  include StaticDataSandbox
 
   VALID_VIDEOS_FILE = Dir.glob(Rails.root.join("data/**/videos.yml")).first.to_s
 
@@ -137,27 +138,21 @@ class Static::Validators::SpeakerExistsTest < ActiveSupport::TestCase
 
   private
 
-  def with_temp_videos(videos_yaml)
-    dir = Rails.root.join("data", "testconf", "testconf-#{SecureRandom.uuid}")
-    videos_path = File.join(dir, "videos.yml")
-    FileUtils.mkdir_p(File.dirname(videos_path))
-    File.write(videos_path, videos_yaml)
-    Static::Talk.unload!
-    yield videos_path
-  ensure
-    FileUtils.rm_rf(dir)
-    Static::Talk.unload!
+  def with_temp_videos(videos_yaml, &block)
+    with_temp_event_file("videos.yml", videos_yaml, &block)
   end
 
-  def with_temp_involvements(involvements_yaml)
-    dir = Rails.root.join("data", "testconf", "testconf-#{SecureRandom.uuid}")
-    involvements_path = File.join(dir, "involvements.yml")
-    FileUtils.mkdir_p(dir)
-    File.write(involvements_path, involvements_yaml)
-    Static::Involvement.unload!
-    yield involvements_path
-  ensure
-    FileUtils.rm_rf(dir)
-    Static::Involvement.unload!
+  def with_temp_involvements(involvements_yaml, &block)
+    with_temp_event_file("involvements.yml", involvements_yaml, &block)
+  end
+
+  def with_temp_event_file(name, content)
+    with_static_data_dir do |dir|
+      path = File.join(dir, "data", "testconf", "testconf-2024", name)
+      FileUtils.mkdir_p(File.dirname(path))
+      File.write(path, content)
+
+      yield path
+    end
   end
 end

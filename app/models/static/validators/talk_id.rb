@@ -124,10 +124,7 @@ module Static
       end
 
       def meetup_event?
-        event_file = File.join(File.dirname(File.expand_path(@file_path)), "event.yml")
-        return false unless File.exist?(event_file)
-
-        Static::Event.in_file(event_file).first["kind"] == "meetup"
+        nodes.first&.event&.[]("kind") == "meetup"
       end
 
       def id_for(node)

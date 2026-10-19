@@ -44,10 +44,8 @@ module Static
       end
 
       def event_context
-        event_path = File.join(File.dirname(@file_path), "event.yml")
-        return [nil, nil, nil, nil] unless File.exist?(event_path)
-
-        event = Static::Event.in_file(event_path).first
+        event = videos_file.first&.event
+        return [nil, nil, nil, nil] unless event
 
         [
           parse_date(event["start_date"]),
