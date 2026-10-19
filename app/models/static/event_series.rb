@@ -88,6 +88,7 @@ module Static
 
     has_many :events, foreign_key: :series_slug
     has_files :images, "app/assets/images/events/:id"
+    has_files :default_images, "app/assets/images/events/:id/default"
 
     def persist_path
       return nil if self["id"].blank?
