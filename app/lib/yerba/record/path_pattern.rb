@@ -25,7 +25,6 @@ module Yerba
         @segments.any? { |segment| segment.include?("*") }
       end
 
-      # The leading directories before the first named segment or wildcard, like "data"
       def prefix
         @segments[0...-1].take_while { |segment| !dynamic_segment?(segment) }.join("/")
       end
@@ -41,7 +40,6 @@ module Yerba
         names.to_h { |name| [name, match[name.to_s]] }
       end
 
-      # The directory the pattern starts in, like "/app" for "/app/data/rubyconf/rubyconf-2024/event.yml"
       def root_of(path)
         match = regexp.match(path.to_s)
         return nil unless match

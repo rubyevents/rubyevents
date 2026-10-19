@@ -376,7 +376,6 @@ module Yerba
         path_params.any? && self.class.path_pattern.expand_through(:id, path_params).present?
       end
 
-      # The directories to move for the path params `to`, after checking that none of the targets exists
       def planned_moves(to)
         from = path_params
         root = path_root.to_s

@@ -11,9 +11,6 @@ module Yerba
 
       private
 
-      # The path of an associated record shares the named segments of this record's path. Its `:id` is this
-      # record's `:<association>_id` (a talk's `:event_id` for its event), and its `:<model>_id` is this
-      # record's `:id` (an event's `:id` for its talks).
       def association_path_params(klass, name)
         own_key = :"#{self.class.name.demodulize.underscore}_id"
 

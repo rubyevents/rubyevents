@@ -127,7 +127,6 @@ module Static
       nil
     end
 
-    # The path below app/assets/images, as the asset helpers take it
     def image_path
       path.relative_path_from(Pathname.new(path_root.to_s).join("app/assets/images")).to_s
     end
