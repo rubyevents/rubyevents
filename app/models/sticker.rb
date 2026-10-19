@@ -8,10 +8,6 @@ class Sticker
   attribute :event
   attribute :event_slug, :string
 
-  def self.all
-    @all_stickers ||= load_stickers_from_filesystem
-  end
-
   def self.for_event(event)
     return [] unless event&.slug
 
@@ -30,16 +26,6 @@ class Sticker
     return @event if defined?(@event)
 
     @event = Event.find_by(slug: event_slug) if event_slug.present?
-  end
-
-  def self.load_stickers_from_filesystem
-    images_directory = Rails.root.join("app", "assets", "images")
-    event_sticker_files = Dir.glob(images_directory.join("events", "**", "sticker*.webp"))
-
-    event_sticker_files.map { |file| create_sticker_from_event_file(file, images_directory) }
-      .compact
-      .uniq { |sticker| sticker.code }
-      .sort_by(&:name)
   end
 
   def self.create_sticker_from_event_file(file, images_directory, event: nil)
