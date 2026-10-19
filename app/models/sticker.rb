@@ -15,12 +15,7 @@ class Sticker
   def self.for_event(event)
     return [] unless event&.slug
 
-    prefix = "#{event.event_image_path}/"
-
-    all.select { |sticker|
-      (sticker.event_slug.present? && sticker.event_slug == event.slug) ||
-        sticker.file_path.start_with?(prefix)
-    }
+    event.stickers
   end
 
   def self.for_user(user, events: user.attended_events)
@@ -47,7 +42,7 @@ class Sticker
       .sort_by(&:name)
   end
 
-  def self.create_sticker_from_event_file(file, images_directory)
+  def self.create_sticker_from_event_file(file, images_directory, event: nil)
     relative_path = Pathname.new(file).relative_path_from(images_directory)
     path_parts = relative_path.each_filename.to_a
     event_slug = path_parts[-2]
@@ -55,13 +50,13 @@ class Sticker
 
     return nil unless event_slug.present? && basename.present?
 
-    event = Event.find_by(slug: event_slug)
+    event ||= Event.find_by(slug: event_slug)
 
     variant_suffix = basename.sub(/^sticker[_-]?/i, "")
     code_parts = [event&.slug || event_slug, basename].compact
     code = code_parts.join("-").upcase
 
-    display_name = event&.name || event_slug.titleize
+    display_name = event&.name.presence || event_slug.titleize
     variant_label = variant_suffix.present? ? "Sticker #{variant_suffix.titleize}" : "Sticker"
     name = "#{display_name} (#{variant_label})"
 

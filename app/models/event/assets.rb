@@ -86,7 +86,7 @@ class Event::Assets < ActiveRecord::AssociatedObject
   end
 
   def stickers
-    Sticker.for_event(event)
+    static_event&.stickers.to_a.filter_map { |file| Sticker.create_sticker_from_event_file(file.to_s, IMAGES_BASE_PATH, event: event) }.sort_by(&:name)
   end
 
   def sticker_paths
