@@ -11,7 +11,7 @@ module Static
 
       def initialize(file_path:, document: nil, baseline: nil)
         @file_path = file_path
-        @document = document || Yerba.parse_file(@file_path)
+        @document = document
         @baseline = baseline
       end
 
@@ -127,7 +127,7 @@ module Static
         event_file = File.join(File.dirname(File.expand_path(@file_path)), "event.yml")
         return false unless File.exist?(event_file)
 
-        Yerba.parse_file(event_file)["kind"] == "meetup"
+        Static::Event.in_file(event_file).first["kind"] == "meetup"
       end
 
       def id_for(node)

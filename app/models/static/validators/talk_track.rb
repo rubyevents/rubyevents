@@ -50,7 +50,7 @@ module Static
       end
 
       def schedule_tracks
-        @schedule_tracks ||= Yerba.parse_file(schedule_path)["tracks"]&.filter_map { |track| track.value_at("name") } || []
+        @schedule_tracks ||= Array(Static::Schedule.in_file(schedule_path).first["tracks"]).filter_map { |track| track["name"] }
       end
 
       def talk_errors(node)

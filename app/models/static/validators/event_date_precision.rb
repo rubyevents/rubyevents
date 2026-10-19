@@ -28,10 +28,10 @@ module Static
 
       def validate
         mismatched_dates.map do |field, expected|
-          location = document[field]&.location
+          location = event.source_location(field)
 
           Static::Validators::Error.new(
-            %(#{field} (#{document[field]}) must be the last day of the #{precision} (#{expected}) when date_precision is "#{precision}". Run `bin/rails validate:fix` to update it.),
+            %(#{field} (#{event[field]}) must be the last day of the #{precision} (#{expected}) when date_precision is "#{precision}". Run `bin/rails validate:fix` to update it.),
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
@@ -45,20 +45,20 @@ module Static
         changes = mismatched_dates
         return if changes.empty?
 
-        changes.each { |field, expected| document[field] = expected.iso8601 }
-        document.save!(apply: true)
+        changes.each { |field, expected| event[field] = expected.iso8601 }
+        event.save!
 
         {changed: changes.size, file_path: @file_path}
       end
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def event
+        @event ||= Static::Event.in_file(@file_path.to_s, document: @document).first
       end
 
       def precision
-        document["date_precision"].to_s
+        event["date_precision"].to_s
       end
 
       def mismatched_dates
@@ -66,7 +66,7 @@ module Static
         return [] unless precision.in?(%w[month year])
 
         DATE_FIELDS.filter_map do |field|
-          date = parse_date(document[field])
+          date = parse_date(event[field])
           next unless date
 
           expected = (precision == "year") ? date.end_of_year : date.end_of_month

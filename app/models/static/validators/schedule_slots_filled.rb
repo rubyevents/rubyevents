@@ -36,24 +36,24 @@ module Static
 
         @talks_by_time = talks.group_by { |talk| [talk["date"], talk["start_time"], talk["end_time"]] }
 
-        grid_rows.filter_map { |day, row| error_for(day, row) }
+        grid_rows.filter_map { |day, row, location| error_for(day, row, location) }
       end
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def schedule
+        @schedule ||= Static::Schedule.in_file(@file_path.to_s, document: @document).first
       end
 
-      # Every grid row of every day, as [day, row] pairs.
+      # Every grid row of every day, as [day, row, location] triples.
       def grid_rows
         return @grid_rows if defined?(@grid_rows)
 
         @grid_rows = []
 
-        document["days"]&.each do |day|
-          day["grid"]&.each do |row|
-            @grid_rows << [day, row]
+        Array(schedule["days"]).each_with_index do |day, day_index|
+          Array(day["grid"]).each_with_index do |row, row_index|
+            @grid_rows << [day, row, schedule.source_location("days[#{day_index}].grid[#{row_index}]")]
           end
         end
 
@@ -76,27 +76,27 @@ module Static
         end
       end
 
-      def error_for(day, row)
+      def error_for(day, row, location)
         unclaimed_slots_left = unclaimed_slots_left(day, row)
 
         case unclaimed_slots_left
         when (..-1)
           error(
-            row,
+            location,
             "#{row_name(day, row)} has #{-unclaimed_slots_left} too many items. Update the slot count, remove items from the schedule.yml, or reschedule talks in the videos.yml."
           )
         when (1...)
           error(
-            row,
+            location,
             "#{row_name(day, row)} has #{unclaimed_slots_left} unfilled #{"slot".pluralize(unclaimed_slots_left)}. Fix by lowering the slot count, adding talks to the videos.yml, or removing items from the schedule.yml."
           )
         end
       end
 
       def unclaimed_slots_left(day, row)
-        slots_left = row.value_at("slots")
+        slots_left = row["slots"]
         slots_left -= row["items"]&.length.to_i
-        scheduled_talks_count = @talks_by_time[[day.value_at("date"), row.value_at("start_time"), row.value_at("end_time")]]&.count || 0
+        scheduled_talks_count = @talks_by_time[[day["date"], row["start_time"], row["end_time"]]]&.count || 0
         slots_left -= scheduled_talks_count
         unscheduled_talks = untimed_talks(day)&.shift(slots_left) if slots_left.positive?
         slots_left -= unscheduled_talks&.count || 0
@@ -106,19 +106,17 @@ module Static
 
       # Talks without a start_time and end_time can fill any slot on their date.
       def untimed_talks(day)
-        @talks_by_time[[day.value_at("date"), nil, nil]]
+        @talks_by_time[[day["date"], nil, nil]]
       end
 
       def row_name(day, row)
-        time = "#{row.value_at("start_time")}-#{row.value_at("end_time")}"
-        day_label = day.value_at("name") || day.value_at("date")
+        time = "#{row["start_time"]}-#{row["end_time"]}"
+        day_label = day["name"] || day["date"]
 
-        "slots (#{row.value_at("slots")}) at #{time} on \"#{day_label}\""
+        "slots (#{row["slots"]}) at #{time} on \"#{day_label}\""
       end
 
-      def error(node, message)
-        location = node.location
-
+      def error(location, message)
         Static::Validators::Error.new(
           message,
           file_path: @file_path,

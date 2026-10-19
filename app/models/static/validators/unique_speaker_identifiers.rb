@@ -27,30 +27,27 @@ module Static
       def validate
         return [] unless applicable?
 
-        @document ||= Yerba.parse_file(@file_path)
-
-        names = @document.value_at("[].name")
-        githubs = @document.value_at("[].github")
-        aliases = @document.value_at("[].aliases")
-
         identifiers = Hash.new { |hash, key| hash[key] = [] }
 
-        names.each_with_index do |name, index|
-          identifiers[name.downcase] << {value: name, kind: "name", speaker: name} if name.present?
-          identifiers[githubs[index].downcase] << {value: githubs[index], kind: "GitHub handle", speaker: name} if githubs[index].present?
+        Static::Speaker.in_file(@file_path.to_s, document: @document).each do |speaker|
+          name = speaker["name"]
+          github = speaker["github"]
 
-          Array(aliases[index]).each do |alias_entry|
+          identifiers[name.downcase] << {value: name, kind: "name", speaker: name, record: speaker} if name.present?
+          identifiers[github.downcase] << {value: github, kind: "GitHub handle", speaker: name, record: speaker} if github.present?
+
+          Array(speaker["aliases"]).each do |alias_entry|
             next unless alias_entry.is_a?(Hash)
 
             alias_name = alias_entry["name"]
-            identifiers[alias_name.downcase] << {value: alias_name, kind: "alias", speaker: name} if alias_name.present?
+            identifiers[alias_name.downcase] << {value: alias_name, kind: "alias", speaker: name, record: speaker} if alias_name.present?
           end
         end
 
         identifiers.values.filter_map do |uses|
           next if uses.map { |use| use[:speaker] }.uniq.size < 2
 
-          location = @document.find_by(name: uses.last[:speaker])&.location
+          location = uses.last[:record].source_location
           description = uses.map { |use| %(#{use[:kind]} "#{use[:value]}" of "#{use[:speaker]}") }.join(", ")
 
           Static::Validators::Error.new(

@@ -136,6 +136,13 @@ class Yerba::Record::CollectionEditingTest < ActiveSupport::TestCase
     assert_nil opening.source_line("speakers[5]")
   end
 
+  test "source_location of a record in an empty document is nil" do
+    event = Static::Event.parse("# TODO: add the event\n", path: File.join(@dir, "event.yml")).first
+
+    assert_nil event["id"]
+    assert_nil event.source_location("id")
+  end
+
   test "set replaces a value or inserts it at a position, with a quote style" do
     opening = talks.find_by(id: "opening")
 

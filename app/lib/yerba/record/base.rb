@@ -96,7 +96,11 @@ module Yerba
       end
 
       def source_location(key = nil)
-        target = key ? node[key.to_s] : node
+        target = if key
+          node[key.to_s] if node.respond_to?(:[])
+        else
+          node
+        end
 
         target.respond_to?(:location) ? target.location : nil
       end

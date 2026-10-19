@@ -38,7 +38,7 @@ module Static
 
         FIELD_ASSET_MAP
           .map do |field, asset|
-            next if document[field].present?
+            next if event[field].present?
             next unless File.exist?(asset_dir.join(asset))
 
             Static::Validators::Error.new(
@@ -51,8 +51,8 @@ module Static
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def event
+        @event ||= Static::Event.in_file(@file_path.to_s, document: @document).first
       end
     end
   end
