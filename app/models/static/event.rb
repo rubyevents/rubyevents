@@ -537,11 +537,7 @@ module Static
 
       super
 
-      if @was_new_record
-        videos_path = File.join(File.dirname(file_path), "videos.yml")
-
-        Yerba::Document.from([]).save_to!(videos_path) unless File.exist?(videos_path)
-      end
+      talks.ensure_file! if @was_new_record
     end
   end
 end

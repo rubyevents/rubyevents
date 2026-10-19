@@ -116,6 +116,7 @@ module Yerba
       def path = source.path
       def selector = source.selector
       def parent = source.parent
+      def ensure_file! = source.ensure_file!
 
       def relative_path
         return nil if path.blank?

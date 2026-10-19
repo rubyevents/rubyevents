@@ -174,4 +174,15 @@ class Static::EventTest < ActiveSupport::TestCase
     assert_equal "QC", record.state_code
     assert_equal "CA", record.country_code
   end
+
+  test "create writes an empty videos.yml next to the new event.yml" do
+    title = "Yerba Record Test #{SecureRandom.hex(4)}"
+    event = Static::Event.create(series_slug: "helveticruby", title: title, kind: "conference", location: "Online", timezone: "UTC", coordinates: false)
+    videos_path = File.join(File.dirname(event.file_path), "videos.yml")
+
+    assert File.exist?(videos_path)
+    assert_equal [], Yerba.parse_file(videos_path).values
+  ensure
+    FileUtils.rm_rf(Rails.root.join("data/helveticruby", title.parameterize))
+  end
 end
