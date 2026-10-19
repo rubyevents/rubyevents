@@ -12,8 +12,7 @@ Think of it as [`frozen_record`](https://github.com/byroot/frozen_record) but wr
 
 ```ruby
 class Static::Speaker < Yerba::Record::Base
-  self.path = "speakers.yml"
-  self.base_path = Rails.root.join("data")
+  self.path = "data/speakers.yml"
 
   schema SpeakerSchema
 
@@ -23,29 +22,29 @@ class Static::Speaker < Yerba::Record::Base
 end
 ```
 
-For multi-file globs (one record per file):
+`path` is relative to `root` (`Yerba::Record::Base.root = Rails.root`, set in `config/initializers/static_models.rb`). Like a route, it can name its segments, and the model then loads every file that matches, one record per file:
 
 ```ruby
 class Static::Event < Yerba::Record::Base
-  self.glob = "**/event.yml"
-  self.base_path = Rails.root.join("data")
+  self.path = "data/:series_id/:id/event.yml"
 
   schema EventSchema
 
-  belongs_to :series, class_name: "Static::EventSeries", foreign_key: :series_slug
-  has_many :talks, in_file: "videos.yml", class_name: "Static::Talk"
-  has_many :cfps, in_file: "cfp.yml", class_name: "Static::CFP"
-  has_one :venue, in_file: "venue.yml", class_name: "Static::Venue"
-  has_one :schedule, in_file: "schedule.yml", class_name: "Static::Schedule"
+  belongs_to :series, class_name: "Static::EventSeries"
+  has_many :talks, class_name: "Static::Talk"
+  has_many :cfps, class_name: "Static::CFP"
+  has_one :venue
+  has_one :schedule
 end
+
+event.path_params  # => {series_id: "rubyconf", id: "rubyconf-2024"}
 ```
 
-For multi-file globs where each file contains an array of records:
+For files that each contain an array of records:
 
 ```ruby
 class Static::Talk < Yerba::Record::Base
-  self.glob = "**/videos.yml"
-  self.base_path = Rails.root.join("data")
+  self.path = "data/:series_id/:event_id/videos.yml"
   self.flatten = true
 
   schema VideoSchema
@@ -60,8 +59,7 @@ For scalar arrays (e.g., topics.yml is a list of strings):
 
 ```ruby
 class Static::Topic < Yerba::Record::Base
-  self.path = "topics.yml"
-  self.base_path = Rails.root.join("data")
+  self.path = "data/topics.yml"
   self.scalar_field = "name"
 
   schema do
@@ -123,7 +121,7 @@ Static::Speaker.pluck(:name)                  # => ["Aaron Patterson", ...]
 
 ## Collections
 
-`Model.all` (every file of the model), `Model.in_file(path, document: nil)` (one file or parsed document), `Model.parse(yaml)`, `has_many ..., in_file:` associations, nested children and `where` results are all a `Yerba::Record::Collection`, spanning one or more documents:
+`Model.all` (every file of the model), `Model.in_file(path, document: nil)` (one file or parsed document), `Model.parse(yaml)`, path-based `has_many` associations, nested children and `where` results are all a `Yerba::Record::Collection`, spanning one or more documents:
 
 ```ruby
 Static::Talk.all.count                                    # every talk across every videos.yml, nested ones included
@@ -292,17 +290,20 @@ event.series
 
 ### `belongs_to` (file-path derived)
 
-When no `foreign_key:` is given, the parent slug is derived from the directory name:
+When no `foreign_key:` is given, the path of the associated record is built from the path params of this one. The associated model's `:id` is this record's `:<association>_id`, and the other named segments are shared by name. So a talk in `data/rubyconf/rubyconf-2024/videos.yml` belongs to the event in `data/rubyconf/rubyconf-2024/event.yml`:
 
 ```ruby
 class Static::Talk < Yerba::Record::Base
-  belongs_to :event
+  self.path = "data/:series_id/:event_id/videos.yml"
+
+  belongs_to :event   # data/:series_id/:id/event.yml
+  belongs_to :series  # data/:id/series.yml
 end
 ```
 
 ```ruby
 talk.event
-talk.event_slug
+talk.event_slug  # => "rubyconf-2024", the :event_id path param
 ```
 
 ### `has_many` (query-based)
@@ -319,14 +320,14 @@ end
 series.events
 ```
 
-### `has_many` with `in_file:` (per-directory YAML array)
+### `has_many` (path-based)
 
-Load records from an array YAML file in the same directory:
+Without `foreign_key:` or `nested:`, the records come from the file the associated model's path names for this record. Its `:<model>_id` is this record's `:id`, so an event's talks are in `data/:series_id/:event_id/videos.yml` with the event's id as `:event_id`:
 
 ```ruby
 class Static::Event < Yerba::Record::Base
-  has_many :talks, in_file: "videos.yml", class_name: "Static::Talk"
-  has_many :cfps, in_file: "cfp.yml"
+  has_many :talks, class_name: "Static::Talk"
+  has_many :cfps
 end
 ```
 
@@ -337,14 +338,14 @@ event.talks.create(id: "new-talk", title: "My Talk")
 event.talks.save!
 ```
 
-### `has_one` with `in_file:` (per-directory YAML object)
+### `has_one` (path-based)
 
-Load a single record from an object YAML file in the same directory:
+Load a single record from the file the associated model's path names for this record:
 
 ```ruby
 class Static::Event < Yerba::Record::Base
-  has_one :venue, in_file: "venue.yml"
-  has_one :schedule, in_file: "schedule.yml"
+  has_one :venue     # data/:series_id/:event_id/venue.yml
+  has_one :schedule  # data/:series_id/:event_id/schedule.yml
 end
 ```
 
@@ -480,11 +481,12 @@ Yerba::Record::Base                # Record class (read + write + schema)
   include Querying                 # .all, .find_by, .where, .pluck
   include Indexing                 # add_index, LazyIndex
   include References               # references :speakers DSL
-  include Associations             # belongs_to, has_many, has_one (in_file:, through:)
+  include Associations             # belongs_to, has_many, has_one (path-based, through:)
   include Schema                   # schema, create, field method generation
 
-Yerba::Record::Collection          # Records of one or more documents (all, in_file, has_many in_file:, nested, where)
+Yerba::Record::Collection          # Records of one or more documents (all, in_file, has_many, nested, where)
 Yerba::Record::Collection::Source  # One document, or a nested sequence in it, contributing records
 Yerba::Record::ReferencesProxy     # Resolved cross-file references
 Yerba::Record::LazyIndex           # value -> position index, resolves records on access
+Yerba::Record::PathPattern         # A model's path with named segments, like data/:series_id/:id/event.yml
 ```

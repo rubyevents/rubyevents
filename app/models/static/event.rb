@@ -4,20 +4,19 @@ module Static
   class Event < Yerba::Record::Base
     include ActionView::Helpers::DateHelper
 
-    self.glob = "**/event.yml"
-    self.base_path = Rails.root.join("data")
+    self.path = "data/:series_id/:id/event.yml"
 
     schema EventSchema
 
-    belongs_to :series, class_name: "Static::EventSeries", foreign_key: :series_slug
+    belongs_to :series, class_name: "Static::EventSeries"
 
-    has_many :talks, in_file: "videos.yml", class_name: "Static::Talk"
-    has_many :cfps, in_file: "cfp.yml"
-    has_many :sponsors, in_file: "sponsors.yml"
-    has_many :involvements, in_file: "involvements.yml"
+    has_many :talks, class_name: "Static::Talk"
+    has_many :cfps
+    has_many :sponsors
+    has_many :involvements
 
-    has_one :venue, in_file: "venue.yml"
-    has_one :schedule, in_file: "schedule.yml"
+    has_one :venue
+    has_one :schedule
 
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
@@ -519,7 +518,7 @@ module Static
     end
 
     def series_slug
-      @series_slug ||= @series_slug_override || relative_file_path&.split("/")&.[](-3)
+      @series_slug ||= @series_slug_override || path_params[:series_id]
     end
 
     def event_dir
@@ -529,7 +528,7 @@ module Static
     def persist_path
       return nil if series_slug.blank? || self["id"].blank?
 
-      File.join(self.class.base_path, series_slug, self["id"], "event.yml")
+      self.class.path_for({series_id: series_slug, id: self["id"]})
     end
 
     def save!

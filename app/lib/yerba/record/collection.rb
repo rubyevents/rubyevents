@@ -121,7 +121,7 @@ module Yerba
       def relative_path
         return nil if path.blank?
 
-        path.to_s.delete_prefix("#{Rails.root}/")
+        path.to_s.delete_prefix("#{record_class.root}/")
       end
 
       def exist?
@@ -223,7 +223,7 @@ module Yerba
 
       def inspect
         paths = filtered? ? documents.map(&:path) : sources.map(&:path)
-        location = (paths.size == 1) ? (paths.first&.delete_prefix("#{Rails.root}/") || "(parsed)") : "#{paths.size} #{"file".pluralize(paths.size)}"
+        location = (paths.size == 1) ? (paths.first&.delete_prefix("#{record_class.root}/") || "(parsed)") : "#{paths.size} #{"file".pluralize(paths.size)}"
 
         class_name = instance_of?(Collection) ? "Yerba::Record::Collection[#{record_class.name}]" : self.class.name
 

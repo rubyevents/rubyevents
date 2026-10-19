@@ -2,8 +2,7 @@
 
 module Static
   class Topic < Yerba::Record::Base
-    self.path = "topics.yml"
-    self.base_path = Rails.root.join("data")
+    self.path = "data/topics.yml"
 
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 

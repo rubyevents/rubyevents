@@ -6,13 +6,48 @@ module Yerba
       extend ActiveSupport::Concern
 
       class_methods do
-        attr_reader :path, :glob, :scalar_field, :nested_key, :order_by
-        attr_writer :path, :glob, :base_path, :flatten, :scalar_field, :order_by
+        attr_reader :path, :scalar_field, :nested_key, :order_by
+        attr_writer :glob, :base_path, :flatten, :scalar_field, :order_by, :root
 
         delegate :count, :first, :last, :empty?, :each, :pluck, to: :all
 
+        def path=(value)
+          @path = value&.to_s
+          @path_pattern = nil
+        end
+
+        def path_pattern
+          @path_pattern ||= PathPattern.new(path) if path
+        end
+
+        def root
+          @root || superclass.try(:root) || Dir.pwd
+        end
+
         def base_path
-          @base_path || superclass.try(:base_path)
+          @base_path || (File.expand_path(path_pattern.prefix, root) if path) || superclass.try(:base_path)
+        end
+
+        def glob
+          @glob || (path_pattern.glob.delete_prefix("#{path_pattern.prefix}/") if path_pattern&.dynamic?)
+        end
+
+        def path_params_for(file_path)
+          return nil unless file_path && path_pattern&.dynamic?
+
+          path_pattern.match(File.expand_path(file_path.to_s))
+        end
+
+        def path_for(params, root: self.root)
+          relative_path = path_pattern&.expand(params)
+
+          File.expand_path(relative_path, root.to_s) if relative_path
+        end
+
+        def find_by_file_path(file_path)
+          return nil unless file_path
+
+          all.cached(:records_by_file_path) { all.index_by { |record| record.file_path.to_s } }[File.expand_path(file_path.to_s)]
         end
 
         def flatten
@@ -36,10 +71,6 @@ module Yerba
           all.where(...)
         end
 
-        def find_by_directory(directory)
-          all.cached(:records_by_directory) { all.index_by { |record| File.dirname(record.file_path.to_s) } }[File.expand_path(directory.to_s)]
-        end
-
         def in_file(path, document: nil)
           Collection.new(record_class: self, sources: [Collection::Source.new(path: path, document: document, mode: source_mode)])
         end
@@ -50,13 +81,13 @@ module Yerba
 
         def with_path(path)
           previous = @path
-          @path = path.to_s
+          self.path = path
 
           unload!
 
           yield
         ensure
-          @path = previous
+          self.path = previous
           unload!
         end
 
@@ -84,9 +115,9 @@ module Yerba
         end
 
         def file_path
-          return nil unless path
+          return nil unless path && !path_pattern.dynamic?
 
-          base_path ? File.expand_path(path, base_path) : path
+          File.expand_path(path, root)
         end
 
         def file_glob

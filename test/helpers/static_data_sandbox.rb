@@ -21,16 +21,16 @@ module StaticDataSandbox
     root = Dir.mktmpdir
     FileUtils.mkdir_p(File.join(root, "data"))
 
-    previous = StaticDataSandbox.models.to_h { |model| [model, model.instance_variable_get(:@base_path)] }
+    previous = StaticDataSandbox.models.to_h { |model| [model, model.instance_variable_get(:@root)] }
     previous.each_key do |model|
-      model.base_path = Pathname.new(File.join(root, "data"))
+      model.root = root
       model.unload!
     end
 
     yield root
   ensure
-    previous&.each do |model, base_path|
-      model.base_path = base_path
+    previous&.each do |model, previous_root|
+      model.root = previous_root
       model.unload!
     end
 

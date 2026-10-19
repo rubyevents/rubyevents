@@ -206,7 +206,15 @@ module Yerba
       def project_file_path
         return nil unless file_path
 
-        Pathname.new(file_path).relative_path_from(Rails.root).to_s
+        Pathname.new(file_path).relative_path_from(Pathname.new(self.class.root.to_s)).to_s
+      end
+
+      def path_params
+        @path_params ||= self.class.path_params_for(file_path) || {}
+      end
+
+      def path_root
+        (file_path && self.class.path_pattern&.root_of(File.expand_path(file_path.to_s))) || self.class.root
       end
 
       def attributes
@@ -220,6 +228,7 @@ module Yerba
       def reset_attributes_cache!
         @attributes_cache = nil unless destroyed?
         @relative_file_path = nil
+        @path_params = nil
         @nested_collections = nil
         parent&.reset_attributes_cache!
       end

@@ -9,6 +9,27 @@ module Yerba
         @nested_owners ||= {}
       end
 
+      private
+
+      # The path of an associated record shares the named segments of this record's path. Its `:id` is this
+      # record's `:<association>_id` (a talk's `:event_id` for its event), and its `:<model>_id` is this
+      # record's `:id` (an event's `:id` for its talks).
+      def association_path_params(klass, name)
+        own_key = :"#{self.class.name.demodulize.underscore}_id"
+
+        klass.path_pattern&.names.to_a.to_h do |segment|
+          value = if segment == :id
+            path_params[:"#{name}_id"]
+          elsif path_params.key?(segment)
+            path_params[segment]
+          elsif segment == own_key
+            path_params[:id]
+          end
+
+          [segment, value]
+        end
+      end
+
       class_methods do
         #   belongs_to :series, foreign_key: :series_slug
         #   belongs_to :event
@@ -18,14 +39,18 @@ module Yerba
 
           unless foreign_key
             define_method(:"#{name}_slug") do
-              relative_file_path&.split("/")&.[](-2)
+              path_params[:"#{name}_id"]
             end
           end
 
           define_method(name) do
             klass = class_name.is_a?(String) ? class_name.constantize : class_name
 
-            return file_path && klass.find_by_directory(File.dirname(file_path)) unless foreign_key
+            unless foreign_key
+              path = klass.path_for(association_path_params(klass, name), root: path_root)
+
+              return klass.find_by_file_path(path) || (klass.in_file(path).first if path && File.exist?(path))
+            end
 
             slug_value = send(foreign_key)
             return nil unless slug_value
@@ -39,9 +64,9 @@ module Yerba
         end
 
         #   has_many :events, foreign_key: :series_slug
-        #   has_many :talks, in_file: "videos.yml"
+        #   has_many :talks
         #   has_many :talks, nested: true
-        def has_many(name, class_name: nil, foreign_key: nil, in_file: nil, nested: false)
+        def has_many(name, class_name: nil, foreign_key: nil, nested: false)
           class_name ||= infer_class_name(name, singularize: true)
 
           if nested
@@ -66,25 +91,26 @@ module Yerba
                 end
               end
             end
-          elsif in_file
-            define_method(name) do
-              klass = class_name.is_a?(String) ? class_name.constantize : class_name
-
-              klass.in_file(File.join(event_dir, in_file))
-            end
-          else
+          elsif foreign_key
             define_method(name) do
               klass = class_name.is_a?(String) ? class_name.constantize : class_name
               slug_value = slug
 
               klass.all.where { |record| record.send(foreign_key) == slug_value }
             end
+          else
+            define_method(name) do
+              klass = class_name.is_a?(String) ? class_name.constantize : class_name
+              path = klass.path_for(association_path_params(klass, name), root: path_root)
+
+              path ? klass.in_file(path) : Collection.new(record_class: klass, records: [])
+            end
           end
         end
 
-        #   has_one :venue, in_file: "venue.yml"
+        #   has_one :venue
         #   has_one :series, through: :event
-        def has_one(name, in_file: nil, through: nil, class_name: nil)
+        def has_one(name, through: nil, class_name: nil)
           if through
             define_method(name) { send(through)&.send(name) }
             return
@@ -93,18 +119,15 @@ module Yerba
           class_name ||= infer_class_name(name)
 
           define_method(name) do
-            path = File.join(event_dir, in_file)
-            return nil unless File.exist?(path)
-
-            document = Yerba.parse_file(path)
             klass = class_name.is_a?(String) ? class_name.constantize : class_name
+            path = klass.path_for(association_path_params(klass, name), root: path_root)
 
-            klass.new(document: document)
+            klass.in_file(path).first if path && File.exist?(path)
           end
 
           define_method(:"build_#{name}") do |**attributes|
-            path = File.join(event_dir, in_file)
             klass = class_name.is_a?(String) ? class_name.constantize : class_name
+            path = klass.path_for(association_path_params(klass, name), root: path_root)
 
             record = klass.new(**attributes)
             record.define_singleton_method(:persist_path) { path }

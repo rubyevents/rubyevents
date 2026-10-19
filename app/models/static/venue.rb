@@ -2,8 +2,7 @@
 
 module Static
   class Venue < Yerba::Record::Base
-    self.glob = "**/venue.yml"
-    self.base_path = Rails.root.join("data")
+    self.path = "data/:series_id/:event_id/venue.yml"
 
     schema VenueSchema
 

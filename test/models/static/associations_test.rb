@@ -83,14 +83,13 @@ class Static::AssociationsTest < ActiveSupport::TestCase
 
   test "create_venue creates the file and returns the record" do
     tmp_dir = Dir.mktmpdir
-    event_dir = File.join(tmp_dir, "test-series", "test-event")
+    event_dir = File.join(tmp_dir, "data", "test-series", "test-event")
     FileUtils.mkdir_p(event_dir)
 
     File.write(File.join(event_dir, "event.yml"), "---\ntitle: Test\nkind: conference\n")
 
     document = Yerba.parse_file(File.join(event_dir, "event.yml"))
     event = Static::Event.new(document: document)
-    event.define_singleton_method(:event_dir) { event_dir }
 
     assert_nil event.venue
 

@@ -4,8 +4,7 @@ module Static
   class Talk < Yerba::Record::Base
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
-    self.glob = "**/videos.yml"
-    self.base_path = Rails.root.join("data")
+    self.path = "data/:series_id/:event_id/videos.yml"
     self.flatten = true
 
     schema VideoSchema
@@ -65,7 +64,10 @@ module Static
       all.documents.flat_map do |document|
         next [] if document.path.blank?
 
-        Array(Static::Event.find_by_directory(File.dirname(document.path.to_s))&.[]("removed_talk_ids"))
+        params = path_params_for(document.path) || {}
+        event = Static::Event.find_by_file_path(Static::Event.path_for({series_id: params[:series_id], id: params[:event_id]}))
+
+        Array(event&.[]("removed_talk_ids"))
       end
     end
 

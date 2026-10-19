@@ -2,8 +2,7 @@
 
 module Static
   class Involvement < Yerba::Record::Base
-    self.glob = "**/involvements.yml"
-    self.base_path = Rails.root.join("data")
+    self.path = "data/:series_id/:event_id/involvements.yml"
     self.flatten = true
 
     schema InvolvementSchema

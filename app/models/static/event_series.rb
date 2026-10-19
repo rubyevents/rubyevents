@@ -2,8 +2,7 @@
 
 module Static
   class EventSeries < Yerba::Record::Base
-    self.glob = "*/series.yml"
-    self.base_path = Rails.root.join("data")
+    self.path = "data/:id/series.yml"
 
     schema SeriesSchema
 
@@ -92,7 +91,7 @@ module Static
     def persist_path
       return nil if self["id"].blank?
 
-      File.join(self.class.base_path, self["id"], "series.yml")
+      self.class.path_for({id: self["id"]})
     end
   end
 end
