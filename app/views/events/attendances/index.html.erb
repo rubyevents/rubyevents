@@ -26,7 +26,7 @@
           <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <% events.each do |event| %>
               <% stats = @attendance_stats[event.id] || {in_person: 0, online: 0} %>
-              <% total_talks = event.top_level_talks.size %>
+              <% total_talks = @attendance_talk_counts[event.id] || 0 %>
               <% watched_total = stats[:in_person] + stats[:online] %>
               <% unwatched = [total_talks - watched_total, 0].max %>
 

@@ -52,7 +52,7 @@
           <%= ui_button kind: :rounded, class: "btn-sm lg:btn-md mx-auto lg:mx-0 mt-4" do %>
             <span>
               <% if event.watchable_talks? %>
-                Watch <%= pluralize(event.talks_count, "Talk") %>
+                Watch <%= pluralize(event.public_talks_count, "Talk") %>
               <% else %>
                 View Event
               <% end %>

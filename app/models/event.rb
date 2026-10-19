@@ -402,7 +402,7 @@ class Event < ApplicationRecord
   end
 
   def talks_text
-    return "" unless talks.size.positive?
+    count = public_talks_count
 
     speakers_text = if talks.size > 2
       " from various speakers"
@@ -441,6 +441,22 @@ class Event < ApplicationRecord
 
   def sort_date
     start_date || end_date || Time.at(0)
+  end
+
+  # Attendance UI lists top-level videos.yml entries only, so a lightning
+  # talk block counts as 1 talk (nested child segments are excluded).
+  def attendance_talks
+    talks_in_running_order(child_talks: false)
+  end
+
+  def attendance_talks_count
+    attendance_talks.count
+  end
+
+  # Canonical public talk total: lightning blocks count as 1.
+  # Prefer this over talks_count (counter cache includes nested child talks).
+  def public_talks_count
+    top_level_talks.count
   end
 
   def watchable_talks?
