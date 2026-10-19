@@ -1,6 +1,6 @@
-# RubyEvents.org (formerly RubyVideo.dev)
+# RubyEvents.org
 
-[RubyEvents.org](https://www.rubyevents.org) (formerly RubyVideo.dev), inspired by [pyvideo.org](https://pyvideo.org/), is designed to index all Ruby-related events and videos from conferences and meetups around the world. At the time of writing, the project has 6000+ videos indexed from 200+ events and 3000+ speakers.
+[RubyEvents.org](https://www.rubyevents.org) (formerly RubyVideo.dev), inspired by [pyvideo.org](https://pyvideo.org/), is designed to index all Ruby-related events and videos from conferences and meetups around the world.
 
 Technically the project is built using the latest [Ruby](https://www.ruby-lang.org/) and [Rails](https://rubyonrails.org/) goodies such as [Hotwire](https://hotwired.dev/), [Solid Queue](https://github.com/rails/solid_queue), [Solid Cache](https://github.com/rails/solid_cache).
 
