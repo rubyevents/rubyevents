@@ -108,6 +108,51 @@ module Yerba
           end
         end
 
+        # A directory named by segments of the record's path or by its attributes. It moves when they change.
+        #
+        # With a wildcard in the last segment, the files matching it, which move one by one.
+        #
+        #   has_files :images, "app/assets/images/events/:series_id/:id"
+        #   has_files :thumbnails, "app/assets/images/thumbnails/:id", recursive: true
+        #   has_files :stickers, "app/assets/images/events/:series_id/:id/sticker*.webp"
+        def has_files(name, pattern, recursive: false)
+          pattern = PathPattern.new(pattern)
+          file_associations[name.to_sym] = {pattern: pattern, directory: !pattern.wildcard?, glob: pattern.wildcard?}
+
+          define_method(name) do
+            if pattern.wildcard?
+              glob = pattern.expand_glob(segment_values(pattern, path_params) { |key| self[key] })
+              next unless glob
+
+              glob = File.expand_path(glob, path_root.to_s)
+              Files.new(File.dirname(glob), glob: File.basename(glob))
+            else
+              path = file_association_path(name)
+
+              Files.new(path, recursive: recursive) if path
+            end
+          end
+        end
+
+        # A file named by segments of the record's path or by its attributes, as a `Pathname`. It moves when they change.
+        # A `**` finds the file in any subdirectory.
+        #
+        #   has_file :avatar, "app/assets/images/events/:series_id/:id/avatar.webp"
+        #   has_file :thumbnail, "app/assets/images/thumbnails/:event_id/**/:video_id.webp"
+        def has_file(name, pattern)
+          file_associations[name.to_sym] = {pattern: PathPattern.new(pattern), directory: false}
+
+          define_method(name) do
+            path = file_association_path(name)
+
+            Pathname.new(path) if path
+          end
+        end
+
+        def file_associations
+          @file_associations ||= {}
+        end
+
         #   has_one :venue
         #   has_one :series, through: :event
         def has_one(name, through: nil, class_name: nil)

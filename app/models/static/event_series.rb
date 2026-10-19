@@ -45,7 +45,7 @@ module Static
     end
 
     def slug
-      @slug ||= self["id"]
+      self["id"]
     end
 
     def event_series_record
@@ -87,6 +87,7 @@ module Static
     end
 
     has_many :events, foreign_key: :series_slug
+    has_files :images, "app/assets/images/events/:id"
 
     def persist_path
       return nil if self["id"].blank?

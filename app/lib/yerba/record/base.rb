@@ -54,6 +54,7 @@ module Yerba
 
       def []=(key, value)
         raise_if_destroyed!
+        remember_original(key)
         reset_attributes_cache!
 
         if scalar_node?
@@ -81,6 +82,7 @@ module Yerba
 
       def insert(key, value, before: nil, after: nil)
         raise_if_destroyed!
+        remember_original(key)
         reset_attributes_cache!
 
         node.insert(key.to_s, value, before: before&.to_s, after: after&.to_s)
@@ -90,6 +92,7 @@ module Yerba
         raise_if_destroyed!
         return unless key?(key)
 
+        remember_original(key)
         reset_attributes_cache!
 
         node.delete(key.to_s)
@@ -142,8 +145,24 @@ module Yerba
           @new_record = false
           @was_new_record = true
         else
+          to = path_params.merge(path_changes)
+          to[:id] = self["id"].to_s if path_params.key?(:id) && self["id"].present?
+
+          if to != path_params
+            raise ArgumentError, "#{self.class.name} has no directory named by :id in its path" unless owns_id_directory?
+
+            moves = planned_moves(to)
+          end
+
+          file_moves = planned_file_moves(to)
+
           document.save!(apply: true)
+          move!(moves, to) if moves&.any?
+          Base.move_files!(file_moves, moved: moves.to_a)
         end
+
+        @path_changes = nil
+        @original_attributes = nil
 
         reset_attributes_cache!
 
@@ -217,6 +236,52 @@ module Yerba
         (file_path && self.class.path_pattern&.root_of(File.expand_path(file_path.to_s))) || self.class.root
       end
 
+      def rename!(id)
+        self["id"] = id
+        save!
+
+        self
+      end
+
+      def move_to!(**changes)
+        changes.each do |name, value|
+          if name.to_sym == :id
+            self["id"] = value
+          else
+            path_changes[name.to_sym] = value.to_s
+          end
+        end
+
+        save!
+
+        self
+      end
+
+      def path_changes
+        @path_changes ||= {}
+      end
+
+      def attribute_was(key)
+        original_attributes.fetch(key.to_s) { self[key] }
+      end
+
+      def self.move_files!(moves, moved: [])
+        moved = moved.map { |source, target| [source, target] }
+
+        moves.each do |source, target, _directory|
+          source, target = [source, target].map do |path|
+            moved.reduce(path) { |current, (from, to)| current.start_with?("#{from}/") ? "#{to}#{current.delete_prefix(from)}" : current }
+          end
+
+          next if source == target || !File.exist?(source)
+
+          FileUtils.mkdir_p(File.dirname(target))
+          FileUtils.mv(source, target)
+
+          moved << [source, target]
+        end
+      end
+
       def attributes
         to_h
       end
@@ -230,6 +295,7 @@ module Yerba
         @relative_file_path = nil
         @path_params = nil
         @nested_collections = nil
+
         parent&.reset_attributes_cache!
       end
 
@@ -265,6 +331,115 @@ module Yerba
       end
 
       private
+
+      def missing_parent_message(directory, _to)
+        "#{Pathname.new(directory).relative_path_from(Pathname.new(path_root.to_s))} doesn't exist yet, create it before moving the #{self.class.name.demodulize.underscore.humanize(capitalize: false)} there"
+      end
+
+      def planned_file_moves(to = path_params)
+        return [] if self.class.file_associations.empty? || (original_attributes.empty? && to == path_params)
+
+        root = path_root.to_s
+
+        moves = self.class.file_associations.values.flat_map do |association|
+          pattern = association[:pattern]
+          from_values = segment_values(pattern, path_params) { |key| attribute_was(key) }
+          to_values = segment_values(pattern, to) { |key| self[key] }
+          next [] if from_values == to_values
+
+          sources = if association[:glob]
+            pattern.expand_glob(from_values)&.then { |glob| Dir.glob(File.expand_path(glob, root)).sort }.to_a
+          else
+            [resolve_file_association(pattern, from_values, root)]
+          end
+
+          sources.filter_map { |source| planned_file_move(pattern, association, source, to_values, root) }
+        end
+
+        moves.sort_by { |_source, _target, directory| directory ? 0 : 1 }
+      end
+
+      def planned_file_move(pattern, association, source, to_values, root)
+        return nil unless source && File.exist?(source)
+
+        target = if pattern.wildcard?
+          pattern.rewrite(source, to_values)
+        else
+          pattern.expand(to_values)&.then { |path| File.expand_path(path, root) }
+        end
+        return nil if target.nil? || target == source || File.exist?(target)
+
+        [source, target, association[:directory]]
+      end
+
+      def owns_id_directory?
+        path_params.any? && self.class.path_pattern.expand_through(:id, path_params).present?
+      end
+
+      # The directories to move for the path params `to`, after checking that none of the targets exists
+      def planned_moves(to)
+        from = path_params
+        root = path_root.to_s
+        directory = File.expand_path(self.class.path_pattern.expand_through(:id, to), root)
+        raise ArgumentError, missing_parent_message(File.dirname(directory), to) unless File.directory?(File.dirname(directory))
+
+        patterns = [[self.class.path_pattern.expand_through(:id, from), self.class.path_pattern.expand_through(:id, to)]]
+
+        moves = patterns
+          .filter_map { |source, target| [File.expand_path(source, root), File.expand_path(target, root)] if source && target }
+          .select { |source, target| source != target && File.exist?(source) }
+
+        moves.each { |_source, target| raise ArgumentError, "#{target} already exists" if File.exist?(target) }
+
+        moves
+      end
+
+      def move!(moves, to)
+        root = path_root.to_s
+
+        moves.each do |source, target|
+          FileUtils.mkdir_p(File.dirname(target))
+          FileUtils.mv(source, target)
+        end
+
+        @document = Yerba.parse_file(self.class.path_for(to, root: root).to_s)
+        @file_path = nil
+        @path_params = nil
+
+        Base.descendants.each(&:unload!)
+      end
+
+      def original_attributes
+        @original_attributes ||= {}
+      end
+
+      def remember_original(key)
+        original_attributes[key.to_s] = self[key] unless original_attributes.key?(key.to_s)
+      end
+
+      def segment_values(pattern, path_values)
+        pattern.names.to_h { |name| [name, path_values.key?(name) ? path_values[name] : yield(name.to_s)&.to_s] }
+      end
+
+      def file_association_path(name)
+        pattern = self.class.file_associations.fetch(name.to_sym)[:pattern]
+
+        resolve_file_association(pattern, segment_values(pattern, path_params) { |key| self[key] }, path_root.to_s)
+      end
+
+      def resolve_file_association(pattern, values, root)
+        if pattern.wildcard?
+          glob = pattern.expand_glob(values)
+          return nil unless glob
+
+          existing = Dir.glob(File.expand_path(glob, root)).min
+          fallback = glob.gsub("**/", "")
+
+          existing || (File.expand_path(fallback, root) unless fallback.include?("*"))
+        else
+          pattern.expand(values)&.then { |path| File.expand_path(path, root) }
+        end
+      end
 
       def raise_if_destroyed!
         raise FrozenError.new("can't modify a destroyed #{self.class.name}", receiver: self) if destroyed?

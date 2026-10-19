@@ -18,6 +18,18 @@ module Static
     has_one :venue
     has_one :schedule
 
+    has_files :images, "app/assets/images/events/:series_id/:id"
+    has_files :thumbnails, "app/assets/images/thumbnails/:id", recursive: true
+
+    has_file :avatar, "app/assets/images/events/:series_id/:id/avatar.webp"
+    has_file :banner, "app/assets/images/events/:series_id/:id/banner.webp"
+    has_file :card, "app/assets/images/events/:series_id/:id/card.webp"
+    has_file :featured, "app/assets/images/events/:series_id/:id/featured.webp"
+    has_file :poster, "app/assets/images/events/:series_id/:id/poster.webp"
+
+    has_files :stickers, "app/assets/images/events/:series_id/:id/sticker*.webp"
+    has_files :stamps, "app/assets/images/events/:series_id/:id/stamp*.webp"
+
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
     class << self
@@ -43,7 +55,7 @@ module Static
         document = Yerba::Document.from({})
         record = new(document: document)
 
-        record.instance_variable_set(:@series_slug_override, series_slug)
+        record.series_id = series_slug
 
         record
       end
@@ -59,7 +71,7 @@ module Static
         end
 
         record = new(id: slug, title: title, **attributes.reject { |_, value| value.nil? || value == "" || value == [] })
-        record.instance_variable_set(:@series_slug_override, series_slug)
+        record.series_id = series_slug
         record.save!
 
         unload!
@@ -170,7 +182,7 @@ module Static
     end
 
     def slug
-      @slug ||= self["id"]
+      self["id"]
     end
 
     def imported?
@@ -345,6 +357,7 @@ module Static
     def import_cfps!(event)
       cfps.each do |cfp_data|
         cfp = event.cfps.find_or_initialize_by(link: cfp_data["link"])
+
         cfp.assign_attributes(
           name: cfp_data["name"],
           open_date: cfp_data["open_date"],
@@ -518,7 +531,7 @@ module Static
     end
 
     def series_slug
-      @series_slug ||= @series_slug_override || path_params[:series_id]
+      series_id
     end
 
     def event_dir
@@ -529,6 +542,14 @@ module Static
       return nil if series_slug.blank? || self["id"].blank?
 
       self.class.path_for({series_id: series_slug, id: self["id"]})
+    end
+
+    private def missing_parent_message(directory, to)
+      relative_directory = Pathname.new(directory).relative_path_from(Pathname.new(path_root.to_s))
+
+      %(The series "#{to[:series_id]}" doesn't exist yet (no #{relative_directory}/series.yml). ) +
+        %(Create it first, for example in `bin/rails console` with `Static::EventSeries.create(name: "#{to[:series_id].titleize}", slug: "#{to[:series_id]}")`, ) +
+        %(then move the event again.)
     end
 
     def save!

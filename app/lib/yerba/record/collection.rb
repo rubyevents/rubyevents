@@ -133,9 +133,15 @@ module Yerba
       end
 
       def save!
+        changed_records = @filtered_records || @records || []
+        file_moves = changed_records.flat_map { |record| record.send(:planned_file_moves) }
+
         changed = documents.select(&:changed?)
         changed.each { |document| document.sort("", by: record_class.order_by.to_s) } if record_class.try(:order_by)
         changed.each { |document| document.save!(apply: true) }
+
+        Base.move_files!(file_moves)
+        changed_records.each { |record| record.instance_variable_set(:@original_attributes, nil) }
 
         written!
       end

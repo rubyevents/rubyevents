@@ -333,16 +333,14 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
 
   test "renames thumbnail files when fixing an id" do
     videos = [
-      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"], "video_provider" => "not_recorded", "video_id" => "wrong"}
     ]
 
     with_temp_video(videos) do |path|
-      with_temp_thumbnails do |thumbnails|
+      with_temp_thumbnails(path) do |thumbnails|
         File.write(File.join(thumbnails, "wrong.webp"), "webp")
 
-        Rails.stub(:root, Pathname.new(File.dirname(thumbnails, 5))) do
-          Static::Validators::TalkId.new(file_path: path).fix
-        end
+        Static::Validators::TalkId.new(file_path: path).fix
 
         assert File.exist?(File.join(thumbnails, "rachael-wright-munn-testconf-2024.webp"))
         assert_not File.exist?(File.join(thumbnails, "wrong.webp"))
@@ -352,17 +350,15 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
 
   test "renames a thumbnail directory when fixing an id" do
     videos = [
-      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"], "video_provider" => "not_recorded", "video_id" => "wrong"}
     ]
 
     with_temp_video(videos) do |path|
-      with_temp_thumbnails do |thumbnails|
+      with_temp_thumbnails(path) do |thumbnails|
         FileUtils.mkdir_p(File.join(thumbnails, "wrong"))
         File.write(File.join(thumbnails, "wrong", "lightning.webp"), "webp")
 
-        Rails.stub(:root, Pathname.new(File.dirname(thumbnails, 5))) do
-          Static::Validators::TalkId.new(file_path: path).fix
-        end
+        Static::Validators::TalkId.new(file_path: path).fix
 
         renamed = File.join(thumbnails, "rachael-wright-munn-testconf-2024", "lightning.webp")
         assert File.exist?(renamed)
@@ -373,20 +369,18 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
 
   test "does not clobber an existing thumbnail or directory when fixing an id" do
     videos = [
-      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"], "video_provider" => "not_recorded", "video_id" => "wrong"}
     ]
 
     with_temp_video(videos) do |path|
-      with_temp_thumbnails do |thumbnails|
+      with_temp_thumbnails(path) do |thumbnails|
         File.write(File.join(thumbnails, "wrong.webp"), "new")
         FileUtils.mkdir_p(File.join(thumbnails, "wrong"))
         File.write(File.join(thumbnails, "rachael-wright-munn-testconf-2024.webp"), "keep-file")
         FileUtils.mkdir_p(File.join(thumbnails, "rachael-wright-munn-testconf-2024"))
         File.write(File.join(thumbnails, "rachael-wright-munn-testconf-2024", "talk.webp"), "keep-dir")
 
-        Rails.stub(:root, Pathname.new(File.dirname(thumbnails, 5))) do
-          Static::Validators::TalkId.new(file_path: path).fix
-        end
+        Static::Validators::TalkId.new(file_path: path).fix
 
         assert_equal "keep-file", File.read(File.join(thumbnails, "rachael-wright-munn-testconf-2024.webp"))
         assert_equal "keep-dir", File.read(File.join(thumbnails, "rachael-wright-munn-testconf-2024", "talk.webp"))
@@ -408,12 +402,10 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     end
   end
 
-  def with_temp_thumbnails
-    dir = Dir.mktmpdir
-    thumbnails = File.join(dir, "app", "assets", "images", "thumbnails", "testconf-2024")
+  def with_temp_thumbnails(videos_path)
+    thumbnails = File.join(File.dirname(videos_path, 4), "app", "assets", "images", "thumbnails", "testconf-2024")
     FileUtils.mkdir_p(thumbnails)
+
     yield thumbnails
-  ensure
-    FileUtils.rm_rf(dir)
   end
 end

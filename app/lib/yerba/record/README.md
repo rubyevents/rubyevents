@@ -272,6 +272,26 @@ speaker.name        # => "Old Speaker", the values it had before it was removed
 speaker.save!       # => raises FrozenError
 ```
 
+## Renaming and moving
+
+A record owns the directory at the `:id` segment of its path, like `data/:series_id/:id/` for an event. Every named segment other than `:id` gets an accessor, like `event.series_id`. Saving a changed `id` or segment moves that directory, and the record then reads from its new path:
+
+```ruby
+event["id"] = "rubyconf-2025"
+event.save!                             # data/rubyconf/rubyconf-2024/ -> data/rubyconf/rubyconf-2025/
+
+event.series_id = "rubyconf"
+event.save!                             # data/other/rubyconf-2024/ -> data/rubyconf/rubyconf-2024/
+
+event.rename!("rubyconf-2025")          # assigns the id and saves
+event.move_to!(series_id: "rubyconf")   # assigns the segments and saves
+series.rename!("ruby-conf")             # data/rubyconf/ -> data/ruby-conf/, with all its events
+```
+
+The files and directories a model declares with `has_file` and `has_files` move along (see below).
+
+Nothing moves when a target directory already exists, or when the directory it moves into doesn't exist yet, like the folder of a series that wasn't created. A model can say how to create that record by overriding `missing_parent_message(directory, path_params)`, as `Static::Event` does for its series. Values that only contain the old id, like talk ids ending in the event slug, stay as they are, and `bin/rails validate:fix` renames them afterwards, with their thumbnails.
+
 ## Associations
 
 ### `belongs_to` (field-based)
@@ -388,6 +408,50 @@ class Static::Talk::AlternativeRecording < Yerba::Record::Base
 end
 ```
 
+### `has_file` and `has_files` (files named by the path)
+
+Files and directories named by segments of the record's path, or by its attributes when the path doesn't have the segment. They move when those segments or attributes change and the record is saved, unless a file already exists at the new path:
+
+```ruby
+class Static::Event < Yerba::Record::Base
+  self.path = "data/:series_id/:id/event.yml"
+
+  has_files :images, "app/assets/images/events/:series_id/:id"
+  has_files :thumbnails, "app/assets/images/thumbnails/:id", recursive: true
+  has_files :stickers, "app/assets/images/events/:series_id/:id/sticker*.webp"
+  has_files :stamps, "app/assets/images/events/:series_id/:id/stamp*.webp"
+
+  has_file :avatar, "app/assets/images/events/:series_id/:id/avatar.webp"
+end
+
+class Static::Talk < Yerba::Record::Base
+  self.path = "data/:series_id/:event_id/videos.yml"
+
+  has_file :thumbnail, "app/assets/images/thumbnails/:event_id/**/:video_id.webp"   # :video_id is an attribute
+  has_files :child_thumbnails, "app/assets/images/thumbnails/:event_id/:id"
+end
+```
+
+`has_file` returns the `Pathname`, whether the file exists or not. With `**`, it finds the file in any subdirectory, or else returns the path without it:
+
+```ruby
+event.avatar.exist?
+event.avatar.read
+talk.thumbnail                 # => app/assets/images/thumbnails/rubyconf-2024/lightning-talks-rubyconf-2024/jane-doe-rubyconf-2024.webp
+```
+
+`has_files` returns a `Yerba::Record::Files`, which lists the files of the directory as `Pathname`s (with `recursive: true` also the files in its subdirectories), or the files matching a wildcard in the last segment:
+
+```ruby
+event.stamps.count             # => 3
+event.stamps.first             # => #<Pathname app/assets/images/events/euruko/euruko-2025/stamp-1.webp>
+event.images.map(&:basename)   # => [avatar.webp, banner.webp, card.webp, ...]
+event.images["card.webp"]      # => the Pathname, or nil when there is no such file
+event.images.path              # => the directory, whether it exists or not
+```
+
+Saving a talk with a changed `video_id` renames its thumbnail, and a changed `id` renames the directory with the thumbnails of its child talks, the same way renaming an event moves its images.
+
 ### `references` (cross-file foreign keys)
 
 Declare that a field contains names that reference records in another file. Like `has_many`, the referenced model defaults to the singular field name in the model's namespace (`Static::Speaker` for `Static::Talk`), and `class_name:` takes the full name of another model:
@@ -481,7 +545,7 @@ Yerba::Record::Base                # Record class (read + write + schema)
   include Querying                 # .all, .find_by, .where, .pluck
   include Indexing                 # add_index, LazyIndex
   include References               # references :speakers DSL
-  include Associations             # belongs_to, has_many, has_one (path-based, through:)
+  include Associations             # belongs_to, has_many, has_one (path-based, through:), has_files
   include Schema                   # schema, create, field method generation
 
 Yerba::Record::Collection          # Records of one or more documents (all, in_file, has_many, nested, where)
@@ -489,4 +553,5 @@ Yerba::Record::Collection::Source  # One document, or a nested sequence in it, c
 Yerba::Record::ReferencesProxy     # Resolved cross-file references
 Yerba::Record::LazyIndex           # value -> position index, resolves records on access
 Yerba::Record::PathPattern         # A model's path with named segments, like data/:series_id/:id/event.yml
+Yerba::Record::Files              # The files of a has_files directory or wildcard
 ```

@@ -14,6 +14,9 @@ module Static
     has_many :talks, nested: true
     has_many :alternative_recordings, nested: true, class_name: "Static::Talk::AlternativeRecording"
 
+    has_file :thumbnail, "app/assets/images/thumbnails/:event_id/**/:video_id.webp"
+    has_files :child_thumbnails, "app/assets/images/thumbnails/:event_id/:id"
+
     scope :top_level, -> { where.missing(:parent) }
     scope :youtube, -> { where(video_provider: "youtube") }
     scope :youtube_missing_published_at, -> { youtube.where(published_at: [nil, "", "TODO"]) }

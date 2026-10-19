@@ -14,6 +14,8 @@ module Yerba
         def path=(value)
           @path = value&.to_s
           @path_pattern = nil
+
+          define_path_segment_accessors
         end
 
         def path_pattern
@@ -148,6 +150,13 @@ module Yerba
         end
 
         private
+
+        def define_path_segment_accessors
+          (path_pattern&.names.to_a - [:id]).each do |name|
+            define_method(name) { path_changes.fetch(name) { path_params[name] } } unless method_defined?(name)
+            define_method(:"#{name}=") { |value| path_changes[name] = value.to_s } unless method_defined?(:"#{name}=")
+          end
+        end
 
         def default_sources
           if glob
