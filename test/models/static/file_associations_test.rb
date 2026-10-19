@@ -15,7 +15,7 @@ class Static::FileAssociationsTest < ActiveSupport::TestCase
   test "has_files with a wildcard lists the matching files" do
     with_event do |_root, event|
       assert_equal %w[stamp-1.webp stamp-2.webp], event.stamps.map { |file| file.basename.to_s }
-      assert_equal %w[sticker.webp], event.stickers.map { |file| file.basename.to_s }
+      assert_equal %w[sticker], event.stickers.map(&:basename)
       assert_equal 2, event.stamps.count
     end
   end

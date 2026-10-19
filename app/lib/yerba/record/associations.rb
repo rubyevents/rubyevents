@@ -101,7 +101,11 @@ module Yerba
           else
             define_method(name) do
               klass = class_name.is_a?(String) ? class_name.constantize : class_name
-              path = klass.path_for(association_path_params(klass, name), root: path_root)
+              params = association_path_params(klass, name)
+
+              next klass.matching(params, root: path_root) if klass <= FileRecord
+
+              path = klass.path_for(params, root: path_root)
 
               path ? klass.in_file(path) : Collection.new(record_class: klass, records: [])
             end

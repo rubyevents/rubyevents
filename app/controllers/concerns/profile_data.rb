@@ -17,7 +17,7 @@ module ProfileData
     @talks = @user.kept_talks
     @events = @user.participated_events
     @stamps = Stamp.for_user(@user)
-    @stickers = Sticker.for_user(@user)
+    @stickers = Static::Sticker.for_user(@user)
     @involvements_by_role = @user.event_involvements.group_by(&:role).transform_values(&:any?)
     @countries_with_events = @user.all_attended_events.exists? ? [true] : []
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)

@@ -13,7 +13,8 @@ module StaticDataSandbox
       Static::Venue,
       Static::Involvement,
       Static::CFP,
-      Static::Sponsor
+      Static::Sponsor,
+      Static::Sticker
     ]
   end
 

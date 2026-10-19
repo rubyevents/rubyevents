@@ -175,7 +175,7 @@ class Profiles::WrappedController < ApplicationController
     end
 
     @stamps_earned = (@country_stamps + @event_stamps + @achievement_stamps).uniq(&:code)
-    @stickers_earned = @events_attended_in_year.flat_map { |event| Sticker.for_event(event) }.uniq(&:code)
+    @stickers_earned = @events_attended_in_year.flat_map(&:stickers).uniq(&:code)
 
     @event_map_markers = event_map_markers(@events_attended_in_year)
 

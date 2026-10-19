@@ -418,7 +418,6 @@ class Static::Event < Yerba::Record::Base
 
   has_files :images, "app/assets/images/events/:series_id/:id"
   has_files :thumbnails, "app/assets/images/thumbnails/:id", recursive: true
-  has_files :stickers, "app/assets/images/events/:series_id/:id/sticker*.webp"
   has_files :stamps, "app/assets/images/events/:series_id/:id/stamp*.webp"
 
   has_file :avatar, "app/assets/images/events/:series_id/:id/avatar.webp"
@@ -451,6 +450,33 @@ event.images.path              # => the directory, whether it exists or not
 ```
 
 Saving a talk with a changed `video_id` renames its thumbnail, and a changed `id` renames the directory with the thumbnails of its child talks, the same way renaming an event moves its images.
+
+### File records
+
+A model backed by files instead of YAML, like stickers, inherits from `Yerba::Record::FileRecord`. Each file matching its path is a record, and the segments of the path are its attributes:
+
+```ruby
+class Static::Sticker < Yerba::Record::FileRecord
+  self.path = "app/assets/images/events/:series_id/:event_id/sticker*.webp"
+
+  belongs_to :event
+end
+
+class Static::Event < Yerba::Record::Base
+  has_many :stickers, class_name: "Static::Sticker"
+end
+```
+
+```ruby
+Static::Sticker.all
+Static::Sticker.where(event_id: "rubyconf-2024")
+event.stickers                 # the files matching the event's path params
+sticker.event                  # the Static::Event in the same folder
+sticker.event_id               # => "rubyconf-2024"
+sticker.path                   # => Pathname
+sticker.event_id = "rubyconf-2025"
+sticker.save!                  # moves the file
+```
 
 ### `references` (cross-file foreign keys)
 
@@ -554,4 +580,5 @@ Yerba::Record::ReferencesProxy     # Resolved cross-file references
 Yerba::Record::LazyIndex           # value -> position index, resolves records on access
 Yerba::Record::PathPattern         # A model's path with named segments, like data/:series_id/:id/event.yml
 Yerba::Record::Files              # The files of a has_files directory or wildcard
+Yerba::Record::FileRecord         # A record backed by a file, with its path segments as attributes
 ```
