@@ -34,7 +34,7 @@
       <% end %>
     <% end %>
 
-    <% if talk.video_provider.in?(Talk::WATCHABLE_PROVIDERS) %>
+    <% if talk.watchable_online? %>
       <%= ui_tooltip watched_online ? "Remove watched online status" : "Mark as watched online" do %>
         <%= button_to toggle_online_talk_watched_talk_path(talk),
               method: :post,

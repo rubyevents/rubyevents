@@ -34,7 +34,7 @@
               <div class="mb-1 text-3xl font-bold text-primary"><%= duration %></div>
               <div class="text-sm font-medium text-gray-600"><%= "Day".pluralize(duration) %></div>
             <% else %>
-              <div class="mb-1 text-3xl font-bold text-primary"><%= @event.talks.count %></div>
+              <div class="mb-1 text-3xl font-bold text-primary"><%= @event.public_talks_count %></div>
               <div class="text-sm font-medium text-gray-600">Talks</div>
             <% end %>
           </div>
