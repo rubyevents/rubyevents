@@ -60,6 +60,9 @@ Rails.application.routes.draw do
 
   resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
+  resources :requested_talk_topics do
+    resource :vote, only: [:create], controller: :requested_talk_topic_votes
+  end
 
   resources :continents, param: :continent, only: [:index, :show] do
     scope module: :locations do
