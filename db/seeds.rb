@@ -1,16 +1,16 @@
-Search::Backend.without_indexing do
-  Static::City.import_all!
-  Static::Speaker.import_all!
-  Static::EventSeries.import_all_series!
-  Static::Event.import_recent!
-  Static::Event.import_meetups!
-  Static::Topic.import_all!
-
-  User.order(Arel.sql("RANDOM()")).limit(5).each do |user|
-    user.watched_talk_seeder.seed_development_data
-  end
-
-  Rake::Task["backfill:speaker_participation"].invoke
+result = Search::Backend.without_indexing do
+  Static::DataImporter.seed_changed!(force: ENV["FORCE_SEED"].present?)
 end
 
-Search::Backend.reindex_all
+if result[:imported].positive?
+  Rake::Task["backfill:speaker_participation"].invoke
+  Rake::Task["backfill:event_involvements"].invoke
+
+  if Rails.env.development?
+    User.order(Arel.sql("RANDOM()")).limit(5).each do |user|
+      user.watched_talk_seeder.seed_development_data
+    end
+  end
+
+  Search::Backend.reindex_all
+end
