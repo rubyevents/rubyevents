@@ -1,6 +1,5 @@
 require "test_helper"
 require "generators/talk/talk_generator"
-require "#{Rails.root}/app/schemas/video_schema"
 
 class TalkGeneratorTest < Rails::Generators::TestCase
   tests TalkGenerator

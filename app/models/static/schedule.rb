@@ -4,7 +4,42 @@ module Static
   class Schedule < Yerba::Record::Base
     self.path = "data/:series_id/:event_id/schedule.yml"
 
-    schema ScheduleSchema
+    schema do
+      array :days, description: "List of conference days" do
+        object do
+          string :name, description: "Name of the day (e.g., 'Day 1', 'Workshop Day')"
+          string :date, description: "Date of the day (YYYY-MM-DD format)"
+
+          array :grid, description: "Time slots for the day", required: false do
+            object do
+              string :start_time, description: "Start time (HH:MM format)"
+              string :end_time, description: "End time (HH:MM format)"
+              integer :slots, description: "Number of parallel tracks/slots"
+              string :description, description: "Description of the time slot", required: false
+
+              array :items, description: "Items in this time slot", required: false do
+                any_of do
+                  string description: "Simple item name (e.g., 'Lunch', 'Break')"
+
+                  object do
+                    string :title, description: "Title of the session"
+                    string :description, description: "Description of the session"
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+
+      array :tracks, description: "Track definitions for the schedule", required: false do
+        object do
+          string :name, description: "Track name"
+          string :color, description: "Track color (hex)", required: false
+          string :text_color, description: "Text color for the track (hex)", required: false
+        end
+      end
+    end
 
     belongs_to :event
     has_one :series, through: :event

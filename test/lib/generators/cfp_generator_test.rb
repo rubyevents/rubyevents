@@ -1,6 +1,5 @@
 require "test_helper"
 require "generators/cfp/cfp_generator"
-require "#{Rails.root}/app/schemas/cfp_schema"
 
 class CFPGeneratorTest < Rails::Generators::TestCase
   tests CfpGenerator

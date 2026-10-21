@@ -1,8 +1,21 @@
 # frozen_string_literal: true
 
 class ApplicationSchema < Schematist::Schema
+  class << self
+    attr_accessor :record_class
+  end
+
+  def self.to_s
+    name || super
+  end
+
+  def self.inspect
+    name || super
+  end
+
   def self.schemas
     Rails.autoloaders.main.eager_load_dir(Rails.root.join("app/schemas"))
+    Rails.autoloaders.main.eager_load_namespace(Static)
 
     registry.sort_by(&:name)
   end
@@ -24,11 +37,13 @@ class ApplicationSchema < Schematist::Schema
       @data_file_selector = selector
     end
 
-    @data_file
+    @data_file || ("**/#{record_class.path_pattern.glob}" if record_class&.path && !record_class.scalar_field)
   end
 
   def self.data_file_selector
-    @data_file_selector
+    return @data_file_selector if @data_file
+
+    "[]" if record_class&.source_mode == :items
   end
 
   def self.matches?(file_path)
@@ -39,8 +54,12 @@ class ApplicationSchema < Schematist::Schema
     new.to_json_schema.as_json
   end
 
+  def self.exported_json
+    "#{JSON.pretty_generate(json_schema)}\n"
+  end
+
   def self.export!
-    export_path.write(JSON.pretty_generate(json_schema))
+    export_path.write(exported_json)
 
     export_path
   end
@@ -50,6 +69,6 @@ class ApplicationSchema < Schematist::Schema
   end
 
   def self.in_sync?
-    export_path.exist? && export_path.read == JSON.pretty_generate(json_schema)
+    export_path.exist? && export_path.read == exported_json
   end
 end

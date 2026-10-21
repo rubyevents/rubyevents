@@ -9,22 +9,22 @@ class TalkGenerator < Generators::EventBase
 
   class_option :id, type: :string, desc: "ID of an existing talk to update. New talks always get a generated id, so omit this to append one.", required: false, group: "Fields"
   # New talks released
-  class_option :title, type: :string, desc: VideoSchema.properties[:title][:description], group: "Fields"
+  class_option :title, type: :string, desc: Static::Talk.schema.properties[:title][:description], group: "Fields"
   class_option :speakers, type: :array, desc: "Speaker names", group: "Fields"
-  class_option :description, type: :string, desc: VideoSchema.properties[:description][:description], group: "Fields"
+  class_option :description, type: :string, desc: Static::Talk.schema.properties[:description][:description], group: "Fields"
   class_option :kind, type: :string, enum: Talk.kinds.keys, desc: "Type of talk (#{Talk.kinds.keys.to_sentence(last_word_connector: " or ")}). Inferred from the title when omitted.", group: "Fields"
-  class_option :announced_at, type: :string, desc: VideoSchema.properties[:announced_at][:description], required: false, group: "Fields"
+  class_option :announced_at, type: :string, desc: Static::Talk.schema.properties[:announced_at][:description], required: false, group: "Fields"
 
   # Language talks
-  class_option :language, type: :string, desc: VideoSchema.properties[:language][:description], group: "Fields"
-  class_option :original_title, type: :string, desc: VideoSchema.properties[:original_title][:description], required: false, group: "Fields"
+  class_option :language, type: :string, desc: Static::Talk.schema.properties[:language][:description], group: "Fields"
+  class_option :original_title, type: :string, desc: Static::Talk.schema.properties[:original_title][:description], required: false, group: "Fields"
 
   # Scheduling
-  class_option :date, type: :string, desc: VideoSchema.properties[:date][:description], required: false, group: "Fields"
-  class_option :start_time, type: :string, desc: VideoSchema.properties[:start_time][:description], required: false, group: "Fields"
-  class_option :end_time, type: :string, desc: VideoSchema.properties[:end_time][:description], required: false, group: "Fields"
-  class_option :track, type: :string, desc: VideoSchema.properties[:track][:description], required: false, group: "Fields"
-  class_option :slides_url, type: :string, desc: VideoSchema.properties[:slides_url][:description], required: false, group: "Fields"
+  class_option :date, type: :string, desc: Static::Talk.schema.properties[:date][:description], required: false, group: "Fields"
+  class_option :start_time, type: :string, desc: Static::Talk.schema.properties[:start_time][:description], required: false, group: "Fields"
+  class_option :end_time, type: :string, desc: Static::Talk.schema.properties[:end_time][:description], required: false, group: "Fields"
+  class_option :track, type: :string, desc: Static::Talk.schema.properties[:track][:description], required: false, group: "Fields"
+  class_option :slides_url, type: :string, desc: Static::Talk.schema.properties[:slides_url][:description], required: false, group: "Fields"
 
   # Options
   class_option :lightning_talks, type: :boolean, default: false, desc: "Add empty group of lightning talks", group: "Options"
@@ -89,7 +89,7 @@ class TalkGenerator < Generators::EventBase
   end
 
   def initialize_values
-    @attributes = options.slice(*VideoSchema.properties.keys.map(&:to_s)).compact
+    @attributes = options.slice(*Static::Talk.schema.properties.keys.map(&:to_s)).compact
 
     attrs = @attributes.merge({
       event: static_event,

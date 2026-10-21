@@ -52,7 +52,7 @@ You can create a venue file when the event is created by passing venue-name or v
 bin/rails g event --event-series tropicalrb --event tropical-on-rails-2027 --title "Tropical on Rails 2027" --venue-name "" --venue-address "R. Olimpíadas, 205 - Vila Olímpia, São Paulo - SP, 04551-000"
 ```
 
-The full schema for an event is available in [EventSchema](app/schemas/event_schema.rb).
+The full schema for an event is available in [`Static::Event`](app/models/static/event.rb).
 
 Check the usage instructions using `--help`.
 

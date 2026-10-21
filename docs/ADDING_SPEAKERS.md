@@ -17,7 +17,7 @@ Speakers are stored in a single global file:
 data/speakers.yml
 ```
 
-All permitted fields are defined in [SpeakerSchema.](/app/schemas/speaker_schema.rb)
+All permitted fields are defined in [`Static::Speaker`.](/app/models/static/speaker.rb)
 
 ### Fields
 

@@ -18,7 +18,7 @@ For example:
 - [`data/rubyconf/rubyconf-2024/involvements.yml`](/data/rubyconf/rubyconf-2024/involvements.yml)
 - [`data/rubyconfth/rubyconfth-2026/involvements.yml`](/data/rubyconfth/rubyconfth-2026/involvements.yml)
 
-All permitted fields are defined in [InvolvementSchema.](/app/schemas/involvement_schema.rb)
+All permitted fields are defined in [`Static::Involvement`.](/app/models/static/involvement.rb)
 
 ## Common Roles
 

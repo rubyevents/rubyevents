@@ -21,7 +21,7 @@ For example:
 - [`data/railsconf/railsconf-2025/venue.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/railsconf/railsconf-2025/venue.yml)
 - [`data/xoruby/xoruby-atlanta-2025/venue.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/xoruby/xoruby-atlanta-2025/venue.yml)
 
-All permitted fields are defined in [VenueSchema.](/app/schemas/venue_schema.rb)
+All permitted fields are defined in [`Static::Venue`.](/app/models/static/venue.rb)
 
 ## Generation
 

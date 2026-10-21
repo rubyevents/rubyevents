@@ -134,13 +134,13 @@ rules:
   - files: "data/featured_cities.yml"
     pipeline:
       - schema:
-          file: "lib/schemas/featured_city_schema.json"
+          file: "lib/schemas/city_schema.json"
           selector: "[]"
 
   - files: "data/**/sponsors.yml"
     pipeline:
       - schema:
-          file: "lib/schemas/sponsors_schema.json"
+          file: "lib/schemas/sponsor_schema.json"
           selector: "[]"
 
       - blank_lines:
@@ -176,7 +176,7 @@ rules:
   - files: "data/**/series.yml"
     pipeline:
       - schema:
-          file: "lib/schemas/series_schema.json"
+          file: "lib/schemas/event_series_schema.json"
 
       - quote_style:
           selector: "aliases[]"
@@ -225,7 +225,7 @@ rules:
           style: indented
 
       - schema:
-          file: "lib/schemas/video_schema.json"
+          file: "lib/schemas/talk_schema.json"
           selector: "[]"
 
       - quote_style:
