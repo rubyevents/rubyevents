@@ -44,6 +44,10 @@ module Static
         nil
     end
 
+    def self.canonical_name(reference)
+      find_by(name: reference.to_s)&.name || reference.to_s.strip
+    end
+
     def self.find_by_name_ignoring_case(name)
       return nil if name.blank?
 
@@ -66,16 +70,17 @@ module Static
       }[handle.to_s.strip.downcase]
     end
 
-    def self.add(name:, github: "", slug: nil, **attributes)
+    def self.add(name:, github: "", **attributes)
       name = name.to_s.strip
       github = github.to_s.strip
-      slug = slug&.strip
+      slug = name.parameterize
 
       raise InvalidSpeakerError, "Speaker name cannot be blank" if name.blank?
+      raise InvalidSpeakerError, "Speaker name '#{name}' cannot be turned into a slug. Use a romanized name, or the GitHub handle if there is none, as the name and add '#{name}' as an alias." if slug.empty?
       raise DuplicateSpeakerError, "Speaker '#{name}' already exists" if known_reference?(name)
       raise DuplicateSpeakerError, "A speaker with GitHub handle '#{github}' already exists" if github.present? && find_by_github_handle(github)
 
-      all.build({"name" => name, "github" => github, "slug" => slug || name.parameterize}.merge(clean_attributes(attributes)))
+      all.build({"name" => name, "github" => github, "slug" => slug}.merge(clean_attributes(attributes.except(:slug, "slug"))))
     end
 
     def self.upsert(name:, github: "", **attributes)

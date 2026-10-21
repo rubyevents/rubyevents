@@ -23,8 +23,8 @@ All permitted fields are defined in [SpeakerSchema.](/app/schemas/speaker_schema
 
 | Field | Required | Notes |
 |---|---|---|
-| `name` | Yes | Full name of the speaker |
-| `slug` | Yes | URL-friendly slug, must be unique |
+| `name` | Yes | Full name of the speaker. Must contain Latin characters so a slug can be generated: for names only written in kanji or kana, use the romanized name, or the GitHub handle if there is none, and add the original name to `aliases` |
+| `slug` | Yes | The name parameterized (generated automatically for new speakers), must be unique |
 | `github` | Yes | GitHub **username only**, not a URL (e.g. `"tenderlove"`, not `"https://github.com/tenderlove"`) |
 | `github_handles` | No | Additional or previous GitHub usernames of the same person, besides the primary one in `github` |
 | `twitter` | No | Twitter/X handle, no `@`, not a URL |

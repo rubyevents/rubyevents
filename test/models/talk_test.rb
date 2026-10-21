@@ -132,6 +132,22 @@ class TalkTest < ActiveSupport::TestCase
     assert_equal "talk", @talk.kind
   end
 
+  test "update_from_yml_metadata resolves speakers referenced by an additional GitHub handle" do
+    @talk = talks(:one)
+    user = User.create!(name: "Yatish Mehta", github_handle: "yatish27")
+    metadata = @talk.static_metadata
+
+    metadata.stub(:speakers, ["yatish-asana"]) do
+      @talk.stub(:static_metadata, metadata) do
+        assert_no_difference -> { User.count } do
+          @talk.update_from_yml_metadata!
+        end
+      end
+    end
+
+    assert_equal [user], @talk.user_talks.map(&:user)
+  end
+
   test "update_from_yml_metadata sets the kind from the static metadata" do
     @talk = talks(:one)
     @talk.update!(kind: "keynote")

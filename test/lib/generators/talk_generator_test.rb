@@ -448,8 +448,7 @@ class TalkGeneratorTest < Rails::Generators::TestCase
       - name: Jane Doe
         slug: jane-doe
         aliases:
-          - name: JD
-            slug: jane-doe
+          - JD
     YAML
 
     run_generator ["--event-series", "rubyconf", "--event", "2042", "--title", "Keynote by JD", "--speakers", "JD"]

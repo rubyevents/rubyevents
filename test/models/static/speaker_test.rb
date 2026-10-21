@@ -29,12 +29,15 @@ class Static::SpeakerTest < ActiveSupport::TestCase
   end
 
   test "import! creates redirect aliases for slugs" do
-    speaker = Static::Speaker.find_by(name: "Kakutani Shintaro")
-    assert_includes Array(speaker["slugs"]), "shintaro-kakutani"
+    Static::Speaker.find_by(name: "Aaron Patterson").add_slug("aaron-patterson-old")
+    Static::Speaker.save!
+
+    speaker = Static::Speaker.find_by(name: "Aaron Patterson")
+    assert_includes speaker.redirect_slugs, "aaron-patterson-old"
 
     user = speaker.import!(index: false) || User.find_by(slug: speaker.slug)
 
-    assert_equal user, User.find_by_slug_or_alias("shintaro-kakutani")
+    assert_equal user, User.find_by_slug_or_alias("aaron-patterson-old")
     assert_equal user, User.find_by_slug_or_alias(speaker.slug)
   end
 
@@ -46,6 +49,13 @@ class Static::SpeakerTest < ActiveSupport::TestCase
   test "known_reference? ignores case and surrounding whitespace" do
     assert Static::Speaker.known_reference?("aaron patterson")
     assert Static::Speaker.known_reference?(" Aaron Patterson ")
+  end
+
+  test "canonical_name resolves aliases, casing, and GitHub handles to the speaker name" do
+    assert_equal "Yatish Mehta", Static::Speaker.canonical_name("yatish-asana")
+    assert_equal "Aaron Patterson", Static::Speaker.canonical_name(" aaron patterson ")
+    assert_equal "Aaron Patterson", Static::Speaker.canonical_name("tenderlove")
+    assert_equal "Nobody Known", Static::Speaker.canonical_name(" Nobody Known ")
   end
 
   test "find_by name falls back to additional GitHub handles" do

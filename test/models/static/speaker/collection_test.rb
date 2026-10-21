@@ -60,7 +60,7 @@ class Static::Speaker::CollectionTest < ActiveSupport::TestCase
     assert_equal 1, speakers.count
     assert_equal({"matz" => 0}, speakers.index_on(:slug).positions)
 
-    speakers.add(name: "Aaron Patterson", github: "tenderlove", slug: "aaron-patterson")
+    speakers.add(name: "Aaron Patterson", github: "tenderlove")
     speakers.save!
 
     assert_equal 2, speakers.count

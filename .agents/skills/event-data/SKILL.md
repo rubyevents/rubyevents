@@ -144,10 +144,10 @@ Other fields are permitted, but these are the fields I want you to focus on.
 The GitHub handle is how we deduplicate speakers, and populate their profile, so the key should always be present.
 These speakers are used for talks and involvements, so if a speaker is missing, you need to create a new record for them here.
 
-**Slug convention:**
-1. Prefer the speaker's parameterized name as the slug (e.g., `slug: "chris-hasinski"` for `name: "Chris Hasiński"`).
-2. If the name cannot be parameterized cleanly, use the speaker's GitHub handle as the slug (most common with Japanese names, eg. "河野十行", slug: "jugyo").
-3. Only transliterate when the speaker has no GitHub handle.
+**Name and slug convention:**
+1. The slug is always the speaker's name parameterized (e.g., `slug: "chris-hasinski"` for `name: "Chris Hasiński"`). New speakers get it generated automatically.
+2. The name must be parameterizable, so it can't be written only in kanji or kana. For a name like "河野十行", use their romanized name as the name if one is known, otherwise the GitHub handle ("jugyo"), and add "河野十行" to `aliases`.
+3. Only transliterate yourself when the speaker has no GitHub handle and no romanized name is available.
 
 If the GitHub is unknown:
 

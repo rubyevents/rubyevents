@@ -33,13 +33,6 @@ class SpeakerCreateToolTest < ActiveSupport::TestCase
     assert_equal "sandi-metz", speaker["slug"]
   end
 
-  test "creates a speaker with custom slug" do
-    @tool.execute(name: "Sandi Metz", github: "sandimetz", slug: "sandi")
-
-    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Sandi Metz")
-    assert_equal "sandi", speaker["slug"]
-  end
-
   test "creates a speaker with optional social fields" do
     @tool.execute(name: "Sandi Metz", github: "sandimetz", twitter: "sandimetz", website: "https://sandimetz.com")
 
@@ -63,9 +56,27 @@ class SpeakerCreateToolTest < ActiveSupport::TestCase
   end
 
   test "returns error if slug already taken" do
-    result = @tool.execute(name: "New Person", slug: "matz")
+    result = @tool.execute(name: "Aaron-Patterson")
 
-    assert_equal "A speaker with slug 'matz' already exists in speakers.yml", result[:error]
+    assert_equal "A speaker with slug 'aaron-patterson' already exists in speakers.yml", result[:error]
+    assert_equal 2, Static::Speaker.in_file(@tmp_file.path).count
+  end
+
+  test "uses the GitHub handle as name and the name as alias when the name cannot be parameterized" do
+    result = @tool.execute(name: "あのぶる", github: "thatblue")
+
+    assert result[:success]
+    assert_equal "thatblue", result[:slug]
+
+    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "thatblue")
+    assert_equal "thatblue", speaker["github"]
+    assert_equal ["あのぶる"], speaker.alias_names
+  end
+
+  test "returns error when the name cannot be parameterized and there is no GitHub handle" do
+    result = @tool.execute(name: "しぶやあや")
+
+    assert_match(/cannot be turned into a slug/, result[:error])
     assert_equal 2, Static::Speaker.in_file(@tmp_file.path).count
   end
 

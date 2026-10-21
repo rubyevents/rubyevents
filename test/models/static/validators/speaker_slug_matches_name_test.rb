@@ -73,7 +73,7 @@ class Static::Validators::SpeakerSlugMatchesNameTest < ActiveSupport::TestCase
     end
   end
 
-  test "no errors when name cannot be parameterized and slug matches github handle" do
+  test "errors when name cannot be parameterized, suggesting a romanized name or the GitHub handle" do
     yaml = <<~YAML
       ---
       - name: まつもとゆきひろ
@@ -81,37 +81,26 @@ class Static::Validators::SpeakerSlugMatchesNameTest < ActiveSupport::TestCase
         slug: matz
     YAML
     with_temp_speakers_yaml(yaml) do |path|
-      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
-      assert_empty validator.errors
-    end
-  end
-
-  test "errors for github handle slug when name cannot be parameterized" do
-    yaml = <<~YAML
-      ---
-      - name: まつもとゆきひろ
-        github: matz
-        slug: ruby
-    YAML
-    with_temp_speakers_yaml(yaml) do |path|
-      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
-      errors = validator.errors
+      errors = Static::Validators::SpeakerSlugMatchesName.new(file_path: path).errors
       error = errors.first.to_h
-      assert_equal "Name cannot be parameterized. Slug must be the GitHub handle, expected: matz.", error["message"]
-      assert_equal 4, error["line"], "Line number #{error["line"]} does not match line number 4."
-      assert_equal 4, error["end_line"], "End line number #{error["end_line"]} does not match line number 4."
+
+      assert_equal 1, errors.size
+      assert_equal %(Name "まつもとゆきひろ" cannot be parameterized into a stable slug. Use a romanized name, or the GitHub handle "matz" if none is known, as the name and add "まつもとゆきひろ" to aliases.), error["message"]
+      assert_equal 4, error["line"]
     end
   end
 
-  test "no errors for any slug when name cannot be parameterized and no github handle" do
+  test "errors when name cannot be parameterized and there is no GitHub handle, suggesting a romanized name" do
     yaml = <<~YAML
       ---
-      - name: まつもとゆきひろ
-        slug: yukihiro-matsumoto
+      - name: しぶやあや
+        github: ""
+        slug: shibuya-aya
     YAML
     with_temp_speakers_yaml(yaml) do |path|
-      validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
-      assert_empty validator.errors
+      errors = Static::Validators::SpeakerSlugMatchesName.new(file_path: path).errors
+
+      assert_equal [%(Name "しぶやあや" cannot be parameterized into a stable slug. Use a romanized name as the name and add "しぶやあや" to aliases.)], errors.map { |e| e.to_h["message"] }
     end
   end
 
@@ -124,6 +113,72 @@ class Static::Validators::SpeakerSlugMatchesNameTest < ActiveSupport::TestCase
     with_temp_speakers_yaml(yaml) do |path|
       validator = Static::Validators::SpeakerSlugMatchesName.new(file_path: path)
       assert validator.errors.all? { |e| e.is_a?(Static::Validators::Error) }
+    end
+  end
+
+  test "fix uses the GitHub handle as the name and keeps the old name as an alias" do
+    yaml = <<~YAML
+      ---
+      - name: "まつもとゆきひろ"
+        github: "matz"
+        slug: "matz"
+    YAML
+    with_temp_speakers_yaml(yaml) do |path|
+      result = Static::Validators::SpeakerSlugMatchesName.new(file_path: path).fix
+      speaker = Yerba.parse_file(path).root.first
+
+      assert_equal({changed: 1, file_path: path}, result)
+      assert_equal "matz", speaker["name"].value
+      assert_equal "matz", speaker["slug"].value
+      assert_equal ["まつもとゆきひろ"], speaker["aliases"].map(&:value)
+      assert_not_includes speaker.keys, "slugs"
+      assert_empty Static::Validators::SpeakerSlugMatchesName.new(file_path: path).errors
+    end
+  end
+
+  test "fix regenerates a mismatched slug and keeps the old one as a redirect" do
+    yaml = <<~YAML
+      ---
+      - name: "Rachael Wright-Munn"
+        github: "chaelcodes"
+        slug: "rachael-munn"
+    YAML
+    with_temp_speakers_yaml(yaml) do |path|
+      Static::Validators::SpeakerSlugMatchesName.new(file_path: path).fix
+      speaker = Yerba.parse_file(path).root.first
+
+      assert_equal "rachael-wright-munn", speaker["slug"].value
+      assert_equal ["rachael-munn"], speaker["slugs"].map(&:value)
+    end
+  end
+
+  test "fix doesn't keep a slug equal to the GitHub handle as a redirect" do
+    yaml = <<~YAML
+      ---
+      - name: "Rachael Wright-Munn"
+        github: "chaelcodes"
+        slug: "chaelcodes"
+    YAML
+    with_temp_speakers_yaml(yaml) do |path|
+      Static::Validators::SpeakerSlugMatchesName.new(file_path: path).fix
+      speaker = Yerba.parse_file(path).root.first
+
+      assert_equal "rachael-wright-munn", speaker["slug"].value
+      assert_not_includes speaker.keys, "slugs"
+    end
+  end
+
+  test "fix leaves names without a GitHub handle for a human to romanize" do
+    yaml = <<~YAML
+      ---
+      - name: "しぶやあや"
+        github: ""
+        slug: "shibuya-aya"
+    YAML
+    with_temp_speakers_yaml(yaml) do |path|
+      assert_no_changes -> { File.read(path) } do
+        assert_nil Static::Validators::SpeakerSlugMatchesName.new(file_path: path).fix
+      end
     end
   end
 

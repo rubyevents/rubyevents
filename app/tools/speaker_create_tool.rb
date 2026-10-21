@@ -13,9 +13,8 @@ class SpeakerCreateTool < RubyLLM::Tool
   parameter :mastodon, description: "Full Mastodon profile URL (e.g. https://ruby.social/@username)", required: false
   parameter :bluesky, description: "Bluesky handle (not a URL)", required: false
   parameter :speakerdeck, description: "Speakerdeck username (not a URL)", required: false
-  parameter :slug, description: "URL-friendly slug (auto-generated from name if not provided)", required: false
 
-  def execute(name: nil, slug: nil, github: nil, **fields)
+  def execute(name: nil, github: nil, **fields)
     return {error: "Provide at least a name or a github handle"} if name.blank? && github.blank?
 
     if name.blank? && github.present?
@@ -25,11 +24,20 @@ class SpeakerCreateTool < RubyLLM::Tool
       name = profile["name"].presence || github
     end
 
+    aliases = []
+
+    if name.parameterize.empty?
+      return {error: "Speaker name '#{name}' cannot be turned into a slug. Provide a romanized name, or a GitHub handle to use as the name."} if github.blank?
+
+      aliases << name
+      name = github
+    end
+
     if speakers.find_by(name: name)
       return {error: "Speaker '#{name}' already exists in speakers.yml"}
     end
 
-    slug = (slug || name.parameterize).to_s
+    slug = name.parameterize
 
     if speakers.find_by(slug: slug)
       return {error: "A speaker with slug '#{slug}' already exists in speakers.yml"}
@@ -50,7 +58,8 @@ class SpeakerCreateTool < RubyLLM::Tool
     end
 
     attributes = fields.reject { |_, v| v.nil? }
-    speakers.add(name: name, github: github.to_s, slug: slug, **attributes)
+    speakers.add(name: name, github: github.to_s, **attributes)
+    aliases.each { |alias_name| speakers.find_by(name: name).add_alias(name: alias_name) }
     speakers.save!
 
     check_speakers_file({
@@ -58,6 +67,7 @@ class SpeakerCreateTool < RubyLLM::Tool
       speaker: name,
       slug: slug,
       github: github.to_s,
+      aliases: aliases.presence,
       file: speakers.relative_path
     })
   rescue => e

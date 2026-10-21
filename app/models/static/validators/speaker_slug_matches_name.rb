@@ -38,6 +38,51 @@ module Static
         errors
       end
 
+      def fix
+        return unless applicable?
+
+        @document ||= Yerba.parse_file(@file_path)
+        changed = 0
+
+        @document.root.each do |speaker|
+          name = speaker["name"].value.to_s
+          github = speaker["github"]&.value.to_s
+          slug = speaker["slug"]&.value.to_s
+          renamed = false
+
+          if name.parameterize.empty?
+            next if github.blank? || github.parameterize.empty?
+
+            aliases = speaker["aliases"]&.map(&:value) || []
+            speaker["name"] = github
+            speaker["aliases"] = [name, *aliases].uniq
+            name = github
+            renamed = true
+          end
+
+          expected_slug = name.parameterize
+
+          if slug == expected_slug
+            changed += 1 if renamed
+            next
+          end
+
+          if slug.present? && slug != expected_slug
+            redirect_slugs = speaker["slugs"]&.map(&:value) || []
+            speaker["slugs"] = (redirect_slugs + [slug]).uniq unless github.present? && slug.casecmp?(github)
+          end
+
+          speaker["slug"] = expected_slug
+          changed += 1
+        end
+
+        return if changed.zero?
+
+        @document.save!(apply: true)
+
+        {changed: changed, file_path: @file_path}
+      end
+
       private
 
       def find_errors_for_name_slug_pairs(name_slug_pairs, &block)
@@ -48,11 +93,10 @@ module Static
           entry = block.call(name)
 
           if expected_slug.empty?
-            next if github.blank?
-            expected_slug = github.to_s.parameterize
-            next if slug == expected_slug
+            suggestion = github.present? ? %(a romanized name, or the GitHub handle "#{github}" if none is known,) : "a romanized name"
+
             Static::Validators::Error.new(
-              "Name cannot be parameterized. Slug must be the GitHub handle, expected: #{expected_slug}.",
+              %(Name "#{name}" cannot be parameterized into a stable slug. Use #{suggestion} as the name and add "#{name}" to aliases.),
               file_path: @file_path,
               line: entry&.location&.start_line || 1,
               end_line: entry&.location&.end_line

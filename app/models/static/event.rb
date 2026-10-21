@@ -464,11 +464,12 @@ module Static
         Array.wrap(involvement_data["users"]).each_with_index do |user_name, index|
           next if user_name.blank?
 
-          user = ::User.find_by_name_or_alias(user_name)
+          name = Static::Speaker.canonical_name(user_name)
+          user = ::User.find_by_name_or_alias(name) || ::User.find_by_name_or_alias(user_name)
 
           unless user
-            puts "Creating user: #{user_name}" unless Rails.env.test?
-            user = ::User.create!(name: user_name)
+            puts "Creating user: #{name}" unless Rails.env.test?
+            user = ::User.create!(name: name)
           end
 
           attributes_index = event_involvements_attributes.index do |attrs|

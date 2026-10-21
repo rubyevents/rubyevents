@@ -696,9 +696,12 @@ class Talk < ApplicationRecord
     end
 
     self.speakers = speaker_names.reject(&:blank?).map { |speaker_name|
-      User.find_by_name_or_alias(speaker_name.strip) ||
-        User.find_by(slug: speaker_name.parameterize) ||
-        User.find_or_create_by(name: speaker_name.strip)
+      name = Static::Speaker.canonical_name(speaker_name)
+
+      User.find_by_name_or_alias(name) ||
+        User.find_by_name_or_alias(speaker_name.strip) ||
+        User.find_by(slug: name.parameterize) ||
+        User.find_or_create_by(name: name)
     }
 
     new_slug = unused_slugs.first
