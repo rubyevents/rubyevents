@@ -22,16 +22,15 @@ class CfpGenerator < Generators::EventBase
   end
 
   def find_and_delete_existing_cfp
-    @existing_cfp = nil
-    document = Yerba.parse_file(@cfp_file)
-    document["[]"].each do |cfp_entry|
-      if cfp_entry["name"] == options[:name] || cfp_entry["link"] == options[:link]
-        say "CFP with name '#{cfp_entry["name"]}' and link '#{cfp_entry["link"]}' already exists in #{@cfp_file}. Modifying existing CFP.", :yellow
-        @existing_cfp = cfp_entry.to_h
-        cfp_entry.delete # Delete the existing CFP entry from the document
-      end
+    cfps = Static::CFP.in_file(@cfp_file)
+    existing = cfps.select { |cfp| cfp["name"] == options[:name] || cfp["link"] == options[:link] }
+
+    existing.each do |cfp|
+      say "CFP with name '#{cfp["name"]}' and link '#{cfp["link"]}' already exists in #{@cfp_file}. Modifying existing CFP.", :yellow
     end
-    document.save!(apply: true) if @existing_cfp
+
+    @existing_cfp = existing.last&.attributes
+    existing.reverse_each { |cfp| cfps.destroy(cfp) }
   end
 
   def create_cfp_record

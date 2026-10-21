@@ -48,7 +48,7 @@ class User::MergerTest < ActiveSupport::TestCase
   test "transfers event participations to user_to_keep" do
     series = EventSeries.create!(name: "Test Series", slug: "test-series-mus")
     event = Event.create!(name: "Test Event", slug: "test-event-mus", series: series, date: Date.today)
-    EventParticipation.create!(user: @user_to_merge, event: event, attended_as: :speaker)
+    EventParticipation.create!(user: @user_to_merge, event: event, role: :speaker)
 
     merge
     @user_to_keep.reload
@@ -256,13 +256,24 @@ class User::MergerTest < ActiveSupport::TestCase
   test "does not duplicate event participations already on user_to_keep" do
     series = EventSeries.create!(name: "Test Series", slug: "test-series-ep")
     event = Event.create!(name: "Test Event", slug: "test-event-ep", series: series, date: Date.today)
-    EventParticipation.create!(user: @user_to_keep, event: event, attended_as: :speaker)
-    EventParticipation.create!(user: @user_to_merge, event: event, attended_as: :speaker)
+    EventParticipation.create!(user: @user_to_keep, event: event, role: :speaker)
+    EventParticipation.create!(user: @user_to_merge, event: event, role: :speaker)
 
     merge
     @user_to_keep.reload
 
-    assert_equal 1, @user_to_keep.event_participations.where(event: event, attended_as: :speaker).count
+    assert_equal 1, @user_to_keep.event_participations.where(event: event, role: :speaker).count
+  end
+
+  test "drops interested participation when the merged user attended the same event" do
+    series = EventSeries.create!(name: "Test Series", slug: "test-series-interested")
+    event = Event.create!(name: "Test Event", slug: "test-event-interested", series: series, date: Date.today)
+    EventParticipation.create!(user: @user_to_keep, event: event, role: :interested)
+    EventParticipation.create!(user: @user_to_merge, event: event, role: :attendee)
+
+    merge
+
+    assert_equal ["attendee"], @user_to_keep.event_participations.where(event: event).pluck(:role)
   end
 
   test "does not duplicate favorite_users already on user_to_keep" do

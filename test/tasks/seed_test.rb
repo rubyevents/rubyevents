@@ -28,7 +28,7 @@ class SeedTest < ActiveSupport::TestCase
       # ensure that all talks have a date
       assert_equal Talk.where(date: nil).count, 0
 
-      static_video_ids = Static::Video.pluck(:video_id)
+      static_video_ids = Static::Talk.top_level.pluck(:video_id)
       talk_video_ids = Talk.all.pluck(:video_id)
       duplicate_ids = static_video_ids.tally.select { |_, count| count > 1 }
       assert User.speakers.count >= 3000
@@ -36,15 +36,15 @@ class SeedTest < ActiveSupport::TestCase
       assert_equal({}, duplicate_ids)
 
       not_created_videos_id = static_video_ids - talk_video_ids
-      events = Static::Video.where(video_id: not_created_videos_id).map(&:event_name)
+      events = Static::Talk.where(video_id: not_created_videos_id).map(&:event_name)
 
       events.tally.each do |event_name, missing_count|
-        all_talk_count = Static::Video.where(event_name: event_name).count
+        all_talk_count = Static::Talk.where(event_name: event_name).count
 
         puts "#{event_name} - All: #{all_talk_count}, missing: #{missing_count}"
 
         if missing_count != all_talk_count
-          Static::Video.where(event_name: event_name, video_id: not_created_videos_id).each do |missing_talk|
+          Static::Talk.where(event_name: event_name, video_id: not_created_videos_id).each do |missing_talk|
             puts "Missing talk for #{event_name}: #{missing_talk.raw_title}"
           end
           puts ""

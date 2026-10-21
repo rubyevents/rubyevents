@@ -16,7 +16,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -26,13 +26,13 @@ module Static
 
       def validate
         return [] unless applicable?
-
-        return [] if document["kind"] == "meetup"
+        return [] if event["kind"] == "meetup"
 
         errors = []
 
-        if document["start_date"].nil? || document["start_date"].to_s.strip.empty?
-          location = document["start_date"]&.location
+        if event["start_date"].to_s.strip.empty?
+          location = event.source_location("start_date")
+
           errors << Static::Validators::Error.new(
             "start_date is required for non-meetup events at /start_date",
             file_path: @file_path,
@@ -41,8 +41,9 @@ module Static
           )
         end
 
-        if document["end_date"].nil? || document["end_date"].to_s.strip.empty?
-          location = document["end_date"]&.location
+        if event["end_date"].to_s.strip.empty?
+          location = event.source_location("end_date")
+
           errors << Static::Validators::Error.new(
             "end_date is required for non-meetup events at /end_date",
             file_path: @file_path,
@@ -56,8 +57,8 @@ module Static
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def event
+        @event ||= Static::Event.in_file(@file_path.to_s, document: @document).first
       end
     end
   end

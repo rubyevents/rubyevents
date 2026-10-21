@@ -60,12 +60,10 @@ class ProfilesController < ApplicationController
     @talks = @user.kept_talks.includes(:speakers, event: :series, child_talks: :speakers).order(date: :desc)
     @talks_by_kind = @talks.group_by(&:kind)
     @topics = @user.topics.approved.tally.sort_by(&:last).reverse.map(&:first)
-    @events = @user.participated_events.includes(:series).in_order_of(:attended_as, EventParticipation.attended_as.keys)
-    @stickers = Sticker.for_user(@user, events: @events)
+    @events = @user.participated_events.includes(:series)
+    @stickers = Static::Sticker.for_user(@user)
 
-    event_participations = @user.event_participations.includes(:event).where(event: @events).in_order_of(:attended_as, EventParticipation.attended_as.keys)
-
-    @participations = event_participations.group_by(&:event_id).transform_values(&:first)
+    @participations = @user.event_participations.index_by(&:event_id)
     @checked_in_event_ids = @user.checked_in_event_ids
 
     checked_in_only_event_ids = @checked_in_event_ids - @events.map(&:id).to_set
@@ -75,8 +73,7 @@ class ProfilesController < ApplicationController
       @events = @events.to_a + checked_in_only_events.to_a
     end
 
-    country_scope = @events.is_a?(Array) ? Event.where(id: @events.map(&:id)) : @events
-    @countries_with_events = country_scope.grouped_by_country
+    @countries_with_events = @user.all_attended_events.grouped_by_country
 
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
@@ -94,7 +91,7 @@ class ProfilesController < ApplicationController
       end
     end
 
-    @stamps = Stamp.for_user(@user)
+    @stamps = Static::Stamp.for_user(@user)
     @aliases = Current.user&.admin? ? @user.aliases : []
 
     @back_path = speakers_path
@@ -175,7 +172,7 @@ class ProfilesController < ApplicationController
 
   def set_mutual_events
     @mutual_events = if Current.user
-      @user.participated_events.where(id: Current.user.participated_events).order(start_date: :desc)
+      @user.going_events.where(id: Current.user.going_events).order(start_date: :desc)
     else
       Event.none
     end

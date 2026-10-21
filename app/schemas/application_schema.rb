@@ -32,7 +32,7 @@ class ApplicationSchema < Schematist::Schema
   end
 
   def self.matches?(file_path)
-    data_file.present? && File.fnmatch?(data_file, file_path.to_s, File::FNM_PATHNAME)
+    data_file.present? && File.fnmatch?(data_file, file_path.to_s, File::FNM_PATHNAME | File::FNM_DOTMATCH)
   end
 
   def self.json_schema

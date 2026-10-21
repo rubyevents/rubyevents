@@ -18,7 +18,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -32,7 +32,7 @@ module Static
         @start_date, @end_date, @timezone, pre_date = event_context
         @range_start = [pre_date, @start_date].compact.min
 
-        videos_file.video_pairs.flat_map do |video, nested|
+        videos_file.pairs.flat_map do |video, nested|
           talk_errors(video) + nested.flat_map { |talk| talk_errors(talk) }
         end
       end
@@ -40,37 +40,35 @@ module Static
       private
 
       def videos_file
-        @videos_file ||= Static::VideosFile.wrap(@file_path, @document)
+        @videos_file ||= Static::Talk.in_file(@file_path, document: @document)
       end
 
       def event_context
-        event_path = File.join(File.dirname(@file_path), "event.yml")
-        return [nil, nil, nil, nil] unless File.exist?(event_path)
-
-        document = Yerba.parse_file(event_path)
+        event = videos_file.first&.event
+        return [nil, nil, nil, nil] unless event
 
         [
-          parse_date(document["start_date"]&.value),
-          parse_date(document["end_date"]&.value),
-          document["timezone"]&.value,
-          parse_date(document["pre_date"]&.value)
+          parse_date(event["start_date"]),
+          parse_date(event["end_date"]),
+          event["timezone"],
+          parse_date(event["pre_date"])
         ]
       end
 
       def talk_errors(node)
-        return [] if Talk::SUPPLEMENTARY_KINDS.include?(node.value_at("kind"))
+        return [] if ::Talk::SUPPLEMENTARY_KINDS.include?(node["kind"])
 
         errors = []
 
-        date = parse_date(node.value_at("date"))
-        published_at = published_local_date(node.value_at("published_at"))
+        date = parse_date(node["date"])
+        published_at = published_local_date(node["published_at"])
 
         if date && published_at && published_at < date
-          location = node["published_at"]&.location
+          location = node.source_location("published_at")
 
           unless ignored?(location&.start_line, IGNORE_PUBLISHED_AT_BEFORE_DATE)
             errors << Static::Validators::Error.new(
-              "published_at (#{node.value_at("published_at")}) must not be before the talk date (#{node.value_at("date")})",
+              "published_at (#{node["published_at"]}) must not be before the talk date (#{node["date"]})",
               file_path: @file_path,
               line: location&.start_line || 1,
               end_line: location&.end_line
@@ -79,10 +77,10 @@ module Static
         end
 
         if date && @range_start && @end_date && !date.between?(@range_start, @end_date)
-          location = node["date"]&.location
+          location = node.source_location("date")
 
           errors << Static::Validators::Error.new(
-            "date (#{node.value_at("date")}) must be within the event dates (#{@range_start} to #{@end_date}). " \
+            "date (#{node["date"]}) must be within the event dates (#{@range_start} to #{@end_date}). " \
             "If this is a pre-conference activity (e.g. workshops or a pre-party) held before the event, add a pre_date to the event.yml.",
             file_path: @file_path,
             line: location&.start_line || 1,

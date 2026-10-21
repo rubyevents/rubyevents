@@ -20,7 +20,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -34,19 +34,15 @@ module Static
         match = File.expand_path(@file_path).match(%r{\A(?<root>.*)/data/(?<series>[^/]+)/(?<event>[^/]+)/event\.yml\z})
         return [] unless match
 
-        assets_base = Pathname.new(match[:root]).join("app", "assets", "images", "events")
-        asset_dir = assets_base.join(match[:series], match[:event])
-        default_asset_dir = assets_base.join(match[:series], "default")
+        asset_dir = Pathname.new(match[:root]).join("app", "assets", "images", "events", match[:series], match[:event])
 
         FIELD_ASSET_MAP
           .map do |field, asset|
-            next if document[field].present?
-
-            asset_path = [asset_dir, default_asset_dir].find { |dir| File.exist?(dir.join(asset)) }
-            next unless asset_path
+            next if event[field].present?
+            next unless File.exist?(asset_dir.join(asset))
 
             Static::Validators::Error.new(
-              "#{field} is not defined but '#{asset_path.join(asset).relative_path_from(match[:root])}' exists — events with a custom #{asset} must define brand colors",
+              "#{field} is not defined but '#{asset_dir.join(asset).relative_path_from(match[:root])}' exists, events with a custom #{asset} must define brand colors",
               file_path: @file_path,
               line: 1
             )
@@ -55,8 +51,8 @@ module Static
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def event
+        @event ||= Static::Event.in_file(@file_path.to_s, document: @document).first
       end
     end
   end

@@ -18,7 +18,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -29,7 +29,7 @@ module Static
       def validate
         return [] unless applicable?
 
-        speakers = Static::SpeakersFile.new(@file_path, document: @document)
+        speakers = Static::Speaker.in_file(@file_path, document: @document)
         clusters = speakers.near_duplicate_names(threshold: SIMILARITY_THRESHOLD)
         return [] if clusters.empty?
 
@@ -38,11 +38,11 @@ module Static
             next if speakers.social_handle?(name)
 
             others = cluster.names - [name]
-            location = speakers.document.find_by(name: name)&.location
+            location = speakers.find_by(name: name)&.source_location
 
             Static::Validators::Error.new(
               "#{name.inspect} closely matches #{others.map(&:inspect).join(", ")} but has no social handle " \
-              "(#{Static::SpeakersFile::SOCIAL_HANDLE_FIELDS.join(", ")}). Add one to disambiguate whether they are the same person.",
+              "(#{Static::Speaker::SOCIAL_HANDLE_FIELDS.join(", ")}). Add one to disambiguate whether they are the same person.",
               file_path: @file_path,
               line: location&.start_line || 1,
               end_line: location&.end_line

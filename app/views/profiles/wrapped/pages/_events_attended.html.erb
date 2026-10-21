@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <% if events_as_speaker.positive? || events_as_visitor.positive? %>
+  <% if events_as_speaker.positive? || events_as_attendee.positive? %>
     <div class="mb-4">
       <p class="mb-2 text-sm text-gray-500">How you participated:</p>
 
@@ -26,9 +26,9 @@
           </span>
         <% end %>
 
-        <% if events_as_visitor.positive? %>
+        <% if events_as_attendee.positive? %>
           <span class="rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-700">
-            👤 Attendee at <%= events_as_visitor %>
+            👤 Attendee at <%= events_as_attendee %>
           </span>
         <% end %>
       </div>

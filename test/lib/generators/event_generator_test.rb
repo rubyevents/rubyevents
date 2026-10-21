@@ -56,9 +56,9 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--event", "2022",
       "--title", "RubyConf 2022",
       "--description", "RubyConf 2022 description",
-      "--start-date", "2022-11-15",
-      "--end-date", "2022-11-17",
-      "--date-precision", "year",
+      "--start-date", "2022-11-30",
+      "--end-date", "2022-11-30",
+      "--date-precision", "month",
       "--announced-on", "2022-01-01",
       "--recordings-published-date", "2022-12-01",
       "--kind", "retreat",
@@ -69,11 +69,17 @@ class EventGeneratorTest < Rails::Generators::TestCase
       "--timezone", "America/Chicago",
       "--online"]
 
+    File.write(File.join(File.dirname(event_file_path), "videos.yml"), <<~YAML)
+      - id: "rubyconf-2022-talk"
+        video_provider: "youtube"
+        published_at: "2022-12-01"
+    YAML
+
     assert_valid_file event_file_path do |content|
       assert_match(/title: "RubyConf 2022"/, content)
       assert_match(/description: |-\s+RubyConf 2022 description/, content)
-      assert_match(/start_date: "2022-11-15"/, content)
-      assert_match(/end_date: "2022-11-17"/, content)
+      assert_match(/start_date: "2022-11-30"/, content)
+      assert_match(/end_date: "2022-11-30"/, content)
       assert_match(/announced_on: "2022-01-01"/, content)
       assert_match(/recordings_published_date: "2022-12-01"/, content)
       assert_match(/year: 2022/, content)

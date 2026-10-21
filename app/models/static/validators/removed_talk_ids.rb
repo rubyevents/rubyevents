@@ -16,7 +16,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -27,41 +27,38 @@ module Static
       def validate
         return [] unless applicable?
         return [] if removed_talk_ids.nil?
-        return [] unless File.exist?(videos_path)
+        return [] unless videos_file.exist?
 
-        removed_talk_ids.filter_map do |item|
-          id = item.value
+        removed_talk_ids.each_with_index.filter_map do |id, index|
           next unless known_ids.include?(id)
+
+          location = event.source_location("removed_talk_ids[#{index}]")
 
           Static::Validators::Error.new(
             %(id "#{id}" is listed under `removed_talk_ids`, but it is still in videos.yml. Either drop it from `removed_talk_ids`, or remove the talk from videos.yml.),
             file_path: @file_path,
-            line: item.location&.start_line || 1,
-            end_line: item.location&.end_line
+            line: location&.start_line || 1,
+            end_line: location&.end_line
           )
         end
       end
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path)
+      def event
+        @event ||= Static::Event.in_file(@file_path.to_s, document: @document).first
       end
 
       def removed_talk_ids
-        @removed_talk_ids ||= document["removed_talk_ids"]
+        @removed_talk_ids ||= event["removed_talk_ids"]
       end
 
       def videos_file
-        @videos_file ||= Static::VideosFile.new(videos_path)
+        @videos_file ||= event.talks
       end
 
       def known_ids
         @known_ids ||= videos_file.ids + videos_file.old_ids
-      end
-
-      def videos_path
-        @videos_path ||= File.join(File.dirname(@file_path.to_s), "videos.yml")
       end
     end
   end

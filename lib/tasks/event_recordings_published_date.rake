@@ -14,13 +14,6 @@ namespace :event_recordings_published_date do
       nil
     end
 
-    scalar = ->(node) { node.respond_to?(:value) ? node.value : node }
-
-    top_level_items = ->(videos_path) do
-      document = Yerba.parse_file(videos_path)
-      document.root ? document.root.each.to_a : []
-    end
-
     majority_published = ->(providers) do
       watchable = providers.count { |p| validator::WATCHABLE_PROVIDERS.include?(p) }
       resolvable = providers.count { |p| !validator::TERMINAL_PROVIDERS.include?(p) }
@@ -29,39 +22,32 @@ namespace :event_recordings_published_date do
 
     changes = []
 
-    Dir.glob(Rails.root.join("data/**/event.yml")).sort.each do |path|
-      document = Yerba.parse_file(path)
-      present = document["recordings_published_date"].present?
-      videos_path = File.join(File.dirname(path), "videos.yml")
-      relative = path.sub("#{Rails.root}/", "")
+    Static::Event.all.sort_by(&:file_path).each do |event|
+      present = event.key?("recordings_published_date")
+      relative = event.project_file_path
 
-      if scalar.call(document["kind"]) == "meetup"
-        changes << {path:, relative:, action: :delete, value: nil} if present
+      if event["kind"] == "meetup"
+        changes << {event:, relative:, action: :delete, value: nil} if present
 
         next
       end
 
-      next unless File.exist?(videos_path)
-
-      items = top_level_items.call(videos_path)
-
-      next if items.empty?
-
-      providers = items.map { |item| item.value_at("video_provider") }
+      talks = Static::Talk.in_file(File.join(File.dirname(event.file_path), "videos.yml")).top_level
+      providers = talks.pluck(:video_provider)
 
       if majority_published.call(providers)
-        dates = items.filter_map { |item| parse_date.call(item.value_at("published_at")) }
-        target = [validator.percentile(dates), parse_date.call(scalar.call(document["end_date"]))].compact.max
+        dates = talks.filter_map { |talk| parse_date.call(talk.published_at) }
+        target = [validator.percentile(dates), parse_date.call(event["end_date"])].compact.max
 
         next unless target
 
-        current = parse_date.call(scalar.call(document["recordings_published_date"])) if present
+        current = parse_date.call(event["recordings_published_date"]) if present
 
         next if current && current >= target
 
-        changes << {path:, relative:, action: present ? :set : :insert, value: target.iso8601}
+        changes << {event:, relative:, action: present ? :set : :insert, value: target.iso8601}
       elsif present
-        changes << {path:, relative:, action: :delete, value: nil}
+        changes << {event:, relative:, action: :delete, value: nil}
       end
     end
 
@@ -80,20 +66,15 @@ namespace :event_recordings_published_date do
 
       next if dry_run
 
-      document = Yerba.parse_file(change[:path])
+      event = change[:event]
 
-      case change[:action]
-      when :set
-        document["recordings_published_date"] = change[:value]
-        document["recordings_published_date"].quote_style = "double"
-      when :insert
-        document.insert("recordings_published_date", change[:value], after: "description")
-        document["recordings_published_date"].quote_style = "double"
-      when :delete
-        document.delete("recordings_published_date")
+      if change[:action] == :delete
+        event.delete("recordings_published_date")
+      else
+        event.set("recordings_published_date", change[:value], after: "description", quote_style: :double)
       end
 
-      document.save!(apply: true)
+      event.save!
     end
 
     puts

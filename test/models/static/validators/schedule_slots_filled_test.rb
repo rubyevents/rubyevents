@@ -3,6 +3,8 @@
 require "test_helper"
 
 class Static::Validators::ScheduleSlotsFilledTest < ActiveSupport::TestCase
+  include StaticDataSandbox
+
   test "applicable? returns true for a schedule.yml file" do
     path = Dir.glob(Rails.root.join("data/**/schedule.yml")).first
     assert Static::Validators::ScheduleSlotsFilled.new(file_path: path).applicable?
@@ -364,12 +366,13 @@ class Static::Validators::ScheduleSlotsFilledTest < ActiveSupport::TestCase
   private
 
   def with_raw_schedule(raw, videos: "---\n[]".to_yaml)
-    Dir.mktmpdir do |dir|
+    with_static_data_dir do |dir|
       schedule_path = File.join(dir, "data", "testconf", "2026", "schedule.yml")
 
       FileUtils.mkdir_p(File.dirname(schedule_path))
       File.write(schedule_path, raw)
       File.write(File.join(File.dirname(schedule_path), "videos.yml"), videos)
+      File.write(File.join(File.dirname(schedule_path), "event.yml"), %(---\nid: "2026"\ntitle: "TestConf 2026"\nkind: "conference"\n))
 
       yield schedule_path
     end

@@ -95,7 +95,7 @@ class Static::Validators::RedundantThumbnailsTest < ActiveSupport::TestCase
   private
 
   def lookup_for(video_id, parent_id: nil, **attributes)
-    talk = Static::Video.new({"video_provider" => "not_recorded", "start_cue" => "00:00"}.merge(attributes))
+    talk = Static::Talk.new({"video_provider" => "not_recorded", "start_cue" => "00:00"}.merge(attributes))
 
     {video_id => {talk: talk, event_slug: "testconf-2024", parent_id: parent_id}}
   end

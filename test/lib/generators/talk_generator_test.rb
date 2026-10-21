@@ -4,10 +4,14 @@ require "#{Rails.root}/app/schemas/video_schema"
 
 class TalkGeneratorTest < Rails::Generators::TestCase
   tests TalkGenerator
+
   setup do
     self.class.destination Dir.mktmpdir("talk_generator", Rails.root.join("tmp").to_s)
   end
-  teardown { FileUtils.remove_entry(destination_root) }
+
+  teardown do
+    FileUtils.remove_entry(destination_root)
+  end
 
   test "creates minimum videos.yml with valid yaml" do
     seed_speakers_file
@@ -250,7 +254,7 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     videos_file_path = File.join(destination_root, "data/rubyconf/2037/videos.yml")
     run_generator ["--event-series", "rubyconf", "--event", "2037", "--title", "Building Better APIs", "--speakers", "Jane Doe"]
 
-    file = Static::VideosFile.new(videos_file_path)
+    file = Static::Talk.in_file(videos_file_path)
     file.find_by(id: "jane-doe-2037")["old_id"] = "jane-doe-rubyconf-old-2037"
     file.save!
 
@@ -506,8 +510,8 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     assert_valid_file videos_file_path do |content|
       assert_match(/id: "andy-andrea-2026"/, content)
       assert_match(/date: "2026-07-14"/, content)
-      assert_match(/start_time: 16:15/, content)
-      assert_match(/end_time: 17:00/, content)
+      assert_match(/start_time: "16:15"/, content)
+      assert_match(/end_time: "17:00"/, content)
       assert_match(/track: Workshop Studio/, content)
     end
   end

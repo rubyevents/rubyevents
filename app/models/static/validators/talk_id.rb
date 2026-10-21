@@ -11,7 +11,7 @@ module Static
 
       def initialize(file_path:, document: nil, baseline: nil)
         @file_path = file_path
-        @document = document || Yerba.parse_file(@file_path)
+        @document = document
         @baseline = baseline
       end
 
@@ -19,7 +19,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -31,11 +31,11 @@ module Static
         return [] unless applicable?
 
         map_unexpected_ids do |node, expected|
-          actual = node.value_at("id").to_s
-          location = node["id"]&.location
+          actual = node["id"].to_s
+          location = node.source_location("id")
 
           Static::Validators::Error.new(
-            %(id "#{actual}" does not match the expected id "#{expected}". Talk ids should be "firstname-lastname-#{event_slug}", with the kind added on duplicates, the kind alone for talks without one or two speakers, and the title in slug form as a last resort. Run `bin/rails talk_ids:fix` to rename it and keep the current id as old_id.),
+            %(id "#{actual}" does not match the expected id "#{expected}". Talk ids should be "firstname-lastname-#{event_slug}", with the kind added on duplicates, the kind alone for talks without one or two speakers, and the title in slug form as a last resort. Run `bin/rails validate:fix` to rename it and keep the current id as old_id.),
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
@@ -44,14 +44,15 @@ module Static
       end
 
       def fix
+        return unless applicable?
+
         changes = map_unexpected_ids do |node, expected|
-          current = node.value_at("id").to_s
-          node["old_id"] = current if node.value_at("old_id").blank? && id_in_baseline?(current)
-          node.delete("old_id") if node.value_at("old_id") == expected
-          if node.value_at("video_id") == current && !watchable_video?(node)
+          current = node["id"].to_s
+          node["old_id"] = current if node["old_id"].blank? && id_in_baseline?(current)
+          node.delete("old_id") if node["old_id"] == expected
+          if node["video_id"] == current && !watchable_video?(node)
             node["video_id"] = expected
           end
-          rename_thumbnails(current, expected)
           node["id"] = expected
         end.compact
         return unless changes.any?
@@ -63,7 +64,7 @@ module Static
 
       def map_unexpected_ids
         expected_ids.map do |node, expected|
-          actual = node.value_at("id").to_s
+          actual = node["id"].to_s
           yield(node, expected) if actual != expected
         end
       end
@@ -79,12 +80,12 @@ module Static
       def baseline
         @baseline ||= begin
           document = self.class.baseline_file(relative_path)
-          Static::VideosFile.wrap(relative_path, document) if document
+          Static::Talk.in_file(relative_path, document: document) if document
         end
       end
 
       def videos_file
-        @videos_file ||= Static::VideosFile.wrap(@file_path, @document)
+        @videos_file ||= Static::Talk.in_file(@file_path, document: @document)
       end
 
       def expected_ids
@@ -114,7 +115,7 @@ module Static
       end
 
       def nodes
-        @nodes ||= videos_file.nodes
+        @nodes ||= videos_file.to_a
       end
 
       def event_slug
@@ -122,10 +123,7 @@ module Static
       end
 
       def meetup_event?
-        event_file = File.join(File.dirname(File.expand_path(@file_path)), "event.yml")
-        return false unless File.exist?(event_file)
-
-        Yerba.parse_file(event_file).value_at("kind") == "meetup"
+        nodes.first&.event&.[]("kind") == "meetup"
       end
 
       def id_for(node)
@@ -133,9 +131,9 @@ module Static
 
         @ids[node] ||= ::Talk::StaticID.new(
           event_slug: event_slug,
-          title: node.value_at("title"),
-          speakers: node.value_at("speakers"),
-          kind: node.value_at("kind")
+          title: node["title"],
+          speakers: node["speakers"],
+          kind: node["kind"]
         )
       end
 
@@ -152,20 +150,7 @@ module Static
       end
 
       def watchable_video?(node)
-        node.value_at("video_provider").in?(Talk::WATCHABLE_PROVIDERS)
-      end
-
-      def rename_thumbnails(from, to)
-        event_thumbnails = Rails.root.join("app/assets/images/thumbnails", event_slug)
-
-        Dir.glob(event_thumbnails.join("**/#{from}.webp")).each do |thumbnail|
-          renamed_thumbnail = File.join(File.dirname(thumbnail), "#{to}.webp")
-          FileUtils.mv(thumbnail, renamed_thumbnail) unless File.exist?(renamed_thumbnail)
-        end
-
-        directory = event_thumbnails.join(from)
-        renamed_directory = event_thumbnails.join(to)
-        FileUtils.mv(directory, renamed_directory) if Dir.exist?(directory) && !Dir.exist?(renamed_directory)
+        node["video_provider"].in?(::Talk::WATCHABLE_PROVIDERS)
       end
 
       def numbered(node, id, index)
@@ -180,7 +165,7 @@ module Static
 
       def reservations
         @reservations ||= nodes.each_with_object({}) do |node, result|
-          [node.value_at("id"), node.value_at("old_id")].each do |value|
+          [node["id"], node["old_id"]].each do |value|
             next if value.blank?
 
             (result[value] ||= []) << node

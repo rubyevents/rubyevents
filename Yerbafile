@@ -27,14 +27,14 @@ rules:
           file: "lib/schemas/event_schema.json"
 
       - quote_style:
-          path: "description"
+          selector: "description"
           value_style: literal
 
       - blank_lines:
           count: 0
 
       - delete:
-          path: "date_precision"
+          selector: "date_precision"
           condition: '.date_precision == "day"'
 
       - sort_keys:
@@ -63,6 +63,7 @@ rules:
             - meetup
             - twitter
             - facebook
+            - instagram
             - mastodon
             - youtube
             - github
@@ -78,7 +79,7 @@ rules:
             - feeds
 
       - sort_keys:
-          path: "youtube_channels[]"
+          selector: "youtube_channels[]"
           order:
             - id
             - name
@@ -89,22 +90,22 @@ rules:
     pipeline:
       - schema:
           file: "lib/schemas/involvement_schema.json"
-          path: "[]"
+          selector: "[]"
 
       - quote_style:
-          path: "[].name"
+          selector: "[].name"
           value_style: double
 
       - quote_style:
-          path: "[].users"
+          selector: "[].users"
           value_style: plain
 
       - quote_style:
-          path: "[].organisations"
+          selector: "[].organisations"
           value_style: plain
 
       - blank_lines:
-          path: ""
+          selector: ""
           count: 1
 
   - files: "data/topics.yml"
@@ -114,14 +115,14 @@ rules:
     pipeline:
       - schema:
           file: "lib/schemas/cfp_schema.json"
-          path: "[]"
+          selector: "[]"
 
       - quote_style:
-          path: "[].name"
+          selector: "[].name"
           value_style: double
 
       - blank_lines:
-          path: ""
+          selector: ""
           count: 1
 
       - sort_keys:
@@ -135,20 +136,20 @@ rules:
     pipeline:
       - schema:
           file: "lib/schemas/featured_city_schema.json"
-          path: "[]"
+          selector: "[]"
 
   - files: "data/**/sponsors.yml"
     pipeline:
       - schema:
           file: "lib/schemas/sponsors_schema.json"
-          path: "[]"
+          selector: "[]"
 
       - blank_lines:
-          path: "[].tiers"
+          selector: "[].tiers"
           count: 1
 
       - blank_lines:
-          path: "[].tiers[].sponsors"
+          selector: "[].tiers[].sponsors"
           count: 1
 
       - quote_style:
@@ -166,11 +167,11 @@ rules:
           file: "lib/schemas/schedule_schema.json"
 
       - blank_lines:
-          path: "days"
+          selector: "days"
           count: 1
 
       - blank_lines:
-          path: "days[].grid"
+          selector: "days[].grid"
           count: 1
 
   - files: "data/**/series.yml"
@@ -179,11 +180,11 @@ rules:
           file: "lib/schemas/series_schema.json"
 
       - quote_style:
-          path: "aliases[]"
+          selector: "aliases[]"
           value_style: plain
 
       - sort_keys:
-          path: "youtube_channels[]"
+          selector: "youtube_channels[]"
           order:
             - id
             - name
@@ -200,6 +201,7 @@ rules:
             - language
             - twitter
             - facebook
+            - instagram
             - default_country_code
             - meetup
             - github
@@ -210,8 +212,11 @@ rules:
             - linkedin
             - description
             - luma
-            - ended
+            - inactive
             - bsky
+            - banner_background
+            - featured_background
+            - featured_color
             - aliases
             - youtube_channels
             - feeds
@@ -232,50 +237,50 @@ rules:
 
       - schema:
           file: "lib/schemas/video_schema.json"
-          path: "[]"
+          selector: "[]"
 
       - quote_style:
-          path: "[].speakers"
+          selector: "[].speakers"
           value_style: plain
 
       - quote_style:
-          path: "[].talks[].speakers"
+          selector: "[].talks[].speakers"
           value_style: plain
 
       - quote_style:
-          path: "[].alternative_recordings[].speakers"
+          selector: "[].alternative_recordings[].speakers"
           value_style: plain
 
       - quote_style:
-          path: "[].talks[].alternative_recordings[].speakers"
+          selector: "[].talks[].alternative_recordings[].speakers"
           value_style: plain
 
       - quote_style:
-          path: "[].description"
+          selector: "[].description"
           value_style: literal
 
       - quote_style:
-          path: "[].talks[].description"
+          selector: "[].talks[].description"
           value_style: literal
 
       - blank_lines:
-          path: "[]"
+          selector: "[]"
           count: 0
 
       - blank_lines:
-          path: ""
+          selector: ""
           count: 1
 
       - blank_lines:
-          path: "[].talks"
+          selector: "[].talks"
           count: 1
 
       - blank_lines:
-          path: "[].additional_resources"
+          selector: "[].additional_resources"
           count: 1
 
       - sort_keys:
-          path: "[]"
+          selector: "[]"
           order:
             - id
             - old_id
@@ -312,7 +317,7 @@ rules:
             - alternative_recordings
 
       - sort_keys:
-          path: "[].alternative_recordings[]"
+          selector: "[].alternative_recordings[]"
           order:
             - note
             - title
@@ -329,7 +334,7 @@ rules:
             - speakers
 
       - sort_keys:
-          path: "[].talks[]"
+          selector: "[].talks[]"
           order:
             - id
             - old_id
@@ -369,15 +374,16 @@ rules:
 
       - sort:
           by: ".date .start_time .end_time"
+          missing: keep
 
   - files: "data/speakers.yml"
     pipeline:
       - schema:
           file: "lib/schemas/speaker_schema.json"
-          path: "[]"
+          selector: "[]"
 
       - sort_keys:
-          path: "[]"
+          selector: "[]"
           order:
             - name
             - github
@@ -391,7 +397,7 @@ rules:
             - aliases
 
       - sort_keys:
-          path: "[].aliases[]"
+          selector: "[].aliases[]"
           order:
             - name
             - slug

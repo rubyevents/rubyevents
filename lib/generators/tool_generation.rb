@@ -19,16 +19,16 @@ class ToolGeneration
       description = tool_description(klass, generator_type)
 
       tool = Class.new(RubyLLM::Tool) do
-        desc description
+        description description
 
         options.each do |option_key, option|
-          # Document each param for the tool using what is defined on the
+          # Document each parameter for the tool using what is defined on the
           # corresponding generator option
-          param(
+          parameter(
             option_key.to_sym,
-            desc: option.description,
+            description: option.description,
             required: option.required,
-            type: option.type
+            type: (option.type == :numeric) ? :number : option.type
           )
         end
       end
@@ -71,7 +71,7 @@ class ToolGeneration
   end
   private_class_method :execute_params
 
-  # Grabs the generator's TOOL_DESC to use for the RubyLLM::Tool `desc`. If that
+  # Grabs the generator's TOOL_DESC to use for the RubyLLM::Tool `description`. If that
   # constant is not defined, we fall back to a generic value.
   def self.tool_description(klass, generator_type)
     klass.const_get(:TOOL_DESC, false)

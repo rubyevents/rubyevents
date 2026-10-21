@@ -16,7 +16,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -27,14 +27,10 @@ module Static
       def validate
         return [] unless applicable?
 
-        event_channels = Array(document.value_at("youtube_channels"))
+        event_channels = Array(event["youtube_channels"])
         return [] if event_channels.empty?
 
-        series_path = File.join(File.dirname(@file_path, 2), "series.yml")
-        return [] unless File.exist?(series_path)
-
-        series_document = Yerba.parse_file(series_path)
-        series_ids = Array(series_document.value_at("youtube_channels")).map { |c| c["id"] }.to_set
+        series_ids = Array(event.series&.[]("youtube_channels")).map { |c| c["id"] }.to_set
         return [] if series_ids.empty?
 
         errors = []
@@ -42,7 +38,8 @@ module Static
         event_channels.each do |channel|
           next unless channel.is_a?(Hash) && series_ids.include?(channel["id"])
 
-          location = document["youtube_channels"]&.location
+          location = event.source_location("youtube_channels")
+
           errors << Static::Validators::Error.new(
             "youtube_channels contains channel \"#{channel["id"]}\" (#{channel["name"] || "unknown"}) which is already defined in series.yml — remove it from event.yml",
             file_path: @file_path,
@@ -56,8 +53,8 @@ module Static
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def event
+        @event ||= Static::Event.in_file(@file_path.to_s, document: @document).first
       end
     end
   end

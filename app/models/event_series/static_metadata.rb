@@ -1,6 +1,13 @@
 class EventSeries::StaticMetadata < ActiveRecord::AssociatedObject
-  def ended?
-    static_repository.try(:ended) || false
+  delegate :bsky, :facebook, :github, :guild, :luma, :linkedin, :mastodon,
+    :meetup, :twitter, :vimeo, :website, to: :static_repository, allow_nil: true
+
+  def instagram
+    static_repository.try(:instagram)
+  end
+
+  def inactive?
+    static_repository.try(:inactive) || false
   end
 
   def default_country_code

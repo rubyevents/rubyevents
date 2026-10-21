@@ -1,7 +1,14 @@
 require "test_helper"
 
 class Static::EventTest < ActiveSupport::TestCase
+  include StaticDataSandbox
+
   SLUG = "helveticruby-2025"
+
+  teardown do
+    Static::EventSeries.unload!
+    Static::Event.unload!
+  end
 
   test "import!" do
     Static::EventSeries.find_by_slug("helveticruby").import_series!
@@ -98,6 +105,22 @@ class Static::EventTest < ActiveSupport::TestCase
     assert event_record.sponsors.exists?(organization: organization)
   end
 
+  test "import_sponsors! imports a sponsor listed in multiple tiers" do
+    Static::EventSeries.find_by_slug("deccan-queen-on-rails").import_series!
+    event = Static::Event.find_by_slug("deccan-queen-on-rails-2026")
+    event_record = event.import_event!
+    event.import_sponsors!(event_record)
+
+    zendesk = Organization.find_by(name: "Zendesk")
+    tiers = event_record.sponsors.where(organization: zendesk).pluck(:tier)
+
+    assert_equal ["Gold", "Rails Girls Sponsor"], tiers.sort
+
+    event.import_sponsors!(event_record)
+
+    assert_equal 2, event_record.sponsors.reload.where(organization: zendesk).count
+  end
+
   test "import_involvements!" do
     event = Static::Event.find_by_slug("xoruby-portland-2025")
     event.import_event!
@@ -127,5 +150,44 @@ class Static::EventTest < ActiveSupport::TestCase
     stub_record = Event.new(start_date: Date.new(2000, 1, 1))
 
     assert_equal event.published_date, event.home_sort_date(event_record: stub_record)
+  end
+
+  test "state_code is parsed from location on import" do
+    Static::EventSeries.find_by_slug("xoruby").import_series!
+    Static::City.all.detect { |city| city.slug == "montreal" }.import!
+
+    event = Static::Event.find_by_slug("xoruby-montreal-2026")
+    record = event.import_event!
+
+    assert_equal "Montréal", record.city
+    assert_equal "QC", record.state_code
+    assert_equal "CA", record.country_code
+    assert_includes City.find_by!(slug: "montreal").events, record
+  end
+
+  test "state_code falls back to featured city when location omits state" do
+    Static::EventSeries.find_by_slug("montreal-rb").import_series!
+    Static::City.all.detect { |city| city.slug == "montreal" }.import!
+
+    event = Static::Event.find_by_slug("montreal-rb-meetup")
+    record = event.import_event!
+
+    assert_equal "Montréal", record.city
+    assert_equal "QC", record.state_code
+    assert_equal "CA", record.country_code
+  end
+
+  test "create writes an empty videos.yml next to the new event.yml" do
+    with_static_data_dir do |root|
+      FileUtils.mkdir_p(File.join(root, "data/testconf"))
+      File.write(File.join(root, "data/testconf/series.yml"), %(---\nid: "testconf"\nname: "TestConf"\n))
+
+      event = Static::Event.create(series_slug: "testconf", title: "TestConf 2024", kind: "conference", location: "Online", timezone: "UTC", coordinates: false)
+      videos_path = File.join(File.dirname(event.file_path), "videos.yml")
+
+      assert_equal File.join(root, "data/testconf/testconf-2024/event.yml"), event.file_path
+      assert File.exist?(videos_path)
+      assert_equal [], Yerba.parse_file(videos_path).values
+    end
   end
 end

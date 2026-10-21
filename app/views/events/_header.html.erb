@@ -19,7 +19,7 @@
   <%= image_tag image_path(event.banner_image_path), alt: event.name, class: "w-full md:container" %>
 </div>
 
-<% if event.static_metadata.cancelled? %>
+<% if event.cancelled? %>
   <div class="bg-red-600 py-3 text-center text-lg font-semibold text-white">
     This event <%= event.start_date&.past? ? "was cancelled." : "has been cancelled." %>
   </div>
@@ -42,6 +42,7 @@
         </h3>
 
         <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website, class: "break-all" %>
+        <%= render Ui::SocialLinksComponent.new(event.static_metadata) %>
       </div>
     </div>
 
@@ -49,7 +50,7 @@
       <%= ui_button "View all #{event.series.name} events", url: series_path(event.series), kind: :secondary, size: :sm, class: "w-full" %>
       <%= render "events/participation_button", event: event, participation: participation %>
 
-      <% unless event.static_metadata.cancelled? %>
+      <% unless event.cancelled_or_inactive? %>
         <%= render Tito::ButtonComponent.new(event: event) %>
       <% end %>
 

@@ -13,7 +13,7 @@ module EventData
   end
 
   def set_participation
-    @participation ||= Current.user&.main_participation_to(@event)
+    @participation ||= Current.user&.participation_for(@event)
   end
 
   def set_participants
@@ -29,7 +29,7 @@ module EventData
       .where.not(connect_id: ConnectedAccount.passport.select(:uid))
       .count
 
-    participants = @event.participants.preloaded.order(:name).distinct
+    participants = @event.going_participants.preloaded.order(:name)
     checked_in_only_ids = @checked_in_participant_ids - participants.map(&:id).to_set
     all_participants = participants.to_a
 
@@ -37,11 +37,13 @@ module EventData
       all_participants += User.preloaded.where(id: checked_in_only_ids).order(:name).to_a
     end
 
+    @interested_participants = @event.upcoming? ? @event.interested_participants.preloaded.order(:name).to_a : []
+
     if Current.user
       @participants = {
         "Ruby Friends" => [],
         "Favorites" => [],
-        "Known Participants" => []
+        "Attendees" => []
       }
 
       all_participants.each do |participant|
@@ -52,11 +54,11 @@ module EventData
         elsif favorite_user&.persisted?
           @participants["Favorites"] << participant
         else
-          @participants["Known Participants"] << participant
+          @participants["Attendees"] << participant
         end
       end
     else
-      @participants = {"Known Participants" => all_participants}
+      @participants = {"Attendees" => all_participants}
     end
   end
 end

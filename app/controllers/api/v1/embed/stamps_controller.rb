@@ -9,7 +9,7 @@ module Api
           user ||= User.find_by_github_handle(params[:slug])
           raise ActiveRecord::RecordNotFound, "User not found" unless user
 
-          stamps = Stamp.for_user(user)
+          stamps = Static::Stamp.for_user(user)
 
           render json: {
             user: {
@@ -39,7 +39,7 @@ module Api
                        }
                      end,
             event: (stamp.has_event? && stamp.event) ? {
-              name: stamp.event.name,
+              name: stamp.event.title,
               slug: stamp.event.slug
             } : nil
           }
@@ -58,13 +58,7 @@ module Api
         end
 
         def stamp_image_url(stamp)
-          return nil unless stamp.file_path.present?
-
-          if stamp.file_path.include?("/")
-            Router.image_path(stamp.file_path, host: request.base_url)
-          else
-            Router.image_path("stamps/#{stamp.file_path}", host: request.base_url)
-          end
+          Router.image_path(stamp.image_path, host: request.base_url)
         rescue
           nil
         end

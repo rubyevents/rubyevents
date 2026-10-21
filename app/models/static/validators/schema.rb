@@ -33,7 +33,7 @@ module Static
       private
 
       def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+        @document ||= Yerba.parse_file(@file_path.to_s) # rubocop:disable RubyEvents/PreferStaticModels
       end
 
       def message_for(error)

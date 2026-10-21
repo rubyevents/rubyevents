@@ -64,7 +64,7 @@ gem "iso-639"
 gem "minisky", "~> 0.4.0"
 
 # A single delightful Ruby way to work with AI.
-gem "ruby_llm", "~> 1.15.0"
+gem "ruby_llm", "~> 2.1.0"
 
 # A simple and clean Ruby DSL for creating JSON schemas.
 gem "schematist", "~> 1.1"
@@ -76,10 +76,10 @@ gem "yt"
 gem "rss", "~> 0.3.1"
 
 # YAML Editing and Refactoring with Better Accuracy
-gem "yerba", "~> 0.9.0"
+gem "yerba", "~> 0.10.1"
 
 # Powerful and seamless HTML-aware ERB parsing and tooling.
-gem "herb", "~> 0.11.0"
+gem "herb", "~> 0.11.1"
 
 # An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
 gem "reactionview", "~> 0.6.0"
@@ -141,9 +141,6 @@ gem "active_record-associated_object"
 # ActiveJob::Performs adds the `performs` macro to set up jobs by convention.
 gem "active_job-performs"
 
-# Use the OpenAI API with Ruby!
-gem "ruby-openai"
-
 # Markdown that smells nice
 gem "redcarpet", "~> 3.6"
 
@@ -168,9 +165,6 @@ gem "marksmith"
 
 # A fast, safe, extensible parser for CommonMark. This wraps the comrak Rust crate.
 gem "commonmarker", ">= 2.6.1"
-
-# ActiveRecord like interface to read only access and query static YAML files
-gem "frozen_record", "~> 0.27.2"
 
 # ActiveRecord soft-deletes done right
 gem "discard"

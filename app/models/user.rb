@@ -111,12 +111,16 @@ class User < ApplicationRecord
 
   # Event participation associations
   has_many :event_participations, dependent: :destroy
-  has_many :participated_events, -> { distinct }, through: :event_participations, source: :event
-  has_many :speaker_events, -> { where(event_participations: {attended_as: :speaker}) },
+  has_many :participated_events, through: :event_participations, source: :event
+  has_many :going_events, -> { where(event_participations: {role: EventParticipation::GOING_ROLES}) },
     through: :event_participations, source: :event
-  has_many :keynote_speaker_events, -> { where(event_participations: {attended_as: :keynote_speaker}) },
+  has_many :attended_events, -> {
+    where(event_participations: {role: EventParticipation::GOING_ROLES}).where.not(id: Event.upcoming.select(:id))
+  },
     through: :event_participations, source: :event
-  has_many :visitor_events, -> { where(event_participations: {attended_as: :visitor}) },
+  has_many :speaking_events, -> { where(event_participations: {role: :speaker}) },
+    through: :event_participations, source: :event
+  has_many :interested_events, -> { where(event_participations: {role: :interested}) },
     through: :event_participations, source: :event
 
   def checked_in_events
@@ -124,7 +128,7 @@ class User < ApplicationRecord
   end
 
   def all_attended_events
-    Event.where(id: (participated_events.pluck(:id) + checked_in_events.pluck(:id)).uniq)
+    Event.where(id: (attended_events.pluck(:id) + checked_in_events.pluck(:id)).uniq)
   end
 
   def checked_in_event_ids
@@ -254,33 +258,17 @@ class User < ApplicationRecord
   }
 
   def self.all_speaker_identifiers
-    @all_speaker_identifiers ||= begin
-      collection = Yerba::Collection.new("data/speakers.yml")
-      githubs = collection.pluck(:github).compact
-      names = collection.pluck(:name).compact
-      [githubs, names]
-    end
+    @all_speaker_identifiers ||= [Static::Speaker.pluck(:github).compact, Static::Speaker.pluck(:name).compact]
   end
 
   def self.speaker_alias_to_main_speaker
-    @speaker_alias_to_main_speaker ||= begin
-      collection = Yerba::Collection.new("data/speakers.yml")
-      names = collection.pluck(:name)
-      githubs = collection.pluck(:github)
-      aliases_data = collection.pluck(:aliases)
+    @speaker_alias_to_main_speaker ||= Static::Speaker.all.each_with_object({}) do |speaker, mapping|
+      Array(speaker["aliases"]).each do |alias_entry|
+        alias_name = alias_entry["name"]
+        next if alias_name.nil? || alias_name == speaker.name
 
-      mapping = {}
-      names.zip(githubs, aliases_data).each do |main_name, github, aliases|
-        next if main_name.nil? || aliases.nil?
-
-        Array(aliases).each do |a|
-          alias_name = a["name"]
-          next if alias_name.nil? || alias_name == main_name
-
-          mapping[alias_name] = {name: main_name, github: github}
-        end
+        mapping[alias_name] = {name: speaker.name, github: speaker.github}
       end
-      mapping
     end
   end
 
@@ -343,7 +331,9 @@ class User < ApplicationRecord
     return user if user
 
     alias_record = ::Alias.find_by(aliasable_type: "User", name: name)
-    alias_record&.aliasable
+    return alias_record.aliasable if alias_record
+
+    find_by_github_handle(name)
   end
 
   def self.find_by_slug_or_alias(slug)
@@ -361,8 +351,8 @@ class User < ApplicationRecord
     @default_watch_list ||= watch_lists.first || watch_lists.create(name: "Bookmarks")
   end
 
-  def main_participation_to(event)
-    event_participations.in_order_of(:attended_as, EventParticipation.attended_as.keys).where(event: event).first
+  def participation_for(event)
+    event_participations.find_by(event: event)
   end
 
   # Speaker-specific methods (adapted from Speaker model)

@@ -4,13 +4,13 @@ class SpeakerLookupTool < RubyLLM::Tool
   include SpeakersFileCheck
 
   description "Search for speakers in data/speakers.yml by name, slug, alias, github, or twitter handle. Returns matching speakers with their info."
-  param :query, desc: "Search query (matches against name, slug, github, twitter, aliases). Case-insensitive."
+  parameter :query, description: "Search query (matches against name, slug, github, twitter, aliases). Case-insensitive."
 
   def execute(query:)
     q = query.downcase
 
-    matches = speakers_file.document.value_at("").each_with_index.filter_map do |entry, index|
-      next unless entry.is_a?(Hash)
+    matches = speakers.filter_map do |speaker|
+      entry = speaker.to_h
 
       searchable = [
         entry["name"],
@@ -29,7 +29,7 @@ class SpeakerLookupTool < RubyLLM::Tool
 
       next unless searchable.compact.any? { |v| v.to_s.downcase.include?(q) }
 
-      speaker_to_hash(entry, index)
+      speaker_to_hash(entry, speaker.index)
     end
 
     matches.first(25)

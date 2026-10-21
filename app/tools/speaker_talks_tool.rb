@@ -2,8 +2,8 @@
 
 class SpeakerTalksTool < RubyLLM::Tool
   description "Get all talks from a speaker by their name, slug, or ID."
-  param :name, desc: "Speaker name or slug to lookup (e.g., 'Aaron Patterson' or 'tenderlove')", required: false
-  param :id, desc: "Speaker ID in the database", required: false
+  parameter :name, description: "Speaker name or slug to lookup (e.g., 'Aaron Patterson' or 'tenderlove')", required: false
+  parameter :id, description: "Speaker ID in the database", required: false
 
   def execute(name: nil, id: nil)
     user = find_user(name: name, id: id)

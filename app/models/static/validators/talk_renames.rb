@@ -19,7 +19,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -35,12 +35,12 @@ module Static
       end
 
       def current
-        @current ||= Static::VideosFile.wrap(@file_path, @document)
+        @current ||= Static::Talk.in_file(@file_path, document: @document)
       end
 
       def renamed_talks
         @renamed_talks ||= missing_ids.each_with_object({}) do |id, result|
-          video_id = baseline.find_by(id: id)&.value_at("video_id")
+          video_id = baseline.find_by(id: id)&.[]("video_id")
           node = video_id.presence && current.find_by(video_id: video_id)
 
           result[node] = id if node
@@ -56,7 +56,7 @@ module Static
       def baseline
         @baseline ||= begin
           document = self.class.baseline_file(relative_path)
-          Static::VideosFile.wrap(relative_path, document) if document
+          Static::Talk.in_file(relative_path, document: document) if document
         end
       end
 
@@ -68,10 +68,10 @@ module Static
 
       def renamed_errors
         renamed_talks.map do |node, previous_id|
-          location = node["id"]&.location
+          location = node.source_location("id")
 
           Static::Validators::Error.new(
-            %(id "#{node.value_at("id")}" was renamed from "#{previous_id}", but the previous id wasn't kept. Production still knows this talk as "#{previous_id}", so it needs `old_id: "#{previous_id}"` to migrate its record on the next seed. Run `bin/rails talk_ids:backfill_old_ids` to write it for you.),
+            %(id "#{node["id"]}" was renamed from "#{previous_id}", but the previous id wasn't kept. Production still knows this talk as "#{previous_id}", so it needs `old_id: "#{previous_id}"` to migrate its record on the next seed. Run `bin/rails talk_ids:backfill_old_ids` to write it for you.),
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line

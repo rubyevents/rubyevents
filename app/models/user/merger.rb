@@ -61,11 +61,8 @@ class User::Merger < ActiveRecord::AssociatedObject
 
   def transfer_event_participations
     @other_user.event_participations.each do |participation|
-      if user.event_participations.exists?(event_id: participation.event_id, attended_as: participation.attended_as)
-        participation.destroy
-      else
-        participation.update!(user: user)
-      end
+      participation.destroy
+      EventParticipation.record(user:, event: participation.event, role: participation.role)
     end
   end
 

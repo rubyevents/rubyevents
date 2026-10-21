@@ -2,15 +2,13 @@
 
 module Speakerdeck
   class SlidesScanner
-    VIDEOS_GLOB = "data/**/videos.yml"
-    VIDEO_SELECTORS = ["[]", "[].talks[]"].freeze
-
     IGNORED_HANDLES = [
       "andpad",
       "coincheck_recruit",
       "guru_sp",
       "gurzu",
       "linkers_tech",
+      "optim",
       "plataformatec",
       "railsware",
       "techouse"
@@ -29,8 +27,8 @@ module Speakerdeck
     end
 
     def scan
-      each_speakerdeck_entry(select: "slides_url,speakers") do |entry|
-        process_entry(entry)
+      speakerdeck_talks.each do |talk|
+        process_talk(talk)
       end
 
       self
@@ -49,9 +47,9 @@ module Speakerdeck
     def problematic_urls
       issues = []
 
-      each_speakerdeck_entry(select: "slides_url") do |entry|
-        url = entry["slides_url"].to_s
-        relative = entry["__file"].to_s.sub("#{Rails.root}/data/", "")
+      speakerdeck_talks.each do |talk|
+        url = talk["slides_url"].to_s
+        relative = talk.file_path.to_s.sub("#{Rails.root}/data/", "")
 
         PROBLEMATIC_PATTERNS.each do |check|
           if url.match?(check[:pattern])
@@ -65,19 +63,13 @@ module Speakerdeck
 
     private
 
-    def each_speakerdeck_entry(select:, &block)
-      glob = Rails.root.join(VIDEOS_GLOB).to_s
-
-      VIDEO_SELECTORS.each do |selector|
-        results = Yerba::Collection.find(glob, selector, condition: ".slides_url contains speakerdeck", select: select)
-
-        Array(results).each(&block)
-      end
+    def speakerdeck_talks
+      Static::Talk.where { |talk| talk["slides_url"].to_s.include?("speakerdeck") }
     end
 
-    def process_entry(entry)
-      url = entry["slides_url"].to_s
-      relative = entry["__file"].to_s.sub("#{Rails.root}/", "")
+    def process_talk(talk)
+      url = talk["slides_url"].to_s
+      relative = talk.file_path.to_s.sub("#{Rails.root}/", "")
 
       match = url.match(%r{speakerdeck\.com/(?:u/)?([^/]+)/})
       return unless match
@@ -86,7 +78,7 @@ module Speakerdeck
       return if handle.blank?
       return if IGNORED_HANDLES.include?(handle)
 
-      speakers = Array(entry["speakers"])
+      speakers = Array(talk["speakers"])
       return unless speakers.size == 1
 
       name = speakers.first

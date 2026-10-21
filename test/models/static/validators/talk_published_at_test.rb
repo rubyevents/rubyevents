@@ -3,6 +3,8 @@
 require "test_helper"
 
 class Static::Validators::TalkPublishedAtTest < ActiveSupport::TestCase
+  include StaticDataSandbox
+
   test "applicable? returns true for a videos.yml file" do
     with_temp_video([{"video_id" => "x", "video_provider" => "not_recorded"}]) do |path|
       assert Static::Validators::TalkPublishedAt.new(file_path: path).applicable?
@@ -51,17 +53,12 @@ class Static::Validators::TalkPublishedAtTest < ActiveSupport::TestCase
   private
 
   def with_temp_video(videos)
-    dir = Dir.mktmpdir
-    videos_path = File.join(dir, "data", "testconf", "2024", "videos.yml")
-    FileUtils.mkdir_p(File.dirname(videos_path))
-    File.write(videos_path, videos.to_yaml)
+    with_static_data_dir do |dir|
+      videos_path = File.join(dir, "data", "testconf", "2024", "videos.yml")
+      FileUtils.mkdir_p(File.dirname(videos_path))
+      File.write(videos_path, videos.to_yaml)
 
-    Static::Validators::TalkPublishedAt.reset!
-    Static::Validators::TalkPublishedAt.glob = File.join(dir, "data/**/videos.yml")
-
-    yield videos_path
-  ensure
-    Static::Validators::TalkPublishedAt.reset!
-    FileUtils.rm_rf(dir)
+      yield videos_path
+    end
   end
 end

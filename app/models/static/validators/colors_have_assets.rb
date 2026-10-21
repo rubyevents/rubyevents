@@ -20,7 +20,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -31,33 +31,39 @@ module Static
       def validate
         return [] unless applicable?
 
-        path_parts = @file_path.split("/")
-        series_slug = path_parts[-3]
-        event_slug = path_parts[-2]
+        match = File.expand_path(@file_path).match(%r{\A(?<root>.*)/data/(?<series>[^/]+)/(?<event>[^/]+)/event\.yml\z})
+        return [] unless match
 
-        assets_base = Rails.root.join("app", "assets", "images", "events")
-        asset_dir = assets_base.join(series_slug, event_slug)
-        default_asset_dir = assets_base.join(series_slug, "default")
+        root = Pathname.new(match[:root])
+        assets_base = root.join("app", "assets", "images", "events", match[:series])
+        asset_dir = assets_base.join(match[:event])
+        default_asset_dir = assets_base.join("default")
 
         FIELD_ASSET_MAP
           .map do |field, asset|
-            next unless document[field].present?
-            next if File.exist?(asset_dir.join(asset)) || File.exist?(default_asset_dir.join(asset))
-            location = document[field].location
+            next unless event[field].present?
+            next if File.exist?(asset_dir.join(asset))
+
+            location = event.source_location(field)
+
+            message = if File.exist?(default_asset_dir.join(asset))
+              "#{field} is defined but #{asset} comes from the series default '#{default_asset_dir.join(asset).relative_path_from(root)}', define #{field} in data/#{match[:series]}/series.yml instead"
+            else
+              "#{field} is defined but '#{asset}' exists neither in #{asset_dir.relative_path_from(root)} nor in #{default_asset_dir.relative_path_from(root)}, events falling back to the global default #{asset} must not define brand colors"
+            end
 
             Static::Validators::Error.new(
-              "#{field} is defined but '#{asset}' exists neither in #{asset_dir} nor in #{default_asset_dir}, events falling back to the global default #{asset} must not define brand colors",
+              message,
               file_path: @file_path,
-              line: location&.start_line || 1,
-              end_line: location&.end_line
+              location: location
             )
           end.compact
       end
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def event
+        @event ||= Static::Event.in_file(@file_path.to_s, document: @document).first
       end
     end
   end

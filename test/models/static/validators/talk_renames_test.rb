@@ -3,6 +3,8 @@
 require "test_helper"
 
 class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
+  include StaticDataSandbox
+
   BASELINE = [
     {"id" => "jane-doe-testconf-2024", "title" => "Building Things", "video_provider" => "youtube", "video_id" => "abc12345678"}
   ].freeze
@@ -63,11 +65,11 @@ class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
     ]
 
     with_temp_video(videos) do |path|
-      baseline_file = Static::VideosFile.parse(BASELINE.to_yaml)
+      baseline_file = Static::Talk.parse(BASELINE.to_yaml)
       validator = Static::Validators::TalkRenames.new(file_path: path, baseline: baseline_file)
 
       assert_equal ["jane-doe-testconf-2024"], validator.renamed_talks.values
-      assert_equal "jane-doe-keynote-testconf-2024", validator.renamed_talks.keys.first.value_at("id")
+      assert_equal "jane-doe-keynote-testconf-2024", validator.renamed_talks.keys.first.id
       assert_empty validator.disappeared_ids
     end
   end
@@ -197,20 +199,19 @@ class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
   end
 
   def errors_for(path, baseline: BASELINE)
-    baseline_file = Static::VideosFile.parse(baseline.to_yaml)
+    baseline_file = Static::Talk.parse(baseline.to_yaml)
 
     Static::Validators::TalkRenames.new(file_path: path, baseline: baseline_file).errors
   end
 
   def with_temp_video(videos, removed_talk_ids: nil)
-    dir = Dir.mktmpdir
-    videos_path = File.join(dir, "data", "testconf", "testconf-2024", "videos.yml")
-    FileUtils.mkdir_p(File.dirname(videos_path))
-    File.write(videos_path, videos.to_yaml)
-    write_event_file(File.dirname(videos_path), removed_talk_ids) if removed_talk_ids
-    yield videos_path
-  ensure
-    FileUtils.rm_rf(dir)
+    with_static_data_dir do |dir|
+      videos_path = File.join(dir, "data", "testconf", "testconf-2024", "videos.yml")
+      FileUtils.mkdir_p(File.dirname(videos_path))
+      File.write(videos_path, videos.to_yaml)
+      write_event_file(File.dirname(videos_path), removed_talk_ids) if removed_talk_ids
+      yield videos_path
+    end
   end
 
   def write_event_file(dir, removed_talk_ids)
