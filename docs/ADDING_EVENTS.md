@@ -105,7 +105,11 @@ Like this!
 </details>
 <details><summary>What about meetups?</summary>
   Meetups are modeled differently: one event per meetup group, and each monthly edition is an entry in <code>videos.yml</code>. See the dedicated guide: <a href="ADDING_MEETUPS.md">ADDING_MEETUPS.md</a>.
-</details> 
+</details>
+<details><summary>Do I include pre-conference and post-conferent events?</summary>
+  No, start_date and end_date on the event describe the conference proper — the days the event is "on".
+  Use the schedule to add additional days and describe events like pre-registration, welcome reception, and city tours.
+</details>
 <details><summary>How should I handle a cancelled event?</summary>
   Cancelled events get an attribute of `status: "cancelled"` which will change how they're displayed on the site.
   We include cancelled events on the site so people have a canonical answer for whether or not an event happened and to communicate an upcoming event is cancelled.
