@@ -27,7 +27,7 @@ class Static::MeetupsTest < ActiveSupport::TestCase
       assert_equal ["testrb-2026-01-14"], series.events.map { |event| event["id"] }
       assert_equal "testrb", Static::Event.find_by_slug("testrb-2026-01-14").series.slug
 
-      created = Static::Event.create(series_slug: "testrb", title: "Test.rb February 2026", slug: "testrb-2026-02-11", kind: "meetup", location: "Bern, Switzerland", timezone: "Europe/Zurich", videos_file: false)
+      created = Static::Event.create(series_slug: "testrb", title: "Test.rb February 2026", slug: "testrb-2026-02-11", kind: "meetup", start_date: "2026-02-11", end_date: "2026-02-11", location: "Bern, Switzerland", timezone: "Europe/Zurich", videos_file: false)
 
       assert_equal File.join(root, "data/testorg/testrb/testrb-2026-02-11/event.yml"), created.file_path
       assert_not File.exist?(File.join(root, "data/testorg/testrb/testrb-2026-02-11/videos.yml"))

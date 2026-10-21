@@ -27,6 +27,21 @@ module Static
     add_index :id
     add_index :video_id
 
+    PROVIDERS_WITHOUT_PUBLISHED_AT = (::Talk::UNPUBLISHED_PROVIDERS + ["children", "parent"]).freeze
+
+    validates :id, uniqueness: {also: :old_id}, on: :lint
+    validates :old_id, uniqueness: {also: :id}, on: :lint
+    validates :speakers, "static/speaker_exists": true, on: :lint
+    validate :extracted_thumbnail_exists, if: :extracted_thumbnail?, on: :lint
+    validates :track, inclusion: {in: ->(talk) { talk.event.schedule.track_names }, message: ->(talk, data) { %("#{data[:value]}" is not defined in the tracks of schedule.yml (defined: #{talk.event.schedule.track_names.map { |name| %("#{name}") }.join(", ").presence || "none"}). Fix the track name or add it to the tracks in schedule.yml.) }}, allow_blank: true, if: -> { event&.schedule }, on: :lint
+    validates :kind, "static/inferred_kind": true
+    validates :published_at, absence: {message: ->(talk, data) { %((#{data[:value]}) must not be set when video_provider is "#{talk["video_provider"]}") }}, if: -> { self["video_provider"].in?(PROVIDERS_WITHOUT_PUBLISHED_AT) }
+
+    validates_with Static::TalkDatesValidator, Static::TalkIdValidator, Static::TalkLanguageValidator, on: :lint
+    validates_with Static::RecordingCuesValidator, Static::UniqueTalkSpeakersValidator, on: :lint
+    validates_with Static::TalkVideoIdValidator
+    validates_with Static::SpeakersOrTalksValidator, Static::ShortTalkKindValidator
+
     def self.find_by_static_id(id)
       find_by(id: id)
     end
@@ -83,6 +98,21 @@ module Static
       self["old_id"]
     end
 
+    # A talk cut from a shared recording, by its start_cue, has a thumbnail extracted from that recording
+    def extracted_thumbnail?
+      extracted_thumbnail_name.present? && (parent.nil? || parent.id.present?) &&
+        Array(self["speakers"]).any? { |name| name.to_s.strip.present? } &&
+        start_cue.present? && start_cue != "TODO"
+    end
+
+    def extracted_thumbnail_name
+      parent ? video_id : id
+    end
+
+    def expected_thumbnail_path
+      File.join("app/assets/images/thumbnails", *[event_id, parent&.id, "#{extracted_thumbnail_name}.webp"].compact)
+    end
+
     def raw_title
       self["raw_title"] || title
     end
@@ -136,7 +166,7 @@ module Static
     end
 
     def convert_cue_to_seconds(cue)
-      Static::Validators::CueDuration.cue_to_seconds(cue)
+      Static::ShortTalkKindValidator.cue_to_seconds(cue)
     end
 
     def meta_talk?
@@ -171,6 +201,14 @@ module Static
       talk ||= ::Talk.new
       talk.static_id = id
       talk
+    end
+
+    private
+
+    def extracted_thumbnail_exists
+      return if File.exist?(File.join(path_root.to_s, expected_thumbnail_path))
+
+      errors.add(:base, %(missing thumbnail for talk "#{extracted_thumbnail_name}" at #{expected_thumbnail_path}. Run `bin/rails extract_thumbnails` to generate it.), at: key?("video_id") ? "video_id" : "start_cue")
     end
   end
 end

@@ -6,7 +6,7 @@ namespace :event_recordings_published_date do
   desc "Reconcile recordings_published_date across all event.yml files (meetups, majority rule, P90/date correction). Pass DRY_RUN=1 to preview."
   task fix: :environment do
     dry_run = ENV["DRY_RUN"].present?
-    validator = Static::Validators::EventRecordingsPublishedDate
+    validator = Static::RecordingsPublishedDateValidator
 
     parse_date = ->(value) do
       Date.parse(value.to_s)

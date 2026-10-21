@@ -9,6 +9,7 @@ module Yerba
       include Associations
       include Schema
       include History
+      include Validations
 
       attr_reader :document, :parent
       attr_reader :parsed_selector
@@ -127,8 +128,17 @@ module Yerba
         !parent.nil?
       end
 
-      def save!
+      def save(**options)
+        save!(**options)
+
+        true
+      rescue RecordInvalid
+        false
+      end
+
+      def save!(validate: true, context: nil)
         raise_if_destroyed!
+        validate_for_save!(context) if validate
 
         if new_record?
           path = persist_path
@@ -138,8 +148,6 @@ module Yerba
 
           directory = File.dirname(path)
           FileUtils.mkdir_p(directory) unless File.directory?(directory)
-
-          validate! if self.class.schema
 
           document.save_to!(path)
 
@@ -198,15 +206,14 @@ module Yerba
         document.changed?
       end
 
-      def validate!
-        return unless self.class.schema
+      def file_records
+        return Collection.new(record_class: self.class, records: [self]) unless document && file_path
 
-        errors = Yerba::Document.from(to_h).validate(self.class.schema.json_schema)
+        self.class.in_file(file_path, document: document)
+      end
 
-        if errors.any?
-          error_messages = errors.map { |error| "#{error["message"]} at #{error["path"]}" }
-          raise ArgumentError, "Validation failed: #{error_messages.join(", ")}"
-        end
+      def attributes_changed?
+        original_attributes.any?
       end
 
       def id

@@ -3,6 +3,8 @@ require "generators/event/event_generator"
 require "fileutils"
 
 class EventGeneratorTest < Rails::Generators::TestCase
+  include DataFileAssertions
+
   tests EventGenerator
 
   setup do
@@ -179,14 +181,14 @@ class EventGeneratorTest < Rails::Generators::TestCase
 
   test "meetup title of a second meetup on the same day has the day" do
     run_generator ["--force", "--event-series", "lrug", "--kind", "meetup", "--date", "2099-01-12"]
-    Static::Validators::MeetupTitle.reset_meetup_dates!
+    Static::MeetupTitleValidator.reset_meetup_dates!
     run_generator ["--force", "--event-series", "lrug", "--kind", "meetup", "--date", "2099-01-12"]
 
     assert_valid_file File.join(destination_root, "data/lrug/lrug-2099-01-12-2/event.yml") do |content|
       assert_match(/title: "LRUG Meetup January 12, 2099"/, content)
     end
   ensure
-    Static::Validators::MeetupTitle.reset_meetup_dates!
+    Static::MeetupTitleValidator.reset_meetup_dates!
   end
 
   test "non-meetup event without dates does not generate a file" do
@@ -205,10 +207,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
   end
 
   def assert_valid_file(file_path, msg = nil, &block)
-    errors = Static::Validators::Validator.event_validator_classes.flat_map do |validator|
-      validator.new(file_path:).errors
-    end
-    assert_empty errors, msg || errors.map { |e| e.to_h["message"] }.join(", ")
+    assert_valid_data_file(file_path, msg)
     assert_file file_path, msg, &block
   end
 end

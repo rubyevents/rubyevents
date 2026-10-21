@@ -73,18 +73,15 @@ class MeetupSplit
   end
 
   def title_meetups(series)
-    Static::Validators::MeetupTitle.reset_meetup_dates!
+    events = Dir.glob(File.join(File.dirname(series.file_path), "*", "event.yml")).flat_map { |path| Static::Event.in_file(path).to_a }
 
-    Dir.glob(File.join(File.dirname(series.file_path), "*", "event.yml")).each do |path|
-      Static::Validators::MeetupTitle.new(file_path: path).fix
-    end
+    Yerba::Record.fix_all(events, only: Static::MeetupTitleValidator)
   end
 
   def name_talks(path)
     return unless File.exist?(path)
 
-    Static::Validators::TalkId.new(file_path: path).fix
-    Static::Validators::TalkVideoId.new(file_path: path).fix
+    Yerba::Record.fix_all(Static::Talk.in_file(path.to_s), only: [Static::TalkIdValidator, Static::TalkVideoIdValidator])
   end
 
   def self.normalize_top_level_talks!(path, kind: nil, language: nil, dates: nil)
@@ -469,7 +466,7 @@ class MeetupSplit
         next
       end
 
-      if talk.parent.nil? && talk["start_cue"].blank? && Static::Validators::RedundantThumbnails::REMOTE_THUMBNAIL_PROVIDERS.include?(talk["video_provider"])
+      if talk.parent.nil? && talk["start_cue"].blank? && Static::Thumbnail::REMOTE_THUMBNAIL_PROVIDERS.include?(talk["video_provider"])
         file.delete
         next
       end

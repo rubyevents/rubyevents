@@ -94,11 +94,11 @@ class EventGenerator < Generators::EventBase
     return @title if defined?(@title)
 
     date = Date.parse(start_date)
-    same_month = Static::Validators::MeetupTitle.meetup_dates(series_directory).count { |other| other.year == date.year && other.month == date.month }
+    same_month = Static::MeetupTitleValidator.meetup_dates(series_directory).count { |other| other.year == date.year && other.month == date.month }
     same_month -= 1 if File.exist?(event_file_path)
     month = same_month.positive? ? date.strftime("%B %-d,") : date.strftime("%B")
 
-    @title = "#{Static::Validators::MeetupTitle.title_name(static_series)} #{month} #{date.year}"
+    @title = "#{Static::MeetupTitleValidator.title_name(static_series)} #{month} #{date.year}"
   end
 
   def event_id

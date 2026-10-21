@@ -7,6 +7,8 @@ module Static
       has_one :series, through: :parent
 
       references :speakers, class_name: "Static::Speaker"
+
+      validates :speakers, "static/speaker_exists": true, on: :lint
     end
   end
 end

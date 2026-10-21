@@ -13,6 +13,7 @@ module Yerba
     class FileRecord
       include Querying
       include Associations
+      include Validations
 
       attr_reader :file_path
 
@@ -116,7 +117,9 @@ module Yerba
         self.class.path_pattern&.root_of(file_path) || self.class.root
       end
 
-      def save!
+      def save!(validate: true, context: nil)
+        validate_for_save!(context) if validate
+
         to = path_params.merge(path_changes)
         return self if to == path_params
 

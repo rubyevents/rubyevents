@@ -14,6 +14,13 @@ module Static
 
     extend Integrity
 
+    validates :aliases, "static/speaker_aliases": true
+    validates_with Static::SpeakerSlugValidator
+    validates_with Static::SimilarSpeakerNamesValidator, Static::UniqueSpeakersValidator, on: :lint
+    validate :website_not_on_twitter
+
+    WEBSITE_DISALLOWED_HOSTS = %w[t.co twitter.com x.com].freeze
+
     SOCIAL_HANDLE_FIELDS = %w[github twitter mastodon bluesky linkedin speakerdeck].freeze
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
@@ -191,7 +198,23 @@ module Static
       nil
     end
 
+    def self.disallowed_website?(url)
+      host = URI.parse(url.to_s.strip).host.to_s.downcase
+      return false if host.empty?
+
+      WEBSITE_DISALLOWED_HOSTS.any? { |disallowed| host == disallowed || host.end_with?(".#{disallowed}") }
+    rescue URI::InvalidURIError
+      false
+    end
+
     private
+
+    def website_not_on_twitter
+      website = self["website"]
+      return unless website.is_a?(String) && self.class.disallowed_website?(website)
+
+      errors.add(:website, %("#{website}" points to t.co, twitter.com or x.com, use the actual website instead (Twitter/X handles belong in the "twitter" field)))
+    end
 
     def find_user_by_aliases
       Array(aliases).each do |alias_data|

@@ -11,5 +11,12 @@ module Static
     has_one :series, through: :event
 
     has_many :days, nested: true, class_name: "Static::Schedule::Day"
+
+    validates_with Static::ScheduleSlotsValidator, on: :lint
+    validates_with Static::ScheduleDuplicateTimeSlotsValidator
+
+    def track_names
+      Array(tracks).filter_map { |track| track["name"] }
+    end
   end
 end

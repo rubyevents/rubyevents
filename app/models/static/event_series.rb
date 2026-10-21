@@ -9,6 +9,11 @@ module Static
     include OwnedImports
     include LocationParsing
 
+    validates :id, matches_path: true, on: :lint
+    validates_with Static::BrandColorsValidator, on: :lint
+    validates :location, "static/location_country": true, on: :lint
+    validates :name, "static/meetup_series_name": true, on: :lint
+
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
     class << self
