@@ -59,7 +59,7 @@
     <%= @event_series.description %>
   </p>
 
-  <% if @event_series.static_metadata&.ended? %>
+  <% if @event_series.static_metadata&.inactive? %>
     <div class="-mt-0.5 mb-4 flex text-gray-400">
       <%= fa "box-archive", size: :xs, class: "mt-0.5 fill-gray-400" %>
       <span class="ml-0.5 mt-0.5 text-sm">This event series is not active anymore.</span>

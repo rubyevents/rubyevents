@@ -118,7 +118,7 @@ class UKNation
   end
 
   def stamps
-    Stamp.all.select { |stamp| stamp.code == alpha2 }
+    Static::Stamp.all.select { |stamp| stamp.code == alpha2 }
   end
 
   def bounds

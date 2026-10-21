@@ -67,6 +67,30 @@ class Static::Speaker::CollectionTest < ActiveSupport::TestCase
     assert_includes speakers.index_on(:slug).positions, "aaron-patterson"
   end
 
+  test "remove_orphaned_speakers! destroys the speakers nothing references" do
+    File.write(@tmp_file.path, <<~YAML)
+      ---
+      - name: "Orphan One XYZZY"
+        github: ""
+        slug: "orphan-one-xyzzy"
+
+      # Keep this comment
+      - name: "Alan Ridlehoover"
+        github: ""
+        slug: "alan-ridlehoover"
+
+      - name: "Orphan Two XYZZY"
+        github: ""
+        slug: "orphan-two-xyzzy"
+    YAML
+
+    removed = Static::Speaker.in_file(@tmp_file.path).remove_orphaned_speakers!
+
+    assert_equal ["Orphan One XYZZY", "Orphan Two XYZZY"], removed.sort
+    assert_equal ["Alan Ridlehoover"], Yerba.parse_file(@tmp_file.path).value_at("[].name")
+    assert_includes File.read(@tmp_file.path), "# Keep this comment"
+  end
+
   test "finds a speaker added before saving" do
     speakers = Static::Speaker.in_file(@tmp_file.path)
 

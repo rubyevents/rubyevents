@@ -126,6 +126,33 @@ class Yerba::Record::CollectionEditingTest < ActiveSupport::TestCase
     assert_equal 25, child.source_line("title")
   end
 
+  test "source_line takes a selector relative to the record" do
+    opening = talks.find_by(id: "opening")
+    lightning_talks = talks.find_by(id: "lightning-talks")
+
+    assert_equal 8, opening.source_line("speakers[0]")
+    assert_equal 25, lightning_talks.source_line("talks[1].title")
+    assert_equal 30, lightning_talks.talks.last.source_line("speakers[0]")
+    assert_nil opening.source_line("speakers[5]")
+  end
+
+  test "source_location of a record in an empty document is nil" do
+    event = Static::Event.parse("# TODO: add the event\n", path: File.join(@dir, "event.yml")).first
+
+    assert_nil event["id"]
+    assert_nil event.source_location("id")
+  end
+
+  test "set replaces a value or inserts it at a position, with a quote style" do
+    opening = talks.find_by(id: "opening")
+
+    opening.set("title", "Welcome", quote_style: :single)
+    opening.set("published_at", "2025-01-02", after: "date", quote_style: :double)
+    opening.save!
+
+    assert_includes File.read(@path), "  title: 'Welcome'\n  date: \"2025-01-01\"\n  published_at: \"2025-01-02\"\n"
+  end
+
   test "create inserts at a position and returns the new record" do
     record = talks.create({id: "keynote", title: "Keynote", date: "2025-01-01", video_provider: "youtube", video_id: "keynote", speakers: ["Eve"]}, after: "opening")
 

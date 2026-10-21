@@ -1,6 +1,8 @@
 require "test_helper"
 
 class Static::EventTest < ActiveSupport::TestCase
+  include StaticDataSandbox
+
   SLUG = "helveticruby-2025"
 
   teardown do
@@ -173,5 +175,19 @@ class Static::EventTest < ActiveSupport::TestCase
     assert_equal "Montréal", record.city
     assert_equal "QC", record.state_code
     assert_equal "CA", record.country_code
+  end
+
+  test "create writes an empty videos.yml next to the new event.yml" do
+    with_static_data_dir do |root|
+      FileUtils.mkdir_p(File.join(root, "data/testconf"))
+      File.write(File.join(root, "data/testconf/series.yml"), %(---\nid: "testconf"\nname: "TestConf"\n))
+
+      event = Static::Event.create(series_slug: "testconf", title: "TestConf 2024", kind: "conference", location: "Online", timezone: "UTC", coordinates: false)
+      videos_path = File.join(File.dirname(event.file_path), "videos.yml")
+
+      assert_equal File.join(root, "data/testconf/testconf-2024/event.yml"), event.file_path
+      assert File.exist?(videos_path)
+      assert_equal [], Yerba.parse_file(videos_path).values
+    end
   end
 end

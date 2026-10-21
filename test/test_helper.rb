@@ -15,6 +15,7 @@ require "webmock/minitest"
 require "vcr"
 require_relative "helpers/event_tracking_helper"
 require_relative "helpers/static_speakers_sandbox"
+require_relative "helpers/static_data_sandbox"
 
 VCR.configure do |c|
   c.cassette_library_dir = "test/vcr_cassettes"

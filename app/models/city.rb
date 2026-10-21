@@ -188,8 +188,8 @@ class City < ApplicationRecord
 
   def stamps
     @stamps ||= begin
-      event_stamps = events.flat_map { |event| Stamp.for_event(event) }
-      country_stamps = Stamp.for(country_code: country_code, state_code: state_code)
+      event_stamps = events.flat_map { |event| Static::Stamp.for_event(event) }
+      country_stamps = Static::Stamp.for(country_code: country_code, state_code: state_code)
 
       (event_stamps + country_stamps).uniq { |s| s.code }
     end

@@ -2,8 +2,7 @@
 
 module Static
   class Speaker < Yerba::Record::Base
-    self.path = "speakers.yml"
-    self.base_path = Rails.root.join("data")
+    self.path = "data/speakers.yml"
 
     schema SpeakerSchema
 

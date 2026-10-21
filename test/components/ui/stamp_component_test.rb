@@ -4,9 +4,9 @@ require "test_helper"
 
 class Ui::StampComponentTest < ViewComponent::TestCase
   setup do
-    @country_stamp = Stamp.for(country_code: "BE").first
+    @country_stamp = Static::Stamp.for(country_code: "BE").first
 
-    @contributor_stamp = Stamp.contributor_stamp
+    @contributor_stamp = Static::Stamp.contributor_stamp
   end
 
   test "renders country stamp as link" do

@@ -1,3 +1,134 @@
-# TODO: Add talks and videos
 ---
-[]
+- id: "yudai-takada-hokuriku-rubykaigi-02"
+  title: "gem install と require のむこうがわ"
+  event_name: "Hokuriku RubyKaigi 02"
+  date: "2026-11-14"
+  language: "Japanese"
+  video_provider: "not_recorded"
+  video_id: "yudai-takada-hokuriku-rubykaigi-02"
+  description: |-
+    Gemfileに一行足して、bundle installして、requireする。
+    みなさん一度はやったことのある操作だと思います。
+
+    でも、その一行の向こう側で何が起きているかは、あまり見えません。
+    インストールは本当に成功していたのか？requireしただけのつもりが、どこかに接続していないか？そのGemが期待どおりに動いていると、何を根拠に言えるのか？
+
+    これらの見えない者たちは、実はRubyから覗くことができるんです。
+    Linuxには、システムコールを実行する直前にプロセスを止めて、別のプロセスに知らせる仕組みがあります。これをRubyから扱えるようにすると、Gemがファイルを開いたり、どこかへ接続したり、コマンドを起動したりする動きを、その場で記録できます。
+
+    覗いてみると、思っていたのとは違う景色がありました。
+    成功したはずのインストール、何も副作用はないはずのrequire、動いていたはずのGem。トークではこの三つを順に見ていきます。
+
+    聞き終わったあとは、Gemfileの一行が少し違って見えるはずです。
+    いつも使っているあのGemは、本当は何をしているのか。一緒に「むこうがわ」を覗きにいきませんか。
+  speakers:
+    - Yudai Takada
+
+- id: "koichi-uchinishi-hokuriku-rubykaigi-02"
+  title: "あなたはMCPの機能を、まだ知らない。"
+  event_name: "Hokuriku RubyKaigi 02"
+  date: "2026-11-14"
+  language: "Japanese"
+  video_provider: "not_recorded"
+  video_id: "koichi-uchinishi-hokuriku-rubykaigi-02"
+  description: |-
+    MCPを連携してtoolsをみなさん使われているのではないでしょうか？
+    ですが、MCP Appsというチャットの中にHTMLのUIを埋め込める仕組みがあることは、まだあまり知られていません。
+
+    MCP ServerとMCP Appsの違い、実際に作った実装、そして ruby-sdk のソースコードまで深掘りしていきます。
+
+    さわることで、はじめて気づく発見がいくつもありました。一緒に解読していきましょう。
+  speakers:
+    - Koichi Uchinishi
+
+- id: "pvcresin-hokuriku-rubykaigi-02"
+  title: "コード生成時代のAPI定義を支えるRequest Spec移行"
+  event_name: "Hokuriku RubyKaigi 02"
+  date: "2026-11-14"
+  language: "Japanese"
+  video_provider: "not_recorded"
+  video_id: "pvcresin-hokuriku-rubykaigi-02"
+  description: |-
+    そのプロダクトのAPI定義、実装と完全に一致していますか？そう聞かれて迷いなく頷くのは、案外難しいはずです。検証する仕組みがなければ、定義は書いた瞬間から実装とズレはじめます。必須のパラメータが返らない、enumの値が足りない。そんな小さな乖離が、静かに積み上がっていきます。
+
+    そして、現代はコード生成の時代です。API定義という仕様を起点に、フロントエンドの通信コードは機械的に自動生成され、バックエンドの実装はAIによって高速に書き進められていく。定義が単なるドキュメントだった頃には見過ごされてきた小さなズレは、生成されたコードを通じてアプリケーションを壊す実害に変わりました。実装が目まぐるしく書き換わる中、外から見た振る舞いに対するテストはますます重要になってきています。
+
+    このトークでは、歴史ある大規模アプリケーションに残っていた120個のController SpecをRequest Specに移行し、OpenAPIの定義と実装の一致をテストで担保した事例を紹介します。振る舞いの拠り所であるAPI定義を、人の注意力ではなく仕組みで支える。それがこの移行の狙いです。
+    なぜController Specでは乖離の検出が難しいのか。一度に直しきれない現実にどう対処するのか。そして、これからの開発の未来についても一緒に考えましょう！
+  speakers:
+    - pvcresin
+
+- id: "koichi-sasada-hokuriku-rubykaigi-02"
+  title: "diff の範囲だけ実行時トレースすると、コードレビューに役立つのでは？"
+  event_name: "Hokuriku RubyKaigi 02"
+  date: "2026-11-14"
+  language: "Japanese"
+  video_provider: "not_recorded"
+  video_id: "koichi-sasada-hokuriku-rubykaigi-02"
+  description: |-
+    AI コーディングの普及で、コードレビューの重要性はますます高まっています。レビュー時に、変更したコードがテスト中にどう動いたか、どんな型や値が現れたかまで見えれば、レビューの助けになりそうです。しかし、プログラム全体について詳細な実行時情報を集めるのは、実行時間・データ量ともに高コストです。
+
+    そこで「レビュー対象は diff なのだから、diff の範囲だけ詳しくトレースすればよいのでは？」と考えました。このアイデアを試すため、指定範囲の実行時情報を収集する lumitrace gem と、その情報をレビュー時に確認できる lumitrace-action を作りました（プロジェクトページ）。
+
+    デフォルトでは、変更したのにテストで一度も実行されなかった箇所を diff 上に注釈し、各行で現れた型や値なども確認できます（デモ）。
+
+    本発表では、この「diff だけ詳しく見る」という考え方、トレーサーの仕組み、GitHub Actions との連携を紹介します。
+  speakers:
+    - Koichi Sasada
+
+- id: "s-h-gamelinks-hokuriku-rubykaigi-02"
+  title: "Paint it Red!"
+  event_name: "Hokuriku RubyKaigi 02"
+  date: "2026-11-14"
+  language: "Japanese"
+  video_provider: "not_recorded"
+  video_id: "s-h-gamelinks-hokuriku-rubykaigi-02"
+  description: |-
+    普段皆さんはRailsでWebアプリケーションを開発していることが多いと思います。
+    そのRailsの下、Rubyの下ではどんな世界が広がっているでしょうか？
+
+    HTTPサーバがあり、その下にRubyの処理系があり、そしてユーザーランドとカーネルがあります。
+    この辺りは普段のWebアプリケーション開発では気にすることはあまりないと思います。
+
+    では、そんな低レイヤーをRubyで探求することができるとしたら、皆さんは面白そうだと思いますか？
+
+    僕は最近、カーネルからユーザーランド、そしてその上で動くHTTPサーバまでをRubyを使って実装できないかを探求してみました。
+
+    本セッションではその探求の結果として生まれた、カーネル、ユーザーランド、HTTPサーバのすべてでRubyを使っている実装Kurenai（紅）について紹介しつつ、Rubyでも低レイヤーの開発ができるという発見を共有します。
+
+    カーネルからユーザーランド、その上で動くHTTPサーバまでをRubyでどのように真っ赤に染めていったのかをお話しします。
+  speakers:
+    - S-H-GAMELINKS
+
+- id: "yukimitsu-izawa-hokuriku-rubykaigi-02"
+  title: "テストだけで掘り起こせるか！？ Rubyでつくるメソッド発掘器"
+  event_name: "Hokuriku RubyKaigi 02"
+  date: "2026-11-14"
+  language: "Japanese"
+  video_provider: "not_recorded"
+  video_id: "yukimitsu-izawa-hokuriku-rubykaigi-02"
+  description: |-
+    「やりたいことはわかるけど、メソッド名が出てこない」そんなとき、Ruby自身に候補を探してもらえないでしょうか。
+
+    本発表では、入出力の例をテストとして使う小さなメソッド探索器を紹介します。
+
+    たとえば、並べ替えの例に複数の候補が合格するところから、入力を追加し、戻り値に加えて呼び出し後の配列も調べながら、候補を絞る過程を示します。
+    「firstとminを見分ける次の入力は？」「重複がない配列でuniq!を呼ぶと？」「nilだけを補いたいとき、falseはどう扱うの？」など、短いクイズを挟みながら、予想と実行結果を比べて、次に試す入力や観察項目を考えます。
+    Rubyのリフレクションによる探索の仕組みと、比較する候補に同じ初期状態を用意する工夫も説明します。
+
+    テストが不十分なときに目的のメソッド以外もテストを通ってしまった場合の、要求と違う振る舞いを見分けるテストを追加する方法論について考察します。メソッドの発掘を通じて、自分の要求も具体化していく過程を参加者と一緒に体験していきます。
+  speakers:
+    - Yukimitsu Izawa
+
+- id: "yusuke-nakamura-hokuriku-rubykaigi-02"
+  title: "Keynote: Dig it!"
+  kind: "keynote"
+  event_name: "Hokuriku RubyKaigi 02"
+  date: "2026-11-14"
+  language: "Japanese"
+  video_provider: "not_recorded"
+  video_id: "yusuke-nakamura-hokuriku-rubykaigi-02"
+  description: |-
+    (TBD)
+  speakers:
+    - Yusuke Nakamura

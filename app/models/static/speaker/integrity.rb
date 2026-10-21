@@ -7,13 +7,6 @@ module Static
     module Integrity
       NameCluster = Struct.new(:names, :score, keyword_init: true)
 
-      VIDEO_SPEAKER_SELECTORS = [
-        "[].speakers[]",
-        "[].alternative_recordings[].speakers[]",
-        "[].talks[].speakers[]",
-        "[].talks[].alternative_recordings[].speakers[]"
-      ].freeze
-
       def names
         pluck(:name)
       end
@@ -45,12 +38,7 @@ module Static
       end
 
       def all_speaker_references
-        all.cached(:all_speaker_references) do
-          video_refs = VIDEO_SPEAKER_SELECTORS.flat_map { |selector| Yerba::Collection.get(Static::Talk.file_glob, selector) }
-          involvement_refs = Yerba::Collection.get(Static::Involvement.file_glob, "[].users[]")
-
-          (video_refs + involvement_refs).reject { |scalar| scalar.value.blank? }
-        end
+        all.cached(:all_speaker_references) { inbound_references }
       end
 
       def all_referenced_names
@@ -58,7 +46,7 @@ module Static
       end
 
       def missing_speaker_references
-        all_speaker_references.reject { |scalar| known_reference?(scalar.value) }
+        all_speaker_references.reject { |reference| known_reference?(reference.value) }
       end
 
       def missing_speakers
@@ -73,21 +61,17 @@ module Static
         speakers = orphaned
         return [] if speakers.empty?
 
-        speakers.map(&:index).sort.reverse_each { |index| all.document.remove_at("", index) }
+        speakers.sort_by(&:index).reverse_each(&:destroy)
         all.reset!
 
         speakers.map(&:name)
       end
 
-      def add_missing_speakers
-        missing = missing_speakers
+      def add_missing_speakers(references = missing_speaker_references)
+        names = references.map(&:value).uniq.sort
+        names.each { |name| add(name: name) }
 
-        if missing.any?
-          all.document.concat(missing.map { |name| {name:, github: "", slug: name.parameterize} })
-          all.reset!
-        end
-
-        missing
+        names
       end
 
       def duplicate_slugs

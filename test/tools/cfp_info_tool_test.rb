@@ -5,7 +5,8 @@ class CFPInfoToolTest < ActiveSupport::TestCase
   setup do
     @event = events(:rails_world_2023)
     @tmp_dir = Dir.mktmpdir
-    @data_folder = Pathname.new(@tmp_dir)
+    @data_folder = Pathname.new(@tmp_dir).join("data", "test-series", "test-event")
+    FileUtils.mkdir_p(@data_folder)
   end
 
   teardown do
@@ -21,7 +22,7 @@ class CFPInfoToolTest < ActiveSupport::TestCase
         "close_date" => "2024-02-01"
       }
     ]
-    File.write(File.join(@tmp_dir, "cfp.yml"), cfp_data.to_yaml)
+    File.write(@data_folder.join("cfp.yml"), cfp_data.to_yaml)
 
     tool = build_tool_with_tmp_data_folder
 
@@ -61,7 +62,7 @@ class CFPInfoToolTest < ActiveSupport::TestCase
       {"name" => "Main CFP", "link" => "https://cfp.example.com"},
       {"name" => "Lightning Talks", "link" => "https://lightning.example.com"}
     ]
-    File.write(File.join(@tmp_dir, "cfp.yml"), cfp_data.to_yaml)
+    File.write(@data_folder.join("cfp.yml"), cfp_data.to_yaml)
 
     tool = build_tool_with_tmp_data_folder
 
@@ -81,7 +82,7 @@ class CFPInfoToolTest < ActiveSupport::TestCase
         "close_date" => "2020-02-01"
       }
     ]
-    File.write(File.join(@tmp_dir, "cfp.yml"), cfp_data.to_yaml)
+    File.write(@data_folder.join("cfp.yml"), cfp_data.to_yaml)
 
     tool = build_tool_with_tmp_data_folder
 
@@ -99,7 +100,7 @@ class CFPInfoToolTest < ActiveSupport::TestCase
         "close_date" => "2099-02-01"
       }
     ]
-    File.write(File.join(@tmp_dir, "cfp.yml"), cfp_data.to_yaml)
+    File.write(@data_folder.join("cfp.yml"), cfp_data.to_yaml)
 
     tool = build_tool_with_tmp_data_folder
 
@@ -118,7 +119,7 @@ class CFPInfoToolTest < ActiveSupport::TestCase
         "close_date" => (today + 10.days).to_s
       }
     ]
-    File.write(File.join(@tmp_dir, "cfp.yml"), cfp_data.to_yaml)
+    File.write(@data_folder.join("cfp.yml"), cfp_data.to_yaml)
 
     tool = build_tool_with_tmp_data_folder
 
@@ -135,7 +136,7 @@ class CFPInfoToolTest < ActiveSupport::TestCase
         "open_date" => "2020-01-01"
       }
     ]
-    File.write(File.join(@tmp_dir, "cfp.yml"), cfp_data.to_yaml)
+    File.write(@data_folder.join("cfp.yml"), cfp_data.to_yaml)
 
     tool = build_tool_with_tmp_data_folder
 
@@ -151,7 +152,7 @@ class CFPInfoToolTest < ActiveSupport::TestCase
         "link" => "https://cfp.example.com"
       }
     ]
-    File.write(File.join(@tmp_dir, "cfp.yml"), cfp_data.to_yaml)
+    File.write(@data_folder.join("cfp.yml"), cfp_data.to_yaml)
 
     tool = build_tool_with_tmp_data_folder
 
@@ -162,7 +163,7 @@ class CFPInfoToolTest < ActiveSupport::TestCase
 
   test "finds event by name" do
     cfp_data = [{"link" => "https://cfp.example.com"}]
-    File.write(File.join(@tmp_dir, "cfp.yml"), cfp_data.to_yaml)
+    File.write(@data_folder.join("cfp.yml"), cfp_data.to_yaml)
 
     tool = build_tool_with_tmp_data_folder
 

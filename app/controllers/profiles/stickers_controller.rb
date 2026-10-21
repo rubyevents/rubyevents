@@ -3,6 +3,6 @@ class Profiles::StickersController < ApplicationController
 
   def index
     @events = @user.attended_events.includes(:series)
-    @stickers = Sticker.for_user(@user, events: @events)
+    @stickers = Static::Sticker.for_user(@user, events: @events)
   end
 end

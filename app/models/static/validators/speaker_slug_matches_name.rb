@@ -27,89 +27,73 @@ module Static
       def validate
         return [] unless applicable?
 
-        errors = []
+        speakers.filter_map do |speaker|
+          name = speaker["name"].to_s
+          expected_slug = name.parameterize
+          next if speaker["slug"] == expected_slug
 
-        @document ||= Yerba.parse_file(@file_path)
-        name_slug_pairs = @document.pluck(:name).zip(@document.pluck(:slug), @document.pluck(:github))
-        errors.concat(find_errors_for_name_slug_pairs(name_slug_pairs) do |name|
-          @document.find_by(name: name)&.[]("slug")
-        end)
+          location = speaker.source_location("slug") || speaker.source_location
 
-        errors
+          message = if expected_slug.empty?
+            github = speaker["github"]
+            suggestion = github.present? ? %(a romanized name, or the GitHub handle "#{github}" if none is known,) : "a romanized name"
+
+            %(Name "#{name}" cannot be parameterized into a stable slug. Use #{suggestion} as the name and add "#{name}" to aliases.)
+          else
+            "Slug must be the name parameterized, expected: #{expected_slug}"
+          end
+
+          Static::Validators::Error.new(
+            message,
+            file_path: @file_path,
+            line: location&.start_line || 1,
+            end_line: location&.end_line
+          )
+        end
       end
 
+      # Uses the GitHub handle as the name when the name can't be parameterized, keeping the old
+      # name as an alias, and regenerates mismatched slugs. Changed slugs stay redirects in slugs.
       def fix
         return unless applicable?
 
-        @document ||= Yerba.parse_file(@file_path)
-        changed = 0
-
-        @document.root.each do |speaker|
-          name = speaker["name"].value.to_s
-          github = speaker["github"]&.value.to_s
-          slug = speaker["slug"]&.value.to_s
+        changed = speakers.count do |speaker|
+          name = speaker["name"].to_s
+          github = speaker["github"].to_s
+          slug = speaker["slug"].to_s
           renamed = false
 
           if name.parameterize.empty?
-            next if github.blank? || github.parameterize.empty?
+            next false if github.parameterize.empty?
 
-            aliases = speaker["aliases"]&.map(&:value) || []
+            speaker["aliases"] = [name, *speaker.alias_names].uniq
             speaker["name"] = github
-            speaker["aliases"] = [name, *aliases].uniq
             name = github
             renamed = true
           end
 
           expected_slug = name.parameterize
+          next renamed if slug == expected_slug
 
-          if slug == expected_slug
-            changed += 1 if renamed
-            next
-          end
-
-          if slug.present? && slug != expected_slug
-            redirect_slugs = speaker["slugs"]&.map(&:value) || []
-            speaker["slugs"] = (redirect_slugs + [slug]).uniq unless github.present? && slug.casecmp?(github)
+          if slug.present? && !slug.casecmp?(github)
+            speaker["slugs"] = (speaker.redirect_slugs + [slug]).uniq
           end
 
           speaker["slug"] = expected_slug
-          changed += 1
+          true
         end
 
         return if changed.zero?
 
-        @document.save!(apply: true)
+        speakers.save!
 
         {changed: changed, file_path: @file_path}
       end
 
       private
 
-      def find_errors_for_name_slug_pairs(name_slug_pairs, &block)
-        name_slug_pairs.filter_map do |name, slug, github|
-          expected_slug = name.parameterize
-          next if slug == expected_slug
-
-          entry = block.call(name)
-
-          if expected_slug.empty?
-            suggestion = github.present? ? %(a romanized name, or the GitHub handle "#{github}" if none is known,) : "a romanized name"
-
-            Static::Validators::Error.new(
-              %(Name "#{name}" cannot be parameterized into a stable slug. Use #{suggestion} as the name and add "#{name}" to aliases.),
-              file_path: @file_path,
-              line: entry&.location&.start_line || 1,
-              end_line: entry&.location&.end_line
-            )
-          else
-            Static::Validators::Error.new(
-              "Slug must be the name parameterized, expected: #{expected_slug}",
-              file_path: @file_path,
-              line: entry&.location&.start_line || 1,
-              end_line: entry&.location&.end_line
-            )
-          end
-        end
+      def speakers
+        @speakers ||= Static::Speaker.in_file(@file_path.to_s, document: @document)
       end
     end
   end

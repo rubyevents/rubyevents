@@ -41,7 +41,7 @@ module Static
 
         UNIQUE_FIELDS.each do |field|
           speakers.duplicates(field).each do |value, count|
-            location = speakers.document.find_by("#{field}": value)&.location
+            location = speakers.find_by("#{field}": value)&.source_location
 
             errors << Static::Validators::Error.new(
               "Duplicate #{field}: #{value} (#{count} occurrences)",
@@ -58,27 +58,20 @@ module Static
       private
 
       def validate_redirect_slugs(speakers)
-        doc = speakers.document
-        names = doc.value_at("[].name")
-        main_slugs = doc.value_at("[].slug")
-        githubs = doc.value_at("[].github")
-        github_handles = doc.value_at("[].github_handles")
-        redirect_slugs = doc.value_at("[].slugs")
-
         owners = Hash.new { |hash, key| hash[key] = Set.new }
 
-        names.each_with_index do |name, index|
-          owners[main_slugs[index]] << name if main_slugs[index].present?
+        speakers.each do |speaker|
+          owners[speaker["slug"]] << speaker["name"] if speaker["slug"].present?
         end
 
         errors = []
 
-        names.each_with_index do |name, index|
-          handles = [githubs[index], *Array(github_handles[index])].compact_blank
+        speakers.each do |speaker|
+          name = speaker["name"]
+          handles = speaker.all_github_handles
 
-          Array(redirect_slugs[index]).each do |redirect_slug|
+          speaker.redirect_slugs.each do |redirect_slug|
             other_owners = owners[redirect_slug] - [name]
-            location = doc.find_by(name: name)&.location
 
             message = if handles.any? { |handle| redirect_slug.casecmp?(handle) }
               "Slug '#{redirect_slug}' in slugs of '#{name}' is redundant, it's the GitHub handle of the speaker and profile URLs already resolve GitHub handles"
@@ -92,6 +85,7 @@ module Static
 
             next unless message
 
+            location = speaker.source_location
             errors << Static::Validators::Error.new(message, file_path: @file_path, line: location&.start_line || 1, end_line: location&.end_line)
           end
         end

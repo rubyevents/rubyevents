@@ -5,6 +5,18 @@ class EventSeriesTest < ActiveSupport::TestCase
     @series = event_series(:railsconf)
   end
 
+  test "description uses the past tense for an inactive meetup series" do
+    series = EventSeries.create!(name: "Triangle.rb", slug: "triangle-rb", kind: :meetup, frequency: :monthly)
+
+    assert_match "Triangle.rb was a monthly meetup", EventSeries.includes(:events).find(series.id).description
+  end
+
+  test "description uses the present tense for an active meetup series" do
+    series = EventSeries.create!(name: "Example.rb", slug: "example-rb", kind: :meetup, frequency: :monthly)
+
+    assert_match "Example.rb is a monthly meetup", EventSeries.includes(:events).find(series.id).description
+  end
+
   test "find_by_name_or_alias finds series by name" do
     found = EventSeries.find_by_name_or_alias(@series.name)
 

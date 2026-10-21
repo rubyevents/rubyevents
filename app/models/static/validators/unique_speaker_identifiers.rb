@@ -27,24 +27,19 @@ module Static
       def validate
         return [] unless applicable?
 
-        @document ||= Yerba.parse_file(@file_path)
-
-        names = @document.value_at("[].name")
-        githubs = @document.value_at("[].github")
-        github_handles = @document.value_at("[].github_handles")
-        aliases = @document.value_at("[].aliases")
-
         identifiers = Hash.new { |hash, key| hash[key] = [] }
 
-        names.each_with_index do |name, index|
-          identifiers[normalize(name)] << {value: name, kind: "name", speaker: name} if name.present?
+        Static::Speaker.in_file(@file_path.to_s, document: @document).each do |speaker|
+          name = speaker["name"]
 
-          [githubs[index], *Array(github_handles[index])].each do |handle|
-            identifiers[normalize(handle)] << {value: handle, kind: "GitHub handle", speaker: name} if handle.present?
+          identifiers[normalize(name)] << {value: name, kind: "name", speaker: name, record: speaker} if name.present?
+
+          speaker.all_github_handles.each do |handle|
+            identifiers[normalize(handle)] << {value: handle, kind: "GitHub handle", speaker: name, record: speaker}
           end
 
-          Array(aliases[index]).each do |alias_name|
-            identifiers[normalize(alias_name)] << {value: alias_name, kind: "alias", speaker: name} if alias_name.present?
+          speaker.alias_names.each do |alias_name|
+            identifiers[normalize(alias_name)] << {value: alias_name, kind: "alias", speaker: name, record: speaker}
           end
         end
 
@@ -68,7 +63,7 @@ module Static
 
         error(
           "Speaker identifier used by more than one speaker: #{description}. Names, aliases, and GitHub handles must each identify a single speaker.",
-          uses.last[:speaker]
+          uses.last[:record]
         )
       end
 
@@ -80,12 +75,12 @@ module Static
 
         [error(
           "Speaker names only differ in case or whitespace on \"#{names.first[:speaker]}\": #{description}. Name lookups ignore case and surrounding whitespace, so keep only one of them.",
-          names.first[:speaker]
+          names.first[:record]
         )]
       end
 
-      def error(message, speaker)
-        location = @document.find_by(name: speaker)&.location
+      def error(message, record)
+        location = record.source_location
 
         Static::Validators::Error.new(
           message,

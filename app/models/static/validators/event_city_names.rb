@@ -27,9 +27,9 @@ module Static
       def validate
         return [] unless applicable?
 
-        location = document["location"]
+        location = event.source_location("location")
 
-        city_part = location&.value&.split(",")&.first&.strip
+        city_part = event["location"]&.split(",")&.first&.strip
         return [] if city_part.blank?
 
         alias_to_canonical = Static::City.alias_lookup
@@ -41,16 +41,16 @@ module Static
           Static::Validators::Error.new(
             "Location uses city alias \"#{city_part}\" instead of canonical name \"#{canonical}\"",
             file_path: @file_path,
-            line: location&.location&.start_line || 1,
-            end_line: location&.location&.end_line
+            line: location&.start_line || 1,
+            end_line: location&.end_line
           )
         ]
       end
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
+      def event
+        @event ||= Static::Event.in_file(@file_path.to_s, document: @document).first
       end
     end
   end

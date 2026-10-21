@@ -53,56 +53,44 @@ class Event::Assets < ActiveRecord::AssociatedObject
     ["events", event.series.slug, "default"].join("/")
   end
 
-  def image_path_for(filename)
-    event_path = [base_path, filename].join("/")
-    series_default_path = [default_series_path, filename].join("/")
-    global_default_path = [default_path, filename].join("/")
-
-    return event_path if (IMAGES_BASE_PATH / event_path).exist?
-    return series_default_path if (IMAGES_BASE_PATH / series_default_path).exist?
-
-    global_default_path
+  def image_path_for(filename, event_file = event_file(filename))
+    image_path(event_file) || image_path(series_default_file(filename)) || [default_path, filename].join("/")
   end
 
   def image_path_if_exists(filename)
-    event_path = [base_path, filename].join("/")
-
-    (IMAGES_BASE_PATH / event_path).exist? ? event_path : nil
+    image_path(event_file(filename))
   end
 
   def has_custom_asset?(filename)
-    event_path = [base_path, filename].join("/")
-    series_default_path = [default_series_path, filename].join("/")
-
-    (IMAGES_BASE_PATH / event_path).exist? || (IMAGES_BASE_PATH / series_default_path).exist?
+    (event_file(filename) || series_default_file(filename)).present?
   end
 
   def banner_path
-    image_path_for("banner.webp")
+    image_path_for("banner.webp", static_event&.banner)
   end
 
   def card_path
-    image_path_for("card.webp")
+    image_path_for("card.webp", static_event&.card)
   end
 
   def avatar_path
-    image_path_for("avatar.webp")
+    image_path_for("avatar.webp", static_event&.avatar)
   end
 
   def featured_path
-    image_path_for("featured.webp")
+    image_path_for("featured.webp", static_event&.featured)
   end
 
   def poster_path
-    image_path_for("poster.webp")
+    image_path_for("poster.webp", static_event&.poster)
   end
 
   def stickers
-    Sticker.for_event(event)
+    static_event&.stickers.to_a.sort_by(&:name)
   end
 
   def sticker_paths
-    stickers.map(&:file_path)
+    stickers.map(&:image_path)
   end
 
   def sticker_path
@@ -114,9 +102,7 @@ class Event::Assets < ActiveRecord::AssociatedObject
   end
 
   def stamp_paths
-    Dir.glob(IMAGES_BASE_PATH.join(base_path, "stamp*.webp")).map { |path|
-      Pathname.new(path).relative_path_from(IMAGES_BASE_PATH).to_s
-    }.sort
+    static_event&.stamps.to_a.map(&:image_path)
   end
 
   def stamp_path
@@ -125,5 +111,25 @@ class Event::Assets < ActiveRecord::AssociatedObject
 
   def stamp?
     stamp_paths.any?
+  end
+
+  private
+
+  def static_event
+    return @static_event if defined?(@static_event)
+
+    @static_event = Static::Event.find_by_slug(event.slug)
+  end
+
+  def event_file(filename)
+    static_event&.images&.[](filename)
+  end
+
+  def series_default_file(filename)
+    static_event&.series&.default_images&.[](filename)
+  end
+
+  def image_path(file)
+    file.relative_path_from(IMAGES_BASE_PATH).to_s if file&.exist?
   end
 end

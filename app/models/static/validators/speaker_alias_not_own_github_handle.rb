@@ -27,21 +27,15 @@ module Static
       def validate
         return [] unless applicable?
 
-        @document ||= Yerba.parse_file(@file_path)
-
-        names = @document.value_at("[].name")
-        githubs = @document.value_at("[].github")
-        github_handles = @document.value_at("[].github_handles")
-        aliases = @document.value_at("[].aliases")
-
-        names.zip(githubs, github_handles, aliases).flat_map do |name, github, extra_handles, speaker_aliases|
-          handles = [github, *Array(extra_handles)].compact_blank
+        Static::Speaker.in_file(@file_path.to_s, document: @document).flat_map do |speaker|
+          name = speaker["name"]
+          handles = speaker.all_github_handles
           next [] if handles.empty?
 
-          Array(speaker_aliases).filter_map do |alias_name|
-            next unless alias_name.is_a?(String) && handles.any? { |handle| alias_name.casecmp?(handle) }
+          speaker.alias_names.filter_map do |alias_name|
+            next unless handles.any? { |handle| alias_name.casecmp?(handle) }
 
-            location = @document.find_by(name: name)&.location
+            location = speaker.source_location
 
             Static::Validators::Error.new(
               %(Alias "#{alias_name}" on "#{name}" is redundant, it's already the GitHub handle and GitHub handles act as aliases.),

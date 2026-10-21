@@ -6,8 +6,8 @@ class EventSeries::StaticMetadata < ActiveRecord::AssociatedObject
     static_repository.try(:instagram)
   end
 
-  def ended?
-    static_repository.try(:ended) || false
+  def inactive?
+    static_repository.try(:inactive) || false
   end
 
   def default_country_code
