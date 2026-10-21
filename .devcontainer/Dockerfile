@@ -1,8 +1,10 @@
 ARG RUBY_VERSION=4.0.9
 FROM docker.io/library/ruby:$RUBY_VERSION
 
-# Rails app lives here
-WORKDIR /rails
+# Rails app lives here. Must match workspaceFolder in devcontainer.json and the
+# bind-mount target in docker-compose.yml, otherwise the image keeps a stale
+# baked copy of the app at the old path and shells start in the wrong directory.
+WORKDIR /rubyevents
 
 # Install base packages
 RUN apt-get update -qq && \
@@ -18,6 +20,7 @@ RUN apt-get update -qq && \
     pkg-config \
     python-is-python3 \
     # sqlite3 \
+    vim-tiny \
     chromium chromium-driver \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 

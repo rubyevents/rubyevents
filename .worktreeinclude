@@ -1,0 +1,6 @@
+# Gitignored files copied into each new Orca worktree (copied, not symlinked).
+# Blank lines and # comments are allowed. Literal paths only - no globs.
+#
+# .env holds the real credentials the app needs to boot, so every worktree gets
+# its own copy rather than a symlink to the primary checkout.
+.env
