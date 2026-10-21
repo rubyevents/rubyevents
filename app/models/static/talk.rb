@@ -40,13 +40,19 @@ module Static
 
     def self.import!(event: nil, index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       imported = {}
+      failed = []
 
       all.each do |talk|
         parent_talk = talk.parent && imported[talk.parent]
         next if talk.parent && parent_talk.nil?
 
         imported[talk] = talk.import!(event: event, parent_talk: parent_talk, index: index)
+      rescue ActiveRecord::RecordInvalid => e
+        puts "Couldn't save: #{talk.title} (#{talk.id}), error: #{e.message}"
+        failed << talk.id
       end
+
+      raise ImportError, "Couldn't save #{failed.size} #{"talk".pluralize(failed.size)}: #{failed.join(", ")}" if failed.any?
 
       imported.values.compact
     end
@@ -163,9 +169,6 @@ module Static
       Search::Backend.index(talk) if index
 
       talk
-    rescue ActiveRecord::RecordInvalid => e
-      puts "Couldn't save: #{title} (#{id}), error: #{e.message}"
-      nil
     end
 
     def find_or_initialize_talk

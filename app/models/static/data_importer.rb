@@ -2,6 +2,7 @@
 
 module Static
   class DataImporter
+    FULL_REINDEX_THRESHOLD = 10
     GLOBAL_MODELS = [Static::City, Static::Speaker, Static::Topic].freeze
 
     EVENT_FILE_IMPORTS = {
@@ -9,6 +10,12 @@ module Static
       Static::Sponsor => :import_sponsors!,
       Static::CFP => :import_cfps!,
       Static::Involvement => :import_involvements!
+    }.freeze
+
+    EVENT_FILE_ASSOCIATIONS = {
+      Static::Sponsor => :sponsors,
+      Static::CFP => :cfps,
+      Static::Involvement => :event_involvements
     }.freeze
 
     def self.phases
@@ -57,27 +64,99 @@ module Static
       end
     end
 
-    def self.seed_changed!(reload: false, force: false, logger: nil)
+    def self.remove(path, reload: true)
+      absolute = Rails.root.join(ImportedFile.relative_path(path)).to_s
+      model = model_for(absolute)
+      return false unless model
+
+      reload_caches_for(model) if reload
+
+      folder = File.basename(File.dirname(absolute))
+
+      if (association = EVENT_FILE_ASSOCIATIONS[model])
+        event = ::Event.find_by(slug: folder)
+        return false unless event
+
+        event.public_send(association).destroy_all
+        true
+      elsif model == Static::Venue
+        event = Static::Event.find_by_slug(folder)
+        return false unless event
+
+        event.import_event!
+        true
+      else
+        false
+      end
+    end
+
+    def self.sync(paths, logger: nil)
       log = logger || method(:puts)
+      relatives = paths.map { |path| ImportedFile.relative_path(path) }.uniq
+
+      unload_all!
+
+      with_indexing_for(relatives.size) { seed_changed!(only: relatives, logger: log) }
+    end
+
+    def self.with_indexing_for(pending_count, force: false)
+      started_at = Time.current
+
+      if force || pending_count > FULL_REINDEX_THRESHOLD
+        result = Search::Backend.without_indexing { yield }
+        Search::Backend.reindex_all if changed?(result)
+      else
+        result = yield
+        Search::Backend.reindex_changed_since(started_at) if changed?(result)
+      end
+
+      result
+    end
+
+    def self.changed?(result)
+      (result[:imported] + result[:removed]).positive?
+    end
+
+    def self.unload_all!
+      (phases.flatten + [Static::Schedule]).each(&:unload!)
+    end
+
+    def self.seed_changed!(only: nil, force: false, logger: nil)
+      log = logger || method(:puts)
+      only = only&.to_set
       imported = 0
+      removed = 0
       skipped = 0
       failed = []
 
-      ImportedFile.prune_missing!.each { |relative| log.call("forgot deleted #{relative}") }
+      ImportedFile.missing_paths.each do |relative|
+        next if only && !only.include?(relative)
+
+        removed += 1 if remove(relative, reload: false)
+        ImportedFile.forget!(relative)
+        log.call("removed #{relative}")
+      rescue => e
+        failed << relative
+        log.call("error removing #{relative}: #{e.class}: #{e.message}")
+      end
 
       seed_phases.each do |paths|
         paths.each do |path|
           relative = ImportedFile.relative_path(path)
+          next if only && !only.include?(relative)
 
           unless force || ImportedFile.changed?(relative)
             skipped += 1
             next
           end
 
-          if import(relative, reload: reload)
+          if import(relative)
             ImportedFile.record!(relative)
             imported += 1
             log.call("imported #{relative}")
+          else
+            failed << relative
+            log.call("error importing #{relative}: no matching event or series in data/")
           end
         rescue => e
           failed << relative
@@ -85,9 +164,9 @@ module Static
         end
       end
 
-      log.call("Incremental seed complete: #{imported} imported, #{skipped} unchanged, #{failed.size} failed")
+      log.call("Incremental seed complete: #{imported} imported, #{removed} removed, #{skipped} unchanged, #{failed.size} failed")
 
-      {imported: imported, skipped: skipped, failed: failed}
+      {imported: imported, removed: removed, skipped: skipped, failed: failed}
     end
 
     def self.changes
@@ -147,7 +226,6 @@ module Static
       model.file_glob ? Dir[model.file_glob].sort : [model.file_path]
     end
 
-    # Schedules are matched (so their files count as handled) but not part of the seed phases.
     def self.model_for(absolute_path)
       (phases.flatten + [Static::Schedule]).find do |model|
         if model.file_glob
@@ -158,9 +236,9 @@ module Static
       end
     end
 
-    # Event records cache their per-event files, so those need the events reloaded too.
     def self.reload_caches_for(model)
       model.unload!
+
       Static::Event.unload! unless model.in?(GLOBAL_MODELS) || model == Static::EventSeries
     end
   end

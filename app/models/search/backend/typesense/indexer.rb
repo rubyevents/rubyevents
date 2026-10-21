@@ -36,6 +36,12 @@ class Search::Backend::Typesense
         reindex_transcript_passages
       end
 
+      def reindex_facets
+        reindex_languages
+        reindex_locations
+        reindex_kinds
+      end
+
       def reindex_talks
         Talk.typesense_reindex!
       end
