@@ -16,8 +16,8 @@ class SpeakerAddAliasToolTest < ActiveSupport::TestCase
         github: "tenderlove"
         slug: "aaron-patterson"
         aliases:
-          - name: "tenderlove"
-            slug: "tenderlove"
+          - name: "Aaron Lee Patterson"
+            slug: "aaron-lee-patterson"
       - name: "DHH"
         github: "dhh"
         slug: "dhh"
@@ -42,7 +42,7 @@ class SpeakerAddAliasToolTest < ActiveSupport::TestCase
 
     speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Aaron Patterson")
     alias_slugs = speaker["aliases"].map { |a| a["slug"] }
-    assert_includes alias_slugs, "tenderlove"
+    assert_includes alias_slugs, "aaron-lee-patterson"
     assert_includes alias_slugs, "aaron-p"
   end
 
@@ -55,12 +55,13 @@ class SpeakerAddAliasToolTest < ActiveSupport::TestCase
     assert_includes alias_names, "Matz-san"
   end
 
-  test "uses custom slug when provided" do
-    @tool.execute(name: "DHH", alias_name: "David", alias_slug: "david-h")
+  test "refuses a custom slug that isn't the parameterized alias name" do
+    result = @tool.execute(name: "DHH", alias_name: "David", alias_slug: "david-h")
+
+    assert_equal "Validation failed: Slug must be the name parameterized, expected: david", result[:error]
 
     speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "DHH")
-    alias_entry = speaker["aliases"].find { |a| a["name"] == "David" }
-    assert_equal "david-h", alias_entry["slug"]
+    assert_nil speaker["aliases"].find { |a| a["name"] == "David" }
   end
 
   test "auto-generates slug from alias name" do

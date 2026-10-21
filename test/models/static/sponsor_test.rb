@@ -54,7 +54,7 @@ class Static::SponsorTest < ActiveSupport::TestCase
 
   test "a sponsor entry can be changed, removed and added" do
     tiers = sponsors.first.tiers
-    tiers.last.sponsors.find_by(slug: "appsignal").tap { |entry| entry["slug"] = "app-signal" }.save!
+    tiers.last.sponsors.find_by(slug: "appsignal").tap { |entry| entry.update(name: "App Signal", slug: "app-signal") }
     tiers.first.sponsors.find_by(slug: "avo").destroy
     tiers.first.sponsors.create(name: "Fly.io", slug: "fly-io", website: "https://fly.io")
 

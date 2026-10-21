@@ -14,6 +14,10 @@ module Static
 
     extend Integrity
 
+    validates :aliases, "static/speaker_aliases": true
+    validates_with Static::SpeakerSlugValidator
+    validates_with Static::SimilarSpeakerNamesValidator, Static::UniqueSpeakersValidator, on: :lint
+
     SOCIAL_HANDLE_FIELDS = %w[github twitter mastodon bluesky linkedin speakerdeck].freeze
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 

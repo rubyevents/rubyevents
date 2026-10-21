@@ -105,6 +105,101 @@ event.respond_to?(:title)     # => true
 event.respond_to?(:fake)      # => false
 ```
 
+## Validations
+
+Validations work just like they do in ActiveRecord. Records include `ActiveModel::Validations`, so you can use the built-in validators, a validator class, a method, or a block:
+
+```ruby
+class Static::Event < Yerba::Record::Base
+  validates :start_date, :end_date, presence: true, unless: :meetup?
+  validates :end_date, comparison: {greater_than_or_equal_to: :start_date}
+  validates :location, "static/city_name": true
+  validate :speakers_exist
+  validate { errors.add(:base, "needs a website") if self["website"].blank? }
+end
+```
+
+### On save
+
+Validations run whenever a record is written. `save!` raises `Yerba::Record::RecordInvalid` and leaves the file untouched, `save` returns `false`, and `save!(validate: false)` skips them.
+
+When you save a collection, only the records you built or changed are validated. A problem somewhere else in the same file won't stop you from writing.
+
+### The `:lint` context
+
+Some checks need to look beyond the record: the event's series, every other talk id, the images in an event's folder. Those are slower, and they shouldn't block a write, so they go in the `:lint` context:
+
+```ruby
+validates :id, uniqueness: {also: :old_id}, on: :lint
+validates :thumbnail, file: {presence: true}, on: :lint
+```
+
+Lint validations run when you check the whole dataset with `bin/rails validate:all` (or a single part of it, like `validate:videos`). From Ruby:
+
+```ruby
+Yerba::Record.validate_all                              # every record of every model
+Yerba::Record.validate_file("data/x/x-2025/videos.yml") # the records of one file, nested ones included
+```
+
+As a rule of thumb: if a check only looks at the record itself, it runs on save. If it reads other files, it goes in `:lint`.
+
+### Built-in validators
+
+On top of ActiveModel's validators, there are three that know about YAML files:
+
+- `uniqueness` checks a value against all records of the model. `also: :old_id` makes `id` and `old_id` share one namespace.
+- `matches_path` checks that a value matches its folder in the path, like an event's `id`.
+- `file` checks the file behind a `has_file`, with `presence:` and `dimensions:`.
+
+File records validate like any other record:
+
+```ruby
+class Static::Thumbnail < Yerba::Record::FileRecord
+  self.path = "app/assets/images/thumbnails/**/:video_id.webp"
+
+  validate :not_redundant, on: :lint
+end
+```
+
+### Where errors point
+
+Every error is attached to a Yerba node, so `validate:all` can tell you the file and line. `record.error_location(error)` gives you the location of the attribute's value, or of the record itself when the key is missing. `record.error_file_path(error)` gives you the file.
+
+To point somewhere else, pass `at:`. Use `at: "aliases[0].slug"` for another key, or `at: :file` for the file as a whole.
+
+Messages use the YAML key as the attribute name, so you get `old_id "x" is not unique` rather than `Old is not unique`.
+
+An error added with `severity: :warning` shows up in the report but doesn't block a save.
+
+### Looking at other records
+
+A validator that compares a record with its neighbours can read them with `record.file_records` (the other records in the same file) or `Model.all`.
+
+Working that out for every record would be slow, so wrap it in `Yerba::Record::Validations.cached(key) { ... }`. The cache only lives for one `validate_all` or `fix_all` run. Each file is read once per run, and a single `valid?` call always sees the current data.
+
+### Fixing what's reported
+
+A validator can also repair what it reports. Define `fix(record)` and return the number of changes:
+
+```ruby
+class Static::SponsorSlugValidator < ActiveModel::EachValidator
+  def fix(sponsor)
+    expected = sponsor["name"].parameterize
+    return 0 if sponsor["slug"] == expected
+
+    sponsor["slug"] = expected
+
+    1
+  end
+end
+```
+
+`bin/rails validate:fix` runs every fix and saves the records that changed. To run a single one:
+
+```ruby
+Yerba::Record.fix_all(Static::Talk.in_file(path), only: Static::TalkIdValidator)
+```
+
 ## Querying
 
 ```ruby
@@ -598,6 +693,7 @@ Yerba::Record::Base                # Record class (read + write + schema)
   include References               # references :speakers DSL
   include Associations             # belongs_to, has_many, has_one (path-based, through:), has_files
   include Schema                   # schema, create, field method generation
+  include Validations              # ActiveModel validations, run on save and by validate_all
 
 Yerba::Record::Collection          # Records of one or more documents (all, in_file, has_many, nested, where)
 Yerba::Record::Collection::Source  # One document, or a nested sequence in it, contributing records

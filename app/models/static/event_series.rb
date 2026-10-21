@@ -6,6 +6,9 @@ module Static
 
     schema SeriesSchema
 
+    validates :id, matches_path: true, on: :lint
+    validates_with Static::BrandColorsValidator, on: :lint
+
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
     class << self

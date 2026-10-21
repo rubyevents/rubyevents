@@ -132,16 +132,27 @@ module Yerba
         documents.any?(&:changed?)
       end
 
-      def save!
+      def save!(validate: true, context: nil)
         changed_records = @filtered_records || @records || []
-        file_moves = changed_records.flat_map { |record| record.send(:planned_file_moves) }
 
+        if validate
+          built = @built_records.to_a
+
+          (built | changed_records.select(&:attributes_changed?)).each do |record|
+            record.validate_for_save!(context || (built.include?(record) ? :create : :update))
+          end
+        end
+
+        file_moves = changed_records.flat_map { |record| record.send(:planned_file_moves) }
         changed = documents.select(&:changed?)
+
         changed.each { |document| document.sort("", by: record_class.order_by.to_s) } if record_class.try(:order_by)
         changed.each { |document| document.save!(apply: true) }
 
         Base.move_files!(file_moves)
+
         changed_records.each { |record| record.instance_variable_set(:@original_attributes, nil) }
+        @built_records = nil
 
         written!
       end
@@ -179,7 +190,10 @@ module Yerba
         reset!
         parent&.reset_attributes_cache!
 
-        attributes["id"] ? find_by(id: attributes["id"]) : items[position || (items.size - 1)]
+        record = attributes["id"] ? find_by(id: attributes["id"]) : items[position || (items.size - 1)]
+        (@built_records ||= []) << record if record
+
+        record
       end
 
       def create(attributes = nil, at: nil, before: nil, after: nil, **kwargs)

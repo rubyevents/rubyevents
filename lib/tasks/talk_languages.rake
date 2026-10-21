@@ -25,11 +25,10 @@ namespace :talk_languages do
     unresolved = []
 
     Dir.glob(Static::Talk.file_glob).sort.each do |path|
-      validator = Static::Validators::TalkLanguage.new(file_path: path)
-      next unless validator.applicable? && validator.errors.any?
+      talks = Static::Talk.in_file(path)
+      next unless talks.any? { |talk| !talk.valid?(:lint) && talk.errors.any? { |error| error.message.include?(%(explicit "language")) } }
 
       relative_path = path.to_s.sub("#{Rails.root}/", "")
-      talks = Static::Talk.in_file(path)
 
       detections = talks.filter_map do |talk|
         next if talk["talks"] || talk["language"].present?
