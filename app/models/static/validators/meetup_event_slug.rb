@@ -32,7 +32,7 @@ module Static
         return [] unless mismatched?
 
         location = event.source_location("id")
-        rule = %(Meetup event ids end in "-meetup", "-brigade", "-group" or "-usergroup")
+        rule = %(Meetup event ids end in "-meetup", "-brigade", "-group", "-usergroup" or a Ruby User Group abbreviation like "rughh")
         message = if !expected
           %(id "#{slug}" has "meetup" in the middle. #{rule}, rename it by hand.)
         elsif published?
@@ -74,7 +74,12 @@ module Static
       end
 
       def mismatched?
-        applicable? && event&.meetup? && !slug.end_with?(*SUFFIXES)
+        applicable? && event&.meetup? && !MeetupNaming.ignored?(event) && !slug.end_with?(*SUFFIXES) && !user_group_abbreviation?
+      end
+
+      # "rughh", "lrug" or "nwrug": RUG stands for Ruby User Group.
+      def user_group_abbreviation?
+        slug.split("-").last.include?("rug")
       end
 
       def published?

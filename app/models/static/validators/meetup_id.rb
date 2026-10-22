@@ -117,7 +117,9 @@ module Static
       end
 
       def meetup_event?
-        nodes.first&.event&.[]("kind") == "meetup"
+        event = nodes.first&.event
+
+        event&.[]("kind") == "meetup" && !MeetupNaming.ignored?(event)
       end
 
       def watchable_video?(node)

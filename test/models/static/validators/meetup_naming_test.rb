@@ -133,8 +133,15 @@ class Static::Validators::MeetupNamingTest < ActiveSupport::TestCase
     end
   end
 
-  test "MeetupEventSlug accepts ids ending in -meetup, -brigade, -group or -usergroup" do
-    %w[testrb-meetup testrb-brigade testrb-group testrb-usergroup].each do |event_id|
+  test "MeetupEventSlug and MeetupEventTitle ignore RubyEvents" do
+    with_meetup(event_id: "rubyevents", event_title: "RubyEvents") do |paths|
+      assert_empty Static::Validators::MeetupEventSlug.new(file_path: paths[:event]).errors
+      assert_empty Static::Validators::MeetupEventTitle.new(file_path: paths[:event]).errors
+    end
+  end
+
+  test "MeetupEventSlug accepts ids ending in -meetup, -brigade, -group, -usergroup or a RUG abbreviation" do
+    %w[testrb-meetup testrb-brigade testrb-group testrb-usergroup rughh lrug].each do |event_id|
       with_meetup(event_id: event_id) do |paths|
         assert_empty Static::Validators::MeetupEventSlug.new(file_path: paths[:event]).errors, event_id
       end

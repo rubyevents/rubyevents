@@ -82,7 +82,7 @@ module Static
       end
 
       def mismatched?
-        applicable? && event&.meetup? && title != expected
+        applicable? && event&.meetup? && !MeetupNaming.ignored?(event) && title != expected
       end
     end
   end
