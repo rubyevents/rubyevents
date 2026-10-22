@@ -50,14 +50,61 @@
 
     - id: "pawel-strzalkowski-berlinrb-meetup-september-2026"
       title: "HiFuMi - The story of building an online Rails apps generator"
+      raw_title: "HiFuMi - The story of building an online Rails apps generator – Paweł Strzałkowski | Berlin.rb"
       event_name: "Berlin.rb Meetup September 2026"
       date: "2026-09-08"
+      published_at: "2026-10-13T23:01:59Z"
       language: "English"
-      video_provider: "scheduled"
-      video_id: "pawel-strzalkowski-berlinrb-meetup-september-2026"
-      description: "" # TODO
+      video_provider: "youtube"
+      video_id: "Be3S4-CyXQ0"
+      description: |-
+        We're kicking off Berlin.rb, a new, regular meetup for Berlin's Ruby community!
+
+        Join us for our first get-together, kicking off with a couple of talks.
+
+        Paweł Strzałkowski, presents HiFuMi - The story of building an online Rails apps generator
+
+        But more than anything, this evening is about bringing Berlin's Ruby community together.
+
+        Whether you've been writing Ruby for 15 years or you're just curious about the language, everyone's welcome.
+
+        Drinks and snacks provided. Interested in giving a talk at a future meetup, or hosting/sponsoring one?
+
+        More information: https://www.berlinrb.org
+        Follow us on Luma: https://luma.com/berlinrb
+
+        See you there!
       speakers:
         - Paweł Strzałkowski
+
+    - id: "viktor-schmidt-berlinrb-meetup-september-2026"
+      title: "Ablefy Digital Businesses"
+      raw_title: "Ablefy Digital Businesses – Viktor Schmidt | Berlin.rb"
+      event_name: "Berlin.rb Meetup September 2026"
+      date: "2026-09-08"
+      published_at: "2026-09-10T17:24:47Z"
+      language: "English"
+      video_provider: "youtube"
+      video_id: "b92mTWqrd0E"
+      description: |-
+        We're kicking off Berlin.rb, a new, regular meetup for Berlin's Ruby community!
+
+        Join us for our first get-together, kicking off with a couple of talks.
+
+        Viktor Schmidt presents Ablefy Digital Businesses
+
+        But more than anything, this evening is about bringing Berlin's Ruby community together.
+
+        Whether you've been writing Ruby for 15 years or you're just curious about the language, everyone's welcome.
+
+        Drinks and snacks provided. Interested in giving a talk at a future meetup, or hosting/sponsoring one?
+
+        More information: https://www.berlinrb.org
+        Follow us on Luma: https://luma.com/berlinrb
+
+        See you there!
+      speakers:
+        - Viktor Schmidt
   additional_resources:
     - name: "Luma"
       title: "Berlin.rb #1 (in person) on Luma"
@@ -91,27 +138,74 @@
   talks:
     - id: "rafal-cymerys-berlinrb-meetup-october-2026"
       title: "Let Your Software Write Its Own Code: Runtime Code Generation in Production"
+      raw_title: "Let Your Software Write Its Own Code — Rafał Cymerys | Berlin.rb"
       event_name: "Berlin.rb Meetup October 2026"
       date: "2026-10-13"
-      start_cue: "2:16"
-      end_cue: "46:55"
+      published_at: "2026-10-13T22:55:34Z"
       language: "English"
-      video_provider: "parent"
-      video_id: "rafal-cymerys-berlinrb-meetup-october-2026"
-      description: ""
+      video_provider: "youtube"
+      video_id: "F2uDIEjhdbc"
+      description: |-
+        Let Your Software Write Its Own Code: Runtime Code Generation in Production
+
+        Rafał Cymerys demonstrates how an application can let an AI agent generate and execute narrowly scoped code at runtime. Using a RubyLLM-powered cat-management demo, he explores adaptive data imports, unfamiliar file formats, external APIs, generated reports, sandboxing, cost controls, and lessons from production deployments.
+
+        Sample application: https://github.com/rafalcymerys/codegen-examples
+        Anthropic code-execution documentation: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
+        Upside: https://upsidelab.io/
+
+        Recorded at Berlin.rb #2 in Berlin on 13 October 2026.
+        Berlin.rb: https://berlinrb.org/
+
+        Chapters
+        00:00 Intro
+        00:04 The limits of rigid software
+        05:11 From parsers to code-writing agents
+        08:55 Live demo: adaptive data imports
+        20:52 How the RubyLLM implementation works
+        22:31 APIs, matching and generated reports
+        31:40 Production lessons and sandboxing
+        35:54 Q&A
       speakers:
         - Rafał Cymerys
 
     - id: "stephen-margheim-berlinrb-meetup-october-2026"
       title: "The ZARchitecture: How and Why we evolved a fintech for AI-driven development"
+      raw_title: "The ZArchitecture: Evolving a Fintech for AI-Driven Development — Stephen Margheim | Berlin.rb"
       event_name: "Berlin.rb Meetup October 2026"
       date: "2026-10-13"
-      start_cue: "48:55"
-      thumbnail_cue: "50:00"
+      published_at: "2026-10-13T23:08:10Z"
       language: "English"
-      video_provider: "parent"
-      video_id: "stephen-margheim-berlinrb-meetup-october-2026"
-      description: ""
+      video_provider: "youtube"
+      video_id: "OmrdvAzCSIc"
+      description: |-
+        The ZArchitecture: How and Why We Evolved a Fintech for AI-Driven Development
+
+        Stephen Margheim explains how his team structures a fintech codebase for reliable AI-driven development without outsourcing engineering understanding. He argues that the codebase is the prompt, then develops an inhale/exhale workflow around atomic changes, explicit architecture, constrained vocabulary, runtime types, ArchSpec enforcement, mutation-tested tests, observability, and software foremen.
+
+        Impatient Programming: https://impatientprogramming.org/i/berlin-rb
+        Stephen online: @fractaledmind
+
+        Recorded at Berlin.rb #2 in Berlin on 13 October 2026 https://berlinrb.org/
+
+        Chapters
+        00:00 Intro
+        00:04 From SQLite to AI-driven fintech
+        05:01 Code is cheap
+        06:42 The codebase is the prompt
+        10:50 The inhale/exhale rhythm
+        14:08 Atomic changes as transactions
+        16:58 Architecture and system shape
+        21:08 Vocabulary and conventions
+        28:12 Type the edges
+        30:17 Enforcing architecture with ArchSpec
+        36:08 Mutation-testing the test suite
+        41:40 Production rewrite results
+        45:00 Build software foremen
+        48:10 A unified data lake for agents
+        49:48 Never outsource understanding
+        51:54 Takeaways
+        54:39 Q&A
       speakers:
         - Stephen Margheim
   additional_resources:
@@ -134,12 +228,25 @@
   video_id: "berlinrb-meetup-november-2026"
   description: |-
     Berlin.rb is a regular meetup for Berlin's Ruby community. Join us for talks, food and time to get to know each other.
-    Talks to be announced. Want to give one? Submit it here: https://tally.so/r/WOWMZL
+    Talks:
+    - Andrzej Krzywda: Rails architecture in the age of AI.
+    Want to give the second one? Submit it here: https://tally.so/r/WOWMZL
     Whether you've been writing Ruby for 15 years or you're just curious about the language, everyone's welcome. Food and drinks provided.
     Interested in giving a talk at a future meetup, or hosting or sponsoring one? Reach out to hello@berlinrb.org.
     Watching from home: the talks are streamed live. There is a separate livestream event on Luma.
     Filming: the talks are recorded and published on our YouTube channel. The camera stands behind the audience and points at the stage, so you may end up in the shot. Tell us at the door if you would rather not be, and we will keep you out of frame.
-  talks: []
+  talks:
+    - id: "andrzej-krzywda-berlinrb-meetup-november-2026"
+      title: "Rails architecture in the age of AI"
+      event_name: "Berlin.rb Meetup November 2026"
+      date: "2026-11-10"
+      language: "English"
+      video_provider: "scheduled"
+      video_id: "andrzej-krzywda-berlinrb-meetup-november-2026"
+      description: |-
+        After over 15 years of doing DDD in Rails at Arkency, Andrzej will reflect which parts still make sense with AI. The economy has changed and so do architectural decisions. One example is the choice between refactoring and a rewrite. Andrzej will also present the current state of the art when it comes to human legacy code vs AI slop.
+      speakers:
+        - Andrzej Krzywda
   additional_resources:
     - name: "Luma"
       title: "Berlin.rb #3 (in person) on Luma"
@@ -161,13 +268,24 @@
   description: |-
     Berlin.rb is a regular meetup for Berlin's Ruby community. Join us for talks, food and time to get to know each other.
     Talks:
+    - Alex Adam: talk to be announced
     - Marco Roth: talk to be announced
-    Want to give the second one? Submit it here: https://tally.so/r/WOWMZL
     Whether you've been writing Ruby for 15 years or you're just curious about the language, everyone's welcome. Food and drinks provided.
     Interested in giving a talk at a future meetup, or hosting or sponsoring one? Reach out to hello@berlinrb.org.
     Watching from home: the talks are streamed live. There is a separate livestream event on Luma.
     Filming: the talks are recorded and published on our YouTube channel. The camera stands behind the audience and points at the stage, so you may end up in the shot. Tell us at the door if you would rather not be, and we will keep you out of frame.
   talks:
+    - id: "alexander-adam-berlinrb-meetup-december-2026"
+      title: "TBA"
+      event_name: "Berlin.rb Meetup December 2026"
+      date: "2026-12-08"
+      language: "English"
+      video_provider: "scheduled"
+      video_id: "alexander-adam-berlinrb-meetup-december-2026"
+      description: ""
+      speakers:
+        - Alexander Adam
+
     - id: "marco-roth-berlinrb-meetup-december-2026"
       title: "TBA"
       event_name: "Berlin.rb Meetup December 2026"
