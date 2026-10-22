@@ -33,8 +33,11 @@ module Static
       def validate
         return [] unless applicable?
 
-        disallowed_websites(document.value_at("")).map do |selector, website|
-          location = document[selector]&.location
+        speakers.filter_map do |speaker|
+          website = speaker["website"]
+          next unless website.is_a?(String) && self.class.disallowed?(website)
+
+          location = speaker.source_location("website")
 
           Static::Validators::Error.new(
             %(website "#{website}" points to t.co, twitter.com or x.com, use the actual website instead (Twitter/X handles belong in the "twitter" field)),
@@ -56,27 +59,8 @@ module Static
 
       private
 
-      def document
-        @document ||= Yerba.parse_file(@file_path.to_s)
-      end
-
-      def disallowed_websites(value, path = nil)
-        case value
-        when Hash
-          value.flat_map do |key, nested|
-            selector = [path, key].compact.join(".")
-
-            if key == "website" && nested.is_a?(String)
-              self.class.disallowed?(nested) ? [[selector, nested]] : []
-            else
-              disallowed_websites(nested, selector)
-            end
-          end
-        when Array
-          value.each_with_index.flat_map { |nested, index| disallowed_websites(nested, "#{path}[#{index}]") }
-        else
-          []
-        end
+      def speakers
+        @speakers ||= Static::Speaker.in_file(@file_path.to_s, document: @document).to_a
       end
     end
   end
