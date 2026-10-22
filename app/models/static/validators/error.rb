@@ -25,7 +25,7 @@ module Static
 
       def as_error
         if ENV["GITHUB_ACTIONS"] == "true"
-          "::error file=#{file_path},line=#{line},endLine=#{end_line}::#{annotation_message}"
+          "::error file=#{file_path},line=#{line},endLine=#{end_line},col=#{column},endColumn=#{end_column}::#{annotation_message}"
         elsif line > 1
           "❌ line #{line}: #{message}"
         else
@@ -35,7 +35,7 @@ module Static
 
       def as_warning
         if ENV["GITHUB_ACTIONS"] == "true"
-          "::warning file=#{file_path},line=#{line},endLine=#{end_line}::#{annotation_message}"
+          "::warning file=#{file_path},line=#{line},endLine=#{end_line},col=#{column},endColumn=#{end_column}::#{annotation_message}"
         elsif line > 1
           "⚠️ line #{line}: #{message}"
         else

@@ -52,7 +52,7 @@ module Static
         if kind.empty?
           return [] if inferred == DEFAULT_KIND
 
-          location = node["title"]&.location
+          location = node.source_location("title")
           message = "kind is inferred as \"#{inferred}\" from the title but is not set explicitly. Add `kind: \"#{inferred}\"` to the entry if this is a \"#{inferred}\". Otherwise you can explicitly set `kind: \"talk\"` if the title classifier didn't get it right."
         elsif kind == DEFAULT_KIND && inferred == DEFAULT_KIND
           return [] if short?(node)
