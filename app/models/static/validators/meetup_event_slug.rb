@@ -9,6 +9,8 @@ module Static
         "**/event.yml"
       ].freeze
 
+      SUFFIXES = %w[-meetup -brigade -group -usergroup].freeze
+
       def initialize(file_path:, document: nil)
         @file_path = file_path
         @document = document
@@ -30,12 +32,13 @@ module Static
         return [] unless mismatched?
 
         location = event.source_location("id")
+        rule = %(Meetup event ids end in "-meetup", "-brigade", "-group" or "-usergroup")
         message = if !expected
-          %(id "#{slug}" has "meetup" in the middle. Meetup event ids end in "-meetup", rename it by hand.)
+          %(id "#{slug}" has "meetup" in the middle. #{rule}, rename it by hand.)
         elsif published?
-          %(id "#{slug}" should be "#{expected}". Meetup event ids end in "-meetup". This event is already on main, so renaming it needs the production event migrated as well.)
+          %(id "#{slug}" should be "#{expected}". #{rule}. This event is already on main, so renaming it needs the production event migrated as well.)
         else
-          %(id "#{slug}" should be "#{expected}". Meetup event ids end in "-meetup". Run `bin/rails validate:fix` to rename it.)
+          %(id "#{slug}" should be "#{expected}". #{rule}. Run `bin/rails validate:fix` to rename it.)
         end
 
         [
@@ -71,7 +74,7 @@ module Static
       end
 
       def mismatched?
-        applicable? && event&.meetup? && !slug.end_with?("-meetup")
+        applicable? && event&.meetup? && !slug.end_with?(*SUFFIXES)
       end
 
       def published?

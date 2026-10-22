@@ -8,11 +8,14 @@ module Static
       ].freeze
 
       SUFFIX = /(?:\s+Meetup)+\z/i
+      GROUP_SUFFIX = /\s(?:Brigade|Group|Usergroup)\z/i
 
       # The title a meetup event should have, or nil when "Meetup" appears in the middle
       # of the title ("Ruby Meetup Oslo") and only a human can tell what it should be.
+      # Groups that call themselves a Brigade or (User) Group keep that name.
       def self.expected_title(title)
         name = title.to_s.strip.sub(SUFFIX, "")
+        return name if name.match?(GROUP_SUFFIX) && !title.to_s.strip.match?(SUFFIX)
         return if name.match?(/\bMeetup\b/i)
 
         "#{name} Meetup"
@@ -40,9 +43,9 @@ module Static
 
         location = event.source_location("title")
         message = if expected
-          %(title "#{title}" should be "#{expected}". Meetup events are titled "<name> Meetup". Run `bin/rails validate:fix` to update it.)
+          %(title "#{title}" should be "#{expected}". Meetup events are titled "<name> Meetup", or end in Brigade, Group or Usergroup. Run `bin/rails validate:fix` to update it.)
         else
-          %(title "#{title}" has "Meetup" in the middle. Meetup events are titled "<name> Meetup", rename it by hand.)
+          %(title "#{title}" has "Meetup" in the middle. Meetup events are titled "<name> Meetup", or end in Brigade, Group or Usergroup, rename it by hand.)
         end
 
         [

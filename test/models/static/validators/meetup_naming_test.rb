@@ -60,6 +60,22 @@ class Static::Validators::MeetupNamingTest < ActiveSupport::TestCase
     end
   end
 
+  test "MeetupEventTitle accepts titles ending in Brigade, Group or Usergroup" do
+    ["Cleveland Ruby Brigade", "Boston Ruby Group", "Bangalore Ruby Users Group", "Ruby Usergroup", "Boston Ruby Group Meetup"].each do |title|
+      with_meetup(event_title: title) do |paths|
+        assert_empty Static::Validators::MeetupEventTitle.new(file_path: paths[:event]).errors, title
+      end
+    end
+  end
+
+  test "MeetupEditionTitle leaves editions of a Brigade alone" do
+    videos = [{"id" => "testrb-meetup-january-2026", "title" => "Cleveland Ruby Brigade January 2026", "date" => "2026-01-14"}]
+
+    with_meetup(event_title: "Cleveland Ruby Brigade", videos: videos) do |paths|
+      assert_empty Static::Validators::MeetupEditionTitle.new(file_path: paths[:videos]).errors
+    end
+  end
+
   test "MeetupEditionTitle adds Meetup to edition titles and event names" do
     videos = [
       {
@@ -95,19 +111,19 @@ class Static::Validators::MeetupNamingTest < ActiveSupport::TestCase
   end
 
   test "MeetupEventSlug renames an unpublished event to end in -meetup" do
-    with_meetup(event_id: "testrb-brigade") do |paths|
+    with_meetup(event_id: "testrb-ruby") do |paths|
       validator = Static::Validators::MeetupEventSlug.new(file_path: paths[:event])
       validator.define_singleton_method(:published?) { false }
 
-      assert_includes validator.errors.first.message, %(should be "testrb-brigade-meetup")
+      assert_includes validator.errors.first.message, %(should be "testrb-ruby-meetup")
 
       validator.fix
-      assert File.exist?(File.join(File.dirname(paths[:event], 2), "testrb-brigade-meetup", "event.yml"))
+      assert File.exist?(File.join(File.dirname(paths[:event], 2), "testrb-ruby-meetup", "event.yml"))
     end
   end
 
   test "MeetupEventSlug does not rename an event that is already published" do
-    with_meetup(event_id: "testrb-brigade") do |paths|
+    with_meetup(event_id: "testrb-ruby") do |paths|
       validator = Static::Validators::MeetupEventSlug.new(file_path: paths[:event])
       validator.define_singleton_method(:published?) { true }
 
@@ -117,9 +133,11 @@ class Static::Validators::MeetupNamingTest < ActiveSupport::TestCase
     end
   end
 
-  test "MeetupEventSlug accepts an id ending in -meetup" do
-    with_meetup do |paths|
-      assert_empty Static::Validators::MeetupEventSlug.new(file_path: paths[:event]).errors
+  test "MeetupEventSlug accepts ids ending in -meetup, -brigade, -group or -usergroup" do
+    %w[testrb-meetup testrb-brigade testrb-group testrb-usergroup].each do |event_id|
+      with_meetup(event_id: event_id) do |paths|
+        assert_empty Static::Validators::MeetupEventSlug.new(file_path: paths[:event]).errors, event_id
+      end
     end
   end
 
