@@ -2,7 +2,7 @@
 # TODO: add talks
 ---
 - id: "irina-nazarova-rubyworld-2026"
-  title: "Ruby Startups Today"
+  title: "Keynote: Ruby Startups Today"
   kind: "keynote"
   event_name: "RubyWorld Conference 2026"
   date: "2026-12-03"
@@ -14,6 +14,12 @@
   video_id: "irina-nazarova-rubyworld-2026"
   description: |-
     Something is stirring. Quietly, a new generation of founders is choosing Ruby for their most ambitious work: not out of loyalty, but out of pragmatism.
+
+    You'll meet them here: Y Combinator alumni, VC-backed teams, all asked the same questions: why Ruby, in 2026? What's great, and what's missing?
+
+    Their answers live on the frontier: agentic software development, AI workflows written in Ruby, modern frontends built the Rails way, the arc from prototype to real scale. Let's hear their stories: where Ruby gives them leverage, where the ecosystem still has room to grow, and the shape of what is emerging across the cohort.
+
+    Their success is Ruby's future. Let's talk about how each of us contributes: through open source, shared knowledge, and the experience we pass on. The next chapter of Ruby's story is being written right now. Let's write it together.
   speakers:
     - Irina Nazarova
 
@@ -27,6 +33,8 @@
   video_id: "shun-hiraoka-rubyworld-2026"
   description: |-
     Ruby typically relies on various OS features to run. While this means it normally operates on a standard OS, we can also run Ruby on other machines by providing just the essential features through a custom kernel.
+
+    In this session, I will talk about porting Ruby onto seL4, a microkernel, and how this enables running Ruby on a wide range of hardware platforms.
   speakers:
     - Shun Hiraoka
 
@@ -41,6 +49,12 @@
   video_id: "kota-koyama-rubyworld-2026"
   description: |-
     More and more products are integrating LLMs into applications built with Ruby.
+
+    We implemented an AI-powered feature the way we normally would: using a transaction to ensure consistency and handling the work synchronously before transitioning to the next screen. The code passed review and all tests. Yet in production, users found themselves stuck on a loading screen, while our monitoring system fired an ActiveRecord::LockWaitTimeout alert.
+
+    The code was working as designed. And yet, the user experience that AI was supposed to improve had actually gotten worse. Have you ever experienced something similar?
+
+    In this session, we’ll take a single error that occurred in an AI-powered application form autofill feature and trace the journey from root cause to improvement, using before-and-after code and real-world measurements. Whether you’re planning to integrate LLMs into your application or are already dealing with the challenges, this session will provide practical insights to help you make better design decisions.
   speakers:
     - Kota Koyama
 
@@ -96,6 +110,10 @@
   video_id: "koichi-ito-rubyworld-2026"
   description: |-
     Technologies for building LLM applications, such as RAG and MCP, are gradually gaining traction in the Ruby ecosystem. But what about fine-tuning, which adapts the LLM itself to specific requirements?
+
+    While RAG provides a model with relevant external context at inference time, fine-tuning adapts the model's parameters to shape its behavior for a particular task. Fine-tuning is typically done in Python, with its mature machine learning ecosystem, but it can also be used from Ruby.
+
+    This talk introduces the fundamentals of fine-tuning and shows how to work with it using Ruby, focusing on LoRA (Low-Rank Adaptation), a parameter-efficient fine-tuning technique. While the underlying machine learning backend is implemented in Python, Ruby code through PyCall provides a practical way to understand how fine-tuning works. The talk also explores how fine-tuning is used with local LLMs and shares the current state of the Ruby ecosystem around AI.
   speakers:
     - Koichi ITO
 
@@ -123,6 +141,8 @@
   video_id: "hasumi-hitoshi-rubyworld-2026"
   description: |-
     Funicular lets you write the frontend of a Rails application in native Ruby. At its core, the Object-REST Mapper maps Rails resources onto Ruby objects that live in the browser.
+
+    This talk revisits Roy Fielding's REST constraints one by one and shows that the code a Rails developer already writes satisfies each of them. Along the way it reveals the true face of the forgotten constraint, Code on Demand, and explains why Rails and REST have set out on a new journey together.
   speakers:
     - HASUMI Hitoshi
 
@@ -150,6 +170,8 @@
   video_id: "toshiaki-bash-koshiba-rubyworld-2026"
   description: |-
     Since this spring, I have been developing a solo hobby project: a PicoRuby edition of "Super kawaii AI desktop robot" Stack-chan. I fully adopted PicoRuby across the entire stack, from the robot firmware and AI control to communication protocols and controller apps for Mac, iPhone, and Apple Watch, achieving seamless multi-device coordination.
+
+    In this talk, I will share the technologies and communities that made this wide-ranging hobby project possible. I will present this journey as an example of a development style that scales effectively, even as a solo developer.
   speakers:
     - "Toshiaki \"bash\" KOSHIBA"
 
@@ -163,6 +185,8 @@
   video_id: "sampo-kuokkanen-rubyworld-2026"
   description: |-
     At RubyWorld Conference, Matz told us to go out and send pull requests to Ruby. So I tried. I started small, writing tests for MRI and ruby/spec. While working on defined?, I found a bug in Ruby itself, and ended up fixing it.
+
+    I'll show how I found the bug, how I tracked it down, and what it took to get the fix into Ruby. I'll also talk about getting started with open source, and how talking about your contributions keeps you going. Maybe even far enough to start a local meetup.
   speakers:
     - Sampo Kuokkanen
 
@@ -192,6 +216,8 @@
   video_id: "miyuki-koshiba-rubyworld-2026"
   description: |-
     Workshops offer a supportive environment to take that daunting first step. Having hosted Ruby creative coding and PicoRuby workshops ranging from 30 minutes to 4 hours, I believe the goal in a limited timeframe is not complete mastery, but a sense of achievement: "I did it!" and "That was fun!"
+
+    This session covers key goal-setting principles, criteria for streamlining content, and versatile structural frameworks adaptable to any timeframe. Real-world examples of corporate participation in workshops will also be presented.
   speakers:
     - Miyuki Koshiba
 
