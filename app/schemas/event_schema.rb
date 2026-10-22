@@ -4,6 +4,7 @@ class EventSchema < ApplicationSchema
   data_file "**/event.yml"
 
   string :id, description: "Unique identifier for the event, matches the event folder name"
+  array :old_ids, of: :string, description: "Previous ids, kept so the production event is moved to the new id on the next seed and its old URLs keep working", required: false
 
   string :title, description: "Full name of the event (e.g., 'RailsConf 2024')"
   string :description, description: "Description of the event", required: false

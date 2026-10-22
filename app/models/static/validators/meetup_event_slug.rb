@@ -33,12 +33,10 @@ module Static
 
         location = event.source_location("id")
         rule = %(Meetup event ids end in "-meetup", "-brigade", "-group", "-usergroup" or a Ruby User Group abbreviation like "rughh")
-        message = if !expected
-          %(id "#{slug}" has "meetup" in the middle. #{rule}, rename it by hand.)
-        elsif published?
-          %(id "#{slug}" should be "#{expected}". #{rule}. This event is already on main, so renaming it needs the production event migrated as well.)
+        message = if expected
+          %(id "#{slug}" should be "#{expected}". #{rule}. Run `bin/rails validate:fix` to rename it, events already on main keep the current id in old_ids.)
         else
-          %(id "#{slug}" should be "#{expected}". #{rule}. Run `bin/rails validate:fix` to rename it.)
+          %(id "#{slug}" has "meetup" in the middle. #{rule}, rename it by hand and keep the current id in old_ids if the event is already on main.)
         end
 
         [
@@ -52,8 +50,9 @@ module Static
       end
 
       def fix
-        return unless mismatched? && expected && !published?
+        return unless mismatched? && expected
 
+        event["old_ids"] = (event.old_ids + [slug]).uniq if published?
         event.rename!(expected)
 
         {changed: 1, file_path: @file_path}

@@ -184,6 +184,10 @@ module Static
       self["id"]
     end
 
+    def old_ids
+      Array(self["old_ids"]).compact_blank
+    end
+
     def imported?
       ::Event.exists?(slug: slug)
     end
@@ -304,9 +308,10 @@ module Static
     end
 
     def import_event!
-      event = ::Event.find_or_initialize_by(slug: slug)
+      event = ::Event.find_by(slug: slug) || renamed_event_record || ::Event.new(slug: slug)
 
       event.assign_attributes(
+        slug: slug,
         name: title,
         date: attributes["date"],
         date_precision: attributes["date_precision"] || "day",
@@ -343,6 +348,7 @@ module Static
       event.save! if event.changed? || event.new_record?
 
       event.sync_aliases_from_list(aliases) if aliases.present?
+      sync_old_slugs!(event)
 
       puts event.slug unless Rails.env.test?
 
@@ -351,6 +357,24 @@ module Static
       error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
       puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
       raise e
+    end
+
+    def renamed_event_record
+      old_ids.each do |old_id|
+        event = ::Event.find_by(slug: old_id)
+        return event if event
+      end
+
+      nil
+    end
+
+    def sync_old_slugs!(event)
+      old_ids.each do |old_id|
+        next if event.slug_aliases.exists?(slug: old_id)
+        next if ::Alias.exists?(aliasable_type: "Event", slug: old_id)
+
+        event.slug_aliases.create!(name: old_id, slug: old_id)
+      end
     end
 
     def import_cfps!(event)

@@ -7,6 +7,13 @@
       "type": "string",
       "description": "Unique identifier for the event, matches the event folder name"
     },
+    "old_ids": {
+      "type": "array",
+      "description": "Previous ids, kept so the production event is moved to the new id on the next seed and its old URLs keep working",
+      "items": {
+        "type": "string"
+      }
+    },
     "title": {
       "type": "string",
       "description": "Full name of the event (e.g., 'RailsConf 2024')"

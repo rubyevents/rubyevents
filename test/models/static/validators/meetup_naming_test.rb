@@ -122,14 +122,27 @@ class Static::Validators::MeetupNamingTest < ActiveSupport::TestCase
     end
   end
 
-  test "MeetupEventSlug does not rename an event that is already published" do
+  test "MeetupEventSlug keeps the previous id in old_ids when renaming a published event" do
     with_meetup(event_id: "testrb-ruby") do |paths|
       validator = Static::Validators::MeetupEventSlug.new(file_path: paths[:event])
       validator.define_singleton_method(:published?) { true }
 
-      assert_includes validator.errors.first.message, "already on main"
-      assert_nil validator.fix
-      assert File.exist?(paths[:event])
+      validator.fix
+
+      renamed = File.join(File.dirname(paths[:event], 2), "testrb-ruby-meetup", "event.yml")
+      assert_equal ["testrb-ruby"], Static::Event.in_file(renamed).first["old_ids"]
+    end
+  end
+
+  test "MeetupEventSlug does not add old_ids when renaming an unpublished event" do
+    with_meetup(event_id: "testrb-ruby") do |paths|
+      validator = Static::Validators::MeetupEventSlug.new(file_path: paths[:event])
+      validator.define_singleton_method(:published?) { false }
+
+      validator.fix
+
+      renamed = File.join(File.dirname(paths[:event], 2), "testrb-ruby-meetup", "event.yml")
+      assert_nil Static::Event.in_file(renamed).first["old_ids"]
     end
   end
 
