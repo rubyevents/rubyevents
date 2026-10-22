@@ -82,6 +82,7 @@ class Static::Validators::Validator
   def self.video_validator_classes
     @video_validator_classes ||= [
       Static::Validators::Schema,
+      Static::Validators::MeetupId,
       Static::Validators::SpeakerExists,
       Static::Validators::SpeakersOrTalks,
       Static::Validators::TalkDates,
