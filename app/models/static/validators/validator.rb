@@ -87,6 +87,7 @@ class Static::Validators::Validator
       Static::Validators::Schema,
       Static::Validators::MeetupEditionTitle,
       Static::Validators::MeetupId,
+      Static::Validators::MeetupTalksNested,
       Static::Validators::SpeakerExists,
       Static::Validators::SpeakersOrTalks,
       Static::Validators::TalkDates,
