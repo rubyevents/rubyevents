@@ -1,11 +1,83 @@
 # Website: https://2026.rubyworld-conf.org/en/
 # TODO: add talks
 ---
+- id: "irina-nazarova-rubyworld-2026"
+  title: "Ruby Startups Today"
+  kind: "keynote"
+  event_name: "RubyWorld Conference 2026"
+  date: "2026-12-03"
+  start_time: "10:55"
+  end_time: "11:55"
+  announced_at: "2026-06-30"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "irina-nazarova-rubyworld-2026"
+  description: |-
+    Something is stirring. Quietly, a new generation of founders is choosing Ruby for their most ambitious work: not out of loyalty, but out of pragmatism.
+  speakers:
+    - Irina Nazarova
+
+- id: "shun-hiraoka-rubyworld-2026"
+  title: "Run Ruby Everywhere with the seL4 Microkernel"
+  date: "2026-12-03"
+  start_time: "14:30"
+  end_time: "14:45"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "shun-hiraoka-rubyworld-2026"
+  description: |-
+    Ruby typically relies on various OS features to run. While this means it normally operates on a standard OS, we can also run Ruby on other machines by providing just the essential features through a custom kernel.
+  speakers:
+    - Shun Hiraoka
+
+- id: "kota-koyama-rubyworld-2026"
+  title: "Ruby × LLM: Is It Really Improving the User Experience? — Lessons from Error Detection and Anti-Patterns"
+  original_title: "Ruby×LLMでユーザー体験は本当に向上していますか？——エラー検知から辿るアンチパターン"
+  date: "2026-12-03"
+  start_time: "14:50"
+  end_time: "15:05"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "kota-koyama-rubyworld-2026"
+  description: |-
+    More and more products are integrating LLMs into applications built with Ruby.
+  speakers:
+    - Kota Koyama
+
+- id: "naoyuki-sato-rubyworld-2026"
+  title: "Graduating from SaaS, Crossing the Sea: In-House Rails Behind 2,000 Unstaffed Gyms, and How AI Shifted the Build-vs-Buy Break-Even Point"
+  original_title: "SaaSを『卒業』して、海を渡る — 無人ジム2,000店を支えるRails内製と、AIが動かしたBuild vs Buyの分岐点"
+  date: "2026-12-03"
+  start_time: "15:40"
+  end_time: "16:10"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "naoyuki-sato-rubyworld-2026"
+  description: |-
+    chocoZAP runs 20,000 in-store cameras, digital signage, and a reservation system. All three started on SaaS and have since been replaced with in-house Rails systems. It all started with a lesson we learned when we relied on outsourcing. This talk shares, with real numbers, five years of bringing development in-house with a team that is half new graduates, and how the arrival of AI agents moved the break-even point of Build vs. Buy. We will also explain why we keep choosing Ruby in the AI era, and how our in-house platform has begun crossing the sea to Hong Kong and Taiwan.
+  speakers:
+    - Naoyuki Sato
+
+- id: "george-asfour-rubyworld-2026"
+  title: "Circuit Breakers for Ruby in the AI Era"
+  date: "2026-12-03"
+  start_time: "16:15"
+  end_time: "16:45"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "george-asfour-rubyworld-2026"
+  description: |-
+    This talk explores cascading failures, where delays in third-party APIs exhaust application resources and bring down unrelated parts of a system. It covers the basics of the circuit breaker pattern, its implementation in Ruby, production use with Redis, and the design and internals of the open-source circuit breaker gem Stoplight. It also explores how Lua scripts can improve performance by eliminating bottlenecks caused by Redis round trips.
+  speakers:
+    - George Asfour
+
 - id: "yukihiro-matz-matsumoto-rubyworld-2026"
   title: "Keynote: Yukihiro Matsumoto"
   kind: "keynote"
   event_name: "RubyWorld Conference 2026"
-  date: "2026-12-03"
+  date: "2026-12-04"
+  start_time: "10:25"
+  end_time: "11:25"
   announced_at: "2026-06-30"
   video_provider: "scheduled"
   video_id: "yukihiro-matz-matsumoto-rubyworld-2026"
@@ -13,14 +85,126 @@
   speakers:
     - "Yukihiro \"Matz\" Matsumoto"
 
-- id: "irina-nazarova-rubyworld-2026"
-  title: "Keynote: Irina Nazarova"
-  kind: "keynote"
-  event_name: "RubyWorld Conference 2026"
-  date: "2026-12-03"
-  announced_at: "2026-06-30"
+- id: "koichi-ito-rubyworld-2026"
+  title: "Fine-Tuning LLMs with Ruby"
+  original_title: "RubyではじめるFine-Tuning"
+  date: "2026-12-04"
+  start_time: "11:30"
+  end_time: "11:45"
+  language: "Japanese"
   video_provider: "scheduled"
-  video_id: "irina-nazarova-rubyworld-2026"
-  description: ""
+  video_id: "koichi-ito-rubyworld-2026"
+  description: |-
+    Technologies for building LLM applications, such as RAG and MCP, are gradually gaining traction in the Ruby ecosystem. But what about fine-tuning, which adapts the LLM itself to specific requirements?
   speakers:
-    - Irina Nazarova
+    - Koichi ITO
+
+- id: "hiroshi-shibata-rubyworld-2026"
+  title: "Ruby on Windows"
+  date: "2026-12-04"
+  start_time: "11:50"
+  end_time: "12:05"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "hiroshi-shibata-rubyworld-2026"
+  description: |-
+    Windows is the standard environment for companies, local governments and schools in Japan. Yet because setting it up is hard, many organizations have left Ruby out of their technology choices. This talk introduces a new way to install prebuilt Ruby with a single command, requiring neither administrator privileges nor an installer. I will also cover how we prepared a distribution that can pass a corporate security review. Ruby you can use with confidence on Windows lets AI agents take on more of the work, and raises the productivity of engineers regardless of the environment they work in.
+  speakers:
+    - Hiroshi SHIBATA
+
+- id: "hasumi-hitoshi-rubyworld-2026"
+  title: "REST Rebooted: What Funicular on Rails Carries"
+  original_title: "REST再始動: Funicular on Rails が運ぶもの"
+  date: "2026-12-04"
+  start_time: "13:05"
+  end_time: "13:20"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "hasumi-hitoshi-rubyworld-2026"
+  description: |-
+    Funicular lets you write the frontend of a Rails application in native Ruby. At its core, the Object-REST Mapper maps Rails resources onto Ruby objects that live in the browser.
+  speakers:
+    - HASUMI Hitoshi
+
+- id: "jumpei-ito-rubyworld-2026"
+  title: "Bringing Ruby Camp DXRuby games to the browser: Rebuilding the game execution environment with PicoRuby.wasm"
+  original_title: "Ruby合宿のDXRubyゲームをブラウザへ —— PicoRuby.wasmでゲーム実行環境を作り直す"
+  date: "2026-12-04"
+  start_time: "13:25"
+  end_time: "13:40"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "jumpei-ito-rubyworld-2026"
+  description: |-
+    A game my teammates and I built with DXRuby at "Ruby Camp" in Shimane required a DirectX environment, so it was not something anyone could easily play. In this talk, I will share how I brought the game back to life so that it runs entirely in the browser using PicoRuby.wasm. I will discuss the challenges I faced while developing PicoDX, a DXRuby-like library I built for the port, as well as what I was and was not able to achieve. A live demo running in the browser will be shown at the venue.
+  speakers:
+    - Jumpei Ito
+
+- id: "toshiaki-bash-koshiba-rubyworld-2026"
+  title: "The Story of My Solo Hobby Project Bringing AI, MCUs, PCs, Smartphones, and Smartwatches Together through the Super-Kawaii AI Desktop Robot Stack-chan PicoRuby Edition"
+  date: "2026-12-04"
+  start_time: "13:45"
+  end_time: "14:00"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "toshiaki-bash-koshiba-rubyworld-2026"
+  description: |-
+    Since this spring, I have been developing a solo hobby project: a PicoRuby edition of "Super kawaii AI desktop robot" Stack-chan. I fully adopted PicoRuby across the entire stack, from the robot firmware and AI control to communication protocols and controller apps for Mac, iPhone, and Apple Watch, achieving seamless multi-device coordination.
+  speakers:
+    - "Toshiaki \"bash\" KOSHIBA"
+
+- id: "sampo-kuokkanen-rubyworld-2026"
+  title: "From RubyWorld to Ruby PR: Fixing defined? and Giving Back"
+  date: "2026-12-04"
+  start_time: "14:05"
+  end_time: "14:20"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "sampo-kuokkanen-rubyworld-2026"
+  description: |-
+    At RubyWorld Conference, Matz told us to go out and send pull requests to Ruby. So I tried. I started small, writing tests for MRI and ruby/spec. While working on defined?, I found a bug in Ruby itself, and ended up fixing it.
+  speakers:
+    - Sampo Kuokkanen
+
+- id: "katsutoshi-fujihara-ko-ichiro-sugiyama-rubyworld-2026"
+  title: "An mruby/c Programming Environment for Multiple Microcontroller Platforms and Its Educational Applications: From Block-Based Programming to Text-Based Coding, and from Browsers to Local Code Editors"
+  original_title: "マイコン横断型mruby/cプログラミング環境の開発と教育実践  －ブロックからテキスト，ブラウザからローカルコードエディタまで－"
+  date: "2026-12-04"
+  start_time: "14:25"
+  end_time: "14:55"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "katsutoshi-fujihara-ko-ichiro-sugiyama-rubyworld-2026"
+  description: |-
+    This presentation introduces an mruby/c programming environment for multiple microcontroller platforms that allows learners to progress step by step from block-based programming to text-based coding in Ruby, and from browser-based programming to development using a local code editor. We explain the roles of the individual tools that make up the environment, how they interact with one another, and how they are implemented. We also report on its use in regional robot contests and school education, support for the transition to text-based coding, and educational activities conducted in collaboration with the local Ruby community. The presentation includes live demonstrations of the environment.
+  speakers:
+    - Katsutoshi Fujihara
+    - Ko-ichiro Sugiyama
+
+- id: "miyuki-koshiba-rubyworld-2026"
+  title: 'From "Fun" to Beyond: The Art of Workshop Design'
+  original_title: "「たのしい」を入り口に、その先へつながるワークショップの作り方"
+  date: "2026-12-04"
+  start_time: "15:30"
+  end_time: "15:45"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "miyuki-koshiba-rubyworld-2026"
+  description: |-
+    Workshops offer a supportive environment to take that daunting first step. Having hosted Ruby creative coding and PicoRuby workshops ranging from 30 minutes to 4 hours, I believe the goal in a limited timeframe is not complete mastery, but a sense of achievement: "I did it!" and "That was fun!"
+  speakers:
+    - Miyuki Koshiba
+
+- id: "yuki-torii-rubyworld-2026"
+  title: "How Are Teens Living with AI? — Notes from a Ruby Programming Contest for Young Coders"
+  original_title: "中高生はAIとどう付き合っているか ― 中高生Rubyプログラミングコンテストの現場から"
+  date: "2026-12-04"
+  start_time: "15:50"
+  end_time: "16:20"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "yuki-torii-rubyworld-2026"
+  description: |-
+    Now that generative AI has become part of everyday life, how are middle and high school students bringing it into their programming? In this talk, I will present data on AI usage gathered through the Ruby Programming Contest for Middle and High School Students. I will also share how Waffle, a nonprofit working to close the gender gap in tech, has positioned and incorporated AI into its programs, and how participants have responded. Drawing on both data and voices from the field, I will explore how young people learn programming in the age of AI, and what adults can do to support them.
+  speakers:
+    - Yuki Torii
