@@ -111,7 +111,7 @@ class PageController < ApplicationController
       "stamp" => {width: 512, height: 512, name: "Stamp"}
     }
 
-    @events_with_assets = @events.map do |event|
+    @all_events_with_assets = @events.map do |event|
       assets = {}
       @asset_types.except("sticker", "stamp").each do |type, _|
         asset_path = event.event_image_for("#{type}.webp")
@@ -129,6 +129,15 @@ class PageController < ApplicationController
         sticker_paths: sticker_paths,
         stamp_paths: stamp_paths
       }
+    end
+
+    @filter = params[:filter].presence_in(%w[missing incomplete complete])
+
+    @events_with_assets = case @filter
+    when "missing" then @all_events_with_assets.reject { |e| e[:has_any_assets] }
+    when "incomplete" then @all_events_with_assets.select { |e| e[:has_any_assets] && e[:missing_assets].any? }
+    when "complete" then @all_events_with_assets.select { |e| e[:missing_assets].empty? }
+    else @all_events_with_assets
     end
   end
 end
