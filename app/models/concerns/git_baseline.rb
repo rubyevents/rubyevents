@@ -9,10 +9,37 @@ module GitBaseline
     def baseline_file(relative_path)
       return nil unless baseline_ref
 
-      content, success = git("show", "#{baseline_ref}:#{relative_path}")
-      return nil unless success
+      [relative_path, *renamed_paths(relative_path)].each do |path|
+        content, success = git("show", "#{baseline_ref}:#{path}")
+        return Yerba.parse(content) if success
+      end
 
-      Yerba.parse(content)
+      nil
+    end
+
+    def renamed_paths(relative_path)
+      directory, file = File.split(relative_path)
+
+      [File.basename(directory), *old_event_ids(directory)].uniq.flat_map do |old_id|
+        baseline_event_directories.fetch(old_id, []).map { |old_directory| File.join(old_directory, file) }
+      end
+    end
+
+    def old_event_ids(directory)
+      event_file = File.join(directory, "event.yml")
+      return [] unless File.exist?(event_file)
+
+      Static::Event.in_file(event_file).first&.old_ids || []
+    end
+
+    def baseline_event_directories
+      return @baseline_event_directories if defined?(@baseline_event_directories)
+      return @baseline_event_directories = {} unless baseline_ref
+
+      output, success = git("ls-tree", "-r", "--name-only", baseline_ref, "--", "data")
+      event_files = success ? output.split("\n").grep(%r{\Adata/[^/]+/[^/]+/event\.yml\z}) : []
+
+      @baseline_event_directories = event_files.map { |path| File.dirname(path) }.group_by { |directory| File.basename(directory) }
     end
 
     def baseline_ref
@@ -49,6 +76,7 @@ module GitBaseline
     def reset!
       remove_instance_variable(:@baseline_ref) if defined?(@baseline_ref)
       remove_instance_variable(:@changed_paths) if defined?(@changed_paths)
+      remove_instance_variable(:@baseline_event_directories) if defined?(@baseline_event_directories)
     end
   end
 

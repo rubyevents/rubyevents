@@ -6,7 +6,11 @@ kind: "meetup"
 frequency: "monthly"
 language: "English"
 default_country_code: "PL"
-luma: "https://luma.com/krug"
 aliases:
   - KRUG
   - Kraków Ruby Users Group
+
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-EyyObsvyunM3PQP"
+    name: "Luma"

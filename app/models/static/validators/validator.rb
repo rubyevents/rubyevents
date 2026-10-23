@@ -24,7 +24,10 @@ class Static::Validators::Validator
       Static::Validators::EventDatePrecision,
       Static::Validators::EventDates,
       Static::Validators::EventRecordingsPublishedDate,
+      Static::Validators::EventRenames,
       Static::Validators::IdMatchesFolder,
+      Static::Validators::MeetupEventSlug,
+      Static::Validators::MeetupEventTitle,
       Static::Validators::MissingSeriesSocials,
       Static::Validators::RemovedTalkIds
     ]
@@ -49,6 +52,7 @@ class Static::Validators::Validator
     @series_validator_classes ||= [
       Static::Validators::Schema,
       Static::Validators::IdMatchesFolder,
+      Static::Validators::MeetupSeriesName,
       Static::Validators::SeriesDefaultColors
     ]
   end
@@ -61,7 +65,8 @@ class Static::Validators::Validator
       Static::Validators::SpeakerSlugMatchesName,
       Static::Validators::UniqueSpeakerFields,
       Static::Validators::UniqueSpeakerIdentifiers,
-      Static::Validators::UniqueSpeakers
+      Static::Validators::UniqueSpeakers,
+      Static::Validators::WebsiteURL
     ]
   end
 
@@ -81,6 +86,10 @@ class Static::Validators::Validator
   def self.video_validator_classes
     @video_validator_classes ||= [
       Static::Validators::Schema,
+      Static::Validators::MeetupEditionProvider,
+      Static::Validators::MeetupEditionTitle,
+      Static::Validators::MeetupId,
+      Static::Validators::MeetupTalksNested,
       Static::Validators::SpeakerExists,
       Static::Validators::SpeakersOrTalks,
       Static::Validators::TalkDates,

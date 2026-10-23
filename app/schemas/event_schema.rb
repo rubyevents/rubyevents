@@ -4,6 +4,7 @@ class EventSchema < ApplicationSchema
   data_file "**/event.yml"
 
   string :id, description: "Unique identifier for the event, matches the event folder name"
+  array :old_ids, of: :string, description: "Previous ids, kept so the production event is moved to the new id on the next seed and its old URLs keep working", required: false
 
   string :title, description: "Full name of the event (e.g., 'RailsConf 2024')"
   string :description, description: "Description of the event", required: false
@@ -34,7 +35,7 @@ class EventSchema < ApplicationSchema
   string :venue, description: "Name of the venue", required: false
 
   array :youtube_channels, of: YouTubeChannelSchema, description: "YouTube channels associated with this event", required: false
-
+  array :feeds, of: FeedSourceSchema, description: "External feeds (iCal, RSS, social) for this event", required: false
   array :removed_talk_ids, of: :string, description: "Ids of talks that were intentionally removed from videos.yml, so the removal is not mistaken for an unrecorded rename", required: false
   string :playlist, description: "YouTube playlist/Vimeo showcase link", required: false
 
@@ -59,7 +60,7 @@ class EventSchema < ApplicationSchema
     description: "CSS text color for featured cards",
     required: false
 
-  any_of :coordinates, description: "Geographic coordinates (use 'coordinates: false' for online events)" do
+  any_of :coordinates, description: "Geographic coordinates (use 'coordinates: false' for online events)", required: false do
     object do
       number :latitude, description: "Latitude coordinate"
       number :longitude, description: "Longitude coordinate"

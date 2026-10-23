@@ -40,6 +40,7 @@ rules:
       - sort_keys:
           order:
             - id
+            - old_ids
             - title
             - location
             - timezone
@@ -76,6 +77,7 @@ rules:
             - aliases
             - youtube_channels
             - removed_talk_ids
+            - feeds
 
       - sort_keys:
           selector: "youtube_channels[]"
@@ -193,6 +195,7 @@ rules:
       - sort_keys:
           order:
             - id
+            - old_ids
             - name
             - website
             - kind
@@ -218,6 +221,16 @@ rules:
             - featured_color
             - aliases
             - youtube_channels
+            - feeds
+
+      - sort_keys:
+          path: "feeds[]"
+          order:
+            - type
+            - url
+            - name
+            - handle
+            - account
 
   - files: "data/**/videos.yml"
     pipeline:

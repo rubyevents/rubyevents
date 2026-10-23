@@ -254,6 +254,12 @@ class Event < ApplicationRecord
     alias_record&.aliasable
   end
 
+  def self.find_by_series_slug_or_alias(slug)
+    events = ::EventSeries.find_by_slug_or_alias(slug)&.events&.limit(2).to_a
+
+    events.first if events.one?
+  end
+
   def self.grouped_by_country
     all.group_by(&:country_code)
       .map { |code, evts| [Country.find_by(country_code: code), evts] }

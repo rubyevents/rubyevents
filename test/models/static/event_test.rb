@@ -27,6 +27,27 @@ class Static::EventTest < ActiveSupport::TestCase
     assert_equal "Helvetic Ruby 2025", result.name
   end
 
+  test "import_event! moves the event listed in old_ids to the new id" do
+    Static::EventSeries.find_by_slug("ruby-on-rails-switzerland").import_series!
+    previous = ::Event.create!(name: "Railshöck", slug: "railshock", series: ::EventSeries.find_by!(slug: "ruby-on-rails-switzerland"))
+
+    record = Static::Event.find_by_slug("railshoeck-meetup").import_event!
+
+    assert_equal previous.id, record.id
+    assert_equal "railshoeck-meetup", record.slug
+    assert_nil ::Event.find_by(slug: "railshock")
+    assert_equal record, ::Event.find_by_slug_or_alias("railshock")
+  end
+
+  test "import_event! keeps the old id as an alias when there is no event to move" do
+    Static::EventSeries.find_by_slug("ruby-on-rails-switzerland").import_series!
+
+    record = Static::Event.find_by_slug("railshoeck-meetup").import_event!
+
+    assert_equal "railshoeck-meetup", record.slug
+    assert_equal record, ::Event.find_by_slug_or_alias("railshock")
+  end
+
   test "import_cfps!" do
     Static::EventSeries.find_by_slug("helveticruby").import_series!
     event = Static::Event.find_by_slug(SLUG)

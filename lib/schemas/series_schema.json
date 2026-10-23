@@ -7,6 +7,13 @@
       "type": "string",
       "description": "Unique identifier for the event series, matches the series folder name"
     },
+    "old_ids": {
+      "type": "array",
+      "description": "Previous ids, kept so the production series is moved to the new id on the next seed and its old URLs keep working",
+      "items": {
+        "type": "string"
+      }
+    },
     "name": {
       "type": "string",
       "description": "Name of the event series (e.g., 'RailsConf')"
@@ -332,6 +339,39 @@
           "id",
           "name",
           "handle"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "feeds": {
+      "type": "array",
+      "description": "External feeds (iCal, RSS, social) for this series",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Feed type (ical, rss, bluesky, mastodon, twitter, linkedin)"
+          },
+          "url": {
+            "type": "string",
+            "description": "Feed URL"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name for this feed"
+          },
+          "handle": {
+            "type": "string",
+            "description": "Account handle (for social feeds)"
+          },
+          "account": {
+            "type": "string",
+            "description": "Full account URL (for Mastodon, etc.)"
+          }
+        },
+        "required": [
+          "type"
         ],
         "additionalProperties": false
       }
