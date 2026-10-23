@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=4.0.6
+ARG RUBY_VERSION=4.0.9
 FROM docker.io/library/ruby:$RUBY_VERSION
 
 # Rails app lives here

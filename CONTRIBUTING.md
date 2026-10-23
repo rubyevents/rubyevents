@@ -41,7 +41,7 @@ If the ruby version is updated, or you start running into issues, feel free to t
 
 #### Requirements
 
-- Ruby 4.0.6
+- Ruby 4.0.9
 - Node.js 22.15.1
 - Yarn >= 1.22.22 (`npm install -g yarn`)
 
