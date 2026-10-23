@@ -1,6 +1,254 @@
-# TODO: Add talks and videos
-
 # Website: https://rubyrussia.club/en
 # Videos: https://www.youtube.com/playlist?list=PLiWUIs1hSNeNz4UCJk9r-5nFklqvzL7vy
 ---
-[]
+- id: "aaron-patterson-rubyrussia-2018"
+  title: "Pointers for Eliminating Heaps of Memory"
+  raw_title: "Pointers for Eliminating Heaps of Memory. Aaron Patterson"
+  date: "2018-10-06"
+  published_at: "2018-10-25T08:29:22Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "YJPE5yTfvyQ"
+  description: |-
+    In this presentation, we'll cover techniques in Ruby 2.6 that reduce "dead space" memory overhead found in all Ruby programs today. First, we'll cover the compilation process of Ruby programs, instruction optimizations, as well as internal data structures used for running Ruby code. Next, we'll look at how to use this information to maintain liveness of Ruby objects in the code.
+    Finally, we'll take all the information we covered so far to develop a technique for reducing dead space in the heap. Remember to mark your calendar because this presentation will be remembered for generations.
+  speakers:
+    - Aaron Patterson
+
+- id: "charles-oliver-nutter-rubyrussia-2018"
+  title: "Optimizing Ruby on the JVM"
+  raw_title: "Optimizing Ruby on the JVM. Сharles Nutter"
+  date: "2018-10-06"
+  published_at: "2018-10-23T16:57:14Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "K-GsjR5-vtQ"
+  description: |-
+    JRuby is the premier implementation of Ruby on the JVM, with thousands of production users and compelling performance gains over CRuby. In this talk we'll discuss how you can get the most out of JRuby, showing how JRuby and the JVM optimize your code. JRuby is the fastest, most scalable way to run large Ruby applications...this talk will show you how to get started.
+  speakers:
+    - Charles Oliver Nutter
+
+- id: "ivan-shamatov-rubyrussia-2018"
+  title: "Фичетогглинг. От теории к практике"
+  raw_title: "Фичетогглинг. От теории к практике. Иван Шаматов"
+  date: "2018-10-06"
+  published_at: "2018-10-23T12:48:09Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "_1sF-fKyAJc"
+  description: |-
+    Фичетогглинг — мощная техника, позволяющая менять поведение системы без изменения кода.
+    В докладе я постараюсь структурировать информацию о фичетогглах и предложить решения, которые позволят сохранить пользу от фичетогглинга и при этом предоставят возможность справиться с возрастающей сложностью в проекте.
+  speakers:
+    - Ivan Shamatov
+
+- id: "anton-davydov-rubyrussia-2018"
+  title: "Events. Events. Events!"
+  raw_title: "Events. Events. Events! Антон Давыдов"
+  date: "2018-10-06"
+  published_at: "2018-10-23T16:29:47Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "N9l-b1syaIc"
+  description: |-
+    Мы проектируем системы разной сложности и обычно думаем о коде и фичах. Но в реальном мире, кроме кода и данных, системы содержат события, которые могут использоваться для разной логики в разных частях монолита или сервисаов.
+    В своем докладе я расскажу про такой паттерн проектирования систем как event sourcing, так же расскажу при чем тут DDD и CQRS, и почему это может быть полезно разработчикам. Так же, обсудим плюсы и минусы таких систем, рассмотрим подводные камни и поговорим о том, как использовать все это в ruby мире.
+  speakers:
+    - Anton Davydov
+
+- id: "sergei-alekseenko-rubyrussia-2018"
+  title: "MRuby + Nginx: особенности и примеры"
+  raw_title: "MRuby + Nginx: особенности и примеры. Сергей Алексеенко"
+  date: "2018-10-06"
+  published_at: "2018-10-23T16:55:03Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "uZmzQE7xXCY"
+  description: |-
+    mruby - это легковесная реализация Ruby, которую можно встраивать в различные приложения на C/C++/Go/Rust. В докладе я расскажу о возможностях языка, поговорим об ограничениях в сравнении с Ruby 2.x, посмотрим на примеры использования как встраиваемого языка.
+    Подробно рассмотрим расширение ngx_mruby, которое добавляет в Nginx поддержку mruby. Расскажу как его можно использовать в production, на примере динамической загрузки SSL сертификатов для разных доменов.
+  speakers:
+    - Sergei Alekseenko
+
+- id: "maciej-mensfeld-rubyrussia-2018"
+  title: "High performance Ruby services"
+  raw_title: "High performance Ruby services. Maciej Mensfeld"
+  date: "2018-10-06"
+  published_at: "2018-10-23T17:21:32Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "6r9vFB8lsLg"
+  description: |-
+    Is 100 mln requests per day a lot for a single Ruby process? Well it really depends on how you approach things.
+    Ruby is mistakenly associated mostly with the Rails framework, while beyond that there is a whole world worth exploring. HTTP is not always the best or the most efficient way of handling things and synchronous reality is not always the right approach. Come and learn how to harness Ruby potential in the areas that are usually unexplored.
+  speakers:
+    - Maciej Mensfeld
+
+- id: "markus-schirp-rubyrussia-2018"
+  title: "Mutant on Rails"
+  raw_title: "Mutant on Rails. Markus Schirp"
+  date: "2018-10-06"
+  published_at: "2018-10-27T14:57:53Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "rnmBrD_Vv4E"
+  description: |-
+    Applying mutation testing with mutant to Ruby on Rails environments.
+  speakers:
+    - Markus Schirp
+
+- id: "godfrey-chan-rubyrussia-2018"
+  title: "Dropping Down To The Metal"
+  raw_title: "Dropping Down To The Metal. Godfrey Chan"
+  date: "2018-10-06"
+  published_at: "2018-10-23T13:24:56Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "y44nMGUonQg"
+  description: |-
+    As much as we love Ruby, when we need to drop down to The Metal™, JavaScript is our only hope. This is why I developed the javascript gem to help you harness the raw power of your machines. In this talk, we will examine the Ruby tricks and black magic hidden behind this ludicrous invention. Along the way, we will learn about how Ruby internally deal with variable lookups, method calls, scoping and bindings. Together, we will push the limits of the Ruby language, taking it to places Matz never ever envisioned!
+  speakers:
+    - Godfrey Chan
+
+- id: "ivan-rabotyaga-rubyrussia-2018"
+  title: "От букваря до кровавого энтерпрайза: транзакции, локи, паттерны"
+  raw_title: "От букваря до кровавого энтерпрайза: транзакции, локи, паттерны. Иван Работяга"
+  date: "2018-10-06"
+  published_at: "2018-10-23T14:47:52Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "AYWiRVdJFTI"
+  description: |-
+    На простых примерах разберемся, как работают на практике транзакции и локи, и где они работают совсем не так, как можно ожидать; с какими задачами сталкивается любой разработчик крупных систем, какие существуют решения, где границы их применимости.
+  speakers:
+    - Ivan Rabotyaga
+
+- id: "yulia-oletskaya-rubyrussia-2018"
+  title: "JWT - how to implement uniform authentication flow for API-first applications"
+  raw_title: "JWT - how to implement uniform authentication flow for API-first applications. Юлия Олецкая"
+  date: "2018-10-06"
+  published_at: "2018-10-23T17:25:56Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "33G97bIzdls"
+  description: |-
+    Я не так давно написала гем https://github.com/tuwukee/jwt_sessions. Хочу рассказать об общих принципах создания API-first приложений c единообразным процессом аутентификации для JS-SPA/mobile/сторонних API-клиентов на примере этого гема.
+  speakers:
+    - Yulia Oletskaya
+
+- id: "nikolay-sverchkov-rubyrussia-2018"
+  title: "Evolution of Rails application architecture: 14 years in production"
+  raw_title: "Evolution of Rails application architecture: 14 years in production. Николай Сверчков"
+  date: "2018-10-06"
+  published_at: "2018-10-23T14:18:46Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "G9AJwFiEYu0"
+  description: |-
+    С момента первого релиза фреймворка Ruby On Rails были написаны миллиарды строк Ruby-кода. Я расскажу о том, как менялось представление об идеальном Ruby-приложении на протяжении этих четырнадцати лет, и как самые именитые долгожители Ruby-мира организуют архитектуру проектов сегодня. Мы рассмотрим реальные примеры от сотрудников Basecamp, Shopify и Cookpad и выясним в какой точке развития находится Ruby экосистема в данный момент.
+  speakers:
+    - Nikolay Sverchkov
+
+- id: "pavel-yakshankin-rubyrussia-2018"
+  title: "Эйчарские войны: Последние рубисты"
+  raw_title: "Эйчарские войны: Последние рубисты. Павел Якшанкин"
+  date: "2018-10-06"
+  published_at: "2018-10-23T12:19:01Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "Zjd9LZ1PAIk"
+  description: |-
+    Для ruby-компаний настали тяжёлые времена. Хотя рекрутеры и лиды повстанцев одержали первую победу над перегретым рынком и смогли привлечь в свои ряды сильных ruby-джедаев, HR война далека от завершения.
+    Избегая встречи с грозными джунами за 200, группа борцов за чистый код обустроила продвинутую рекрутинговую базу на отдаленной системе “Инстамарт”.
+    А если серьезно о теме поиска и профессионального развития разработчиков я планировал рассказать давно, так как занимаюсь этим с 2013 года, и хотел бы поделиться накопленным опытом привлечения крутых инженеров за адекватные деньги в сложные и, на первый взгляд, не сильно хорошо продающиеся с точки зрения HR-бренда проекты.
+    Я расскажу как мы сформировали сильную команду разработки и прокачиваем ее изо дня в день. Будет интересно как тем, кто набирает команду и уже немного приуныл, так и тем кто ищет профессионального развития, а находит лишь печеньки в офисе.
+    Мы поговорим о том как не потеряться на всех этапах подбора специалистов и обратим пристальное внимание на составление плана технического собеседования, за которое даже провалившиеся кандидаты будут благодарить.
+    Нужны ли логические задачи и вопросы об операционках? Чем привлекать кроме денег? Важны ли soft skills? Как прокачать HR-бренд и не пустить компанию по миру? На все эти вопросы я постараюсь дать ответ.
+    Во второй части поговорим об адаптации к проекту и профессиональном развитии наших сотрудников - как правильно подойти к составлению грейдов и матриц компетенций, как делать планы развития и стимулировать их выполнение, какую роль играют курсы, митапы, конференции и open source. Важным аспектом этой части станет совмещение интересов разработчика и компании.
+  speakers:
+    - Pavel Yakshankin
+
+- id: "yulian-kulesh-rubyrussia-2018"
+  title: "Threads are evil. Async Ruby in action"
+  raw_title: "Threads are evil. Async Ruby in action. Юлиан Кулеш"
+  date: "2018-10-06"
+  published_at: "2018-10-23T15:19:38Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "F07xFtorXDA"
+  description: |-
+    Доклад о состоянии библиотек для асинхронного IO в Ruby, их применении в продакшене, проблемах с которыми можно столкнуться. В докладе будут рассмотрены разные варианты организации асинхронного IO, показаны примеры с помощью библиотеки EventMachine. Описан стоящий за IO механизм и особенности его эксплуатации в Ruby.
+    Доклад будет постепенно наращивать абстракции и мы пройдем путь от механизмов нотификации ОС до создания плоской асинхронности с использованием Fibers и применении этого механизма в реальных проектах. Не обойдем мы стороной и новшества Ruby, показав как именно Guilds вписываются в общую картину мира и над какими улучшениями в этой области сейчас работают активисты общества.
+  speakers:
+    - Yulian Kulesh
+
+- id: "dmitry-stepanenko-rubyrussia-2018"
+  title: "Один год с легаси"
+  raw_title: "Один год с легаси. Дмитрий Степаненко"
+  date: "2018-10-06"
+  published_at: "2018-10-23T14:06:11Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "SwJmNDJ322g"
+  description: |-
+    В докладе будет идти речь о проделанной оптимизации нагруженного (8000-9000 запросов в минуту) legacy (190 000 строк кода) Ruby On Rails проекта для поиска и бронирования авиа-билетов. Расскажу, как бороться со старым кодом и не бояться вносить в него изменения; как делать рефакторинг и перепроектирование архитектуры в работающем проекте.
+  speakers:
+    - Dmitry Stepanenko
+
+- id: "pavel-shutin-rubyrussia-2018"
+  title: "Regression Test Selection for RSpec"
+  raw_title: "Regression Test Selection for RSpec. Павел Шутин"
+  date: "2018-10-06"
+  published_at: "2018-10-25T08:01:39Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "p8Rd79nEHv0"
+  description: |-
+    Речь пойдет о геме Crystalball, который позволяет делать выборку тестов проекта для запуска на основе изменений кода проекта.
+    Это доклад для Ruby разработчиков, которые используют RSpec для написания тестов и\или страдают от больших неповоротливых test-suite'ов. Расскажу, как ускорить локальную разработку, а также получать фидбэк от CI быстрее.
+  speakers:
+    - Pavel Shutin
+
+- id: "vlad-bogomolov-rubyrussia-2018"
+  title: "Как не надо переходить с Ruby на Go"
+  raw_title: "Как не надо переходить с Ruby на Go. Влад Богомолов"
+  date: "2018-10-06"
+  published_at: "2018-10-23T16:27:21Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "5K6Uu886UHA"
+  description: |-
+    Типичный жизненный цикл стартапа начинается с небольшого сервиса, написанного на Ruby, который внезапно превращается в десятки тысяч строк туго переплетенного монолита. Самое время перейти на SOA и переписать критичные части. Я расскажу какие ошибки можно собрать при переходе к написанию новых сервисов на Go, и на что стоит обратить внимание.
+  speakers:
+    - Vlad Bogomolov
+
+- id: "andrey-novikov-rubyrussia-2018"
+  title: "Что в метриках тебе моих?"
+  raw_title: "Что в метриках тебе моих? Андрей Новиков"
+  date: "2018-10-06"
+  published_at: "2018-10-25T07:41:43Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "uYKZ86l3Tv0"
+  description: |-
+    Развивать большое и нагруженное приложение без мониторинга — трудно и опасно так же, как и пилотировать самолёт без приборов. Почему важно следить за «полётом» приложения, на что нужно обращать внимание, как графики в мониторинге помогают быстро решать возникающие проблемы с производительностью и не допускать их вновь.
+    На примере боевого опыта с Sidekiq, Prometheus и Grafana расскажу и покажу, как снимать показания с Ruby-приложения, сохранять и выводить их на графики, расскажу пару грустных историй со счастливым концом о том, как это помогает команде и проекту каждый день.
+    Представлю набор новых гемов для настройки стандартного мониторинга «в два счёта» и для лёгкого включения любых кастомных метрик в своё приложение и свою систему мониторинга.
+  speakers:
+    - Andrey Novikov
+
+- id: "lightning-talk-rubyrussia-2018"
+  title: "Lightning Talks"
+  raw_title: "Lightning Talks RubyRussia 2018"
+  kind: "lightning_talk"
+  date: "2018-10-06"
+  published_at: "2018-10-27T21:38:24Z"
+  video_provider: "youtube"
+  video_id: "kXbDxxd46F0"
+  description: |-
+    Стас Герман, Mail.ru Group. Изолируй это.
+    Дмитрий Ефимов, FunBox.  Автоматизация Document-Driven Development для проектов с большим API
+    Дмитрий Жлобо, Datarockets. Simpliest Trick To Improve You Rails App
+    Анна Щербинина, Artec 3D. The information flow: +1 way to be up-to-date.
+    Bozhidar Batsov, Toptal. RuboCop.
+  talks: []
