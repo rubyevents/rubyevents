@@ -47,7 +47,7 @@ module Static
       def import_recent!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
         import_cutoff = 6.months.ago
 
-        all.select { |event| event.end_date && event.end_date >= import_cutoff }.each { |event| event.import!(index: index) }
+        all.select { |event| event.end_date.is_a?(Date) && event.end_date >= import_cutoff }.each { |event| event.import!(index: index) }
       end
 
       def build(series_slug:)

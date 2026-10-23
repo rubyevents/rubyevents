@@ -66,6 +66,25 @@ class Static::Validators::EventDatesTest < ActiveSupport::TestCase
     end
   end
 
+  test "returns an error for a placeholder date" do
+    yaml = Yerba::Document.from({"name" => "RubyConf", "kind" => "conference", "start_date" => "2017-xx-xx", "end_date" => "2017-11-15"}).to_s
+
+    with_temp_event_yaml(yaml) do |path|
+      errors = Static::Validators::EventDates.new(file_path: path).errors
+
+      assert_equal 1, errors.size
+      assert_includes errors.first.message, %(start_date "2017-xx-xx" is not a date)
+    end
+  end
+
+  test "returns an error for a date that doesn't exist" do
+    yaml = Yerba::Document.from({"name" => "RubyConf", "kind" => "conference", "start_date" => "2025-02-30", "end_date" => "2025-02-30"}).to_s
+
+    with_temp_event_yaml(yaml) do |path|
+      assert_equal 2, Static::Validators::EventDates.new(file_path: path).errors.size
+    end
+  end
+
   private
 
   def with_temp_event_yaml(yaml_content)
