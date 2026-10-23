@@ -16,7 +16,7 @@ module EventSlugRedirect
     slug = params[:event_slug].to_s
     return if Event.exists?(slug: slug)
 
-    event = Event.find_by_slug_or_alias(slug)
+    event = Event.find_by_slug_or_alias(slug) || Event.find_by_series_slug_or_alias(slug)
     return if event.nil? || event.slug == slug
 
     route = request.path_parameters.merge(controller: "/#{request.path_parameters[:controller]}", event_slug: event.slug)

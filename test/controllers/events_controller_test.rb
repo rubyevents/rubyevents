@@ -110,6 +110,27 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to event_path(@event)
   end
 
+  test "should redirect an old event slug kept by its series to the series' only event" do
+    series = EventSeries.create!(name: "Philly.rb", slug: "phillyrb", kind: "meetup")
+    event = Event.create!(name: "Philly.rb Meetup", slug: "phillyrb-meetup", series: series)
+    series.aliases.create!(name: "philly-rb", slug: "philly-rb")
+
+    get event_url("philly-rb")
+
+    assert_response :moved_permanently
+    assert_redirected_to event_path(event)
+  end
+
+  test "should not redirect a series slug to an event when the series has several events" do
+    series = EventSeries.create!(name: "Test.rb", slug: "testrb", kind: "meetup")
+    Event.create!(name: "Test.rb 2025", slug: "testrb-2025", series: series)
+    Event.create!(name: "Test.rb 2026", slug: "testrb-2026", series: series)
+
+    get event_url("testrb")
+
+    assert_redirected_to root_path
+  end
+
   test "should display an empty state message when no events are found" do
     Event.destroy_all
 

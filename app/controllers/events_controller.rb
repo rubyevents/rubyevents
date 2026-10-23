@@ -79,6 +79,7 @@ class EventsController < ApplicationController
   def set_event
     @event = Event.includes(:series).find_by(slug: params[:slug])
     @event ||= Event.find_by_slug_or_alias(params[:slug])
+    @event ||= Event.find_by_series_slug_or_alias(params[:slug])
 
     return redirect_to(root_path, status: :moved_permanently) unless @event
 
