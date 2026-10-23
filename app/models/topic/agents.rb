@@ -1,9 +1,11 @@
 class Topic::Agents < ActiveRecord::AssociatedObject
+  JUDGE_THRESHOLD = 0.8
+
   performs retries: 2 do
     limits_concurrency to: 4, key: "openai_api", duration: 1.hour
   end
 
-  performs def find_talks
+  performs def find_talks(matcher: :prompt)
     candidate_talks = find_candidate_talks
     existing_talk_ids = topic.talk_ids
 
@@ -11,7 +13,7 @@ class Topic::Agents < ActiveRecord::AssociatedObject
 
     return if new_candidates.empty?
 
-    confirmed_talks = filter_with_ai(new_candidates)
+    confirmed_talks = (matcher.to_sym == :judge) ? filter_with_judge(new_candidates) : filter_with_ai(new_candidates)
 
     return if confirmed_talks.empty?
 
@@ -20,6 +22,12 @@ class Topic::Agents < ActiveRecord::AssociatedObject
     Rails.logger.info "[Topic::Agents] Assigned #{confirmed_talks.size} talks to topic '#{topic.name}'"
 
     confirmed_talks
+  end
+
+  def judge_talks(talks = find_candidate_talks)
+    talks.to_h do |talk|
+      [talk, TopicMatchJudge.judge(TopicMatchJudge.input_for(talk), topic: topic).matches.probability]
+    end
   end
 
   private
@@ -72,6 +80,13 @@ class Topic::Agents < ActiveRecord::AssociatedObject
     candidates.select { |talk| matching_talk_ids.include?(talk.id) }
   rescue => e
     Rails.logger.error "[Topic::Agents] AI filtering failed for topic '#{topic.name}': #{e.message}"
+    []
+  end
+
+  def filter_with_judge(candidates)
+    judge_talks(candidates).select { |_talk, probability| probability >= JUDGE_THRESHOLD }.keys
+  rescue => e
+    Rails.logger.error "[Topic::Agents] Judge filtering failed for topic '#{topic.name}': #{e.message}"
     []
   end
 

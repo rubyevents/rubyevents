@@ -52,6 +52,28 @@ class Talk::Agents < ActiveRecord::AssociatedObject
     talk
   end
 
+  performs def analyze_topics_with_judge
+    return if talk.raw_transcript.blank?
+
+    candidates = Talk::TopicCandidates.for(talk)
+    return if candidates.empty?
+
+    judgment = TalkTopicsJudge.judge_topics(talk, candidates)
+
+    talk.topics = TalkTopicsJudge.pick(judgment, candidates)
+    talk.save!
+
+    talk
+  end
+
+  def topic_scores(candidates = Talk::TopicCandidates.for(talk))
+    return {} if candidates.empty?
+
+    judgment = TalkTopicsJudge.judge_topics(talk, candidates)
+
+    candidates.to_h { |topic| [topic, judgment.fetch(topic.slug).score] }.sort_by { -it.last }.to_h
+  end
+
   performs def ingest
     talk.youtube_transcript.fetch_and_store! unless talk.raw_transcript.present?
     talk.agents.improve_transcript unless talk.enhanced_transcript.present?
