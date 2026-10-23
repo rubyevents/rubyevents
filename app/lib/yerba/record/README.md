@@ -14,7 +14,11 @@ Think of it as [`frozen_record`](https://github.com/byroot/frozen_record) but wr
 class Static::Speaker < Yerba::Record::Base
   self.path = "data/speakers.yml"
 
-  schema SpeakerSchema
+  schema do
+    string :name, required: true
+    string :slug, required: true
+    string :github, required: true
+  end
 
   add_index :name, include: "aliases[].name"
   add_index :slug
@@ -28,7 +32,10 @@ end
 class Static::Event < Yerba::Record::Base
   self.path = "data/:series_id/:id/event.yml"
 
-  schema EventSchema
+  schema do
+    string :title
+    string :kind, enum: %w[conference meetup]
+  end
 
   belongs_to :series, class_name: "Static::EventSeries"
   has_many :talks, class_name: "Static::Talk"
@@ -47,7 +54,10 @@ class Static::Talk < Yerba::Record::Base
   self.path = "data/:series_id/:event_id/videos.yml"
   self.flatten = true
 
-  schema VideoSchema
+  schema do
+    string :id, required: true
+    string :title
+  end
 
   belongs_to :event, class_name: "Static::Event"
   has_one :series, through: :event
@@ -81,13 +91,7 @@ Yerba::Collection.get(Static::Talk.file_glob, "[].speakers[]")
 
 Schemas define the fields on a record. They reuse `RubyLLM::Schema` and serve triple duty: field definitions, validation on save, and MCP tool parameter generation.
 
-Reference an existing schema class:
-
-```ruby
-schema EventSchema
-```
-
-Or define inline:
+Define the schema inline on the model:
 
 ```ruby
 schema do
@@ -96,6 +100,14 @@ schema do
   string :website, required: false
   array :aliases, of: :string, required: false
 end
+```
+
+The inline schema is a subclass of `schema_base_class` (`ApplicationSchema` in this app, set in `config/initializers/static_models.rb`) named after the model, so `Static::CFP`'s is `CFPSchema`. `bin/rails schema:export` exports it to `lib/schemas/cfp_schema.json`, which the Yerbafile validates `cfp.yml` files against. Its `data_file` glob and selector come from the model's `path`.
+
+Or reference a schema class, e.g. one shared by several models:
+
+```ruby
+schema YouTubeChannelSchema
 ```
 
 When a schema is set, real methods are defined for each field (no `method_missing`):

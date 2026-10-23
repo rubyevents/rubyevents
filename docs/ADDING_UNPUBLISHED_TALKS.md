@@ -17,7 +17,7 @@ For example:
 - [`/data/ruby-community-conference/ruby-community-conference-winter-edition-2026/videos.yml`](/data/ruby-community-conference/ruby-community-conference-winter-edition-2026/videos.yml)
 - [`data/fukuoka-rubykaigi/fukuoka-rubyistkaigi-05/videos.yml`](/data/fukuoka-rubykaigi/fukuoka-rubyistkaigi-05/videos.yml)
 
-The full schema for a video is available in [VideoSchema](app/schemas/video_schema.rb).
+The full schema for a video is available in [`Static::Talk`](app/models/static/talk.rb).
 
 ### 1. Check for Existing Videos File
 

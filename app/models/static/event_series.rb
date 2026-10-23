@@ -4,7 +4,55 @@ module Static
   class EventSeries < Yerba::Record::Base
     self.path = "data/:id/series.yml"
 
-    schema SeriesSchema
+    schema do
+      string :id, description: "Unique identifier for the event series, matches the series folder name"
+      string :name, description: "Name of the event series (e.g., 'RailsConf')"
+      string :description, description: "Description of the event series", required: false
+
+      string :kind,
+        description: "Type of event series",
+        enum: ["conference", "meetup", "retreat", "hackathon", "event", "podcast", "online", "organisation", "workshop"],
+        required: false
+      string :frequency,
+        description: "How often the event occurs",
+        enum: ["yearly", "monthly", "weekly", "irregular", "biweekly", "biyearly", "quarterly"],
+        required: false
+      boolean :inactive, description: "Whether the event series is inactive", required: false
+
+      string :default_country_code, description: "Default ISO country code (e.g., 'US', 'JP')", required: false
+
+      string :language, description: "Primary language of the event", enum: Language.english_names, required: false
+
+      string :website, description: "Official website URL", required: false
+      string :original_website, description: "Original/archived website URL", required: false
+      string :twitter, description: "Twitter/X handle (without @)", required: false
+      string :facebook, description: "Facebook Page URL", required: false
+      string :instagram, description: "Instagram handle (without @)", required: false
+      string :mastodon, description: "Full Mastodon profile URL", required: false
+      string :bsky, description: "Bluesky handle", required: false
+      string :github, description: "GitHub organization or repository", required: false
+      string :linkedin, description: "LinkedIn page URL", required: false
+      string :meetup, description: "Meetup.com group URL", required: false
+      string :luma, description: "Luma event URL", required: false
+      string :guild, description: "Guild.host URL", required: false
+      string :vimeo, description: "Vimeo channel URL", required: false
+
+      string :banner_background,
+        description: "CSS background value for the banner of events using the series default banner.webp (color or gradient)",
+        required: false
+
+      string :featured_background,
+        description: "CSS background color for featured cards of events using the series default featured.webp",
+        required: false
+
+      string :featured_color,
+        description: "CSS text color for featured cards of events using the series default featured.webp",
+        required: false
+
+      array :youtube_channels, of: YouTubeChannelSchema, description: "YouTube channels associated with this series", required: false
+
+      array :aliases, of: :string, description: "Alternative names for the series", required: false
+    end
 
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 

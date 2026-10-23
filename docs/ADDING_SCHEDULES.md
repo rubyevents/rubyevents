@@ -23,7 +23,7 @@ For example:
 - [`data/rubyconf/rubyconf-2024/schedule.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/rubyconf/rubyconf-2024/schedule.yml)
 - [`data/brightonruby/brightonruby-2024/schedule.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/brightonruby/brightonruby-2024/schedule.yml)
 
-The [ScheduleSchema](app/schemas/schedule_schema.rb) defines all valid attributes.
+The schema in [`Static::Schedule`](app/models/static/schedule.rb) defines all valid attributes.
 
 ## Generating a schedule
 

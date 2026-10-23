@@ -6,9 +6,25 @@ module Yerba
       extend ActiveSupport::Concern
 
       class_methods do
+        attr_writer :schema_base_class
+
+        def schema_base_class
+          @schema_base_class || superclass.try(:schema_base_class) || Schematist::Schema
+        end
+
+        # Either a schema class (`schema EventSchema`) or an inline one, named after the model:
+        #
+        #   schema do
+        #     string :link, required: true
+        #   end
+        #
+        #   Static::CFP.schema.name  # => "CFPSchema"
         def schema(schema_class = nil, &block)
           if block
-            @schema = Class.new(Schematist::Schema, &block)
+            @schema = Class.new(schema_base_class)
+            @schema.name("#{name.demodulize}Schema") if name
+            @schema.record_class = self if @schema.respond_to?(:record_class=)
+            @schema.class_eval(&block)
             define_schema_methods
           elsif schema_class
             @schema = schema_class

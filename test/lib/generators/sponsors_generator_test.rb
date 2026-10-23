@@ -1,6 +1,5 @@
 require "test_helper"
 require "generators/sponsors/sponsors_generator"
-require "#{Rails.root}/app/schemas/sponsors_schema"
 
 class SponsorsGeneratorTest < Rails::Generators::TestCase
   tests SponsorsGenerator

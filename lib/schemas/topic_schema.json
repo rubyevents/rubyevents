@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TopicSchema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Topic name"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "additionalProperties": false
+}
