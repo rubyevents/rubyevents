@@ -24,6 +24,7 @@ class Static::Validators::Validator
       Static::Validators::EventDatePrecision,
       Static::Validators::EventDates,
       Static::Validators::EventRecordingsPublishedDate,
+      Static::Validators::EventRenames,
       Static::Validators::IdMatchesFolder,
       Static::Validators::MeetupEventSlug,
       Static::Validators::MeetupEventTitle,
