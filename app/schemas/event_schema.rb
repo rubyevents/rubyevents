@@ -22,7 +22,7 @@ class EventSchema < ApplicationSchema
   string :start_date, description: "Start date of the event (YYYY-MM-DD format)", required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
   string :end_date, description: "End date of the event (YYYY-MM-DD format)", required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
   string :recordings_published_date, description: "Date when the event's recordings were published (YYYY-MM-DD format)", required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
-  string :announced_on, description: "Date when the event was announced (YYYY-MM-DD format)", required: false
+  string :announced_on, description: "Date when the event was announced (YYYY-MM-DD format)", required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
   integer :year, description: "Year of the event", required: false
   string :date_precision,
     description: "Precision of the date (when exact dates are unknown)",

@@ -6,7 +6,7 @@ class ScheduleSchema < ApplicationSchema
   array :days, description: "List of conference days" do
     object do
       string :name, description: "Name of the day (e.g., 'Day 1', 'Workshop Day')"
-      string :date, description: "Date of the day (YYYY-MM-DD format)"
+      string :date, description: "Date of the day (YYYY-MM-DD format)", pattern: "^\\d{4}-\\d{2}-\\d{2}$"
 
       array :grid, description: "Time slots for the day", required: false do
         object do

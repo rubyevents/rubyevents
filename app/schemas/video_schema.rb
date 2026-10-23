@@ -20,8 +20,8 @@ class VideoSchema < ApplicationSchema
   string :date, description: "Date of the talk (YYYY-MM-DD format)", required: true, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
   string :start_time, description: "Scheduled start time of the talk", required: false, pattern: "^\\d{2}:\\d{2}$"
   string :end_time, description: "Scheduled end time of the talk", required: false, pattern: "^\\d{2}:\\d{2}$"
-  string :published_at, description: "Date when the video was published (YYYY-MM-DD format)", required: false, min_length: 1
-  string :announced_at, description: "Date when the talk was announced", required: false, min_length: 1
+  string :published_at, description: "When the video was published (YYYY-MM-DD, or YYYY-MM-DDTHH:MM:SSZ in UTC)", required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}Z)?$"
+  string :announced_at, description: "When the talk was announced (YYYY-MM-DD, or YYYY-MM-DDTHH:MM:SSZ in UTC)", required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}Z)?$"
   string :location, description: "Location within the venue", required: false
 
   string :video_provider, description: "Video hosting provider", enum: (Talk.video_providers.keys - ["parent"])

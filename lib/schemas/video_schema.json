@@ -800,13 +800,13 @@
     },
     "published_at": {
       "type": "string",
-      "description": "Date when the video was published (YYYY-MM-DD format)",
-      "minLength": 1
+      "description": "When the video was published (YYYY-MM-DD, or YYYY-MM-DDTHH:MM:SSZ in UTC)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}Z)?$"
     },
     "announced_at": {
       "type": "string",
-      "description": "Date when the talk was announced",
-      "minLength": 1
+      "description": "When the talk was announced (YYYY-MM-DD, or YYYY-MM-DDTHH:MM:SSZ in UTC)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}Z)?$"
     },
     "location": {
       "type": "string",
