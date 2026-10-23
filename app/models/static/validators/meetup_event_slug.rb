@@ -76,7 +76,6 @@ module Static
         applicable? && event&.meetup? && !MeetupNaming.ignored?(event) && !slug.end_with?(*SUFFIXES) && !user_group_abbreviation?
       end
 
-      # "rughh", "lrug" or "nwrug": RUG stands for Ruby User Group.
       def user_group_abbreviation?
         slug.split("-").last.include?("rug")
       end

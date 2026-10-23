@@ -17,8 +17,6 @@ module GitBaseline
       nil
     end
 
-    # A file of a renamed event lives under one of the event's old_ids at the baseline,
-    # possibly in another series folder.
     def renamed_paths(relative_path)
       directory, file = File.split(relative_path)
 

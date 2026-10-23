@@ -71,8 +71,6 @@ module Static
         end
       end
 
-      # Editions are grouped by month; a month with several editions gets the day in
-      # every id, and editions on the same day are numbered in file order.
       def expected_ids
         @expected_ids ||= editions.group_by { |node| date_for(node).strftime("%Y-%m") }.each_with_object({}) do |(_month, month_group), result|
           month_group.group_by { |node| date_for(node) }.each do |date, day_group|

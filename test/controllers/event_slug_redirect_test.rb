@@ -20,6 +20,20 @@ class EventSlugRedirectTest < ActionDispatch::IntegrationTest
     assert_redirected_to "/events/#{@event.slug}/schedule/day/2026-01-01?track=main"
   end
 
+  test "redirects routes that end with the event slug" do
+    get "/events/attendances/old-event-slug"
+
+    assert_response :moved_permanently
+    assert_redirected_to "/events/attendances/#{@event.slug}"
+  end
+
+  test "redirects to a path on this site" do
+    get "/events/old-event-slug/talks?redirect=https://example.org"
+
+    assert_equal "www.example.com", URI(response.location).host
+    assert_equal "/events/#{@event.slug}/talks", URI(response.location).path
+  end
+
   test "does not redirect the current slug" do
     get "/events/#{@event.slug}/talks"
 

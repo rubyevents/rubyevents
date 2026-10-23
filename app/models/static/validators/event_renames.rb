@@ -61,8 +61,6 @@ module Static
         File.dirname(File.expand_path(@file_path.to_s), 2)
       end
 
-      # Event ids of this series on the baseline that no event has anymore, neither as
-      # its id nor in its old_ids.
       def disappeared_ids
         @disappeared_ids ||= begin
           return [] unless applicable? && changed_since_baseline? && event && new_event?

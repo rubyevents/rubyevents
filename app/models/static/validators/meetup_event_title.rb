@@ -10,9 +10,6 @@ module Static
       SUFFIX = /(?:\s+Meetup)+\z/i
       GROUP_SUFFIX = /\s(?:Brigade|Group|Usergroup)\z/i
 
-      # The title a meetup event should have, or nil when "Meetup" appears in the middle
-      # of the title ("Ruby Meetup Oslo") and only a human can tell what it should be.
-      # Groups that call themselves a Brigade or (User) Group keep that name.
       def self.expected_title(title)
         name = title.to_s.strip.sub(SUFFIX, "")
         return name if name.match?(GROUP_SUFFIX) && !title.to_s.strip.match?(SUFFIX)

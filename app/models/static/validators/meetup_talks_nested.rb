@@ -43,7 +43,6 @@ module Static
 
       private
 
-      # Speakers of "TODO" stay unflagged, some groups use it on editions whose talks aren't known yet.
       def top_level_talks
         videos_file.to_a.select do |node|
           speakers = Array(node["speakers"])

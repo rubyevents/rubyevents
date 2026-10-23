@@ -19,8 +19,8 @@ module EventSlugRedirect
     event = Event.find_by_slug_or_alias(slug)
     return if event.nil? || event.slug == slug
 
-    path = request.path.sub(%r{/#{Regexp.escape(slug)}(?=/|\.|\z)}, "/#{event.slug}")
+    route = request.path_parameters.merge(controller: "/#{request.path_parameters[:controller]}", event_slug: event.slug)
 
-    redirect_to [path, request.query_string.presence].compact.join("?"), status: :moved_permanently
+    redirect_to url_for(**route, params: request.query_parameters, only_path: true), status: :moved_permanently
   end
 end
