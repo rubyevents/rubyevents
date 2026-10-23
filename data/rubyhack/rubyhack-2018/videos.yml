@@ -1,9 +1,185 @@
-# TODO: Add talks and videos
-
 # Website: https://rubyhack.com/archives/2018
 # Videos: https://www.youtube.com/playlist?list=PLE7tQUdRKcyYGj1lGFMzEMRgFPPvJaPIl
 ---
-[]
+- id: "jordan-hudgens-rubyhack-2018"
+  title: "Machine Learning Microservices in Rails"
+  raw_title: "RubyHACK 2018: Machine Learning Microservices in Rails by Jordan Hudgens"
+  date: "2018-05-03"
+  published_at: "2018-07-05T19:34:59Z"
+  video_provider: "youtube"
+  video_id: "H6_FPUzFlXk"
+  description: |-
+    A practical approach to implementing machine learning algorithms into Rails applications.
+  speakers:
+    - Jordan Hudgens
+
+- id: "david-brady-rubyhack-2018"
+  title: "Some Truths About Some Lies About Testing"
+  raw_title: "RubyHACK 2018: Some Truths About Some Lies About Testing by David Brady"
+  date: "2018-05-03"
+  published_at: "2018-07-05T19:29:04Z"
+  video_provider: "youtube"
+  video_id: "TkbkCzwg6b8"
+  description: |-
+    Tests are great and we should write them all the time! Wait, what exactly were we getting out of them again? In this talk we'll expose some of the lies we've been taught about testing, like "testing is awesome", "testing is hard" and "you can't test-drive exploratory code". Good tests don't just catch bugs; they guide our thinking, shape our code, document our reasoning and even teach maintainers how to use our API... but only if we write them to be that way. If you like testing (or just wish you did), this talk is for you.
+  speakers:
+    - David Brady
+
+- id: "lightning-talks-day-2-rubyhack-2018"
+  title: "Lightning Talks (Day 2)"
+  raw_title: "RubyHACK 2018 - Lightning Talks May 4th"
+  kind: "lightning_talk"
+  date: "2018-05-04"
+  published_at: "2018-07-05T23:23:07Z"
+  video_provider: "youtube"
+  video_id: "wFikJHRqV8g"
+  description: |-
+    00:12:54 - Aaron Lasseigne <br>
+    03:48:44 - Ben Eggett <br>
+    08:56:18 - Lia Pretorius <br>
+    11:42:42 - Jeremy Mickelson <br>
+    16:39:53 - Tad Thorley <br>
+    22:03:59 - Joshua Anderson <br>
+  talks: []
+
+- id: "james-thompson-rubyhack-2018"
+  title: "Interfaces Not Required"
+  raw_title: "RubyHACK 2018: Interfaces Not Required by James Thompson"
+  date: "2018-05-03"
+  published_at: "2018-07-05T19:54:50Z"
+  video_provider: "youtube"
+  video_id: "uIK9jhLsdKI"
+  description: |-
+    Interfaces give classes a way to guarantee they behave in compatible ways. How can such a guarantee be afforded in Ruby without a language construct to provide it? Explore getting the same assurances through testing and behavior-orientation.
+  speakers:
+    - James Thompson
+
+- id: "rodrigo-jardim-rubyhack-2018"
+  title: "5 ways Git can be used to automate your ruby application deployment"
+  raw_title: "RubyHACK 2018: 5 ways Git can be used to automate your ruby application deployment by Rodrigo Jardim"
+  date: "2018-05-03"
+  published_at: "2018-07-05T19:51:34Z"
+  video_provider: "youtube"
+  video_id: "JMV-vOsaOTE"
+  description: |-
+    Almost all ruby projects use Git for version control, but if you increase the integration of git with your ruby or rails environment, it can help you work a lot less and have more quality in the software, and even automate your deployments.
+  speakers:
+    - Rodrigo Jardim
+
+- id: "lightning-talks-day-1-rubyhack-2018"
+  title: "Lightning Talks (Day 1)"
+  raw_title: "RubyHACK 2018 - Lightning Talks May 3rd"
+  kind: "lightning_talk"
+  date: "2018-05-03"
+  published_at: "2018-07-05T23:42:17Z"
+  video_provider: "youtube"
+  video_id: "hS5fYFeODnQ"
+  description: |-
+    00:12:26 - Brandon DeWitt <br>
+    03:32:29 - Carlos Barcia <br>
+    09:03:10 - ??? <br>
+    14:13:08 - Issac Sloan <br>
+    18:29:23 - Murray Resinski <br>
+    23:40:09 - Mike Nadel <br>
+  talks: []
+
+- id: "aaron-lasseigne-rubyhack-2018"
+  title: "Ruby and Unicode, what could go wr�ng?"
+  raw_title: "RubyHACK 2018: Ruby and Unicode, what could go wr�ng? by Aaron Lasseigne"
+  date: "2018-05-03"
+  published_at: "2018-07-05T19:24:27Z"
+  video_provider: "youtube"
+  video_id: "7Ai9I33sKmA"
+  description: |-
+    Everything! Ok, maybe not everything but more than you might suspect. Unicode is great but implementing all written languages comes with a price. Find out about the current state of Ruby support, learn about Unicode normalization forms, hear me try to pronounce “mojibake”.
+  speakers:
+    - Aaron Lasseigne
+
+- id: "isaac-sloan-rubyhack-2018"
+  title: "You Belong In A Room Full of Wizards"
+  raw_title: "RubyHACK 2018:  You Belong In A Room Full of Wizards by Isaac Sloan"
+  date: "2018-05-03"
+  published_at: "2018-07-05T19:48:00Z"
+  video_provider: "youtube"
+  video_id: "n24ZlLfYUTk"
+  description: |-
+    We're all faking it, but in the meantime we accomplish great things. That's what programmers do! If you’re getting started don’t let the fear that everyone around you knows so much more keep you from trying. If you’ve programmed and want to do it professionally then you are a programmer. Everyone is this room probably knows something you don’t and that’s fine because you know things they don’t. There's more to know than you could ever understand, in that way you're the same as the best programmer to ever live.
+  speakers:
+    - Isaac Sloan
+
+- id: "eric-berry-rubyhack-2018"
+  title: "Why Funding Open Source is Hard"
+  raw_title: "RubyHACK 2018: Why Funding Open Source is Hard by Eric Berry"
+  date: "2018-05-03"
+  published_at: "2018-07-05T19:38:16Z"
+  video_provider: "youtube"
+  video_id: "_fiIa69VMA8"
+  description: |-
+    Over the past 5 months, Code Sponsor went from an idea to a viable way for developers to fund their open source projects. In December, I shut down the company due to compliance issues. This talk covers what I’ve learned about funding open source, the different funding options, and what it takes to find funding.
+  speakers:
+    - Eric Berry
+
+- id: "aja-hammerly-rubyhack-2018"
+  title: "4 Programming Paradigms in 45 minutes"
+  raw_title: "RubyHACK 2018: 4 Programming Paradigms in 45 minutes by Aja Hammerly"
+  date: "2018-05-03"
+  published_at: "2018-07-05T19:11:34Z"
+  video_provider: "youtube"
+  video_id: "EZkBDAx1lsk"
+  description: |-
+    Overview of OO, Functional, Logical, and Procedural programming: Everything old is new again. Node developers are turning to functional techniques to handle concurrency challenges. Developers used to almost unlimited memory are having to learn techniques from assembly to handle the limited resources in IoT devices. Having a solid grounding in the different paradigms of programming and in several different languages makes it easier for developers to adapt as the “problem of the day changes”. It allows them to learn new programming languages faster. And this talk aims to cram the best of an 18 week college course on different parts of computing into 45 minutes.
+  speakers:
+    - Aja Hammerly
+
+- id: "eliza-de-jager-rubyhack-2018"
+  title: "Ruby Unblocked"
+  raw_title: "RubyHACK 2018: Ruby Unblocked by Eliza De Jager"
+  date: "2018-05-03"
+  published_at: "2018-07-05T19:42:53Z"
+  video_provider: "youtube"
+  video_id: "F1pHwKLiAfQ"
+  description: |-
+    Ever noticed how flexible the use of blocks can make Ruby code? They allow us to reuse code easily, and to dynamically define not only method names but also method bodies, thereby essentially making metaprogramming possible. In this talk we properly define blocks as closures. We discuss scope gates and how blocks manage to get around them, and how lambdas take this even further by allowing us to use variables defined in a different scope from where the lambda is executed inside the lambda body. We also take a look at what goes on in the Ruby stack and heap which makes all of this possible.
+  speakers:
+    - Eliza de Jager
+
+- id: "jeremy-ward-rubyhack-2018"
+  title: "GraphQL on Rails - Creating Living APIs for a Data-hungry World"
+  raw_title: "RubyHACK 2018: GraphQL on Rails - Creating Living APIs for a Data-hungry World by Jeremy Ward"
+  date: "2018-05-03"
+  published_at: "2018-07-05T19:20:00Z"
+  video_provider: "youtube"
+  video_id: "2VJcYCCotvM"
+  description: |-
+    We live in a dynamic, data-responsive world. We must create living APIs to feed the ever evolving needs of a wide array of applications. GraphQL, an unassuming alternative to REST, empowers our creations by serving fast, flexible responses in a type-safe and predictable fashion. Faster apps, rapid iteration, and living documentation means everyone wins. 
+
+    In this talk, we’ll compare GraphQL with our existing API standard, REST. We’ll then learn some GraphQL basics and see what it looks like to serve GraphQL from a Rails application. We’ll finish by discussing how to incorporate GraphQL into your existing project.
+  speakers:
+    - Jeremy Ward
+
+- id: "jeremy-evans-rubyhack-2018"
+  title: "Ruby Web Application Security Defense in Depth"
+  raw_title: "RubyHACK 2018: Ruby Web Application Security Defense in Depth by Jeremy Evans"
+  date: "2018-05-03"
+  published_at: "2018-07-05T19:15:29Z"
+  video_provider: "youtube"
+  video_id: "2RvbpFVhmTw"
+  description: |-
+    How bad a shape would you be in if an attacker was able to exploit a remote code execution vulnerability in your web application? When designing web applications that deal with confidential information, you should have a plan to limit your exposure when vulnerabilities are exploited. This presentation will discuss many ways to add defense in depth to your ruby web applications, including separate database users, file system access limiting, system call filtering, privilege dropping, child process re-execution, and memory protection, with lessons learned from production deployments.
+  speakers:
+    - Jeremy Evans
+
+- id: "mark-lehman-rubyhack-2018"
+  title: "Growing a Junior Dev into a Beautiful Coding Butterfly"
+  raw_title: "RubyHACK 2018: Growing a Junior Dev into a Beautiful Coding Butterfly by Mark Lehman"
+  date: "2018-05-03"
+  published_at: "2018-07-05T19:58:10Z"
+  video_provider: "youtube"
+  video_id: "a85F-e_a0pg"
+  description: |-
+    Starting as a junior dev is tough. Working remotely, fighting frustration to learn a new framework, or even just toiling in an office with little supervision -- these all make it even tougher. What can junior devs do to ensure growth and success in this new career? And how can supervisors and managers help shape these enthusiastic caterpillars into beautiful coding butterflies?
+  speakers:
+    - Mark Lehman
 
 # TODO: add missing talk - https://www.youtube.com/watch?v=EZkBDAx1lsk  RubyHACK 2018: 4 Programming Paradigms in 45 minutes by Aja Hammerly
 # TODO: add missing talk - https://www.youtube.com/watch?v=2RvbpFVhmTw  RubyHACK 2018: Ruby Web Application Security Defense in Depth by Jeremy Evans

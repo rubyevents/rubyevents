@@ -1,6 +1,313 @@
-# TODO: Add talks and videos
-
 # Website: https://rubyrussia.club/
 # Videos: https://www.youtube.com/playlist?list=PLiWUIs1hSNeOXZhotgDX7Y7qBsr24cu7o
 ---
-[]
+- id: "sage-griffin-railsclub-2016"
+  title: "Maintaining successful open source projects"
+  raw_title: "Sean Griffin. Maintaining successful open source projects"
+  date: "2016-10-22"
+  published_at: "2016-11-16T09:29:39Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "wfgxpqb140M"
+  description: |-
+    Rails is in a transitionary period. We've moved from being "hip" and "cool" to being a mature platform for applications. The heart of Ruby and Rails is in its community, however. We'll look at what the project has done right, what needs to be improved, and how to keep Rails relevant moving forward.
+  speakers:
+    - Sage Griffin
+
+- id: "yukihiro-matz-matsumoto-railsclub-2016"
+  title: "What made Rails Possible"
+  raw_title: "Yukihiro Matsumoto. What made Rails Possible"
+  date: "2016-10-22"
+  published_at: "2016-11-16T11:34:25Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "fEdwfbv8LUc"
+  description: ""
+  speakers:
+    - "Yukihiro \"Matz\" Matsumoto"
+
+- id: "anton-davydov-railsclub-2016"
+  title: "Rodauth, devise and you"
+  raw_title: "Антон Давыдов. Rodauth, devise and you"
+  date: "2016-10-22"
+  published_at: "2016-11-16T13:20:50Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "UebypKR_2jk"
+  description: |-
+    Любое веб-приложение не может обойтись без авторизации. Кто-то пишет ее с нуля, а кто-то использует готовые решения. Сегодня мы поговорим о таких решениях — в частности, о rodauth.
+
+    Я расскажу об этом инструменте, его плюсах и минусах. Проанализируем rodauth и другие решения, найдем слабые и сильные стороны подхода, использованного разработчиками, а также попробуем вдохновиться библиотекой и воплотить идеи из неё в своих проектах.
+  speakers:
+    - Anton Davydov
+
+- id: "vladimir-dementyev-railsclub-2016"
+  title: "AnyCable, или ActionCable для всех"
+  raw_title: "Владимир Деменьтев. AnyCable, или ActionCable для всех."
+  date: "2016-10-22"
+  published_at: "2016-11-16T13:29:01Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "-k7GQKuBevY"
+  description: |-
+    ActionCable – одно из самых примечательных нововведений Rails 5, которое буквально всколыхнуло Rails сообщество: статьи, инструкции по применению, "лайки" и "репосты" в Twitter. Это не удивительно: минимум настройки сервера, использование бизнес-логики (и даже шаблонов!) в _каналах_, JS-клиент, который просто работает – это пункты "за".
+
+    Но есть и весомое "против": все это написано на Ruby – языке, который я очень люблю, но который пока еще сильно уступает в вопросах масштабируемости и производительности _конкурентных_ приложений, а значит, либо ваше приложение рухнет под нагрузкой, либо ваш чек за серверные ресурсы начнет стремительно расти.
+
+    А теперь давайте представим, что никаких "против" нет, а есть _идеальный_ ActionCable с приятным Rails интерфейсом и производительностью и надежностью Erlang/Elixir приложения (с "2 million connections"). Я хочу представить свою попытку "приблизиться к _идеалу_" – AnyCable.
+  speakers:
+    - Vladimir Dementyev
+
+- id: "zach-briggs-railsclub-2016"
+  title: "JavaScript for Rails Devs"
+  raw_title: "Zach Briggs. JavaScript for Rails Devs"
+  date: "2016-10-22"
+  published_at: "2016-11-16T17:02:06Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "3cL1IKjbOus"
+  description: |-
+    Frontend JavaScript is a swampland of buzzwords, leaky abstractions, and complicated toolchains. Lucky for you and me, there are some simple techniques we can use to avoid the quagmire and build dynamic, modern user interfaces that solve human problems.
+
+    In this talk I’ll show you a technique for embedding JavaScript components inside of otherwise server rendered pages to create islands of interactivity. This can be done with your existing build system, adding nothing but 20KB of gzipped JavaScript and a dash of common sense.
+  speakers:
+    - Zach Briggs
+
+- id: "steve-klabnik-railsclub-2016"
+  title: "Exploring Ruby through Rust"
+  raw_title: "Steve Klabnik. Exploring Ruby through Rust."
+  date: "2016-10-22"
+  published_at: "2016-11-16T21:26:18Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "B29uCkWX1-w"
+  description: |-
+    Ruby is implemented in C. Many of the classes we know and love are written in Ruby, but some are not. Learning about how MRI works can teach us interesting things about Ruby.
+
+    In this talk, Steve will show off a fun hack: re-writing parts of the Ruby interpreter in Rust. Along the way, we'll learn about the internals of Ruby, and how to get started hacking on the C code base.
+  speakers:
+    - Steve Klabnik
+
+- id: "akira-matsuda-railsclub-2016"
+  title: "Designing and Implementing Modern Rails Plugins"
+  raw_title: "Akira Matsuda. Designing and Implementing Modern Rails Plugins"
+  date: "2016-10-22"
+  published_at: "2016-11-16T22:55:20Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "AIMzeHtLWf0"
+  description: ""
+  speakers:
+    - Akira Matsuda
+
+- id: "kir-shatrov-railsclub-2016"
+  title: "Монолитное Rails-приложение и как с этим жить"
+  raw_title: "Кир Шатров. Монолитное Rails-приложение и как с этим жить"
+  date: "2016-10-22"
+  published_at: "2016-11-16T17:55:06Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "nqGxzUGtkNw"
+  description: |-
+    Сегодня Shopify - это самое старое в мире Rails приложение, кодовая база которого начинается в 2005, помнит Rails 0.9 и составляет 600 моделей и 800 контроллеров. Каждый день около 200 разработчиков работает над ним в одном репозитории.
+
+    Как масштабировать Rails не с точки зрения кол-ва запросов в секунду, а с точки зрения инструментов для разработки? Как обеспечить автоматическое код-ревью для 200 разработчиков и не дать им выстрелить себе в ногу? Мы построили большое количество инструментов, которые связывают Rails с окружением разработчика, и помогают быстрее и эффективнее доставлять код. В своём докладе я хотел бы поделиться рецептами этих инструментов.
+  speakers:
+    - Kir Shatrov
+
+- id: "boris-kuznetsov-railsclub-2016"
+  title: "Возможности Ruby в конкурентном программировании"
+  raw_title: "Борис Кузнецов. Возможности Ruby в конкурентном программировании."
+  date: "2016-10-22"
+  published_at: "2016-11-16T12:07:02Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "F57eVmmOdSU"
+  description: |-
+    Мы поговорим про модель памяти, посмотрим как можно использовать файберы и зачем они нужны, обсудим дальнейшее развитие руби в многопоточных средах
+  speakers:
+    - Boris Kuznetsov
+
+- id: "sara-dolganov-railsclub-2016"
+  title: "OSS: что в мешке?"
+  raw_title: "Сергей Долганов. OSS: что в мешке?"
+  date: "2016-10-22"
+  published_at: "2016-11-16T10:50:42Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "xQgzUbTyv5w"
+  description: |-
+    Я работаю над проектами с существенным legacy и большим количеством зависимостей. Пробегая время от времени по Gemfile'у проекта я замечаю, что некоторые из гемов мне совсем незнакомы. Нужно рано или поздно проверить эти зависимости и понять, актуальны ли они и насколько хорошо эти проекты поддерживаются — возможно, стоит избавиться от лишнего и тем более устаревшего кода. Такая же проблема возникает и при добавлении новой зависимости или выборе одного гема из множества аналогов.
+
+    Было бы здорово иметь возможность разом проверить, в каком состоянии работа над гемом, посмотреть его историю развития и поддержки на GitHub или RubyGems и сравнить с аналогами.Это мотивировало меня заняться исследованием — что на самом деле известно о гемах через публичные источники источники, такие как GitHub, RubyGems, RubyToolbox, Bestgems. Что из всей этой информации может быть полезным для принятия решения, а что — просто бесполезные числа.
+
+    Я покажу интересную инфографику о трендах и истории развития известных проектов (hanami, resque, delayed_job и других), расскажу об особенностях получения информации с указанных выше источников, а также нескольких способах ее классификации. И, конечно, проведу демо проекта, который стал результатом исследования и будет доступен для использования!
+  speakers:
+    - Sara Dolganov
+
+- id: "dmitry-soldatenkov-railsclub-2016"
+  title: "Lightning Talk: Rhomobile. Разработка кросс-платформенных мобильных гибридных приложений"
+  raw_title: "Дмитрий Солдатенков. LT: Rhomobile. Разработка кросс-платформенных мобильных гибридных приложений."
+  kind: "lightning_talk"
+  date: "2016-10-22"
+  published_at: "2016-11-16T21:14:30Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "wPJXNo4kdfg"
+  description: |-
+    Вы любите Ruby и Ruby on Rails ? Вам нужно мобильное приложение на всех распространенных платформах ?
+
+    Есть решение - Rhomobile. Продукт с восьмилетней историей и полностью open source. Вы можете легко создавать кросс-платформенные гибридные мобильные приложения. Все как с Ruby on Rails - интерфейс на HTML/CSS/JS, а логика и работа с данными на Ruby, только сервер не удаленный, а локальный прямо на самом устройстве. Поддерживаются iOS, Android и все еще распространенные в корпоративном секторе WinCE/WM. В докладе на примере простого приложения я покажу как это работает.
+  speakers:
+    - Dmitry Soldatenkov
+
+- id: "stanislav-german-railsclub-2016"
+  title: "Lightning Talk: Безопасный вызов методов"
+  raw_title: "Станслав Герман. LT: Безопасный вызов методов"
+  kind: "lightning_talk"
+  date: "2016-10-22"
+  published_at: "2016-11-16T17:01:01Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "57NXGxIcH0g"
+  description: |-
+    Новый синтаксический сахар в руби 2.3.1 добавляет оператор безопасного вызова метода, но зачастую, многие разработчики, используя такие вызовы, ухудшают поддерживаемость кода. В докладе рассмотрим основные паттерны безопасных вызовов в Ruby on Rails и в каких случаях необходимо их использовать.
+  speakers:
+    - Stanislav German
+
+- id: "tatiana-vasilyeva-railsclub-2016"
+  title: "RubyMine Tips&Tricks"
+  raw_title: "Татьяна Васильева. RubyMine Tips&Tricks"
+  date: "2016-10-22"
+  published_at: "2016-11-17T10:32:47Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "wCm-WLUeVTw"
+  description: |-
+    Каждый разработчик, безусловно, обладает своим набором хитростей и привычек, делающих его работу не только более приятной, но и более продуктивной. Каждый разработчик стремится пополнить этот набор. Любая IDE, в свою очередь, призвана помочь разработчику сосредоточиться на коде, по возможности взяв на себя рутинные задачи. Но, как и любой инструмент, IDE становится тем эффективнее, чем полнее используется ее арсенал.
+
+    В этом докладе мне хотелось бы показать несколько наиболее любимых нашими пользователями хитростей и возможностей RubyMine, которые помогут не только писать, но и сопровождать, анализировать, постоянно улучшать код. Неважно каким редактором вы пользуетесь, этот доклад может быть интересен и полезен, так как за каждым сочетанием клавиш быстрого доступа стоит наш собственный опыт и искреннее желание упростить нашу собственную жизнь – жизнь разработчиков ПО.
+  speakers:
+    - Tatiana Vasilyeva
+
+- id: "stanislav-spiridonov-railsclub-2016"
+  title: "Задачи комбинаторной оптимизации из реальной жизни"
+  raw_title: "Станислав Спиридонов. Задачи комбинаторной оптимизации из реальной жизни"
+  date: "2016-10-22"
+  published_at: "2016-11-18T14:36:08Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "IWaz1h9_Fd8"
+  description: |-
+    Правильно распределенные ресурсы или оптимально составленные маршруты и расписания могут сэкономить бизнесу кучу денег. На первый взгляд этот класс задач уже давно разобран в научной литературе. Однако сложность предметной области реально работающего бизнеса и огромная размерность задачи могут бросить вызов программистам даже сегодня.
+
+    Я расскажу о примерах решения таких задач из реальной жизни, алгоритмах и проблемах, с которыми мы столкнулись при их реализации.
+  speakers:
+    - Stanislav Spiridonov
+
+- id: "ivan-nemytchenko-railsclub-2016"
+  title: "Getting started with GitLab CI"
+  raw_title: "Иван Немытченко. Getting started with GitLab CI"
+  date: "2016-10-22"
+  published_at: "2016-11-17T11:22:55Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "GM-eX7WWBfY"
+  description: |-
+    Continuous Integration в 2016 году - это как Version Control в 2006. Если вы до сих пор не успели разобраться ни с одной CI-системой - этот доклад для вас.
+
+    GitLab - опенсорсный проект на Ruby on Rails для хранения вашего кода и работы с ним. GitLab CI не сложен, не требует дополнительной установки и настройки. Плюс он бесплатен на GitLab.com, даже для приватных проектов.
+
+    В докладе я на примерах покажу как настраивать GitLab CI для самых разных сценариев: от прогона тестов и деплоя, до сложных сценариев с несколькими параллельными шагами.
+  speakers:
+    - Ivan Nemytchenko
+
+- id: "mikhail-taraskin-railsclub-2016"
+  title: "Современный RPC в Ruby"
+  raw_title: "Михаил Тараскин. Современный RPC в Ruby"
+  date: "2016-10-22"
+  published_at: "2016-11-17T11:39:13Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "IpzI6E3w8p8"
+  description: |-
+    Сделаем обзор современных технологий для создания RPC систем: grpc/protobuf и apache thrift. Рассмотрим принципы построения внутренней архитектуры сервисов (сервер - сервер).
+
+    Protobuf, как новый формат обмена структурированными данными, полезен при проектировании сервисно-ориентированных систем (SOA). Он бинарный, кроссплатформенный, быстрый, структурированный, обратносовместимый и может послужить хорошей заменой JSON’у в коммуникациях сервер-сервер.
+  speakers:
+    - Mikhail Taraskin
+
+- id: "nikolay-bienko-railsclub-2016"
+  title: "Проектирование монорельсового приложения в эру микросервисов"
+  raw_title: "Николай Биенко. Проектирование монорельсового приложения в эру микросервисов"
+  date: "2016-10-22"
+  published_at: "2016-11-17T12:32:18Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "OyjLhSaYJFk"
+  description: |-
+    Вероятно, вы уже разрабатывали микросервисные приложения, что-то читали про них или кто-то из ваших коллег порывается начать новый проект с микросервисов. Из моего доклада вы узнаете когда микросервисы оправданы, о сложностях, которые привносят микросервисы в разработку, о влиянии их на бизнес и о том, как начать путь монолитного приложения в сторону микросервисов.
+
+    Кроме того, вы узнаете о том, когда (никогда) стоит начинать новый проект с микросервисов, как разделить существующий монолит на сервисы и как структурировать код уже сейчас так, чтобы этот процесс прошел менее болезненно в будущем. Кому-то может показаться интерсным опыт успешных компаний, проделавших нелегкий путь от монолитного приложения к микросервисной архитектуре.
+  speakers:
+    - Nikolay Bienko
+
+- id: "anton-cherepanov-railsclub-2016"
+  title: "Serverless Architecture and AWS"
+  raw_title: "Антон Черепанов. Serverless Architecture and AWS"
+  date: "2016-10-22"
+  published_at: "2016-11-17T13:17:37Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "_1bhfqzAxT0"
+  description: |-
+    Serverless Architecture позволяет создавать и запускать приложения и сервисы без необходимости управления инфраструктурой. AWS имеет большое кол-во сервисов, используя которые можно построить многие компоненты системы с использованием бессерверной архитектурой.
+
+    При этом вам не потребуется заниматься выделением ресурсов, масштабированием и обслуживанием серверов для запуска приложений, баз данных и систем хранения данных. В добавок вы получите высоконадежную, масштабируемую и недорогую инфраструктурную платформу в облаке. Доклад будет полезен всем разработчикам, чтобы взглянуть по новому на построение приложений и как уйти от монолитного приложения. Также расскажу о работе с AWS, о плюсах и минусах
+  speakers:
+    - Anton Cherepanov
+
+- id: "pavel-yakshankin-railsclub-2016"
+  title: "Серверная разработка с удовольствием: Ruby on Rails для мобильных приложений"
+  raw_title: "Павел Якшанкин. Серверная разработка с удовольствием: Ruby on Rails для мобильных приложений"
+  date: "2016-10-22"
+  published_at: "2016-11-17T16:13:53Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "hlchtGPY9_Q"
+  description: |-
+    На примере платформы, разработанной для московской сети ресторанов Якитория, расскажу, как мы создали уникальную для рынка систему, которая пронизывает все бизнес-процессы большой компании - от заказа в мобильном приложении, минуя колл-центр и менеджеров ресторанов, до отслеживания координат курьеров.
+
+    На конкретном примере слушатели познакомятся с особенностями серверной разработки на Ruby on Rails под мобильные приложения, узнают, как решать нестандартные задачи и проектировать API для мобильных приложений, проводить мониторинг работы платформы, а также выяснят, в каких направлениях может развиваться Ruby-разработчик в мобильном продакшене.
+  speakers:
+    - Pavel Yakshankin
+
+- id: "alexey-taktarov-railsclub-2016"
+  title: "Дайте фронтенду в Rails второй шанс!"
+  raw_title: "Алексей Тактаров. Дайте фронтенду в Rails второй шанс!"
+  date: "2016-10-22"
+  published_at: "2016-11-17T16:54:47Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "WtGbEvDAzvU"
+  description: |-
+    Ах, какие интриги происходят во фронтенд-коммьюнити в последние годы! Сложно сказать, это ли усталость или просвещение (fatigue or enlightenment) от JavaScript, ясно одно — фронтенд-разработка несется впереди планеты всей со скоростью сверхзвукового локомотива. В то же время бизнес и проекты живут обычной жизнью. Подходы к разработке фронтенда в Rails безнадежно устарели: сборка ассетов через Sprockets — это долго, неудобно, негибко.
+
+    В своем докладе я бегло затрону текущее состояние фронтенда и расскажу об остро стоящих проблемах сборки ассетов в Rails. Проведу эксурс в современные системы сборки Webpack, Gulp, Brunch и Rollup и покажу, как они могут быть интегрированы в экосистему Rails на примере реальных проектов. Доклад будет полезен бекенд и фронтенд разработчикам, а также может быть интересен руководителям проектов для поднятия общего представления процессов внутри команды.
+  speakers:
+    - Alexey Taktarov
+
+- id: "ilya-zykin-railsclub-2016"
+  title: "Deploy.rb"
+  raw_title: "Илья Зыкин. Deploy.rb"
+  date: "2016-10-22"
+  published_at: "2016-11-17T10:44:44Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "FJPbfN6Qn1I"
+  description: |-
+    Сейчас даже только что созданное Rails 5 приложение связано с многими внешними сервисами: база данных, кеш хранилище, поисковая служба, задачи по расписанию и т.д.
+
+    В своей презентации я расскажу о своей новой open source инициативе, которая должна помочь разработчику запустить базовое Rails 5 приложение в продакшн режиме быстро и с минимальными усилиями.
+  speakers:
+    - Ilya Zykin
