@@ -4,6 +4,7 @@ class SeriesSchema < ApplicationSchema
   data_file "**/series.yml"
 
   string :id, description: "Unique identifier for the event series, matches the series folder name"
+  array :old_ids, of: :string, description: "Previous ids, kept so the production series is moved to the new id on the next seed and its old URLs keep working", required: false
   string :name, description: "Name of the event series (e.g., 'RailsConf')"
   string :description, description: "Description of the event series", required: false
 

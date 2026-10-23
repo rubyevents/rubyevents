@@ -20,7 +20,7 @@ module GitBaseline
     def renamed_paths(relative_path)
       directory, file = File.split(relative_path)
 
-      old_event_ids(directory).flat_map do |old_id|
+      [File.basename(directory), *old_event_ids(directory)].uniq.flat_map do |old_id|
         baseline_event_directories.fetch(old_id, []).map { |old_directory| File.join(old_directory, file) }
       end
     end

@@ -80,6 +80,20 @@ class GitBaselineTest < ActiveSupport::TestCase
     end
   end
 
+  test "baseline_file finds an event folder that moved to another series" do
+    content = Yerba::Document.from([{"id" => "jane-doe-testconf-2024", "title" => "Building Things"}]).to_s
+
+    Host.stub(:old_event_ids, ->(_directory) { [] }) do
+      stub_git(
+        ["merge-base", "HEAD", "origin/main"] => "abc123\n",
+        ["ls-tree", "-r", "--name-only", "abc123", "--", "data"] => "data/testconf/testconf-2024/event.yml\n#{VIDEOS_PATH}\n",
+        ["show", "abc123:#{VIDEOS_PATH}"] => content
+      ) do
+        assert_instance_of Yerba::Document, Host.baseline_file("data/testconf-renamed/testconf-2024/videos.yml")
+      end
+    end
+  end
+
   test "baseline_file returns nil for a new event without old_ids" do
     Host.stub(:old_event_ids, ->(_directory) { [] }) do
       stub_git(["merge-base", "HEAD", "origin/main"] => "abc123\n") do

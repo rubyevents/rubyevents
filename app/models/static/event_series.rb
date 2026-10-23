@@ -48,12 +48,16 @@ module Static
       self["id"]
     end
 
+    def old_ids
+      Array(self["old_ids"]).compact_blank
+    end
+
     def event_series_record
       @event_series_record ||= ::EventSeries.find_by(slug: slug) || import_series!
     end
 
     def import_series!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
-      event_series = ::EventSeries.find_or_initialize_by(slug: slug)
+      event_series = ::EventSeries.find_by(slug: slug) || renamed_series_record || ::EventSeries.new(slug: slug)
 
       event_series.update!(
         name: name,
@@ -66,10 +70,29 @@ module Static
       )
 
       event_series.sync_aliases_from_list(aliases) if aliases.present?
+      sync_old_slugs!(event_series)
 
       Search::Backend.index(event_series) if index
 
       event_series
+    end
+
+    def renamed_series_record
+      old_ids.each do |old_id|
+        event_series = ::EventSeries.find_by(slug: old_id)
+        return event_series if event_series
+      end
+
+      nil
+    end
+
+    def sync_old_slugs!(event_series)
+      old_ids.each do |old_id|
+        next if event_series.aliases.exists?(slug: old_id)
+        next if ::Alias.exists?(aliasable_type: "EventSeries", slug: old_id)
+
+        event_series.aliases.create!(name: old_id, slug: old_id)
+      end
     end
 
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
