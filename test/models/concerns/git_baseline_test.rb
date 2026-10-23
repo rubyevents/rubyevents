@@ -88,6 +88,12 @@ class GitBaselineTest < ActiveSupport::TestCase
     end
   end
 
+  test "baseline_event_directories is empty without a baseline ref" do
+    stub_git({}) do
+      assert_equal({}, Host.baseline_event_directories)
+    end
+  end
+
   test "baseline_file returns nil without a baseline ref" do
     stub_git({}) do
       assert_nil Host.baseline_file(VIDEOS_PATH)

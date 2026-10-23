@@ -40,6 +40,14 @@ class Static::Validators::EventRenamesTest < ActiveSupport::TestCase
     end
   end
 
+  test "does not flag anything without a baseline" do
+    with_series(%w[testrb-meetup]) do |paths|
+      Static::Validators::EventRenames.stub(:baseline_ref, nil) do
+        assert_empty Static::Validators::EventRenames.new(file_path: paths["testrb-meetup"]).errors
+      end
+    end
+  end
+
   test "fix adds the previous id to old_ids when the rename is unambiguous" do
     with_series(%w[testrb-meetup]) do |paths|
       stub_baseline("testrb-brigade" => ["data/testrb/testrb-brigade"]) do
@@ -62,9 +70,11 @@ class Static::Validators::EventRenamesTest < ActiveSupport::TestCase
   private
 
   def stub_baseline(directories, &block)
-    Static::Validators::EventRenames.stub(:baseline_event_directories, directories) do
-      Static::Validators::EventRenames.stub(:baseline_file, nil) do
-        Static::Validators::EventRenames.stub(:changed_paths, nil, &block)
+    Static::Validators::EventRenames.stub(:baseline_ref, "abc123") do
+      Static::Validators::EventRenames.stub(:baseline_event_directories, directories) do
+        Static::Validators::EventRenames.stub(:baseline_file, nil) do
+          Static::Validators::EventRenames.stub(:changed_paths, nil, &block)
+        end
       end
     end
   end

@@ -34,6 +34,7 @@ module GitBaseline
 
     def baseline_event_directories
       return @baseline_event_directories if defined?(@baseline_event_directories)
+      return @baseline_event_directories = {} unless baseline_ref
 
       output, success = git("ls-tree", "-r", "--name-only", baseline_ref, "--", "data")
       event_files = success ? output.split("\n").grep(%r{\Adata/[^/]+/[^/]+/event\.yml\z}) : []

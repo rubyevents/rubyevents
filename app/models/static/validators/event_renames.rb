@@ -63,7 +63,7 @@ module Static
 
       def disappeared_ids
         @disappeared_ids ||= begin
-          return [] unless applicable? && changed_since_baseline? && event && new_event?
+          return [] unless self.class.baseline_ref && applicable? && changed_since_baseline? && event && new_event?
 
           series = File.basename(series_directory)
           baseline_ids = self.class.baseline_event_directories.select { |_id, directories| directories.any? { File.basename(File.dirname(it)) == series } }.keys
