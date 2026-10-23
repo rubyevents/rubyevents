@@ -8,11 +8,11 @@ module Static
       ].freeze
 
       SUFFIX = /(?:\s+Meetup)+\z/i
-      GROUP_SUFFIX = /\s(?:Brigade|Group|Usergroup)\z/i
+      GROUP_WORD = /\b(?:Brigade|Group|Usergroup)\b/i
 
       def self.expected_title(title)
         name = title.to_s.strip.sub(SUFFIX, "")
-        return name if name.match?(GROUP_SUFFIX) && !title.to_s.strip.match?(SUFFIX)
+        return name if name.match?(GROUP_WORD) && !title.to_s.strip.match?(SUFFIX)
         return if name.match?(/\bMeetup\b/i)
 
         "#{name} Meetup"
@@ -40,9 +40,9 @@ module Static
 
         location = event.source_location("title")
         message = if expected
-          %(title "#{title}" should be "#{expected}". Meetup events are titled "<name> Meetup", or end in Brigade, Group or Usergroup. Run `bin/rails validate:fix` to update it.)
+          %(title "#{title}" should be "#{expected}". Meetup events are titled "<name> Meetup", unless the name has Brigade, Group or Usergroup in it. Run `bin/rails validate:fix` to update it.)
         else
-          %(title "#{title}" has "Meetup" in the middle. Meetup events are titled "<name> Meetup", or end in Brigade, Group or Usergroup, rename it by hand.)
+          %(title "#{title}" has "Meetup" in the middle. Meetup events are titled "<name> Meetup", unless the name has Brigade, Group or Usergroup in it, rename it by hand.)
         end
 
         [

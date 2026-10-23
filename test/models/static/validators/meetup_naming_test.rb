@@ -60,8 +60,8 @@ class Static::Validators::MeetupNamingTest < ActiveSupport::TestCase
     end
   end
 
-  test "MeetupEventTitle accepts titles ending in Brigade, Group or Usergroup" do
-    ["Cleveland Ruby Brigade", "Boston Ruby Group", "Bangalore Ruby Users Group", "Ruby Usergroup", "Boston Ruby Group Meetup"].each do |title|
+  test "MeetupEventTitle accepts titles with Brigade, Group or Usergroup in them" do
+    ["Cleveland Ruby Brigade", "Boston Ruby Group", "Bangalore Ruby Users Group", "Ruby Usergroup", "Boston Ruby Group Meetup", "Ruby Usergroup Hamburg", "Kerala Ruby User Group - Trivandrum Chapter"].each do |title|
       with_meetup(event_title: title) do |paths|
         assert_empty Static::Validators::MeetupEventTitle.new(file_path: paths[:event]).errors, title
       end
