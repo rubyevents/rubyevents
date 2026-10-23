@@ -18,10 +18,10 @@ class EventSchema < ApplicationSchema
     required: false
   boolean :last_edition, description: "Whether this is the last edition of the event", required: false
 
-  string :pre_date, description: "Date of pre-conference activities (workshops, pre-party) held before start_date (YYYY-MM-DD format)", required: false
-  string :start_date, description: "Start date of the event (YYYY-MM-DD format)", required: false
-  string :end_date, description: "End date of the event (YYYY-MM-DD format)", required: false
-  string :recordings_published_date, description: "Date when the event's recordings were published (YYYY-MM-DD format)", required: false
+  string :pre_date, description: "Date of pre-conference activities (workshops, pre-party) held before start_date (YYYY-MM-DD format)", required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
+  string :start_date, description: "Start date of the event (YYYY-MM-DD format)", required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
+  string :end_date, description: "End date of the event (YYYY-MM-DD format)", required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
+  string :recordings_published_date, description: "Date when the event's recordings were published (YYYY-MM-DD format)", required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
   string :announced_on, description: "Date when the event was announced (YYYY-MM-DD format)", required: false
   integer :year, description: "Year of the event", required: false
   string :date_precision,

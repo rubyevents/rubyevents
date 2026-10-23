@@ -60,19 +60,23 @@
     },
     "pre_date": {
       "type": "string",
-      "description": "Date of pre-conference activities (workshops, pre-party) held before start_date (YYYY-MM-DD format)"
+      "description": "Date of pre-conference activities (workshops, pre-party) held before start_date (YYYY-MM-DD format)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "start_date": {
       "type": "string",
-      "description": "Start date of the event (YYYY-MM-DD format)"
+      "description": "Start date of the event (YYYY-MM-DD format)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "end_date": {
       "type": "string",
-      "description": "End date of the event (YYYY-MM-DD format)"
+      "description": "End date of the event (YYYY-MM-DD format)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "recordings_published_date": {
       "type": "string",
-      "description": "Date when the event's recordings were published (YYYY-MM-DD format)"
+      "description": "Date when the event's recordings were published (YYYY-MM-DD format)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "announced_on": {
       "type": "string",
