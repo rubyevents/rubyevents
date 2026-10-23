@@ -4,6 +4,9 @@ module Static
   module Validators
     module MeetupNaming
       IGNORED_EVENT_IDS = %w[
+        rails-girls-bielsko-biala
+        rails-girls-buenos-aires
+        rails-girls-copenhagen
         rubyevents
       ].freeze
 
