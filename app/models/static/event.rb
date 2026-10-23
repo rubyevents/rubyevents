@@ -370,8 +370,7 @@ module Static
 
     def sync_old_slugs!(event)
       old_ids.each do |old_id|
-        next if event.slug_aliases.exists?(slug: old_id)
-        next if ::Alias.exists?(aliasable_type: "Event", slug: old_id)
+        next if ::Alias.exists?(slug: old_id)
 
         event.slug_aliases.create!(name: old_id, slug: old_id)
       end

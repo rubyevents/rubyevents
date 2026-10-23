@@ -25,6 +25,17 @@ class Static::EventSeriesTest < ActiveSupport::TestCase
     end
   end
 
+  test "import_series! skips an old id whose slug another alias already uses" do
+    with_series("testrb", old_ids: ["test-rb"]) do |series|
+      events(:future_conference).slug_aliases.create!(name: "test-rb", slug: "test-rb")
+
+      record = series.import_series!(index: false)
+
+      assert_equal "testrb", record.slug
+      assert_empty record.aliases.where(slug: "test-rb")
+    end
+  end
+
   private
 
   def with_series(id, old_ids:)
