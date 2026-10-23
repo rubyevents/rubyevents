@@ -1,5 +1,6 @@
 ---
 - id: "artificialruby-meetup-may-2024"
+  old_id: "artificial-ruby-meetup-may-2024"
   title: "Artificial Ruby Meetup May 2024 - Ruby x AI Happy Hour"
   event_name: "Artificial Ruby Meetup May 2024 - Ruby x AI Happy Hour"
   date: "2024-05-22"
@@ -23,6 +24,7 @@
   talks: []
 
 - id: "artificialruby-meetup-july-2024"
+  old_id: "artificial-ruby-meetup-july-2024"
   title: "Artificial Ruby Meetup July 2024 - Ruby x AI Happy Hour"
   event_name: "Artificial Ruby Meetup July 2024 - Ruby x AI Happy Hour"
   date: "2024-07-24"
@@ -50,6 +52,7 @@
   talks: []
 
 - id: "artificialruby-meetup-october-2024"
+  old_id: "artificial-ruby-meetup-october-2024"
   title: "Artificial Ruby Meetup October 2024"
   date: "2024-10-08"
   video_provider: "not_recorded"
@@ -61,9 +64,31 @@
 
     https://www.artificialruby.ai/events/october-8-2024
     https://lu.ma/ufk7pghd
-  talks: []
+  talks:
+    - id: "cameron-cundiff-artificialrubyai-meetup-october-2024"
+      title: "A11yAgent"
+      event_name: "ArtificialRuby.ai Meetup October 2024"
+      date: "2024-10-08"
+      video_provider: "not_recorded"
+      video_id: "cameron-cundiff-artificialrubyai-meetup-october-2024"
+      description: |-
+        A multi-turn AI agent that supports developers in accessibility remediation.
+      speakers:
+        - Cameron Cundiff
+
+    - id: "valentino-stoll-artificialrubyai-meetup-october-2024"
+      title: "Podcast Buddy"
+      event_name: "ArtificialRuby.ai Meetup October 2024"
+      date: "2024-10-08"
+      video_provider: "not_recorded"
+      video_id: "valentino-stoll-artificialrubyai-meetup-october-2024"
+      description: |-
+        An exploration of real-time AI companions.
+      speakers:
+        - Valentino Stoll
 
 - id: "artificialruby-meetup-february-2025"
+  old_id: "artificial-ruby-meetup-february-2025"
   title: "Artificial Ruby Meetup February 2025"
   date: "2025-02-05"
   video_provider: "not_recorded"
@@ -79,9 +104,31 @@
 
     https://www.artificialruby.ai/events/february-5-2025
     https://lu.ma/p9pugbxf
-  talks: []
+  talks:
+    - id: "caroline-di-vittorio-artificialrubyai-meetup-february-2025"
+      title: "5 challenges with implementing OpenAI's realtime model"
+      event_name: "ArtificialRuby.ai Meetup February 2025"
+      date: "2025-02-05"
+      video_provider: "not_recorded"
+      video_id: "caroline-di-vittorio-artificialrubyai-meetup-february-2025"
+      description: |-
+        A customer support agent demonstration built with OpenAI's latest Speech-to-Speech Realtime model using Ruby & Rails.
+      speakers:
+        - Caroline di Vittorio
+
+    - id: "valentino-stoll-artificialrubyai-meetup-february-2025"
+      title: "Wouldn't It Be Nice: Making the case for fine-tuning an LLM for Ruby"
+      event_name: "ArtificialRuby.ai Meetup February 2025"
+      date: "2025-02-05"
+      video_provider: "not_recorded"
+      video_id: "valentino-stoll-artificialrubyai-meetup-february-2025"
+      description: |-
+        Advocates for fine-tuning language models specifically optimized for Ruby code generation through the RubyLang.ai project.
+      speakers:
+        - Valentino Stoll
 
 - id: "artificialruby-meetup-march-2025"
+  old_id: "artificial-ruby-meetup-march-2025"
   title: "Artificial Ruby Meetup March 2025"
   date: "2025-03-04"
   video_provider: "not_recorded"
@@ -95,9 +142,53 @@
 
     https://www.artificialruby.ai/events/march-4-2025
     https://lu.ma/9b2goru4
-  talks: []
+  talks:
+    - id: "landon-gray-artificialrubyai-meetup-march-2025"
+      title: "RAG Demystified: A Ruby Gem Deep Dive"
+      event_name: "ArtificialRuby.ai Meetup March 2025"
+      date: "2025-03-04"
+      video_provider: "not_recorded"
+      video_id: "landon-gray-artificialrubyai-meetup-march-2025"
+      description: |-
+        Breaking down Retrieval Augmented Generation into digestible Ruby components.
+      speakers:
+        - Landon Gray
+
+    - id: "david-corson-knowles-artificialrubyai-meetup-march-2025"
+      title: "AI Code Reviews & Rubocop: Shaping Ruby's Future"
+      event_name: "ArtificialRuby.ai Meetup March 2025"
+      date: "2025-03-04"
+      video_provider: "not_recorded"
+      video_id: "david-corson-knowles-artificialrubyai-meetup-march-2025"
+      description: |-
+        From PR reviews to linting: How AI tools are evolving Ruby development.
+      speakers:
+        - David Corson-Knowles
+
+    - id: "steve-brudz-artificialrubyai-meetup-march-2025"
+      title: "Rise of the Phoenix: AI-powered Test Generation"
+      event_name: "ArtificialRuby.ai Meetup March 2025"
+      date: "2025-03-04"
+      video_provider: "not_recorded"
+      video_id: "steve-brudz-artificialrubyai-meetup-march-2025"
+      description: |-
+        How Rails developers ship faster and with more confidence with AI.
+      speakers:
+        - Steve Brudz
+
+    - id: "eli-block-artificialrubyai-meetup-march-2025"
+      title: "IntroductionsBot: A Rails-Powered Social Memory"
+      event_name: "ArtificialRuby.ai Meetup March 2025"
+      date: "2025-03-04"
+      video_provider: "not_recorded"
+      video_id: "eli-block-artificialrubyai-meetup-march-2025"
+      description: |-
+        Building context-aware conversations with a chatbot that never forgets.
+      speakers:
+        - Eli Block
 
 - id: "artificialruby-meetup-april-2025"
+  old_id: "artificial-ruby-meetup-april-2025"
   title: "Artificial Ruby Meetup April 2025"
   raw_title: "ArtificialRuby.ai NYC Meetup"
   date: "2025-04-09"
@@ -153,6 +244,7 @@
     https://lu.ma/51iv0zzl
   talks:
     - id: "hao-wang-artificialruby-meetup-april-2025"
+      old_id: "hao-wang-artificialrubyai-meetup-april-2025"
       title: "Anatomy of a Good (open) AI SDK"
       event_name: "Artificial Ruby Meetup April 2025"
       date: "2025-04-09"
@@ -165,6 +257,7 @@
         - Hao Wang
 
     - id: "amanda-bizzinotto-artificialruby-meetup-april-2025"
+      old_id: "amanda-bizzinotto-artificialrubyai-meetup-april-2025"
       title: "Talk to Me: Building an AI-powered Slackbot"
       event_name: "Artificial Ruby Meetup April 2025"
       date: "2025-04-09"
@@ -177,6 +270,7 @@
         - Amanda Bizzinotto
 
     - id: "scott-werner-artificialruby-meetup-april-2025"
+      old_id: "scott-werner-artificialrubyai-meetup-april-2025"
       title: "We Were Voyagers. We Can Voyage Again!"
       event_name: "Artificial Ruby Meetup April 2025"
       date: "2025-04-09"
@@ -190,6 +284,7 @@
         - Scott Werner
 
 - id: "artificialruby-meetup-may-2025"
+  old_id: "artificial-ruby-meetup-may-2025"
   title: "Artificial Ruby Meetup May 2025"
   raw_title: "ArtificialRuby.ai NYC Meetup"
   date: "2025-05-07"
@@ -248,6 +343,7 @@
     https://lu.ma/51iv0zzl
   talks:
     - id: "chris-power-artificialruby-meetup-may-2025"
+      old_id: "chris-power-artificialrubyai-meetup-may-2025"
       title: "AI Critiques Your Vim-fu"
       event_name: "Artificial Ruby Meetup May 2025"
       date: "2025-05-07"
@@ -260,6 +356,7 @@
         - Chris Power
 
     - id: "keith-harper-artificialruby-meetup-may-2025"
+      old_id: "keith-harper-artificialrubyai-meetup-may-2025"
       title: "The future is here, and anyone can code it."
       event_name: "Artificial Ruby Meetup May 2025"
       date: "2025-05-07"
@@ -272,6 +369,7 @@
         - Keith Harper
 
     - id: "brian-fountain-artificialruby-meetup-may-2025"
+      old_id: "brian-fountain-artificialrubyai-meetup-may-2025"
       title: "World Premier of 1000 Notes"
       event_name: "Artificial Ruby Meetup May 2025"
       date: "2025-05-07"
@@ -284,6 +382,7 @@
         - Brian Fountain
 
 - id: "artificialruby-meetup-july-2025"
+  old_id: "artificial-ruby-meetup-july-2025"
   title: "Artificial Ruby Meetup July 2025"
   raw_title: "ArtificialRuby.ai NYC Meetup"
   date: "2025-07-16"
@@ -339,6 +438,7 @@
     https://lu.ma/vbbdhwm1
   talks:
     - id: "patrick-karsh-artificialruby-meetup-july-2025"
+      old_id: "patrick-karsh-artificialrubyai-meetup-july-2025"
       title: "From Senior Rails Engineer to Startup Builder with Rails and AI"
       event_name: "Artificial Ruby Meetup July 2025"
       date: "2025-07-16"
@@ -350,6 +450,7 @@
         - Patrick Karsh
 
     - id: "sameen-karim-artificialruby-meetup-july-2025"
+      old_id: "sameen-karim-artificialrubyai-meetup-july-2025"
       title: "Auto documenting your analytics setup with AI"
       event_name: "Artificial Ruby Meetup July 2025"
       date: "2025-07-16"
@@ -361,6 +462,7 @@
         - Sameen Karim
 
     - id: "amanda-bizzinotto-artificialruby-meetup-july-2025"
+      old_id: "amanda-bizzinotto-artificialrubyai-meetup-july-2025"
       title: "Building a multi agent system in Rails"
       event_name: "Artificial Ruby Meetup July 2025"
       date: "2025-07-16"
@@ -372,6 +474,7 @@
         - Amanda Bizzinotto
 
 - id: "artificialruby-meetup-august-2025"
+  old_id: "artificial-ruby-meetup-august-2025"
   title: "Artificial Ruby Meetup August 2025"
   date: "2025-08-13"
   video_provider: "children"
@@ -387,6 +490,7 @@
     https://lu.ma/m6h27qg9
   talks:
     - id: "chase-stevens-artificialruby-meetup-august-2025"
+      old_id: "chase-stevens-artificialrubyai-meetup-august-2025"
       title: "The Rubber Duck That Quacks Back"
       event_name: "Artificial Ruby Meetup August 2025"
       date: "2025-08-13"
@@ -398,6 +502,7 @@
         - Chase Stevens
 
     - id: "chuck-blake-artificialruby-meetup-august-2025"
+      old_id: "chuck-blake-artificialrubyai-meetup-august-2025"
       title: "Commanding AI: Automating Docs, Reviews & Reports in Rails"
       event_name: "Artificial Ruby Meetup August 2025"
       date: "2025-08-13"
@@ -409,6 +514,7 @@
         - Chuck Blake
 
 - id: "artificialruby-meetup-september-2025"
+  old_id: "artificial-ruby-meetup-september-2025"
   title: "Artificial Ruby Meetup September 2025"
   date: "2025-09-17"
   video_provider: "children"
@@ -424,6 +530,7 @@
     https://lu.ma/r63em91n
   talks:
     - id: "matt-solt-artificialruby-meetup-september-2025"
+      old_id: "matt-solt-artificialrubyai-meetup-september-2025"
       title: "How Ruby Wins: The Human Context Protocol"
       event_name: "Artificial Ruby Meetup September 2025"
       date: "2025-09-17"
@@ -435,6 +542,7 @@
         - Matt Solt
 
     - id: "scott-werner-artificialruby-meetup-september-2025"
+      old_id: "scott-werner-artificialrubyai-meetup-september-2025"
       title: "Frameworks as Pidgins and Creoles: How Humans Will Talk to AI About Software"
       event_name: "Artificial Ruby Meetup September 2025"
       date: "2025-09-17"
@@ -446,6 +554,7 @@
         - Scott Werner
 
 - id: "artificialruby-meetup-october-2025"
+  old_id: "artificial-ruby-meetup-october-2025"
   title: "Artificial Ruby Meetup October 2025"
   date: "2025-10-15"
   video_provider: "children"
@@ -461,6 +570,7 @@
     https://luma.com/lj0iktoc
   talks:
     - id: "damani-brown-artificialruby-meetup-october-2025"
+      old_id: "damani-brown-artificialrubyai-meetup-october-2025"
       title: "Giving AI the Keys to Chrome DevTools"
       event_name: "Artificial Ruby Meetup October 2025"
       date: "2025-10-15"
@@ -473,6 +583,7 @@
         - Damani Brown
 
     - id: "joel-de-la-cruz-artificialruby-meetup-october-2025"
+      old_id: "joel-de-la-cruz-artificialrubyai-meetup-october-2025"
       title: "The New York State RAISE Act: The Race For AI Safety Regulation"
       event_name: "Artificial Ruby Meetup October 2025"
       date: "2025-10-15"
@@ -485,6 +596,7 @@
         - Joel De La Cruz
 
     - id: "steve-brudz-artificialruby-meetup-october-2025"
+      old_id: "steve-brudz-artificialrubyai-meetup-october-2025"
       title: "Self-Healing Tests & Everflame Reports: AI-Powered QA for Rails"
       event_name: "Artificial Ruby Meetup October 2025"
       date: "2025-10-15"
@@ -497,6 +609,7 @@
         - Steve Brudz
 
 - id: "artificialruby-meetup-december-2025"
+  old_id: "artificial-ruby-meetup-december-2025"
   title: "Artificial Ruby Meetup December 2025"
   date: "2025-12-03"
   video_provider: "children"
@@ -512,6 +625,7 @@
     https://luma.com/0pxfw0fv
   talks:
     - id: "vicente-reig-artificialruby-meetup-december-2025"
+      old_id: "vicente-reig-artificialrubyai-meetup-december-2025"
       title: "DSPy.rb: a Ruby-first port of Stanford's DSPy"
       event_name: "Artificial Ruby Meetup December 2025"
       date: "2025-12-03"
@@ -524,6 +638,7 @@
         - Vicente Reig
 
     - id: "daniel-doubrovkine-artificialruby-meetup-december-2025"
+      old_id: "daniel-doubrovkine-artificialrubyai-meetup-december-2025"
       title: "Hypermedia APIs are Made for AI"
       event_name: "Artificial Ruby Meetup December 2025"
       date: "2025-12-03"
@@ -536,6 +651,7 @@
         - Daniel Doubrovkine
 
     - id: "brian-fountain-artificialruby-meetup-december-2025"
+      old_id: "brian-fountain-artificialrubyai-meetup-december-2025"
       title: "G3NPRO: A new software platform empowering enterprise animation studios"
       event_name: "Artificial Ruby Meetup December 2025"
       date: "2025-12-03"
@@ -548,6 +664,7 @@
         - Brian Fountain
 
 - id: "artificialruby-meetup-february-2026"
+  old_id: "artificial-ruby-meetup-february-2026"
   title: "Artificial Ruby Meetup February 2026"
   date: "2026-02-18"
   video_provider: "children"
@@ -563,6 +680,7 @@
     https://luma.com/wgzcirwh
   talks:
     - id: "andrew-denta-artificialruby-meetup-february-2026"
+      old_id: "andrew-denta-artificialrubyai-meetup-february-2026"
       title: "Realtime AI Agents in Ruby"
       event_name: "Artificial Ruby Meetup February 2026"
       date: "2026-02-18"
@@ -575,6 +693,7 @@
         - Andrew Denta
 
     - id: "valentino-stoll-artificialruby-meetup-february-2026"
+      old_id: "valentino-stoll-artificialrubyai-meetup-february-2026"
       title: "Chaos To The Rescue"
       event_name: "Artificial Ruby Meetup February 2026"
       date: "2026-02-18"
@@ -587,6 +706,7 @@
         - Valentino Stoll
 
 - id: "artificialruby-meetup-march-2026"
+  old_id: "artificial-ruby-meetup-march-2026"
   title: "Artificial Ruby Meetup March 2026"
   date: "2026-03-25"
   video_provider: "children"
@@ -602,6 +722,7 @@
     https://luma.com/59rfho20
   talks:
     - id: "ernesto-tagwerker-artificialruby-meetup-march-2026"
+      old_id: "ernesto-tagwerker-artificialrubyai-meetup-march-2026"
       title: "Teaching Claude Code to Upgrade Rails"
       event_name: "Artificial Ruby Meetup March 2026"
       date: "2026-03-25"
@@ -614,6 +735,7 @@
         - Ernesto Tagwerker
 
     - id: "justin-pierce-artificialruby-meetup-march-2026"
+      old_id: "justin-pierce-artificialrubyai-meetup-march-2026"
       title: "I Just Kept Going"
       event_name: "Artificial Ruby Meetup March 2026"
       date: "2026-03-25"
@@ -626,6 +748,7 @@
         - Justin Pierce
 
     - id: "scott-werner-artificialruby-meetup-march-2026"
+      old_id: "scott-werner-artificialrubyai-meetup-march-2026"
       title: "I Haven't Made a Slide in a Year"
       event_name: "Artificial Ruby Meetup March 2026"
       date: "2026-03-25"
@@ -638,6 +761,7 @@
         - Scott Werner
 
 - id: "artificialruby-meetup-april-2026"
+  old_id: "artificial-ruby-meetup-april-2026"
   title: "Artificial Ruby Meetup April 2026"
   raw_title: "ArtificialRuby.ai NYC: April"
   date: "2026-04-22"
@@ -658,6 +782,7 @@
     https://lu.ma/m1z16db0
   talks:
     - id: "jon-berger-artificialruby-meetup-april-2026"
+      old_id: "jon-berger-artificialrubyai-meetup-april-2026"
       title: "The NeverEnding Vibecodes"
       event_name: "Artificial Ruby Meetup April 2026"
       date: "2026-04-22"
@@ -669,6 +794,7 @@
         - Jon Berger
 
     - id: "brian-hecht-artificialruby-meetup-april-2026"
+      old_id: "brian-hecht-artificialrubyai-meetup-april-2026"
       title: "Confessions of a New Builder"
       event_name: "Artificial Ruby Meetup April 2026"
       date: "2026-04-22"
@@ -681,6 +807,7 @@
         - Brian Hecht
 
     - id: "avi-flombaum-artificialruby-meetup-april-2026"
+      old_id: "avi-flombaum-artificialrubyai-meetup-april-2026"
       title: "Don't Read the Code: Trusting AI With Your Rails Codebase"
       event_name: "Artificial Ruby Meetup April 2026"
       date: "2026-04-22"
@@ -693,6 +820,7 @@
         - Avi Flombaum
 
 - id: "artificialruby-meetup-may-2026"
+  old_id: "artificial-ruby-meetup-may-2026"
   title: "Artificial Ruby Meetup May 2026"
   date: "2026-05-13"
   video_provider: "children"
@@ -712,6 +840,7 @@
     https://luma.com/j71w5v66
   talks:
     - id: "nancy-rhodes-artificialruby-meetup-may-2026"
+      old_id: "nancy-rhodes-artificialrubyai-meetup-may-2026"
       title: "From designing for Beyoncé to building tech: the AI flywheel"
       event_name: "Artificial Ruby Meetup May 2026"
       date: "2026-05-13"
@@ -724,6 +853,7 @@
         - Nancy Rhodes
 
     - id: "justin-abrams-artificialruby-meetup-may-2026"
+      old_id: "justin-abrams-michael-rispoli-artificialrubyai-meetup-may-2026"
       title: "Same Studio. New Engine"
       event_name: "Artificial Ruby Meetup May 2026"
       date: "2026-05-13"
@@ -737,6 +867,7 @@
         - Michael Rispoli
 
     - id: "mary-holland-nader-artificialruby-meetup-may-2026"
+      old_id: "mary-holland-nader-kara-cooke-artificialrubyai-meetup-may-2026"
       title: "The Moat Is the Community"
       event_name: "Artificial Ruby Meetup May 2026"
       date: "2026-05-13"
@@ -750,6 +881,7 @@
         - Kara Cooke
 
 - id: "artificialruby-meetup-june-2026"
+  old_id: "artificial-ruby-meetup-june-2026"
   title: "Artificial Ruby Meetup June 2026"
   date: "2026-06-04"
   video_provider: "children"
