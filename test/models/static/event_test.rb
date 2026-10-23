@@ -182,12 +182,29 @@ class Static::EventTest < ActiveSupport::TestCase
       FileUtils.mkdir_p(File.join(root, "data/testconf"))
       File.write(File.join(root, "data/testconf/series.yml"), %(---\nid: "testconf"\nname: "TestConf"\n))
 
-      event = Static::Event.create(series_slug: "testconf", title: "TestConf 2024", kind: "conference", location: "Online", timezone: "UTC", coordinates: false)
+      event = Static::Event.create(series_slug: "testconf", title: "TestConf 2024", kind: "conference", start_date: "2024-05-01", end_date: "2024-05-02", location: "Online", timezone: "UTC", coordinates: false)
       videos_path = File.join(File.dirname(event.file_path), "videos.yml")
 
       assert_equal File.join(root, "data/testconf/testconf-2024/event.yml"), event.file_path
       assert File.exist?(videos_path)
       assert_equal [], Yerba.parse_file(videos_path).values
     end
+  end
+
+  test "start_date and end_date are required unless the event is a meetup" do
+    event = Static::Event.new("title" => "RubyConf", "kind" => "conference")
+
+    assert_not event.valid?
+    assert_equal ["start_date is required for non-meetup events", "end_date is required for non-meetup events"], event.errors.full_messages
+    assert Static::Event.new("title" => "My Meetup", "kind" => "meetup").valid?
+  end
+
+  test "end_date must be on or after start_date" do
+    assert Static::Event.new("kind" => "conference", "start_date" => "2025-11-13", "end_date" => "2025-11-13").valid?
+
+    event = Static::Event.new("kind" => "conference", "start_date" => "2025-11-13", "end_date" => "2025-11-12")
+
+    assert_not event.valid?
+    assert_equal ["end_date must be on or after start_date"], event.errors.full_messages
   end
 end

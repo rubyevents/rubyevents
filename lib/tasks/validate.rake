@@ -58,20 +58,75 @@ namespace :validate do
     file_errors.values.flatten
   end
 
-  # File-level validations
+  # Record validations, declared on the Static models
 
-  def validate_cfp_files
-    validate_files(
-      files: Dir.glob(Static::CFP.file_glob),
-      validators: Static::Validators::Validator.cfp_validator_classes,
-      success_message: "✓ All cfp.yml files passed validations!"
-    )
+  def validated_models
+    Rails.autoloaders.main.eager_load_dir(Rails.root.join("app/models/static"))
+
+    Yerba::Record.validated_models
   end
 
-  desc "Validate cfp.yml files"
-  task cfps: :environment do
-    exit 1 if validate_cfp_files.any?
+  def record_errors(models)
+    Yerba::Record.validate_all(models).map do |error|
+      record = error.base
+      location = record.error_location(error)
+
+      [Static::Validators::Error.new(error.full_message, file_path: record.error_file_path(error), location: location), record.error_warning?(error)]
+    end
   end
+
+  def validate_records(models, success_message:)
+    warnings, errors = record_errors(models).partition(&:last).map { |pairs| pairs.map(&:first) }
+
+    print_validator_errors(warnings.group_by(&:file_path), warning_only: true)
+    print_validator_errors(errors.group_by(&:file_path))
+
+    puts Gum.style(success_message, foreground: "2") if errors.empty?
+
+    errors
+  end
+
+  def record_tasks
+    {
+      events: {models: %w[Static::Event], files: "event.yml files"},
+      series: {models: %w[Static::EventSeries], files: "series.yml files"},
+      videos: {models: %w[Static::Talk Static::Talk::AlternativeRecording], files: "videos.yml files"},
+      speakers: {models: %w[Static::Speaker], files: "data/speakers.yml"},
+      involvements: {models: %w[Static::Involvement], files: "involvements.yml files"},
+      schedules: {models: %w[Static::Schedule], files: "schedule.yml files"},
+      sponsors: {models: %w[Static::Sponsor::Entry], files: "sponsors.yml files"},
+      event_assets: {models: %w[Static::EventAsset], files: "event assets"},
+      thumbnails: {models: %w[Static::Thumbnail], files: "thumbnails"}
+    }
+  end
+
+  def recordings_published_date_hint(errors)
+    return unless errors.any? { |error| error.message.include?("recordings_published_date") }
+
+    puts
+    puts Gum.style("To fix recordings_published_date issues:", foreground: "3")
+    puts Gum.style("  • bin/rails event_recordings_published_date:fix  # reconcile event.yml recordings_published_date", foreground: "3")
+    puts Gum.style("  • bin/rails youtube:sync_published_at            # correct video dates first (needs a YouTube API key)", foreground: "3")
+  end
+
+  record_tasks.each do |name, task_options|
+    desc "Validate #{task_options[:files]}"
+    task name => :environment do
+      models = task_options[:models].map(&:constantize)
+      errors = validate_records(models, success_message: "✓ All #{task_options[:files]} passed validations!")
+      errors += validate_talk_renames if name == :videos
+      recordings_published_date_hint(errors) if name == :events
+
+      exit 1 if errors.any?
+    end
+  end
+
+  desc "Validate every record with the validations declared on its Static model"
+  task records: :environment do
+    exit 1 if validate_records(validated_models, success_message: "✓ All records passed validations!").any?
+  end
+
+  # Checks that aren't about a single record
 
   def reject_git_ignored(files)
     return files if files.empty?
@@ -89,9 +144,7 @@ namespace :validate do
 
     validate_files(
       files: reject_git_ignored(files),
-      validators: [
-        Static::Validators::ExpectedDataFiles
-      ],
+      validators: [Static::Validators::ExpectedDataFiles],
       success_message: "✓ All data files are in expected locations!"
     )
   end
@@ -101,78 +154,17 @@ namespace :validate do
     exit 1 if validate_data_files.any?
   end
 
-  def validate_event_assets
+  def validate_talk_renames
     validate_files(
-      files: Dir.glob(Rails.root.join("app/assets/images/events/**/*.webp")),
-      validators: Static::Validators::Validator.event_assets_validator_classes,
-      success_message: "✓ All event assets passed validations!"
+      files: Dir.glob(Static::Talk.file_glob),
+      validators: [Static::Validators::TalkRenames],
+      success_message: "✓ No talk ids disappeared without an old_id!"
     )
   end
 
-  desc "Warn when event assets do not match expected dimensions"
-  task event_assets: :environment do
-    exit 1 if validate_event_assets.any?
-  end
-
-  def validate_event_files
-    validate_files(
-      files: Dir.glob(Static::Event.file_glob),
-      validators: Static::Validators::Validator.event_validator_classes,
-      success_message: "✓ All event.yml files passed validations!"
-    )
-  end
-
-  desc "Validate event.yml files"
-  task events: :environment do
-    errors = validate_event_files
-
-    if errors.any? { |error| error.message.include?("recordings_published_date") }
-      puts
-      puts Gum.style("To fix recordings_published_date issues:", foreground: "3")
-      puts Gum.style("  • bin/rails event_recordings_published_date:fix  # reconcile event.yml recordings_published_date", foreground: "3")
-      puts Gum.style("  • bin/rails youtube:sync_published_at            # correct video dates first (needs a YouTube API key)", foreground: "3")
-    end
-
-    exit 1 if errors.any?
-  end
-
-  def validate_involvements_file
-    validate_files(
-      files: Dir.glob(Static::Involvement.file_glob),
-      validators: Static::Validators::Validator.involvement_validator_classes,
-      success_message: "✓ data/**/involvements.yml passed validations!"
-    )
-  end
-
-  desc "Validate data/**/involvements.yml"
-  task involvements: :environment do
-    exit 1 if validate_involvements_file.any?
-  end
-
-  def validate_schedule_files
-    validate_files(
-      files: Dir.glob(Static::Schedule.file_glob),
-      validators: Static::Validators::Validator.schedule_validator_classes,
-      success_message: "✓ All schedule.yml files passed validations!"
-    )
-  end
-
-  desc "Validate schedule.yml files"
-  task schedules: :environment do
-    exit 1 if validate_schedule_files.any?
-  end
-
-  def validate_series_files
-    validate_files(
-      files: Dir.glob(Static::EventSeries.file_glob),
-      validators: Static::Validators::Validator.series_validator_classes,
-      success_message: "✓ All series.yml files passed validations!"
-    )
-  end
-
-  desc "Validate series.yml files"
-  task series: :environment do
-    exit 1 if validate_series_files.any?
+  desc "Validate that talk ids which disappeared from a videos.yml are kept as an old_id or listed in removed_talk_ids"
+  task talk_renames: :environment do
+    exit 1 if validate_talk_renames.any?
   end
 
   # TODO - migrate to validator
@@ -202,19 +194,6 @@ namespace :validate do
     exit 1 unless validate_speakerdeck_urls
   end
 
-  def validate_speakers_file
-    validate_files(
-      files: [Static::Speaker.file_path],
-      validators: Static::Validators::Validator.speaker_validator_classes,
-      success_message: "✓ data/speakers.yml passed validations!"
-    )
-  end
-
-  desc "Validate data/speakers.yml"
-  task speakers: :environment do
-    exit 1 if validate_speakers_file.any?
-  end
-
   def validate_speakers_in_sync
     speakers = Static::Speaker.all
     missing = speakers.missing_speakers
@@ -241,60 +220,6 @@ namespace :validate do
 
       false
     end
-  end
-
-  def validate_sponsor_files
-    validate_files(
-      files: Dir.glob(Static::Sponsor.file_glob),
-      validators: Static::Validators::Validator.sponsor_validator_classes,
-      success_message: "✓ All sponsors.yml files passed validations!"
-    )
-  end
-
-  desc "Validate sponsors.yml files"
-  task sponsors: :environment do
-    exit 1 if validate_sponsor_files.any?
-  end
-
-  def validate_thumbnails
-    validate_files(
-      files: Dir.glob(Rails.root.join("app/assets/images/thumbnails/**/*.webp")),
-      validators: [
-        Static::Validators::RedundantThumbnails
-      ],
-      success_message: "✓ No redundant thumbnails found!"
-    )
-  end
-
-  desc "Validate that thumbnails are not redundant (no orphaned thumbnail files)"
-  task thumbnails: :environment do
-    exit 1 if validate_thumbnails.any?
-  end
-
-  def validate_venue_files
-    validate_files(
-      files: Dir.glob(Static::Venue.file_glob),
-      validators: [],
-      success_message: "✓ All venue.yml files passed validations!"
-    )
-  end
-
-  desc "Validate venue.yml files"
-  task venues: :environment do
-    exit 1 if validate_venue_files.any?
-  end
-
-  def validate_video_files
-    validate_files(
-      files: Dir.glob(Static::Talk.file_glob),
-      validators: Static::Validators::Validator.video_validator_classes,
-      success_message: "✓ All videos.yml files passed validations!"
-    )
-  end
-
-  desc "Validate videos.yml files"
-  task videos: :environment do
-    exit 1 if validate_video_files.any?
   end
 
   # End individual file validations
@@ -361,27 +286,14 @@ namespace :validate do
 
   desc "Fix the issues that validators know how to fix automatically"
   task fix: :environment do
-    validator_classes = Static::Validators::Validator.fixable_validators
-    changed = 0
-    fixed_files = 0
+    fixes = Yerba::Record.fix_all(models: validated_models)
 
-    Dir.glob(Rails.root.join("data/**/*.yml")).sort.each do |path|
-      document = parse_document(path)
-      next unless document
-
-      validator_classes.each do |validator_class|
-        validator = validator_class.new(file_path: path, document: document)
-        next unless validator.applicable?
-
-        result = validator.fix
-        next unless result
-
-        changed += result[:changed]
-        fixed_files += 1
-
-        puts "#{path.to_s.sub("#{Rails.root}/", "")}: #{validator_class.name.demodulize} fixed #{result[:changed]}"
-      end
+    fixes.each do |record, validator, changes|
+      puts "#{record.project_file_path}: #{validator.class.name.demodulize} fixed #{changes}"
     end
+
+    changed = fixes.sum(&:last)
+    fixed_files = fixes.map { |record, _validator, _changes| record.file_path }.uniq.size
 
     puts
     puts Gum.style(changed.zero? ? "✓ Nothing to fix" : "Fixed #{changed} issue(s) across #{fixed_files} file(s)", foreground: "2")
@@ -392,25 +304,28 @@ namespace :validate do
   task all: :environment do
     ENV["VALIDATE_FILE_WORKERS"] ||= [Parallel.processor_count / 2, 2].max.to_s
 
-    # The two slowest sections come first so they start as early as possible,
-    # the rest are alphabetized
+    # The slowest sections come first so they start as early as possible, the rest are alphabetized
+    record_sections = record_tasks.to_h do |_name, task_options|
+      models = task_options[:models].map(&:constantize)
+
+      ["Validating #{task_options[:files]}", -> { validate_records(models, success_message: "✓ All #{task_options[:files]} passed validations!").none? }]
+    end
+
+    other_models = validated_models - record_tasks.values.flat_map { |task_options| task_options[:models] }.map(&:constantize)
+
+    if other_models.any?
+      record_sections["Validating other records"] = -> { validate_records(other_models, success_message: "✓ All other records passed validations!").none? }
+    end
+
     sections = {
-      "Validating videos.yml files" => -> { validate_video_files.none? },
+      "Validating videos.yml files" => record_sections.delete("Validating videos.yml files"),
       "Validating speakers.yml is in sync" => -> { validate_speakers_in_sync },
       "Running yerba check (schemas, formatting, uniqueness)" => -> { run_yerba_check },
-      "Validating cfp.yml files" => -> { validate_cfp_files.none? },
+      "Validating talk renames" => -> { validate_talk_renames.none? },
       "Validating data file locations" => -> { validate_data_files.none? },
-      "Validating event asset dimensions" => -> { validate_event_assets.none? },
-      "Validating event.yml files" => -> { validate_event_files.none? },
-      "Validating involvements.yml file" => -> { validate_involvements_file.none? },
-      "Validating redundant thumbnails" => -> { validate_thumbnails.none? },
-      "Validating schedule.yml files" => -> { validate_schedule_files.none? },
-      "Validating series.yml files" => -> { validate_series_files.none? },
       "Validating SpeakerDeck handles" => -> { validate_speakerdeck_handles },
       "Validating SpeakerDeck slides URLs" => -> { validate_speakerdeck_urls },
-      "Validating speakers.yml file" => -> { validate_speakers_file.none? },
-      "Validating sponsors.yml files" => -> { validate_sponsor_files.none? },
-      "Validating venue.yml files" => -> { validate_venue_files.none? }
+      **record_sections.sort.to_h
     }
 
     passed = if $stdout.tty? && ENV["VALIDATE_TUI"] != "0"

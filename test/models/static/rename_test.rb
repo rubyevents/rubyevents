@@ -144,7 +144,7 @@ class Static::RenameTest < ActiveSupport::TestCase
   def with_event
     with_static_data_dir do |root|
       write(root, "data/testconf/series.yml", %(---\nid: "testconf"\nname: "TestConf"\n))
-      write(root, "data/testconf/testconf-2024/event.yml", %(---\nid: "testconf-2024"\ntitle: "TestConf 2024"\nkind: "conference"\n))
+      write(root, "data/testconf/testconf-2024/event.yml", %(---\nid: "testconf-2024"\ntitle: "TestConf 2024"\nkind: "conference"\nstart_date: "2024-05-01"\nend_date: "2024-05-02"\n))
       write(root, "data/testconf/testconf-2024/videos.yml", %(---\n- id: "opening"\n  title: "Opening"\n))
       write(root, "app/assets/images/events/testconf/testconf-2024/card.webp", "webp")
       write(root, "app/assets/images/thumbnails/testconf-2024/opening.webp", "webp")

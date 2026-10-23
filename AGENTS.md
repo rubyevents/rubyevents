@@ -100,6 +100,7 @@ Conference data is stored in YAML files under `/data/`:
 - Normalize data with `normalizes`; encrypt sensitive fields (`encrypts :email, deterministic: true`)
 - Use Rails `enum` for status/kind fields
 - `Static::*` models (e.g. `Static::Talk`, `Static::Event`) are `Yerba::Record` models backed by the YAML files in `data/`. Inside `module Static`, a bare `Talk`/`Event` resolves to the `Static::` class, so reference the ActiveRecord models as `::Talk`, `::Event`, etc.
+- Data checks are ActiveModel validations declared on the `Static::*` models (custom ones in `app/validators/static/`). Checks of the record itself run on save; ones that read other files use `on: :lint` and run in `bin/rails validate:all`. A validator with a `fix(record)` method is applied by `bin/rails validate:fix`. See the Validations section of `app/lib/yerba/record/README.md`
 
 **Controllers:**
 

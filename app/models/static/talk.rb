@@ -26,6 +26,19 @@ module Static
     add_index :id
     add_index :video_id
 
+    PROVIDERS_WITHOUT_PUBLISHED_AT = (::Talk::UNPUBLISHED_PROVIDERS + ["children", "parent"]).freeze
+
+    validates :id, uniqueness: {also: :old_id}, on: :lint
+    validates :old_id, uniqueness: {also: :id}, on: :lint
+    validates :speakers, "static/speaker_exists": true, on: :lint
+    validates :thumbnail, file: {presence: true, message: ->(talk, _) { %(missing thumbnail for talk "#{talk.video_id}" at #{talk.expected_thumbnail_path}. Run `bin/rails extract_thumbnails` to generate it.) }}, if: :extracted_thumbnail?, on: :lint
+    validates :track, inclusion: {in: ->(talk) { talk.event.schedule.track_names }, message: ->(talk, data) { %("#{data[:value]}" is not defined in the tracks of schedule.yml (defined: #{talk.event.schedule.track_names.map { |name| %("#{name}") }.join(", ").presence || "none"}). Fix the track name or add it to the tracks in schedule.yml.) }}, allow_blank: true, if: -> { event&.schedule }, on: :lint
+    validates :kind, "static/inferred_kind": true
+    validates :published_at, absence: {message: ->(talk, data) { %((#{data[:value]}) must not be set when video_provider is "#{talk["video_provider"]}") }}, if: -> { self["video_provider"].in?(PROVIDERS_WITHOUT_PUBLISHED_AT) }
+
+    validates_with Static::TalkDatesValidator, Static::TalkIdValidator, Static::TalkLanguageValidator, on: :lint
+    validates_with Static::SpeakersOrTalksValidator, Static::ShortTalkKindValidator
+
     def self.find_by_static_id(id)
       find_by(id: id)
     end
@@ -80,6 +93,16 @@ module Static
 
     def old_id
       self["old_id"]
+    end
+
+    def extracted_thumbnail?
+      parent.present? && parent.id.present? && video_id.present? &&
+        Array(self["speakers"]).any? { |name| name.to_s.strip.present? } &&
+        start_cue.present? && start_cue != "TODO"
+    end
+
+    def expected_thumbnail_path
+      "app/assets/images/thumbnails/#{event_id}/#{parent&.id}/#{video_id}.webp"
     end
 
     def raw_title

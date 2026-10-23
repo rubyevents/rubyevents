@@ -15,6 +15,8 @@ module Yerba
             define_schema_methods
           end
 
+          validates_with Validations::SchemaValidator, on: :create, if: :new_record? if (block || schema_class) && !schema_validated?
+
           @schema
         end
 
@@ -28,6 +30,10 @@ module Yerba
         end
 
         private
+
+        def schema_validated?
+          _validate_callbacks.any? { |callback| callback.filter.is_a?(Validations::SchemaValidator) }
+        end
 
         def define_schema_methods
           @schema.properties.each do |field_name, _property|

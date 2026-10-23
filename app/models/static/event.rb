@@ -29,6 +29,22 @@ module Static
     has_file :featured, "app/assets/images/events/:series_id/:id/featured.webp"
     has_file :poster, "app/assets/images/events/:series_id/:id/poster.webp"
 
+    validates :start_date, :end_date, presence: {message: "is required for non-meetup events"}, unless: :meetup?
+    validates :end_date, comparison: {greater_than_or_equal_to: :start_date, message: "must be on or after start_date"}, if: :dated?
+    validates :start_date, :end_date, "static/date_precision": true
+
+    validates :id, matches_path: true, on: :lint
+    validates :location, "static/city_name": true, on: :lint
+    validates :youtube_channels, "static/duplicate_youtube_channels": true, on: :lint
+    validates :removed_talk_ids, "static/removed_talk_ids": true, on: :lint
+    validates :recordings_published_date, absence: {message: ->(_event, data) { "(#{data[:value]}) must not be set for meetups" }}, if: :meetup?, on: :lint
+    validates :recordings_published_date, absence: {message: ->(event, data) { "(#{data[:value]}) must not be set for an event that has not started yet (start_date #{event["start_date"]} is in the future)" }}, if: :upcoming?, unless: :meetup?, on: :lint
+
+    validates_with Static::CityStateConsistencyValidator, on: :lint
+    validates_with Static::RecordingsPublishedDateValidator, on: :lint, unless: -> { meetup? || upcoming? }
+    validates_with Static::BrandColorsValidator, on: :lint
+    validates_with Static::SeriesSocialsValidator, on: :lint, duplicated: %w[facebook github instagram luma mastodon meetup twitter], missing: %w[facebook instagram mastodon twitter]
+
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
     class << self
@@ -170,6 +186,14 @@ module Static
 
     def meetup?
       kind == "meetup"
+    end
+
+    def upcoming?
+      start_date.is_a?(Date) && start_date.future?
+    end
+
+    def dated?
+      start_date.is_a?(Date) && end_date.is_a?(Date)
     end
 
     def retreat?
@@ -551,7 +575,7 @@ module Static
         %(then move the event again.)
     end
 
-    def save!
+    def save!(**options)
       self["id"] = self["title"]&.parameterize if new_record? && self["id"].blank?
 
       super

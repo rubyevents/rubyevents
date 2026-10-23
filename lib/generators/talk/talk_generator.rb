@@ -172,7 +172,7 @@ class TalkGenerator < Generators::EventBase
       @existing_talk[key] = value
     end
     videos_file.save!
-    Static::Validators::TalkId.new(file_path: videos_file_path).fix
+    Yerba::Record.fix_all(Static::Talk.in_file(videos_file_path), only: Static::TalkIdValidator)
 
     say("#{@attributes.keys.to_sentence} updated.", :green)
   end

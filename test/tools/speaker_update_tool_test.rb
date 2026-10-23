@@ -76,16 +76,13 @@ class SpeakerUpdateToolTest < ActiveSupport::TestCase
     assert_equal "matz", speaker["github"]
   end
 
-  test "creates alias when slug changes" do
+  test "refuses a slug that isn't the parameterized name" do
     result = @tool.execute(name: "Aaron Patterson", slug: "tenderlove")
 
-    assert result[:success]
-    assert_equal "Aaron Patterson (aaron-patterson)", result[:alias_created]
+    assert_equal "Validation failed: Slug must be the name parameterized, expected: aaron-patterson", result[:error]
 
     speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Aaron Patterson")
-    assert_equal "tenderlove", speaker["slug"]
-    assert_equal 1, speaker["aliases"].size
-    assert_equal "aaron-patterson", speaker["aliases"].first["slug"]
+    assert_equal "aaron-patterson", speaker["slug"]
   end
 
   test "does not create alias when slug is unchanged" do

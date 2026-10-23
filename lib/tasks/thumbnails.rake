@@ -7,7 +7,7 @@ end
 
 desc "Move thumbnails to thumbnails/<event-slug>/(<parent-talk-id>/)<video_id>.webp"
 task reorg_thumbnails: :environment do
-  lookup = Static::Validators::RedundantThumbnails.talk_lookup
+  lookup = Static::Thumbnail.talk_lookup
   directory = Rails.root.join("app/assets/images/thumbnails")
   moved = 0
   unknown = []
