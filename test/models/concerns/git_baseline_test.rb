@@ -62,6 +62,32 @@ class GitBaselineTest < ActiveSupport::TestCase
     end
   end
 
+  test "baseline_file follows the event's old_ids to a renamed event folder" do
+    content = [{"id" => "jane-doe-testconf-2024", "title" => "Building Things"}].to_yaml
+    renamed_path = "data/testconf-series/testconf-2024-meetup/videos.yml"
+
+    Host.stub(:old_event_ids, ->(directory) { (directory == File.dirname(renamed_path)) ? ["testconf-2024"] : [] }) do
+      stub_git(
+        ["merge-base", "HEAD", "origin/main"] => "abc123\n",
+        ["ls-tree", "-r", "--name-only", "abc123", "--", "data"] => "data/testconf/testconf-2024/event.yml\n#{VIDEOS_PATH}\n",
+        ["show", "abc123:#{VIDEOS_PATH}"] => content
+      ) do
+        file = Host.baseline_file(renamed_path)
+
+        assert_instance_of Yerba::Document, file
+        assert_equal "Building Things", file.find_by("id" => "jane-doe-testconf-2024").value_at("title")
+      end
+    end
+  end
+
+  test "baseline_file returns nil for a new event without old_ids" do
+    Host.stub(:old_event_ids, ->(_directory) { [] }) do
+      stub_git(["merge-base", "HEAD", "origin/main"] => "abc123\n") do
+        assert_nil Host.baseline_file("data/testconf/testconf-2025/videos.yml")
+      end
+    end
+  end
+
   test "baseline_file returns nil without a baseline ref" do
     stub_git({}) do
       assert_nil Host.baseline_file(VIDEOS_PATH)
