@@ -124,14 +124,15 @@
         この缶サットは2026年9月12日の宇宙甲子園近畿地方大会で、大会の打ち上げシステム確認を兼ねた最初の缶サットとして打ち上げる予定です。CFP応募時点ではまだ結果は出ていません。Showcaseでは、UIAPduinoと「LeanSat にくまる君」の実機、UIAPrubyによる計測・記録の仕組みを紹介し、打ち上げに成功した場合は取得データや打ち上げ映像も紹介します。期待どおりに動作しなかった場合も、その結果や改善点を共有します。
         また現在、「子供向け URB Block プログラミング」の開発も始めています。ブロックで作ったプログラムをRubyコードへ変換し、UIAPduinoで実行できる仕組みです。
       speakers:
-        - Tarosay
+        - tarosay
 
-    - id: "kubo-token-picorubykaigi-2026"
+    - id: "kubo_token-picorubykaigi-2026"
+      old_id: "kubo-token-picorubykaigi-2026"
       title: "Pico-Pico Sound with PicoRuby — Building a Synthesizer Controlled by Ruby"
       original_title: "PicoRubyでピコピコサウンド -Rubyで制御するシンセサイザを作る-"
       date: "2026-10-31"
       video_provider: "scheduled"
-      video_id: "kubo-token-picorubykaigi-2026"
+      video_id: "kubo_token-picorubykaigi-2026"
       description: |-
         PicoRubyでのHello worldといえばLチカでしょう。そしてその次の一歩としてPWM信号をスピーカーに繋いで音を出すサンプルを作ったことがある人は多いかもしれません。この音を出す仕組みを改良してより複雑な音色をリアルタイムで制御できればーーつまり演奏できればさらに楽しいでしょう。
         演奏できる電子楽器といえばアナログシンセがあります。しかしこれは個人で製作するにはアナログ回路の知識や電子工作機材の準備、部品の厳選などが必要となり、なかなかハードルが高いです。とくに楽器としての心臓部である、指定した周波数の信号を生成する回路は、調達が困難な部品を必要とすることもあり製作難易度が高いです。
@@ -139,7 +140,7 @@
         アナログシンセは複数のモジュールから構成されます。音色を決定する波形を生成するVCO、音量を制御するVCA、音色に変化を加えるVCF、さらにその後さまざまな加工を行うモジュールなど。これらのモジュールは電圧信号で制御されます。この電圧信号をPicoRubyから操作すれば、複雑な制御はソフトウェアで可能になります。
         みなさんが普段PicoRubyでやりとりする信号はI2CやUARTなどのデジタル信号が多いでしょう。しかしシンセ製作ではアナログ信号を使います。決められた規格の信号からは外れて、自分の出したい音の波形を作る必要があります。PicoRubyからPWM信号を出し、それを音楽的に活用できる"音"に変換する過程を追いかけることで、アナログ回路の楽しさを知っていただければと思います。
       speakers:
-        - Kubo Token
+        - kubo_token
 
 - id: "yudai-takada-picorubykaigi-2026"
   title: "$ brew update"
