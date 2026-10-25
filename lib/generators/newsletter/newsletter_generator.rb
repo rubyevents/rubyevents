@@ -31,7 +31,7 @@ class NewsletterGenerator < Rails::Generators::NamedBase
       (author["login"] == "app/copilot-swe-agent") ? "🤖" : "#{author["name"]}(@#{author["login"]})"
     end.to_sentence
     @contributors_count = contributors.size
-    @content_pr_count = @pull_requests.count { |pr| pr["labels"]&.any? { |label| label["name"] == "content" } }
+    @data_pr_count = @pull_requests.count { |pr| pr["labels"]&.any? { |label| label["name"] == "data" } }
   end
 
   # Relies on the PRs from fetching contributions

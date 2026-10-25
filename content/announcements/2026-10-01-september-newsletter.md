@@ -71,7 +71,7 @@ October will be extraordinarily busy with 8 events! If you're not attending any 
 
 ## Contributions
 
-This month, we merged [41 PRs from 15 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-09-01..2026-09-30) 33 PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-09-01..2026-09-30+label%3Acontent).
+This month, we merged [41 PRs from 15 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-09-01..2026-09-30) 33 PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-09-01..2026-09-30+label%3Adata).
 
 ### Thank You to All 15 Contributors ❤️
 

@@ -63,7 +63,7 @@ _If you were planning on attending [XO Ruby Salt Lake City](/events/xoruby-salt-
 
 ## Contributions
 
-This month, we merged [123 PRs from 25 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-07-01..2026-07-31) 77 PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-07-01..2026-07-31+label%3Acontent). We held a Hack Day at RubyConf where we welcomed 13 contributions from 8 new contributors to the project! ❤️
+This month, we merged [123 PRs from 25 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-07-01..2026-07-31) 77 PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-07-01..2026-07-31+label%3Adata). We held a Hack Day at RubyConf where we welcomed 13 contributions from 8 new contributors to the project! ❤️
 
 ### Thank You to All 25 Contributors ❤️
 

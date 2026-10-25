@@ -58,7 +58,7 @@ April was a busy month month for the Ruby community with 5 conferences - Tropica
 
 ## Contributions
 
-This month, we merged [40 PRs from 22 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+created%3A>%3D2026-04-01+-created%3A>2026-05-01+) 20 PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+created%3A>%3D2026-04-01+-created%3A>2026-05-01+label%3Acontent).
+This month, we merged [40 PRs from 22 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-04-01..2026-04-30+) 21 PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-04-01..2026-04-30+label%3Adata).
 
 ### Welcome, First-Time Contributors!
 
