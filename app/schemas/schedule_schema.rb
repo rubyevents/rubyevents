@@ -10,9 +10,9 @@ class ScheduleSchema < ApplicationSchema
 
       array :grid, description: "Time slots for the day", required: false do
         object do
-          string :start_time, description: "Start time (HH:MM format)"
-          string :end_time, description: "End time (HH:MM format)"
-          integer :slots, description: "Number of parallel tracks/slots"
+          string :start_time, description: "Start time (HH:MM format)", required: true
+          string :end_time, description: "End time (HH:MM format)", required: true
+          integer :slots, description: "Number of parallel tracks/slots", required: true
           string :description, description: "Description of the time slot", required: false
 
           array :items, description: "Items in this time slot", required: false do
