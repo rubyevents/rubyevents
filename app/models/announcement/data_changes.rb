@@ -10,8 +10,6 @@ require "open3"
 #
 class Announcement::DataChanges
   REPOSITORY_URL = "https://github.com/rubyevents/rubyevents"
-  UNPUBLISHED_PROVIDERS = %w[scheduled not_published].freeze
-  CONTAINER_PROVIDERS = %w[children parent].freeze
 
   Entry = Struct.new(:event, :count, :commits, keyword_init: true)
 
@@ -58,7 +56,7 @@ class Announcement::DataChanges
 
     [
       section("New events", :events) { |entry| "📆 #{event_link(entry.event)}#{event_details(entry.event)} added in #{credits(entry)}" },
-      section("Scheduled talks", :talks) { |entry| "🎤 #{entry.count} #{"talk".pluralize(entry.count)} added to #{event_link(entry.event, "talks")} in #{credits(entry)}" },
+      section("New talks", :talks) { |entry| "🎤 #{entry.count} #{"talk".pluralize(entry.count)} added to #{event_link(entry.event, "talks")} in #{credits(entry)}" },
       section("Schedules", :schedules) { |entry| "🗓️ #{event_link(entry.event, "schedule")} schedule added in #{credits(entry)}" },
       section("CFPs", :cfps) { |entry| "📣 #{entry.count} #{"CFP".pluralize(entry.count)} added to #{event_link(entry.event, "cfp")} in #{credits(entry)}" },
       section("Sponsors", :sponsors) { |entry| "🤝 #{entry.count} #{"sponsor".pluralize(entry.count)} added to #{event_link(entry.event, "sponsors")} in #{credits(entry)}" },
@@ -106,23 +104,20 @@ class Announcement::DataChanges
     before = load(Static::Talk, "#{commit.sha}^", before_path).index_by(&:id)
 
     published = 0
-    scheduled = 0
+    added = 0
 
     load(Static::Talk, commit.sha, after_path).each do |talk|
-      next if CONTAINER_PROVIDERS.include?(talk.video_provider)
-
       previous = before[talk.id] || before[talk.old_id]
-      unpublished = UNPUBLISHED_PROVIDERS.include?(talk.video_provider)
 
-      if previous.nil?
-        unpublished ? scheduled += 1 : published += 1
-      elsif !unpublished && UNPUBLISHED_PROVIDERS.include?(previous.video_provider)
-        published += 1
+      if Talk::WATCHABLE_PROVIDERS.include?(talk.video_provider)
+        published += 1 unless previous && Talk::WATCHABLE_PROVIDERS.include?(previous.video_provider)
+      elsif previous.nil? && Talk::UNPUBLISHED_PROVIDERS.include?(talk.video_provider)
+        added += 1
       end
     end
 
     record(:videos, commit, after_path, published)
-    record(:talks, commit, after_path, scheduled)
+    record(:talks, commit, after_path, added)
   end
 
   def collect_speakers(commit, before_path, after_path)

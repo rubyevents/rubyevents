@@ -32,6 +32,9 @@ class Announcement::DataChangesTest < ActiveSupport::TestCase
       - id: "talk-c"
         title: "Talk C"
         video_provider: "scheduled"
+      - id: "talk-d"
+        title: "Talk D"
+        video_provider: "not_recorded"
     YAML
     write "data/demo/demo-2026/schedule.yml", "---\ndays: []\n"
     commit "Add Demo 2026 videos (#42)", date: "2026-09-20T12:00:00Z"
@@ -62,7 +65,7 @@ class Announcement::DataChangesTest < ActiveSupport::TestCase
     markdown = @data_changes.new_data_markdown
 
     assert_includes markdown, "📆 [Demo 2027](/events/demo-2027)(May 03, 2027 in Vienna, Austria) added in commit [#{@direct_push_sha[0, 9]}](https://github.com/rubyevents/rubyevents/commit/#{@direct_push_sha})"
-    assert_includes markdown, "🎤 1 talk added to [Demo 2026](/events/demo-2026/talks) in PR [42]"
+    assert_includes markdown, "🎤 2 talks added to [Demo 2026](/events/demo-2026/talks) in PR [42]"
     assert_includes markdown, "🗓️ [Demo 2026](/events/demo-2026/schedule) schedule added in PR [42]"
     assert_not_includes markdown, "[Demo 2026](/events/demo-2026) added"
   end
