@@ -84,11 +84,11 @@ class Announcement::DataChanges
     when "venue.yml"
       record(:venues, commit, after_path, 1) if status == "A"
     when "cfp.yml"
-      record(:cfps, commit, after_path, new_records(commit, before_path, after_path) { |path, revision| load(Static::CFP, revision, path).map { |cfp| cfp.link || cfp.name } })
+      record(:cfps, commit, after_path, new_records(commit, before_path, after_path) { |path, revision| load(Static::CFP, revision, path).map { |cfp| [cfp.link, cfp.name] } })
     when "sponsors.yml"
-      record(:sponsors, commit, after_path, new_records(commit, before_path, after_path) { |path, revision| sponsor_entries(revision, path).map { |sponsor| sponsor.slug || sponsor.name } })
+      record(:sponsors, commit, after_path, new_records(commit, before_path, after_path) { |path, revision| sponsor_entries(revision, path).map { |sponsor| [sponsor.slug, sponsor.name] } })
     when "involvements.yml"
-      record(:involvements, commit, after_path, new_records(commit, before_path, after_path) { |path, revision| load(Static::Involvement, revision, path).map(&:to_h) })
+      record(:involvements, commit, after_path, new_records(commit, before_path, after_path) { |path, revision| load(Static::Involvement, revision, path).map { |involvement| [involvement.name] } })
     when "speakers.yml"
       collect_speakers(commit, before_path, after_path)
     end
@@ -152,17 +152,21 @@ class Announcement::DataChanges
   end
 
   def collect_speakers(commit, before_path, after_path)
-    existing = load(Static::Speaker, "#{commit.sha}^", before_path).map(&:name).to_set
+    existing = load(Static::Speaker, "#{commit.sha}^", before_path).flat_map { |speaker| speaker_identifiers(speaker) }.to_set
 
     load(Static::Speaker, commit.sha, after_path).each do |speaker|
-      @new_speakers << [speaker, commit] unless existing.include?(speaker.name)
+      @new_speakers << [speaker, commit] if speaker_identifiers(speaker).none? { |identifier| existing.include?(identifier) }
     end
   end
 
-  def new_records(commit, before_path, after_path, &keys)
-    before = keys.call(before_path, "#{commit.sha}^").to_set
+  def speaker_identifiers(speaker)
+    [speaker.name, speaker.slug, speaker.github.presence&.downcase].compact
+  end
 
-    keys.call(after_path, commit.sha).count { |key| !before.include?(key) }
+  def new_records(commit, before_path, after_path, &identifiers)
+    before = identifiers.call(before_path, "#{commit.sha}^").flatten.compact.to_set
+
+    identifiers.call(after_path, commit.sha).count { |keys| keys.compact.none? { |key| before.include?(key) } }
   end
 
   def sponsor_entries(revision, path)

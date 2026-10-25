@@ -97,6 +97,50 @@ class Announcement::DataChangesTest < ActiveSupport::TestCase
     assert_not_includes markdown, "[Demo 2027](/events/demo-2027/talks)"
   end
 
+  test "doesn't count sponsors with a changed slug or people added to a role as new" do
+    write "data/demo/demo-2026/sponsors.yml", <<~YAML
+      ---
+      - tiers:
+          - name: "Gold"
+            level: 1
+            sponsors:
+              - name: "Acme"
+                slug: "acme"
+    YAML
+    write "data/demo/demo-2026/involvements.yml", <<~YAML
+      ---
+      - name: "Organizer"
+        users:
+          - "Jane Doe"
+    YAML
+    commit "Add Demo 2026 sponsors and organizers (#45)", date: "2026-09-26T12:00:00Z"
+
+    write "data/demo/demo-2026/sponsors.yml", <<~YAML
+      ---
+      - tiers:
+          - name: "Gold"
+            level: 1
+            sponsors:
+              - name: "Acme"
+                slug: "acme-inc"
+              - name: "Globex"
+                slug: "globex"
+    YAML
+    write "data/demo/demo-2026/involvements.yml", <<~YAML
+      ---
+      - name: "Organizer"
+        users:
+          - "Jane Doe"
+          - "John Doe"
+    YAML
+    commit "Update Demo 2026 sponsors and organizers (#46)", date: "2026-09-27T12:00:00Z"
+
+    markdown = data_changes.new_data_markdown
+
+    assert_includes markdown, "🤝 2 sponsors added to [Demo 2026](/events/demo-2026/sponsors) in PR [45](https://github.com/rubyevents/rubyevents/pull/45) and PR [46](https://github.com/rubyevents/rubyevents/pull/46)"
+    assert_includes markdown.lines.map(&:chomp), "🙌 1 involvement added to [Demo 2026](/events/demo-2026) in PR [45](https://github.com/rubyevents/rubyevents/pull/45)"
+  end
+
   test "doesn't count an event moved to another directory as new" do
     FileUtils.mkdir_p(File.join(@repository, "data/demo-conf"))
     FileUtils.mv(File.join(@repository, "data/demo/demo-2026"), File.join(@repository, "data/demo-conf/demo-2026"))
