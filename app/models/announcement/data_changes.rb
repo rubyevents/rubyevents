@@ -2,7 +2,8 @@
 
 require "open3"
 
-# Summarizes the data added to data/ during a month as newsletter markdown.
+# Summarizes the data added to data/ during a month as newsletter markdown, by
+# loading each changed file before and after a commit through its Static model.
 #
 # Every squash-merged commit on main is one PR, so each change is credited to
 # the PR number from the commit subject, or to the commit SHA for direct pushes.
@@ -92,11 +93,11 @@ class Announcement::DataChanges
     when "venue.yml"
       record(:venues, commit, after_path, 1) if status == "A"
     when "cfp.yml"
-      record(:cfps, commit, after_path, new_items(commit, before_path, after_path) { |cfp| cfp["link"] || cfp["name"] }.size)
+      record(:cfps, commit, after_path, new_records(commit, before_path, after_path) { |path, revision| load(Static::CFP, revision, path).map { |cfp| cfp.link || cfp.name } })
     when "sponsors.yml"
-      record(:sponsors, commit, after_path, new_items(commit, before_path, after_path) { |sponsor| sponsor["slug"] || sponsor["name"] }.size)
+      record(:sponsors, commit, after_path, new_records(commit, before_path, after_path) { |path, revision| sponsor_entries(revision, path).map { |sponsor| sponsor.slug || sponsor.name } })
     when "involvements.yml"
-      record(:involvements, commit, after_path, new_items(commit, before_path, after_path, &:itself).size)
+      record(:involvements, commit, after_path, new_records(commit, before_path, after_path) { |path, revision| load(Static::Involvement, revision, path).map(&:to_h) })
     when "speakers.yml"
       collect_speakers(commit, before_path, after_path)
     end
@@ -105,28 +106,27 @@ class Announcement::DataChanges
   def collect_event(commit, status, path)
     return unless status == "A"
 
-    event = load_hash(commit.sha, path)
-    return if event.nil? || event["old_ids"].present?
+    event = load(Static::Event, commit.sha, path).first
+    return if event.nil? || event.old_ids.present?
 
     record(:events, commit, path, 1)
   end
 
   def collect_talks(commit, before_path, after_path)
-    before = flatten_talks(load_array("#{commit.sha}^", before_path)).index_by { |talk| talk["id"] }
-    after = flatten_talks(load_array(commit.sha, after_path))
+    before = load(Static::Talk, "#{commit.sha}^", before_path).index_by(&:id)
 
     published = 0
     scheduled = 0
 
-    after.each do |talk|
-      next if CONTAINER_PROVIDERS.include?(talk["video_provider"])
+    load(Static::Talk, commit.sha, after_path).each do |talk|
+      next if CONTAINER_PROVIDERS.include?(talk.video_provider)
 
-      previous = [talk["id"], talk["old_id"], *talk["old_ids"]].compact.filter_map { |id| before[id] }.first
-      unpublished = UNPUBLISHED_PROVIDERS.include?(talk["video_provider"])
+      previous = before[talk.id] || before[talk.old_id]
+      unpublished = UNPUBLISHED_PROVIDERS.include?(talk.video_provider)
 
       if previous.nil?
         unpublished ? scheduled += 1 : published += 1
-      elsif !unpublished && UNPUBLISHED_PROVIDERS.include?(previous["video_provider"])
+      elsif !unpublished && UNPUBLISHED_PROVIDERS.include?(previous.video_provider)
         published += 1
       end
     end
@@ -136,27 +136,21 @@ class Announcement::DataChanges
   end
 
   def collect_speakers(commit, before_path, after_path)
-    existing = load_array("#{commit.sha}^", before_path).map { |speaker| speaker["name"] }.to_set
+    existing = load(Static::Speaker, "#{commit.sha}^", before_path).map(&:name).to_set
 
-    load_array(commit.sha, after_path).each do |speaker|
-      @new_speakers << [speaker, commit] unless existing.include?(speaker["name"])
+    load(Static::Speaker, commit.sha, after_path).each do |speaker|
+      @new_speakers << [speaker, commit] unless existing.include?(speaker.name)
     end
   end
 
-  def flatten_talks(talks)
-    talks.flat_map { |talk| [talk, *flatten_talks(Array(talk["talks"]))] }
+  def new_records(commit, before_path, after_path, &keys)
+    before = keys.call(before_path, "#{commit.sha}^").to_set
+
+    keys.call(after_path, commit.sha).count { |key| !before.include?(key) }
   end
 
-  def new_items(commit, before_path, after_path, &key)
-    before = load_array("#{commit.sha}^", before_path).flat_map { |item| sponsor_entries(item) }.map(&key).to_set
-
-    load_array(commit.sha, after_path).flat_map { |item| sponsor_entries(item) }.reject { |item| before.include?(key.call(item)) }
-  end
-
-  def sponsor_entries(item)
-    return [item] unless item.is_a?(Hash) && item.key?("tiers")
-
-    Array(item["tiers"]).flat_map { |tier| Array(tier["sponsors"]) }
+  def sponsor_entries(revision, path)
+    load(Static::Sponsor, revision, path).flat_map { |sponsor| sponsor.tiers.flat_map { |tier| tier.sponsors.to_a } }
   end
 
   def record(section, commit, path, count)
@@ -165,20 +159,18 @@ class Announcement::DataChanges
     event = event_for(commit, File.dirname(path))
     return if event.nil?
 
-    entry = @sections[section][event["id"]] ||= Entry.new(event: event, count: 0, commits: [])
+    entry = @sections[section][event.id] ||= Entry.new(event: event, count: 0, commits: [])
     entry.count += count
     entry.commits |= [commit]
   end
 
   def event_for(commit, directory)
     @events ||= {}
-    @events[[commit.sha, directory]] ||= load_hash(commit.sha, File.join(directory, "event.yml"))&.then do |event|
-      event.merge("id" => event["id"].presence || File.basename(directory))
-    end
+    @events[[commit.sha, directory]] ||= load(Static::Event, commit.sha, File.join(directory, "event.yml")).first
   end
 
   def lines(key, &block)
-    @sections[key].values.sort_by { |entry| entry.event["start_date"].to_s }.map(&block)
+    @sections[key].values.sort_by { |entry| entry.event.start_date.to_s }.map(&block)
   end
 
   def section(title, key, &block)
@@ -197,20 +189,19 @@ class Announcement::DataChanges
   end
 
   def event_link(event, page = nil)
-    "[#{event["title"]}](#{["/events", event["id"], page].compact.join("/")})"
+    "[#{event.title}](#{["/events", event.id, page].compact.join("/")})"
   end
 
   def event_details(event)
-    details = [format_dates(event["start_date"], event["end_date"]), event["location"].presence].compact.join(" in ")
+    details = [format_dates(event.start_date, event.end_date), event.location.presence].compact.join(" in ")
 
     details.present? ? "(#{details})" : ""
   end
 
   def format_dates(start_date, end_date)
-    start_date = parse_date(start_date)
     return if start_date.nil?
 
-    end_date = parse_date(end_date) || start_date
+    end_date ||= start_date
 
     if start_date == end_date
       start_date.strftime("%B %d, %Y")
@@ -219,12 +210,6 @@ class Announcement::DataChanges
     else
       "#{start_date.strftime("%B %d")} - #{end_date.strftime("%B %d, %Y")}"
     end
-  end
-
-  def parse_date(value)
-    Date.parse(value.to_s)
-  rescue Date::Error
-    nil
   end
 
   def credits(entry)
@@ -239,22 +224,11 @@ class Announcement::DataChanges
     end
   end
 
-  def load_array(revision, path)
-    value = load_document(revision, path)&.to_a
-
-    value.is_a?(Array) ? value : []
-  end
-
-  def load_hash(revision, path)
-    value = load_document(revision, path)&.to_h
-
-    value.is_a?(Hash) ? value : nil
-  end
-
-  def load_document(revision, path)
+  def load(model, revision, path)
     content, _stderr, status = git("show", "#{revision}:#{path}")
+    return [] unless status.success? && content.present?
 
-    Yerba.parse(content) if status.success? && content.present?
+    model.parse(content, path: path)
   end
 
   def default_ref
