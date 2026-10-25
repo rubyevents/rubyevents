@@ -2,6 +2,7 @@
 ---
 - id: "yukihiro-matz-matsumoto-picorubykaigi-2026"
   title: "Keynote by Yukihiro Matsumoto"
+  original_title: "予想はだいたい外れる〜mrubyの16年"
   kind: "keynote"
   date: "2026-10-31"
   start_time: "10:45"
@@ -10,7 +11,8 @@
   language: "Japanese"
   video_provider: "scheduled"
   video_id: "yukihiro-matz-matsumoto-picorubykaigi-2026"
-  description: "" # TODO
+  description: |-
+    mrubyの開発を始めて16年。当初予想していた使われ方や広がりとは、だいたい違う結果になりました。mrubyの歩みを振り返りながら、予想が外れたこと、そして予想以上だったことをお話しします。
   speakers:
     - "Yukihiro \"Matz\" Matsumoto"
 
@@ -106,12 +108,13 @@
       speakers:
         - Shinta Koyanagi
 
-    - id: "tarosa-picorubykaigi-2026"
+    - id: "tarosay-picorubykaigi-2026"
+      old_id: "tarosa-picorubykaigi-2026"
       title: "Running Ruby on a ¥290 Microcontroller — Challenges with UIAPruby and Can Satellites"
       original_title: "290円のマイコンでRubyを動かす ― UIAPrubyと缶サットへの挑戦"
       date: "2026-10-31"
       video_provider: "scheduled"
-      video_id: "tarosa-picorubykaigi-2026"
+      video_id: "tarosay-picorubykaigi-2026"
       description: |-
         290円の格安マイコン「UIAPduino」をRubyでプログラムするためのUIAPrubyを開発しています。
         290円にこだわるのは、電子工作のハードルを下げ、思いついたアイデアをいくつでも形にできるようにしたいからです。
@@ -121,7 +124,7 @@
         この缶サットは2026年9月12日の宇宙甲子園近畿地方大会で、大会の打ち上げシステム確認を兼ねた最初の缶サットとして打ち上げる予定です。CFP応募時点ではまだ結果は出ていません。Showcaseでは、UIAPduinoと「LeanSat にくまる君」の実機、UIAPrubyによる計測・記録の仕組みを紹介し、打ち上げに成功した場合は取得データや打ち上げ映像も紹介します。期待どおりに動作しなかった場合も、その結果や改善点を共有します。
         また現在、「子供向け URB Block プログラミング」の開発も始めています。ブロックで作ったプログラムをRubyコードへ変換し、UIAPduinoで実行できる仕組みです。
       speakers:
-        - Tarosa
+        - Tarosay
 
     - id: "kubo-token-picorubykaigi-2026"
       title: "Pico-Pico Sound with PicoRuby — Building a Synthesizer Controlled by Ruby"
@@ -152,7 +155,8 @@
   speakers:
     - Yudai Takada
 
-- id: "khori-picorubykaigi-2026"
+- id: "khoriosk-picorubykaigi-2026"
+  old_id: "khori-picorubykaigi-2026"
   title: "Porting femtoRuby to a Cortex-M7 MCU — Configuration and Verification with Limited RAM"
   original_title: "Cortex-M7 MCUへのfemtoRubyポーティング — 限られたRAMでの構成と検証"
   date: "2026-10-31"
@@ -160,11 +164,11 @@
   end_time: "15:15"
   language: "Japanese"
   video_provider: "scheduled"
-  video_id: "khori-picorubykaigi-2026"
+  video_id: "khoriosk-picorubykaigi-2026"
   description: |-
     本発表では、MCUの起動からFemtoRubyの実行、Rubyからの周辺機能制御まで、移植の中で取り組んだ内容を紹介する。特に限られたRAMに実行環境を収めるための構成や機能の選択について扱う。FemtoRubyとMCU依存部の境界、移植時の確認方法を整理し、今後のMCUポーティングにも利用できる形で共有する。
   speakers:
-    - khori
+    - khoriosk
 
 - id: "yoh-osaki-picorubykaigi-2026"
   title: "Building a PicoRuby Development Environment with PicoRuby"
@@ -225,6 +229,7 @@
 
 - id: "hasumi-hitoshi-picorubykaigi-2026"
   title: "Keynote by HASUMI Hitoshi"
+  original_title: "Rubyistのための近代建築史概論(1)"
   kind: "keynote"
   date: "2026-10-31"
   start_time: "16:20"
@@ -233,6 +238,7 @@
   language: "Japanese"
   video_provider: "scheduled"
   video_id: "hasumi-hitoshi-picorubykaigi-2026"
-  description: "" # TODO
+  description: |-
+    プログラミングと建築の類比としてしばしば話題になるのはクリストファー・アレグザンダーの『パタン・ランゲージ』ですが、ほかにも語れるテーマがいくつかありそうです。そのなかからひとつ、お話しします。
   speakers:
     - HASUMI Hitoshi
