@@ -38,7 +38,10 @@ class Announcement::DataChanges
 
   def collect
     commits.reverse_each do |commit|
-      changed_files(commit).each { |status, before_path, after_path| collect_file(commit, status, before_path, after_path) }
+      files = with_moved_directories(commit, changed_files(commit))
+      @before_talks = before_talks(commit, files)
+
+      files.each { |status, before_path, after_path| collect_file(commit, status, before_path, after_path) }
     end
 
     @collected = true
@@ -75,7 +78,7 @@ class Announcement::DataChanges
     when "event.yml"
       collect_event(commit, status, after_path)
     when "videos.yml"
-      collect_talks(commit, before_path, after_path)
+      collect_talks(commit, after_path)
     when "schedule.yml"
       record(:schedules, commit, after_path, 1) if status == "A"
     when "venue.yml"
@@ -100,14 +103,12 @@ class Announcement::DataChanges
     record(:events, commit, path, 1)
   end
 
-  def collect_talks(commit, before_path, after_path)
-    before = load(Static::Talk, "#{commit.sha}^", before_path).index_by(&:id)
-
+  def collect_talks(commit, after_path)
     published = 0
     added = 0
 
     load(Static::Talk, commit.sha, after_path).each do |talk|
-      previous = before[talk.id] || before[talk.old_id]
+      previous = @before_talks[talk.id] || @before_talks[talk.old_id]
 
       if Talk::WATCHABLE_PROVIDERS.include?(talk.video_provider)
         published += 1 unless previous && Talk::WATCHABLE_PROVIDERS.include?(previous.video_provider)
@@ -118,6 +119,36 @@ class Announcement::DataChanges
 
     record(:videos, commit, after_path, published)
     record(:talks, commit, after_path, added)
+  end
+
+  def with_moved_directories(commit, files)
+    removed = files.each_with_object({}) do |(status, before_path, _), directories|
+      next unless status == "D" && File.basename(before_path) == "event.yml"
+
+      event = load(Static::Event, "#{commit.sha}^", before_path).first
+      directories[event.id] = File.dirname(before_path) if event
+    end
+
+    return files if removed.empty?
+
+    files.map do |status, before_path, after_path|
+      next [status, before_path, after_path] unless status == "A"
+
+      moved_from = moved_from(commit, File.dirname(after_path), removed)
+      moved_from ? ["M", File.join(moved_from, File.basename(after_path)), after_path] : [status, before_path, after_path]
+    end
+  end
+
+  def moved_from(commit, directory, removed)
+    event = load(Static::Event, commit.sha, File.join(directory, "event.yml")).first
+
+    event && [event.id, *event.old_ids].filter_map { |id| removed[id] }.first
+  end
+
+  def before_talks(commit, files)
+    files.select { |status, before_path, _| status != "A" && File.basename(before_path) == "videos.yml" }
+      .flat_map { |_, before_path, _| load(Static::Talk, "#{commit.sha}^", before_path).to_a }
+      .index_by(&:id)
   end
 
   def collect_speakers(commit, before_path, after_path)
@@ -151,7 +182,15 @@ class Announcement::DataChanges
 
   def event_for(commit, directory)
     @events ||= {}
-    @events[[commit.sha, directory]] ||= load(Static::Event, commit.sha, File.join(directory, "event.yml")).first
+    @events[[commit.sha, directory]] ||= load(Static::Event, commit.sha, File.join(directory, "event.yml")).first&.then do |event|
+      current_events[event.id] || event
+    end
+  end
+
+  def current_events
+    @current_events ||= Static::Event.all.each_with_object({}) do |event, index|
+      [event.id, *event.old_ids].each { |id| index[id] ||= event }
+    end
   end
 
   def lines(key, &block)
@@ -184,9 +223,9 @@ class Announcement::DataChanges
   end
 
   def format_dates(start_date, end_date)
-    return if start_date.nil?
+    return unless start_date.is_a?(Date)
 
-    end_date ||= start_date
+    end_date = start_date unless end_date.is_a?(Date)
 
     if start_date == end_date
       start_date.strftime("%B %d, %Y")
