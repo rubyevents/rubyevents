@@ -8,6 +8,7 @@ module Yerba
     #   where(kind: %w[keynote panel])          # Array, Set or Range: included in it
     #   where(event_slug: "rubyconf-2024")      # not stored: the record's method of that name
     #   where(event: {slug: "rubyconf-2024"})   # Hash: the associated record matches the nested criteria
+    #   where(commit: {pr_number: 1234})        # Hash on a plain object: its methods of those names
     #
     module Criteria
       module_function
@@ -32,7 +33,9 @@ module Yerba
       def value_for(record, key)
         key = key.to_s
 
-        if record.respond_to?(:key?) && !record.key?(key) && record.respond_to?(key)
+        return record.public_send(key) unless record.respond_to?(:key?)
+
+        if !record.key?(key) && record.respond_to?(key)
           record.public_send(key)
         else
           record[key]
