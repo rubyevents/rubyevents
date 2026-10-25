@@ -80,10 +80,9 @@ jump straight to it.
   post-day excursion sits outside that window. Event dates may match conference days only
   or include pre and post days.
 - **series.yml** — `frequency` and other metadata vs the series/umbrella site.
-- **schedule.yml** — every `start_time`/`end_time`, item titles and descriptions,
-  day boundaries, **and anything present in the source but absent here**.
-- **videos.yml** — talk titles (verbatim), kinds, dates, speaker lists, running order,
-  descriptions/summaries (check session detail pages), and every talk on the site that's missing here.
+- **schedule.yml** — every `start_time`/`end_time`, item titles and descriptions, day boundaries, **and anything present in the source but absent here**. Slots without items are filled by talks from videos.yml in order. 
+- **videos.yml** — talk titles (verbatim), kinds, dates, start/end time, speaker lists, running order, descriptions/summaries (check session detail pages), and every talk on the site that's missing here.
+- **cfp.yml** — call for papers open date and close date. **Often, the cfp link is removed once it closes.** If the open/close data cannot be confirmed, trust the file as the authoritative source.
 - **venue.yml** — venue name, address, hotels, distances, ratings.
 - **sponsors.yml** — tiers, membership, names, ordering, badges/grouping as presented.
 - **involvements.yml** — names and role labels against the organizers/team page (preserve site language).
@@ -111,6 +110,8 @@ For **every** discrepancy, conflict, missing data, or unclear item, create a sep
 - **Type**: `missing` | `differs` | `conflicts` | `unclear`
 - **Question**: A question for the reviewer to answer (e.g. "Keep our value or change to match the session page at {url}?").
 - **Notes**: Context only (e.g. "referenced by videos.yml as alias `misamisa`", "validator would block if changed", "site has no summary", "JSON-LD also checked").
+
+**Note: If there are no discrepancies, state "No discrepancies found."**
 
 #### Not our problem
 Things the source omits or where the site is internally inconsistent with no clear authoritative source to ask about — just state what's missing/conflicting with URLs checked.
