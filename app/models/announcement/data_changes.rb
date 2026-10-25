@@ -13,20 +13,6 @@ class Announcement::DataChanges
   UNPUBLISHED_PROVIDERS = %w[scheduled not_published].freeze
   CONTAINER_PROVIDERS = %w[children parent].freeze
 
-  Commit = Data.define(:sha, :author, :subject) do
-    def pr_number
-      subject[/\(#(\d+)\)\z/, 1]
-    end
-
-    def credit
-      if pr_number
-        "PR [#{pr_number}](#{REPOSITORY_URL}/pull/#{pr_number})"
-      else
-        "commit [#{sha[0, 9]}](#{REPOSITORY_URL}/commit/#{sha})"
-      end
-    end
-  end
-
   Entry = Struct.new(:event, :count, :commits, keyword_init: true)
 
   attr_reader :month, :ref, :repository_path
@@ -41,10 +27,14 @@ class Announcement::DataChanges
 
   def commits
     @commits ||= begin
-      output = git!("log", "--first-parent", "--format=%H%x1f%an%x1f%s",
+      output = git!("log", "--first-parent", "--format=%H%x1f%an%x1f%ae%x1f%ct%x1f%s",
         "--since=#{month.beginning_of_day.iso8601}", "--until=#{month.next_month.beginning_of_day.iso8601}", ref)
 
-      output.lines.map { |line| Commit.new(*line.chomp.split("\x1f", 3)) }
+      output.lines.map do |line|
+        sha, author, email, time, subject = line.chomp.split("\x1f", 5)
+
+        Yerba::Record::Commit.new(sha: sha, author: author, email: email, date: Time.zone.at(time.to_i), subject: subject)
+      end
     end
   end
 
@@ -183,7 +173,7 @@ class Announcement::DataChanges
   def speakers_section
     return if @new_speakers.empty?
 
-    credits = @new_speakers.map(&:last).uniq.map(&:credit).to_sentence
+    credits = @new_speakers.map(&:last).uniq.map { |commit| credit(commit) }.to_sentence
 
     "### New speakers\n\n🗣️ #{@new_speakers.size} new #{"speaker".pluralize(@new_speakers.size)} added in #{credits}"
   end
@@ -213,7 +203,15 @@ class Announcement::DataChanges
   end
 
   def credits(entry)
-    entry.commits.map(&:credit).to_sentence
+    entry.commits.map { |commit| credit(commit) }.to_sentence
+  end
+
+  def credit(commit)
+    if commit.pr_number
+      "PR [#{commit.pr_number}](#{REPOSITORY_URL}/pull/#{commit.pr_number})"
+    else
+      "commit [#{commit.short_sha}](#{REPOSITORY_URL}/commit/#{commit.sha})"
+    end
   end
 
   def changed_files(commit)
