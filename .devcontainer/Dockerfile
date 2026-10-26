@@ -20,7 +20,7 @@ RUN apt-get update -qq && \
     pkg-config \
     python-is-python3 \
     # sqlite3 \
-    vim-tiny \
+    vim-tiny \ # Used for git editing
     chromium chromium-driver \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 

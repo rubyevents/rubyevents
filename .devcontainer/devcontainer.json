@@ -36,6 +36,5 @@
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached",
     "source=${localEnv:HOME}/.gitconfig,target=/etc/gitconfig,type=bind,consistency=cached"
-  ],
-  "postCreateCommand": "printf '[credential]\\n\\thelper =\\n[core]\\n\\teditor = vi\\n' > /root/.gitconfig"
+  ]
 }

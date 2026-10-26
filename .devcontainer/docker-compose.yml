@@ -6,8 +6,6 @@ services:
       context: ..
       dockerfile: .devcontainer/Dockerfile
     # Start sshd through the devcontainers sshd feature's init script, then idle.
-    # Without this, `docker compose up` runs a bare `sleep infinity` and leaves
-    # port 2222 dead - only the devcontainer CLI runs the init script.
     command: /usr/local/share/ssh-init.sh sleep infinity
     depends_on:
       - typesense
@@ -18,13 +16,11 @@ services:
       - TYPESENSE_PORT=8108
     ports:
       - "3000:3000"
-      # The devcontainers sshd feature listens on 2222 *inside* the container
-      # (see /etc/ssh/sshd_config), so the host port must map to 2222, not 22.
-      - "2222:2222"
+      - "2222:2222" # The devcontainers sshd feature listens on 2222 *inside* the container
     volumes:
       - ..:/rubyevents:cached # Mounts the local project directory
       - node_modules:/rubyevents/node_modules # Prevents overwriting node_modules so yarn install works correctly
-      - ${HOME}/.ssh:/root/.ssh:cached
+      - ${HOME}/.ssh:/root/.ssh:cached # grabs ssh keys
 
     stdin_open: true
     tty: true
