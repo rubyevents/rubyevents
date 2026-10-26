@@ -11,6 +11,17 @@ class FavoriteUsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should show next mutual event on index" do
+    event = events(:future_conference)
+    EventParticipation.create!(user: @user, event: event, role: :attendee)
+    EventParticipation.create!(user: favorite_users(:one).favorite_user, event: event, role: :attendee)
+
+    get favorite_users_url
+
+    assert_response :success
+    assert_includes response.body, "Next mutual event: #{event.name}"
+  end
+
   test "should create favorite_user" do
     fav_user = users :marco
 
