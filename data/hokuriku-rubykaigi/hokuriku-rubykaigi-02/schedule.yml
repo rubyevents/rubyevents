@@ -3,6 +3,12 @@ days:
   - name: "Day 1"
     date: "2026-11-14"
     grid:
+      - start_time: "10:00"
+        end_time: "12:00"
+        slots: 1
+        items:
+          - "Dinosaur Museum Tour"
+
       - start_time: "13:00"
         end_time: "13:10"
         slots: 1
@@ -61,5 +67,11 @@ days:
         slots: 1
         items:
           - "Closing"
+
+      - start_time: "18:30"
+        end_time: "20:30"
+        slots: 1
+        items:
+          - "After Party"
 
 tracks: []

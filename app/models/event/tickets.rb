@@ -8,11 +8,13 @@ class Event::Tickets < ActiveRecord::AssociatedObject
     "Luma" => ["lu.ma", "luma.com"],
     "Meetup" => ["meetup.com"],
     "Connpass" => ["connpass.com"],
+    "Doorkeeper" => ["doorkeeper.jp"],
     "Pretix" => ["pretix.eu"],
     "Eventpop" => ["eventpop.me"],
     "Eventbrite" => ["eventbrite.com", "eventbrite.co.uk"],
     "TicketTailor" => ["tickettailor.com"],
-    "Sympla" => ["sympla.com.br"]
+    "Sympla" => ["sympla.com.br"],
+    "Tixly" => ["tickets.tixly.in"]
   }.freeze
 
   extension do

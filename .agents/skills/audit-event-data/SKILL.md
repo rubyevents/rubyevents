@@ -75,14 +75,14 @@ Walk each file against what you gathered. For each, note **file:line** so the us
 jump straight to it.
 
 - **event.yml** — dates, location string, description wording, `year`, `frequency`, `venue`,
-  `tickets_url`, brand colors. Cross-check dates against *two* sources before calling
+  `tickets_url`. Cross-check dates against *two* sources before calling
   a mismatch: a site may headline the conference days while a pre-day meetup or a
   post-day excursion sits outside that window. Event dates may match conference days only
-  or include pre and post days.
+  or include pre and post days. If a link is provided to buy tickets, we want to add it.
 - **series.yml** — `frequency` and other metadata vs the series/umbrella site.
-- **schedule.yml** — every `start_time`/`end_time`, item titles and descriptions, day boundaries, **and anything present in the source but absent here**. Slots without items are filled by talks from videos.yml in order. 
+- **schedule.yml** — every `start_time`/`end_time`, item titles and descriptions, day boundaries, **and anything present in the source but absent here**. Slots without items are filled by talks from videos.yml in order.
 - **videos.yml** — talk titles (verbatim), kinds, dates, start/end time, speaker lists, running order, descriptions/summaries (check session detail pages), and every talk on the site that's missing here.
-- **cfp.yml** — call for papers open date and close date. **Often, the cfp link is removed once it closes.** If the open/close data cannot be confirmed, trust the file as the authoritative source.
+- **cfp.yml** — call for papers open date, close date, and link. **Often, the cfp link is removed once it closes.** If the open/close data cannot be confirmed, trust the file as the authoritative source. Do not raise missing open/close dates or broken cfp links as discrepancies. Only raise them if there is a conflict.
 - **venue.yml** — venue name, address, hotels, distances, ratings.
 - **sponsors.yml** — tiers, membership, names, ordering, badges/grouping as presented.
 - **involvements.yml** — names and role labels against the organizers/team page (preserve site language).
