@@ -47,12 +47,12 @@ class PageController < ApplicationController
           events: [
             {
               name: "Upcoming Events",
-              items: Event.upcoming.limit(10).map { |event| event.to_mobile_json(request) },
+              items: Event.ruby_focused.upcoming.limit(10).map { |event| event.to_mobile_json(request) },
               url: events_url
             },
             {
               name: "Recent Events",
-              items: Event.past.limit(10).map { |event| event.to_mobile_json(request) },
+              items: Event.ruby_focused.past.limit(10).map { |event| event.to_mobile_json(request) },
               url: past_events_url
             }
           ]
@@ -62,7 +62,7 @@ class PageController < ApplicationController
   end
 
   def featured
-    @events = Event.featurable
+    @events = Event.not_meetup.featurable
       .includes(:series)
       .order(date: :desc)
       .reject(&:cancelled_or_inactive?)
@@ -91,7 +91,7 @@ class PageController < ApplicationController
 
   def stickers
     @events = Event.all.select(&:sticker?)
-    @stickers = @events.flat_map(&:stickers)
+    @stickers = @events.flat_map(&:stickers).uniq(&:code)
   end
 
   def contributors
@@ -99,7 +99,7 @@ class PageController < ApplicationController
   end
 
   def assets
-    @events = Event.includes(:series).order("event_series.name, events.name")
+    @events = Event.not_meetup.ruby_focused.includes(:series).order("event_series.name, events.name")
 
     @asset_types = {
       "avatar" => {width: 256, height: 256, name: "Avatar"},

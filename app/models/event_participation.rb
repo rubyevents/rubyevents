@@ -7,8 +7,8 @@
 #  role       :string           not null, indexed
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  event_id   :integer          not null, uniquely indexed => [user_id], indexed
-#  user_id    :integer          not null, uniquely indexed => [event_id], indexed
+#  event_id   :integer          not null, indexed, uniquely indexed => [user_id]
+#  user_id    :integer          not null, indexed, uniquely indexed => [event_id]
 #
 # Indexes
 #

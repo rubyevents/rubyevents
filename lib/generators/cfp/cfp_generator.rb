@@ -11,10 +11,12 @@ class CfpGenerator < Generators::EventBase
   class_option :open_date, type: :string, desc: "CFP open date (YYYY-MM-DD)", group: "Fields"
   class_option :close_date, type: :string, desc: "CFP close date (YYYY-MM-DD)", group: "Fields"
 
+  series_level_files!
+
   CFP = Struct.new("CFP", :name, :link, :open_date, :close_date)
 
   def cfp_file
-    @cfp_file = File.join([event_directory, "cfp.yml"])
+    @cfp_file = File.join([target_directory, "cfp.yml"])
   end
 
   def ensure_cfp_file_exists

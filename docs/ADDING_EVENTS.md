@@ -104,7 +104,7 @@ Like this!
 ```
 </details>
 <details><summary>What about meetups?</summary>
-  Meetups are modeled differently: one event per meetup group, and each monthly edition is an entry in <code>videos.yml</code>. See the dedicated guide: <a href="ADDING_MEETUPS.md">ADDING_MEETUPS.md</a>.
+  Each meetup is its own event, in a folder named after its series and date inside the meetup group's series (<code>data/lrug/lrug-2026-01-12/event.yml</code>). See the dedicated guide: <a href="ADDING_MEETUPS.md">ADDING_MEETUPS.md</a>.
 </details>
 <details><summary>Do I include pre-conference and post-conferent events?</summary>
   No, start_date and end_date on the event describe the conference proper — the days the event is "on".

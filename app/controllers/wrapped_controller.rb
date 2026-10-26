@@ -15,7 +15,7 @@ class WrappedController < ApplicationController
       {
         talks_held: Talk.where(date: @year_range).distinct.count,
         talks_published: Talk.where(published_at: @year_range).distinct.count,
-        total_conferences: Event.where(start_date: @year_range, kind: :conference).count,
+        total_conferences: Event.ruby_focused.where(start_date: @year_range, kind: :conference).count,
         total_speakers: User.joins(:talks).where(talks: {date: @year_range}).distinct.count,
         total_hours: (Talk.where(published_at: @year_range).sum(:duration_in_seconds) / 3600.0).round,
         talks_with_slides: Talk.where(date: @year_range).where.not(slides_url: [nil, ""]).count,
@@ -37,7 +37,7 @@ class WrappedController < ApplicationController
         rubyist_countries: rubyist_countries,
         total_visits: total_visits,
         total_page_views: total_page_views,
-        next_year_conferences: Event.where(start_date: @next_year_range, kind: :conference).count,
+        next_year_conferences: Event.ruby_focused.where(start_date: @next_year_range, kind: :conference).count,
         next_year_talks: Talk.where(date: @next_year_range).count,
         open_cfps: open_cfps,
         top_organizations_slugs: top_organizations_slugs

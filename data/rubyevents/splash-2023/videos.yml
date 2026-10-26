@@ -1,0 +1,25 @@
+---
+- id: "maxime-chevalier-boisvert-splash-2023"
+  title: "Evaluating YJIT's Performance in a Production Context: A Pragmatic Approach"
+  raw_title: "Evaluration YJIT's Performance in a Production Context: A Pragmatic Approach"
+  location: "Cascais, Portugal"
+  date: "2023-10-22"
+  start_time: "11:00"
+  end_time: "11:22"
+  published_at: "2024-02-15T16:35:01Z"
+  video_provider: "youtube"
+  video_id: "pVRmPZcNUhc"
+  description: |-
+    Ruby is a dynamically-typed programming language with a large breadth of features which has grown in popularity with the rise of the modern web, and remains at the core of the implementation of widely-used online platforms such as Shopify, GitHub, Discourse, and Mastodon.
+
+    There have been many attempts to integrate JIT compilation into Ruby implementations, but until recently, despite impressive performance on benchmarks, none had seen widespread adoption. This has changed with the arrival of YJIT, a new JIT compiler based on a Lazy Basic Block Versioning (LBBV) architecture which has recently been upstreamed into CRuby, and has since seen multiple large-scale production deployments.
+
+    This paper extends on previous work on YJIT and takes a pragmatic approach towards evaluating YJIT's performance in a production context. We evaluate and compare its performance on benchmarks as well as a large-scale real-world production deployment, and we look not only at peak performance, but also at memory usage and warm-up time.
+
+    On all of our benchmarks, YJIT is able to consistently outperform the CRuby interpreter by a wide margin. It offers consistent speedups, full compatibility with existing Ruby code, much less memory overhead and faster warm-up compared to JRuby and TruffleRuby.
+
+    We also show that YJIT is able to deliver significant speedups on a real-world deployment on Shopify's worldwide StoreFront Renderer infrastructure, an application for which it is currently the only viable JIT compiler.
+
+    https://2023.splashcon.org/details/mplr-2023-papers/7/Evaluating-YJIT-s-Performance-in-a-Production-Context-A-Pragmatic-Approach
+  speakers:
+    - Maxime Chevalier-Boisvert

@@ -101,6 +101,21 @@ class Static::SpeakerTest < ActiveSupport::TestCase
     assert_not Static::Speaker.new(name: "Nobody").social_handle?
   end
 
+  test "importing a renamed speaker without a GitHub handle renames their user and keeps the old slug as an alias" do
+    user = User.create!(name: "Tom Heina", slug: "tom-heina")
+
+    Dir.mktmpdir do |dir|
+      path = File.join(dir, "speakers.yml")
+      File.write(path, %(---\n- name: "Tom Heinan"\n  github: ""\n  slug: "tom-heinan"\n  aliases:\n    - name: "Tom Heina"\n      slug: "tom-heina"\n))
+
+      Static::Speaker.with_path(path) { Static::Speaker.all.first.import!(index: false) }
+    end
+
+    assert_equal ["Tom Heinan", "tom-heinan"], [user.reload.name, user.slug]
+    assert_equal user, User.find_by_slug_or_alias("tom-heina")
+    assert_equal 1, User.where(name: ["Tom Heina", "Tom Heinan"]).count
+  end
+
   test "with_path points the model at another file temporarily" do
     Dir.mktmpdir do |dir|
       path = File.join(dir, "speakers.yml")

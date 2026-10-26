@@ -1,0 +1,11 @@
+---
+- id: "anton-khainak-austinrb-2025-05-13"
+  old_id: "anton-khainak-austinrb-meetup-may-2025"
+  title: "Zero-to-Hero: Postgres 12 ➔ 16 Upgrade in Production"
+  date: "2025-05-13"
+  video_provider: "not_recorded"
+  video_id: "anton-khainak-austinrb-2025-05-13"
+  description: |-
+    Upgrading production databases is always a little scary — especially when you’re talking about 2TB of live production data. In this talk, I'll share the real-world story of how we upgraded a large Aurora PostgreSQL cluster from version 12 to 16 with minimal downtime using AWS Blue/Green Deployments. I'll walk through the research process (including options like pg_upgrade and DMS), the real-world challenges we faced (like old instance types and tricky parameter group setups), and how we tested everything before the final switchover. If you're curious about how to approach big system changes safely — or just want to hear some "in the trenches" lessons — this talk is for you.
+  speakers:
+    - Anton Khainak

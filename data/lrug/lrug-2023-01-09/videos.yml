@@ -1,0 +1,58 @@
+---
+- id: "matt-valentine-house-lrug-2023-01-09"
+  old_id: "matt-valentine-house-lrug-january-2023"
+  title: "Heaping on the Complexity"
+  date: "2023-01-09"
+  announced_at: "2022-12-13T21:26:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2023/january/matt-valentine-house-heaping-on-the-complexity-lrug-jan-2023.mp4"
+  description: |-
+    Join me on a journey through Ruby's Garbage Collector!
+
+    In this talk I'll teach you some of the details about how the Ruby
+    interpreter manages memory. I'll introduce a project my team and I are
+    working on that aims to make Ruby faster by improving its memory
+    efficiency, and then we'll talk about how our implementation broke
+    Garbage Collection.
+
+    After that we'll go on a journey together, through some weeds, and
+    taking a few bad turns until we finally emerge with a few PR's that
+    not only Fix GC, but make our project better too.
+  speakers:
+    - Matt Valentine-House
+
+- id: "daniel-magliola-lrug-2023-01-09"
+  old_id: "daniel-magliola-lrug-january-2023"
+  title: "What does \"high priority\" mean? The secret to happy queues"
+  date: "2023-01-09"
+  announced_at: "2022-12-13T21:26:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2023/january/daniel-magliola-what-does-high-priority-mean-the-secret-to-happy-queues-lrug-jan-2023.mp4"
+  description: |-
+    Like most web applications, you run important jobs in the background. And
+    today, some of your urgent jobs are running late. Again. No matter how many
+    changes you make to how you enqueue and run your jobs, the problem keeps
+    happening. The good news is you're not alone. Most teams struggle with this
+    problem, try more or less the same solutions, and have roughly the same
+    result. In the end, it all boils down to one thing: keeping latency low. In
+    this talk I will present a latency-focused approach to managing your queues
+    reliably, keeping your jobs flowing and your users happy.
+  speakers:
+    - Daniel Magliola
+
+- id: "fritz-meissner-lrug-2023-01-09"
+  old_id: "fritz-meissner-lrug-january-2023"
+  title: "Solargraph-rails in 2022"
+  date: "2023-01-09"
+  announced_at: "2022-12-13T21:26:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2023/january/fritz-meissner-solargraph-rails-in-2022-lrug-jan-2023.mp4"
+  description: |-
+    From chewing-gum-and-regex to 35,000 lines of code and YAML! Come hear
+    about the past year of work on the solargraph-rails gem. You'll see new
+    features, mostly from merging with the solargraph-ARC gem, and hear about
+    the lessons learned along the way: more code means more to maintain and
+    understand, but there's a surprising amount that can be done just by
+    putting one foot in front of the other.
+  speakers:
+    - Fritz Meissner

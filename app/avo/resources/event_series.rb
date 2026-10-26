@@ -29,6 +29,9 @@ class Avo::Resources::EventSeries < Avo::BaseResource
     field :twitter, as: :text, hide_on: :index
     field :events, as: :has_many
     field :talks, as: :has_many, through: :events
+    field :sponsors, as: :has_many
+    field :event_involvements, as: :has_many
+    field :cfps, as: :has_many
   end
 
   def filters

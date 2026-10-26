@@ -1,4 +1,75 @@
 module EventsHelper
+  MEETUP_LINK_LABELS = {
+    "meetup" => ["Meetup.com", "meetup"],
+    "luma" => ["Luma", "calendar"],
+    "kommunity" => ["Kommunity", "users"],
+    "website" => ["Website", "globe"],
+    "tickets_url" => ["Tickets", "ticket"]
+  }.freeze
+
+  MEETUP_LINK_CALLS_TO_ACTION = {
+    "meetup" => "Sign up or RSVP on Meetup.com",
+    "luma" => "Register on Luma",
+    "kommunity" => "RSVP on Kommunity",
+    "tickets_url" => "Get tickets"
+  }.freeze
+
+  def meetup_link_label(field)
+    MEETUP_LINK_LABELS.fetch(field) { [field.humanize, "link"] }.first
+  end
+
+  def meetup_link_text(field, event)
+    return MEETUP_LINK_CALLS_TO_ACTION[field] if meetup_link_call_to_action?(field, event)
+    return "View on #{meetup_link_label(field)}" if MeetupLinks::PLATFORMS.include?(field)
+
+    meetup_link_label(field)
+  end
+
+  def meetup_link_call_to_action?(field, event)
+    event.upcoming? && MEETUP_LINK_CALLS_TO_ACTION.key?(field)
+  end
+
+  def link_handle(field, url)
+    uri = URI.parse(url.to_s)
+    segments = uri.path.to_s.split("/").compact_blank
+    host = uri.host.to_s.delete_prefix("www.")
+
+    case field
+    when "website"
+      host
+    when "twitter", "instagram"
+      "@#{segments.first.to_s.delete_prefix("@")}"
+    when "mastodon"
+      "#{segments.first}@#{host}"
+    when "bsky", "linkedin"
+      segments.last
+    else
+      segments.first
+    end.presence
+  rescue URI::InvalidURIError
+    nil
+  end
+
+  def group_links_noun(links)
+    return "pages" unless links.one?
+
+    field = links.keys.first
+
+    (field == "website") ? "website" : "#{meetup_link_label(field)} page"
+  end
+
+  def meetup_link_icon(field, **options)
+    icon = MEETUP_LINK_LABELS.dig(field, 1) || "link"
+
+    (field == "meetup") ? fab(icon, **options) : fa(icon, **options)
+  end
+
+  def meetup_time_range(event)
+    times = [event.static_metadata.start_time, event.static_metadata.end_time].compact_blank
+
+    times.join(" - ").presence
+  end
+
   def event_date_display(event, day_name: false)
     return "Date TBD" unless event.start_date.present?
 
@@ -46,7 +117,11 @@ module EventsHelper
   end
 
   def continent_filter_path(continent)
-    url_for(continent: continent&.slug)
+    url_for(continent: continent&.slug, kind: params[:kind].presence)
+  end
+
+  def kind_filter_path(kind)
+    url_for(kind: kind, continent: params[:continent].presence)
   end
 
   def featured_cta_path(event)

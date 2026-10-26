@@ -5,7 +5,10 @@ class Avo::Filters::CFPEventKind < Avo::Filters::BooleanFilter
     selected = options.keys.select { |key| values[key.to_s] }
     return query if selected.empty?
 
-    query.joins(:event).where(events: {kind: selected})
+    owned = query.left_joins(:event, :event_series)
+    series_kinds = selected.map(&:to_s) & ::EventSeries.kinds.keys
+
+    owned.where(events: {kind: selected}).or(owned.where(event_series: {kind: series_kinds}))
   end
 
   def options

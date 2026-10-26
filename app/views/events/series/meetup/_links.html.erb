@@ -1,0 +1,43 @@
+<%# locals: (series:) %>
+
+<% own_links = series.static_metadata.own_links %>
+<% socials = Ui::SocialLinksComponent.new(series.static_metadata).platforms.reject { |platform| own_links.key?(platform.field) } %>
+<% youtube_channels = series.static_metadata.all_youtube_channels.select { |channel| channel["id"].present? } %>
+
+<% if own_links.any? || socials.any? || youtube_channels.any? %>
+  <section class="rounded-2xl border bg-white p-5 shadow-sm" aria-label="Links">
+    <h2 class="mb-3 text-lg font-bold text-gray-900">Links</h2>
+
+    <ul class="-mx-2 flex flex-col">
+      <% own_links.each do |field, url| %>
+        <li>
+          <%= link_to url, target: "_blank", rel: "noopener", class: "flex items-center gap-3 rounded-lg px-2 py-2 text-sm hover:bg-gray-50" do %>
+            <span class="flex size-5 shrink-0 justify-center text-gray-500"><%= meetup_link_icon(field, size: :sm, class: "fill-current") %></span>
+            <span class="font-medium text-gray-900"><%= meetup_link_label(field) %></span>
+            <span class="ml-auto truncate text-gray-400"><%= link_handle(field, url) %></span>
+          <% end %>
+        </li>
+      <% end %>
+
+      <% socials.each do |platform| %>
+        <li>
+          <%= link_to platform.url, target: "_blank", rel: "noopener noreferrer", class: "flex items-center gap-3 rounded-lg px-2 py-2 text-sm hover:bg-gray-50" do %>
+            <span class="flex size-5 shrink-0 justify-center text-gray-500"><%= fab(platform.icon, size: :sm, class: "fill-current") %></span>
+            <span class="font-medium text-gray-900"><%= platform.label %></span>
+            <span class="ml-auto truncate text-gray-400"><%= link_handle(platform.field, platform.url) %></span>
+          <% end %>
+        </li>
+      <% end %>
+
+      <% youtube_channels.each do |channel| %>
+        <li>
+          <%= link_to "https://www.youtube.com/channel/#{channel["id"]}", target: "_blank", rel: "noopener noreferrer", class: "flex items-center gap-3 rounded-lg px-2 py-2 text-sm hover:bg-gray-50" do %>
+            <span class="flex size-5 shrink-0 justify-center text-gray-500"><%= fab("youtube", size: :sm, class: "fill-current") %></span>
+            <span class="font-medium text-gray-900">YouTube</span>
+            <span class="ml-auto truncate text-gray-400"><%= channel["handle"].presence || channel["name"] %></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>

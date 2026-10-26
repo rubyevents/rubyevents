@@ -1,0 +1,55 @@
+<%# locals: (talk:) %>
+
+<% speakers = talk.speakers.to_a %>
+
+<%# Intros, outros and announcements frame the meetup, so they get a compact row %>
+<% compact = talk.kind.in?(%w[intro outro announcement]) %>
+
+<%= link_to talk_path(talk), class: class_names("flex items-center gap-4 px-4 hover:bg-gray-100", compact ? "py-1.5" : "py-3"), data: {turbo_frame: "_top"} do %>
+  <div class="flex w-12 shrink-0 justify-center">
+    <% if speakers.size > 1 %>
+      <%= render Ui::AvatarGroupComponent.new(speakers, size: :sm, max: 2) %>
+    <% elsif speakers.one? %>
+      <%= ui_avatar(speakers.first, size: compact ? :xs : :md) %>
+    <% else %>
+      <%= fa("microphone", size: :md, class: "fill-gray-400") %>
+    <% end %>
+  </div>
+
+  <div class="flex min-w-0 flex-1 flex-col gap-0.5">
+    <span class="<%= class_names("text-gray-900 [text-wrap:pretty]", compact ? "text-sm font-medium" : "font-semibold") %>"><%= talk.title %></span>
+
+    <span class="text-gray-500 <%= compact ? "text-xs" : "text-sm" %>">
+      <%= speakers.map(&:name).to_sentence %>
+
+      <% if talk.kind.present? && talk.kind != "talk" %>
+        <% if speakers.any? %>
+          •
+        <% end %>
+        <%= talk.kind.humanize %>
+      <% end %>
+    </span>
+  </div>
+
+  <% if talk.published? && compact %>
+    <span class="flex shrink-0 items-center gap-1 text-xs font-medium text-primary">
+      <%= fa("play", size: :xs, class: "fill-current") %> Watch
+    </span>
+  <% elsif talk.published? %>
+    <span
+      class="
+        relative flex aspect-video w-28 shrink-0 items-center justify-center overflow-hidden rounded-lg border
+        bg-gray-900
+      "
+    >
+      <%= image_tag talk.thumbnail(:thumbnail_sm), alt: "", loading: :lazy, class: "absolute inset-0 size-full scale-110 object-cover blur-[2px]" %>
+      <span class="absolute inset-0 bg-black/45"></span>
+
+      <span class="relative flex items-center gap-1 text-sm font-semibold text-white">
+        <%= fa("play", size: :xs, class: "fill-current") %> Watch
+      </span>
+    </span>
+  <% elsif talk.scheduled? %>
+    <%= ui_badge("Upcoming", kind: :secondary, outline: true, size: :sm, class: "shrink-0") %>
+  <% end %>
+<% end %>

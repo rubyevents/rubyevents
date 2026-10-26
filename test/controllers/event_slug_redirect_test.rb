@@ -35,14 +35,25 @@ class EventSlugRedirectTest < ActionDispatch::IntegrationTest
   end
 
   test "redirects an old slug kept by the series to the series' only event" do
+    series = EventSeries.create!(name: "Test Conf", slug: "test-conf", kind: "conference")
+    event = Event.create!(name: "Test Conf 2025", slug: "test-conf-2025", series: series)
+    series.aliases.create!(name: "testconf", slug: "testconf")
+
+    get "/events/testconf/talks"
+
+    assert_response :moved_permanently
+    assert_redirected_to "/events/#{event.slug}/talks"
+  end
+
+  test "redirects an old slug of a meetup group with a single meetup to the group" do
     series = EventSeries.create!(name: "Philly.rb", slug: "phillyrb", kind: "meetup")
-    event = Event.create!(name: "Philly.rb Meetup", slug: "phillyrb-meetup", series: series)
+    Event.create!(name: "Philly.rb January 2026", slug: "phillyrb-2026-01-14", series: series, kind: "meetup", start_date: "2026-01-14", end_date: "2026-01-14")
     series.aliases.create!(name: "philly-rb", slug: "philly-rb")
 
     get "/events/philly-rb/talks"
 
     assert_response :moved_permanently
-    assert_redirected_to "/events/#{event.slug}/talks"
+    assert_redirected_to "/events/series/phillyrb"
   end
 
   test "does not redirect the current slug" do

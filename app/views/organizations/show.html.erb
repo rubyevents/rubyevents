@@ -2,20 +2,40 @@
 
 <%= turbo_frame_tag dom_id(@organization), data: {turbo_action: "advance", turbo_frame: "_top"} do %>
   <div class="container py-8">
-    <% if @events_by_year.any? || @involved_events.any? %>
+    <% supported_count = @events.size + @group_sponsorships.size %>
+
+    <% if supported_count > 0 || @involvements_by_role.any? %>
       <div role="tablist" class="tabs tabs-bordered mt-6">
         <input
           type="radio"
           name="organization_tabs"
           role="tab"
           class="tab px-6"
-          aria-label="Supported Events (<%= @events.size %>)"
-          <% if @events.size > 0 %>
+          aria-label="Supported Events (<%= supported_count %>)"
+          <% if supported_count > 0 %>
             checked
           <% end %>
         >
 
         <div role="tabpanel" class="tab-content mt-6">
+          <% if @group_sponsorships.any? %>
+            <div class="mb-12">
+              <h2 class="mb-6 text-2xl font-bold text-gray-900">Meetup groups</h2>
+
+              <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <% @group_sponsorships.each do |sponsor| %>
+                  <div class="flex flex-col gap-2">
+                    <%= render (sponsor.event_series.meetup? ? "events/series/meetup_card" : "events/series/card"), series: sponsor.event_series %>
+
+                    <% if sponsor.period_label %>
+                      <p class="text-center text-sm text-gray-500">Sponsor <%= sponsor.period_label %></p>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
           <% @events_by_year.each do |year, events| %>
             <div class="mb-12">
               <h2 class="mb-6 text-2xl font-bold text-gray-900">
@@ -37,8 +57,8 @@
             name="organization_tabs"
             role="tab"
             class="tab px-6"
-            aria-label="Involvements (<%= @involved_events.size %>)"
-            <% if @events.size <= 0 && @involvements_by_role.any? %>
+            aria-label="Involvements (<%= @involvements_count %>)"
+            <% if supported_count <= 0 %>
               checked
             <% end %>
           >
@@ -50,7 +70,17 @@
 
                 <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                   <% involvements.each do |involvement| %>
-                    <%= render partial: "events/card", locals: {event: involvement.event} %>
+                    <% if involvement.event_series %>
+                      <div class="flex flex-col gap-2">
+                        <%= render (involvement.event_series.meetup? ? "events/series/meetup_card" : "events/series/card"), series: involvement.event_series %>
+
+                        <% if involvement.period_label %>
+                          <p class="text-center text-sm text-gray-500"><%= involvement.period_label %></p>
+                        <% end %>
+                      </div>
+                    <% else %>
+                      <%= render partial: "events/card", locals: {event: involvement.event} %>
+                    <% end %>
                   <% end %>
                 </div>
               </div>
@@ -220,13 +250,17 @@
               <h3 class="mb-4 text-lg font-semibold">Additional Sponsorships</h3>
 
               <div class="space-y-2">
-                <% @statistics[:badges_with_events].each do |badge, event| %>
+                <% @statistics[:badges_with_events].each do |badge, owner| %>
                   <div class="flex items-center gap-2">
                     <span class="badge badge-primary badge-lg"><%= badge %></span>
                     <span class="text-sm text-gray-600">at</span>
 
-                    <%= link_to event.name, event_path(event), class: "text-sm hover:underline", data: {turbo_frame: "_top"} %>
-                    <span class="text-sm text-gray-500">(<%= event.start_date&.year %>)</span>
+                    <% if owner.is_a?(EventSeries) %>
+                      <%= link_to owner.name, series_path(owner), class: "text-sm hover:underline", data: {turbo_frame: "_top"} %>
+                    <% else %>
+                      <%= link_to owner.name, event_path(owner), class: "text-sm hover:underline", data: {turbo_frame: "_top"} %>
+                      <span class="text-sm text-gray-500">(<%= owner.start_date&.year %>)</span>
+                    <% end %>
                   </div>
                 <% end %>
               </div>

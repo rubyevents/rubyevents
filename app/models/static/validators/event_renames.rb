@@ -77,7 +77,10 @@ module Static
       end
 
       def known_ids
-        Static::Event.all.flat_map { [it["id"], *it.old_ids] }.compact
+        event_ids = Static::Event.all.flat_map { [it["id"], *it.old_ids] }
+        merged_ids = Static::EventSeries.all.flat_map(&:old_event_ids)
+
+        (event_ids + merged_ids).compact
       end
 
       def new_events_in_series

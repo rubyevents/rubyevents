@@ -5,7 +5,7 @@ class CountriesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @countries_by_continent = Event.distinct
+    @countries_by_continent = Event.ruby_focused.distinct
       .where.not(country_code: [nil, ""])
       .pluck(:country_code)
       .filter_map { |code| Country.find_by(country_code: code) }
@@ -13,7 +13,7 @@ class CountriesController < ApplicationController
       .sort_by { |continent, _| continent&.name || "ZZ" }
       .to_h
 
-    @events_by_country = Event.includes(:series)
+    @events_by_country = Event.ruby_focused.includes(:series)
       .where.not(country_code: [nil, ""])
       .grouped_by_country
       .to_h
@@ -71,7 +71,7 @@ class CountriesController < ApplicationController
   def find_nearby_users(country)
     return [] unless country.respond_to?(:alpha2)
 
-    events_with_coords = Event.where(country_code: country.alpha2)
+    events_with_coords = Event.ruby_focused.where(country_code: country.alpha2)
       .where.not(latitude: nil, longitude: nil)
       .limit(10)
 
@@ -100,7 +100,7 @@ class CountriesController < ApplicationController
 
     continent_country_codes = @continent.countries.map(&:alpha2) - exclude_country_codes
 
-    Event.includes(:series)
+    Event.ruby_focused.includes(:series)
       .where(country_code: continent_country_codes)
       .upcoming
   end

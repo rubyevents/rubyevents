@@ -1,0 +1,51 @@
+<%# locals: (involvements:, sponsors:) %>
+
+<% if involvements.any? %>
+  <div id="series-involvements" class="mt-12">
+    <% involvements.group_by(&:role).each do |role, role_involvements| %>
+      <% current, former = role_involvements.partition(&:current?) %>
+
+      <% [[role.pluralize, current], ["Former #{role.pluralize.downcase}", former]].each do |heading, entries| %>
+        <% next if entries.empty? %>
+
+        <h2 class="mb-4 text-primary"><%= heading %></h2>
+
+        <div class="mb-8 flex flex-wrap gap-2">
+          <% entries.each do |involvement| %>
+            <% involvementable = involvement.involvementable %>
+
+            <%= link_to (involvementable.is_a?(User) ? profile_path(involvementable) : organization_path(involvementable)), class: "flex items-center gap-2 rounded-lg border bg-white px-3 py-2 hover:bg-gray-200" do %>
+              <span class="font-medium"><%= involvementable.name %></span>
+
+              <% if involvement.period? %>
+                <span class="text-sm text-gray-500"><%= involvement.period_label %></span>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if sponsors.any? %>
+  <div id="series-sponsors" class="mt-12">
+    <h2 class="mb-4 text-primary">Sponsors</h2>
+
+    <div class="flex flex-wrap gap-2">
+      <% sponsors.each do |sponsor| %>
+        <%= link_to organization_path(sponsor.organization), class: "flex items-center gap-2 rounded-lg border bg-white px-3 py-2 hover:bg-gray-200 #{"opacity-60" unless sponsor.current?}" do %>
+          <span class="font-medium"><%= sponsor.organization.name %></span>
+
+          <% if sponsor.tier.present? %>
+            <span class="text-sm text-gray-500"><%= sponsor.tier %></span>
+          <% end %>
+
+          <% if sponsor.period? %>
+            <span class="text-sm text-gray-500"><%= sponsor.period_label %></span>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

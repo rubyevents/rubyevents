@@ -1,0 +1,36 @@
+---
+- id: "andy-maleh-montrealrb-2022-07-06"
+  old_id: "andy-maleh-montrealrb-meetup-july-2022"
+  title: "How I Built My Code Editor in Ruby"
+  raw_title: "How I Built My Code Editor in Ruby by Andy Maleh (Montreal.rb Ruby Talk 2022/07)"
+  date: "2022-07-06"
+  published_at: "2022-07-09T18:12:20Z"
+  slides_url: "https://www.slideshare.net/AndyMaleh/how-i-built-my-code-editor-in-ruby"
+  video_provider: "youtube"
+  video_id: "PdH1GtEMJi8"
+  description: |-
+    Gladiator is a code editor that was built completely in Ruby. It supports syntax highlighting for over 30 programming languages, split pane, file name lookup, a variety of keyboard shortcuts, undo/redo, find and replace, line jumping, monitoring external file system changes, ignoring uneditable files, expanding to fill the screen, running Ruby code, remembering the last open files, and multi-project support. In fact, I have been using Gladiator for all my code editing needs since May of 2020.
+
+    In this talk, I will present Gladiator's features, and then dig into the implementation of every feature in Ruby, covering things like the Model-View-Controller and Model-View-Presenter architectural patterns, how to build custom widgets, how to implement file editing commands, and how to support undo/redo.
+
+    Attendees should walk out of this talk with rudimentary knowledge of how to build a code editor in Ruby.
+
+    Related links:
+
+    Gladiator: https://github.com/AndyObtiva/glimmer-cs-gladiator
+    Glimmer DSL for SWT: https://github.com/AndyObtiva/glimmer-dsl-swt
+    Glimmer Process: https://github.com/AndyObtiva/glimmer/blob/master/PROCESS.md
+  speakers:
+    - Andy Maleh
+  additional_resources:
+    - name: "Gladiator"
+      type: "repo"
+      url: "https://github.com/AndyObtiva/glimmer-cs-gladiator"
+
+    - name: "Glimmer DSL for SWT"
+      type: "repo"
+      url: "https://github.com/AndyObtiva/glimmer-dsl-swt"
+
+    - name: "Glimmer Process"
+      type: "repo"
+      url: "https://github.com/AndyObtiva/glimmer/blob/master/PROCESS.md"

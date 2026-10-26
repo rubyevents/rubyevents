@@ -60,6 +60,23 @@ namespace :validate do
 
   # File-level validations
 
+  def validate_baseline_ids
+    file_errors = Static::Validators::BaselineIds.errors.group_by(&:file_path)
+
+    if file_errors.empty?
+      puts Gum.style("✓ Every series, event and talk id of the baseline still exists or is kept as a former id!", foreground: "2")
+    else
+      print_validator_errors(file_errors)
+    end
+
+    file_errors.values.flatten
+  end
+
+  desc "Validate that every series, event and talk id of the merge base with main still exists or is kept as a former id"
+  task baseline_ids: :environment do
+    exit 1 if validate_baseline_ids.any?
+  end
+
   def validate_cfp_files
     validate_files(
       files: Dir.glob(Static::CFP.file_glob),
@@ -398,6 +415,7 @@ namespace :validate do
       "Validating videos.yml files" => -> { validate_video_files.none? },
       "Validating speakers.yml is in sync" => -> { validate_speakers_in_sync },
       "Running yerba check (schemas, formatting, uniqueness)" => -> { run_yerba_check },
+      "Validating ids against the baseline" => -> { validate_baseline_ids.none? },
       "Validating cfp.yml files" => -> { validate_cfp_files.none? },
       "Validating data file locations" => -> { validate_data_files.none? },
       "Validating event asset dimensions" => -> { validate_event_assets.none? },

@@ -40,25 +40,25 @@ class EventTest < ActiveSupport::TestCase
     refute events(:wnb_rb_meetup).meetup_inactive?
   end
 
-  test "formatted_dates shows a meetup of an inactive series as inactive" do
-    series = EventSeries.create!(name: "Triangle.rb", slug: "triangle-rb", kind: :meetup)
+  test "formatted_dates shows a meetup of an ended series as inactive" do
+    series = EventSeries.create!(name: "Triangle.rb", slug: "raleighrb", kind: :meetup)
     event = Event.create!(name: "Triangle.rb Meetup", kind: :meetup, series: series)
 
     assert event.meetup_inactive?
     assert_equal "Inactive", event.formatted_dates
   end
 
-  test "description uses the past tense for a meetup of an inactive series" do
-    series = EventSeries.create!(name: "Triangle.rb", slug: "triangle-rb", kind: :meetup)
+  test "description uses the past tense for a meetup of an ended series" do
+    series = EventSeries.create!(name: "Triangle.rb", slug: "raleighrb", kind: :meetup)
     event = Event.create!(name: "Triangle.rb Meetup", kind: :meetup, series: series)
 
     assert_match "Triangle.rb was a", event.description
   end
 
-  test "meetup_inactive? is false for a conference of an inactive series" do
+  test "meetup_inactive? is false for a conference of an ended series" do
     event = events(:railsconf_2025)
 
-    assert event.series.static_metadata.inactive?
+    assert event.series.ended?
     refute event.meetup_inactive?
   end
 
@@ -380,17 +380,13 @@ class EventTest < ActiveSupport::TestCase
   end
 
   test "today? meetup is not today" do
-    event = events(:wnb_rb_meetup)
-    talk = talks(:non_english_talk_one)
-    talk.update!(date: 3.days.ago, event: event)
+    event = Event.new(start_date: 3.days.ago, end_date: 3.days.ago, kind: :meetup)
 
-    assert !event.today?
+    assert_not event.today?
   end
 
   test "today? meetup is today" do
-    event = events(:wnb_rb_meetup)
-    talk = talks(:non_english_talk_one)
-    talk.update!(date: Date.today, event: event)
+    event = Event.new(start_date: Date.today, end_date: Date.today, kind: :meetup)
 
     assert event.today?
   end

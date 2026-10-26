@@ -25,3 +25,10 @@ Example:
 
     This will create:
         /data/rubyconf-au/rubyconf-au-2027/event.yml
+
+  Create a meetup. Its folder is its series and date, and its title, location, timezone and coordinates come from the series.
+    bin/rails g event --event-series lrug --kind meetup --date 2026-11-09 \
+      --meetup "https://www.meetup.com/lrug/events/312345678/"
+
+    This will create:
+        /data/lrug/lrug-2026-11-09/event.yml

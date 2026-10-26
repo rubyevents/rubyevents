@@ -1,0 +1,26 @@
+---
+- id: "andra-veraart-rotterdam-rb-2017-04-06"
+  old_id: "andra-veraart-rotterdam-rb-april-2017"
+  title: "Confident Ruby"
+  date: "2017-04-06"
+  video_provider: "not_recorded"
+  video_id: "andra-veraart-rotterdam-rb-2017-04-06"
+  description: |-
+    This talk is basically a book report. Well... kind of. Over the summer I've read Avdi Grimm's Confident Ruby, and I'd like to share some neat tricks I've learned while reading it.
+
+    Confident Ruby refers to code that doesn't constantly question itself or its users. That does as little type checking as possible, is less susceptible to deploying typos and tries to be a bit more informative when stuff does eventually break.
+
+    Its impossible to discuss everything in the book, but I'll try to highlight a few patterns that will hopefully convey the code style the author is aiming for.
+  speakers:
+    - Andra Veraart
+
+- id: "thijs-cadier-rotterdam-rb-2017-04-06"
+  old_id: "thijs-cadier-rotterdam-rb-april-2017"
+  title: "Processing streaming data at a large scale with Kafka"
+  date: "2017-04-06"
+  video_provider: "not_recorded"
+  video_id: "thijs-cadier-rotterdam-rb-2017-04-06"
+  description: |-
+    Using a standard Rails stack is great, but when you want to process streams of data at a large scale you'll hit the stack's limitations. What if you want to build an analytics system on a global scale and want to stay within the Ruby world you know and love? In this talk we'll see how we can leverage Kafka to build and painlessly scale an analytics pipeline. We'll talk about Kafka's unique properties that make this possible, and we'll go through a full demo application step by step. At the end of the talk you'll have a good idea of when and how to get started with Kafka yourself.
+  speakers:
+    - Thijs Cadier

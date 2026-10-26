@@ -9,7 +9,6 @@ class SubVideoSchema < ApplicationSchema
   string :description, required: false
   string :kind, description: "Type of video (e.g., 'keynote', 'lightning')", required: false, enum: Talk.kinds.keys
   array :speakers, of: :string, required: false
-  string :event_name, required: false
   string :date, required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
   string :published_at, required: false, min_length: 1
   string :announced_at, required: false, min_length: 1

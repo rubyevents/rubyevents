@@ -213,7 +213,7 @@ class Location
     return content_tag(:span, text) if text.blank?
 
     if show_links && path
-      link_to(text, path, class: link_class)
+      link_to(text, path, class: link_class, data: {turbo_frame: "_top"})
     else
       content_tag(:span, text)
     end

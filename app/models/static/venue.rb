@@ -2,7 +2,8 @@
 
 module Static
   class Venue < Yerba::Record::Base
-    self.path = "data/:series_id/:event_id/venue.yml"
+    self.path = "data/*parent_path/:series_id/:event_id/venue.yml"
+    self.skipped_beside = "series.yml"
 
     schema VenueSchema
 

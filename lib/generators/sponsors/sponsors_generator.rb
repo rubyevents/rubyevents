@@ -12,22 +12,29 @@ class SponsorsGenerator < Generators::EventBase
   class_option :tier, type: :string, desc: "Sponsor tier (e.g. Platinum, Gold)", default: "Sponsors", group: "Fields"
   class_option :logo_url, type: :string, desc: "URL to sponsor logo", required: false, group: "Fields"
   class_option :badge, type: :string, desc: "Sponsor badge", required: false, group: "Fields"
+  class_option :from, type: :string, desc: "With --series-level: when the sponsorship started (YYYY, YYYY-MM or YYYY-MM-DD)", required: false, group: "Fields"
+  class_option :to, type: :string, desc: "With --series-level: when the sponsorship ended (YYYY, YYYY-MM or YYYY-MM-DD)", required: false, group: "Fields"
+
+  series_level_files!
+
   class_option :tiers, type: :string, desc: "Comma-separated list of all sponsorship tiers (e.g. 'Platinum,Gold'), include on first run", required: false, group: "Fields"
 
-  Sponsor = Struct.new("Sponsor", :name, :website, :slug, :logo_url, :tier, :badge) do |sponsor_struct|
+  Sponsor = Struct.new("Sponsor", :name, :website, :slug, :logo_url, :tier, :badge, :from, :to) do |sponsor_struct|
     def for_document
       {
         name: name,
         website: website,
         slug: slug,
         logo_url: logo_url,
-        badge: badge
+        badge: badge,
+        from: from,
+        to: to
       }.compact
     end
   end
 
   def sponsors_file
-    @sponsors_file ||= File.join(event_directory, "sponsors.yml")
+    @sponsors_file ||= File.join(target_directory, "sponsors.yml")
   end
 
   def tiers
@@ -51,7 +58,9 @@ class SponsorsGenerator < Generators::EventBase
       slug: options[:name]&.parameterize,
       logo_url: options[:logo_url],
       tier: options[:tier],
-      badge: options[:badge]
+      badge: options[:badge],
+      from: options[:from],
+      to: options[:to]
     )
   end
 
@@ -84,6 +93,7 @@ class SponsorsGenerator < Generators::EventBase
         || sponsor_tiers.last
       say "Adding sponsor to tier: #{tier["name"]}", :green
       tier.sponsors.create(sponsor_details.for_document)
+      gsub_file sponsors_file, /^(\s+(?:from|to): )(\d{4}(?:-\d{2}(?:-\d{2})?)?)$/, '\1"\2"', verbose: false
     else
       say "No sponsor details provided, skipping sponsor addition", :yellow
     end

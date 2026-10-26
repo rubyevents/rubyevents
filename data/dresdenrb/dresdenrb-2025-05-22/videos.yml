@@ -1,0 +1,40 @@
+---
+- id: "benjamin-deutscher-dresdenrb-2025-05-22"
+  old_id: "dresden-rb-meetup-may-2025-kamal"
+  title: "Kamal - Deploy web apps anywhere"
+  date: "2025-05-22"
+  video_provider: "not_recorded"
+  video_id: "benjamin-deutscher-dresdenrb-2025-05-22"
+  description: |-
+    Short intro to kamal including a live demo.
+
+    What will be covered:
+
+    * What is kamal
+    * Kamals concept
+    * What features are there
+    * Demo of build and deploy
+  speakers:
+    - Benjamin Deutscher
+
+- id: "peter-ramm-dresdenrb-2025-05-22"
+  old_id: "dresden-rb-meetup-may-2025-jarbler"
+  title: "Jarbler: Pack a Ruby application into an executable jar file."
+  date: "2025-05-22"
+  slides_url: "https://speakerdeck.com/rammpeter/jarbler-run-a-ruby-application-as-java-jar-file"
+  video_provider: "not_recorded"
+  video_id: "peter-ramm-dresdenrb-2025-05-22"
+  description: |-
+    Jarbler is a solution that packages Ruby applications in a jar file so that they can be executed on the target environment without a Ruby runtime environment under Java.
+
+    https://github.com/rammpeter/jarbler
+
+    The main motivation for the function in principle is to be able to run Ruby applications without Ruby being installed on the target system. This is particularly important for frequently used apps where the various runtime environments in Linux, Windows or Mac OS are not known beforehand. Java is a lower hurdle than Ruby. The driver for Development of this tool was that the actual standard tool “Warbler” was only poorly maintained in the JRuby cosmos and was no longer usable with the current JRuby versions.
+
+    Jarbler can be used as a standalone gem, may one day migrate to JRuby as a standard tool.
+  speakers:
+    - Peter Ramm
+  additional_resources:
+    - name: "rammpeter/jarbler"
+      type: "repo"
+      url: "https://github.com/rammpeter/jarbler"

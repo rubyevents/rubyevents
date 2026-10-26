@@ -1,0 +1,21 @@
+---
+- id: "dimiter-petrov-rubyonrails-ch-2019-12-04"
+  old_id: "dimiter-petrov-railshck-december-2019"
+  title: "Icecast Stream Parsing"
+  raw_title: "Icecast Stream Parsing"
+  date: "2019-12-04"
+  published_at: "2019-12-05T08:07:25Z"
+  video_provider: "youtube"
+  video_id: "V5X_J0hTkVY"
+  description: |-
+    Swiss artists registered on mx3.ch get notified when their songs are played on the radio. How does one get airplay information from arbitrary radio streams? How is it matched against a database of songs?
+
+    In this presentation, we are going to see the challenges encountered while building a production-ready airplay matching system, including:
+
+    * writing a Ruby parser for the Icecast protocol from scratch
+    * working around peculiarities in Net::HTTP
+    * threading, queues and ActiveRecord connection pools
+    * gracefully handling network errors
+    * fuzzy matching with PostgreSQL
+  speakers:
+    - Dimiter Petrov

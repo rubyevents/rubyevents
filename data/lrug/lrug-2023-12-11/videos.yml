@@ -1,0 +1,28 @@
+---
+- id: "christian-bruckmayer-lrug-2023-12-11"
+  old_id: "christian-bruckmayer-lrug-december-2023"
+  title: "Test Smarter, Not Harder - Crafting a Test Selection Framework from Scratch"
+  date: "2023-12-11"
+  announced_at: "2023-11-09T12:00:00Z"
+  video_provider: "not_published"
+  video_id: "christian-bruckmayer-lrug-2023-12-11"
+  description: |-
+    [Christian Bruckmayer](https://twitter.com/bruckmayer) says:
+
+    > The simplest way of running tests is to run all of them, regardless of what changes you
+    > are testing. However, depending on the size of your test suite, this will either get slow
+    > or expensive. At Shopify we have almost 300,000 Rails tests and we add 50,000 more
+    > annually. The sheer amount of tests and their growth makes it impossible to run all tests,
+    > all the time! Hence we implemented a framework to only run tests relevant to your code
+    > changes.
+    >
+    > We will build a test selection framework from scratch in this workshop. We will begin by
+    > exploring the fundamentals of such a framework: code analysis. After that we will dive into
+    > minitest reporters, how they work and how we can use them to generate a test map. Finally
+    > we will use the generated test map to only run tests relevant to your code changes.
+    > Attendees will walk away with a solid understanding of what test selection is, how it works
+    > and how to implement it.
+
+    This is a workshop, so bring your laptop!
+  speakers:
+    - Christian Bruckmayer

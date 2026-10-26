@@ -103,7 +103,7 @@ class Continent
   end
 
   def events
-    Event.where(country_code: country_codes)
+    Event.ruby_focused.where(country_code: country_codes)
   end
 
   def users

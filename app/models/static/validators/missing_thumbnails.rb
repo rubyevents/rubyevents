@@ -26,27 +26,30 @@ module Static
 
         videos_file.pairs.flat_map do |video, talks|
           parent_id = video["id"]
+          cued = (missing_thumbnail_error(video, video["id"], thumbnail_path(nil, video["id"])) if video["id"].present?)
 
-          talks.filter_map do |child|
-            next unless speaker?(child)
-            next unless usable_start_cue?(child)
+          nested = talks.filter_map do |child|
+            next if parent_id.blank? || child["video_id"].blank?
 
-            video_id = child["video_id"]
-            next if parent_id.blank? || video_id.blank?
-
-            path = thumbnail_path(parent_id, video_id)
-            next if File.exist?(path)
-
-            location = child.source_location("video_id") || child.source_location("start_cue")
-
-            Static::Validators::Error.new(
-              %(missing thumbnail for talk "#{video_id}" at #{relative_path(path)}. Run `bin/rails extract_thumbnails` to generate it.),
-              file_path: @file_path,
-              line: location&.start_line || 1,
-              end_line: location&.end_line
-            )
+            missing_thumbnail_error(child, child["video_id"], thumbnail_path(parent_id, child["video_id"]))
           end
+
+          [cued, *nested].compact
         end
+      end
+
+      def missing_thumbnail_error(talk, name, path)
+        return unless speaker?(talk) && usable_start_cue?(talk)
+        return if File.exist?(path)
+
+        location = talk.source_location("video_id") || talk.source_location("start_cue")
+
+        Static::Validators::Error.new(
+          %(missing thumbnail for talk "#{name}" at #{relative_path(path)}. Run `bin/rails extract_thumbnails` to generate it.),
+          file_path: @file_path,
+          line: location&.start_line || 1,
+          end_line: location&.end_line
+        )
       end
 
       def videos_file
@@ -65,7 +68,7 @@ module Static
       end
 
       def thumbnail_path(parent_id, video_id)
-        Rails.root.join(THUMBNAIL_ROOT, event_slug, parent_id, "#{video_id}.webp")
+        Rails.root.join(THUMBNAIL_ROOT, *[event_slug, parent_id, "#{video_id}.webp"].compact)
       end
 
       def event_slug

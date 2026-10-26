@@ -1,9 +1,11 @@
 <%# locals: (event:, participation: nil) %>
 
+<% meetup = event.meetup? && event.start_date.present? %>
+
 <div
   class="
-    align-center mt-3 flex w-full justify-center border-b border-t hotwire-native:hidden md:h-[198px] lg:h-[267px]
-    xl:h-[336px] 2xl:h-[405px]
+    align-center mt-3 flex w-full justify-center border-b border-t hotwire-native:hidden
+    <%= meetup ? "h-28 overflow-hidden md:h-40 lg:h-48 xl:h-56" : "md:h-[198px] lg:h-[267px] xl:h-[336px] 2xl:h-[405px]" %>
   "
   style="
     view-transition-name: hero;
@@ -16,7 +18,7 @@
     <% end %>
   "
 >
-  <%= image_tag image_path(event.banner_image_path), alt: event.name, class: "w-full md:container" %>
+  <%= image_tag image_path(event.banner_image_path), alt: event.name, class: class_names("w-full md:container", "h-full object-contain" => meetup) %>
 </div>
 
 <% if event.cancelled? %>
@@ -25,7 +27,7 @@
   </div>
 <% end %>
 
-<div class="container py-8">
+<div class="container <%= meetup ? "pt-8" : "py-8" %>">
   <div class="align-center block justify-between gap-8 lg:flex">
     <div class="lg:justify-right mb-6 flex flex-col items-center gap-8 text-center lg:mb-0 lg:flex-row lg:text-left">
       <%= image_tag image_path(event.avatar_image_path),
@@ -37,17 +39,29 @@
       <div class="flex flex-col justify-center">
         <h1 class="mb-2 font-bold text-black"><%= title event.name %></h1>
 
+        <% if event.subtitle.present? %>
+          <p class="-mt-1 mb-2 text-lg font-medium text-gray-700"><%= event.subtitle %></p>
+        <% end %>
+
         <h3 class="text-[#636B74]">
           <%= event.to_location.to_html %> • <%= event.formatted_dates %>
+
+          <% if meetup && (time_range = meetup_time_range(event)) %>
+            • <%= time_range %>
+          <% end %>
         </h3>
 
-        <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website, class: "break-all" %>
-        <%= render Ui::SocialLinksComponent.new(event.static_metadata) %>
+        <% if meetup %>
+          <%= link_to "A meetup of #{event.series.name}", series_path(event.series), class: "link" %>
+        <% else %>
+          <%= external_link_to event.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), event.website, class: "break-all" %>
+          <%= render Ui::SocialLinksComponent.new(event.static_metadata) %>
+        <% end %>
       </div>
     </div>
 
     <div class="flex flex-col gap-2">
-      <%= ui_button "View all #{event.series.name} events", url: series_path(event.series), kind: :secondary, size: :sm, class: "w-full" %>
+      <%= ui_button(meetup ? "All meetups of #{event.series.name}" : "View all #{event.series.name} events", url: series_path(event.series), kind: :secondary, size: :sm, class: "w-full") %>
       <%= render "events/participation_button", event: event, participation: participation %>
 
       <% unless event.cancelled_or_inactive? %>
@@ -80,9 +94,11 @@
     </div>
   </div>
 
-  <p class="mt-6 max-w-[700px] text-[#636B74]">
-    <%= event.description %>
-  </p>
+  <% unless meetup %>
+    <p class="mt-6 max-w-[700px] text-[#636B74]">
+      <%= event.description %>
+    </p>
+  <% end %>
 
   <% event.cfps.each do |cfp| %>
     <% next unless cfp.open? %>

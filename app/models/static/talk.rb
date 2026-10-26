@@ -4,7 +4,8 @@ module Static
   class Talk < Yerba::Record::Base
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
-    self.path = "data/:series_id/:event_id/videos.yml"
+    self.path = "data/*parent_path/:series_id/:event_id/videos.yml"
+    self.skipped_beside = "series.yml"
     self.flatten = true
 
     schema VideoSchema
@@ -135,11 +136,7 @@ module Static
     end
 
     def convert_cue_to_seconds(cue)
-      return nil if cue.blank?
-
-      cue.split(":").map(&:to_i).reverse.each_with_index.reduce(0) do |sum, (value, index)|
-        sum + value * 60**index
-      end
+      Static::Validators::CueDuration.cue_to_seconds(cue)
     end
 
     def meta_talk?
@@ -157,7 +154,7 @@ module Static
       raise "Event not found for video #{id}" unless event
 
       talk = find_or_initialize_talk
-      talk.parent_talk = parent_talk if parent_talk
+      talk.parent_talk = parent_talk
       talk.update_from_yml_metadata!(event: event)
 
       Search::Backend.index(talk) if index

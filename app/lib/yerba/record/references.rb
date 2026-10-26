@@ -11,6 +11,10 @@ module Yerba
         @declarations ||= {}
       end
 
+      def self.reference_name(item)
+        item.is_a?(Hash) ? item["name"] : item
+      end
+
       class_methods do
         def references(name, class_name: nil, resolver: nil, creator: nil)
           target = class_name.is_a?(Class) ? class_name.name : (class_name || infer_class_name(name, singularize: true))
@@ -32,7 +36,7 @@ module Yerba
 
             ReferencesProxy.new(
               raw: raw,
-              values: Array(self[name.to_s]),
+              values: Array(self[name.to_s]).map { |item| References.reference_name(item) },
               resolver: resolved_resolver,
               creator: resolved_creator,
               entry: self
@@ -47,7 +51,10 @@ module Yerba
 
               if value.is_a?(Array)
                 value.each_with_index.filter_map do |item, index|
-                  Reference.new(value: item, record: record, selector: "#{declaration.field}[#{index}]") if item.present?
+                  selector = item.is_a?(Hash) ? "#{declaration.field}[#{index}].name" : "#{declaration.field}[#{index}]"
+                  name = References.reference_name(item)
+
+                  Reference.new(value: name, record: record, selector: selector) if name.present?
                 end
               elsif value.present?
                 [Reference.new(value: value, record: record, selector: declaration.field)]

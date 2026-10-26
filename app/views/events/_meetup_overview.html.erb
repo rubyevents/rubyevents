@@ -1,0 +1,164 @@
+<%# locals: (event:, talks:, previous_meetup:, next_meetup:, sponsors:) %>
+
+<% series = event.series %>
+<% links = event.static_metadata.own_links %>
+<% group_links = links.empty? ? series.static_metadata.own_links : {} %>
+<% time_range = meetup_time_range(event) %>
+<% venue_file = event.venue.exist? ? event.venue : nil %>
+<% venue = venue_file&.name.presence %>
+<% description = event.static_metadata.description.presence %>
+
+<div class="mt-2 grid grid-cols-1 gap-8 lg:grid-cols-3">
+  <div class="flex min-w-0 flex-col gap-8 lg:col-span-2">
+    <% if description %>
+      <section class="rounded-lg border bg-white p-6">
+        <h2 class="mb-4 text-primary">About this meetup</h2>
+
+        <div class="prose max-w-none break-words text-gray-700 prose-headings:text-gray-900 prose-a:break-all">
+          <%= description_markdown_to_html(description) %>
+        </div>
+      </section>
+    <% end %>
+
+    <% if talks.any? %>
+      <section class="flex flex-col gap-4">
+        <h2 class="text-primary"><%= (talks.size == 1) ? "Talk" : "Talks" %></h2>
+
+        <div class="divide-y overflow-hidden rounded-lg border bg-white">
+          <%= render partial: "events/meetup_talk", collection: talks, as: :talk %>
+        </div>
+      </section>
+    <% end %>
+
+    <% if description.nil? && talks.none? %>
+      <section class="rounded-lg border border-dashed bg-white p-6 text-gray-500">
+        We don't know more about this meetup than its date and place yet.
+        <% if links.any? %>
+          Its page might:
+          <%= safe_join(links.map { |field, url| link_to(meetup_link_label(field), url, class: "link", target: "_blank", rel: "noopener") }, ", ") %>.
+        <% elsif group_links.any? %>
+          The group's <%= group_links_noun(group_links) %> might:
+          <%= safe_join(group_links.map { |field, url| link_to(meetup_link_label(field), url, class: "link", target: "_blank", rel: "noopener") }, ", ") %>.
+        <% end %>
+      </section>
+    <% end %>
+  </div>
+
+  <aside class="order-first flex flex-col gap-6 self-start lg:sticky lg:top-4 lg:order-none">
+    <section class="rounded-lg border bg-white p-6">
+      <ul class="flex flex-col gap-4 text-gray-700">
+        <li class="flex items-start gap-3">
+          <%= fa("calendar", size: :sm, class: "mt-1 shrink-0 fill-current text-gray-500") %>
+          <span class="<%= "line-through" if event.cancelled? %>"><%= l(event.start_date, format: "%A, %B %-d, %Y") %></span>
+        </li>
+
+        <% if time_range %>
+          <li class="flex items-start gap-3">
+            <%= fa("clock", size: :sm, class: "mt-1 shrink-0 fill-current text-gray-500") %>
+            <span><%= time_range %></span>
+          </li>
+        <% end %>
+
+        <li class="flex items-start gap-3">
+          <%= fa("location-dot", size: :sm, class: "mt-1 shrink-0 fill-current text-gray-500") %>
+
+          <span>
+            <% if venue %>
+              <span class="block font-medium"><%= link_to(venue, event_venue_path(event), class: "hover:underline") %></span>
+            <% end %>
+
+            <% if venue_file&.display_address.present? %>
+              <span class="block text-sm text-gray-500"><%= venue_file.display_address %></span>
+
+              <% if event.static_metadata.hybrid? %>
+                <span class="block text-sm text-gray-500">and <%= link_to "online", online_path, class: "hover:underline" %></span>
+              <% end %>
+            <% else %>
+              <%= event.to_location.to_html %>
+            <% end %>
+          </span>
+        </li>
+      </ul>
+
+      <% if links.any? %>
+        <div class="mt-6 flex flex-col gap-2">
+          <% primary_field = links.keys.find { |field| meetup_link_call_to_action?(field, event) } %>
+
+          <% links.each do |field, url| %>
+            <%= link_to url, target: "_blank", rel: "noopener", class: class_names("btn w-full flex-nowrap gap-2 normal-case", (field == primary_field) ? "btn-primary" : "btn-sm btn-outline justify-start") do %>
+              <%= meetup_link_icon(field, size: :xs, class: "shrink-0 fill-current") %>
+              <span><%= meetup_link_text(field, event) %></span>
+            <% end %>
+          <% end %>
+        </div>
+      <% elsif group_links.any? %>
+        <div class="mt-6 flex flex-col gap-2">
+          <p class="text-sm text-gray-500">
+            This meetup has no page of its own yet, but the group's <%= group_links_noun(group_links) %> might have
+            details:
+          </p>
+
+          <% group_links.each do |field, url| %>
+            <%= link_to url, target: "_blank", rel: "noopener", class: "btn btn-sm btn-outline w-full flex-nowrap justify-start gap-2 normal-case" do %>
+              <%= meetup_link_icon(field, size: :xs, class: "shrink-0 fill-current") %>
+              <span class="truncate"><%= (field == "website") ? "Visit #{link_handle(field, url)}" : "#{meetup_link_label(field)} group" %></span>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+
+    <section class="rounded-lg border bg-white p-6">
+      <%= link_to series_path(series), class: "flex items-center gap-3 hover:underline", data: {turbo_frame: "_top"} do %>
+        <%= image_tag image_path(series.avatar_image_path), class: "size-12 shrink-0 rounded-full border", alt: series.name, loading: :lazy %>
+
+        <span class="flex flex-col">
+          <span class="font-semibold"><%= series.name %></span>
+          <span class="text-sm text-gray-500">All meetups of the group</span>
+        </span>
+      <% end %>
+
+      <% if previous_meetup || next_meetup %>
+        <div class="mt-4 grid grid-cols-2 gap-2 border-t pt-4 text-sm">
+          <% if previous_meetup %>
+            <%= link_to event_path(previous_meetup), class: "flex min-w-0 flex-col gap-1 rounded-lg border p-3 transition-colors hover:bg-gray-100", title: previous_meetup.name, data: {turbo_frame: "_top"} do %>
+              <span class="flex items-center gap-1 text-xs font-medium uppercase tracking-wide text-gray-500">
+                <%= fa("arrow-left-long", size: :xs, class: "shrink-0 fill-current") %> Previous
+              </span>
+
+              <span class="font-semibold text-gray-900"><%= l(previous_meetup.start_date, format: :medium) %></span>
+              <span class="line-clamp-2 text-gray-500"><%= previous_meetup.name %></span>
+            <% end %>
+          <% else %>
+            <span></span>
+          <% end %>
+
+          <% if next_meetup %>
+            <%= link_to event_path(next_meetup), class: "flex min-w-0 flex-col items-end gap-1 rounded-lg border p-3 text-right transition-colors hover:bg-gray-100", title: next_meetup.name, data: {turbo_frame: "_top"} do %>
+              <span class="flex items-center gap-1 text-xs font-medium uppercase tracking-wide text-gray-500">
+                Next <%= fa("arrow-right-long", size: :xs, class: "shrink-0 fill-current") %>
+              </span>
+
+              <span class="font-semibold text-gray-900"><%= l(next_meetup.start_date, format: :medium) %></span>
+              <span class="line-clamp-2 text-gray-500"><%= next_meetup.name %></span>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if sponsors.any? %>
+        <div class="mt-4 border-t pt-4 text-sm">
+          <h3 class="mb-2 font-semibold text-gray-900">Sponsored by</h3>
+
+          <ul class="flex flex-col gap-1">
+            <% sponsors.each do |sponsor| %>
+              <li>
+                <%= link_to sponsor.organization.name, organization_path(sponsor.organization), class: "hover:underline", data: {turbo_frame: "_top"} %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </section>
+  </aside>
+</div>

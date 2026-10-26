@@ -21,6 +21,47 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "UID:RUBYEVENTS-#{@event.id}"
   end
 
+  test "should list past meetups among past events" do
+    series = EventSeries.create!(name: "Test.rb", slug: "testrb", kind: :meetup)
+    meetup = Event.create!(name: "Test.rb Meetup", slug: "testrb-2020-01-14", series: series, kind: :meetup, start_date: Date.yesterday, end_date: Date.yesterday)
+
+    get past_events_url
+
+    assert_response :success
+    assert_select "[data-event-id=#{meetup.slug}]"
+    assert_select "nav[aria-label=?] a", "Filter events by kind", text: /Meetups/
+  end
+
+  test "should leave events that aren't about Ruby out of the past and upcoming events" do
+    series = EventSeries.create!(name: "Ruby talks at other events", slug: "ruby-talks-elsewhere", kind: :organisation)
+    past = Event.create!(name: "SPLASH 2025", slug: "splash-2025", series: series, kind: :conference, start_date: Date.yesterday, end_date: Date.yesterday, ruby_focused: false)
+    upcoming = Event.create!(name: "SPLASH 2099", slug: "splash-2099", series: series, kind: :conference, start_date: "2099-10-04", end_date: "2099-10-09", ruby_focused: false)
+
+    get past_events_url
+    assert_response :success
+    assert_select "[data-event-id=#{past.slug}]", 0
+
+    get events_url
+    assert_response :success
+    assert_select "[data-event-id=#{upcoming.slug}]", 0
+
+    get event_url(past)
+    assert_response :success
+  end
+
+  test "should filter upcoming events by kind and keep the continent" do
+    series = EventSeries.create!(name: "Test.rb", slug: "testrb", kind: :meetup)
+    meetup = Event.create!(name: "Test.rb Meetup", slug: "testrb-2099-01-14", series: series, kind: :meetup, start_date: "2099-01-14", end_date: "2099-01-14", country_code: "CH")
+
+    get events_url(kind: "meetup", continent: "europe")
+
+    assert_response :success
+    assert_select "nav[aria-label=?] a[aria-current=page]", "Filter events by kind", text: /Meetups/
+    assert_select "[data-event-id=#{meetup.slug}]"
+    assert_select "[data-event-id=#{@event.slug}]", 0
+    assert_select "nav[aria-label=?] a[href=?]", "Filter events by continent", "/events?continent=asia&kind=meetup"
+  end
+
   test "should render a pill for every continent except Antarctica" do
     get events_url
 
@@ -81,9 +122,9 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should show event events" do
-    get event_events_url(@event)
-    assert_response :success
+  test "should redirect the former events tab to the event" do
+    get "/events/#{@event.slug}/events"
+    assert_redirected_to event_path(@event)
   end
 
   test "should redirect to canonical event" do
@@ -111,24 +152,72 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should redirect an old event slug kept by its series to the series' only event" do
-    series = EventSeries.create!(name: "Philly.rb", slug: "phillyrb", kind: "meetup")
-    event = Event.create!(name: "Philly.rb Meetup", slug: "phillyrb-meetup", series: series)
-    series.aliases.create!(name: "philly-rb", slug: "philly-rb")
+    series = EventSeries.create!(name: "Test Conf", slug: "test-conf", kind: "conference")
+    event = Event.create!(name: "Test Conf 2025", slug: "test-conf-2025", series: series)
+    series.aliases.create!(name: "testconf", slug: "testconf")
 
-    get event_url("philly-rb")
+    get event_url("testconf")
 
     assert_response :moved_permanently
     assert_redirected_to event_path(event)
   end
 
-  test "should not redirect a series slug to an event when the series has several events" do
+  test "should redirect an old slug of a meetup group with a single meetup to the group" do
+    series = EventSeries.create!(name: "Philly.rb", slug: "phillyrb", kind: "meetup")
+    Event.create!(name: "Philly.rb January 2026", slug: "phillyrb-2026-01-14", series: series, kind: "meetup", start_date: "2026-01-14", end_date: "2026-01-14")
+    series.aliases.create!(name: "phillyrb-meetup", slug: "phillyrb-meetup")
+
+    get event_url("phillyrb-meetup")
+
+    assert_response :moved_permanently
+    assert_redirected_to series_path(series)
+  end
+
+  test "should redirect a series slug to the series when the series has several events" do
     series = EventSeries.create!(name: "Test.rb", slug: "testrb", kind: "meetup")
     Event.create!(name: "Test.rb 2025", slug: "testrb-2025", series: series)
     Event.create!(name: "Test.rb 2026", slug: "testrb-2026", series: series)
 
     get event_url("testrb")
 
-    assert_redirected_to root_path
+    assert_response :moved_permanently
+    assert_redirected_to series_path(series)
+  end
+
+  test "should redirect the slug of an event merged into a series to the series" do
+    series = EventSeries.create!(name: "Test.rb", slug: "testrb", kind: "meetup")
+    Event.create!(name: "Test.rb Meetup January 2026", slug: "testrb-2026-01-14", series: series, kind: "meetup", start_date: "2026-01-14", end_date: "2026-01-14")
+    Event.create!(name: "Test.rb Meetup February 2026", slug: "testrb-2026-02-11", series: series, kind: "meetup", start_date: "2026-02-11", end_date: "2026-02-11")
+    series.aliases.create!(name: "testrb-meetup", slug: "testrb-meetup")
+
+    get event_url("testrb-meetup")
+
+    assert_response :moved_permanently
+    assert_redirected_to series_path(series)
+  end
+
+  test "should redirect the slug of a talk that became a meetup to the meetup" do
+    series = EventSeries.create!(name: "Test.rb", slug: "testrb", kind: "meetup")
+    meetup = Event.create!(name: "Test.rb Meetup January 2026", slug: "testrb-2026-01-14", series: series, kind: "meetup", start_date: "2026-01-14", end_date: "2026-01-14")
+    meetup.slug_aliases.create!(name: "testrb-meetup-january-2026", slug: "testrb-meetup-january-2026")
+
+    get talk_url("testrb-meetup-january-2026")
+
+    assert_response :moved_permanently
+    assert_redirected_to event_path(meetup)
+  end
+
+  test "should link a meetup without links of its own to its group's website" do
+    series = EventSeries.create!(name: "Test.rb", slug: "testrb", kind: "meetup")
+    meetup = Event.create!(name: "Test.rb Meetup January 2099", slug: "testrb-2099-01-14", series: series, kind: "meetup", start_date: "2099-01-14", end_date: "2099-01-14")
+    static_series = Static::EventSeries.new(id: "testrb", name: "Test.rb", kind: "meetup", website: "https://testrb.org/")
+
+    Static::EventSeries.stub(:find_by_slug, ->(slug) { static_series if slug == "testrb" }) do
+      get event_url(meetup)
+    end
+
+    assert_response :success
+    assert_select "aside a[href=?]", "https://testrb.org/", text: "Visit testrb.org"
   end
 
   test "should display an empty state message when no events are found" do

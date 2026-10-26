@@ -9,16 +9,70 @@
     },
     "users": {
       "type": "array",
-      "description": "Person names involved in this role",
+      "description": "Person names involved in this role. In a series' involvements.yml, a name can carry the period it held the role",
       "items": {
-        "type": "string"
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Person name"
+              },
+              "from": {
+                "type": "string",
+                "description": "When the role started (YYYY, YYYY-MM or YYYY-MM-DD)",
+                "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+              },
+              "to": {
+                "type": "string",
+                "description": "When the role ended (YYYY, YYYY-MM or YYYY-MM-DD), omitted while it lasts",
+                "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "additionalProperties": false
+          }
+        ]
       }
     },
     "organisations": {
       "type": "array",
-      "description": "Organization names involved in this role",
+      "description": "Organization names involved in this role. In a series' involvements.yml, a name can carry the period it held the role",
       "items": {
-        "type": "string"
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Organization name"
+              },
+              "from": {
+                "type": "string",
+                "description": "When the role started (YYYY, YYYY-MM or YYYY-MM-DD)",
+                "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+              },
+              "to": {
+                "type": "string",
+                "description": "When the role ended (YYYY, YYYY-MM or YYYY-MM-DD), omitted while it lasts",
+                "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "additionalProperties": false
+          }
+        ]
       }
     }
   },

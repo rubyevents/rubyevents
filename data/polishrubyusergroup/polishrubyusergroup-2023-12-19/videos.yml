@@ -1,0 +1,52 @@
+---
+- id: "illia-zub-polishrubyusergroup-2023-12-19"
+  old_id: "illia-zub-ruby-warsaw-meetup-december-2023"
+  title: "When counting lines in Ruby randomly failed our deployments"
+  date: "2023-12-19"
+  video_provider: "not_recorded"
+  video_id: "illia-zub-polishrubyusergroup-2023-12-19"
+  description: ""
+  speakers:
+    - Illia Zub
+
+- id: "tomasz-jozwik-polishrubyusergroup-2023-12-19"
+  old_id: "tomasz-jozwik-ruby-warsaw-meetup-december-2023"
+  title: "Programowanie matematyczne w Ruby"
+  date: "2023-12-19"
+  language: "Polish"
+  video_provider: "not_recorded"
+  video_id: "tomasz-jozwik-polishrubyusergroup-2023-12-19"
+  description: ""
+  speakers:
+    - Tomasz Jóźwik
+
+- id: "miron-marczuk-polishrubyusergroup-2023-12-19"
+  old_id: "miron-marczuk-ruby-warsaw-meetup-december-2023"
+  title: "Christmas Rubying - Ruby gifts discovered during Advent of Code"
+  date: "2023-12-19"
+  video_provider: "not_recorded"
+  video_id: "miron-marczuk-polishrubyusergroup-2023-12-19"
+  description: ""
+  speakers:
+    - Miron Marczuk
+
+- id: "piotr-witek-polishrubyusergroup-2023-12-19"
+  old_id: "piotr-witek-ruby-warsaw-meetup-december-2023"
+  title: "Lightning Talk: Parameter Conflicts in Rails: URL vs. Body"
+  kind: "lightning_talk"
+  date: "2023-12-19"
+  published_at: "2025-04-20T12:59:26Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "PzHOxYAJIWI"
+  description: |-
+    This is a lightning talk about fighting a bug that occurs due to conflicting parameters passed in the URL and in the body. The lightning talk was given at the PLRUG Meetup @Visualitypl on December 19, 2023.
+
+    Here is the code that is overriding body params with url params:
+    https://github.com/rails/rails/blob/b7520a13adda46c0cc5f3fb4a4c1726633af2bba/actionpack/lib/action_dispatch/http/parameters.rb#L52
+  speakers:
+    - Piotr Witek
+  additional_resources:
+    - name: "code that is overriding body params with url params"
+      type: "code"
+      url: "https://github.com/rails/rails/blob/b7520a13adda46c0cc5f3fb4a4c1726633af2bba/actionpack/lib/action_dispatch/http/parameters.rb#L52"

@@ -1,16 +1,30 @@
 ---
 id: "guru-sp"
+old_event_ids:
+  - "guru-sp-meetup"
+  - "guru-sp"
 name: "GURU SP"
+location: "São Paulo, Brazil"
+timezone: "America/Sao_Paulo"
 website: "https://www.gurusp.org/"
 kind: "meetup"
-frequency: "yearly"
 language: "English"
 twitter: "guru_sp"
 default_country_code: "BR"
+meetup: "https://www.meetup.com/pt-BR/guru-sp-grupo-de-usuarios-ruby-de-sao-paulo/"
 github: "https://github.com/guru-sp"
 description: "Grupo de Usuarios Ruby de São Paulo"
 banner_background: "#FFFFFF"
+featured_background: "#FFFFFF"
+featured_color: "#000000"
+coordinates:
+  latitude: -23.5503
+  longitude: -46.6361
 youtube_channels:
   - id: "UCrxf9jYw4gva_9jwb-77AqQ"
     name: "GuruSPtalks"
     handle: "@gurusptalks"
+feeds:
+  - type: "ical"
+    url: "https://www.meetup.com/guru-sp-grupo-de-usuarios-ruby-de-sao-paulo/events/ical/"
+    name: "Meetup.com"

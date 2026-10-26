@@ -2,12 +2,21 @@
 id: "rubywellington"
 old_ids:
   - "ruby-wellington"
+old_event_ids:
+  - "rubywellington-meetup"
+  - "ruby-wellington-meetup"
 name: "Ruby Wellington"
+location: "Wellington, New Zealand"
+timezone: "Pacific/Auckland"
 website: "https://wellington.ruby.nz"
 kind: "meetup"
-frequency: "irregular"
 language: "English"
 default_country_code: "NZ"
+meetup: "https://www.meetup.com/rubywellington/"
+description: "Wellington's Ruby community, formerly known as Wellrailed (running since 2006). Meets roughly every two months; most talks are recorded and published on the Ruby Wellington YouTube channel."
+coordinates:
+  latitude: -41.2924
+  longitude: 174.7787
 aliases:
   - Wellrailed
   - Well Railed
@@ -16,3 +25,7 @@ youtube_channels:
   - id: "UC97hWMRsq2rmpCo3p950NSQ"
     name: "Ruby Wellington"
     handle: "@rubywellingtonmeetup"
+feeds:
+  - type: "ical"
+    url: "https://www.meetup.com/rubywellington/events/ical/"
+    name: "Meetup.com"

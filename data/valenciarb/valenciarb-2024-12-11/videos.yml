@@ -1,0 +1,38 @@
+---
+- id: "rosa-gutierrez-valenciarb-2024-12-11"
+  old_id: "rosa-gutiérrez-valencia-rb-december-2024"
+  title: "Solid Queue Internals, Externals and all the things in between"
+  date: "2024-12-11"
+  video_provider: "not_recorded"
+  video_id: "rosa-gutierrez-valenciarb-2024-12-11"
+  thumbnail_xs: "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihtcqgpiosbwugmm3ief2xwteb6iqipmvdtdw2zhrw4vzfqla43ou@jpeg"
+  thumbnail_sm: "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihtcqgpiosbwugmm3ief2xwteb6iqipmvdtdw2zhrw4vzfqla43ou@jpeg"
+  thumbnail_md: "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihtcqgpiosbwugmm3ief2xwteb6iqipmvdtdw2zhrw4vzfqla43ou@jpeg"
+  thumbnail_lg: "https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihtcqgpiosbwugmm3ief2xwteb6iqipmvdtdw2zhrw4vzfqla43ou@jpeg"
+  thumbnail_xl: "https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihtcqgpiosbwugmm3ief2xwteb6iqipmvdtdw2zhrw4vzfqla43ou@jpeg"
+  description: |-
+    We've used Resque and Redis to run background jobs in multiple apps for many years at 37signals. However, performance, reliability, and our own apps’ idiosyncrasies led us to use a lot of different gems, some developed by us, some forked or patched to address our struggles.
+
+    After multiple war stories with background jobs, looking at our increasingly complex setup, we wanted something we could use out-of-the-box without having to port our collection of hacks to every new app and with fewer moving pieces.
+
+    After exploring existing alternatives, we decided to build our own and aim to make it the default for Rails 8.
+
+    In this talk, I’ll present Solid Queue, explain some of the problems we had over the years, how we designed Solid Queue to address them, and all the Fun™ we had doing that.
+  speakers:
+    - Rosa Gutiérrez
+
+- id: "yauhen-karatkou-valenciarb-2024-12-11"
+  old_id: "yauhen-karatkou-valencia-rb-december-2024"
+  title: "Demystifying JIT Compilers with Ruby YJIT"
+  date: "2024-12-11"
+  video_provider: "not_recorded"
+  video_id: "yauhen-karatkou-valenciarb-2024-12-11"
+  thumbnail_xs: "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihzz3pbu3vx3ydrskxlg7nw6lr23to5lb2bfd2fmcyiaz2jodvy7u@jpeg"
+  thumbnail_sm: "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihzz3pbu3vx3ydrskxlg7nw6lr23to5lb2bfd2fmcyiaz2jodvy7u@jpeg"
+  thumbnail_md: "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihzz3pbu3vx3ydrskxlg7nw6lr23to5lb2bfd2fmcyiaz2jodvy7u@jpeg"
+  thumbnail_lg: "https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihzz3pbu3vx3ydrskxlg7nw6lr23to5lb2bfd2fmcyiaz2jodvy7u@jpeg"
+  thumbnail_xl: "https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:tin7f6teieaisxohxovzo3wv/bafkreihzz3pbu3vx3ydrskxlg7nw6lr23to5lb2bfd2fmcyiaz2jodvy7u@jpeg"
+  description: |-
+    In this talk, we will explore the wonderful world of Just-in-Time compilation, take a look at how Ruby JIT has evolved along with the language itself. And what impact the newest versions of Ruby can have on the performance of real applications
+  speakers:
+    - Yauhen Karatkou

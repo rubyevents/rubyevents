@@ -22,148 +22,145 @@ class Static::Validators::MeetupNamingTest < ActiveSupport::TestCase
     end
   end
 
+  test "MeetupSeriesName accepts a trailing Meetup under a parent of the same name" do
+    with_static_data_dir do |dir|
+      parent = File.join(dir, "data", "testrb", "series.yml")
+      child = File.join(dir, "data", "testrb", "testrb-meetup", "series.yml")
+      FileUtils.mkdir_p(File.dirname(child))
+      File.write(parent, Yerba::Document.from({"id" => "testrb", "name" => "Test.rb", "kind" => "organisation"}).to_s)
+      File.write(child, Yerba::Document.from({"id" => "testrb-meetup", "name" => "Test.rb Meetup", "kind" => "meetup"}).to_s)
+
+      assert_empty Static::Validators::MeetupSeriesName.new(file_path: child).errors
+    end
+  end
+
   test "MeetupSeriesName ignores conference series" do
     with_meetup(series_name: "Big Ruby Meetup", kind: "conference") do |paths|
       assert_empty Static::Validators::MeetupSeriesName.new(file_path: paths[:series]).errors
     end
   end
 
-  test "MeetupEventTitle appends Meetup" do
-    with_meetup(event_title: "Boulder Ruby") do |paths|
-      validator = Static::Validators::MeetupEventTitle.new(file_path: paths[:event])
+  test "MeetupSeriesFrequency flags and removes a frequency on a meetup series" do
+    with_meetup(series_frequency: "monthly") do |paths|
+      validator = Static::Validators::MeetupSeriesFrequency.new(file_path: paths[:series])
 
-      assert_includes validator.errors.first.message, %(should be "Boulder Ruby Meetup")
+      assert_includes validator.errors.first.message, %(frequency "monthly" is set on a meetup series)
 
       validator.fix
-      assert_equal "Boulder Ruby Meetup", Static::Event.in_file(paths[:event]).first["title"]
+      assert_nil Static::EventSeries.in_file(paths[:series]).first["frequency"]
     end
   end
 
-  test "MeetupEventTitle collapses a repeated Meetup" do
-    with_meetup(event_title: "SA Ruby Coders Meetup Meetup") do |paths|
-      assert_includes Static::Validators::MeetupEventTitle.new(file_path: paths[:event]).errors.first.message, %(should be "SA Ruby Coders Meetup")
+  test "MeetupSeriesFrequency ignores conference series" do
+    with_meetup(kind: "conference", series_frequency: "yearly") do |paths|
+      assert_empty Static::Validators::MeetupSeriesFrequency.new(file_path: paths[:series]).errors
     end
   end
 
-  test "MeetupEventTitle does not guess a title with Meetup in the middle" do
-    with_meetup(event_title: "Ruby Meetup Oslo") do |paths|
-      validator = Static::Validators::MeetupEventTitle.new(file_path: paths[:event])
+  test "MeetupTitle names a meetup after its group, Meetup and month, and keeps the old wording as its subtitle" do
+    {
+      "Test.rb January 2026" => nil,
+      "Test.rb Meetup - January 2026" => nil,
+      "Test.rb - Januar 2026" => nil,
+      "Test.rb January 2026 - Pubnite" => "Pubnite",
+      "Test.rb Meetup - January 2026 (Bern)" => "Bern",
+      "Test.rb Hack Day - January 2026" => "Test.rb Hack Day",
+      "Ruby Tuesday #12" => "Ruby Tuesday #12",
+      "Test.rb" => nil,
+      "Test.rb Meetup March 2026" => nil
+    }.each do |title, subtitle|
+      with_meetup(event_id: "testrb-2026-01-14", event_title: title, start_date: "2026-01-14") do |paths|
+        validator = Static::Validators::MeetupTitle.new(file_path: paths[:event])
 
-      assert_includes validator.errors.first.message, "rename it by hand"
-      assert_nil validator.fix
-    end
-  end
+        assert_includes validator.errors.first&.message.to_s, %(should be "Test.rb Meetup January 2026"), title
 
-  test "MeetupEventTitle accepts a title ending in Meetup" do
-    with_meetup(event_title: "Boulder Ruby Meetup") do |paths|
-      assert_empty Static::Validators::MeetupEventTitle.new(file_path: paths[:event]).errors
-    end
-  end
-
-  test "MeetupEventTitle accepts titles with Brigade, Group or Usergroup in them" do
-    ["Cleveland Ruby Brigade", "Boston Ruby Group", "Bangalore Ruby Users Group", "Ruby Usergroup", "Boston Ruby Group Meetup", "Ruby Usergroup Hamburg", "Kerala Ruby User Group - Trivandrum Chapter"].each do |title|
-      with_meetup(event_title: title) do |paths|
-        assert_empty Static::Validators::MeetupEventTitle.new(file_path: paths[:event]).errors, title
+        validator.fix
+        event = Static::Event.in_file(paths[:event]).first
+        assert_equal "Test.rb Meetup January 2026", event["title"], title
+        assert_equal subtitle.to_s, event["subtitle"].to_s, title
       end
     end
   end
 
-  test "MeetupEditionTitle leaves editions of a Brigade alone" do
-    videos = [{"id" => "testrb-meetup-january-2026", "title" => "Cleveland Ruby Brigade January 2026", "date" => "2026-01-14"}]
-
-    with_meetup(event_title: "Cleveland Ruby Brigade", videos: videos) do |paths|
-      assert_empty Static::Validators::MeetupEditionTitle.new(file_path: paths[:videos]).errors
+  test "MeetupTitle accepts a meetup named after its group, Meetup and month" do
+    with_meetup(event_id: "testrb-2026-01-14", event_title: "Test.rb Meetup January 2026", start_date: "2026-01-14") do |paths|
+      assert_empty Static::Validators::MeetupTitle.new(file_path: paths[:event]).errors
     end
   end
 
-  test "MeetupEditionTitle adds Meetup to edition titles and event names" do
-    videos = [
-      {
-        "id" => "testrb-meetup-january-2026", "title" => "Boulder Ruby January 2026", "event_name" => "Boulder Ruby January 2026",
-        "date" => "2026-01-14", "video_provider" => "children", "video_id" => "testrb-meetup-january-2026",
-        "talks" => [{"id" => "jane-doe-testrb-meetup-january-2026", "title" => "A Talk", "event_name" => "Boulder Ruby January 2026", "date" => "2026-01-14", "speakers" => ["Jane Doe"]}]
-      },
-      {"id" => "testrb-meetup-february-2026", "title" => "Docker and Rails", "date" => "2026-02-11"}
-    ]
+  test "MeetupTitle adds the day when the group meets more than once that month" do
+    with_meetup(event_id: "testrb-2026-01-14", event_title: "Test.rb Meetup January 2026", start_date: "2026-01-14") do |paths|
+      second = File.join(File.dirname(paths[:event], 2), "testrb-2026-01-28", "event.yml")
+      FileUtils.mkdir_p(File.dirname(second))
+      File.write(second, Yerba::Document.from({"id" => "testrb-2026-01-28", "title" => "Test.rb Meetup January 28, 2026", "kind" => "meetup", "start_date" => "2026-01-28", "end_date" => "2026-01-28"}).to_s)
+      Static::Validators::MeetupTitle.reset_meetup_dates!
 
-    with_meetup(event_title: "Boulder Ruby", videos: videos) do |paths|
-      validator = Static::Validators::MeetupEditionTitle.new(file_path: paths[:videos])
-
-      assert_equal 1, validator.errors.size
-      assert_includes validator.errors.first.message, %(should be "Boulder Ruby Meetup January 2026")
-
-      validator.fix
-
-      edition, talk, other = Static::Talk.in_file(paths[:videos]).to_a
-      assert_equal "Boulder Ruby Meetup January 2026", edition["title"]
-      assert_equal "Boulder Ruby Meetup January 2026", edition["event_name"]
-      assert_equal "Boulder Ruby Meetup January 2026", talk["event_name"]
-      assert_equal "Docker and Rails", other["title"]
+      assert_includes Static::Validators::MeetupTitle.new(file_path: paths[:event]).errors.first.message, %(should be "Test.rb Meetup January 14, 2026")
     end
   end
 
-  test "MeetupEditionTitle accepts editions that already say Meetup" do
-    videos = [{"id" => "testrb-meetup-january-2026", "title" => "Boulder Ruby Meetup January 2026", "date" => "2026-01-14"}]
-
-    with_meetup(event_title: "Boulder Ruby Meetup", videos: videos) do |paths|
-      assert_empty Static::Validators::MeetupEditionTitle.new(file_path: paths[:videos]).errors
+  test "MeetupTitle leaves Meetup out when the group's name already says it is a group" do
+    with_meetup(series_name: "Test Ruby Brigade", event_id: "testrb-2026-01-14", event_title: "Test Ruby Brigade January 2026", start_date: "2026-01-14") do |paths|
+      assert_empty Static::Validators::MeetupTitle.new(file_path: paths[:event]).errors
     end
   end
 
-  test "MeetupEventSlug renames an unpublished event to end in -meetup" do
-    with_meetup(event_id: "testrb-ruby") do |paths|
-      validator = Static::Validators::MeetupEventSlug.new(file_path: paths[:event])
-      validator.define_singleton_method(:published?) { false }
-
-      assert_includes validator.errors.first.message, %(should be "testrb-ruby-meetup")
-
-      validator.fix
-      assert File.exist?(File.join(File.dirname(paths[:event], 2), "testrb-ruby-meetup", "event.yml"))
+  test "MeetupTitle.title_name adds Meetup unless the name spells out a group" do
+    {
+      {"name" => "Paris.rb"} => "Paris.rb Meetup",
+      {"name" => "London Ruby User Group", "meetup_name" => "LRUG"} => "LRUG Meetup",
+      {"name" => "RUG::B"} => "RUG::B Meetup",
+      {"name" => "Polish Ruby User Group (PLRUG)", "meetup_name" => "Ruby Warsaw"} => "Ruby Warsaw Meetup",
+      {"name" => "Ruby on Rails Switzerland", "meetup_name" => "Railshöck"} => "Railshöck Meetup",
+      {"name" => "Helsinki Ruby Brigade"} => "Helsinki Ruby Brigade",
+      {"name" => "North West Ruby User Group"} => "North West Ruby User Group",
+      {"name" => "Utah Ruby Users Group"} => "Utah Ruby Users Group",
+      {"name" => "Ruby Usergroup Hamburg"} => "Ruby Usergroup Hamburg",
+      {"name" => "Boston Ruby Group"} => "Boston Ruby Group",
+      {"name" => "Dolnośląska Grupa Użytkowników Ruby"} => "Dolnośląska Grupa Użytkowników Ruby",
+      {"name" => "Paris Ruby Workshop"} => "Paris Ruby Workshop"
+    }.each do |series, title_name|
+      assert_equal title_name, Static::Validators::MeetupTitle.title_name(series), series.inspect
     end
   end
 
-  test "MeetupEventSlug keeps the previous id in old_ids when renaming a published event" do
-    with_meetup(event_id: "testrb-ruby") do |paths|
-      validator = Static::Validators::MeetupEventSlug.new(file_path: paths[:event])
-      validator.define_singleton_method(:published?) { true }
-
-      validator.fix
-
-      renamed = File.join(File.dirname(paths[:event], 2), "testrb-ruby-meetup", "event.yml")
-      assert_equal ["testrb-ruby"], Static::Event.in_file(renamed).first["old_ids"]
+  test "MeetupFolder accepts a meetup named after its series and date" do
+    with_meetup(event_id: "testrb-2026-01-14", start_date: "2026-01-14") do |paths|
+      assert_empty Static::Validators::MeetupFolder.new(file_path: paths[:event]).errors
     end
   end
 
-  test "MeetupEventSlug does not add old_ids when renaming an unpublished event" do
-    with_meetup(event_id: "testrb-ruby") do |paths|
-      validator = Static::Validators::MeetupEventSlug.new(file_path: paths[:event])
-      validator.define_singleton_method(:published?) { false }
-
-      validator.fix
-
-      renamed = File.join(File.dirname(paths[:event], 2), "testrb-ruby-meetup", "event.yml")
-      assert_nil Static::Event.in_file(renamed).first["old_ids"]
+  test "MeetupFolder accepts a counter for another meetup on the same day" do
+    with_meetup(event_id: "testrb-2026-01-14-2", start_date: "2026-01-14") do |paths|
+      assert_empty Static::Validators::MeetupFolder.new(file_path: paths[:event]).errors
     end
   end
 
-  test "MeetupEventSlug and MeetupEventTitle ignore RubyEvents" do
-    with_meetup(event_id: "rubyevents", event_title: "RubyEvents") do |paths|
-      assert_empty Static::Validators::MeetupEventSlug.new(file_path: paths[:event]).errors
-      assert_empty Static::Validators::MeetupEventTitle.new(file_path: paths[:event]).errors
+  test "MeetupFolder flags a meetup that isn't named after its series and date" do
+    with_meetup(event_id: "testrb-meetup-january-2026", start_date: "2026-01-14") do |paths|
+      assert_includes Static::Validators::MeetupFolder.new(file_path: paths[:event]).errors.first.message, %(should be "testrb-2026-01-14")
     end
   end
 
-  test "MeetupEventSlug accepts ids ending in -meetup, -brigade, -group, -usergroup or a RUG abbreviation" do
-    %w[testrb-meetup testrb-brigade testrb-group testrb-usergroup rughh lrug].each do |event_id|
-      with_meetup(event_id: event_id) do |paths|
-        assert_empty Static::Validators::MeetupEventSlug.new(file_path: paths[:event]).errors, event_id
-      end
+  test "MeetupFolder flags a meetup without a date" do
+    with_meetup(event_id: "testrb-meetup") do |paths|
+      assert_includes Static::Validators::MeetupFolder.new(file_path: paths[:event]).errors.first.message, %(should be "testrb-YYYY-MM-DD")
+    end
+  end
+
+  test "MeetupFolder ignores conferences and the undated Rails Girls groups" do
+    with_meetup(event_id: "testconf-2026", kind: "conference", start_date: "2026-01-14") do |paths|
+      assert_empty Static::Validators::MeetupFolder.new(file_path: paths[:event]).errors
+    end
+
+    with_meetup(event_id: "rails-girls-copenhagen") do |paths|
+      assert_empty Static::Validators::MeetupFolder.new(file_path: paths[:event]).errors
     end
   end
 
   private
 
-  def with_meetup(series_name: "Test.rb", event_title: "Test.rb Meetup", event_id: "testrb-meetup", kind: "meetup", videos: [{"id" => "x", "title" => "x", "date" => "2026-01-14"}])
+  def with_meetup(series_name: "Test.rb", event_title: "Test.rb Meetup", event_id: "testrb-meetup", kind: "meetup", series_frequency: nil, start_date: nil, videos: [{"id" => "x", "title" => "x", "date" => "2026-01-14"}])
     with_static_data_dir do |dir|
       series_dir = File.join(dir, "data", "testrb")
       event_dir = File.join(series_dir, event_id)
@@ -175,8 +172,8 @@ class Static::Validators::MeetupNamingTest < ActiveSupport::TestCase
         videos: File.join(event_dir, "videos.yml")
       }
 
-      File.write(paths[:series], Yerba::Document.from({"id" => "testrb", "name" => series_name, "kind" => kind}).to_s)
-      File.write(paths[:event], Yerba::Document.from({"id" => event_id, "title" => event_title, "kind" => kind}).to_s)
+      File.write(paths[:series], Yerba::Document.from({"id" => "testrb", "name" => series_name, "kind" => kind, "frequency" => series_frequency}.compact).to_s)
+      File.write(paths[:event], Yerba::Document.from({"id" => event_id, "title" => event_title, "kind" => kind, "start_date" => start_date, "end_date" => start_date}.compact).to_s)
       File.write(paths[:videos], Yerba::Document.from(videos).to_s)
 
       yield paths

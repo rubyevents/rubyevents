@@ -27,25 +27,55 @@ class Static::EventTest < ActiveSupport::TestCase
     assert_equal "Helvetic Ruby 2025", result.name
   end
 
+  test "ruby_focused? is true unless the event sets it to false" do
+    assert Static::Event.find_by_slug(SLUG).ruby_focused?
+    refute Static::Event.find_by_slug("splash-2025").ruby_focused?
+  end
+
+  test "import_event! stores whether the event is about Ruby" do
+    Static::EventSeries.find_by_slug("rubyevents").import_series!
+
+    refute Static::Event.find_by_slug("splash-2025").import_event!.ruby_focused?
+  end
+
   test "import_event! moves the event listed in old_ids to the new id" do
-    Static::EventSeries.find_by_slug("ruby-on-rails-switzerland").import_series!
-    previous = ::Event.create!(name: "Railshöck", slug: "railshock", series: ::EventSeries.find_by!(slug: "ruby-on-rails-switzerland"))
+    with_renamed_event do
+      Static::EventSeries.find_by_slug("testconf").import_series!
+      previous = ::Event.create!(name: "Testconf 2024", slug: "testconf-24", series: ::EventSeries.find_by!(slug: "testconf"))
 
-    record = Static::Event.find_by_slug("railshoeck-meetup").import_event!
+      record = Static::Event.find_by_slug("testconf-2024").import_event!
 
-    assert_equal previous.id, record.id
-    assert_equal "railshoeck-meetup", record.slug
-    assert_nil ::Event.find_by(slug: "railshock")
-    assert_equal record, ::Event.find_by_slug_or_alias("railshock")
+      assert_equal previous.id, record.id
+      assert_equal "testconf-2024", record.slug
+      assert_nil ::Event.find_by(slug: "testconf-24")
+      assert_equal record, ::Event.find_by_slug_or_alias("testconf-24")
+    end
   end
 
   test "import_event! keeps the old id as an alias when there is no event to move" do
-    Static::EventSeries.find_by_slug("ruby-on-rails-switzerland").import_series!
+    with_renamed_event do
+      Static::EventSeries.find_by_slug("testconf").import_series!
 
-    record = Static::Event.find_by_slug("railshoeck-meetup").import_event!
+      record = Static::Event.find_by_slug("testconf-2024").import_event!
 
-    assert_equal "railshoeck-meetup", record.slug
-    assert_equal record, ::Event.find_by_slug_or_alias("railshock")
+      assert_equal "testconf-2024", record.slug
+      assert_equal record, ::Event.find_by_slug_or_alias("testconf-24")
+    end
+  end
+
+  test "import_event! merges an event listed in old_ids that still exists next to it" do
+    with_renamed_event do
+      series = ::EventSeries.create!(name: "Testconf", slug: "testconf", kind: :conference)
+      existing = ::Event.create!(name: "Testconf 2024", slug: "testconf-2024", series: series)
+      duplicate = ::Event.create!(name: "Testconf 24", slug: "testconf-24", series: series)
+      duplicate.event_participations.create!(user: users(:one), role: "attendee")
+
+      Static::Event.find_by_slug("testconf-2024").import_event!
+
+      assert_nil ::Event.find_by(id: duplicate.id)
+      assert_equal "attendee", ::EventParticipation.find_by(user: users(:one), event: existing)&.role
+      assert_equal existing, ::Alias.find_by(slug: "testconf-24")&.aliasable
+    end
   end
 
   test "import_cfps!" do
@@ -187,10 +217,10 @@ class Static::EventTest < ActiveSupport::TestCase
   end
 
   test "state_code falls back to featured city when location omits state" do
-    Static::EventSeries.find_by_slug("montreal-rb").import_series!
+    Static::EventSeries.find_by_slug("montrealrb").import_series!
     Static::City.all.detect { |city| city.slug == "montreal" }.import!
 
-    event = Static::Event.find_by_slug("montreal-rb-meetup")
+    event = Static::Event.find_by_slug("montrealrb-2022-07-06")
     record = event.import_event!
 
     assert_equal "Montréal", record.city
@@ -203,12 +233,26 @@ class Static::EventTest < ActiveSupport::TestCase
       FileUtils.mkdir_p(File.join(root, "data/testconf"))
       File.write(File.join(root, "data/testconf/series.yml"), %(---\nid: "testconf"\nname: "TestConf"\n))
 
-      event = Static::Event.create(series_slug: "testconf", title: "TestConf 2024", kind: "conference", location: "Online", timezone: "UTC", coordinates: false)
+      event = Static::Event.create(series_slug: "testconf", title: "TestConf 2024", kind: "conference", location: "online", timezone: "UTC", coordinates: false)
       videos_path = File.join(File.dirname(event.file_path), "videos.yml")
 
       assert_equal File.join(root, "data/testconf/testconf-2024/event.yml"), event.file_path
       assert File.exist?(videos_path)
       assert_equal [], Yerba.parse_file(videos_path).values
+    end
+  end
+
+  private
+
+  def with_renamed_event
+    with_static_data_dir do |root|
+      directory = File.join(root, "data/testconf/testconf-2024")
+      FileUtils.mkdir_p(directory)
+
+      File.write(File.join(root, "data/testconf/series.yml"), Yerba::Document.from({"id" => "testconf", "name" => "Testconf", "kind" => "conference"}).to_s)
+      File.write(File.join(directory, "event.yml"), Yerba::Document.from({"id" => "testconf-2024", "old_ids" => ["testconf-24"], "title" => "Testconf 2024", "kind" => "conference", "location" => "Bern, Switzerland", "timezone" => "Europe/Zurich", "start_date" => "2024-06-01", "end_date" => "2024-06-01"}).to_s)
+
+      yield root
     end
   end
 end
