@@ -24,10 +24,8 @@ services:
     volumes:
       - ..:/rubyevents:cached # Mounts the local project directory
       - node_modules:/rubyevents/node_modules # Prevents overwriting node_modules so yarn install works correctly
-      # Orca-managed worktrees live here. A named volume (not a host bind) keeps
-      # them container-local and survives container recreation - only
-      # `docker compose down -v` discards them.
-      - worktrees:/worktrees
+      - ${HOME}/.ssh:/root/.ssh:cached
+
     stdin_open: true
     tty: true
 
@@ -53,6 +51,4 @@ services:
 volumes:
   node_modules:
   typesense-data:
-    driver: local
-  worktrees:
     driver: local
