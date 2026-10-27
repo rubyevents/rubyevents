@@ -1,0 +1,16 @@
+---
+- id: "carla-urrea-stabile-madridrb-2025-10-30"
+  old_id: "carla-urrea-stabile-madrid-rb-meetup-october-2025"
+  title: "Building a ruby gem for OpenFGA"
+  date: "2025-10-30"
+  published_at: "2025-12-18"
+  video_provider: "vimeo"
+  video_id: "1147732476"
+  description: |-
+    In this talk, I'll share my experience comparing hand-written and generated code, exploring the trade-offs between automation and readability. We'll discuss how any approach might have an impact on developer experience-- how it affects maintainability, debugging and long-term sustainability.
+
+    But how did I get here? Well, after working for a bit with OpenFGA, an open source authorization solution, I learned that you could use SDK generators, this is something OpenAPI does, for example.
+
+    When I tried to use it, the code felt like a foreign language. You could tell it was machine-made rather than human- friendly. So I tried to implement the gem myself, and that led me to ask myself the question: which is better? generated code or human written code? Whether you're deciding between writing your own gem or letting a generator do the work for you, this talk will give you the insights to make an informed decision and improve the developer experience along the way.
+  speakers:
+    - Carla Urrea Stabile

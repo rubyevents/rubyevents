@@ -7,9 +7,27 @@
       "type": "string",
       "description": "Unique identifier for the event, matches the event folder name"
     },
+    "old_ids": {
+      "type": "array",
+      "description": "Previous ids, kept so the production event is moved to the new id on the next seed and its old URLs keep working",
+      "items": {
+        "type": "string"
+      }
+    },
+    "old_talk_ids": {
+      "type": "array",
+      "description": "Ids of talks this event replaces, like a meetup that was a talk with nested talks in its group's videos.yml. The next seed turns their URLs into redirects to this event",
+      "items": {
+        "type": "string"
+      }
+    },
     "title": {
       "type": "string",
       "description": "Full name of the event (e.g., 'RailsConf 2024')"
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "The event's own name or theme next to its title, like a meetup's 'Pubnite' or 'Ruby Tuesday #12'"
     },
     "description": {
       "type": "string",
@@ -51,25 +69,44 @@
       "type": "boolean",
       "description": "Whether this is the last edition of the event"
     },
+    "ruby_focused": {
+      "type": "boolean",
+      "description": "Whether the event is about Ruby (default true). Set to false for an event like a general programming conference that only had a Ruby talk, so it stays out of the event listings"
+    },
     "pre_date": {
       "type": "string",
-      "description": "Date of pre-conference activities (workshops, pre-party) held before start_date (YYYY-MM-DD format)"
+      "description": "Date of pre-conference activities (workshops, pre-party) held before start_date (YYYY-MM-DD format)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "start_date": {
       "type": "string",
-      "description": "Start date of the event (YYYY-MM-DD format)"
+      "description": "Start date of the event (YYYY-MM-DD format)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "end_date": {
       "type": "string",
-      "description": "End date of the event (YYYY-MM-DD format)"
+      "description": "End date of the event (YYYY-MM-DD format)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "start_time": {
+      "type": "string",
+      "description": "Start time of a one-day event, like a meetup (HH:MM, in the event's timezone)",
+      "pattern": "^\\d{2}:\\d{2}$"
+    },
+    "end_time": {
+      "type": "string",
+      "description": "End time of a one-day event, like a meetup (HH:MM, in the event's timezone)",
+      "pattern": "^\\d{2}:\\d{2}$"
     },
     "recordings_published_date": {
       "type": "string",
-      "description": "Date when the event's recordings were published (YYYY-MM-DD format)"
+      "description": "Date when the event's recordings were published (YYYY-MM-DD format)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "announced_on": {
       "type": "string",
-      "description": "Date when the event was announced (YYYY-MM-DD format)"
+      "description": "Date when the event was announced (YYYY-MM-DD format)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "year": {
       "type": "integer",
@@ -696,10 +733,6 @@
       ],
       "description": "IANA time zone identifier, e.g. America/New_York"
     },
-    "venue": {
-      "type": "string",
-      "description": "Name of the venue"
-    },
     "youtube_channels": {
       "type": "array",
       "description": "YouTube channels associated with this event",
@@ -727,6 +760,93 @@
           "id",
           "name",
           "handle"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "feeds": {
+      "type": "array",
+      "description": "External feeds (iCal, RSS, social) for this event",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Feed type (ical, rss, bluesky, mastodon, twitter, linkedin)"
+          },
+          "url": {
+            "type": "string",
+            "description": "Feed URL"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name for this feed"
+          },
+          "handle": {
+            "type": "string",
+            "description": "Account handle (for social feeds)"
+          },
+          "account": {
+            "type": "string",
+            "description": "Full account URL (for Mastodon, etc.)"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "additional_resources": {
+      "type": "array",
+      "description": "Resources about the event as a whole, like the slides or write-up of a meetup",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Display name for the resource"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL to the resource"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "write-up",
+              "blog",
+              "article",
+              "source-code",
+              "code",
+              "repo",
+              "github",
+              "documentation",
+              "docs",
+              "presentation",
+              "video",
+              "podcast",
+              "audio",
+              "gem",
+              "library",
+              "transcript",
+              "handout",
+              "notes",
+              "photos",
+              "link",
+              "book"
+            ],
+            "description": "Type of resource"
+          },
+          "title": {
+            "type": "string",
+            "description": "Full title of the resource"
+          }
+        },
+        "required": [
+          "name",
+          "url",
+          "type"
         ],
         "additionalProperties": false
       }
@@ -772,11 +892,15 @@
     },
     "meetup": {
       "type": "string",
-      "description": "Meetup.com group URL"
+      "description": "Meetup.com event URL (e.g., 'https://www.meetup.com/lrug/events/123456789/')"
     },
     "luma": {
       "type": "string",
       "description": "Luma event URL"
+    },
+    "kommunity": {
+      "type": "string",
+      "description": "Kommunity event URL"
     },
     "tickets_url": {
       "type": "string",
@@ -826,8 +950,7 @@
     "title",
     "kind",
     "location",
-    "timezone",
-    "coordinates"
+    "timezone"
   ],
   "additionalProperties": false
 }

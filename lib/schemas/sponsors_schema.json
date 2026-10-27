@@ -50,6 +50,16 @@
                 "badge": {
                   "type": "string",
                   "description": "Sponsor badge text"
+                },
+                "from": {
+                  "type": "string",
+                  "description": "When the sponsorship started (YYYY, YYYY-MM or YYYY-MM-DD), for a series' sponsors.yml",
+                  "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+                },
+                "to": {
+                  "type": "string",
+                  "description": "When the sponsorship ended (YYYY, YYYY-MM or YYYY-MM-DD), for a series' sponsors.yml, omitted while it lasts",
+                  "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
                 }
               },
               "required": [

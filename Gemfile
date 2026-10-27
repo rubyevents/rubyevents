@@ -79,7 +79,7 @@ gem "rss", "~> 0.3.1"
 gem "yerba", "~> 0.10.1"
 
 # Powerful and seamless HTML-aware ERB parsing and tooling.
-gem "herb", "~> 0.11.0"
+gem "herb", "~> 0.11.1"
 
 # An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
 gem "reactionview", "~> 0.6.0"

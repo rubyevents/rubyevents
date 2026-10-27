@@ -31,7 +31,7 @@ module Static
       def validate
         return [] unless applicable?
 
-        match = File.expand_path(@file_path).match(%r{\A(?<root>.*)/data/(?<series>[^/]+)/(?<event>[^/]+)/event\.yml\z})
+        match = File.expand_path(@file_path).match(%r{\A(?<root>.*?)/data/(?:[^/]+/)*(?<series>[^/]+)/(?<event>[^/]+)/event\.yml\z})
         return [] unless match
 
         root = Pathname.new(match[:root])

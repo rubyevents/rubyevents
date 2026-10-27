@@ -579,6 +579,39 @@ speaker.source_line("aliases[1].slug") # => 1240, a selector relative to the rec
 speaker.source_location("name")        # => Yerba::Location (start/end line and column)
 ```
 
+## Git History
+
+Every record reads its history from `git blame` of the lines it spans in its file on disk:
+
+```ruby
+talk = Static::Talk.find_by(id: "david-heinemeier-hansson-rails-world-2026")
+
+talk.created_at                     # => when the oldest of its lines was committed
+talk.updated_at                     # => when the newest of its lines was committed
+talk.commit                         # => the last commit that changed one of its lines
+talk.first_commit                   # => the oldest commit among its lines
+talk.commits                        # => every commit among its lines, oldest first
+talk.commit_for(:video_provider)    # => the last commit that changed that field
+
+commit = talk.commit_for(:video_provider)
+commit.subject                      # => "Add Rails World 2026 talks (#2158)"
+commit.pr_number                    # => 2158
+commit.author                       # => the commit's author name
+commit.date                         # => the commit's committer date
+```
+
+Because these are methods on the record, `where` filters by them like any other field:
+
+```ruby
+Static::Talk.where(created_at: Date.new(2026, 9, 1)..Date.new(2026, 9, 30))
+Static::Event.where(updated_at: 1.week.ago..)
+Static::Talk.where(first_commit: {pr_number: 2158})
+```
+
+Each file is blamed once and cached until it is modified, so the first query over every `videos.yml` takes a while and later ones are fast. Lines that aren't committed yet are skipped, and records parsed from a string have no history.
+
+Blame reports the last commit that touched a line, so a commit that reformats or moves many records at once, like a sorting pass or extracting a file, becomes their `first_commit`. Listing those commits in a file passed through git's `blame.ignoreRevsFile` setting makes blame look past them.
+
 ## Stale File Detection
 
 Yerba tracks file modification times. If a file is modified externally between load and save, `save!` raises `Yerba::StaleFileError`:
@@ -598,6 +631,7 @@ Yerba::Record::Base                # Record class (read + write + schema)
   include References               # references :speakers DSL
   include Associations             # belongs_to, has_many, has_one (path-based, through:), has_files
   include Schema                   # schema, create, field method generation
+  include History                  # created_at, updated_at, commit from git blame
 
 Yerba::Record::Collection          # Records of one or more documents (all, in_file, has_many, nested, where)
 Yerba::Record::Collection::Source  # One document, or a nested sequence in it, contributing records
@@ -606,4 +640,6 @@ Yerba::Record::LazyIndex           # value -> position index, resolves records o
 Yerba::Record::PathPattern         # A model's path with named segments, like data/:series_id/:id/event.yml
 Yerba::Record::Files              # The files of a has_files directory or wildcard
 Yerba::Record::FileRecord         # A record backed by a file, with its path segments as attributes
+Yerba::Record::Blame              # git blame of a file, cached until the file is modified
+Yerba::Record::Commit             # A commit from git blame, with its pull request number
 ```

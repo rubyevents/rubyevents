@@ -20,9 +20,11 @@
 #  longitude                 :decimal(10, 6)
 #  name                      :string           default(""), not null, indexed
 #  recordings_published_date :date
+#  ruby_focused              :boolean          default(TRUE), not null
 #  slug                      :string           default(""), not null, uniquely indexed
 #  start_date                :date
 #  state_code                :string           indexed => [country_code]
+#  subtitle                  :string           default(""), not null
 #  talks_count               :integer          default(0), not null
 #  website                   :string           default("")
 #  created_at                :datetime         not null
@@ -114,6 +116,7 @@ class Event < ApplicationRecord
   scope :with_watchable_talks, -> { where.associated(:watchable_talks) }
   scope :canonical, -> { where(canonical_id: nil) }
   scope :featurable, -> { where.not(featured_background: nil).where.not(featured_color: nil) }
+  scope :ruby_focused, -> { where(ruby_focused: true) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
   scope :ft_search, ->(query) {
     joins(<<~SQL.squish)
@@ -128,7 +131,7 @@ class Event < ApplicationRecord
           AND series_aliases.aliasable_id = search_series.id
       SQL
       .where(
-        "lower(events.name) LIKE :query OR lower(event_aliases.name) LIKE :query " \
+        "lower(events.name) LIKE :query OR lower(events.subtitle) LIKE :query OR lower(event_aliases.name) LIKE :query " \
         "OR lower(search_series.name) LIKE :query OR lower(series_aliases.name) LIKE :query",
         query: "%#{query.downcase}%"
       )
@@ -136,14 +139,6 @@ class Event < ApplicationRecord
   }
   scope :past, -> { where(end_date: ..Date.today).order(end_date: :desc) }
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
-
-  scope :past_meetups, -> {
-    joins(:talks).where(kind: :meetup, talks: {date: ..Date.today}).distinct
-  }
-
-  scope :upcoming_meetups, -> {
-    joins(:talks).where(kind: :meetup, talks: {date: Date.today..}).distinct
-  }
 
   def upcoming?
     start_date.present? && start_date >= Date.today
@@ -154,7 +149,8 @@ class Event < ApplicationRecord
   end
 
   def cancelled? = static_metadata.cancelled?
-  def meetup_inactive? = meetup? && series.static_metadata.inactive?
+  def meetup_group? = meetup? && start_date.nil?
+  def meetup_inactive? = meetup_group? && series.ended?
   def cancelled_or_inactive? = cancelled? || meetup_inactive?
 
   def happening?
@@ -212,7 +208,7 @@ class Event < ApplicationRecord
   end
 
   def self.featured(limit: 15, today: Date.today)
-    base = distinct.not_meetup.featurable.where.not(home_sort_date: nil)
+    base = distinct.not_meetup.featurable.ruby_focused.where.not(home_sort_date: nil)
 
     ids = (
       base.where.not(recordings_published_date: nil).pluck(:id) +
@@ -252,6 +248,14 @@ class Event < ApplicationRecord
 
     alias_record = ::Alias.find_by(aliasable_type: "Event", slug: slug)
     alias_record&.aliasable
+  end
+
+  def self.find_by_series_slug_or_alias(slug)
+    series = ::EventSeries.find_by_slug_or_alias(slug)
+    return if series.nil? || series.meetup?
+
+    events = series.events.limit(2).to_a
+    events.first if events.one?
   end
 
   def self.grouped_by_country
@@ -299,11 +303,12 @@ class Event < ApplicationRecord
   end
 
   def data_folder
-    Rails.root.join("data", series.slug, slug)
+    static_metadata.data_folder || Rails.root.join("data", series.slug, slug)
   end
 
   def location_and_country_code
     return location if location.blank?
+    return nil if location.strip.casecmp?("online")
     return location if location_includes_country?
 
     default_country = series&.static_metadata&.default_country_code
@@ -331,15 +336,13 @@ class Event < ApplicationRecord
   end
 
   def today?
-    return talks.where(date: Date.today).exists? if meetup?
-
     (start_date..end_date).cover?(Date.today)
   rescue => _e
     false
   end
 
   def formatted_dates
-    if meetup?
+    if meetup_group?
       return "Inactive" if meetup_inactive?
       return "Recurring"
     end
@@ -380,6 +383,12 @@ class Event < ApplicationRecord
 
     event_name = series.organisation? ? name : series.name
 
+    if meetup? && start_date.present?
+      return @description = <<~DESCRIPTION
+        #{name} #{past? ? "was" : "is"}#{held_in_sentence.presence || " organized"} by #{series.name}#{talks_text}.
+      DESCRIPTION
+    end
+
     @description = <<~DESCRIPTION
       #{event_name} #{meetup_inactive? ? "was" : "is"} a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
     DESCRIPTION
@@ -392,7 +401,7 @@ class Event < ApplicationRecord
   def talks_text
     return "" unless talks.size.positive?
 
-    " and #{meetup_inactive? ? "featured" : "features"} #{talks.size} #{"talk".pluralize(talks.size)} from various speakers"
+    " and #{(meetup_inactive? || (meetup? && past?)) ? "featured" : "features"} #{talks.size} #{"talk".pluralize(talks.size)} from various speakers"
   end
 
   def to_meta_tags
@@ -476,10 +485,10 @@ class Event < ApplicationRecord
   private
 
   def todos_data_path
-    Rails.root.join("data", series.slug, slug)
+    data_folder
   end
 
   def todos_file_prefix
-    "#{series.slug}/#{slug}"
+    data_folder.relative_path_from(Rails.root.join("data")).to_s
   end
 end

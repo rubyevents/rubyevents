@@ -181,13 +181,60 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     end
   end
 
-  test "ignores talks at meetup events" do
+  test "checks talks at meetup events against the meetup's slug" do
     videos = [
       {"id" => "some-freeform-meetup-id", "title" => "Building Things", "speakers" => ["Jane Doe"]}
     ]
 
-    with_temp_video(videos, event: {"kind" => "meetup"}) do |path|
+    with_temp_video(videos, event: {"id" => "testconf-2024", "kind" => "meetup"}) do |path|
+      errors = Static::Validators::TalkId.new(file_path: path).errors
+
+      assert_equal 1, errors.size
+      assert_includes errors.first.message, %(expected id "jane-doe-testconf-2024")
+    end
+  end
+
+  test "ignores talks of the undated meetup groups" do
+    videos = [
+      {"id" => "some-freeform-meetup-id", "title" => "Building Things", "speakers" => ["Jane Doe"]}
+    ]
+
+    with_temp_video(videos, event: {"id" => "rails-girls-copenhagen", "kind" => "meetup"}) do |path|
       assert_empty Static::Validators::TalkId.new(file_path: path).errors
+    end
+  end
+
+  test "adds old_id when fixing an id that was committed in another file" do
+    videos = [
+      {"id" => "jane-doe-testrb-meetup-january-2024", "title" => "Building Things", "speakers" => ["Jane Doe"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      Static::Validators::TalkId.stub(:baseline_talk_ids, Set["jane-doe-testrb-meetup-january-2024"]) do
+        Static::Validators::TalkId.new(file_path: path).fix
+      end
+
+      node = Yerba.parse_file(path).find_by("id" => "jane-doe-testconf-2024")
+
+      assert_equal "jane-doe-testrb-meetup-january-2024", node.value_at("old_id")
+    end
+  end
+
+  test "moves the thumbnail of a talk cut from a shared recording when fixing its id" do
+    videos = [
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"], "start_cue" => "01:00", "end_cue" => "20:00", "video_provider" => "youtube", "video_id" => "abcdefghijk"}
+    ]
+
+    with_temp_video(videos) do |path|
+      with_temp_thumbnails(path) do |thumbnails|
+        File.write(File.join(thumbnails, "wrong.webp"), "webp")
+
+        Static::Validators::TalkId.new(file_path: path).fix
+
+        assert File.exist?(File.join(thumbnails, "rachael-wright-munn-testconf-2024.webp"))
+        assert_not File.exist?(File.join(thumbnails, "wrong.webp"))
+        assert_equal "abcdefghijk", Yerba.parse_file(path).find_by("id" => "rachael-wright-munn-testconf-2024").value_at("video_id")
+      end
     end
   end
 
@@ -242,7 +289,7 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     end
   end
 
-  test "keeps an existing old_id when fixing an id" do
+  test "replaces an existing old_id with the committed id when fixing an id" do
     videos = [
       {"id" => "wrong", "old_id" => "some-legacy-id", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
     ]
@@ -256,6 +303,22 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
         baseline: Static::Talk.parse(baseline.to_yaml)
       )
       validator.fix
+
+      node = Yerba.parse_file(path).find_by("id" => "rachael-wright-munn-testconf-2024")
+
+      assert_equal "wrong", node.value_at("old_id")
+    end
+  end
+
+  test "keeps an existing old_id when the current id was never committed" do
+    videos = [
+      {"id" => "wrong", "old_id" => "some-legacy-id", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      Static::Validators::TalkId.stub(:baseline_talk_ids, Set.new) do
+        Static::Validators::TalkId.new(file_path: path).fix
+      end
 
       node = Yerba.parse_file(path).find_by("id" => "rachael-wright-munn-testconf-2024")
 

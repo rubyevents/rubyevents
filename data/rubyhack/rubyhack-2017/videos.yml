@@ -1,6 +1,179 @@
-# TODO: Add talks and videos
-
 # Website: https://rubyhack.com/archives/2017
 # Videos: https://confreaks.tv/events/rubyhack2017
 ---
-[]
+- id: "nelson-wittwer-rubyhack-2017"
+  title: "How to Write Infrastructure as Code"
+  raw_title: "2017 RubyHACK, Nelson Wittwer: How to Write Infrastructure as Code"
+  date: "2017-04-20"
+  published_at: "2017-08-03T11:40:10Z"
+  video_provider: "youtube"
+  video_id: "bd6jjR-bYHE"
+  description: |-
+    Ever wanted to learn more DevOps than just `git push heroku master`? In my talk you will learn how to create a two-tier AWS infrastructure using code. You will learn how to use modern DevOps tools and frameworks to provision servers, setup databases, and harden your infrastructure. You will see how you can use Ansible to run configuration management scripts, Packer to build base images for servers, and Terraform to manage everything else AWS. You will learn how much easier, faster, and reliable it will be to write your infrastructure as code versus building everything manually via the AWS console.
+  speakers:
+    - Nelson Wittwer
+
+- id: "ryan-holdaway-rubyhack-2017"
+  title: "What do You do With a Drunken Sailor... Er... Jr. Dev?"
+  raw_title: "2017 RubyHACK, Ryan Holdaway: What do you do with a Drunken Sailor...  er... Jr. Dev?"
+  date: "2017-04-20"
+  published_at: "2017-08-03T21:06:29Z"
+  video_provider: "youtube"
+  video_id: "V6pMbbUPVSU"
+  description: |-
+    I've become really interested in ways to help level up Junior Developers and have helped establish processes to put them in a great situation to succeed. I want to share these tips with others in the hope that we can continue to grow our community and help new people break in to this field.
+  speakers:
+    - Ryan Holdaway
+
+- id: "yatish-mehta-rubyhack-2017"
+  title: "ActionCable and ReactJS Tie the Knot"
+  raw_title: "2017 RubyHACK, Yatish Mehta: ActionCable and ReactJS tie the knot"
+  date: "2017-04-20"
+  published_at: "2017-08-03T20:52:20Z"
+  video_provider: "youtube"
+  video_id: "v_sGFSvT_l8"
+  description: |-
+    For long we have been dependent on Node/socket.io for push notifications. It can get difficult to use a separate application/service just for it. RoR always had something missing in terms of these notifications. ActionCable is this newly developed piece to fill the void, which completes the websocket component for Rails. ReactJS is a very convenient frontend component based framework. It gets really interesting and productive when we use them together.
+  speakers:
+    - Yatish Mehta
+
+- id: "james-thompson-rubyhack-2017"
+  title: "\"Serverless\" Ruby on AWS"
+  raw_title: "2017 RubyHACK, James Thompson: \"Serverless\" Ruby on AWS"
+  date: "2017-04-20"
+  published_at: "2017-08-03T20:54:07Z"
+  video_provider: "youtube"
+  video_id: "3NdFzhIvUQA"
+  description: |-
+    This talk will demonstrate the current options for deploying Ruby on AWS Lambda along with when and why developers may want to consider this new approach. A simple, yet fully functional, application will serve as the framework for the presentation. 
+
+    Topics to be addressed will include the following: 
+
+    Overview of the AWS Lambda product äóî just enough for it to make sense
+    Code organization and structure based on existing tools and deployment options
+    How to write and test AWS Lambda code in development
+    How to deploy code to AWS Lambda
+    How to connect to AWS Lambda through AWS' API Gateway
+    How to interact with your app from Ruby or JavaScript
+    Briefly demonstrate working app
+  speakers:
+    - James Thompson
+
+- id: "steven-mcfarlane-rubyhack-2017"
+  title: "RackHack"
+  raw_title: "2017 RubyHACK, Steven McFarlane: RackHack"
+  date: "2017-04-20"
+  published_at: "2017-08-03T21:07:54Z"
+  video_provider: "youtube"
+  video_id: "a1AqPmD6lp4"
+  description: |-
+    Rack is a big part of ruby web apps but sometime it is forgotten as a good way to solve common webapp problems. This talk will review the basics of rack, then move to showing how we can use already available middle ware in rack-contrib (like Rack::TimeZone, Rack::Backstage, and Rack::Access), and finally writing some custom middleware.
+  speakers:
+    - Steven McFarlane
+
+- id: "catherine-meyers-rubyhack-2017"
+  title: "Mozart Could've Been an Engineer - Music + Code"
+  raw_title: "2017 RubyHACK, Catherine Meyers: Mozart Could've Benn and Engineer - Music + Code"
+  date: "2017-04-20"
+  published_at: "2017-08-03T21:05:38Z"
+  video_provider: "youtube"
+  video_id: "WWHMRQvsK0I"
+  description: |-
+    This talk is intended for any member within the tech community, regardless of proficiency, role, or level of experience. We'll explore the likeness between music and code through the following topics: 
+
+    Learning Process
+    Patterns
+    Information Processing
+    Creative Problem Solving
+    Determination & Perseverance
+    Growth Mindset
+    Self-Starter Attitude
+    Communication & Collaboration
+
+    In the end, the goal of a musician is the same as the goal of a software engineer: work with a team to create a product that can be enjoyed by a user. Let's explore how the paths to that goal, whether musical or technical, are connected.
+  speakers:
+    - Catherine Meyers
+
+- id: "danielle-adams-rubyhack-2017"
+  title: "Ruby Racing: Challenging Ruby Methods"
+  raw_title: "2017 RubyHACK, Danielle Adams: Ruby Racing: Challenging Ruby Methods"
+  date: "2017-04-20"
+  published_at: "2017-08-03T20:55:05Z"
+  video_provider: "youtube"
+  video_id: "Kdtdya3GaHE"
+  description: |-
+    A few months ago, I got into a discussion with my colleagues about rewriting Ruby methods in Ruby. We each implemented our own versions of Array#flatten. After coming up with what we thought were performant solutions, we put them to the test against Ruby's implementation. We were surprised to find that the implementation I created was faster than Ruby's! After that, I started thinking about different ways to make Ruby code run faster. As an experiment, I started writing my own Ruby methods in Ruby and benchmarked them against Ruby's versions. Complete with live coding, I would like to share my experience and discoveries in optimizing my own Ruby method implementations and explore what made them faster.
+  speakers:
+    - Danielle Adams
+
+- id: "daniel-kehoe-rubyhack-2017"
+  title: "Learn to Use Rails Composer, a Generator for Starter Apps"
+  raw_title: "2017 RubyHACK, Daniel Kehoe: Learn to use Rails Composer, a generator for starter apps"
+  date: "2017-04-20"
+  published_at: "2017-08-03T20:55:54Z"
+  video_provider: "youtube"
+  video_id: "5Snz3_YPM_s"
+  description: |-
+    Rails Composer is like a Rails generator on steroids for starter apps. In a few minutes you can generate a full-featured application ready for customization, saving time and effort. Find out whether Rails Composer is appropriate for you. Learn what options are available and which are most popular. And join in a discussion about the future of Rails Composer, putting forward your ideas for making this open source project more useful to all developers.
+  speakers:
+    - Daniel Kehoe
+
+- id: "robert-martin-rubyhack-2017"
+  title: "Functional Programming from Ruby to Elixir"
+  raw_title: "2017 RubyHACK, Rob Martin: Functional Programming from Ruby to Elixir"
+  date: "2017-04-20"
+  published_at: "2017-08-03T21:04:07Z"
+  video_provider: "youtube"
+  video_id: "hdFClhb9-UE"
+  description: |-
+    We've heard the arguments for functional programming, and maybe we're even convinced, but that doesn't change the fact that we have a body of code in Ruby and people paying us handsomely to work on it. Even if you want to move to functional programming, it's hard to take the leap from experienced Ruby developer to functional programming n00b. This talk addresses these concerns with code. We'll look at how to use the lowest hanging fruit from functional programming in our daily work with Ruby. As a bonus, we'll also look at how to do the same thing in Elixir, and see how familiar Elixir feels to a Ruby developer.
+  speakers:
+    - Robert Martin
+
+- id: "mike-moore-rubyhack-2017"
+  title: "Leveraging Machine Learning for Awesome"
+  raw_title: "2017 RubyHACK, Mike Moore: Leveraging Machine Learning for Awesome"
+  date: "2017-04-20"
+  published_at: "2017-08-03T03:45:26Z"
+  video_provider: "youtube"
+  video_id: "U1d0Erc2MK4"
+  description: |-
+    The future is awesome. We get to benefit from the fruits of others' work and make our applications even better. We will explore power of Google Cloud's Machine Learning services to build something crazy. All from within the warm embrace of ruby. 
+
+    Stoke your innner futurist. PHDs not required.
+  speakers:
+    - Mike Moore
+
+- id: "ryan-davis-rubyhack-2017"
+  title: "Improving Coverage Analysis"
+  raw_title: "2017 RubyHACK, Ryan Davis: Improving Coverage Analysis"
+  date: "2017-04-20"
+  published_at: "2017-08-03T03:39:48Z"
+  video_provider: "youtube"
+  video_id: "AjFsubKKbJ4"
+  description: |-
+    Coverage Analysis Tools rely on tracing facilities built into ruby's VM. 
+
+    You run your tests, and collect data. Seems simple, but that's a very flawed approach that buffers your coverage numbers up falsely. I've witnessed false coverage by as much as 25%, but it could be even worse. Worse, the tracing facilities currently make it impossible to get truly accurate numbers. Even so, they can be improved to be much more accurate. I'm currently working on a tool that fixes this problem (it is basically done and just needs polishing). The talk should be approachable to everyone, but intermediate to advanced devs might get more out of it because they're more attuned to this level of the development process. Still, I will be covering basic theory in order to explain. I will also be diving into the internals of the ruby VM in order to explain some particularly hairy edge cases.
+  speakers:
+    - Ryan Davis
+
+- id: "dave-thomas-rubyhack-2017"
+  title: "The Future is Function, or, OO is Dead"
+  raw_title: "2017 RubyHACK, Dave Thomas: The Future is Function, or, OO is Dead"
+  date: "2017-04-20"
+  published_at: "2017-08-03T21:08:49Z"
+  video_provider: "youtube"
+  video_id: "3TlEqzptWr0"
+  description: |-
+    Object Orientation has served us well, but it's time to shuffle the old codger off to the Rest Home for Old Paradigms, where it can discuss the failings of youth with other stalwarts like Design Patterns, Model Driven Development, and the Agile Movement.
+
+    That's not to say the ideas behind OO were bad. It's just that, apart from maybe Smalltalk, we never actually used them.
+
+    But it turns out that we can reanimate those ideas in a different guise. Function Programming is not about functions it's about transformations and state. Combine FP with a decent actor model, and you can have OO done right, and at serious scale.
+
+    Come see Dave Thomas as he continues with his "X is Dead" world tour.
+
+    Close
+  speakers:
+    - Dave Thomas

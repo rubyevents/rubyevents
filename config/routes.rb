@@ -254,6 +254,7 @@ Rails.application.routes.draw do
         get "/cities", to: redirect("/cities", status: 301)
         get "/cities/:city", to: redirect("/cities", status: 301)
         resources :series, param: :slug, only: [:index, :show] do
+          get :events, on: :member
           post :reimport, on: :member
           post :reindex, on: :member
         end
@@ -269,7 +270,7 @@ Rails.application.routes.draw do
       resources :involvements, only: [:index]
       resources :talks, only: [:index]
       resources :related_talks, only: [:index]
-      resources :events, only: [:index, :show]
+      get "/events(/:id)" => redirect { |params, _| "/events/#{params[:event_slug]}" }
       resources :videos, only: [:index]
       resources :sponsors, only: [:index]
       resources :cfp, only: [:index]

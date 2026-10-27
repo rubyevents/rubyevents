@@ -82,7 +82,7 @@ class Static::Validators::ErrorTest < ActiveSupport::TestCase
     with_github_actions("true") do
       error = build_error("Something broke", line: 2, end_line: 4, column: 3, end_column: 9)
 
-      assert_equal "::error file=data/helveticruby/helveticruby-2025/event.yml,line=2,endLine=4,col=3,endColumn=9:: Something broke", error.as_error
+      assert_equal "::error file=data/helveticruby/helveticruby-2025/event.yml,line=2,endLine=4,col=3,endColumn=9::line 2: Something broke", error.as_error
     end
   end
 
@@ -90,7 +90,7 @@ class Static::Validators::ErrorTest < ActiveSupport::TestCase
     with_github_actions("false") do
       error = build_error("Something suspicious")
 
-      assert_equal "⚠️  Something suspicious", error.as_warning
+      assert_equal "⚠️ Something suspicious", error.as_warning
     end
   end
 
@@ -98,7 +98,7 @@ class Static::Validators::ErrorTest < ActiveSupport::TestCase
     with_github_actions("false") do
       error = build_error("Something suspicious", line: 7)
 
-      assert_equal "⚠️ line 7:  Something suspicious", error.as_warning
+      assert_equal "⚠️ line 7: Something suspicious", error.as_warning
     end
   end
 
@@ -106,7 +106,7 @@ class Static::Validators::ErrorTest < ActiveSupport::TestCase
     with_github_actions("true") do
       error = build_error("Something suspicious", line: 2, end_line: 4, column: 3, end_column: 9)
 
-      assert_equal "::warning file=data/helveticruby/helveticruby-2025/event.yml,line=2,endLine=4,col=3,endColumn=9::  Something suspicious", error.as_warning
+      assert_equal "::warning file=data/helveticruby/helveticruby-2025/event.yml,line=2,endLine=4,col=3,endColumn=9::line 2: Something suspicious", error.as_warning
     end
   end
 

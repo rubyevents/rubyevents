@@ -10,7 +10,7 @@ class Spotlight::SeriesController < ApplicationController
     if search_query.present?
       @series, @total_count = search_backend_class.search_series(search_query, limit: LIMIT)
     else
-      @series = EventSeries.joins(:events).distinct.order(name: :asc).limit(LIMIT)
+      @series = EventSeries.searchable.order(name: :asc).limit(LIMIT)
       @total_count = nil
     end
 

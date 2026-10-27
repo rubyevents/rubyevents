@@ -41,7 +41,7 @@ class City < ApplicationRecord
   end
 
   has_many :aliases, as: :aliasable, dependent: :destroy, primary_key: :id
-  has_many :events, primary_key: [:name, :country_code, :state_code], foreign_key: [:city, :country_code, :state_code], inverse_of: false
+  has_many :events, -> { ruby_focused }, primary_key: [:name, :country_code, :state_code], foreign_key: [:city, :country_code, :state_code], inverse_of: false
   has_many :users, -> { indexable.geocoded }, class_name: "User", primary_key: [:name, :country_code, :state_code], foreign_key: [:city, :country_code, :state_code], inverse_of: false
 
   before_validation :geocode, on: :create, if: :needs_geocoding?
@@ -216,7 +216,7 @@ class City < ApplicationRecord
   def nearby_events(radius_km: 250, limit: 12, exclude_ids: [])
     return [] unless coordinates.present?
 
-    scope = Event.includes(:series, :going_participants)
+    scope = Event.ruby_focused.includes(:series, :going_participants)
       .where.not(latitude: nil, longitude: nil)
       .where.not(city: name)
 

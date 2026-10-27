@@ -42,6 +42,8 @@ Leave it as a draft unless the human asks for it to be marked ready.
 
 ## Screenshots
 
+> IF you are updating files in data/** just use `bin/rails screenshots:changed` to generate the screenshots automatically.
+
 Capture the screenshot under the repo's gitignored `tmp/` directory with a plain filename, and
 reference that exact path in the body:
 

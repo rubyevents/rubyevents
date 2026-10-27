@@ -56,7 +56,7 @@ _If you were planning on attending [<%= event.name.gsub(/ #{@year}/, "")%>](<%= 
 
 ## Contributions
 
-This month, we merged [<%= @pr_count %> PRs from <%= @contributors_count %> contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A<%= @github_date_range %>) <%= @content_pr_count %> PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A<%= @github_date_range %>+label%3Acontent).
+This month, we merged [<%= @pr_count %> PRs from <%= @contributors_count %> contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A<%= @github_date_range %>) <%= @data_pr_count %> PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A<%= @github_date_range %>+label%3Adata).
 
 ### Big Updates
 

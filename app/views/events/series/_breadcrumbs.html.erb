@@ -1,0 +1,14 @@
+<%# locals: (series:) %>
+
+<% ancestors = series.ancestors %>
+
+<% if ancestors.any? %>
+  <nav class="mb-2 text-sm text-gray-500" aria-label="Breadcrumb">
+    <% ancestors.each do |ancestor| %>
+      <%= link_to ancestor.name, series_path(ancestor), class: "hover:underline" %>
+      <span class="mx-1">/</span>
+    <% end %>
+
+    <span><%= series.name %></span>
+  </nav>
+<% end %>

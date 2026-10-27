@@ -1,2 +1,471 @@
 ---
-[]
+
+- id: "chad-fowler-aloha-on-rails-2009"
+  title: "Passionate Programmer"
+  date: "2009-10-05"
+  published_at: "2010-04-11T04:17:26Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "10838960"
+  description: |-
+    What should the career path of a programmer be? How do you know what you’re aiming for? What defines success?  Many of us started out assuming the answers to these questions included slowly climbing a corporate promotion structure, ultimately becoming a people or project manager and no longer a programmer.  But we didn’t get into software development so we could fill out spreadsheets and attend status meetings. We got into software development because we were excited about it. We wanted to be creative and to build great things. From the author of The Passionate Programmer, this session will walk through how a software developer can not only succeed but work toward building a remarkable career. We’ll draw examples from business, the arts, music, and sports. By the end of the presentation, we will have laid out a structured framework for radically succeeding in the software industry.
+  speakers:
+    - Chad Fowler
+
+- id: "blythe-dunham-aloha-on-rails-2009"
+  title: "Hey… is that your database crying?"
+  date: "2009-10-05"
+  published_at: "2010-04-12T14:55:04Z"
+  language: "English"
+  slides_url: "http://commondatastorage.googleapis.com/alohaonrails/aloha%20on%20rails%20-%20blythe%20dunham%20-%20hey_is_that_your_database_crying.pdf"
+  video_provider: "vimeo"
+  video_id: "10875182"
+  description: |-
+    Although ActiveRecord and the new Rails ORMs are optimized for general use cases with relational databases, most enterprise applications will not preform well enough using just the out-of-the-box functionality. Further, since often the ORMs do such a good job of hiding details when interfacing with the database, issues that might severely hinder scalability and performance are difficult to identify and are often ignored. In this talk, I will identify common database performance problems that arise when working with Rails and offer simple techniques and solutions to optimize them and the way your Rails app talks to the database. This talk will also include topics such as Creating good migrations that would make a DBA proud, Addressing common slow operations such as bulk importing records and querying across multiple tables, and Using actual database constraints (and keeping Rails happy).
+  speakers:
+    - Blythe Dunham
+
+- id: "yehuda-katz-aloha-on-rails-2009"
+  title: "Rails 3 Public API"
+  date: "2009-10-05"
+  published_at: "2010-04-12T01:34:58Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "10859801"
+  description: |-
+    Rails 3 is the newest version of Rails, and it comes with significantly more flexibility than previous versions of Rails. If you want to continue using Rails the way you’ve always used it, the strong system of conventions and defaults that Rails has become known for are still the golden path moving forward.  But if you want to plug in alternatives to Rails’ conventions or hook directly into parts of the internals, Rails 3 provides a power-users’ API that will be supported and maintained moving forward. Yehuda will walk you through the principles of that API, show you how to read and understand the Rails source code so you can customize the framework just the way you want.
+  speakers:
+    - Yehuda Katz
+
+- id: "anthony-eden-aloha-on-rails-2009"
+  title: "Technical Debt - Refactor or Rewrite"
+  date: "2009-10-05"
+  published_at: "2010-04-11T03:06:07Z"
+  language: "English"
+  slides_url: "http://commondatastorage.googleapis.com/alohaonrails/Aloha%20on%20Rails%20-%20Anthony%20Eden%20-%20Technical-Debt.pdf"
+  video_provider: "vimeo"
+  video_id: "10838383"
+  description: |-
+    Technical debt, a term coined by Ward Cunningham, is incurred by every project when the quick and easy route is taken to solve a problem. As technical debt builds up the problems of cruft begin to multiply. Development slows, bugs increase, deadlines are missed and frustration ensues. At chi.mp we incur technical debt just like any other development team. In this talk I’ll show you how we approach the reduction of our technical debt. Sometimes it makes sense to refactor existing code and sometimes it makes sense to start all over on certain parts of the code. In either case there are essential elements to successful technical debt reduction, including a solid understanding of the business requirements, a comprehensive test suite and both management and development teams that understand the importance of debt reduction. Ultimately, just like with reduction of financial debt, reducing your technical debt should leave you feeling satisfied and rejuvenated, ready to tackle future programming challenges.
+  speakers:
+    - Anthony Eden
+
+- id: "sarah-mei-aloha-on-rails-2009"
+  title: "Rails Training in Paradise"
+  kind: "workshop"
+  date: "2009-10-04"
+  language: "English"
+  video_provider: "not_published"
+  video_id: "sarah-mei-aloha-on-rails-2009"
+  description: |-
+    Note: This is a full day tutorial, the day before the conference begins (Oct 4, 2009). Learn about, build, and deploy a Ruby on Rails application in one day!  Sarah Mei of RailsBridge will conduct a special “boot camp” to get new developers up and running on Ruby on Rails.  Come with just your laptop, and by the end of the day you will have written and tested a working Rails application, and even deployed it to the web. This training is fun and rewarding, and you will learn state-of-the-art techniques from professional Rails developers and trainers. Rails Training in Paradise will introduce you to the productivity and fun of Rails, and will ensure that you get the most out of the Aloha on Rails Conference. If you are interested in Rails, comfortable with your computer and the web, and have built web pages or web applications before, you should attend Rails Training in Paradise. Web designers - this is your chance to go deeper into the technology stack. PHP developers, .NET developers, Java developers - this is your chance to learn a new language. Bring some ideas back to your primary development environment, enrich your skillset, and have fun doing it! NOTE: This event requires a separate registration.
+  speakers:
+    - Sarah Mei
+
+- id: "chris-selmer-aloha-on-rails-2009"
+  title: "Surviving the Journey from Rails Coder to Manager"
+  date: "2009-10-05"
+  published_at: "2010-04-12T14:38:06Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "10874688"
+  description: |-
+    Most hardcore developers cringe at the idea of putting down their coding tools and becoming a pointy-haired boss. The journey from Rails coder to manager is fraught with peril - from dealing with difficult clients, to keeping your team motivated, to making sure you don’t lose your technical edge. Here is the story of one man who survived the journey and lived to tell the tale. This talk is geared towards Rails developers in the midst of a transition from coder to manager, those who would like to someday make the transition, or anyone who like to learn more about communicating with clients and coworkers. This will be a wide-ranging talk, but will cover topics such as Dealing with clients, Contract negotiations, Learning a different set of jargon, and How to position yourself for a transition.
+  speakers:
+    - Chris Selmer
+
+- id: "gregg-pollack-aloha-on-rails-2009"
+  title: "On The Edge of Rails Performance"
+  date: "2009-10-05"
+  published_at: "2010-04-12T02:56:34Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "10860860"
+  description: |-
+    Earlier this year I released a series of screencasts showing that rails indeed comes with many of the tools that you need scale your rails app. Since then more Rails applications have gone into production, additional techniques have been developed for optimizing performance, and more open source libraries have been published. In this talk I will first give a quick introduction for those just getting their feet wet with optimizing Rails applications.  However, the majority of the talk will be spent looking at the most useful techniques for optimizations and some of the new libraries that have been released to make it that much easier.
+  speakers:
+    - Gregg Pollack
+
+- id: "thinking-in-map-reduce-aloha-on-rails-2009"
+  title: "Thinking in Map Reduce"
+  date: "2009-10-05"
+  published_at: "2010-04-12T03:25:23Z"
+  language: "English"
+  slides_url: "http://commondatastorage.googleapis.com/alohaonrails/Aloha%20on%20Rails%20-%20alan%20gates%20-%20Thinking%20in%20Map%20Reduce.pdf"
+  video_provider: "vimeo"
+  video_id: "10861177"
+  description: |-
+    Hadoop is an Apache project that provides a framework for running applications that process vast amounts of data (hundreds of terabytes) on large clusters (thousands of computers) of commodity hardware. The Hadoop framework transparently provides applications both reliability and data motion. Hadoop implements a distributed file system and Map Reduce. This presentation presents the motivation and approach for Hadoop, an overview of the components and architecture, and an overview of some of the tools built on top of Hadoop, such as Hbase, Pig, and Hive.
+  speakers:
+    - Alan Gates
+
+- id: "introduction-to-pig-aloha-on-rails-2009"
+  title: "Introduction to Pig"
+  date: "2009-10-05"
+  published_at: "2010-04-12T02:33:06Z"
+  language: "English"
+  slides_url: "http://commondatastorage.googleapis.com/alohaonrails/Aloha%20on%20Rails%20-%20alan%20gates%20-%20Introduction%20to%20Pig.pdf"
+  video_provider: "vimeo"
+  video_id: "10860552"
+  description: |-
+    Pig is a Hadoop sub-project that provides a higher level programming language to describe parallel computation atop Map Reduce. It implements common relational operators such as join and filter and provides ways to incorporate custom user code via user defined functions and streaming. The result is much simpler and more compact code, increased user productivity, and reduced maintenance time compared to writing Java for Map Reduce. At the same time, Pig stays faithful to the spirit of Map Reduce whereby a user program specifies a simple sequence of steps for the system to obey. The talk will introduce Pig and its programming model, contrast it with Hadoop¹s model and provide motivation to use Pig as the preferred programming paradigm for most applications. The performance tradeoffs will also be discussed.
+  speakers:
+    - Alan Gates
+
+- id: "scott-chacon-aloha-on-rails-2009"
+  title: "The Birth of Git - The Second Greatest Story Ever Told"
+  date: "2009-10-05"
+  language: "English"
+  video_provider: "not_published"
+  video_id: "scott-chacon-aloha-on-rails-2009"
+  description: |-
+    Many Railsers have been using Git for a while now, but the story of how it came about and how some of  the early design decisions were made is enlightening.  Fresh off using BitKeeper, no distributed version control system existed in April 2005 that would handle the kernel, so two were started within days of each other by two Linux kernel hackers - Mercurial and Git.  This story will go back and see how and why each system made it’s early and key decisions and should help the audience understand the fundamental differences between the systems, understand Git itself better and think about Version Control as a system in a different light.
+  speakers:
+    - Scott Chacon
+
+- id: "desi-mcadam-aloha-on-rails-2009"
+  title: "Dragons, Riddles, and Rails Applications"
+  date: "2009-10-05"
+  published_at: "2010-04-12T01:59:27Z"
+  language: "English"
+  slides_url: "http://commondatastorage.googleapis.com/alohaonrails/aloha%20on%20rails%20-%20desi%20mcadam%20-%20dragons%20riddles%20and%20rails%20applications.pdf"
+  video_provider: "vimeo"
+  video_id: "10860134"
+  description: |-
+    Once upon a time there was a girl who was given a very old and complex app that she did not write. Her quest was to add to it and make it better. Her journey through this app was rocky and many times very dangerous as she spiraled down overridden methods and encountered many a curious creature. Follow her through this tale, see how she navigates and what she does to make this app not quite so confusing and scary.
+  speakers:
+    - Desi McAdam
+
+- id: "jon-crosby-aloha-on-rails-2009"
+  title: "The Machines Are Alive"
+  date: "2009-10-05"
+  published_at: "2010-04-11T16:04:41Z"
+  language: "English"
+  slides_url: "http://commondatastorage.googleapis.com/alohaonrails/Aloha%20on%20Rails%20-%20Jon%20Crosby%20-%20The%20Machines%20are%20Alive.pdf"
+  video_provider: "vimeo"
+  video_id: "10849376"
+  description: |-
+    What happens when machines are turned loose to build other machines? What happens when they monitor their own health and repair themselves? Where does ruby fit into this picture and how does it change the way we build and deploy web applications? I’ll answer these questions and more during a tour of the Engine Yard Cloud architecture. Along the way, we’ll look at the methods used on our team to address disposable/repeatable infrastructure, fault tolerance, and testing in a SOA environment.
+  speakers:
+    - Jon Crosby
+
+- id: "charles-oliver-nutter-aloha-on-rails-2009"
+  title: "JRuby: From Zero to Awesome"
+  date: "2009-10-05"
+  published_at: "2010-04-11T15:37:49Z"
+  language: "English"
+  slides_url: "http://commondatastorage.googleapis.com/alohaonrails/Aloha%20on%20Rails%202009%20-%20charles%20nutter%20-%20JRuby.pdf"
+  video_provider: "vimeo"
+  video_id: "10848847"
+  description: |-
+    Over the past 4 years, dozens of people have helped make JRuby a cracker-jack Ruby implementation. Most people know about JRuby, and know that it can run pretty much any Ruby applications out there. But do you know what it took to get here? It certainly wasn’t easy. I’ll run through the past four years, highlighting the most painful pieces of Ruby we had to support. I’ll show what it takes to build an implementation of Ruby. I’ll demonstrate some experimental “Ruby-like” languages like Duby and Juby that act as research conduits for JRuby. And together we’ll explore and discuss where JRuby might take Ruby in the coming years, with two-way Java integration and ever-increasing performance.
+  speakers:
+    - Charles Oliver Nutter
+
+- id: "michael-nieling-matthew-mcvickar-aloha-on-rails-2009"
+  title: "You Don’t Need a Logo"
+  date: "2009-10-05"
+  published_at: "2010-04-11T03:29:16Z"
+  language: "English"
+  slides_url: "http://commondatastorage.googleapis.com/alohaonrails/Aloha%20on%20Rails%20-%20Michael%20Nieling%20%26%20Matthew%20McVickar%20-%20You%20Don't%20Need%20a%20Logo.pdf"
+  video_provider: "vimeo"
+  video_id: "10838589"
+  description: |-
+    Design is the single most important aspect of new product development. Whether you’re building a web app or a great burrito, delivering a consistent, cohesive experience is required. Though ‘design’ is widely acknowledged as vital, the scope of its impact is often grossly underestimated and thoroughly misunderstood. Design isn’t just marketing and advertising hoopla, it is the holistic, analytical thinking that is at the root of every successful brand and needs to be at the front of every entrepreneur’s mind. As a programmer, design is the difference between simply identifying and solving the problem and doing so elegantly (and profitably). Delivered by an engineer and a usability guru disguised as designers, this session will break down buzzwords and deliver a practical perspective on the real steps (and the commitment and vigilance) it takes to build, implement and maintain a successful brand.
+  speakers:
+    - Michael Nieling
+    - Matthew McVickar
+
+- id: "jim-weirich-aloha-on-rails-2009"
+  title: "Grand Unified Theory of Software Design"
+  date: "2009-10-05"
+  published_at: "2010-04-11T02:09:02Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "10837903"
+  description: |-
+    Many words of programming wisdom have been written to promote the idea of low coupling between modules.  “Prefer delegation over inheritance”, “The Law of Demeter” are examples of these words of advice. But why does delegation introduce less coupling then inheritance.  And how does the law of Demeter reduce coupling?  To understand these issues, we will look at the concept of “connascence” how it appears to unify many different design principles under an overall view of coupling.  We will also talk about oatmeal and physics.
+  speakers:
+    - Jim Weirich
+
+- id: "chad-pytel-tammer-saleh-aloha-on-rails-2009"
+  title: "You’re Doing It Wrong"
+  date: "2009-10-05"
+  published_at: "2010-04-11T05:53:19Z"
+  language: "English"
+  slides_url: "http://tammersaleh.com/alohaonrails/slides.html"
+  video_provider: "vimeo"
+  video_id: "10839855"
+  description: |-
+    As experienced Rails consultants, and authors of the upcoming Rails AntiPatterns book, Chad Pytel and Tammer Saleh have seen their fair share of terrible code.  They’ll discuss some common AntiPatterns they’ve seen in the wild, and will walk through the process of refactoring them to bring them in line with current best practices.  They’ll be making use of the latest Rails 3.0 features to transform code from appalling to awesome. In addition, they will be looking at audience submitted code snippets, and giving live refactoring advice.
+  speakers:
+    - Chad Pytel
+    - Tammer Saleh
+
+- id: "blake-mizerany-aloha-on-rails-2009"
+  title: "Forget Kindergarten, Learn to Scale"
+  date: "2009-10-05"
+  published_at: "2010-04-12T17:01:59Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "10878766"
+  description: |-
+    The key to building web apps that can scale and take advantage of cloud resources is to forget what you learned in kindergarten and do the opposite. Heroku has over 32,000 apps running on it currently, some serving hundreds of requests per second. Blake will walk you through 5 anti-kindergarten rules used by successful Heroku apps, with hands-on examples of each.  Examples include Everything is Disposable, Be Impatient, and Be Unfair.
+  speakers:
+    - Blake Mizerany
+
+- id: "marty-haught-aloha-on-rails-2009"
+  title: "Lean Teams - How To Do More With Less"
+  date: "2009-10-05"
+  language: "English"
+  slides_url: "http://www.slideshare.net/mghaught/lean-teams-doing-more-with-less"
+  video_provider: "not_published"
+  video_id: "marty-haught-aloha-on-rails-2009"
+  description: |-
+    Having a large consulting contract with money to burn can make it easy to succeed but what do you do when you’ve got a small team with limited resources?  Taking inspiration from lean software development and lean start-ups I have singled out several principles that help agile teams get more out of less. Examples include Continuous deployment, FDD (Feedback Driven Development), and Kanban. I will explore what each of these are, how I applied them in the Rails stack and reflect on what effect they had on my team’s productivity and application quality.
+  speakers:
+    - Marty Haught
+
+- id: "jon-larkowski-aloha-on-rails-2009"
+  title: "Is Agile Too Slow?"
+  kind: "panel"
+  date: "2009-10-05"
+  published_at: "2010-04-11T22:59:35Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "10857280"
+  description: |-
+    Join our panel for a heated debate about whether agile project management and Extreme Programming methods are being applied appropriately to the problems they’re meant to solve.  How do return-on-investment, opportunity cost, and risk management balance against quality in various project contexts?  The overall theme is:  maturing from dogmatic adherance, growing up to conscientious contextual application of technique.  Jon “Lark” Larkowski of Hashrocket will moderate the discussion. We’ll cover issues such as When is hacking OK for short time-to-market?, Is high-quality code a technical fetish or does it have demonstrable long-term value?, and Do we apply the same standards to short and long-term projects?
+  speakers:
+    - Jon Larkowski
+
+- id: "corey-donohoe-aloha-on-rails-2009"
+  title: "Everything I Know About Being an Open Source Hacker I Learned From Indie Hip Hop"
+  date: "2009-10-05"
+  published_at: "2010-04-12T16:31:34Z"
+  language: "English"
+  slides_url: "http://www.slideshare.net/atmosorg/everything-i-know-about-open-source-i-learned-from-indie-hip-hop"
+  video_provider: "vimeo"
+  video_id: "10877889"
+  description: |-
+    Over the last 15 years open source software and independent hip hop labels have risen from pipe dreams in people’s basements to revenue streams that can’t be ignored.  The talk will detail interesting characteristics found in passionate people from both communities.  It will take a look at the communities they operate inside of and why they seem to stay vibrant.  The hope is to generate discussion among the attendees on what we currently think about what it means to be an open source craftsman and how our participation impacts others.
+  speakers:
+    - Corey Donohoe
+
+- id: "pat-maddox-aloha-on-rails-2009"
+  title: "Domain Driven Rails"
+  date: "2009-10-05"
+  published_at: "2010-04-11T23:49:49Z"
+  language: "English"
+  slides_url: "http://commondatastorage.googleapis.com/alohaonrails/aloha%20on%20rails%20-%20pat%20maddox%20-%20domain%20driven%20rails.pdf"
+  video_provider: "vimeo"
+  video_id: "10858144"
+  description: |-
+    As Rails continues to gain popularity, and the community behind it matures, Rails is thrust into domains of increasing complexity.  As anyone who’s been developing in Rails for a while knows, Ruby and Rails are particularly good tools for modeling this complexity.  However, very little emphasis has been placed on how to *manage* this complexity.  “Domain-Driven Design” is a set of principles, patterns, and practices (detailed in a book of the same name) that help developers manage the complexity that comes along with working on large projects in interesting domains.  The two ideas that I will focus on are Aggregates and Bounded Contexts.  I will cover such topics as 1) your 1400 line user.rb - why it sucks and what to do about it, 2) management in the small: breaking up objects, designing aggregates, or, why not all entities are created equal, and 3) management in the large: identifying bounded contexts. This talk is intended for developers working on longer-term, larger applications that are running in production and providing value to the business.  I think the ideas in it start to become useful when a Rails app hits the 10k line mark, and are crucial for managing complexity beyond the 30k line mark.  It’s an advanced topic and is meant as high-level design and architecture (implemented in real code though!!)
+  speakers:
+    - Pat Maddox
+
+- id: "ezra-zygmuntowicz-aloha-on-rails-2009"
+  title: "Where Do I Put This Data?"
+  date: "2009-10-05"
+  published_at: "2010-04-11T03:57:09Z"
+  language: "English"
+  slides_url: "http://commondatastorage.googleapis.com/alohaonrails/aloha%20on%20rails%20-%20ezra%20zygmuntowicz%20-%20where%20do%20I%20put%20this%20data.pdf"
+  video_provider: "vimeo"
+  video_id: "10838794"
+  description: |-
+    In this talk we will explore the explosion of key value and other alternative storage engines for storing data without using a relational database. There are so many options these days for storing your data, how do you choose what will work for you? When do you really need to get out of the relational model and into a DHT or bigtable style data store. We will explore various options like redis, toyko, couchdb, flare, dynomite and when and why you would choose one of these data stores.
+  speakers:
+    - Ezra Zygmuntowicz
+
+- id: "benjamin-sandofsky-aloha-on-rails-2009"
+  title: "Staying Above the Ghetto"
+  date: "2009-10-05"
+  language: "English"
+  slides_url: "http://commondatastorage.googleapis.com/alohaonrails/Aloha%20on%20Rails%20-%20Benjamin%20Sandofsky%20-%20Staying%20Above%20the%20Ghetto.pdf"
+  video_provider: "not_published"
+  video_id: "benjamin-sandofsky-aloha-on-rails-2009"
+  description: |-
+    We’ve won! We’ve got a huge ecosystem and high demand for Rails developers, and as more people adopt Rails, you’ve commoditized yourself. How do you stay above the curve and continue to be worth top dollar? Topics include: watching Rails become the new PHP, skills developers don’t know but should, and how to follow through on those things you’ve been meaning to learn.
+  speakers:
+    - Benjamin Sandofsky
+
+- id: "nathaniel-brown-aloha-on-rails-2009"
+  title: "Distributed Cluster Management with Chef"
+  date: "2009-10-05"
+  published_at: "2010-04-12T21:57:24Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "10884991"
+  description: |-
+    Using Chef, the new all Ruby server infrastructure management system, Nathaniel will guide you through setting up your distributed network architecture in an automated fashion. Currently, Chef is running his distributed cluster of staging, production, and key infrastructure servers using linux flavours of Ubuntu, RHEL, and CentOS in a multi network environment spanning from Amazon’s EC2, 1&1, Rackspace, as well as Slicehost. You will learn not only the fundamental concepts of Chef, but how to practically use it to automate your network infrastructure with installations, version upgrades, centralized user management, as well as deployment strategies to remove the headache of managing as well as scaling clusters of servers in the wild.
+  speakers:
+    - Nathaniel Brown
+
+- id: "obie-fernandez-aloha-on-rails-2009"
+  title: "Modeling Maturity"
+  kind: "panel"
+  date: "2009-10-05"
+  published_at: "2010-04-12T15:46:46Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "10876639"
+  description: |-
+    One of the most important keys to your personal or business success is maturity. When it comes to doing quality work for others, at expensive prices, you don’t want immaturity, whether in attitude or practices to derail you. Months ago, Obie proposed an idea which was very controversial, that the community could define a Rails Maturity Model that would describe the ideal way of working with Ruby on Rails. A web application was launched, and later turned into a database showcasing a variety of different maturity models, reflecting different philosophies for approaching Agile software development using Rails. In this session, Obie will moderate a panel discussing the viability and use of “maturity-model” type information, and whether the community should care about it.
+  speakers:
+    - Obie Fernandez
+
+- id: "john-woodell-aloha-on-rails-2009"
+  title: "Ship Your App In A Container"
+  date: "2009-10-05"
+  language: "English"
+  slides_url: "http://commondatastorage.googleapis.com/alohaonrails/Aloha%20on%20Rails%20-%20John%20Woodell%20-%20Ship%20Your%20App%20In%20A%20Container.pdf"
+  video_provider: "not_published"
+  video_id: "john-woodell-aloha-on-rails-2009"
+  description: |-
+    The preferred method for deploying Rails has transitioned over the years, from FastCGI to Mongrel, and most recently to Passenger. There is still work to be done, but now a compelling way to develop and deploy Ruby apps, is in a servlet container. Developers can benefit from all the meta-programming power of Ruby, the portability of Java, and then deploy to Google App Engine for unprecedented scalability. We give developers the ability to optimize each URL to use any Rack-based Ruby framework or even servlets, beans, and JSPs. Java developers can quickly put together a simple Sinatra front-end for legacy J2EE code, while Rails developers can easily integrate servlets to do some heavy lifting. The JRuby development environment for Google App Engine runs inside a servlet container, and we have tools that make this easy. With micro-frameworks like Sinatra, or modular frameworks like Rails3, new app instances can spin up on demand, so you avoid paying for servers that sit idle.
+  speakers:
+    - John Woodell
+
+- id: "scott-chacon-trailer-aloha-on-rails-2009"
+  title: "Aloha on Rails Interviews Scott Chacon of Github"
+  kind: "trailer"
+  date: "2009-08-18"
+  published_at: "2009-08-18T09:44:50Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "-7eqL9Q5VDM"
+  description: |-
+    Scott Chacon, of Github and his new book Pro Git, presents a sneak peak of his upcoming talk for Aloha on Rails.  Titled "The History of Git", Scott takes attendees on a historical tour of the design decisions and motivations which resulted in the Git and Mercurial you know and love.  By studying the context and history of these two great source control systems, attendees will gain a deeper understanding and appreciation for the tools they use every day.
+  speakers:
+    - Scott Chacon
+
+- id: "tammer-saleh-aloha-on-rails-2009"
+  title: "Aloha on Rails Interviews Tammer Saleh"
+  kind: "trailer"
+  date: "2009-08-16"
+  published_at: "2009-08-16T08:17:34Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "au-Sjg4pfZY"
+  description: |-
+    Tammer Saleh, formally with Thoughtbot and author of Shoulda, talks about his upcoming talk for Aloha on Rails, the Hawaii Ruby on Rails Conference.  His talk, with Chad Pytel (founder of Thoughtbot), is titled "You're Doing It Wrong", and is based on their upcoming book "Rails AntiPatterns".  In the talk, Tammer and Chad take a critical look at common mistakes in Rails code, why this mistakes are still found in the wild today, and how to fix them.
+    
+    In this video, Tammer also talks about what makes conferences so special and why you should Aloha on Rails.
+    
+    Register Today (http://alohaonrails.com/) for Aloha on Rails, the premier destination event for Ruby on Rails.
+  speakers:
+    - Tammer Saleh
+
+- id: "alan-gates-trailer-aloha-on-rails-2009"
+  title: "Aloha on Rails Interviews Alan Gates of Yahoo"
+  kind: "trailer"
+  date: "2009-08-14"
+  published_at: "2009-08-14T07:38:10Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "QHl0fTrr2VA"
+  description: |-
+    Aloha on Rails sat down with Alan Gates, an Architect at Yahoo for Pig, a high level language for Hadoop, the open source Map Reduce framework.  Alan will be presenting two talks at Aloha on Rails, the Hawaii Ruby on Rails Conference.  The first talk, "Thinking in Map Reduce", introduces the data processing paradigm.  The second talk, "Intro to Pig", shows how to quickly and easily write Map Reduce jobs with Pig.  Everyone is generating more and more data, and Alan's talks will help attendees learn about these new and important technologies.
+
+    Register Today for Aloha on Rails, meet Alan and all of our speakers, learn Map Reduce, and enjoy Hawaii!
+
+    Learn more at http://alohaonrails.com/
+  speakers:
+    - Alan Gates
+
+- id: "blake-mizerany-trailer-aloha-on-rails-2009"
+  title: "Aloha on Rails Interviews Blake Mizerany from Heroku"
+  kind: "trailer"
+  date: "2009-08-13"
+  published_at: "2009-08-13T09:08:31Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "jnqw3KGgUcs"
+  description: |-
+    Blake Mizerany, creator of the popular Sinatra web framework and an engineer at Heroku, will be presenting "Forget Kindergarten, Learn to Scale" at Aloha on Rails, the Hawaii Ruby on Rails Conference.  In this video, Blake gives us a sneak peak at his talk.  Plus something about mustaches.  Catch Blake and all our speakers at Aloha on Rails, the premier destination event for Ruby on Rails.  Learn more at http://alohaonrails.com/
+  speakers:
+    - Blake Mizerany
+
+- id: "ezra-zygmuntowicz-trailer-aloha-on-rails-2009"
+  title: "Aloha on Rails Interviews Ezra Zygmuntowicz from Engine Yard"
+  kind: "trailer"
+  date: "2009-08-12"
+  published_at: "2009-08-12T09:48:19Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "TSNpmKbrscg"
+  description: |-
+    Ezra Zygmuntowicz, founder and engineer at Engine Yard, gives us a sneak peak of his talk for Aloha on Rails, the Hawaii Ruby on Rails Conference.  Titled "Where Do I Put This Data?", Ezra takes a critical and informed look at the recent explosion of non-RDBMS data storage systems.  Ezra has helped deploy and integrate key-value stores into Engine Yard's cloud infrastructure, so he's sure to have lots of juicy stories to tell.
+    
+    Register Today (http://alohaonrails.com/registration/) to meet Ezra and all of our speakers at the premier destination event for Ruby on Rails!
+  speakers:
+    - Ezra Zygmuntowicz
+
+- id: "dan-leuck-laurence-lee-aloha-on-rails-2009"
+  title: "Aloha on Rails Interviews Ikayzo"
+  kind: "trailer"
+  date: "2009-07-19"
+  published_at: "2009-07-19T09:16:33Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "F_f48ZFl14M"
+  description: |-
+    Aloha on Rails, the Hawaii Ruby on Rails Conference, interviews Dan Leuck and Laurence Lee of Ikayzo.  They tell you the must-do activities, why a .NET programmer should come to Aloha on Rails, and why Aloha on Rails just *might* be a better choice than the Siberian Ruby on Rails Conference.
+  speakers:
+    - Dan Leuck
+    - Laurence Lee
+
+- id: "mark-johnson-aloha-on-rails-2009"
+  title: "Aloha on Rails Interviews Mark Johnson from Logicspin"
+  kind: "trailer"
+  date: "2009-07-13"
+  published_at: "2009-07-13T09:01:44Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "ZmqA5dqVNwA"
+  description: |-
+    Aloha on Rails, the Hawaii Ruby on Rails Conference, interviews Mark Johnson.  Mark, a local surfer and Rails developers, is a founder at Logicspin and Menumill.  Mark tells us what we shouldn't miss when coming to Hawaii, how working in Hawaii is different than the Bay Area, and why he's bring his family to Hawaii for the conference.
+    
+    Mahalo, Mark!
+  speakers:
+    - Mark Johnson
+
+- id: "michael-nieling-aloha-on-rails-2009"
+  title: "Aloha on Rails Interviews Michael Nieling from Ocupop"
+  kind: "trailer"
+  date: "2009-07-12"
+  published_at: "2009-07-12T07:22:14Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "LOa4a3UL0aE"
+  description: |-
+    Aloha on Rails ( http://alohaonrails.com/ ) interviews Michael Nieling.  Michael, a founder and principal at Ocupop ( http://www.ocupop.com/ ), will be presenting "You Don't Need a Logo" at Aloha on Rails, the Hawaii Ruby on Rails Conference.
+  speakers:
+    - Michael Nieling
+
+- id: "anthony-eden-trailer-aloha-on-rails-2009"
+  title: "Aloha on Rails Interviews Anthony Eden from Chi.mp"
+  kind: "trailer"
+  date: "2009-06-24"
+  published_at: "2009-06-24T12:05:33Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "cXRQD9VG7iQ"
+  description: |-
+    Aloha on Rails interviews Anthony Eden, the CTO of Chi.mp and a featured local speaker.  Anthony talks about his presentation, and gives his Must Do activity while visiting Hawaii.
+  speakers:
+    - Anthony Eden
+
+- id: "kevin-english-aloha-on-rails-2009"
+  title: "Aloha on Rails Interview Series with Kevin English"
+  kind: "trailer"
+  date: "2009-06-19"
+  published_at: "2009-06-19T12:15:29Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "BX3QWVypMMw"
+  description: |-
+    Aloha on Rails interviews Kevin English, a local Ruby on Rails developer and surfer
+  speakers:
+    - Kevin English

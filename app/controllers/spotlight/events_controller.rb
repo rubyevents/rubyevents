@@ -10,7 +10,7 @@ class Spotlight::EventsController < ApplicationController
     if search_query.present?
       @events, @total_count = search_backend_class.search_events(search_query, limit: LIMIT)
     else
-      @events = Event.includes(:series).canonical.past.order(start_date: :desc).limit(LIMIT)
+      @events = Event.ruby_focused.includes(:series).canonical.past.order(start_date: :desc).limit(LIMIT)
       @total_count = nil
     end
 

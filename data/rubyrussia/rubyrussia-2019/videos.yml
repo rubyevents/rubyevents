@@ -1,6 +1,403 @@
-# TODO: Add talks and videos
-
 # Website: https://rubyrussia.club/en
 # Videos: https://www.youtube.com/playlist?list=PLiWUIs1hSNeP3xDhqfTVCXZd8_L07QZ2c
 ---
-[]
+- id: "nick-sutterer-rubyrussia-2019"
+  title: "If — The Vodka of Ruby"
+  raw_title: "If — The Vodka of Ruby. Nick Sutterer"
+  date: "2019-09-28"
+  published_at: "2019-11-08T18:44:35Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "mjsnd8dJbew"
+  description: |-
+    Software is and will always be complex. That doesn't mean your code has to be cryptic. Detecting the smells, cleaning the mess and applying advanced hang-over prevention techniques will be what this talk's about.
+  speakers:
+    - Nick Sutterer
+
+- id: "david-halasz-rubyrussia-2019"
+  title: "Dr. Strangecode or: How I learned to Stop Worrying and Love Refactoring"
+  raw_title: "Dr. Strangecode or: How I learned to Stop Worrying and Love Refactoring. Dávid Halász"
+  date: "2019-09-28"
+  published_at: "2019-11-06T20:10:45Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "YMqrTBDg2lw"
+  description: |-
+    The year is 2014 and you just got your first job as a junior to work on a project that was created back in 2006. There’s too much to do and no time to explain, jump on the refactoring train and try to enjoy the ride. It will be bumpy and stressful but you can learn a lot!
+    No one likes legacy code or technical debt, but it is easy to find a non-technical reason why we introduce such things in our codebase. Then the mess starts to multiply, hacks followed by more hacks and we end up with a huge monolith that can only be tamed by its Ruby-masters. I got the chance to start working on one of the largest open-source Rails applications as an intern. In the last five years I learned how to cut down the heads of the hydra one by one without letting them grow back. It was not an easy adventure, but the experience gained made me a better programmer and got me far from the ease of rails-generate. I would like to share this story with you, so you can learn from my mistakes and fast-track to be a master refactorer.
+  speakers:
+    - Dávid Halász
+
+- id: "nikola-duza-rubyrussia-2019"
+  title: "Speeding up Initial Rendering of Rails Pages with render_async"
+  raw_title: "Speeding up Initial Rendering of Rails Pages with render_async. Nikola Đuza"
+  date: "2019-09-28"
+  published_at: "2019-11-01T15:39:29Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "_lCSSaurjYQ"
+  description: |-
+    You know your Rails application is slow at times. Customers are complaining, and your infrastructure team is provisioning even more servers but it is just not helping. What now? That can happen as the app grows. Sometimes controller actions get really big, and they tend to do a lot of things, thus increasing the load time. If you’re interested in how to solve this, get ready to dive in to the solutions for speeding up your pages with render_async gem.
+  speakers:
+    - Nikola Đuza
+
+- id: "vladimir-dementyev-rubyrussia-2019"
+  title: "Добро пожаловать, или посторонним доступ закрыт"
+  raw_title: "Добро пожаловать, или посторонним доступ закрыт. Владимир Дементьев"
+  date: "2019-09-28"
+  published_at: "2019-10-29T11:56:48Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "y15a2g7v8i0"
+  description: |-
+    Проблема ограничения прав доступа рано или поздно встаёт практически в каждом веб-приложении.
+    Популярные Ruby фреймворки предоставляют решения для большинства задач "из коробки", но некоторые важные аспекты разработки веб-приложений остаются незамеченными. Например, для функционала ограничения прав доступа мы — сами по себе. Обилие публичных библиотек лишь создаёт проблему выбора — серебряной пули не существует.
+
+    Несмотря на это, мы всё же можем выделить общие подходы к построению систем авторизации, а также популярные проблемы, с которыми сталкиваются разработчики, такие как: производительность, тестируемость и поддерживаемость кода, интеграция с клиентскими приложениями.
+
+    В этом докладе я хочу коснуться как теории, так и практики: от рассмотрения различных авторизационных моделей до непосредственно примеров проектирования, которые я накопил за время работы над Rails приложениями и которые легли в основу фреймворка Action Policy.
+  speakers:
+    - Vladimir Dementyev
+
+- id: "mikhail-pronyakin-rubyrussia-2019"
+  title: "Безопасность приложений Ruby on Rails"
+  raw_title: "Безопасность приложений Ruby on Rails. Михаил Пронякин"
+  date: "2019-09-28"
+  published_at: "2019-10-29T11:22:32Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "GJ_rVXlZcvM"
+  description: |-
+    RoR - фреймворк, предоставляющий программисту богатые возможности по написанию кода, который облегчает разработку и объединяет разные модули программного проекта.
+    Вместе с этим существуют неочевидные аспекты, которые могут привести к проблемам безопасности.
+    В докладе будет рассмотрена специфика безопасности разработки веб-приложений в контексте Ruby on Rails.
+  speakers:
+    - Mikhail Pronyakin
+
+- id: "nikolay-sverchkov-rubyrussia-2019"
+  title: "Serverless is Ruby Future"
+  raw_title: "Serverless is Ruby Future. Николай Сверчков"
+  date: "2019-09-28"
+  published_at: "2019-10-27T21:44:30Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "V0Mah_0G8vU"
+  description: |-
+    Первая FaaS платформа AWS Lambda доступна уже как пять лет, но Serverless по-прежнему нельзя назвать популярным решением. К тому же, бытует мнение, что бессерверная модель вычислений подходит только для _высоконагруженных_ систем, где необходим мгновенный и "бесплатный" autoscaling.
+    В своем докладе я расскажу, какие задачи можно решать уже сейчас при помощи Serverless, и почему это не просто очередной способ запускать ваше приложение, а потенциально наше светлое будущее. И главное - причем здесь Ruby.
+  speakers:
+    - Nikolay Sverchkov
+
+- id: "ivan-nemytchenko-rubyrussia-2019"
+  title: "Отвечаем на архитектурные вопросы при помощи ООП в картинках"
+  raw_title: "Отвечаем на архитектурные вопросы при помощи ООП в картинках. Иван Немытченко"
+  date: "2019-09-28"
+  published_at: "2019-10-27T21:23:24Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "MWGfwgL-934"
+  description: |-
+    Что если в программирование все было бы более конкретным? Вместо непонятных абстрактных штук - что-то что можно взять и нарисовать!
+    Можно было бы тогда наглядно показать джуниору чем одно решение лучше другого. Но как изобразить полиморфизм? А Dependency Injection?
+
+    Мы с вами "нарисуем ООП". По сути мы построим целый визуальный язык, который и используем для решения практических задач по организации кода.
+  speakers:
+    - Ivan Nemytchenko
+
+- id: "yulian-pokrovsky-rubyrussia-2019"
+  title: "Ruby CPU and Memory - Pareto principle"
+  raw_title: "Ruby CPU and Memory - Pareto principle. Юлиан Покровский"
+  date: "2019-09-28"
+  published_at: "2019-10-27T21:07:08Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "eYhJWoxgoKA"
+  description: |-
+    Вопрос оптимизации приложений, написанных на Ruby, постоянно затрагивается в том или ином виде при каждом обсуждении языка. Несмотря на огромное количество материалов иногда хочется убежать от глубоко изучения вопроса и угадать, как сделать приложение быстрей или компактней. Хорошая новость заключается в том, что принцип Парето работает и здесь, и получить прирост производительности можно разобравшись всего с несколькими простыми приемами и инструментами, которые не требуют Rails и подходят не только для веб-приложения.
+  speakers:
+    - Yulian Pokrovsky
+
+- id: "julia-egorova-rubyrussia-2019"
+  title: "640К хватит всем, или как использовать меньше памяти в Ruby"
+  raw_title: "640К хватит всем, или как использовать меньше памяти в Ruby. Юлия Егорова"
+  date: "2019-09-28"
+  published_at: "2019-10-27T20:23:52Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "eZzPaYKw1dU"
+  description: |-
+    Что такое 640 KB в современном мире, когда мы можем использовать десятки, а то и сотни гигабайт оперативной памяти. Ведь не так уж и страшно, что наше приложение съедает гигабайт, другой и еще немного сверху. Неправда ли?
+    Но почему так происходит? Давайте поговорим про то, как работает память в Ruby, как её измерять и что с ней можно делать. Ведь если задуматься: 640 KB не так уж и мало.
+  speakers:
+    - Julia Egorova
+
+- id: "anton-davydov-rubyrussia-2019"
+  title: "The future of dependency management in Ruby"
+  raw_title: "The future of dependency management in Ruby. Антон Давыдов"
+  date: "2019-09-28"
+  published_at: "2019-10-27T20:20:34Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "DfU6H-8qal8"
+  description: |-
+    Комьюнити рассказывает об абстракциях, которые спасут ruby приложения: service objects, query objects, form objects и другие объекты. Но никто не говорит о том, как жить с абстракциями в проектах. Опираясь на опыт, организации либо устраивают свалку из абстракций (`/app/services` ), либо предлагают использовать микросервисы чтобы снизить количество объектов в одном проекте. Я сталкивался с этим в каждом из проектов и пытался найти серебряную пулю, помогающая разгрести эту кучу объектов.
+    В своем докладе соберу опыт работы с подобными зависимостями. Мы не будем рассматривать каждую зависимость отдельно, вместо этого обсудим как сделать организацию проекта, которая улучшит поддержку кодовой базы. Коснемся тем времени жизни каждой зависимости и идей из энтерпрайз мира, которые могут помочь в руби, rails и hanami проектах. А в качестве примера, поделюсь работой в dry-rb, которая позволит визуализировать зависимости в проекте и помочь новичкам и матерым разработчикам.
+  speakers:
+    - Anton Davydov
+
+- id: "kir-shatrov-rubyrussia-2019"
+  title: "Архитектура высоконагруженных Rails-приложений"
+  raw_title: "Архитектура высоконагруженных Rails-приложений. Кир Шатров"
+  date: "2019-09-28"
+  published_at: "2019-10-27T20:07:37Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "iW4O6fLxgME"
+  description: |-
+    На примере Shopify, одного из самых больших и нагруженных в мире приложений на Rails, мы рассмотрим то как можно поддерживать рост бизнеса на протяжении 10 лет, оставаясь на Rails и не переходя на микросервисы и Elixir. Поговорим об архитектуре приложений, применении шардинга на примерах разных бизнесов, о том как обслуживать запросы одновременно в нескольких дата-центрах по всему миру и о том как важны строгие таймауты. Посмотрим, чему можно научиться у взрослых Google и Facebook, оставаясь на нашем любимом языке и фреймворке.
+  speakers:
+    - Kir Shatrov
+
+- id: "vladimir-sharshov-rubyrussia-2019"
+  title: "Легаси. Как погрузиться и не утонуть"
+  raw_title: "Легаси. Как погрузиться и не утонуть. Владимир Шаршов"
+  date: "2019-09-28"
+  published_at: "2019-10-26T11:12:18Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "1swJwkMCcsQ"
+  description: |-
+    Разработка монолита на Ruby on Rails, ставшего ядром международного сервиса заказа такси Gett, началась в октябре 2010 года. Сегодня в Gett более 150 микросервисов, написанных на Go, но монолит и другие Ruby-сервисы все еще работают и составляют 25% от всех запущенных.
+    В докладе я расскажу, как мы в новой команде погружались в легаси на Ruby, собирали и восстанавливали знания, как исправляли и поддерживали код, накапливая опыт для реализации будущих микросервисов.
+  speakers:
+    - Vladimir Sharshov
+
+- id: "makar-ermokhin-rubyrussia-2019"
+  title: "Как мы приручали InfluxDB"
+  raw_title: "Как мы приручали InfluxDB. Макар Ермохин"
+  date: "2019-09-28"
+  published_at: "2019-10-25T12:39:53Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "BPPp04k3cRA"
+  description: |-
+    InfluxDB обычно используется для хранения метрик приложения, но мы в Teachbase пришли к нему с другой задачей: необходимо было отслеживать активность учеников и затем давать аналитику организаторам обучения. В своем докладе я расскажу о многолетнем опыте использования InfluxDB в production, какие грабли мы собрали, а так же как работать с ним из Ruby.
+  speakers:
+    - Makar Ermokhin
+
+- id: "dmitry-stepanenko-rubyrussia-2019"
+  title: "Гарантия качества"
+  raw_title: "Гарантия качества. Дмитрий Степаненко"
+  date: "2019-09-28"
+  published_at: "2019-10-25T12:13:19Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "j6N4HwFWoSY"
+  description: |-
+    Расскажу, как мы старались улучшить качество и успевать делать фичи. Поговорим о том как мы увеличиваем тестовое покрытие, как устроен деплой и как мы пишем обратно совместимый код. Подведем итоги того чего удалось добиться за 2 года работы над высоконагруженным легаси проектом.
+  speakers:
+    - Dmitry Stepanenko
+
+- id: "oleg-fedotkin-rubyrussia-2019"
+  title: "Каков Sorbet на вкус"
+  raw_title: "Каков Sorbet на вкус. Олег Федоткин."
+  date: "2019-09-28"
+  published_at: "2019-10-25T11:40:48Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "jJkKC2uAxaA"
+  description: |-
+    Опыт применения Sorbet в пет-проджектах и первая попытка применить его на проде: какие грабли были собраны и какие плюшки получены.
+  speakers:
+    - Oleg Fedotkin
+
+- id: "igor-aleksandrov-rubyrussia-2019"
+  title: "Not the Rails Way. Again!"
+  raw_title: "Not the Rails Way. Again! Игорь Александров"
+  date: "2019-09-28"
+  published_at: "2019-10-25T11:16:18Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "1W0SsXA8DXA"
+  description: |-
+    Качество кода в проекте напрямую влияет на его поддерживаемость, настроение команды и скорость поставки новых фич, а значит и на ваш заработок. Год назад я выступал на Московском Ruby митапе и рассказывал какие практики мы применяем в JetRockets при работе с большими проектами на Rails. Прошёл год, мы получили ещё больше опыта, а использованные практики и библиотеки тоже обновились. Давайте разберёмся что изменилось за год, и имеет ли Rails Way право на жизнь в 2019 году?
+  speakers:
+    - Igor Aleksandrov
+
+- id: "dmitry-tsepelev-rubyrussia-2019"
+  title: "Что скрывает «под капотом» GraphQL Ruby"
+  raw_title: "Что скрывает «под капотом» GraphQL Ruby. Дмитрий Цепелев."
+  date: "2019-09-28"
+  published_at: "2019-10-24T12:14:25Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "_oPZgRB3Ovg"
+  description: |-
+    Разобраться в большом open-source проекте не так то просто: большой объем исходного кода и обилие неочевидных решений, появившихся в процессе эволюции проекта повышают порог входа. В докладе я рассказажу о том, что происходит, когда объявляется новый тип, а также о том, как происходит обработка запроса на эндпоинт /graphql. Эти знания помогут нам понять, как работают плагины для graphql-ruby и даже написать свое собственное несложное расширение!
+    Доклад будет полезен:
+
+    тем, кто работает с graphql-ruby, и хочет знать, что там внутри
+    тем, кто хочет понять, как реализуется среда исполнения GraphQL
+    тем, кто хочет научиться разбираться с устройством популярных open-source библиотек
+    тем, кто хочет научиться контрибутить в open-source
+  speakers:
+    - Dmitry Tsepelev
+
+- id: "tatiana-shepeleva-rubyrussia-2019"
+  title: "Тестируем микросервисы правильно"
+  raw_title: "Тестируем микросервисы правильно. Татьяна Шепелева."
+  date: "2019-09-28"
+  published_at: "2019-10-24T11:41:34Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "-Dzqn0RSQH8"
+  description: |-
+    Toptal переходит на микросервисы, и в своем докладе я расскажу, как мы выбирали инструмент для тестирования, что рассматривали и что нам не подошло. Почему возникла проблема тестирования сервисов? Как мы используем pact в продакшене? Что он может, как тестируются Ruby сервисы и как тестировать GraphQL. Будет много опыта, боли и того, что получилось и нет. А так же расскажу, как сократить время выполнения CI на пару дней.
+  speakers:
+    - Tatiana Shepeleva
+
+- id: "dmitry-salahutdinov-rubyrussia-2019"
+  title: "Optimistic UI с Logux и Ruby"
+  raw_title: "Optimistic UI с Logux и Ruby. Дмитрий Салахутдинов."
+  date: "2019-09-28"
+  published_at: "2019-10-24T10:52:27Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "FjJ3hpBjSAE"
+  description: |-
+    Logux - новый способ синхронизации между клиентом и сервером, который предоставляет множество современных веб-фич из коробки: live updates, optimistic UI, Offline-first.
+    Я хочу познакомить вас с Logux data sync server для Ruby разработчиков и поделиться знаниями о том, как его можно легко интегрировать в существующее Ruby/Rails приложение.
+  speakers:
+    - Dmitry Salahutdinov
+
+- id: "andrey-molchanov-rubyrussia-2019"
+  title: "Как исследовать старый код"
+  raw_title: "Как исследовать старый код. Андрей Молчанов."
+  date: "2019-09-28"
+  published_at: "2019-10-24T09:07:54Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "kPtP0Heh7s8"
+  description: |-
+    В наших кругах популярен мем "тыжпрограммист - просто читай код!" Но получив по наследству проект в несколько мегабайт или вернувшись к собственному старому коду мы нередко оказываемся в странной ситуации, когда читаешь этот код, читаешь, - а понятнее не становится. И задачи решать надо не через год, а прямо сейчас. Это доклад о том, почему так. Кто виноват и что делать. Работая на разных руби проектах я и мои коллеги видели много разного, так что доклад - наш коллективный рассказ о способах быстро разобраться в старом коде. Будет отладка через puts, ключевые для разработчика отличия VSCode от RubyMine, сбор логов с прода, изучение кода через coverage и другие штуки, которыми я хотел бы с вами обсудить.
+  speakers:
+    - Andrey Molchanov
+
+- id: "grigory-petrov-rubyrussia-2019"
+  title: "Ruby network workflow: REST, JSON, GraphQL or gRPC?"
+  raw_title: "Ruby network workflow: REST, JSON, GraphQL or gRPC? Grigory Petrov."
+  date: "2019-09-28"
+  published_at: "2019-10-23T20:40:50Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "D6n2SHXZy9k"
+  description: |-
+    Most Ruby apps start their communications via Rails built-in REST support. As the app evolves, it questions a developer with small, but important decisions: how to handle date and time, transfer files and large data sets, honor permissions and so on. Network intercommunications between modern backend apps are a vast world of competing protocols, standards and workflows. There is a vague "REST" thing, overlapped JSON Schema and OpenAPI, JSON API, GraphQL, gRPC and much more. This talk showcases our experience of working on different Ruby projects over the years using different approaches. I will focus on challenges that developers handle implementing network communications to frontend and other apps, how these challenges are solved nowadays, with the pros and cons of available gems and different ways to do things.
+  speakers:
+    - Grigory Petrov
+
+- id: "yukihiro-matz-matsumoto-rubyrussia-2019"
+  title: "The Future of Ruby(3)"
+  raw_title: "The Future of Ruby(3). Yukihiro Matsumoto"
+  date: "2019-09-28"
+  published_at: "2019-10-23T19:34:27Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "IhTXDklRLME"
+  description: ""
+  speakers:
+    - "Yukihiro \"Matz\" Matsumoto"
+
+- id: "takashi-kokubun-rubyrussia-2019"
+  title: "JIT compiler improvements in Ruby 2.7"
+  raw_title: "JIT compiler improvements in Ruby 2.7. Takashi Kokubun"
+  date: "2019-09-28"
+  published_at: "2019-10-23T14:51:10Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "AJIAMT7ilHw"
+  description: |-
+    Have you ever tried the JIT compiler introduced in Ruby 2.6? Just passing --jit may significantly improve your application's performance.
+    However, Ruby 2.6 JIT has struggled to optimize applications having a lot of hot methods. As we also want to optimize such applications, we've worked hard to approach the problem in Ruby 2.7.
+    In this talk, you'll briefly learn how to use the JIT compiler, and know its performance improvement on real-world applications with Ruby 2.7.
+  speakers:
+    - Takashi Kokubun
+
+- id: "artem-krivonozhko-rubyrussia-2019"
+  title: "Ruby on Races"
+  raw_title: "Ruby on Races. Артем Кривоножко."
+  date: "2019-09-28"
+  published_at: "2019-10-23T12:43:40Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "O2A1VWPt9qQ"
+  description: |-
+    Я расскажу о своем опыте борьбы с состоянием гонки при операциях с сессией в Rails, а также рассмотрю другие ситуации и сценарии, при которых может возникнуть состояние гонки, потенциальные риски и способы борьбы с ними
+  speakers:
+    - Artem Krivonozhko
+
+- id: "ivan-shamatov-rubyrussia-2019"
+  title: "Деньги!"
+  raw_title: "Деньги! Иван Шаматов."
+  date: "2019-09-28"
+  published_at: "2019-10-22T10:28:41Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "hNaJgkdiRNg"
+  description: |-
+    Деньги в программировании — это просто! С помощью денег мы выражаем некоторую стоимость товара/услуги. В самом общем случае деньги можно описать как кортеж размерностью 2, состоящий из значения цифрового (например 100), и символьного (например USD,$). Мат. аппарат в случае операций с деньгами с одинаковыми символами относительно прост, но даже тут можно обнаружить подводные камни. Что уж говорить про сценарий конвертирования денег из одной валюты в другую. Тут идеальный математический мир рушится и вмешивается бизнесово-бухгалтерский. В докладе мы разберём некоторые сценарии, ошибки и лучшие практики, которые часто встречаются в фин-тех проектах (биллинги/обменники/биржи).
+  speakers:
+    - Ivan Shamatov
+
+- id: "artem-strakhov-rubyrussia-2019"
+  title: "Как перестать писать E2E тесты и начать их синтезировать"
+  raw_title: "Как перестать писать E2E тесты и начать их синтезировать. Артем Страхов."
+  date: "2019-09-28"
+  published_at: "2019-10-22T09:55:34Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "1WMT_7NoLto"
+  description: |-
+    Расскажу о преимуществах и недостатках (с решениями!) property-based random tests в приложении к high-level end-to-end тестированию.
+  speakers:
+    - Artem Strakhov
+
+- id: "xavier-noria-rubyrussia-2019"
+  title: "Zeitwerk: A new code loader"
+  raw_title: "Zeitwerk: A new code loader. Xavier Noria."
+  date: "2019-09-28"
+  published_at: "2019-10-22T09:22:02Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "naz2zUGbxPI"
+  description: |-
+    In this talk we'll introduce Zeitwerk, the new code loader for gems and apps in which I have worked during the last months. Zeitwerk is the new autoloader by default in Rails 6.
+    We'll cover what motivated me to work on Zeitwerk, usage, we'll compare it with the classic Rails autoloader, and we'll see interesting aspects of the implementation
+  speakers:
+    - Xavier Noria
+
+- id: "nikita-shilnikov-rubyrussia-2019"
+  title: "Пишем функционально с алгебраическими эффектами"
+  raw_title: "Пишем функционально с алгебраическими эффектами. Никита Шильников."
+  date: "2019-09-28"
+  published_at: "2019-10-22T08:40:35Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "Noeek0429rM"
+  description: |-
+    Алгебраические эффекты - относительно новая область, они позволяют программировать с эффектами просто, но при этом оставаясь в рамках чистых функций. В то время как статически типизированные языки смогут начать поддерживать такой подход только в будущем, динамические языки, такие как JavaScript или Ruby, могут практически реализовать его уже сегодня. Например, React internals теперь обернуты алгебраическими эффектами. Но в Ruby мы можем сделать это еще лучше! Я покажу, как вчерашняя теория решает сегодняшние проблемы (с файберами!).
+  speakers:
+    - Nikita Shilnikov
+
+- id: "genadi-samokovarov-rubyrussia-2019"
+  title: "Break, a debugger in plain Ruby"
+  raw_title: "Break, a debugger in plain Ruby. Genadi Samokovarov."
+  date: "2019-09-28"
+  published_at: "2019-11-29T21:59:42Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "3QADeUVwJtA"
+  description: |-
+    Developing debuggers in C has given us a lot of maintenance headaches. In this talk, we’ll walk through the history of the CRuby debuggers and why we may want to reconsider C as their de facto language. We’ll learn about the API’s we have (and don’t have) in Ruby that can help us develop a full-featured debugger in plain Ruby. We’ll check-out break, which is an attempt to bring a debugger in IRB and Pry using only Ruby.
+  speakers:
+    - Genadi Samokovarov

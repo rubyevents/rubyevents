@@ -112,12 +112,32 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     !!static_repository.try(:hybrid) || false
   end
 
+  def description
+    static_repository.try(:[], "description")
+  end
+
+  def start_time
+    static_repository.try(:[], "start_time")
+  end
+
+  def end_time
+    static_repository.try(:[], "end_time")
+  end
+
+  def own_links
+    [*MeetupLinks::FIELDS, "tickets_url"].index_with { |field| static_repository.try(:[], field) }.compact_blank
+  end
+
   def cancelled?
     static_repository&.status == "cancelled"
   end
 
   def playlist
     static_repository&.playlist
+  end
+
+  def data_folder
+    Pathname.new(File.dirname(static_repository.file_path)) if static_repository&.file_path
   end
 
   private

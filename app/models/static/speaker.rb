@@ -141,6 +141,7 @@ module Static
         ::User.find_by(slug: slug) ||
         ::User.find_by_name_or_alias(name) ||
         ::User.find_by(slug: name.parameterize) ||
+        find_user_by_aliases ||
         ::User.new
 
       if slug.present? && user.slug != slug
@@ -191,6 +192,19 @@ module Static
       Search::Backend.index(user) if index && user_changed
 
       user_changed ? user : nil
+    end
+
+    private
+
+    def find_user_by_aliases
+      Array(aliases).each do |alias_data|
+        next unless alias_data.is_a?(Hash)
+
+        user = ::User.find_by(slug: alias_data["slug"]) || ::User.find_by_name_or_alias(alias_data["name"])
+        return user if user
+      end
+
+      nil
     end
   end
 end

@@ -49,11 +49,19 @@ module Static
       end
 
       def self.series_exists?(series_slug)
-        File.exist?(Rails.root.join("data", series_slug.to_s, "series.yml"))
+        series_directory(series_slug).present?
       end
 
       def self.event_exists?(series_slug, event_slug)
-        File.exist?(Rails.root.join("data", series_slug.to_s, event_slug.to_s, "event.yml"))
+        directory = series_directory(series_slug)
+
+        directory.present? && File.exist?(File.join(directory, event_slug.to_s, "event.yml"))
+      end
+
+      def self.series_directory(series_slug)
+        series_file = Dir.glob(Rails.root.join("data", "**", series_slug.to_s, "series.yml").to_s).first
+
+        File.dirname(series_file) if series_file
       end
     end
   end

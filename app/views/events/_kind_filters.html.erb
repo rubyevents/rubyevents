@@ -1,0 +1,19 @@
+<%# locals: (counts:, selected: nil) %>
+
+<% if counts.size > 1 || selected %>
+  <div class="pb-6 hotwire-native:hidden">
+    <nav
+      aria-label="Filter events by kind"
+      class="tabs-boxed tabs inline-flex flex-wrap gap-1 max-md:rounded-xl max-md:p-1.5"
+    >
+      <%= render "events/continent_filter", label: "All kinds", path: kind_filter_path(nil), active: selected.nil? %>
+
+      <% counts.each do |kind, count| %>
+        <%= render "events/continent_filter",
+              label: "#{(kind == "event") ? "Other" : kind.pluralize.humanize} (#{count})",
+              path: kind_filter_path(kind),
+              active: selected == kind %>
+      <% end %>
+    </nav>
+  </div>
+<% end %>

@@ -1,0 +1,44 @@
+---
+id: "amsterdam-rb-2018-11-20"
+old_talk_ids:
+  - "amsterdam-rb-meetup-november-2018"
+  - "amsterdamrb-meetup-november-2018"
+title: "Amsterdam.rb Meetup November 2018"
+location: "Amsterdam, Netherlands"
+timezone: "Europe/Amsterdam"
+kind: "meetup"
+description: |-
+  Dear Ruby friends,
+
+  For this Meetup, we have a theme: Rack, sockets, connections, and how to request lots from your webserver. That may sound a bit geeky, so feel free to bring your own pocket protector.
+
+  The Main Ingredient is hosting this event AND takes care of the drinks AND food!!!
+  Please join us at their office at Oostenburgervoorstraat 83A Amsterdam.
+
+  Program
+
+  18:00 Doors open 🍻 + 🍕
+  19:00 Wander Hillen
+  19:30 Break
+  20:00 Dávid Halász
+  20:30-21:30 Networking and drinks
+
+  Talks
+
+  Wander Hillen - Serving more than 10k connections from a single ruby process.
+
+  The Rack interface that most Ruby webservers expose to applications was designed for the short HTTP request/response cycle.
+
+  With websockets and Server Sent Events, these connections stay open for much longer. In this talk we look at the design of Rack, explore the ‘socket hijack’ technique and see how many connections we can squeeze out of a single Puma process.
+
+  Dávid Halász  - How to smuggle TCP traffic through an HTTP connection.
+
+  Rack is a super simple, yet a very versatile tool to implement web servers in Ruby. It beats under the hood of Rails, but it can do much more. The socket hijacking has been implemented into Rack to support WebSockets by bypassing the middleware and so not blocking the worker threads. However, together with the HTTP Upgrade requests, this can be used to send regular TCP traffic through an open HTTP connection.
+
+  See you there & bring a colleague! ❤️
+start_date: "2018-11-20"
+end_date: "2018-11-20"
+meetup: "https://www.meetup.com/amsterdam-rb/events/255637934/"
+coordinates:
+  latitude: 52.3675734
+  longitude: 4.9041389

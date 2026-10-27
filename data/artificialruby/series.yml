@@ -1,14 +1,31 @@
 ---
 id: "artificialruby"
+old_event_ids:
+  - "artificialruby-meetup"
+  - "artificialruby"
 name: "Artificial Ruby"
+meetup_name: "ArtificialRuby.ai"
+location: "New York, NY, United States"
+timezone: "America/New_York"
 website: "https://www.artificialruby.ai"
 kind: "meetup"
-frequency: "monthly"
 language: "English"
 twitter: "artificialruby"
 default_country_code: "US"
+description: "Artificial Ruby is a community of Rubyists who meet regularly in NYC to explore novel approaches to AI development using Ruby. Our mission is to ensure the Ruby mindset and approach to software development is represented in this new generation of AI applications, and provide a place for Rubyists to gather, share what they're building, and learn from each other.\n\nJoin our monthly meetups for workshops, talks, and hanging out with other Rubyists interested in defining our role in AI."
+luma: "https://luma.com/artificialruby"
+banner_background: "#F9F1E6"
+featured_background: "#F9F1E6"
+featured_color: "#383F48"
+coordinates:
+  latitude: 40.7127753
+  longitude: -74.0059728
 youtube_channels:
   - id: "UCKeTdPW5f7IMMsKP25XwOgA"
     name: "artificial_ruby"
     handle: "@artificial_ruby"
     playlist_matcher: "Artificial Ruby"
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-sDQsjgNbdoHd8c3"
+    name: "Luma"

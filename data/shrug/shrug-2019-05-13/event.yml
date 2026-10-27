@@ -1,0 +1,69 @@
+---
+id: "shrug-2019-05-13"
+title: "Sheffield Ruby Meetup May 2019"
+subtitle: "Running Ruby and Rails, purely serverless on AWS"
+location: "Sheffield, UK"
+timezone: "Europe/London"
+kind: "meetup"
+description: |-
+  A talk covering running basic ruby functions to a full-blown Rails site using AWS, Lambda and various serverless technologies to enable scalability and reduce costs.
+
+  The talk will include a demo and, for anyone with an AWS account, the ability to follow along.
+
+  ##### Getting set up with AWS
+
+  1. Sign up for an account (if you don't already have an AWS account):
+
+     [https://aws.amazon.com/free/](https://aws.amazon.com/free/)
+
+  2. Create a new IAM account for the AWS CLI:
+
+     [https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html)
+
+  3. Install the AWS CLI (requires Python):
+
+     ```
+     pip install awscli
+     ```
+
+  4. Configure the AWS CLI using the IAM username and secret key:
+
+     ```
+     $ aws configure
+     AWS Access Key ID [None]: {IAM username}
+     AWS Secret Access Key [None]: {IAM secret key}
+     Default region name [None]: eu-west-1
+     Default output format [None]:
+     ```
+
+  5. Install Node and NPM (if not already installed):
+
+     [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+
+  6. Install the following packages:
+
+     ```
+     npm install serverless serverless-ruby-package
+     ```
+
+  #### About our speaker
+
+  [Paul Ridgway](https://twitter.com/paulridgway) is an experienced Software Engineer turned Strategic Technology Leader.
+
+  Since graduating from The University of Sheffield with a First Class Honours Masters Degree in Software Engineering Paul has turned his hand to Technical and Operational Leadership, co-founding and growing a successful technology start-up in the UK to become a sustainable global business worth millions of pounds and employing over 100 people. In addition to the original design and build of the entire technology stack, he hired and developed a team of over 80 engineers and other technology professionals and led them to deliver high-quality software, on time and on spec, to customers all around the world.
+
+  Paul operates successfully at all levels of business working with developers, product teams, leaders and executives, often acting as a bridge between different business functions, translating requirements into specifications, expressing highly technical concepts with easy-to-digest real-world metaphors and designing solutions for complex problems. His current gig is CEO and Founder at [The Curve](https://thecurveconsulting.io/about)
+
+  #### About our venue
+
+  Our meetup will take place at our usual venue, [Union St](http://www.union-st.org).
+
+  After the meetup, we'll be heading to [The Devonshire Cat](http://www.devonshirecat.co.uk/) for drinks and a chat.
+start_date: "2019-05-13"
+end_date: "2019-05-13"
+start_time: "18:30"
+end_time: "20:00"
+website: "https://shrug.org/meetings/shrug-112/"
+coordinates:
+  latitude: 53.3786554
+  longitude: -1.470355

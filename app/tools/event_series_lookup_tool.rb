@@ -34,7 +34,7 @@ class EventSeriesLookupTool < RubyLLM::Tool
       language: series.language,
       youtube_channels: series.all_youtube_channels || [],
       events_count: series.events.size,
-      data_path: "data/#{series.slug}/series.yml"
+      data_path: series.project_file_path
     }.compact
   end
 end

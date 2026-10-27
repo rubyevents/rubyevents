@@ -9,7 +9,7 @@ class ContinentsController < ApplicationController
   def index
     @continents = Continent.all.sort_by(&:name)
 
-    @events_by_continent = Event.includes(:series)
+    @events_by_continent = Event.ruby_focused.includes(:series)
       .where.not(country_code: [nil, ""])
       .group_by(&:country)
       .transform_keys(&:continent)

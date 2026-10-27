@@ -2,7 +2,8 @@
 
 module Static
   class Schedule < Yerba::Record::Base
-    self.path = "data/:series_id/:event_id/schedule.yml"
+    self.path = "data/*parent_path/:series_id/:event_id/schedule.yml"
+    self.skipped_beside = "series.yml"
 
     schema ScheduleSchema
 

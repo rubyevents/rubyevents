@@ -1,13 +1,27 @@
 ---
 id: "rubybelgium"
+old_event_ids:
+  - "rubybelgium-meetup"
 name: "Ruby Belgium"
+location: "Belgium"
+timezone: "Europe/Brussels"
 website: "https://rubybelgium.be"
-kind: "organisation"
-frequency: "monthly"
+kind: "meetup"
 language: "English"
 twitter: "rubybelgium"
 default_country_code: "BE"
 linkedin: "https://www.linkedin.com/company/ruby-belgium"
-luma: "https://lu.ma/rubybelgium"
+description: "Ruby Belgium is a community of programming enthusiasts using ruby as a tool to connect, build and share knowledge."
+luma: "https://luma.com/rubybelgium"
+banner_background: "#921213"
+featured_background: "#FFFFFF"
+featured_color: "#901E1E"
+coordinates:
+  latitude: 50.503887
+  longitude: 4.469936
 aliases:
   - rubybelgium
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-xxSFE7F64frGUhe"
+    name: "Luma"

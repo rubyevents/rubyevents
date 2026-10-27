@@ -1,0 +1,43 @@
+---
+- id: "julik-tarkhanov-lrug-2025-08-11"
+  old_id: "julik-tarkhanov-lrug-august-2025"
+  title: "`stepper_motor`: effortless long-running workflows for Rails"
+  date: "2025-08-11"
+  announced_at: "2025-07-26T20:31:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2025/august/julik-tarkhanov-stepper-motor-effortless-long-running-workflows-for-rails-lrug-aug-2025.mp4"
+  description: |-
+    Lately, there has been a lot of development in durable workflows in
+    Rails with tools like `active_job_continuation` and `acidic_job`.
+    [`stepper_motor`](https://github.com/stepper-motor/stepper_motor) is a
+    new tool allowing for identifiable, associable, orchestrated step
+    workflows for Rails applications - without gRPC, extra tools or data
+    stores. Let's explore where such a system comes from, why every durable
+    execution system is secretly a DAG, and how the `stepper_motor`
+    architecture is informed by VFX software instead of the imperative
+    `ActiveJob` methods.
+  speakers:
+    - Julik Tarkhanov
+
+- id: "james-edwards-jones-lrug-2025-08-11"
+  old_id: "james-edwards-jones-lrug-august-2025"
+  title: "No Browser Required: Dynamic OpenGraph Images with Rails and Rust"
+  date: "2025-08-11"
+  announced_at: "2025-07-26T20:31:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2025/august/james-edwards-jones-no-browser-required-dynamic-opengraph-images-with-rails-and-rust-lrug-aug-2025.mp4"
+  description: |-
+    How would you convert a `<div>` to a PNG? A technical deep dive into
+    how [`Himg`](https://github.com/Jamedjo/himg) generates images from
+    HTML without using a browser.
+
+    Our journey will include:
+
+    * How a browser works: from CSS parsing to image rendering
+    * Practical tips: like how to call Rust from Ruby
+    * Rails internals: how rails calls render without you needing to ask
+    * Using the [Himg](https://github.com/Jamedjo/himg/) library
+    * Server side request forgery and injection attacks
+    * What OpenGraph images are and how they can help you go viral 🦋
+  speakers:
+    - James Edwards-Jones

@@ -38,6 +38,17 @@ class Search::Backend::SQLiteFTSTest < ActiveSupport::TestCase
     assert_kind_of Integer, count
   end
 
+  test "search_events finds meetups and lists them after other events" do
+    series = EventSeries.create!(name: "Zyxwrb", slug: "zyxwrb", kind: :meetup)
+    meetup = Event.create!(name: "Zyxwrb Meetup January 2099", slug: "zyxwrb-2099-01-14", series: series, kind: :meetup, start_date: "2099-01-14", end_date: "2099-01-14")
+    conference = Event.create!(name: "Zyxwrb Conf 2020", slug: "zyxwrb-conf-2020", series: series, kind: :conference, start_date: "2020-05-01", end_date: "2020-05-02")
+
+    results, count = Search::Backend::SQLiteFTS.search_events("zyxwrb", limit: 10)
+
+    assert_equal 2, count
+    assert_equal [conference, meetup], results.to_a
+  end
+
   test "search_topics returns results and count" do
     results, count = Search::Backend::SQLiteFTS.search_topics("record", limit: 10)
 

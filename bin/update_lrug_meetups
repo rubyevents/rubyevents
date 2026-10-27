@@ -6,16 +6,23 @@ if command -v mise &> /dev/null; then
   eval "$(mise activate bash)"
 fi
 
-playlist="data/lrug/lrug-meetup/videos.yml"
-download="$(mktemp)"
+download="$(mktemp -t lrug-playlist).yml"
 trap 'rm -f "$download"' EXIT
 
 curl --fail --silent --show-error --location https://lrug.org/rubyevents-video-playlist.yml --output "$download"
 
-mv "$download" "$playlist"
-bundle exec yerba apply "$playlist"
+# The playlist has one entry per meeting with its talks nested, the shape meetups had before each became its own event.
+# New meetings become new events in data/lrug/{YYYY-MM-DD}/, meetings already there are left as they are.
+bin/rails runner '
+  require "meetup_split"
 
-git add "$playlist"
+  report = MeetupSplit.new.import(ARGV.first, series_slug: "lrug")
+  report[:imported].each { |line| puts line }
+' "$download"
+
+bundle exec yerba apply $(git ls-files --others --exclude-standard data/lrug)
+
+git add data/lrug
 
 if git diff --cached --quiet; then
   echo "No LRUG changes to commit."

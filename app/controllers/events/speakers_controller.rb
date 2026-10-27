@@ -3,9 +3,7 @@ class Events::SpeakersController < ApplicationController
   before_action :set_event, only: %i[index]
 
   def index
-    if @event.meetup?
-      # For meetups, get speakers with their talk counts at this specific meetup
-      # and sort by number of talks (descending)
+    if @event.meetup_group?
       speaker_ids = @event.talks.joins(:user_talks).pluck("user_talks.user_id")
       speaker_counts = speaker_ids.tally
 
@@ -13,12 +11,10 @@ class Events::SpeakersController < ApplicationController
         .preloaded
         .where(id: speaker_counts.keys)
         .where("talks_count > 0")
-        .map do |speaker|
-          # Add the meetup-specific talk count
+        .map { |speaker|
           speaker.define_singleton_method(:meetup_talks_count) { speaker_counts[speaker.id] }
           speaker
-        end
-        .sort_by { |s| [-s.meetup_talks_count, s.name] }
+        }.sort_by { |s| [-s.meetup_talks_count, s.name] }
     end
   end
 

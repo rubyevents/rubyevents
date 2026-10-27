@@ -1,6 +1,6 @@
 class Talk::Thumbnails < ActiveRecord::AssociatedObject
   def path
-    directory.join(*[talk.event.slug, talk.parent_talk&.static_id, "#{talk.video_id}.webp"].compact)
+    directory.join(*[talk.event.slug, talk.parent_talk&.static_id, "#{talk.thumbnail_basename}.webp"].compact)
   end
 
   def extractable?
@@ -9,6 +9,23 @@ class Talk::Thumbnails < ActiveRecord::AssociatedObject
 
   def start_cues
     talk.static_metadata.talks.map { |talk| talk.start_cue || "TODO" }
+  end
+
+  def cued_extractable?
+    talk.cued_recording? && talk.static_metadata.present? && talk.static_metadata.start_cue != "TODO"
+  end
+
+  def extract_cued!(force: false, download: false)
+    return unless cued_extractable?
+    return if path.exist? && !force
+
+    unless talk.downloader.downloaded?
+      return puts("#{talk.video_id} is not downloaded. Skipping...") unless download
+
+      talk.downloader.download!
+    end
+
+    extract_thumbnail(talk.static_metadata.thumbnail_cue, talk.downloader.download_path, path)
   end
 
   def extracted?

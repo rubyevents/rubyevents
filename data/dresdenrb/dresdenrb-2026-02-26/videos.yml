@@ -1,0 +1,32 @@
+---
+- id: "richard-boehme-dresdenrb-2026-02-26"
+  old_id: "dresden-rb-meetup-february-2026-racer"
+  title: "Generating Type Signatures from Automated Tests"
+  date: "2026-02-26"
+  video_provider: "not_recorded"
+  video_id: "richard-boehme-dresdenrb-2026-02-26"
+  description: |-
+    Static typing has many advantages that we miss out in dynamically typed Ruby code:
+
+    * It eliminates a whole category of errors.
+    * It helps onboarding new developers to your code base.
+    * It makes static analysis easier which allows better IDE support (method completion, argument hints and more)
+
+    Implementing static typing in Ruby is possible, but it comes with the downside of... having to type everything yourself.
+
+    During my master thesis I implemented Racer, a gem that traces all method calls during runtime (e.g. when running your automated tests) and generates RBS type signatures from those traces. In this talks I'd like to further explain the motivation, showcase the tool and explain how it works and what future developments may bring.
+  speakers:
+    - Richard Böhme
+
+- id: "arthur-staehr-dresdenrb-2026-02-26"
+  old_id: "dresden-rb-meetup-february-2026-oaken"
+  title: "Oaken: A new approach to generating test data"
+  date: "2026-02-26"
+  video_provider: "not_recorded"
+  video_id: "arthur-staehr-dresdenrb-2026-02-26"
+  description: |-
+    FactoryBot is flexible, but slow. Fixtures are fast, but confusing. The Oaken Gem promises to combine the best of both worlds: one-time loading, transaction rollbacks, named scenarios – and all in Ruby instead of YAML.
+
+    In this talk, we'll take a look at how Oaken works, compare it directly with FactoryBot, and discuss whether the approach is suitable for larger projects.
+  speakers:
+    - Arthur Stähr

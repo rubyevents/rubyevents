@@ -40,7 +40,10 @@ rules:
       - sort_keys:
           order:
             - id
+            - old_ids
+            - old_talk_ids
             - title
+            - subtitle
             - location
             - timezone
             - kind
@@ -51,12 +54,15 @@ rules:
             - pre_date
             - start_date
             - end_date
+            - start_time
+            - end_time
             - recordings_published_date
             - year
             - playlist
             - status
             - last_edition
             - hybrid
+            - ruby_focused
             - website
             - original_website
             - tickets_url
@@ -68,14 +74,16 @@ rules:
             - youtube
             - github
             - luma
-            - venue
+            - kommunity
             - banner_background
             - featured_background
             - featured_color
             - coordinates
             - aliases
             - youtube_channels
+            - additional_resources
             - removed_talk_ids
+            - feeds
 
       - sort_keys:
           selector: "youtube_channels[]"
@@ -102,6 +110,30 @@ rules:
       - quote_style:
           selector: "[].organisations"
           value_style: plain
+
+      - quote_style:
+          selector: "[].users[].name"
+          value_style: double
+
+      - quote_style:
+          selector: "[].users[].from"
+          value_style: double
+
+      - quote_style:
+          selector: "[].users[].to"
+          value_style: double
+
+      - quote_style:
+          selector: "[].organisations[].name"
+          value_style: double
+
+      - quote_style:
+          selector: "[].organisations[].from"
+          value_style: double
+
+      - quote_style:
+          selector: "[].organisations[].to"
+          value_style: double
 
       - blank_lines:
           selector: ""
@@ -193,7 +225,12 @@ rules:
       - sort_keys:
           order:
             - id
+            - old_ids
+            - old_event_ids
             - name
+            - meetup_name
+            - location
+            - timezone
             - website
             - kind
             - frequency
@@ -211,13 +248,27 @@ rules:
             - linkedin
             - description
             - luma
-            - inactive
+            - kommunity
+            - ended
             - bsky
             - banner_background
             - featured_background
             - featured_color
+            - coordinates
             - aliases
+            - playlist
             - youtube_channels
+            - removed_talk_ids
+            - feeds
+
+      - sort_keys:
+          selector: "feeds[]"
+          order:
+            - type
+            - url
+            - name
+            - handle
+            - account
 
   - files: "data/**/videos.yml"
     pipeline:
@@ -279,10 +330,12 @@ rules:
             - slug
             - location
             - kind
-            - event_name
             - date
             - start_time
             - end_time
+            - start_cue
+            - end_cue
+            - thumbnail_cue
             - published_at
             - announced_at
             - status
@@ -312,7 +365,6 @@ rules:
             - title
             - raw_title
             - location
-            - event_name
             - date
             - published_at
             - language
@@ -333,7 +385,6 @@ rules:
             - slug
             - location
             - kind
-            - event_name
             - date
             - start_time
             - end_time

@@ -6,6 +6,7 @@ kind: "conference"
 frequency: "yearly"
 language: "English"
 twitter: "madisonruby"
+luma: "https://luma.com/calendar/cal-LlD9HPh8QnHgqEQ"
 banner_background: "#BACED4"
 featured_background: "#32454A"
 featured_color: "#BACED4"
@@ -14,3 +15,8 @@ youtube_channels:
     name: "confreaks"
     handle: "@confreaks"
     playlist_matcher: "Madison+ Ruby"
+
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-LlD9HPh8QnHgqEQ"
+    name: "Luma"

@@ -3,8 +3,10 @@
 module Static
   class Event < Yerba::Record::Base
     include ActionView::Helpers::DateHelper
+    include OwnedImports
+    include LocationParsing
 
-    self.path = "data/:series_id/:id/event.yml"
+    self.path = "data/*parent_path/:series_id/:id/event.yml"
 
     schema EventSchema
 
@@ -47,7 +49,7 @@ module Static
       def import_recent!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
         import_cutoff = 6.months.ago
 
-        all.select { |event| event.end_date && event.end_date >= import_cutoff }.each { |event| event.import!(index: index) }
+        all.select { |event| event.end_date.is_a?(Date) && event.end_date >= import_cutoff }.each { |event| event.import!(index: index) }
       end
 
       def build(series_slug:)
@@ -55,11 +57,12 @@ module Static
         record = new(document: document)
 
         record.series_id = series_slug
+        record.parent_path = Static::EventSeries.find_by_slug(series_slug)&.parent_path
 
         record
       end
 
-      def create(series_slug:, title:, id: nil, slug: nil, **attributes)
+      def create(series_slug:, title:, id: nil, slug: nil, videos_file: true, **attributes)
         series = Static::EventSeries.find_by_slug(series_slug)
         raise ArgumentError, "Event series '#{series_slug}' not found" unless series
 
@@ -71,7 +74,8 @@ module Static
 
         record = new(id: slug, title: title, **attributes.reject { |_, value| value.nil? || value == "" || value == [] })
         record.series_id = series_slug
-        record.save!
+        record.parent_path = series.parent_path
+        record.save!(videos_file: videos_file)
 
         unload!
 
@@ -110,6 +114,10 @@ module Static
 
     def featured_color
       self["featured_color"].presence || series&.featured_color
+    end
+
+    def ruby_focused?
+      self["ruby_focused"] != false
     end
 
     def today?
@@ -184,6 +192,14 @@ module Static
       self["id"]
     end
 
+    def old_ids
+      Array(self["old_ids"]).compact_blank
+    end
+
+    def old_talk_ids
+      Array(self["old_talk_ids"]).compact_blank
+    end
+
     def imported?
       ::Event.exists?(slug: slug)
     end
@@ -210,54 +226,10 @@ module Static
       nil
     end
 
-    def country
-      return nil if location.blank?
-
-      Country.find(location.to_s.split(",").last&.strip)
-    end
-
     def time_zone
       return nil if attributes["timezone"].blank?
 
       ActiveSupport::TimeZone[attributes["timezone"]]
-    end
-
-    def city
-      return nil if location.blank?
-
-      parts = location.to_s.split(",").map(&:strip)
-      parts.first if parts.size >= 2
-    end
-
-    def state_code
-      parsed_state_code || featured_city&.state_code.presence
-    end
-
-    def resolved_city
-      featured_city&.name || city
-    end
-
-    def featured_city
-      return @featured_city if defined?(@featured_city)
-
-      @featured_city = find_featured_city
-    end
-
-    def find_featured_city
-      return nil if city.blank?
-
-      Static::City.find_by_name_or_alias(city, country_code: country&.alpha2)
-    end
-
-    def parsed_state_code
-      return nil if location.blank? || country.blank?
-      return nil unless State.supported_country?(country)
-
-      parts = location.to_s.split(",").map(&:strip)
-      return nil if parts.size < 3
-
-      state = State.find(country: country, term: parts[-2])
-      state&.code
     end
 
     def home_sort_date(event_record: nil)
@@ -265,12 +237,6 @@ module Static
 
       if published_date
         return published_date
-      end
-
-      if meetup?
-        return event_record.end_date if event_record.present?
-
-        return Time.at(0)
       end
 
       if end_date.present?
@@ -295,6 +261,7 @@ module Static
 
       import_cfps!(event)
       import_videos!(event, index: index)
+      migrate_old_talks!(event)
       import_sponsors!(event)
       import_involvements!(event)
 
@@ -304,10 +271,12 @@ module Static
     end
 
     def import_event!
-      event = ::Event.find_or_initialize_by(slug: slug)
+      event = ::Event.find_by(slug: slug) || renamed_event_record || ::Event.new(slug: slug)
 
       event.assign_attributes(
+        slug: slug,
         name: title,
+        subtitle: self["subtitle"].to_s,
         date: attributes["date"],
         date_precision: attributes["date_precision"] || "day",
         series: series.event_series_record,
@@ -319,6 +288,7 @@ module Static
         start_date: start_date,
         end_date: end_date,
         kind: kind,
+        ruby_focused: ruby_focused?,
         featured_background: featured_background,
         featured_color: featured_color,
         banner_background: banner_background,
@@ -343,6 +313,7 @@ module Static
       event.save! if event.changed? || event.new_record?
 
       event.sync_aliases_from_list(aliases) if aliases.present?
+      sync_old_slugs!(event)
 
       puts event.slug unless Rails.env.test?
 
@@ -353,18 +324,93 @@ module Static
       raise e
     end
 
-    def import_cfps!(event)
-      cfps.each do |cfp_data|
-        cfp = event.cfps.find_or_initialize_by(link: cfp_data["link"])
+    def migrate_old_talks!(event)
+      return if old_talk_ids.empty?
 
-        cfp.assign_attributes(
-          name: cfp_data["name"],
-          open_date: cfp_data["open_date"],
-          close_date: cfp_data["close_date"]
-        )
+      old_talks = ::Talk.where(static_id: old_talk_ids)
 
-        cfp.save! if cfp.changed? || cfp.new_record?
+      old_talks.where(meta_talk: true).or(old_talks.where(video_provider: "children")).find_each do |talk|
+        if talk.child_talks.exists?
+          puts "::warning::Talk #{talk.static_id} still has nested talks, so it doesn't redirect to #{event.slug} yet"
+          next
+        end
+
+        ::Alias.where(aliasable: talk).find_each do |talk_alias|
+          if ::Alias.where(slug: talk_alias.slug).where.not(id: talk_alias.id).exists? || ::Alias.exists?(aliasable_type: "Event", name: talk_alias.name)
+            talk_alias.destroy!
+          else
+            talk_alias.update!(aliasable: event)
+          end
+        end
+
+        if talk.slug.present? && talk.slug != event.slug && !::Alias.exists?(slug: talk.slug) && !::Alias.exists?(aliasable_type: "Event", name: talk.slug)
+          event.slug_aliases.create!(name: talk.slug, slug: talk.slug)
+        end
+
+        if talk.video_provider.in?(::Talk::WATCHABLE_PROVIDERS)
+          replacements = event.talks.where(video_provider: talk.video_provider, video_id: talk.video_id).where.not(id: talk.id).to_a
+
+          talk.watched_talks.watched.find_each do |watched_talk|
+            replacements.each do |cut_talk|
+              cut_talk.watched_talks.find_or_create_by!(user_id: watched_talk.user_id) do |copy|
+                copy.watched = true
+                copy.watched_on = watched_talk.watched_on
+                copy.watched_at = watched_talk.watched_at
+                copy.feedback = watched_talk.read_attribute(:feedback)
+                copy.feedback_shared_at = watched_talk.feedback_shared_at
+              end
+            end
+          end
+        else
+          replacements = event.talks.watchable.where.not(id: talk.id).to_a
+
+          talk.watched_talks.watched.includes(:user).find_each do |watched_talk|
+            ::EventParticipation.record(user: watched_talk.user, event: event, role: "attendee")
+          end
+        end
+
+        talk.watch_list_talks.includes(:watch_list).find_each do |entry|
+          replacements.each { |replacement| entry.watch_list.watch_list_talks.find_or_create_by!(talk: replacement) }
+        end
+
+        talk.reload.destroy!
       end
+    end
+
+    def renamed_event_record
+      old_ids.each do |old_id|
+        event = ::Event.find_by(slug: old_id)
+        return event if event
+      end
+
+      nil
+    end
+
+    def sync_old_slugs!(event)
+      ::Event.where(slug: old_ids).where.not(id: event.id).find_each do |merged|
+        next if merged.talks.exists?
+
+        merged.event_participations.includes(:user).find_each do |participation|
+          ::EventParticipation.record(user: participation.user, event: event, role: participation.role)
+        end
+
+        ::EventCheckIn.where(event: merged).find_each do |check_in|
+          check_in.update!(event: event) unless ::EventCheckIn.exists?(connect_id: check_in.connect_id, event: event)
+        end
+        ::EventCheckIn.where(event: merged).delete_all
+
+        merged.destroy!
+      end
+
+      old_ids.each do |old_id|
+        next if ::Alias.exists?(slug: old_id)
+
+        event.slug_aliases.create!(name: old_id, slug: old_id)
+      end
+    end
+
+    def import_cfps!(event)
+      import_cfps_into!(event, cfps)
     end
 
     def import_videos!(event, index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
@@ -393,140 +439,16 @@ module Static
 
     def import_sponsors!(event)
       return unless imported?
-      sponsors_collection = sponsors
-      return unless sponsors_collection.exist?
+      return unless sponsors.exist?
 
-      require "public_suffix"
-
-      sponsor_ids = []
-      sponsors_collection.each do |sponsors_entry|
-        sponsors_entry["tiers"].each do |tier|
-          tier["sponsors"].each do |sponsor|
-            organization = nil
-            domain = nil
-
-            if sponsor["website"].present?
-              begin
-                uri = URI.parse(sponsor["website"])
-                host = uri.host || sponsor["website"]
-                parsed = PublicSuffix.parse(host)
-                domain = parsed.domain
-
-                organization = ::Organization.find_by(domain: domain) if domain.present?
-              rescue PublicSuffix::Error, URI::InvalidURIError
-              end
-            end
-
-            organization ||= ::Organization.find_by_name_or_alias(sponsor["name"]) || ::Organization.find_by_slug_or_alias(sponsor["slug"]&.downcase)
-            organization ||= ::Organization.find_or_initialize_by(name: sponsor["name"])
-
-            # Names like "フィヨルドブートキャンプ" parameterize to "", so fall back to the sponsor's slug
-            if organization.new_record? && sponsor["name"].to_s.parameterize.blank?
-              organization.slug = sponsor["slug"].to_s.parameterize
-            end
-
-            organization.update(
-              website: sponsor["website"],
-              description: sponsor["description"],
-              domain: domain
-            )
-
-            organization.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
-            organization.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && organization.logo_url.blank?
-
-            # The organization could not be saved, so discard the pending website and logo_url changes
-            # and fall back to the record already in the database. Whatever an admin set by hand in
-            # production wins over what a sponsors.yml file happens to say.
-            unless organization.persisted?
-              organization = ::Organization.find_by_slug_or_alias(organization.slug) ||
-                ::Organization.find_by_name_or_alias(organization.name) || organization
-            end
-
-            organization.save! if organization.changed? || organization.new_record?
-
-            sponsor_record = event.sponsors.find_or_initialize_by(organization:, event:, tier: tier["name"].presence)
-            sponsor_record.assign_attributes(badge: sponsor["badge"], level: tier["level"])
-            sponsor_record.save! if sponsor_record.changed? || sponsor_record.new_record?
-
-            sponsor_ids << sponsor_record.id
-          end
-        end
-      end
-
-      event.sponsors.where.not(id: sponsor_ids).destroy_all
-    rescue ActiveRecord::RecordInvalid => e
-      error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
-      puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
-      raise e
+      import_sponsors_into!(event, sponsors)
     end
 
     def import_involvements!(event)
       return unless imported?
-      involvements_collection = involvements
-      return unless involvements_collection.exist?
+      return unless involvements.exist?
 
-      event_involvements = event.event_involvements
-
-      event_involvements_attributes = event_involvements.map { it.attributes.merge(_destroy: true) }
-
-      involvements_collection.each do |involvement_data|
-        role = involvement_data["name"]
-
-        Array.wrap(involvement_data["users"]).each_with_index do |user_name, index|
-          next if user_name.blank?
-
-          user = ::User.find_by_name_or_alias(user_name)
-
-          unless user
-            puts "Creating user: #{user_name}" unless Rails.env.test?
-            user = ::User.create!(name: user_name)
-          end
-
-          attributes_index = event_involvements_attributes.index do |attrs|
-            attrs["role"] == role && attrs["involvementable_type"] == "User" &&
-              attrs["involvementable_id"] == user.id
-          end
-
-          if attributes_index.present?
-            event_involvements_attributes[attributes_index].update(position: index, _destroy: false)
-          else
-            event_involvements_attributes << {
-              role: role,
-              involvementable: user,
-              position: index
-            }
-          end
-        end
-
-        user_count = involvement_data["users"]&.compact&.size || 0
-
-        Array.wrap(involvement_data["organisations"]).each_with_index do |org_name, index|
-          next if org_name.blank?
-
-          organization = ::Organization.find_by_name_or_alias(org_name) || ::Organization.find_by_slug_or_alias(org_name.parameterize)
-
-          unless organization
-            puts "Creating organization: #{org_name}" unless Rails.env.test?
-            organization = ::Organization.create!(name: org_name)
-          end
-
-          attributes_index = event_involvements_attributes.index do |attrs|
-            attrs["role"] == role && attrs["involvementable_type"] == "Organization" &&
-              attrs["involvementable_id"] == organization.id
-          end
-
-          if attributes_index.present?
-            event_involvements_attributes[attributes_index].update(position: index + user_count, _destroy: false)
-          else
-            event_involvements_attributes << {
-              role: role,
-              involvementable: organization,
-              position: index + user_count
-            }
-          end
-        end
-      end
-      event.update!(event_involvements_attributes: event_involvements_attributes)
+      import_involvements_into!(event, involvements)
     end
 
     def series_slug
@@ -540,7 +462,7 @@ module Static
     def persist_path
       return nil if series_slug.blank? || self["id"].blank?
 
-      self.class.path_for({series_id: series_slug, id: self["id"]})
+      self.class.path_for({parent_path: parent_path, series_id: series_slug, id: self["id"]})
     end
 
     private def missing_parent_message(directory, to)
@@ -551,12 +473,12 @@ module Static
         %(then move the event again.)
     end
 
-    def save!
+    def save!(videos_file: true)
       self["id"] = self["title"]&.parameterize if new_record? && self["id"].blank?
 
-      super
+      super()
 
-      talks.ensure_file! if @was_new_record
+      talks.ensure_file! if @was_new_record && videos_file
     end
   end
 end
