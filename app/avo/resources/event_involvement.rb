@@ -1,5 +1,5 @@
 class Avo::Resources::EventInvolvement < Avo::BaseResource
-  self.includes = [:involvementable, :event]
+  self.includes = [:involvementable, :event, :event_series]
 
   self.search = {
     query: -> {
@@ -14,7 +14,10 @@ class Avo::Resources::EventInvolvement < Avo::BaseResource
     field :id, as: :id
     field :involvementable, as: :belongs_to, polymorphic_as: :involvementable, types: [::User, ::EventSeries], searchable: true
     field :event, as: :belongs_to, searchable: true, attach_scope: -> { query.order(name: :asc) }
+    field :event_series, as: :belongs_to, searchable: true, help: "For an organizer of a whole meetup group, instead of an event"
     field :role, as: :text
+    field :started_on, as: :date, hide_on: :index
+    field :ended_on, as: :date, hide_on: :index
     field :created_at, as: :date_time
     field :updated_at, as: :date_time
   end

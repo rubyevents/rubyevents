@@ -28,7 +28,8 @@ module Api
         end
 
         def show
-          event = Event.find_by!(slug: params[:slug])
+          event = Event.find_by_slug_or_alias(params[:slug])
+          raise ActiveRecord::RecordNotFound, "Event not found" unless event
 
           keynote_speakers = event.keynote_speakers.limit(20).to_a
           speakers = event.speakers.where.not(id: event.keynote_speakers.select(:id)).limit(20).to_a
@@ -71,7 +72,8 @@ module Api
         end
 
         def participants
-          event = Event.find_by!(slug: params[:slug])
+          event = Event.find_by_slug_or_alias(params[:slug])
+          raise ActiveRecord::RecordNotFound, "Event not found" unless event
 
           keynote_speakers = event.keynote_speakers.to_a
           speakers = event.speakers.where.not(id: event.keynote_speakers.select(:id)).to_a

@@ -4,7 +4,7 @@ class HoverCards::EventsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def show
-    @event = Event.includes(:series).find_by(slug: params[:slug])
+    @event = Event.find_by_slug_or_alias(params[:slug])
 
     if @event.blank?
       head :not_found

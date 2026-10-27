@@ -10,6 +10,7 @@ class Avo::Resources::CFP < Avo::BaseResource
     field :status, as: :status, loading_when: [:pending], success_when: [:open], failed_when: [:closed], hide_on: [:forms]
     field :days_remaining, as: :number, hide_on: [:forms, :index]
     field :event, as: :belongs_to, searchable: true
+    field :event_series, as: :belongs_to, searchable: true, help: "For an always-open CFP of a meetup group, instead of an event"
   end
 
   def filters

@@ -1,0 +1,74 @@
+---
+- id: "ayush-newatia-lrug-2021-02-08"
+  old_id: "ayush-newatia-lrug-february-2021"
+  title: "An intro to Bridgetown: A static site generator for the modern JAMStack era."
+  date: "2021-02-08"
+  announced_at: "2021-01-24T21:30:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2021/february/ayush-newatia-an-intro-to-bridgetown-a-static-site-generator-for-the-modern-jamstack-era-lrug-feb-2021.mp4"
+  description: |-
+    [Bridgetown](https://www.bridgetownrb.com) is a new Ruby-powered static
+    site generator that was forked from Jekyll 4.1. It has a focus on modern
+    ideas and includes Webpack as a first-class citizen. In this talk I'll
+    give a demo of what differentiates Bridgetown from Jekyll and some of
+    its best features; followed by a short Q&A.
+  speakers:
+    - Ayush Newatia
+
+- id: "frederick-cheung-lrug-2021-02-08"
+  old_id: "frederick-cheung-lrug-february-2021"
+  title: "The Path(name) of least resistance"
+  date: "2021-02-08"
+  announced_at: "2021-01-24T21:30:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2021/february/fred-cheung-the-pathname-of-least-resistance-lrug-feb-2021.mp4"
+  description: |-
+    Ruby has many classes that deal with files, paths or directories, but
+    one that often doesn't get enough credit is
+    [Pathname](https://github.com/ruby/pathname). Pathname unifies the other
+    pretenders to the throne with a consistent, rubyish interface that is a
+    joy to work with.
+  speakers:
+    - Frederick Cheung
+
+- id: "lorenzo-barasti-lrug-2021-02-08"
+  old_id: "lorenzo-barasti-lrug-february-2021"
+  title: "Are we parallel yet? A first look at Ruby Ractors"
+  date: "2021-02-08"
+  announced_at: "2021-01-24T21:30:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2021/february/lorenzo-barasti-are-we-parallel-yet-a-first-look-at-ruby-ractors-lrug-feb-2021.mp4"
+  description: |-
+    A speedrun through actor-based concurrency, the Ractor API and the
+    future of parallel applications in Ruby.
+  speakers:
+    - Lorenzo Barasti
+
+- id: "mark-burns-lrug-2021-02-08"
+  old_id: "mark-burns-lrug-february-2021"
+  title: "Uncovering some ruby magic in `awesome_print`"
+  date: "2021-02-08"
+  announced_at: "2021-01-24T21:30:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2021/february/mark-burns-uncovering-some-ruby-magic-in-awesome_print-lrug-feb-2021.mp4"
+  description: |-
+    `ap 1.methods` takes an `Array` of `Symbol`s as input and outputs
+    details it shouldn't know about the methods themselves. `ap
+    1.methods.dup` has the same behaviour, but `ap
+    1.methods.take(1.methods.length)` does not. I will peer into the magic
+    and divulge its secrets.
+  speakers:
+    - Mark Burns
+
+- id: "mike-rogers-lrug-2021-02-08"
+  old_id: "mike-rogers-lrug-february-2021"
+  title: "Taking Rails Offline"
+  date: "2021-02-08"
+  announced_at: "2021-01-24T21:30:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2021/february/mike-rogers-taking-rails-offline-lrug-feb-2021.mp4"
+  description: |-
+    Networks are unreliable & drop out all the time! Lets make our apps more
+    resilient to that!
+  speakers:
+    - Mike Rogers

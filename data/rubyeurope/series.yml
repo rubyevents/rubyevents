@@ -1,18 +1,27 @@
 ---
 id: "rubyeurope"
+old_event_ids:
+  - "rubyeurope-meetup"
 name: "Ruby Europe"
+location: "Europe"
+timezone: "Europe/Berlin"
 website: "https://rubyeurope.com"
 kind: "meetup"
-frequency: "irregular"
 language: "English"
 twitter: "RubyEurope"
-
+description: "Ruby Europe organizes Ruby + AI meetups across European cities"
+luma: "https://luma.com/rubyeurope"
+banner_background: "linear-gradient(to bottom, #501F1B 67%, #501F1B 67%) left top / 50% 100% no-repeat, /* Left side */\nlinear-gradient(to bottom, #4A1D1A 67%, #4A1D1A 67%) right top / 50% 100% no-repeat /* Right side */"
+featured_background: "#FFFFFF"
+featured_color: "#B72425"
+coordinates:
+  latitude: 54.5259614
+  longitude: 15.2551187
 youtube_channels:
   - id: "UCPkGcnK-vKiYVmefSp22enA"
     name: "Ruby Europe"
     handle: "@rubyeurope"
     playlist_matcher: "Ruby"
-
 feeds:
   - type: "ical"
     url: "https://api.luma.com/ics/get?entity=calendar&id=cal-e1hbsrfKzZEFCi5"

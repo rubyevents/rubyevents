@@ -2,7 +2,7 @@
 
 module Static
   class Stamp < Yerba::Record::FileRecord
-    types "Static::CountryStamp", "Static::UKNationStamp", "Static::EventStamp", "Static::AchievementStamp"
+    types "Static::CountryStamp", "Static::UKNationStamp", "Static::EventStamp", "Static::SeriesStamp", "Static::AchievementStamp"
 
     self.order_by = :name
 
@@ -61,15 +61,22 @@ module Static
       stamps << conference_speaker_stamp if user.speaking_events.where(kind: :conference).exists? && conference_speaker_stamp
       stamps << meetup_speaker_stamp if user.speaking_events.where(kind: :meetup).exists? && meetup_speaker_stamp
       stamps << attend_one_event_stamp if user_events.where(kind: :conference).exists? && attend_one_event_stamp
-      stamps << online_stamp if user_events.any? { |event| event.location == "Online" } && online_stamp
+      stamps << online_stamp if user_events.any? { |event| event.location == "online" } && online_stamp
 
       stamps
+    end
+
+    def self.series_stamps
+      Static::SeriesStamp.all.to_a
     end
 
     def self.for_event(event)
       return [] unless event&.slug
 
-      event_stamps.select { |stamp| stamp.event_id == event.slug }
+      stamps = event_stamps.select { |stamp| stamp.event_id == event.slug }
+      stamps += series_stamps.select { |stamp| stamp.event_series_id == event.series&.slug } if event.meetup?
+
+      stamps
     end
 
     def self.user_attended_triathlon_2025?(user_events)

@@ -1,0 +1,37 @@
+---
+- id: "lea-whitelaw-lrug-2026-10-12"
+  title: "Stop getting ghosted: How we implemented message delivery resilience at Cleo"
+  date: "2026-10-12"
+  announced_at: "2026-09-21T21:15:00Z"
+  video_provider: "not_published"
+  video_id: "lea-whitelaw-lrug-2026-10-12"
+  description: |-
+    An overview of how we implemented a recovery endpoint for Cleo’s chat system. When
+    streaming and websockets fail, what can you do to ensure the user always gets the
+    message?
+  speakers:
+    - Lea Whitelaw
+
+- id: "joel-biffin-lrug-2026-10-12"
+  title: "It'll Be Consistent, Eventually"
+  date: "2026-10-12"
+  announced_at: "2026-09-21T21:15:00Z"
+  video_provider: "not_published"
+  video_id: "joel-biffin-lrug-2026-10-12"
+  description: |-
+    Most of us don't think of our Rails apps as distributed systems, but the moment your code
+    makes an HTTP call, publishes a Kafka event, or reads from a cache, that's exactly what
+    you're running. Networks fail, messages arrive late or twice, and cached data quietly
+    goes stale. Even the comfort of a single database transaction can become a liability as
+    a system grows. Eventual consistency, often treated as a compromise to be avoided, can
+    instead be one of the most useful tools you have for keeping those systems predictable.
+
+    In this talk, we'll look at how we've been using eventual consistency inside a monolith to
+    decouple product domains from payment processing, with the aim of keeping payments reliable
+    and high-throughput. We'll explore handling network issues, when it can make sense to break
+    up ACID transactions in favour of eventual consistency, and how the same idea can be applied
+    at different levels of abstraction in a codebase. Along the way, we'll talk through some
+    patterns you can take back to your own applications, whether you're working in a growing
+    monolith or already dealing with the realities of distributed state.
+  speakers:
+    - Joel Biffin

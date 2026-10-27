@@ -7,7 +7,7 @@ module Events
     def index
       @year = params[:year].to_i
 
-      base_scope = Event.not_meetup.canonical
+      base_scope = Event.not_meetup.ruby_focused.canonical
       first_year = base_scope.minimum(:start_date)&.year || Date.today.year
       last_year = base_scope.maximum(:start_date)&.year || Date.today.year
 
@@ -18,6 +18,7 @@ module Events
       @events = filter_by_continent(
         Event.includes(:series, :keynote_speakers)
           .not_meetup
+          .ruby_focused
           .canonical
           .where(start_date: Date.new(@year).all_year)
       ).order(start_date: :asc)

@@ -1,10 +1,25 @@
 ---
 id: "sendagayarb"
+old_event_ids:
+  - "sendagayarb-meetup"
 name: "Sendagaya.rb"
+location: "Shibuya, Tokyo, Japan"
+timezone: "Asia/Tokyo"
 website: "https://sendagayarb.doorkeeper.jp"
 kind: "meetup"
-frequency: "weekly"
 language: "Japanese"
 default_country_code: "JP"
+meetup: "https://sendagayarb.doorkeeper.jp"
+description: "Sendagaya.rbは、誰でも気軽に参加できるゆるふわコミュニティ。毎週月曜日に最近のホットなことについてトークしたり、質問に答えたり、興味あることについて作業する勉強会です。"
+banner_background: "#1C1C1C"
+featured_background: "#1C1C1C"
+featured_color: "#E0103A"
+coordinates:
+  latitude: 35.6813
+  longitude: 139.7116
 aliases:
   - 千駄ヶ谷.rb
+feeds:
+  - type: "ical"
+    url: "https://sendagayarb.doorkeeper.jp/events.ics"
+    name: "Doorkeeper"

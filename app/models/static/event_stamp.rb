@@ -19,6 +19,10 @@ module Static
       basename.sub(/\Astamp[_-]?/i, "").presence
     end
 
+    def url_path
+      Router.event_path(event_id)
+    end
+
     def code
       "#{event_id}-#{basename}".upcase
     end

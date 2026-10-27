@@ -210,7 +210,6 @@ class Talk < ApplicationRecord
     language.present? ? Language.find(language)&.alpha2 : Language::DEFAULT
   end
 
-  # ensure that during the reindex process the associated records are eager loaded
   scope :without_raw_transcript, -> {
     joins(:talk_transcripts)
       .where(%(
@@ -433,6 +432,14 @@ class Talk < ApplicationRecord
     "#{request.protocol}#{request.host}:#{request.port}#{url}"
   end
 
+  def cued_recording?
+    video_provider != "parent" && start_seconds.present?
+  end
+
+  def thumbnail_basename
+    cued_recording? ? static_id : video_id
+  end
+
   def thumbnail(size = :thumbnail_lg)
     if self[size].present?
       return self[size] if self[size].start_with?("https://")
@@ -443,7 +450,7 @@ class Talk < ApplicationRecord
     end
 
     if event
-      asset_path = ["thumbnails", event.slug, parent_talk&.static_id, "#{video_id}.webp"].compact.join("/")
+      asset_path = ["thumbnails", event.slug, parent_talk&.static_id, "#{thumbnail_basename}.webp"].compact.join("/")
 
       if Rails.application.assets.load_path.find(asset_path)
         return Router.image_path(asset_path)
@@ -630,9 +637,7 @@ class Talk < ApplicationRecord
   end
 
   def event_name
-    return event.name unless event.meetup?
-
-    static_metadata.try("event_name") || event.name
+    event.name
   end
 
   def fetch_duration_from_youtube!
@@ -644,10 +649,10 @@ class Talk < ApplicationRecord
 
   def update_from_yml_metadata!(event: nil)
     if event.blank?
-      event = Event.find_by(name: static_metadata.event_name)
+      event = Event.find_by(slug: static_metadata&.event&.slug)
 
       if event.nil?
-        puts "No event found! Video ID: #{video_id}, Event: #{static_metadata.event_name}"
+        puts "No event found! Video ID: #{video_id}"
         return
       end
     end
@@ -703,8 +708,10 @@ class Talk < ApplicationRecord
 
     new_slug = unused_slugs.first
 
-    if slug.present? && slug != new_slug
-      aliases.find_or_create_by!(name: title, slug: slug)
+    if slug.present? && slug != new_slug && !::Alias.exists?(slug: slug)
+      name = ::Alias.exists?(aliasable_type: "Talk", name: title) ? slug : title
+
+      aliases.create!(name: name, slug: slug)
     end
 
     self.slug = new_slug

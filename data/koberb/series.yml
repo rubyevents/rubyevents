@@ -1,8 +1,22 @@
 ---
 id: "koberb"
+old_event_ids:
+  - "koberb-meetup"
 name: "KOBE.rb"
+location: "Kobe, Japan"
+timezone: "Asia/Tokyo"
 website: "https://koberb.connpass.com"
 kind: "meetup"
-frequency: "monthly"
 language: "Japanese"
 default_country_code: "JP"
+description: "A meetup for Rubyists in Kobe and nearby areas, with room for newcomers and visitors from other regions. The community relaunched in 2024 and aims to gather monthly for learning, troubleshooting, and exchange around Ruby and Rails."
+banner_background: "#FFFFFF"
+featured_background: "#FFFFFF"
+featured_color: "#000000"
+coordinates:
+  latitude: 34.6932379
+  longitude: 135.1943764
+feeds:
+  - type: "rss"
+    url: "https://koberb.connpass.com/ja.atom"
+    name: "connpass"

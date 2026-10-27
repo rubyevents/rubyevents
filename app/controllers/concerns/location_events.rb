@@ -14,7 +14,7 @@ module LocationEvents
   end
 
   def past_events
-    @past_events ||= location_events.past.reorder(end_date: :desc)
+    @past_events ||= location_events.past.includes(:going_participants).reorder(end_date: :desc)
   end
 
   def country_upcoming_events(exclude_ids: [])
@@ -31,6 +31,6 @@ module LocationEvents
 
     country_codes = @continent.country_codes - exclude_country_codes
 
-    Event.includes(:series).where(country_code: country_codes).upcoming
+    Event.ruby_focused.includes(:series).where(country_code: country_codes).upcoming
   end
 end

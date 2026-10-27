@@ -87,7 +87,7 @@ class State
   end
 
   def events
-    Event.where(country_code: country.alpha2, state_code: [code, name])
+    Event.ruby_focused.where(country_code: country.alpha2, state_code: [code, name])
   end
 
   def users

@@ -110,7 +110,7 @@ class Locations::MapController < Locations::BaseController
 
     if @continent.present?
       continent_country_codes = @continent.countries.map(&:alpha2)
-      continent_events = Event.includes(:series).where(country_code: continent_country_codes).to_a
+      continent_events = Event.ruby_focused.includes(:series).where(country_code: continent_country_codes).to_a
       continent_markers = event_map_markers(continent_events)
 
       if continent_markers.any? && continent_markers.size > country_markers.size
@@ -143,7 +143,7 @@ class Locations::MapController < Locations::BaseController
       }
     end
 
-    country_events = Event.includes(:series).where(country_code: @country.alpha2).to_a
+    country_events = Event.ruby_focused.includes(:series).where(country_code: @country.alpha2).to_a
     country_markers = event_map_markers(country_events)
 
     if country_markers.any? && country_markers.size > state_markers.size
@@ -158,7 +158,7 @@ class Locations::MapController < Locations::BaseController
 
     if @continent.present?
       continent_country_codes = @continent.countries.map(&:alpha2)
-      continent_events = Event.includes(:series).where(country_code: continent_country_codes).to_a
+      continent_events = Event.ruby_focused.includes(:series).where(country_code: continent_country_codes).to_a
       continent_markers = event_map_markers(continent_events)
 
       if continent_markers.any? && continent_markers.size > country_markers.size
@@ -222,7 +222,7 @@ class Locations::MapController < Locations::BaseController
     end
 
     if @state.present? && @country.present? && @country&.states?
-      state_events = Event.includes(:series)
+      state_events = Event.ruby_focused.includes(:series)
         .where(country_code: @country.alpha2, state_code: @state.code)
         .to_a
       state_markers = event_map_markers(state_events)
@@ -240,7 +240,7 @@ class Locations::MapController < Locations::BaseController
     end
 
     if @country.present?
-      country_events = Event.includes(:series).where(country_code: @country.alpha2).to_a
+      country_events = Event.ruby_focused.includes(:series).where(country_code: @country.alpha2).to_a
       country_markers = event_map_markers(country_events)
 
       if country_markers.any? && country_markers.size > (layers.last&.dig(:markers)&.size || 0)
@@ -257,7 +257,7 @@ class Locations::MapController < Locations::BaseController
 
     if @continent.present?
       continent_country_codes = @continent.countries.map(&:alpha2)
-      continent_events = Event.includes(:series).where(country_code: continent_country_codes).to_a
+      continent_events = Event.ruby_focused.includes(:series).where(country_code: continent_country_codes).to_a
       continent_markers = event_map_markers(continent_events)
 
       if continent_markers.any? && continent_markers.size > (layers.last&.dig(:markers)&.size || 0)
@@ -320,7 +320,7 @@ class Locations::MapController < Locations::BaseController
     end
 
     if @country.present?
-      country_events = Event.includes(:series).where(country_code: @country.alpha2).to_a
+      country_events = Event.ruby_focused.includes(:series).where(country_code: @country.alpha2).to_a
       country_markers = event_map_markers(country_events)
 
       if country_markers.any? && country_markers.size > (layers.last&.dig(:markers)&.size || 0)
@@ -337,7 +337,7 @@ class Locations::MapController < Locations::BaseController
 
     if @continent.present?
       continent_country_codes = @continent.countries.map(&:alpha2)
-      continent_events = Event.includes(:series).where(country_code: continent_country_codes).to_a
+      continent_events = Event.ruby_focused.includes(:series).where(country_code: continent_country_codes).to_a
       continent_markers = event_map_markers(continent_events)
 
       if continent_markers.any? && continent_markers.size > (layers.last&.dig(:markers)&.size || 0)
@@ -356,7 +356,7 @@ class Locations::MapController < Locations::BaseController
   end
 
   def fetch_online_events
-    base_scope = Event.includes(:series).not_geocoded.upcoming
+    base_scope = Event.ruby_focused.includes(:series).not_geocoded.upcoming
 
     case @location
     when Continent

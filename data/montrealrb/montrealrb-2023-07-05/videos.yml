@@ -1,0 +1,20 @@
+---
+- id: "andy-maleh-montrealrb-2023-07-05"
+  old_id: "andy-maleh-montrealrb-meetup-july-2023"
+  title: "Import Spreadsheets in Ruby on Rails with Flatfile.com"
+  raw_title: "Import Spreadsheets in Ruby on Rails with Flatfile.com by Andy Maleh (Montreal.rb Ruby Talk 2023/07)"
+  date: "2023-07-05"
+  published_at: "2023-07-06T17:11:56Z"
+  slides_url: "https://docs.google.com/presentation/d/e/2PACX-1vSjaB33oBW6z0NUD3GYqv1KPoX9gwHSiJSXZAbEbnSls0xftX2HmCcICmihhiBVkU-YbrB_NyUF4xvK/pub?start=false&loop=false&delayms=60000"
+  video_provider: "youtube"
+  video_id: "Du2crnz2PLg"
+  description: |-
+    Software systems require input in order to compute data and produce output. And, one of the ways to provide input to a software system is by uploading a flat file that contains information about various entities (e.g customers or products) in the form of a spreadsheet, following the CSV or XLSX format.
+
+    In order for a software system to properly accept a spreadsheet file as input and effectively process it into output, it usually needs to map spreadsheet columns to entity attributes to store the data in a database. And, often, there is a requirement to validate the data before accepting it (e.g. ensure a column value is within a certain range), and to apply transformations to the data before storing on records in the database. That is in addition to performance, security, usability, and reliability non-functional requirements that ensure that a user could upload a spreadsheet quickly enough while seeing progress indicators in a user-friendly experience and getting their data processed and transformed in the backend without any data loss.
+
+    Enter Flatfile.com! A SAAS product (Software As A Service) that automates the handling of all the concerns and requirements mentioned above and more in a Ruby on Rails web application.
+
+    This talk will provide a brief overview of the Flatfile.com SAAS product features while demonstrating a real world example of using it in a Ruby on Rails web application.
+  speakers:
+    - Andy Maleh

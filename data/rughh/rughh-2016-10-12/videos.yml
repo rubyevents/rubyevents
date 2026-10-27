@@ -1,0 +1,44 @@
+---
+- id: "andreas-wachowski-rughh-2016-10-12"
+  old_id: "rughh-event-360-topic-501"
+  title: "S/CSS Lessons Learned"
+  date: "2016-10-12"
+  slides_url: "https://github.com/andreaswachowski/css-lessons-learnt/blob/master/css_lessons_learnt.md"
+  video_provider: "not_recorded"
+  video_id: "andreas-wachowski-rughh-2016-10-12"
+  description: |-
+    This would be an intermediate-level talk (German or English), ~30 minutes, about a S/CSS refactoring undertaken in a recent Ruby on Rails project. Touches linting, code organization (e.g. specificity graphs), naming (e.g. BEM). Time won't permit, but I have some additional slides on where to go to learn more.
+  speakers:
+    - Andreas Wachowski
+
+- id: "bastian-karstaedt-rughh-2016-10-12"
+  old_id: "rughh-event-360-topic-502"
+  title: "SinnerSchrader \"operations\" Gem - alle betriebsrelevanten Details im Blick"
+  date: "2016-10-12"
+  video_provider: "not_recorded"
+  video_id: "bastian-karstaedt-rughh-2016-10-12"
+  description: |-
+    Für einen unserer Kunden betreiben wir mehr als 15 Rails Applikationen (JRuby als auch natives Ruby), die mindestens ebenso viele externe Schnittstellen bedienen. Um diese reibungslos zu betreiben haben wir ein eigenes Gem entwickelt.
+
+    Das intern "operations" genannte Gem bietet eine DSL über der Health Checks diverser Schnittstellen (z.B. externe APIs, Datenbanken) konfiguriert und schließlich über eine Route abgefragt werden können. Ausgabeformate sind JSON, XML und eine optisch recht ansprechende HTML Variante in der die Status der Subsysteme in einer Baumhierarchie dargestellt werden. Über die DSL kann konfiguriert werden, wie sich der Status des Gesamtsystems bei Fehlverhalten einzelner Subsysteme verhält, damit z.B. das Operating Team des Nachts nicht aktiv werden muss, wenn externe Systeme außerhalb unseres Einflussbereiches defekt sind.
+    Weiterhin werden diverse Anwendungseinstellung dargestellt wie z.B. (j)Ruby Version, Umgebung (live, stage etc.), Deploy Branch/Commit/Time, Hostname etc.
+
+    Hierzu gibt es auch ein Dashboard, das den Zustand aller Applikationen im Setup sowie deren Hosts visualisiert.
+
+    In diesem Vortrag möchte ich an Hand von Beispielen das Gem erklären und die Roadmap vorstellen.
+  speakers:
+    - Bastian Karstaedt
+
+- id: "ruby-usergroup-hamburg-rughh-2016-10-12"
+  old_id: "rughh-event-360-topic-503"
+  title: "Email encryption using Ruby"
+  date: "2016-10-12"
+  video_provider: "not_recorded"
+  video_id: "ruby-usergroup-hamburg-rughh-2016-10-12"
+  description: |-
+    OpenPGP/Email encryption using Ruby
+    maybe also some remarks about Schleuder https://schleuder.nadir.org which is a tool for encrypted mailinglists
+
+    This talk is going to be in english
+  speakers:
+    - Ruby Usergroup Hamburg # TODO: add names

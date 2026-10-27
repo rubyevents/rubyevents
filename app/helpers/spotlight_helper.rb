@@ -27,8 +27,4 @@ module SpotlightHelper
   def spotlight_can_search_languages?
     spotlight_search_backend != :sqlite_fts
   end
-
-  def spotlight_can_search_series?
-    spotlight_search_backend != :sqlite_fts
-  end
 end

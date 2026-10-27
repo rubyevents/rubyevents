@@ -26,7 +26,7 @@ module Static
 
       def validate
         return [] unless applicable?
-        return [] if event["kind"] == "meetup"
+        return [] if event["kind"] == "meetup" && MeetupNaming.ignored?(event)
 
         errors = []
 
@@ -66,10 +66,30 @@ module Static
           )
         end
 
-        errors
+        errors.concat(time_errors)
       end
 
       private
+
+      def time_errors
+        time_fields = %w[start_time end_time].select { |field| event[field].present? }
+        return [] if time_fields.empty?
+
+        start_date = event["start_date"].to_s.strip
+        end_date = event["end_date"].to_s.strip
+        return [] unless valid_date?(start_date) && valid_date?(end_date) && start_date != end_date
+
+        time_fields.map do |field|
+          location = event.source_location(field)
+
+          Static::Validators::Error.new(
+            "#{field} is only for one-day events, this one runs from #{start_date} to #{end_date}. Put the hours of each day in its schedule.yml instead at /#{field}",
+            file_path: @file_path,
+            line: location&.start_line || 1,
+            end_line: location&.end_line
+          )
+        end
+      end
 
       def valid_date?(value)
         value.match?(/\A\d{4}-\d{2}-\d{2}\z/) && Date.iso8601(value)

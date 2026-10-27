@@ -1,0 +1,31 @@
+---
+- id: "study-eu-rughh-2016-09-14"
+  old_id: "rughh-event-358-topic-486"
+  title: "Building complex queries with the Active Record Query Interface (HH)"
+  date: "2016-09-14"
+  video_provider: "not_recorded"
+  video_id: "study-eu-rughh-2016-09-14"
+  description: |-
+    The Active Record query interface is a great way to build complex queries in a simple, (mostly) SQL-agnostic way.
+
+    In this talk I would like to describe how we are constructing a complex multi-parameter query at Study.EU to retrieve study programmes from the database based on a search initiated by the user.
+
+    The parameters include name, academic level, country, subject, tuition fees in different currencies, duration and the required level of English. Hence the queries include string and integer comparison, ranges, arrays, joins and basic arithmetic.
+
+    This talk will be accessible to Rails novices but also include advanced tweaks for seasoned Rails devs.
+  speakers:
+    - Study.EU # TODO add names
+
+- id: "robin-drexler-rughh-2016-09-14"
+  old_id: "rughh-event-358-topic-492"
+  title: "Behavior testing at Jimdo"
+  date: "2016-09-14"
+  slides_url: "https://slidr.io/robin-drexler/behavior-testing-at-jimdo"
+  video_provider: "not_recorded"
+  video_id: "robin-drexler-rughh-2016-09-14"
+  description: |-
+    This talk will cover how we behavior-test the [Jimdo website builder](http://www.jimdo.de) application.
+
+    We will take a look at  gems like `cucumber` and `watir-webdriver` and how we use those for testing our UI, also addressing how we try to keep the tests stable and the test execution time at a bearable level.
+  speakers:
+    - 🎉 Robin Drexler 🎉

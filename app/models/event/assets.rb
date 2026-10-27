@@ -86,7 +86,9 @@ class Event::Assets < ActiveRecord::AssociatedObject
   end
 
   def stickers
-    static_event&.stickers.to_a.sort_by(&:name)
+    series_stickers = event.meetup? ? Static::SeriesSticker.all.select { |sticker| sticker.event_series_id == event.series&.slug } : []
+
+    (static_event&.stickers.to_a + series_stickers).sort_by(&:name)
   end
 
   def sticker_paths

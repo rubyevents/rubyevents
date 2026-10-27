@@ -5,8 +5,8 @@ require "uri"
 class Event::Tickets < ActiveRecord::AssociatedObject
   PROVIDERS = {
     "Tito" => ["ti.to", "tito.io"],
-    "Luma" => ["lu.ma", "luma.com"],
-    "Meetup" => ["meetup.com"],
+    "Luma" => MeetupLinks::HOSTS["luma"],
+    "Meetup" => MeetupLinks::HOSTS["meetup"],
     "Connpass" => ["connpass.com"],
     "Doorkeeper" => ["doorkeeper.jp"],
     "Pretix" => ["pretix.eu"],

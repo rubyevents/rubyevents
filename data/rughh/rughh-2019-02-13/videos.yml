@@ -1,0 +1,16 @@
+---
+- id: "sebastian-korfmann-rughh-2019-02-13"
+  old_id: "rughh-event-501-topic-679"
+  title: "Serverless Ruby Bundler with AWS Cloud Development Kit (CDK)"
+  date: "2019-02-13"
+  slides_url: "https://github.com/rughh/planning/files/2917020/geminator.pdf"
+  video_provider: "not_recorded"
+  video_id: "sebastian-korfmann-rughh-2019-02-13"
+  description: |-
+    Let’s build a serverless dependency updater for Ruby apps. We’ll leverage a few recently introduced features of AWS Lambda: The Lambda Ruby runtime and a Lambda Layer to provide Bundler.
+
+    We’ll put this all together with the [AWS CDK](https://awslabs.github.io/aws-cdk/), which is an infrastructure modeling framework that allows us to define our cloud resources using Typescript.
+
+    Our goal: Submitting automated Gem update Pull Requests to an Rails app on Github.
+  speakers:
+    - Sebastian Korfmann

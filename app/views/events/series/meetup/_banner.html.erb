@@ -1,0 +1,13 @@
+<%# locals: (series:) %>
+
+<% banner_background = series.static_metadata.banner_background %>
+
+<div
+  class="
+    mt-3 flex h-28 w-full justify-center overflow-hidden border-b border-t hotwire-native:hidden md:h-40 lg:h-48
+    xl:h-56
+  "
+  style="background: <%= banner_background.start_with?("data:") ? "url('#{banner_background}') center / cover no-repeat" : banner_background %>;"
+>
+  <%= image_tag image_path(series.banner_image_path), alt: series.name, class: "h-full w-full object-contain md:container" %>
+</div>

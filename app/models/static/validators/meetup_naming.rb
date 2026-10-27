@@ -7,7 +7,6 @@ module Static
         rails-girls-bielsko-biala
         rails-girls-buenos-aires
         rails-girls-copenhagen
-        rubyevents
       ].freeze
 
       def self.ignored?(event)

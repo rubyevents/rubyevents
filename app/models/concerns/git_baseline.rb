@@ -37,9 +37,19 @@ module GitBaseline
       return @baseline_event_directories = {} unless baseline_ref
 
       output, success = git("ls-tree", "-r", "--name-only", baseline_ref, "--", "data")
-      event_files = success ? output.split("\n").grep(%r{\Adata/[^/]+/[^/]+/event\.yml\z}) : []
+      event_files = success ? output.split("\n").grep(%r{\Adata/(?:[^/]+/)+event\.yml\z}) : []
 
       @baseline_event_directories = event_files.map { |path| File.dirname(path) }.group_by { |directory| File.basename(directory) }
+    end
+
+    # Talks move between files, like meetup talks out of their group's videos.yml, so this looks across all of them
+    def baseline_talk_ids
+      return @baseline_talk_ids if defined?(@baseline_talk_ids)
+      return @baseline_talk_ids = Set.new unless baseline_ref
+
+      output, success = git("grep", "-h", "-E", '^[[:space:]]*-[[:space:]]+id: "', baseline_ref, "--", "*videos.yml")
+
+      @baseline_talk_ids = success ? output.scan(/id: "([^"]+)"/).flatten.to_set : Set.new
     end
 
     def baseline_ref
@@ -77,6 +87,7 @@ module GitBaseline
       remove_instance_variable(:@baseline_ref) if defined?(@baseline_ref)
       remove_instance_variable(:@changed_paths) if defined?(@changed_paths)
       remove_instance_variable(:@baseline_event_directories) if defined?(@baseline_event_directories)
+      remove_instance_variable(:@baseline_talk_ids) if defined?(@baseline_talk_ids)
     end
   end
 

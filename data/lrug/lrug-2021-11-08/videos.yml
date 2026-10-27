@@ -1,0 +1,57 @@
+---
+- id: "christian-gregg-lrug-2021-11-08"
+  old_id: "christian-gregg-lrug-november-2021"
+  title: "Failing better w/ Load Shedding & Deadline Propagation across services"
+  date: "2021-11-08"
+  announced_at: "2021-10-28T08:40:00Z"
+  slides_url: "https://github.com/lrug/lrug.org/files/7529520/presentation.pdf"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2021/november/christian-gregg-failing-better-with-load-shedding-and-deadline-propagation-across-services-lrug-nov-2021.mp4"
+  description: |-
+    As services start to split off from your majestic monolith, cascading
+    failures as a single service or endpoint slows down can become a
+    recurring problem which very quickly can lead to service unavailability.
+    Implementing load-shedding and deadline propagation across your services
+    is a technique which can help you provide a more resilient service to
+    your customers. This talk will introduce some of the concepts explored
+    in [CGA1123/loadshedding-experiment-ruby][experiment]
+    & [CGA1123/shed][shed].
+
+    [experiment]: https://github.com/CGA1123/loadshedding-experiment-ruby
+    [shed]: https://github.com/CGA1123/shed
+  speakers:
+    - Christian Gregg
+
+- id: "chris-parsons-lrug-2021-11-08"
+  old_id: "chris-parsons-lrug-november-2021"
+  title: "Why Rails is still relevant for startups in 2021"
+  date: "2021-11-08"
+  announced_at: "2021-10-28T08:40:00Z"
+  slides_url: "https://speakerdeck.com/chrismdp/why-rails-is-still-relevant-for-startups-in-2021"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2021/november/chris-parsons-why-rails-is-still-relevant-for-startups-in-2021-lrug-nov-2021.mp4"
+  description: |-
+    With the rise of single page JavaScript apps, lo-code, and mobile-first,
+    is Rails consigned to the legacy dustbin of frameworks last cool in
+    2008? The answer is emphatically “no” - Rails is as relevant as ever for
+    startups in 2021. Chris will talk about how Rails has supercharged the
+    early stage of his new startup, LollipopAI, and how Rails gave them
+    quick experiments, good-enough domain modelling and tooling that just
+    works.
+  speakers:
+    - Chris Parsons
+
+- id: "patricia-cupueran-lrug-2021-11-08"
+  old_id: "patricia-cupueran-lrug-november-2021"
+  title: "Service Objects and Domain objects differences"
+  date: "2021-11-08"
+  announced_at: "2021-10-28T08:40:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2021/november/patricia-cupueran-service-objects-and-domain-objects-differences-lrug-nov-2021.mp4"
+  description: |-
+    Understanding what a service and domain objects are. Distinguishing the
+    difference between procedures and objects. Why using service objects is
+    a bad idea. Advantages of using modules, concerns and PORO's instead of
+    service objects.
+  speakers:
+    - Patricia Cupueran

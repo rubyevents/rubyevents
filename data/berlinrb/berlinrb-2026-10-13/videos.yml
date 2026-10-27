@@ -1,0 +1,73 @@
+---
+- id: "rafal-cymerys-berlinrb-2026-10-13"
+  old_id: "rafal-cymerys-berlinrb-meetup-october-2026"
+  title: "Let Your Software Write Its Own Code: Runtime Code Generation in Production"
+  raw_title: "Let Your Software Write Its Own Code — Rafał Cymerys | Berlin.rb"
+  date: "2026-10-13"
+  published_at: "2026-10-13T22:55:34Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "F2uDIEjhdbc"
+  description: |-
+    Let Your Software Write Its Own Code: Runtime Code Generation in Production
+
+    Rafał Cymerys demonstrates how an application can let an AI agent generate and execute narrowly scoped code at runtime. Using a RubyLLM-powered cat-management demo, he explores adaptive data imports, unfamiliar file formats, external APIs, generated reports, sandboxing, cost controls, and lessons from production deployments.
+
+    Sample application: https://github.com/rafalcymerys/codegen-examples
+    Anthropic code-execution documentation: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
+    Upside: https://upsidelab.io/
+
+    Recorded at Berlin.rb #2 in Berlin on 13 October 2026.
+    Berlin.rb: https://berlinrb.org/
+
+    Chapters
+    00:00 Intro
+    00:04 The limits of rigid software
+    05:11 From parsers to code-writing agents
+    08:55 Live demo: adaptive data imports
+    20:52 How the RubyLLM implementation works
+    22:31 APIs, matching and generated reports
+    31:40 Production lessons and sandboxing
+    35:54 Q&A
+  speakers:
+    - Rafał Cymerys
+
+- id: "stephen-margheim-berlinrb-2026-10-13"
+  old_id: "stephen-margheim-berlinrb-meetup-october-2026"
+  title: "The ZARchitecture: How and Why we evolved a fintech for AI-driven development"
+  raw_title: "The ZArchitecture: Evolving a Fintech for AI-Driven Development — Stephen Margheim | Berlin.rb"
+  date: "2026-10-13"
+  published_at: "2026-10-13T23:08:10Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "OmrdvAzCSIc"
+  description: |-
+    The ZArchitecture: How and Why We Evolved a Fintech for AI-Driven Development
+
+    Stephen Margheim explains how his team structures a fintech codebase for reliable AI-driven development without outsourcing engineering understanding. He argues that the codebase is the prompt, then develops an inhale/exhale workflow around atomic changes, explicit architecture, constrained vocabulary, runtime types, ArchSpec enforcement, mutation-tested tests, observability, and software foremen.
+
+    Impatient Programming: https://impatientprogramming.org/i/berlin-rb
+    Stephen online: @fractaledmind
+
+    Recorded at Berlin.rb #2 in Berlin on 13 October 2026 https://berlinrb.org/
+
+    Chapters
+    00:00 Intro
+    00:04 From SQLite to AI-driven fintech
+    05:01 Code is cheap
+    06:42 The codebase is the prompt
+    10:50 The inhale/exhale rhythm
+    14:08 Atomic changes as transactions
+    16:58 Architecture and system shape
+    21:08 Vocabulary and conventions
+    28:12 Type the edges
+    30:17 Enforcing architecture with ArchSpec
+    36:08 Mutation-testing the test suite
+    41:40 Production rewrite results
+    45:00 Build software foremen
+    48:10 A unified data lake for agents
+    49:48 Never outsource understanding
+    51:54 Takeaways
+    54:39 Q&A
+  speakers:
+    - Stephen Margheim

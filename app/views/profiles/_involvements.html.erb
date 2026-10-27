@@ -1,10 +1,10 @@
-<%# locals: (events:, user:, involvements_by_role:) %>
+<%# locals: (user:, involvements_by_role:) %>
 
 <% cache [user, involvements_by_role, Current.user] do %>
   <% if involvements_by_role.any? %>
     <div class="space-y-8">
       <% if involvements_by_role.any? %>
-        <% involvements_by_role.each do |role, events| %>
+        <% involvements_by_role.each do |role, owners| %>
           <div>
             <h3 class="mb-4 text-lg font-semibold">
               Involved as <%= role %>
@@ -12,8 +12,12 @@
 
             <div class="mb-6">
               <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                <%= cache events do %>
-                  <%= render partial: "events/card", collection: events, as: :event, cached: true %>
+                <% owners[:series].each do |series| %>
+                  <%= render (series.meetup? ? "events/series/meetup_card" : "events/series/card"), series: series %>
+                <% end %>
+
+                <%= cache owners[:events] do %>
+                  <%= render partial: "events/card", collection: owners[:events], as: :event, cached: true %>
                 <% end %>
               </div>
             </div>

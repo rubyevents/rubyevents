@@ -1,8 +1,13 @@
 # TODO: create separate events for each URUG chapter
 ---
 id: "utah-ruby-users-group"
+old_event_ids:
+  - "utah-ruby-users-group"
 name: "Utah Ruby Users Group"
+location: "Salt Lake City, UT, United States"
+timezone: "America/Denver"
 kind: "meetup"
+meetup: "https://www.meetup.com/utah-ruby-users-group/"
 description: |-
   This group is for anyone interested in learning more about web development, particularly related to Ruby/Rails & other applicable languages/frameworks.
 
@@ -18,3 +23,7 @@ description: |-
   At the monthly meetups, generally there is a presentation or two, or group activities, and always good conversations/activities related to things happening in the Ruby, Ruby on Rails, and general software development world. We also tackle cover good software development practices, and many of the emerging technologies, front-end frameworks, ops tools, responsive design, and mobile technologies.
 aliases:
   - URUG
+feeds:
+  - type: "ical"
+    url: "https://www.meetup.com/utah-ruby-users-group/events/ical/"
+    name: "Meetup.com"

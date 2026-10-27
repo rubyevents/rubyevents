@@ -33,7 +33,7 @@ module Static
 
         [
           Static::Validators::Error.new(
-            %(name "#{series["name"]}" ends in "Meetup", expected "#{expected_name}". The series is named after the group, its meetup event is titled "<name> Meetup". Run `bin/rails validate:fix` to rename it.),
+            %(name "#{series["name"]}" ends in "Meetup", expected "#{expected_name}". The series is named after the group, and its meetups are titled "<name> Meetup <Month> <Year>". Run `bin/rails validate:fix` to rename it.),
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
@@ -56,11 +56,14 @@ module Static
         @series ||= Static::EventSeries.in_file(@file_path.to_s, document: @document).first
       end
 
+      # A meetup series nested under a parent of the same name keeps "Meetup" to tell the two apart: "SF Ruby Meetup" under "SF Ruby".
       def expected_name
         return @expected_name if defined?(@expected_name)
 
         @expected_name = if applicable? && series && series["kind"] == "meetup" && series["name"].to_s.match?(SUFFIX)
-          series["name"].to_s.sub(SUFFIX, "")
+          name = series["name"].to_s.sub(SUFFIX, "")
+
+          name unless series.parent&.[]("name") == name
         end
       end
     end

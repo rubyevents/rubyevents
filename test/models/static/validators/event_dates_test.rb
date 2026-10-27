@@ -26,8 +26,16 @@ class Static::Validators::EventDatesTest < ActiveSupport::TestCase
     assert_empty validator.errors
   end
 
-  test "returns empty errors for a meetup event without dates" do
-    yaml = {"name" => "My Meetup", "kind" => "meetup"}.to_yaml
+  test "returns errors for a meetup event without dates" do
+    yaml = Yerba::Document.from({"id" => "my-meetup", "name" => "My Meetup", "kind" => "meetup"}).to_s
+    with_temp_event_yaml(yaml) do |path|
+      validator = Static::Validators::EventDates.new(file_path: path)
+      assert_equal 2, validator.errors.size
+    end
+  end
+
+  test "returns empty errors for an undated group event that keeps its meetups as talks" do
+    yaml = Yerba::Document.from({"id" => "rails-girls-copenhagen", "name" => "Rails Girls Copenhagen", "kind" => "meetup"}).to_s
     with_temp_event_yaml(yaml) do |path|
       validator = Static::Validators::EventDates.new(file_path: path)
       assert_empty validator.errors
@@ -82,6 +90,24 @@ class Static::Validators::EventDatesTest < ActiveSupport::TestCase
 
     with_temp_event_yaml(yaml) do |path|
       assert_equal 2, Static::Validators::EventDates.new(file_path: path).errors.size
+    end
+  end
+
+  test "accepts start_time and end_time on a one-day event" do
+    yaml = Yerba::Document.from({"id" => "2025", "kind" => "meetup", "start_date" => "2025-11-12", "end_date" => "2025-11-12", "start_time" => "18:30", "end_time" => "21:00"}).to_s
+    with_temp_event_yaml(yaml) do |path|
+      assert_empty Static::Validators::EventDates.new(file_path: path).errors
+    end
+  end
+
+  test "flags start_time and end_time on a multi-day event" do
+    yaml = Yerba::Document.from({"id" => "2025", "kind" => "conference", "start_date" => "2025-11-12", "end_date" => "2025-11-14", "start_time" => "09:00", "end_time" => "18:00"}).to_s
+    with_temp_event_yaml(yaml) do |path|
+      errors = Static::Validators::EventDates.new(file_path: path).errors
+
+      assert_equal 2, errors.size
+      assert_includes errors.first.message, "start_time is only for one-day events, this one runs from 2025-11-12 to 2025-11-14"
+      assert_includes errors.last.message, "end_time is only for one-day events"
     end
   end
 

@@ -1,9 +1,23 @@
 ---
 id: "sendairb"
+old_event_ids:
+  - "sendairb-meetup"
 name: "Sendai.rb"
+location: "Sendai, Miyagi, Japan"
+timezone: "Asia/Tokyo"
 website: "https://sendairb.connpass.com"
 kind: "meetup"
-frequency: "irregular"
 language: "Japanese"
 twitter: "sendairb"
 default_country_code: "JP"
+description: "仙台周辺のRubyistが集まってワイワイするコミュニティです。"
+banner_background: "#FFFFFF"
+featured_background: "#FFFFFF"
+featured_color: "#282827"
+coordinates:
+  latitude: 38.2677554
+  longitude: 140.8691498
+feeds:
+  - type: "rss"
+    url: "https://sendairb.connpass.com/ja.atom"
+    name: "connpass"

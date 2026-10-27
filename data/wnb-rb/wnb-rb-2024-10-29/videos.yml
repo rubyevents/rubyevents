@@ -1,0 +1,18 @@
+---
+- id: "emily-samp-wnb-rb-2024-10-29"
+  old_id: "emily-samp-wnbrb-meetup-october-2024"
+  title: "Parsing with Prism in Sorbet"
+  raw_title: "Parsing with Prism in Sorbet by Emily Samp"
+  date: "2024-10-29"
+  published_at: "2024-12-12T15:57:58Z"
+  slides_url: "https://docs.google.com/presentation/d/1sw_V2_FfqTBfge46hBxLYxYcXKVy_LIp7CkqgphP9Ss/edit#slide=id.p"
+  video_provider: "youtube"
+  video_id: "rnGMDz-2YVE"
+  description: |-
+    Sorbet is a gradual type checker for Ruby, and like many Ruby developer tools, it has its own parser. This means that every time a change is made to the Ruby language, teams at Stripe and Shopify need to implement those changes in Sorbet's parser. This process is labor-intensive, slow, and prone to errors. There must be a better way!
+
+    Enter, Prism. Prism is a new Ruby parser developed by Shopify. It is written in C and designed to be embedded in other Ruby tooling. In this talk, I'll describe how I replaced the existing Sorbet parser with Prism, eliminating the toil of maintaining the Sorbet parser and taking one step toward uniting Ruby's parsing ecosystem.
+
+    https://www.wnb-rb.dev/meetups/2024/10/29
+  speakers:
+    - Emily Samp

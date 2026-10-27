@@ -246,6 +246,16 @@ class EventGeocodingTest < ActiveSupport::TestCase
     assert_equal "New York, NY, US", event.location_and_country_code
   end
 
+  test "an online event isn't geocoded, even when its series has a default country" do
+    event = Event.new(name: "Test", series: @series, location: "online")
+    event.define_singleton_method(:series) do
+      OpenStruct.new(static_metadata: OpenStruct.new(default_country_code: "TR"))
+    end
+
+    assert_nil event.location_and_country_code
+    refute_predicate event, :geocodeable?
+  end
+
   test "location_and_country_code does not append default when location already has a country" do
     event = Event.new(name: "Test", series: @series, location: "Montréal, QC, Canada")
     event.define_singleton_method(:series) do

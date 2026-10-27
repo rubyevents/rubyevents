@@ -6,7 +6,7 @@
 
     <div class="flex w-full flex-wrap items-start gap-8 sm:flex-nowrap">
       <div class="w-full">
-        <% if @event.meetup? && @speakers_with_counts %>
+        <% if @event.meetup_group? && @speakers_with_counts %>
           <h2 class="mb-6">Speakers (<%= @speakers_with_counts.size %>)</h2>
 
           <div class="mb-12 grid h-full min-w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
