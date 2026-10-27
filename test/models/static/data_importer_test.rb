@@ -425,17 +425,17 @@ module Static
         define_method(:merge_old_events!) { |record| calls << [:merge, slug, record] }
         define_method(:update_meetup_frequency!) { |record| calls << [:frequency, slug, record] }
       end
-      fake_event = Struct.new(:slug, :file_path, :series) do
+      fake_event = Struct.new(:slug, :file_path, :series, :old_talk_ids) do
         define_method(:migrate_old_talks!) { |record| calls << [:migrate, slug, record] }
       end
 
       series = fake_series.new("rug-b", Rails.root.join("data/rug-b/series.yml").to_s)
-      event = fake_event.new("rug-b-2012-11-01", Rails.root.join("data/rug-b/rug-b-2012-11-01/event.yml").to_s, series)
-      record = Object.new
+      event = fake_event.new("rug-b-2012-11-01", Rails.root.join("data/rug-b/rug-b-2012-11-01/event.yml").to_s, series, ["rug-b-old-talk"])
+      record = Struct.new(:slug).new("rug-b-2012-11-01")
 
       Static::DataImporter.stub(:event_for, event) do
         Static::DataImporter.stub(:series_for, series) do
-          ::Event.stub(:find_by, record) do
+          ::Event.stub(:where, [record]) do
             failed = Static::DataImporter.finalize!(["data/rug-b/rug-b-2012-11-01/videos.yml", "data/rug-b/rug-b-2012-11-01/event.yml"], logger: ->(_) {})
 
             assert_empty failed
@@ -444,6 +444,31 @@ module Static
       end
 
       assert_equal [[:migrate, "rug-b-2012-11-01", record], [:merge, "rug-b", :series_record], [:frequency, "rug-b", :series_record]], calls
+    end
+
+    test "finalize! skips the database lookup for events without old_talk_ids" do
+      fake_series = Struct.new(:slug, :file_path) do
+        define_method(:event_series_record) { :series_record }
+        define_method(:merge_old_events!) { |_record| }
+        define_method(:update_meetup_frequency!) { |_record| }
+      end
+      fake_event = Struct.new(:slug, :file_path, :series, :old_talk_ids) do
+        define_method(:migrate_old_talks!) { |_record| flunk "should not migrate" }
+      end
+
+      series = fake_series.new("rug-b", Rails.root.join("data/rug-b/series.yml").to_s)
+      event = fake_event.new("rug-b-2012-11-01", Rails.root.join("data/rug-b/rug-b-2012-11-01/event.yml").to_s, series, [])
+      queried_slugs = nil
+
+      Static::DataImporter.stub(:event_for, event) do
+        Static::DataImporter.stub(:series_for, series) do
+          ::Event.stub(:where, ->(slug:) { (queried_slugs = slug) && [] }) do
+            assert_empty Static::DataImporter.finalize!(["data/rug-b/rug-b-2012-11-01/videos.yml"], logger: ->(_) {})
+          end
+        end
+      end
+
+      assert_equal [], queried_slugs
     end
 
     test "finalize! reports a failing series and forgets its fingerprint so it is retried" do

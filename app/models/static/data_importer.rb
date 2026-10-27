@@ -257,8 +257,11 @@ module Static
 
       failed = []
 
-      events.each do |event|
-        record = ::Event.find_by(slug: event.slug)
+      migrating = events.select { |event| event.old_talk_ids.any? }
+      records = ::Event.where(slug: migrating.map(&:slug)).index_by(&:slug)
+
+      migrating.each do |event|
+        record = records[event.slug]
         event.migrate_old_talks!(record) if record
       rescue => e
         failed << forget_after_failure(event.file_path, e, logger)
