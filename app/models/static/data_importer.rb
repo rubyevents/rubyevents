@@ -3,20 +3,46 @@
 module Static
   class DataImporter
     FULL_REINDEX_THRESHOLD = 10
-    GLOBAL_MODELS = [Static::City, Static::Speaker, Static::Topic].freeze
+    def self.global_models
+      [Static::City, Static::Speaker, Static::Topic]
+    end
 
-    EVENT_FILE_IMPORTS = {
-      Static::Talk => :import_videos!,
-      Static::Sponsor => :import_sponsors!,
-      Static::CFP => :import_cfps!,
-      Static::Involvement => :import_involvements!
-    }.freeze
+    def self.event_file_imports
+      {
+        Static::Talk => :import_videos!,
+        Static::Sponsor => :import_sponsors!,
+        Static::CFP => :import_cfps!,
+        Static::Involvement => :import_involvements!
+      }
+    end
 
-    EVENT_FILE_ASSOCIATIONS = {
-      Static::Sponsor => :sponsors,
-      Static::CFP => :cfps,
-      Static::Involvement => :event_involvements
-    }.freeze
+    def self.event_file_associations
+      {
+        Static::Sponsor => :sponsors,
+        Static::CFP => :cfps,
+        Static::Involvement => :event_involvements
+      }
+    end
+
+    def self.series_file_imports
+      {
+        Static::SeriesCFP => :import_cfps!,
+        Static::SeriesSponsor => :import_sponsors!,
+        Static::SeriesInvolvement => :import_involvements!
+      }
+    end
+
+    def self.series_file_associations
+      {
+        Static::SeriesSponsor => :sponsors,
+        Static::SeriesCFP => :cfps,
+        Static::SeriesInvolvement => :event_involvements
+      }
+    end
+
+    def self.series_models
+      [Static::EventSeries, *series_file_imports.keys]
+    end
 
     def self.phases
       [
@@ -25,7 +51,8 @@ module Static
         [Static::EventSeries],
         [Static::Event],
         [Static::Venue],
-        EVENT_FILE_IMPORTS.keys,
+        event_file_imports.keys,
+        series_file_imports.keys,
         [Static::Topic]
       ]
     end
@@ -37,20 +64,24 @@ module Static
 
       reload_caches_for(model) if reload
 
-      folder = File.basename(File.dirname(absolute))
-
-      if model.in?(GLOBAL_MODELS)
+      if model.in?(global_models)
         model.import_all!
 
         true
       elsif model == Static::EventSeries
-        series = Static::EventSeries.find_by_slug(folder)
+        series = series_for(absolute)
         return false unless series
 
         series.import_series!
         true
+      elsif (method = series_file_imports[model])
+        series = series_for(absolute)
+        return false unless series
+
+        series.public_send(method, series.event_series_record)
+        true
       elsif model.in?([Static::Event, Static::Venue])
-        event = Static::Event.find_by_slug(folder)
+        event = event_for(absolute)
         return false unless event
 
         record = event.import_event!
@@ -60,7 +91,7 @@ module Static
       elsif model == Static::Schedule
         true
       else
-        with_event(folder) { |static, record| static.public_send(EVENT_FILE_IMPORTS.fetch(model), record) }
+        with_event(event_for(absolute)) { |static, record| static.public_send(event_file_imports.fetch(model), record) }
       end
     end
 
@@ -71,16 +102,22 @@ module Static
 
       reload_caches_for(model) if reload
 
-      folder = File.basename(File.dirname(absolute))
-
-      if (association = EVENT_FILE_ASSOCIATIONS[model])
-        event = ::Event.find_by(slug: folder)
+      if (association = event_file_associations[model])
+        static = event_for(absolute)
+        event = static && ::Event.find_by(slug: static.slug)
         return false unless event
 
         event.public_send(association).destroy_all
         true
+      elsif (association = series_file_associations[model])
+        static = series_for(absolute)
+        event_series = static && ::EventSeries.find_by(slug: static.slug)
+        return false unless event_series
+
+        event_series.public_send(association).destroy_all
+        true
       elsif model == Static::Venue
-        event = Static::Event.find_by_slug(folder)
+        event = event_for(absolute)
         return false unless event
 
         event.import_event!
@@ -128,12 +165,14 @@ module Static
       removed = 0
       skipped = 0
       failed = []
+      touched = []
 
       ImportedFile.missing_paths.each do |relative|
         next if only && !only.include?(relative)
 
         removed += 1 if remove(relative, reload: false)
         ImportedFile.forget!(relative)
+        touched << relative
         log.call("removed #{relative}")
       rescue => e
         failed << relative
@@ -153,6 +192,7 @@ module Static
           if import(relative)
             ImportedFile.record!(relative)
             imported += 1
+            touched << relative
             log.call("imported #{relative}")
           else
             failed << relative
@@ -163,6 +203,8 @@ module Static
           log.call("error importing #{relative}: #{e.class}: #{e.message}")
         end
       end
+
+      failed.concat(finalize!(touched, logger: log))
 
       log.call("Incremental seed complete: #{imported} imported, #{removed} removed, #{skipped} unchanged, #{failed.size} failed")
 
@@ -206,11 +248,55 @@ module Static
       [paths.size, latest_mtime, ImportedFile.count, ImportedFile.maximum(:updated_at)&.to_i]
     end
 
-    def self.with_event(event_slug)
-      static = Static::Event.find_by_slug(event_slug)
+    def self.finalize!(relatives, logger:)
+      absolutes = relatives.map { |relative| Rails.root.join(relative).to_s }
+      models = absolutes.index_with { |absolute| model_for(absolute) }
+
+      events = models.filter_map { |absolute, model| event_for(absolute) if model && !model.in?(global_models) && !model.in?(series_models) }.uniq
+      series = (models.filter_map { |absolute, model| series_for(absolute) if model&.in?(series_models) } + events.filter_map(&:series)).uniq
+
+      failed = []
+
+      events.each do |event|
+        record = ::Event.find_by(slug: event.slug)
+        event.migrate_old_talks!(record) if record
+      rescue => e
+        failed << forget_after_failure(event.file_path, e, logger)
+      end
+
+      series.each do |static_series|
+        record = static_series.event_series_record
+
+        static_series.merge_old_events!(record)
+        static_series.update_meetup_frequency!(record)
+      rescue => e
+        failed << forget_after_failure(static_series.file_path, e, logger)
+      end
+
+      failed
+    end
+
+    def self.forget_after_failure(file_path, error, logger)
+      relative = ImportedFile.relative_path(file_path)
+
+      ImportedFile.forget!(relative)
+      logger.call("error finishing #{relative}: #{error.class}: #{error.message}")
+
+      relative
+    end
+
+    def self.event_for(absolute_path)
+      Static::Event.find_by_file_path(File.join(File.dirname(absolute_path), "event.yml"))
+    end
+
+    def self.series_for(absolute_path)
+      Static::EventSeries.find_by_file_path(File.join(File.dirname(absolute_path), "series.yml"))
+    end
+
+    def self.with_event(static)
       return false unless static
 
-      record = ::Event.find_by(slug: event_slug) || static.import_event!
+      record = ::Event.find_by(slug: static.slug) || static.import_event!
       return false unless record
 
       yield(static, record)
@@ -223,13 +309,15 @@ module Static
     end
 
     def self.files_for(model)
-      model.file_glob ? Dir[model.file_glob].sort : [model.file_path]
+      return [model.file_path] unless model.file_glob
+
+      Dir[model.file_glob].sort.select { |file| model.sibling_file?(file) }
     end
 
     def self.model_for(absolute_path)
       (phases.flatten + [Static::Schedule]).find do |model|
         if model.file_glob
-          File.fnmatch?(model.file_glob, absolute_path, File::FNM_PATHNAME)
+          model.path_params_for(absolute_path) && model.sibling_file?(absolute_path)
         else
           model.file_path == absolute_path
         end
@@ -239,7 +327,10 @@ module Static
     def self.reload_caches_for(model)
       model.unload!
 
-      Static::Event.unload! unless model.in?(GLOBAL_MODELS) || model == Static::EventSeries
+      return if model.in?(global_models)
+
+      Static::Event.unload!
+      Static::EventSeries.unload!
     end
   end
 end

@@ -33,11 +33,47 @@ module Static
       series = Minitest::Mock.new
       series.expect(:import_series!, true)
 
-      Static::EventSeries.stub(:find_by_slug, series) do
+      Static::DataImporter.stub(:series_for, series) do
         assert Static::DataImporter.import("data/rubyconf/series.yml")
       end
 
       series.verify
+    end
+
+    test "model_for applies the sibling-file rules for series-level and event-level files" do
+      series_involvements = Rails.root.join("data/amsterdam-rb/involvements.yml").to_s
+      event_involvements = Rails.root.join("data/rubyconf/rubyconf-2024/involvements.yml").to_s
+      nested_series = Rails.root.join("data/rails-girls/rails-girls-bern/series.yml").to_s
+
+      assert_equal Static::SeriesInvolvement, Static::DataImporter.model_for(series_involvements)
+      assert_equal Static::Involvement, Static::DataImporter.model_for(event_involvements)
+      assert_equal Static::EventSeries, Static::DataImporter.model_for(nested_series)
+    end
+
+    test "routes series-level files to the series' import methods" do
+      {
+        "involvements" => :import_involvements!,
+        "sponsors" => :import_sponsors!,
+        "cfp" => :import_cfps!
+      }.each do |basename, method|
+        File.write(Rails.root.join("data/amsterdam-rb/#{basename}.yml"), "--- []\n") unless File.exist?(Rails.root.join("data/amsterdam-rb/#{basename}.yml"))
+
+        record = Object.new
+        static_series = Minitest::Mock.new
+        static_series.expect(:event_series_record, record)
+        static_series.expect(method, true, [record])
+
+        Static::DataImporter.stub(:series_for, static_series) do
+          assert Static::DataImporter.import("data/amsterdam-rb/#{basename}.yml")
+        end
+
+        static_series.verify
+      end
+    ensure
+      %w[sponsors cfp].each do |basename|
+        path = Rails.root.join("data/amsterdam-rb/#{basename}.yml")
+        File.delete(path) if File.exist?(path) && File.read(path) == "--- []\n"
+      end
     end
 
     test "routes event.yml and venue.yml to Event#import_event! and applies removed_talk_ids" do
@@ -47,7 +83,7 @@ module Static
         static_event.expect(:import_event!, record)
         static_event.expect(:destroy_removed_talks!, nil, [record])
 
-        Static::Event.stub(:find_by_slug, static_event) do
+        Static::DataImporter.stub(:event_for, static_event) do
           assert Static::DataImporter.import("data/rubyconf/rubyconf-2024/#{basename}.yml")
         end
 
@@ -64,9 +100,10 @@ module Static
       }.each do |basename, method|
         record = Object.new
         static_event = Minitest::Mock.new
+        static_event.expect(:slug, "rubyconf-2024")
         static_event.expect(method, true, [record])
 
-        Static::Event.stub(:find_by_slug, static_event) do
+        Static::DataImporter.stub(:event_for, static_event) do
           ::Event.stub(:find_by, record) do
             assert Static::DataImporter.import("data/rubyconf/rubyconf-2024/#{basename}.yml")
           end
@@ -79,10 +116,11 @@ module Static
     test "importing a child file auto-imports the event when it is not in the database yet" do
       record = Object.new
       static_event = Minitest::Mock.new
+      static_event.expect(:slug, "rubyconf-2024")
       static_event.expect(:import_event!, record)
       static_event.expect(:import_videos!, true, [record])
 
-      Static::Event.stub(:find_by_slug, static_event) do
+      Static::DataImporter.stub(:event_for, static_event) do
         ::Event.stub(:find_by, nil) do
           assert Static::DataImporter.import("data/rubyconf/rubyconf-2024/videos.yml")
         end
@@ -92,7 +130,7 @@ module Static
     end
 
     test "returns false when the event is unknown in the data files" do
-      Static::Event.stub(:find_by_slug, nil) do
+      Static::DataImporter.stub(:event_for, nil) do
         assert_equal false, Static::DataImporter.import("data/unknown/unknown-2024/videos.yml")
       end
     end
@@ -239,7 +277,7 @@ module Static
       static_event = Minitest::Mock.new
       static_event.expect(:import_event!, Object.new)
 
-      Static::Event.stub(:find_by_slug, static_event) do
+      Static::DataImporter.stub(:event_for, static_event) do
         assert Static::DataImporter.remove("data/rubyconf/rubyconf-2024/venue.yml")
       end
 
@@ -364,6 +402,65 @@ module Static
           assert_equal 5, result[:skipped]
         end
       end
+    end
+
+    test "remove destroys the series' records of a deleted series-level file" do
+      records = Minitest::Mock.new
+      records.expect(:destroy_all, [])
+      event_series = Minitest::Mock.new
+      event_series.expect(:public_send, records, [:event_involvements])
+
+      ::EventSeries.stub(:find_by, event_series) do
+        assert Static::DataImporter.remove("data/amsterdam-rb/involvements.yml")
+      end
+
+      records.verify
+      event_series.verify
+    end
+
+    test "finalize! migrates old talks of touched events and merges old events of their series" do
+      calls = []
+      fake_series = Struct.new(:slug, :file_path) do
+        define_method(:event_series_record) { :series_record }
+        define_method(:merge_old_events!) { |record| calls << [:merge, slug, record] }
+        define_method(:update_meetup_frequency!) { |record| calls << [:frequency, slug, record] }
+      end
+      fake_event = Struct.new(:slug, :file_path, :series) do
+        define_method(:migrate_old_talks!) { |record| calls << [:migrate, slug, record] }
+      end
+
+      series = fake_series.new("rug-b", Rails.root.join("data/rug-b/series.yml").to_s)
+      event = fake_event.new("rug-b-2012-11-01", Rails.root.join("data/rug-b/rug-b-2012-11-01/event.yml").to_s, series)
+      record = Object.new
+
+      Static::DataImporter.stub(:event_for, event) do
+        Static::DataImporter.stub(:series_for, series) do
+          ::Event.stub(:find_by, record) do
+            failed = Static::DataImporter.finalize!(["data/rug-b/rug-b-2012-11-01/videos.yml", "data/rug-b/rug-b-2012-11-01/event.yml"], logger: ->(_) {})
+
+            assert_empty failed
+          end
+        end
+      end
+
+      assert_equal [[:migrate, "rug-b-2012-11-01", record], [:merge, "rug-b", :series_record], [:frequency, "rug-b", :series_record]], calls
+    end
+
+    test "finalize! reports a failing series and forgets its fingerprint so it is retried" do
+      relative = "data/rug-b/series.yml"
+      ImportedFile.create!(file_path: relative, fingerprint: "current")
+      fake_series = Struct.new(:slug, :file_path) do
+        define_method(:event_series_record) { raise "boom" }
+      end
+      series = fake_series.new("rug-b", Rails.root.join(relative).to_s)
+
+      Static::DataImporter.stub(:series_for, series) do
+        failed = Static::DataImporter.finalize!([relative], logger: ->(_) {})
+
+        assert_equal [relative], failed
+      end
+
+      assert_not ImportedFile.exists?(file_path: relative)
     end
 
     test "remove returns false when the event is not in the database" do
