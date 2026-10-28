@@ -8,11 +8,15 @@ module Static
     has_one :series, through: :event
 
     def self.for_user(user, events: user.attended_events)
-      events.flat_map(&:stickers)
+      events.flat_map(&:stickers).uniq(&:code)
     end
 
     def variant
       basename.sub(/\Asticker[_-]?/i, "").presence
+    end
+
+    def url_path
+      Router.event_path(event_id)
     end
 
     def code

@@ -1,0 +1,29 @@
+# TODO: Add recordings - docs/ADDING_VIDEOS.md
+---
+
+
+- id: "juliana-dias-rug-b-2026-11-05"
+  title: "Durable Workflows with Temporal"
+  date: "2026-11-05"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "juliana-dias-rug-b-2026-11-05"
+  description: |-
+    Handling network failures, timeouts, and half-baked processes is a constant struggle in distributed systems. In this talk, we will explore Temporal, a Durable Execution platform that enables you to write code as if infrastructure failures do not exist. Based on the core architecture of Temporal, you will learn the key differences between Workflows and Activities and discover how to simplify complex orchestrations by eliminating manual retry and state-management code.
+  speakers:
+    - Juliana Dias
+
+- id: "dejan-menges-rug-b-2026-11-05"
+  title: "How Much Can Static Analysis Know About a Rails App?"
+  date: "2026-11-05"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "dejan-menges-rug-b-2026-11-05"
+  description: |-
+    If I change this endpoint, what depends on it? In a Rails application, answering that question is harder than it looks. Routes are composed through DSLs, relationships hide behind ActiveRecord associations and callbacks, and Ruby's dynamic nature makes even simple method calls difficult to resolve.
+
+    In this talk, we'll explore how far deterministic static analysis can go, where its limits are, and why knowing what you don't know matters as much as what you can discover. Using Enola as a practical example, we'll look at building software ontology graphs, tracing dependencies across repositories, detecting architectural changes, and expressing architectural rules.
+
+    The goal isn't to debate Rails conventions, but to understand what we can reliably learn about a software system without running it.
+  speakers:
+    - Dejan Menges

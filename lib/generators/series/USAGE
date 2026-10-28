@@ -1,0 +1,16 @@
+Description:
+    Generates a series.yml file for a new event series, like a conference or a meetup group.
+    Use --parent to nest the series in another one, like a local Rails Girls chapter in Rails Girls.
+
+Example:
+    bin/rails generate series --series=lrug --name="London Ruby User Group" --kind=meetup \
+      --location="London, UK" --timezone=Europe/London --meetup=https://www.meetup.com/lrug
+
+    This will create:
+        data/lrug/series.yml
+
+  Create a series nested in another series.
+    bin/rails generate series --series=rails-girls-bern --name="Rails Girls Bern" --kind=workshop --parent=rails-girls
+
+    This will create:
+        data/rails-girls/rails-girls-bern/series.yml

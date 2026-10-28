@@ -16,6 +16,8 @@ class SponsorsSchema < ApplicationSchema
           string :description, description: "Description of the sponsor", required: false
           string :logo_url, description: "URL to the sponsor's logo image", required: false
           string :badge, description: "Sponsor badge text", required: false
+          string :from, description: "When the sponsorship started (YYYY, YYYY-MM or YYYY-MM-DD), for a series' sponsors.yml", required: false, pattern: InvolvementSchema::PERIOD_PATTERN
+          string :to, description: "When the sponsorship ended (YYYY, YYYY-MM or YYYY-MM-DD), for a series' sponsors.yml, omitted while it lasts", required: false, pattern: InvolvementSchema::PERIOD_PATTERN
         end
       end
     end

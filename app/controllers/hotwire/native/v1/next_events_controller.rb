@@ -5,7 +5,7 @@ module Hotwire::Native::V1
     skip_before_action :authenticate_user!
 
     def show
-      events = Event.upcoming.first(6)
+      events = Event.ruby_focused.upcoming.first(6)
       return render(json: {event: nil, upcoming: []}) if events.empty?
 
       event = events.first

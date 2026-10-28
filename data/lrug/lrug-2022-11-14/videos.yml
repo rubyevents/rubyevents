@@ -1,0 +1,68 @@
+---
+- id: "benji-lewis-lrug-2022-11-14"
+  old_id: "benji-lewis-lrug-november-2022"
+  title: "Data Indexing with RGB (Ruby, Graphs and Bitmaps)"
+  date: "2022-11-14"
+  announced_at: "2022-10-20T18:00:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2022/november/benji-lewis-data-indexing-with-rgb-ruby-graphs-and-bitmaps-lrug-nov-2022.mp4"
+  description: |-
+    In this talk, we will go on a journey through Zappi’s data history and how
+    we are using Ruby, a graph database, and a bitmap store to build a unique
+    data engine. A journey that starts with the problem of a disconnected data
+    set and serialised data frames, and ends with the solution of an in-memory
+    index.
+
+    We will explore how we used RedisGraph to model the relationships in our
+    data, connecting semantically equal nodes. Then delve into how a query
+    layer was used to index a bitmap store and, in turn, led to us being able
+    to interrogate our entire dataset orders of magnitude faster than before.
+  speakers:
+    - Benji Lewis
+
+- id: "stan-lo-lrug-2022-11-14"
+  old_id: "stan-lo-lrug-november-2022"
+  title: "`ruby/debug` - The best investment for your productivity"
+  date: "2022-11-14"
+  announced_at: "2022-10-20T18:00:00Z"
+  slides_url: "https://github.com/st0012/slides/blob/main/2022-11-14-lrug/Ruby%20debugger%20-%20The%20best%20investment%20for%20your%20productivity%20-%20LRUG.pdf"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2022/november/stan-lo-ruby-debug-the-best-investment-for-your-productivity-lrug-nov-2022.mp4"
+  description: |-
+    In this talk, I will demonstrate 3 powerful debugging techniques using Ruby's new debugger
+    [`ruby/debug`](https://github.com/ruby/debug):
+
+    * Step-debugging
+    * Frame navigation
+    * Breakpoint commands
+
+    By using them together, we can reduce unnecessary context switching and make our debugging
+    sessions more efficient. You will also learn more about `ruby/debug` while we walk through
+    these techniques with its commands and console.
+
+    And finally, I will show you how to level up our productivity even further by automating
+    debugging steps using `ruby/debug`'s scriptable breakpoints.
+  speakers:
+    - Stan Lo
+
+- id: "christian-bruckmayer-lrug-2022-11-14"
+  old_id: "christian-bruckmayer-lrug-november-2022"
+  title: "Keeping developers happy with a fast CI"
+  date: "2022-11-14"
+  announced_at: "2022-10-20T18:00:00Z"
+  slides_url: "https://bruckmayer.net/ruby-conf-2021"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2022/november/christian-bruckmayer-keeping-developers-happy-with-a-fast-ci-lrug-nov-2022.mp4"
+  description: |-
+    When talking about performance, most developers think application speed,
+    faster algorithms or better data structures. But what about your test
+    suite? CI time is developer waiting time!
+
+    At Shopify we have more than 170,000 Ruby tests and we add 30,000 more
+    annually. The sheer amount of tests and their growth requires some
+    aggressive methods. We will illustrate some of our techniques including
+    monitoring, test selection, timeouts and the 80/20 rule. If you have
+    experience in writing tests and want to learn tricks on how to speed up
+    your test suite, this talk is for you!
+  speakers:
+    - Christian Bruckmayer

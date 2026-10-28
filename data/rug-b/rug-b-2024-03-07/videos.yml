@@ -1,0 +1,25 @@
+---
+- id: "alexander-sulim-rug-b-2024-03-07"
+  old_id: "alexander-sulim-rug-b-meetup-march-2024"
+  title: "Laziness-driven development"
+  date: "2024-03-07"
+  video_provider: "not_recorded"
+  video_id: "alexander-sulim-rug-b-2024-03-07"
+  description: |-
+    "The quality that makes you go to great effort to reduce overall energy expenditure. It makes you write labor-saving programs that other people will find useful, and then document what you wrote so you don’t have to answer so many questions about it. Hence, the first great virtue of a programmer."
+    Source: Perl Glossary
+
+    Laziness-driven development is a set of rules that might help anyone to harness great power of laziness to create better software. Some of these rules are obvious, some might be controversial, but they all are based on personal experience and serve me well for many years already.
+  speakers:
+    - Alexander Sulim
+
+- id: "martin-meyerhoff-rug-b-2024-03-07"
+  old_id: "martin-meyerhoff-rug-b-meetup-march-2024"
+  title: "Refactoring a large open source app: Take promotions out of Solidus"
+  date: "2024-03-07"
+  video_provider: "not_recorded"
+  video_id: "martin-meyerhoff-rug-b-2024-03-07"
+  description: |-
+    Applying promotions in Solidus, a rather large open-source e-commerce framework, is a bit buggy. The bugs are hard to fix, because backwards-compatibility is a big concern in the community and deprecation cycles can last years. This talk documents the process of fixing the promotion system within Solidus by first re-writing it as a gem, then finding the seams, then extracting the original promotion system into another gem, then making the two gems interchangeable. I hope it's fun to watch.
+  speakers:
+    - Martin Meyerhoff

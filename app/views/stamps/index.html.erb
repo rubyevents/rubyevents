@@ -70,7 +70,7 @@
                   <% if stamp.has_event? %>
                     <div class="card-actions mt-2">
                       <%= link_to "View Event",
-                            event_path(stamp.event_id),
+                            stamp.url_path,
                             class: "btn btn-xs btn-secondary" %>
                     </div>
                   <% end %>

@@ -34,6 +34,15 @@ class Api::V1::Embed::EventsControllerTest < ActionDispatch::IntegrationTest
     assert_equal({"keynote_speakers" => 1, "speakers" => 1, "attendees" => 1, "total" => 3}, json["counts"])
   end
 
+  test "show finds an event by a former slug" do
+    @event.slug_aliases.create!(name: "Old Embed Event", slug: "old-embed-event")
+
+    get api_v1_embed_event_url("old-embed-event")
+
+    assert_response :success
+    assert_equal "embed-event", response.parsed_body["slug"]
+  end
+
   test "participants splits keynote speakers from other speakers and excludes interested users" do
     get participants_api_v1_embed_event_url(@event.slug)
 

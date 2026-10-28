@@ -1,0 +1,25 @@
+---
+id: "rubyonrails-ch-2019-12-04"
+old_talk_ids:
+  - "railshoeck-meetup-december-2019"
+  - "railshock-december-2019"
+title: "Railshöck Meetup December 2019"
+location: "Zurich, Switzerland"
+timezone: "Europe/Zurich"
+kind: "meetup"
+description: |-
+  Swiss artists registered on mx3.ch get notified when their songs are played on the radio. How does one get airplay information from arbitrary radio streams? How is it matched against a database of songs?
+
+  In this presentation, we are going to see the challenges encountered while building a production-ready airplay matching system, including:
+
+  * writing a Ruby parser for the Icecast protocol from scratch
+  * working around peculiarities in Net::HTTP
+  * threading, queues and ActiveRecord connection pools
+  * gracefully handling network errors
+  * fuzzy matching with PostgreSQL
+start_date: "2019-12-04"
+end_date: "2019-12-04"
+meetup: "https://www.meetup.com/rubyonrails-ch/events/266309675"
+coordinates:
+  latitude: 47.3768866
+  longitude: 8.541694

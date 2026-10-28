@@ -1,0 +1,31 @@
+<%# locals: (series:, next_meetup: series.next_meetup, last_meetup: series.last_meetup) %>
+
+<% inactive = series.inactive? %>
+
+<%= link_to series_path(series), class: "flex w-full", data: {turbo_frame: "_top"} do %>
+  <div class="card card-compact w-full border bg-white <%= "opacity-50 grayscale" if inactive %>">
+    <%= image_tag image_path(series.card_image_path), class: "w-full object-cover rounded-t-xl border-b", alt: series.name, width: 300, height: 175, loading: :lazy %>
+
+    <div class="card-body flex min-h-[130px] flex-col items-center justify-center">
+      <div class="line-clamp-1 text-center text-xl font-semibold"><%= series.name %></div>
+
+      <div class="flex flex-col items-center text-center text-gray-500">
+        <% if series.location.present? %>
+          <span><%= series.to_location.to_html(show_links: false) %></span>
+        <% end %>
+
+        <span class="mt-1">
+          <% if inactive %>
+            Inactive
+          <% elsif next_meetup %>
+            Next meetup <%= l(next_meetup.start_date, format: :medium) %>
+          <% elsif last_meetup %>
+            Last meetup <%= l(last_meetup.start_date, format: :medium) %>
+          <% else %>
+            <%= series.meetup_frequency_sentence %>
+          <% end %>
+        </span>
+      </div>
+    </div>
+  </div>
+<% end %>

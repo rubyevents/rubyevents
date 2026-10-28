@@ -1,0 +1,19 @@
+---
+- id: "scott-werner-phillyrb-2026-01-20"
+  old_id: "scott-werner-philly-rb-january-2026"
+  title: "Talking Shit About AI Agents"
+  date: "2026-01-20"
+  video_provider: "not_recorded"
+  video_id: "scott-werner-phillyrb-2026-01-20"
+  description: |-
+    Ask seven people what an "AI agent" is and you'll get nine answers. One person will change their mind twice.
+
+    When we can't name something, it usually means we're looking at something genuinely new.
+
+    In this talk, I'll argue that what we're calling 'agents' might actually be a new programming paradigm hiding in plain sight. Think about what makes up an agent: an LLM, a prompt, a loop, some tools, a way to talk to it. It's essentially a little computer that receives messages and interprets them. That's suspiciously close to the way Alan Kay describes objects.
+
+    We'll take a detour through Xerox PARC circa 1972, explore what Kay actually meant by "object-oriented" (spoiler: not what we've been doing), and discover how LLMs accidentally achieved something he was reaching for: semantic late binding, where the meaning of a message is negotiated at the moment of receipt.
+
+    Then I'll demo a minimal Ruby environment where markdown files are the program and Ruby is just the scaffolding. You'll see prompt-objects receive messages, interpret them, talk to each other, and even create new prompt-objects at runtime.
+  speakers:
+    - Scott Werner

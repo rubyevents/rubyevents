@@ -1,0 +1,19 @@
+---
+- id: "kunshan-wang-ismm-2025"
+  title: "Reworking Memory Management in CRuby: A Practitioner Report"
+  raw_title: "Reworking Memory Management in CRuby: A Practitioner Report"
+  location: "Seoul, South Korea"
+  date: "2025-06-17"
+  start_time: "11:00"
+  end_time: "11:20"
+  published_at: "2025-07-09T17:24:47Z"
+  video_provider: "youtube"
+  video_id: "-mTxhJJDWbw"
+  description: |-
+    Ruby is a dynamic programming language that was first released in 1995 and remains heavily used today. Ruby underpins Ruby on Rails, one of the most widely deployed web application frameworks. The scale at which Rails is deployed has placed increasing pressure on the underlying CRuby implementation, and in particular its approach to memory management. CRuby implements a mark-sweep garbage collector which until recently was non-moving and only allocated fixed-size 40-byte objects, falling back to malloc to manage all larger objects. This paper reports on a multi-year academic-industrial collaboration to rework CRuby’s approach to memory management with the goal of introducing modularity and the ability to incorporate modern high performance garbage collection algorithms. This required identifying and addressing deeply ingrained assumptions across many aspects of the CRuby runtime. We describe the longstanding CRuby implementation and enumerate core challenges we faced and lessons they offer.
+
+    Our work has been embraced by the Ruby community, and the refactorings and new garbage collection interface we describe have been upstreamed. We look forward to this work being used to deploy a new class of garbage collectors for Ruby. We hope that this paper will provide important lessons and insights for Ruby developers, garbage collection researchers and language designers.
+
+    https://conf.researchr.org/details/ismm-2025/ismm-2025-papers/8/Reworking-Memory-Management-in-CRuby-A-Practitioner-Report
+  speakers:
+    - Kunshan Wang

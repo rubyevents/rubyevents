@@ -7,7 +7,7 @@ module Yerba
 
       class_methods do
         attr_reader :path, :scalar_field, :nested_key, :order_by
-        attr_writer :glob, :base_path, :flatten, :scalar_field, :order_by, :root
+        attr_writer :glob, :base_path, :flatten, :scalar_field, :order_by, :root, :sibling_file, :skipped_beside
 
         delegate :count, :first, :last, :empty?, :each, :pluck, to: :all
 
@@ -54,6 +54,23 @@ module Yerba
 
         def flatten
           @flatten || false
+        end
+
+        def sibling_file
+          @sibling_file || superclass.try(:sibling_file)
+        end
+
+        def skipped_beside
+          @skipped_beside || superclass.try(:skipped_beside)
+        end
+
+        def sibling_file?(file_path)
+          directory = File.dirname(file_path.to_s)
+
+          return false if sibling_file && !File.exist?(File.join(directory, sibling_file))
+          return false if skipped_beside && File.exist?(File.join(directory, skipped_beside))
+
+          true
         end
 
         def all
@@ -160,7 +177,7 @@ module Yerba
 
         def default_sources
           if glob
-            Dir.glob(file_glob).sort.map { |file| Collection::Source.new(path: file, mode: source_mode) }
+            Dir.glob(file_glob).sort.select { |file| sibling_file?(file) }.map { |file| Collection::Source.new(path: file, mode: source_mode) }
           elsif path
             [Collection::Source.new(path: file_path, mode: source_mode)]
           else

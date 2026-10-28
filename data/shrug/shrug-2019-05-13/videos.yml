@@ -1,0 +1,46 @@
+---
+- id: "paul-ridgway-shrug-2019-05-13"
+  title: "Running Ruby and Rails, purely serverless on AWS"
+  date: "2019-05-13"
+  video_provider: "not_recorded"
+  video_id: "paul-ridgway-shrug-2019-05-13"
+  description: |-
+    A talk covering running basic ruby functions to a full-blown Rails site using AWS, Lambda and various serverless technologies to enable scalability and reduce costs.
+
+    The talk will include a demo and, for anyone with an AWS account, the ability to follow along.
+
+    #### Getting set up with AWS
+
+     [https://aws.amazon.com/free/](https://aws.amazon.com/free/)
+
+    2. Create a new IAM account for the AWS CLI:
+
+     [https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html)
+
+    3. Install the AWS CLI (requires Python):
+
+     ```
+     pip install awscli
+     ```
+
+    4. Configure the AWS CLI using the IAM username and secret key:
+
+     ```
+     $ aws configure
+     AWS Access Key ID [None]: {IAM username}
+     AWS Secret Access Key [None]: {IAM secret key}
+     Default region name [None]: eu-west-1
+     Default output format [None]:
+     ```
+
+    5. Install Node and NPM (if not already installed):
+
+     [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+
+    6. Install the following packages:
+
+     ```
+     npm install serverless serverless-ruby-package
+     ```
+  speakers:
+    - Paul Ridgway

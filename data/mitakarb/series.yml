@@ -1,8 +1,23 @@
 ---
 id: "mitakarb"
+old_event_ids:
+  - "mitakarb-meetup"
 name: "mitaka.rb"
+location: "Mitaka, Tokyo, Japan"
+timezone: "Asia/Tokyo"
 website: "https://mitakarb.doorkeeper.jp"
 kind: "meetup"
-frequency: "monthly"
 language: "Japanese"
 default_country_code: "JP"
+meetup: "https://mitakarb.doorkeeper.jp"
+description: "mitaka.rbは、三鷹のRubyコミュニティです"
+banner_background: "#FFFFFF"
+featured_background: "#FFFFFF"
+featured_color: "#914042"
+coordinates:
+  latitude: 35.6833926
+  longitude: 139.5592421
+feeds:
+  - type: "ical"
+    url: "https://mitakarb.doorkeeper.jp/events.ics"
+    name: "Doorkeeper"

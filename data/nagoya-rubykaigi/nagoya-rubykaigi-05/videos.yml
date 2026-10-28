@@ -3,7 +3,6 @@
 - id: "lt-1-nagoya-rubykaigi-05"
   title: "開口一番（LT）"
   kind: "lightning_talk"
-  event_name: "Nagoya RubyKaigi 05"
   date: "2026-09-19"
   start_time: "11:05"
   end_time: "11:30"
@@ -34,35 +33,36 @@
 
 - id: "ikeko-misamisa-nagoya-rubykaigi-05"
   title: "AI時代の電子工作のススメ〜たまごっちは育成するより作成したほうが楽しい！（かもしれない）〜"
-  event_name: "Nagoya RubyKaigi 05"
   date: "2026-09-19"
   start_time: "11:40"
   end_time: "12:05"
   language: "Japanese"
   video_provider: "scheduled"
   video_id: "ikeko-misamisa-nagoya-rubykaigi-05"
-  description: ""
+  description: |-
+    大人気育成ゲーム、たまごっちで遊んだことはありませんか？育成するだけでは飽き足らず、Rubyを使ってゲームからハードウェアまで自分好みのたまごっちを自作してみました
   speakers:
     - ikeko
     - misamisa
 
 - id: "daichi-kamiyama-nagoya-rubykaigi-05"
   title: "特殊変数大全"
-  event_name: "Nagoya RubyKaigi 05"
   date: "2026-09-19"
   start_time: "12:05"
   end_time: "12:25"
   language: "Japanese"
   video_provider: "scheduled"
   video_id: "daichi-kamiyama-nagoya-rubykaigi-05"
-  description: ""
+  description: |-
+    `$~` `$_` `$1` `$&` `$!` `$stdout`… Ruby には `$` で始まる「特殊変数」が数多くあります。グローバル変数の一種ですが、内部を覗くと実態は違います。あるものは実行フレームにぶら下がるものだったり、あるものは仮想変数だったり、またあるものは Ractor や Ruby::Box ごとに隔離された値を持ちます。
+
+    本トークでは、Ruby の特殊変数がどのような役割を持ち、それぞれが Ractor と Box でどのように扱われているのかについて深く見ていきます。
   speakers:
     - Daichi Kamiyama
 
 - id: "lt-2-nagoya-rubykaigi-05"
   title: "くいつき（LT）"
   kind: "lightning_talk"
-  event_name: "Nagoya RubyKaigi 05"
   date: "2026-09-19"
   start_time: "14:00"
   end_time: "14:30"
@@ -103,60 +103,83 @@
 
 - id: "keita-urashima-nagoya-rubykaigi-05"
   title: "System Test is dead, long live System Test"
-  event_name: "Nagoya RubyKaigi 05"
   date: "2026-09-19"
   start_time: "14:45"
   end_time: "15:10"
   language: "Japanese"
   video_provider: "scheduled"
   video_id: "keita-urashima-nagoya-rubykaigi-05"
-  description: ""
+  description: |-
+    Rails の system test は遅いし不安定だから integration test を使おう――そんな意見を聞いたことがあるかもしれません。しかし、それで万事解決なのでしょうか？
+
+    本トークでは integration test と system test の違い、system test にしかできないこと、system test が抱える「問題」を取り除く方法をお話します。
   speakers:
     - Keita Urashima
 
 - id: "shunsuke-kokuyou-mori-nagoya-rubykaigi-05"
   title: "型 再考"
-  event_name: "Nagoya RubyKaigi 05"
   date: "2026-09-19"
   start_time: "15:10"
   end_time: "15:30"
   language: "Japanese"
   video_provider: "scheduled"
   video_id: "shunsuke-kokuyou-mori-nagoya-rubykaigi-05"
-  description: ""
+  description: |-
+    関数型界隈が「なごやこわい」と言われたのも今や昔、世間ではTypeScriptが大手を振って席巻し、Rubyでも静的型検査を巡る議論が盛んになっています。
+    世はまさに、大「型システム」時代！ (ほんとか？)
+
+    ところで「型って何？」と聞かれて明確に答えられるでしょうか？
+    あるいは「なんでRubyと別にRBSという型記述専用の言語があるの？」と疑問に思ったことはないでしょうか？
+
+    このセッションでは今一度「型とは何か」を定義から確認します。
+    そのうえで、Ruby 3 で掲げられた「静的型解析」がなぜ必要だったのか、それが現在の型にまつわる技術にどう繋がってきたのかを振り返っていきます。
+
+    一緒にRubyの型の歴史を再考してみましょう。
   speakers:
     - 'Shunsuke "Kokuyou" Mori'
 
 - id: "kakutani-shintaro-nagoya-rubykaigi-05"
   title: "「ピッケル本」日本語版は4.0(第6版)が出版されるべき"
-  event_name: "Nagoya RubyKaigi 05"
   date: "2026-09-19"
   start_time: "15:45"
   end_time: "16:10"
   language: "Japanese"
   video_provider: "scheduled"
   video_id: "kakutani-shintaro-nagoya-rubykaigi-05"
-  description: ""
+  description: |-
+    話者は共訳者として島田浩二氏(@snoozer05)の『プログラミングRuby 第5版』日本語版(愛称「ピッケル本」)の商業出版プロジェクトで2026年5月から作業しています ⚒️
+    参考: https://www.snoozer05.org/pickaxe
+
+    出版に向けた底本としている第5版はRuby 3.3対応版です(来春EOLが来る…!)。
+    原著はRuby 4.0対応版の第6版が出版されます(2026年6月刊行予定。6月とは?)。
+
+    せっかく久しぶりに「ピッケル本」の日本語版を出版するなら、日本語版も最新が良いと思いますよね。ところが現実は厳しい。詳しい話を概要に載せるわけにはいかないので、大須演芸場まで是非足をお運びください(ヒント:ほんとうにおかねがない)。
+
+    本トークではピッケル本のRubyコミュニティにおける位置づけや、なぜ商業出版なのか、なぜ日本語版なのか、といったトピックを、Rubyやアジャイルの書籍の翻訳経験がわりとある話者が20分間とにかくお話しします!!
+
+    Rubyist各位のご助力を賜りたく!!!q 何卒…🙏
   speakers:
     - Kakutani Shintaro
 
 - id: "misaki-shioi-nagoya-rubykaigi-05"
   title: "時うどん〜Socket.getifaddrsで学ぶネットワーク編"
-  event_name: "Nagoya RubyKaigi 05"
   date: "2026-09-19"
   start_time: "16:10"
   end_time: "16:30"
   language: "Japanese"
   video_provider: "scheduled"
   video_id: "misaki-shioi-nagoya-rubykaigi-05"
-  description: ""
+  description: |-
+    深夜のうどん屋、勘定をするお客さんと店主、そしてsocketライブラリ。
+    「ひとつ、ふたつ、みっつ、よっつ、…」たしかに数えたはずのお金が、なぜか一文ずれている…?
+    この発表では、Socket.getifaddrsが出力する情報を手掛かりにローカルマシン上のネットワーク情報を読み解きます。同じインターフェイス名が何度も現れるのはなぜか。Socket::Ifaddrオブジェクトが持つ情報は、何を表しているのか。
+    お馴染みの古典落語「時うどん」(江戸落語では時そば)を味見しつつ、Rubyから見えるローカルネットワークインターフェイスの情報とその背後にあるネットワーク概念を学びましょう。
   speakers:
     - Misaki Shioi
 
 - id: "ryuta-kamizono-nagoya-rubykaigi-05"
   title: "基調講演"
   kind: "keynote"
-  event_name: "Nagoya RubyKaigi 05"
   date: "2026-09-19"
   start_time: "16:50"
   end_time: "17:20"

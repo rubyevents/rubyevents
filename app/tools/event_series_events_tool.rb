@@ -18,7 +18,7 @@ class EventSeriesEventsTool < RubyLLM::Tool
       kind: series.kind,
       frequency: series.frequency,
       website: series.website,
-      data_path: "data/#{series.slug}/series.yml",
+      data_path: series.project_file_path,
       events_count: events.size,
       events: events.map { |event| event_to_hash(event, series) }
     }
@@ -29,7 +29,7 @@ class EventSeriesEventsTool < RubyLLM::Tool
   private
 
   def event_to_hash(event, series)
-    base_path = "data/#{series.slug}/#{event.slug}"
+    base_path = File.dirname(event.project_file_path)
 
     {
       slug: event.slug,

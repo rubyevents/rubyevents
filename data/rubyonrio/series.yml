@@ -2,16 +2,30 @@
 id: "rubyonrio"
 old_ids:
   - "ruby-on-rio"
+old_event_ids:
+  - "rubyonrio-meetup"
+  - "ruby-on-rio-meetup"
 name: "RubyOnRio"
+location: "Rio de Janeiro, Brazil"
+timezone: "America/Sao_Paulo"
 website: "https://rubyonrio.com.br"
 kind: "meetup"
-frequency: "irregular"
 language: "Portuguese"
 default_country_code: "BR"
+meetup: "https://www.meetup.com/rubyonrio/"
 description: "O Ruby on Rio é o grupo de usuários de Ruby do Rio de Janeiro."
+coordinates:
+  latitude: -22.91
+  longitude: -43.2
 aliases:
   - Ruby on Rio
 youtube_channels:
   - id: "UCFNciWqiOUL6TfE9w81OT3g"
     name: "RubyOnRio"
     handle: "@rubyonrio3846"
+feeds:
+  - type: "ical"
+    url: "https://www.meetup.com/rubyonrio/events/ical/"
+    name: "Meetup.com"
+
+# Meetup: https://www.meetup.com/rubyonrio/events/?type=past

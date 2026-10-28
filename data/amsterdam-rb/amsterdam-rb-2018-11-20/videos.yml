@@ -1,0 +1,34 @@
+---
+- id: "wander-hillen-amsterdam-rb-2018-11-20"
+  old_id: "wander-hillen-talk-amsterdam-rb-2018-11"
+  title: "Serving more than 10k connections from a single Ruby process"
+  date: "2018-11-20"
+  video_provider: "not_recorded"
+  video_id: "wander-hillen-amsterdam-rb-2018-11-20"
+  thumbnail_xs: "https://secure.meetupstatic.com/photos/event/a/f/f/7/highres_475545047.webp?w=1080"
+  thumbnail_sm: "https://secure.meetupstatic.com/photos/event/a/f/f/7/highres_475545047.webp?w=1080"
+  thumbnail_md: "https://secure.meetupstatic.com/photos/event/a/f/f/7/highres_475545047.webp?w=1080"
+  thumbnail_lg: "https://secure.meetupstatic.com/photos/event/a/f/f/7/highres_475545047.webp?w=1080"
+  thumbnail_xl: "https://secure.meetupstatic.com/photos/event/a/f/f/7/highres_475545047.webp?w=1080"
+  description: |-
+    The Rack interface that most Ruby webservers expose to applications was designed for the short HTTP request/response cycle.
+
+    With websockets and Server Sent Events, these connections stay open for much longer. In this talk we look at the design of Rack, explore the 'socket hijack' technique and see how many connections we can squeeze out of a single Puma process.
+  speakers:
+    - Wander Hillen
+
+- id: "david-halasz-amsterdam-rb-2018-11-20"
+  old_id: "david-halasz-talk-amsterdam-rb-2018-11"
+  title: "How to smuggle TCP traffic through an HTTP connection"
+  date: "2018-11-20"
+  video_provider: "not_recorded"
+  video_id: "david-halasz-amsterdam-rb-2018-11-20"
+  thumbnail_xs: "https://secure.meetupstatic.com/photos/event/a/f/f/7/highres_475545047.webp?w=1080"
+  thumbnail_sm: "https://secure.meetupstatic.com/photos/event/a/f/f/7/highres_475545047.webp?w=1080"
+  thumbnail_md: "https://secure.meetupstatic.com/photos/event/a/f/f/7/highres_475545047.webp?w=1080"
+  thumbnail_lg: "https://secure.meetupstatic.com/photos/event/a/f/f/7/highres_475545047.webp?w=1080"
+  thumbnail_xl: "https://secure.meetupstatic.com/photos/event/a/f/f/7/highres_475545047.webp?w=1080"
+  description: |-
+    Rack is a super simple, yet a very versatile tool to implement web servers in Ruby. It beats under the hood of Rails, but it can do much more. The socket hijacking has been implemented into Rack to support WebSockets by bypassing the middleware and so not blocking the worker threads. However, together with the HTTP Upgrade requests, this can be used to send regular TCP traffic through an open HTTP connection.
+  speakers:
+    - Dávid Halász

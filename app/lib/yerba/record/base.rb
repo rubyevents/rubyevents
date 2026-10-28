@@ -8,6 +8,7 @@ module Yerba
       include References
       include Associations
       include Schema
+      include History
 
       attr_reader :document, :parent
       attr_reader :parsed_selector

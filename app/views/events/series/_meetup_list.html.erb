@@ -1,0 +1,33 @@
+<%# locals: (meetup_groups:) %>
+
+<div id="meetup-group-list" class="group relative flex flex-col gap-2 rounded-xl">
+  <% meetup_groups.each do |series| %>
+    <% next_meetup = series.next_meetup %>
+    <% last_meetup = series.last_meetup %>
+
+    <%= link_to series_path(series), class: "event-item flex gap-4 group p-2 hover:bg-gray-200 rounded-md" do %>
+      <div class="flex flex-shrink-0 items-center <%= "opacity-50 grayscale" if series.inactive? %>">
+        <%= image_tag image_path(series.avatar_image_path),
+              class: "rounded-xl border border-[#D9DFE3] size-16",
+              alt: series.name,
+              loading: :lazy %>
+      </div>
+
+      <div class="relative flex flex-col justify-center overflow-hidden">
+        <div class="text-xl font-bold text-black group-hover:text-inherit"><%= series.name %></div>
+
+        <div class="text-[#636B74] group-hover:text-inherit">
+          <% if next_meetup %>
+            Next meetup <%= l(next_meetup.start_date, format: :medium) %>
+          <% elsif last_meetup %>
+            Last meetup <%= l(last_meetup.start_date, format: :medium) %>
+          <% end %>
+
+          <% if series.location.present? %>
+            • <%= series.to_location.to_html(show_links: false) %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

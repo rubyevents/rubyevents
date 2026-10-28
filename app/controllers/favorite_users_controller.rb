@@ -6,6 +6,7 @@ class FavoriteUsersController < ApplicationController
     @ruby_friends = FavoriteUser.where(user: Current.user).includes(:favorite_user, :mutual_favorite_user).where.associated(:mutual_favorite_user).order(favorite_user: {name: :asc})
     @favorite_rubyists = FavoriteUser.where(user: Current.user).includes(:favorite_user, :mutual_favorite_user).where.missing(:mutual_favorite_user).order(favorite_user: {name: :asc})
     @recommendations = FavoriteUser.recommendations_for(Current.user)
+    @next_mutual_events = FavoriteUser.next_mutual_events_for(Current.user, (@ruby_friends + @favorite_rubyists).map(&:favorite_user_id))
   end
 
   # POST /favorite_users or /favorite_users.json

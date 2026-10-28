@@ -5,7 +5,7 @@ module EventMapMarkers
 
   private
 
-  def event_map_markers(events = Event.includes(:series).geocoded)
+  def event_map_markers(events = Event.ruby_focused.includes(:series).geocoded)
     events
       .select { |event| event.latitude.present? && event.longitude.present? }
       .group_by(&:to_coordinates)

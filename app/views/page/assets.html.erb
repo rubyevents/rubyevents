@@ -19,12 +19,18 @@
 
       <div class="rounded-lg bg-white p-4" style="border: 1px solid #E5E5E5;">
         <div class="mb-1 text-sm text-gray-600">With Assets</div>
-        <div class="text-2xl font-bold text-green-600"><%= @all_events_with_assets.count { |e| e[:has_any_assets] } %></div>
+
+        <div class="text-2xl font-bold text-green-600">
+          <%= @all_events_with_assets.count { |e| e[:has_any_assets] } %>
+        </div>
       </div>
 
       <div class="rounded-lg bg-white p-4" style="border: 1px solid #E5E5E5;">
         <div class="mb-1 text-sm text-gray-600">Without Assets</div>
-        <div class="text-2xl font-bold text-red-600"><%= @all_events_with_assets.count { |e| !e[:has_any_assets] } %></div>
+
+        <div class="text-2xl font-bold text-red-600">
+          <%= @all_events_with_assets.count { |e| !e[:has_any_assets] } %>
+        </div>
       </div>
 
       <div class="rounded-lg bg-white p-4" style="border: 1px solid #E5E5E5;">
@@ -45,13 +51,16 @@
         <%= link_to pages_assets_path(filter: filter),
               class: ["rounded-full px-4 py-2 text-sm font-medium", (@filter == filter) ? "bg-gray-900 text-white" : "bg-white text-gray-700 hover:bg-gray-100"],
               style: "border: 1px solid #E5E5E5;" do %>
-          <%= label %> <span class="ml-1 opacity-70"><%= count %></span>
+          <%= label %>
+          <span class="ml-1 opacity-70"><%= count %></span>
         <% end %>
       <% end %>
     </div>
 
     <% if @events_with_assets.empty? %>
-      <div class="rounded-lg bg-white p-8 text-center text-gray-600" style="border: 1px solid #E5E5E5;">No events match this filter.</div>
+      <div class="rounded-lg bg-white p-8 text-center text-gray-600" style="border: 1px solid #E5E5E5;">
+        No events match this filter.
+      </div>
     <% end %>
 
     <div class="space-y-8">

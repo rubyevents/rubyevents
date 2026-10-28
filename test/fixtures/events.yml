@@ -21,9 +21,11 @@
 #  longitude                 :decimal(10, 6)
 #  name                      :string           default(""), not null, indexed
 #  recordings_published_date :date
+#  ruby_focused              :boolean          default(TRUE), not null
 #  slug                      :string           default(""), not null, uniquely indexed
 #  start_date                :date
 #  state_code                :string           indexed => [country_code]
+#  subtitle                  :string           default(""), not null
 #  talks_count               :integer          default(0), not null
 #  website                   :string           default("")
 #  created_at                :datetime         not null

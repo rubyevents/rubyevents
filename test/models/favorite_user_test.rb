@@ -35,4 +35,41 @@ class FavoriteUserTest < ActiveSupport::TestCase
     assert_equal 5, recommendations.count
     assert recommendations.map(&:favorite_user).all? { |speaker| speaker.talks.any? { |talk| user.watched_talks.exists?(talk_id: talk.id) } }
   end
+
+  test "next_mutual_events_for returns the earliest upcoming shared event per favorite user" do
+    chael = users(:chael)
+    marco = users(:marco)
+    yaroslav = users(:yaroslav)
+    future_event = events(:future_conference)
+    later_event = Event.create!(name: "Later Conference", series: future_event.series, start_date: 2.months.from_now, end_date: 2.months.from_now, date: 2.months.from_now, kind: :conference)
+    past_event = events(:rails_world_2023)
+
+    [future_event, later_event, past_event].each do |event|
+      EventParticipation.create!(user: chael, event: event, role: :attendee)
+      EventParticipation.create!(user: marco, event: event, role: :attendee)
+    end
+    EventParticipation.create!(user: yaroslav, event: past_event, role: :attendee)
+
+    next_mutual_events = FavoriteUser.next_mutual_events_for(chael, [marco.id, yaroslav.id])
+
+    assert_equal({marco.id => future_event}, next_mutual_events)
+  end
+
+  test "next_mutual_events_for ignores events either user is only interested in" do
+    chael = users(:chael)
+    marco = users(:marco)
+    yaroslav = users(:yaroslav)
+    future_event = events(:future_conference)
+    later_event = Event.create!(name: "Later Conference", series: future_event.series, start_date: 2.months.from_now, end_date: 2.months.from_now, date: 2.months.from_now, kind: :conference)
+
+    EventParticipation.create!(user: chael, event: future_event, role: :interested)
+    EventParticipation.create!(user: marco, event: future_event, role: :attendee)
+    EventParticipation.create!(user: chael, event: later_event, role: :speaker)
+    EventParticipation.create!(user: marco, event: later_event, role: :attendee)
+    EventParticipation.create!(user: yaroslav, event: later_event, role: :interested)
+
+    next_mutual_events = FavoriteUser.next_mutual_events_for(chael, [marco.id, yaroslav.id])
+
+    assert_equal({marco.id => later_event}, next_mutual_events)
+  end
 end

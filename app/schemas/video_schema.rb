@@ -16,7 +16,6 @@ class VideoSchema < ApplicationSchema
   array :speakers, of: :string, description: "List of speaker names", required: false
   array :talks, of: SubVideoSchema, description: "Sub-talks for panel discussions", required: false
 
-  string :event_name, description: "Name of the event (e.g., 'RailsConf 2024')", required: false
   string :date, description: "Date of the talk (YYYY-MM-DD format)", required: true, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
   string :start_time, description: "Scheduled start time of the talk", required: false, pattern: "^\\d{2}:\\d{2}$"
   string :end_time, description: "Scheduled end time of the talk", required: false, pattern: "^\\d{2}:\\d{2}$"
@@ -26,6 +25,9 @@ class VideoSchema < ApplicationSchema
 
   string :video_provider, description: "Video hosting provider", enum: (Talk.video_providers.keys - ["parent"])
   string :video_id, description: "Video ID on the provider platform"
+  string :start_cue, description: "Where this talk starts in a video it shares with other talks, like a meetup's full recording (MM:SS, HH:MM:SS, or 'TODO')", required: false, pattern: "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
+  string :end_cue, description: "Where this talk ends in a shared video (MM:SS, HH:MM:SS, or 'TODO')", required: false, pattern: "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
+  string :thumbnail_cue, description: "Thumbnail time cue in a shared video (MM:SS, HH:MM:SS, or 'TODO')", required: false, pattern: "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
 
   boolean :external_player, description: "Whether to use external player", required: false
   string :external_player_url, description: "URL for external player", required: false

@@ -1,0 +1,75 @@
+<%# locals: (cfps:, organizers:, sponsors:) %>
+
+<aside class="flex flex-col gap-6">
+  <% if cfps.any? %>
+    <section class="rounded-2xl border border-green-200 bg-green-50 p-5 shadow-sm">
+      <h2 class="mb-2 text-lg font-bold text-gray-900">Want to give a talk?</h2>
+
+      <% cfps.each do |cfp| %>
+        <p class="mb-3 text-sm text-gray-700">
+          <%= cfp.name.presence || "Call for Proposals" %>
+          <span class="text-gray-500">· <%= cfp.open_ended? ? "always open" : "closes #{l(cfp.close_date, format: :medium)}" %></span>
+        </p>
+
+        <%= link_to "Submit a talk", cfp.link, target: "_blank", rel: "noopener", class: "btn btn-sm btn-success w-full normal-case" %>
+      <% end %>
+    </section>
+  <% end %>
+
+  <% organizers_by_role = organizers.group_by(&:role) %>
+
+  <% if organizers_by_role.any? || sponsors.any? %>
+    <section class="rounded-2xl border bg-white p-5 text-sm shadow-sm">
+      <% organizers_by_role.each do |role, involvements| %>
+        <% current, former = involvements.partition(&:current?) %>
+
+        <% [[role.pluralize, current], ["Former #{role.pluralize.downcase}", former]].each do |heading, entries| %>
+          <% next if entries.empty? %>
+
+          <h2 class="mb-2 font-semibold text-gray-900"><%= heading %></h2>
+
+          <ul class="mb-4 flex flex-col gap-2">
+            <% entries.each do |involvement| %>
+              <% involvementable = involvement.involvementable %>
+
+              <li class="flex items-center justify-between gap-2">
+                <%= link_to (involvementable.is_a?(User) ? profile_path(involvementable) : organization_path(involvementable)), class: "flex min-w-0 items-center gap-2 hover:underline" do %>
+                  <% if involvementable.is_a?(User) %>
+                    <%= ui_avatar(involvementable, size: :sm) %>
+                  <% else %>
+                    <span class="shrink-0"><%= render "organizations/avatar", organization: involvementable %></span>
+                  <% end %>
+
+                  <span class="truncate"><%= involvementable.name %></span>
+                <% end %>
+
+                <% if involvement.period? %>
+                  <span class="shrink-0 text-xs text-gray-500"><%= involvement.period_label %></span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      <% end %>
+
+      <% if sponsors.any? %>
+        <h2 class="mb-2 font-semibold text-gray-900">Sponsors</h2>
+
+        <ul class="flex flex-col gap-2">
+          <% sponsors.each do |sponsor| %>
+            <li class="flex items-center justify-between gap-2 <%= "opacity-60" unless sponsor.current? %>">
+              <%= link_to organization_path(sponsor.organization), class: "flex min-w-0 items-center gap-2 hover:underline" do %>
+                <span class="shrink-0"><%= render "organizations/avatar", organization: sponsor.organization %></span>
+                <span class="truncate"><%= sponsor.organization.name %></span>
+              <% end %>
+
+              <% if sponsor.period? %>
+                <span class="shrink-0 text-xs text-gray-500"><%= sponsor.period_label %></span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </section>
+  <% end %>
+</aside>

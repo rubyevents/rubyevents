@@ -1,0 +1,17 @@
+---
+- id: "milod-kazerounian-pldi-2019"
+  title: "Type-Level Computations for Ruby Libraries"
+  raw_title: "Type-Level Computations for Ruby Libraries"
+  location: "Phoenix, AZ"
+  date: "2019-06-25"
+  start_time: "16:20"
+  end_time: "16:40"
+  published_at: "2019-11-26T18:19:09Z"
+  video_provider: "youtube"
+  video_id: "cmK7TzvhEds"
+  description: |-
+    Many researchers have explored ways to bring static typing to dynamic languages. However, to date, such systems are not precise enough when types depend on values, which often arises when using certain Ruby libraries. For example, the type safety of a database query in Ruby on Rails depends on the table and column names used in the query. To address this issue, we introduce CompRDL, a type system for Ruby that allows library method type signatures to include type-level computations (or comp types for short). Combined with singleton types for table and column names, comp types let us give database query methods type signatures that compute a table's schema to yield very precise type information. Comp types for hash, array, and string libraries can also increase precision and thereby reduce the need for type casts. We formalize CompRDL and prove its type system sound. Rather than type check the bodies of library methods with comp types — those methods may include native code or be complex — CompRDL inserts run-time checks to ensure library methods abide by their computed types. We evaluated CompRDL by writing annotations with type-level computations for several Ruby core libraries and database query APIs. We then used those annotations to type check two popular Ruby libraries and four Ruby on Rails web apps. We found the annotations were relatively compact and could successfully type check 132 methods across our subject programs. Moreover, the use of type-level computations allowed us to check more expressive properties, with fewer manually inserted casts, than was possible without type-level computations. In the process, we found two type errors and a documentation error that were confirmed by the developers. Thus, we believe CompRDL is an important step forward in bringing precise static type checking to dynamic languages.
+
+    https://pldi19.sigplan.org/details/pldi-2019-papers/52/Type-Level-Computations-for-Ruby-Libraries
+  speakers:
+    - Milod Kazerounian

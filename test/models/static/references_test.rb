@@ -19,7 +19,7 @@ class Static::ReferencesTest < ActiveSupport::TestCase
   test "inbound_references collects the references other models declare to the model" do
     references = Static::Speaker.inbound_references
 
-    assert_equal %w[Static::Involvement Static::Talk Static::Talk::AlternativeRecording], references.map { |reference| reference.record.class.name }.uniq.sort
+    assert_equal %w[Static::Involvement Static::SeriesInvolvement Static::Talk Static::Talk::AlternativeRecording], references.map { |reference| reference.record.class.name }.uniq.sort
     assert_equal %w[speakers users], references.map { |reference| reference.selector[/\A\w+/] }.uniq.sort
   end
 

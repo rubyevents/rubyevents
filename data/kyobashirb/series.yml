@@ -1,8 +1,22 @@
 ---
 id: "kyobashirb"
+old_event_ids:
+  - "kyobashirb-meetup"
 name: "Kyobashi.rb"
+location: "Osaka, Japan"
+timezone: "Asia/Tokyo"
 website: "https://kyobashirb.connpass.com"
 kind: "meetup"
-frequency: "irregular"
 language: "Japanese"
 default_country_code: "JP"
+description: "An offline Ruby community for engineers interested in Ruby around Kyobashi, Osaka. People without a home or workplace in Kyobashi are also welcome to join."
+banner_background: "#FFFFFF"
+featured_background: "#FFFFFF"
+featured_color: "#000000"
+coordinates:
+  latitude: 34.6960819
+  longitude: 135.5342674
+feeds:
+  - type: "rss"
+    url: "https://kyobashirb.connpass.com/ja.atom"
+    name: "connpass"

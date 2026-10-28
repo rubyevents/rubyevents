@@ -149,7 +149,7 @@ class Locations::BaseController < ApplicationController
   end
 
   def past_events
-    @past_events ||= location_events.past.reorder(end_date: :desc)
+    @past_events ||= location_events.past.includes(:going_participants).reorder(end_date: :desc)
   end
 
   def location_users
@@ -191,7 +191,7 @@ class Locations::BaseController < ApplicationController
   def country_upcoming_events(exclude_ids: [])
     return [] unless city?
 
-    Event.includes(:series)
+    Event.ruby_focused.includes(:series)
       .where(country_code: @city.country_code)
       .where.not(city: @city.name)
       .where.not(id: exclude_ids)
@@ -203,7 +203,7 @@ class Locations::BaseController < ApplicationController
 
     continent_country_codes = @continent.countries.map(&:alpha2) - exclude_country_codes
 
-    Event.includes(:series)
+    Event.ruby_focused.includes(:series)
       .where(country_code: continent_country_codes)
       .upcoming
   end

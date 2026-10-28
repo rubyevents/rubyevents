@@ -1,11 +1,12 @@
 module MarkdownHelper
-  # Custom renderer with Rouge syntax highlighting
   class SyntaxHighlightedRenderer < Redcarpet::Render::HTML
     def block_code(code, language)
       language ||= "text"
+
       lexer = Rouge::Lexer.find_fancy(language, code) || Rouge::Lexers::PlainText.new
       formatter = Rouge::Formatters::HTML.new
       highlighted = formatter.format(lexer.lex(code))
+
       %(<pre class="highlight"><code class="language-#{language}">#{highlighted}</code></pre>)
     end
   end
@@ -13,7 +14,21 @@ module MarkdownHelper
   def markdown_to_html(markdown_content)
     renderer = Redcarpet::Render::HTML.new(hard_wrap: true)
     markdown = Redcarpet::Markdown.new(renderer)
+
     markdown.render(markdown_content).html_safe
+  end
+
+  def description_markdown_to_html(markdown_content)
+    renderer = Redcarpet::Render::HTML.new(
+      hard_wrap: true,
+      escape_html: true,
+      safe_links_only: true,
+      link_attributes: {target: "_blank", rel: "noopener"}
+    )
+
+    markdown = Redcarpet::Markdown.new(renderer, autolink: true, tables: true, strikethrough: true, no_intra_emphasis: true, lax_spacing: true)
+
+    markdown.render(markdown_content.to_s).html_safe
   end
 
   def announcement_markdown_to_html(markdown_content)
@@ -21,12 +36,14 @@ module MarkdownHelper
       hard_wrap: true,
       link_attributes: {target: "_blank", rel: "noopener noreferrer"}
     )
+
     markdown = Redcarpet::Markdown.new(
       renderer,
       autolink: true,
       tables: true,
       fenced_code_blocks: true
     )
+
     html = markdown.render(markdown_content)
 
     html = process_mentions(html)
@@ -50,8 +67,6 @@ module MarkdownHelper
     end
   end
 
-  # Topics can be added to the content with the wiki-link syntax
-  # [[topic-slug]] - supports hyphenated slugs
   def process_topics(html)
     html.gsub(/\[\[([\w-]+)\]\]/) do |match|
       slug = $1

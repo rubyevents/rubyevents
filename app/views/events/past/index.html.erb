@@ -45,6 +45,7 @@
   </div>
 
   <%= render "events/continent_filters", selected: selected_continent %>
+  <%= render "events/kind_filters", counts: @kind_counts, selected: selected_kind %>
 
   <% if @events.any? %>
     <div data-events-view-switcher-target="view" data-events-view-switcher-view-param="preview">

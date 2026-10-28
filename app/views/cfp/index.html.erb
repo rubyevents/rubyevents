@@ -18,4 +18,12 @@
   <div class="mt-6 block gap-8 overflow-scroll md:grid">
     <%= render partial: "cfp/event_list", locals: {events: @events} %>
   </div>
+
+  <% if @series_with_cfps.any? %>
+    <h2 class="mt-8">Meetup groups</h2>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <%= render partial: "events/series/meetup_card", collection: @series_with_cfps, as: :series %>
+    </div>
+  <% end %>
 </div>

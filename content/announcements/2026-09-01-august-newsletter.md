@@ -65,7 +65,7 @@ These XO Ruby CFPs are the last ones of the year until the 2027 CFPs are release
 
 ## Contributions
 
-This month, we merged [70 PRs from 22 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-08-01..2026-08-31) 47 PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-08-01..2026-08-31+label%3Acontent).
+This month, we merged [70 PRs from 22 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-08-01..2026-08-31) 47 PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-08-01..2026-08-31+label%3Adata).
 
 ### Thank You to All 22 Contributors ❤️
 

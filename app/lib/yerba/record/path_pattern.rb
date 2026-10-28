@@ -3,8 +3,12 @@
 module Yerba
   module Record
     # A file path with named segments, like a route: "data/:series_id/:id/event.yml" or "thumbnails/:event_id/:video_id.webp"
+    #
+    # A `*name` segment captures any number of directories, including none, like a route glob:
+    # "data/*parent_path/:id/series.yml" matches both "data/rubyconf/series.yml" and "data/rails-girls/rails-girls-bern/series.yml".
     class PathPattern
       NAMED = /:(\w+)/
+      SPLAT = /\A\*(\w+)\z/
 
       attr_reader :pattern
 
@@ -14,7 +18,7 @@ module Yerba
       end
 
       def names
-        @segments.flat_map { |segment| segment.scan(NAMED).flatten }.map(&:to_sym).uniq
+        @segments.flat_map { |segment| splat_name(segment) ? [splat_name(segment)] : segment.scan(NAMED).flatten }.map(&:to_sym).uniq
       end
 
       def dynamic?
@@ -22,7 +26,7 @@ module Yerba
       end
 
       def wildcard?
-        @segments.any? { |segment| segment.include?("*") }
+        @segments.any? { |segment| wildcard_segment?(segment) }
       end
 
       def prefix
@@ -30,14 +34,14 @@ module Yerba
       end
 
       def glob
-        @segments.map { |segment| segment.gsub(NAMED, "*") }.join("/")
+        @segments.map { |segment| splat_name(segment) ? "**" : segment.gsub(NAMED, "*") }.join("/")
       end
 
       def match(path)
         match = regexp.match(path.to_s)
         return nil unless match
 
-        names.to_h { |name| [name, match[name.to_s]] }
+        names.to_h { |name| [name, match[name.to_s].presence] }.compact
       end
 
       def root_of(path)
@@ -61,7 +65,11 @@ module Yerba
       end
 
       def expand_glob(params)
-        segments = @segments.map do |segment|
+        segments = @segments.filter_map do |segment|
+          if (name = splat_name(segment))
+            next params[name.to_sym].presence&.to_s
+          end
+
           segment.gsub(NAMED) do
             value = params[Regexp.last_match(1).to_sym]
             return nil if value.blank?
@@ -81,6 +89,11 @@ module Yerba
           captured = match["_segment#{index}"]
           next captured if segment == "**"
 
+          if (name = splat_name(segment))
+            value = params.key?(name.to_sym) ? params[name.to_sym].to_s : match[name].to_s
+            next value.empty? ? "" : "#{value}/"
+          end
+
           value = if segment.include?("*")
             captured
           else
@@ -99,11 +112,21 @@ module Yerba
         segment.match?(NAMED) || segment.include?("*")
       end
 
+      def wildcard_segment?(segment)
+        segment.include?("*") && !splat_name(segment)
+      end
+
+      def splat_name(segment)
+        segment[SPLAT, 1]
+      end
+
       def regexp
         @regexp ||= begin
           source = @segments.each_with_index.map do |segment, index|
             if segment == "**"
               "(?<_segment#{index}>(?:[^/]+/)*)"
+            elsif (name = splat_name(segment))
+              "(?<_segment#{index}>(?:(?<#{name}>[^/]+(?:/[^/]+)*)/)?)"
             else
               "(?<_segment#{index}>#{segment_source(segment)})/"
             end

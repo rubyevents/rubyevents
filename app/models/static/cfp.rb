@@ -2,7 +2,8 @@
 
 module Static
   class CFP < Yerba::Record::Base
-    self.path = "data/:series_id/:event_id/cfp.yml"
+    self.path = "data/*parent_path/:series_id/:event_id/cfp.yml"
+    self.skipped_beside = "series.yml"
     self.flatten = true
 
     schema CFPSchema

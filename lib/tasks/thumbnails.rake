@@ -3,6 +3,10 @@ task extract_thumbnails: :environment do |t, args|
   Talk.where(meta_talk: true).each do |meta_video|
     meta_video.thumbnails.extract!
   end
+
+  Talk.where.not(video_provider: "parent").where.not(start_seconds: nil).find_each do |talk|
+    talk.thumbnails.extract_cued!
+  end
 end
 
 desc "Move thumbnails to thumbnails/<event-slug>/(<parent-talk-id>/)<video_id>.webp"

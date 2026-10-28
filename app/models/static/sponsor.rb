@@ -2,7 +2,8 @@
 
 module Static
   class Sponsor < Yerba::Record::Base
-    self.path = "data/:series_id/:event_id/sponsors.yml"
+    self.path = "data/*parent_path/:series_id/:event_id/sponsors.yml"
+    self.skipped_beside = "series.yml"
     self.flatten = true
 
     schema SponsorsSchema
