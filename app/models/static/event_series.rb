@@ -247,6 +247,12 @@ module Static
         event.slug_aliases.reload
         event.reload.destroy!
       end
+
+      (old_event_ids - ::Event.where(slug: old_event_ids).pluck(:slug)).each do |old_slug|
+        next if ::Alias.exists?(slug: old_slug) || ::Alias.exists?(aliasable_type: "EventSeries", name: old_slug)
+
+        event_series.aliases.create!(name: old_slug, slug: old_slug)
+      end
     end
 
     def coordinates_hash

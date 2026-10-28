@@ -135,6 +135,14 @@ class Static::MeetupsTest < ActiveSupport::TestCase
     end
   end
 
+  test "importing a series keeps old_event_ids without an event as aliases of the series" do
+    with_meetup_group(series_attributes: {"old_event_ids" => ["testrb-meetup"]}) do
+      with_seed_smoke_test { Static::EventSeries.find_by_slug("testrb").import! }
+
+      assert_equal ::EventSeries.find_by!(slug: "testrb"), ::EventSeries.find_by_slug_or_alias("testrb-meetup")
+    end
+  end
+
   test "merging a group event moves its attendees to the meetup before they marked it" do
     with_meetup_group(series_attributes: {"old_event_ids" => ["testrb-meetup"]}) do
       series = ::EventSeries.create!(name: "Test.rb", slug: "testrb", kind: :meetup)
