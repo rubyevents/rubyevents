@@ -68,4 +68,12 @@ class EventSlugRedirectTest < ActionDispatch::IntegrationTest
     assert_not_equal "/events/no-such-event/talks", URI(response.location.to_s).path
     assert_not_includes response.location.to_s, @event.slug
   end
+
+  test "redirects an unknown slug away from every event sub-page" do
+    %w[videos related_talks collectibles sponsors involvements].each do |page|
+      get "/events/no-such-event/#{page}"
+
+      assert_response :moved_permanently, page
+    end
+  end
 end
