@@ -74,7 +74,7 @@ playlist yet, `video_provider: "scheduled"` is still correct — say so in conte
 Walk each file against what you gathered. For each, note **file:line** so the user can
 jump straight to it.
 
-- **event.yml** — dates, location string, description wording, `year`, `venue`,
+- **event.yml** — dates, location string, description wording, `venue`,
   `tickets_url`. Cross-check dates against *two* sources before calling
   a mismatch: a site may headline the conference days while a pre-day meetup or a
   post-day excursion sits outside that window. Event dates may match conference days only

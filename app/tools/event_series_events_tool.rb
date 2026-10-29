@@ -35,7 +35,6 @@ class EventSeriesEventsTool < RubyLLM::Tool
       slug: event.slug,
       title: event.title,
       kind: event.kind,
-      year: event.year,
       location: event.location,
       start_date: event.start_date&.to_s,
       end_date: event.end_date&.to_s,

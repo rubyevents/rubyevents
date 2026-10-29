@@ -55,12 +55,6 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     static_repository.date_precision || "day"
   end
 
-  def year
-    static_repository.year.present? ? static_repository.year : event.talks.first.try(:date).try(:year)
-  rescue => _e
-    event.talks.first.try(:date).try(:year)
-  end
-
   def featured_background?
     return false unless static_repository
     return false unless event.assets.has_custom_asset?("featured.webp")

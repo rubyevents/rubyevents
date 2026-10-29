@@ -57,7 +57,6 @@ class EventGenerator < Generators::EventBase
   end
 
   def initialize_values
-    @year = (start_date.present? && !meetup?) ? Date.parse(start_date).year : nil
     @geocoded_address = nil
     @coordinates = nil
 
