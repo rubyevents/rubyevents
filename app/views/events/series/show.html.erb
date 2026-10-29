@@ -5,7 +5,7 @@
 
   <div class="align-center block justify-between gap-8 lg:flex">
     <div class="lg:justify-right mb-6 flex flex-col items-center gap-8 text-center lg:mb-0 lg:flex-row lg:text-left">
-      <% if (avatar_image_path = @events.first&.avatar_image_path) %>
+      <% if (avatar_image_path = @events.first&.avatar_image_path || (@event_series.avatar_image_path if @event_series.static_metadata.default_image("avatar.webp"))) %>
         <%= image_tag image_path(avatar_image_path),
               class: "rounded-full border border-[#D9DFE3] size-24 md:size-36",
               alt: "#{@event_series.name} Avatar",

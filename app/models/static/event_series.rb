@@ -79,6 +79,24 @@ module Static
       parent ? [*parent.ancestors, parent] : []
     end
 
+    def default_image(filename)
+      file = default_images[filename]
+
+      file&.exist? ? file : parent&.default_image(filename)
+    end
+
+    def banner_background
+      self["banner_background"].presence || parent&.banner_background
+    end
+
+    def featured_background
+      self["featured_background"].presence || parent&.featured_background
+    end
+
+    def featured_color
+      self["featured_color"].presence || parent&.featured_color
+    end
+
     def old_ids
       Array(self["old_ids"]).compact_blank
     end

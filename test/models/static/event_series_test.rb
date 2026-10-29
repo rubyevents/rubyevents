@@ -36,7 +36,52 @@ class Static::EventSeriesTest < ActiveSupport::TestCase
     end
   end
 
+  test "a nested series without default images uses its parent's" do
+    with_nested_series do |root, parent, child|
+      banner = File.join(root, "app/assets/images/events/test-group/default/banner.webp")
+      FileUtils.mkdir_p(File.dirname(banner))
+      File.write(banner, "")
+
+      assert_equal Pathname.new(banner), parent.default_image("banner.webp")
+      assert_equal Pathname.new(banner), child.default_image("banner.webp")
+      assert_nil child.default_image("avatar.webp")
+    end
+  end
+
+  test "a nested series keeps its own default images over its parent's" do
+    with_nested_series do |root, _parent, child|
+      %w[test-group test-chapter].each do |id|
+        path = File.join(root, "app/assets/images/events/#{id}/default/banner.webp")
+        FileUtils.mkdir_p(File.dirname(path))
+        File.write(path, "")
+      end
+
+      assert_equal Pathname.new(File.join(root, "app/assets/images/events/test-chapter/default/banner.webp")), child.default_image("banner.webp")
+    end
+  end
+
+  test "a nested series uses its parent's colors unless it has its own" do
+    with_nested_series(child_attributes: {"featured_color" => "#000000"}) do |_root, _parent, child|
+      assert_equal "#DC390B", child.banner_background
+      assert_equal "#DC390B", child.featured_background
+      assert_equal "#000000", child.featured_color
+    end
+  end
+
   private
+
+  def with_nested_series(child_attributes: {})
+    with_static_data_dir do |dir|
+      parent_path = File.join(dir, "data", "test-group", "series.yml")
+      child_path = File.join(dir, "data", "test-group", "test-chapter", "series.yml")
+      FileUtils.mkdir_p(File.dirname(child_path))
+      File.write(parent_path, Yerba::Document.from({"id" => "test-group", "name" => "Test Group", "kind" => "organisation",
+        "banner_background" => "#DC390B", "featured_background" => "#DC390B", "featured_color" => "#FFFFFF"}).to_s)
+      File.write(child_path, Yerba::Document.from({"id" => "test-chapter", "name" => "Test Chapter", "kind" => "workshop"}.merge(child_attributes)).to_s)
+
+      yield dir, Static::EventSeries.find_by_slug("test-group"), Static::EventSeries.find_by_slug("test-chapter")
+    end
+  end
 
   def with_series(id, old_ids:)
     with_static_data_dir do |dir|
