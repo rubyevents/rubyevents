@@ -20,8 +20,9 @@ class EventsController < ApplicationController
       format.html
       format.ics do
         calendar = Icalendar::Calendar.new
+        calendar_events = selected_kind ? @events : @events.conference
 
-        @events.where(date_precision: :day).each do |event|
+        calendar_events.where(date_precision: :day).each do |event|
           calendar.add_event(event.to_ical)
         end
 
