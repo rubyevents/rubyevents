@@ -36,6 +36,18 @@ class Static::EventSeriesTest < ActiveSupport::TestCase
     end
   end
 
+  test "import! stores the frequency worked out from the series' events" do
+    with_series("testconf", kind: "conference") do |series|
+      record = ::EventSeries.create!(name: "TestConf", slug: "testconf", kind: "conference")
+
+      [2024, 2025, 2026].each do |year|
+        ::Event.create!(name: "TestConf #{year}", slug: "testconf-#{year}", series: record, kind: :conference, start_date: Date.new(year, 5, 1), end_date: Date.new(year, 5, 1))
+      end
+
+      assert_equal "yearly", series.import!(index: false).frequency
+    end
+  end
+
   test "a nested series without default images uses its parent's" do
     with_nested_series do |root, parent, child|
       banner = File.join(root, "app/assets/images/events/test-group/default/banner.webp")
@@ -83,11 +95,11 @@ class Static::EventSeriesTest < ActiveSupport::TestCase
     end
   end
 
-  def with_series(id, old_ids:)
+  def with_series(id, old_ids: nil, kind: "meetup")
     with_static_data_dir do |dir|
       path = File.join(dir, "data", id, "series.yml")
       FileUtils.mkdir_p(File.dirname(path))
-      File.write(path, Yerba::Document.from({"id" => id, "old_ids" => old_ids, "name" => "Test.rb", "kind" => "meetup"}).to_s)
+      File.write(path, Yerba::Document.from({"id" => id, "old_ids" => old_ids, "name" => "Test.rb", "kind" => kind}.compact).to_s)
 
       yield Static::EventSeries.find_by_slug(id)
     end

@@ -40,23 +40,6 @@ class Static::Validators::MeetupNamingTest < ActiveSupport::TestCase
     end
   end
 
-  test "MeetupSeriesFrequency flags and removes a frequency on a meetup series" do
-    with_meetup(series_frequency: "monthly") do |paths|
-      validator = Static::Validators::MeetupSeriesFrequency.new(file_path: paths[:series])
-
-      assert_includes validator.errors.first.message, %(frequency "monthly" is set on a meetup series)
-
-      validator.fix
-      assert_nil Static::EventSeries.in_file(paths[:series]).first["frequency"]
-    end
-  end
-
-  test "MeetupSeriesFrequency ignores conference series" do
-    with_meetup(kind: "conference", series_frequency: "yearly") do |paths|
-      assert_empty Static::Validators::MeetupSeriesFrequency.new(file_path: paths[:series]).errors
-    end
-  end
-
   test "MeetupTitle names a meetup after its group, Meetup and month, and keeps the old wording as its subtitle" do
     {
       "Test.rb January 2026" => nil,
@@ -160,7 +143,7 @@ class Static::Validators::MeetupNamingTest < ActiveSupport::TestCase
 
   private
 
-  def with_meetup(series_name: "Test.rb", event_title: "Test.rb Meetup", event_id: "testrb-meetup", kind: "meetup", series_frequency: nil, start_date: nil, videos: [{"id" => "x", "title" => "x", "date" => "2026-01-14"}])
+  def with_meetup(series_name: "Test.rb", event_title: "Test.rb Meetup", event_id: "testrb-meetup", kind: "meetup", start_date: nil, videos: [{"id" => "x", "title" => "x", "date" => "2026-01-14"}])
     with_static_data_dir do |dir|
       series_dir = File.join(dir, "data", "testrb")
       event_dir = File.join(series_dir, event_id)
@@ -172,7 +155,7 @@ class Static::Validators::MeetupNamingTest < ActiveSupport::TestCase
         videos: File.join(event_dir, "videos.yml")
       }
 
-      File.write(paths[:series], Yerba::Document.from({"id" => "testrb", "name" => series_name, "kind" => kind, "frequency" => series_frequency}.compact).to_s)
+      File.write(paths[:series], Yerba::Document.from({"id" => "testrb", "name" => series_name, "kind" => kind}).to_s)
       File.write(paths[:event], Yerba::Document.from({"id" => event_id, "title" => event_title, "kind" => kind, "start_date" => start_date, "end_date" => start_date}.compact).to_s)
       File.write(paths[:videos], Yerba::Document.from(videos).to_s)
 

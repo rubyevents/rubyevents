@@ -390,7 +390,7 @@ class Event < ApplicationRecord
     end
 
     @description = <<~DESCRIPTION
-      #{event_name} #{meetup_inactive? ? "was" : "is"} a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
+      #{event_name} #{meetup_inactive? ? "was" : "is"} #{series.kind_with_frequency(kind)}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
     DESCRIPTION
   end
 

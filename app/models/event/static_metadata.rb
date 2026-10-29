@@ -39,10 +39,6 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     kind == "hackathon"
   end
 
-  def frequency
-    static_repository&.frequency || event.series.frequency
-  end
-
   def start_date
     @start_date ||= static_repository.start_date.present? ? static_repository.start_date : event.talks.minimum(:date)
   rescue => _e
