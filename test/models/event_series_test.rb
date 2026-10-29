@@ -30,6 +30,44 @@ class EventSeriesTest < ActiveSupport::TestCase
     assert EventSeries.frequencies.key?("bimonthly")
   end
 
+  test "computed_frequency of a meetup group follows its meetups" do
+    assert_equal :monthly, meetup_group(every: 28.days).computed_frequency
+  end
+
+  test "computed_frequency is yearly when the latest editions are in back-to-back years" do
+    assert_equal :yearly, conference_series(years: [2015, 2023, 2024, 2025, 2026]).computed_frequency
+  end
+
+  test "computed_frequency doesn't count 2020 and 2021 as missing editions" do
+    assert_equal :yearly, conference_series(years: [2018, 2019, 2022, 2023]).computed_frequency
+  end
+
+  test "computed_frequency is biyearly with two editions a year" do
+    assert_equal :biyearly, conference_series(years: [2024, 2024, 2025, 2025, 2026, 2026]).computed_frequency
+  end
+
+  test "computed_frequency is unknown with a missing year or too few editions" do
+    assert_nil conference_series(years: [2022, 2023, 2025, 2026]).computed_frequency
+    assert_nil conference_series(years: [2025, 2026]).computed_frequency
+  end
+
+  test "computed_frequency is unknown for an organisation" do
+    assert_nil conference_series(years: [2024, 2025, 2026], kind: :organisation).computed_frequency
+  end
+
+  test "kind_with_frequency leaves out an unknown frequency and a meetup group's frequency for its other events" do
+    assert_equal "a yearly conference", EventSeries.new(kind: :conference, frequency: :yearly).kind_with_frequency
+    assert_equal "an irregular meetup", EventSeries.new(kind: :meetup, frequency: :irregular).kind_with_frequency
+    assert_equal "an event", EventSeries.new(kind: :event).kind_with_frequency
+    assert_equal "a conference", EventSeries.new(kind: :meetup, frequency: :monthly).kind_with_frequency("conference")
+  end
+
+  test "description of a conference leaves out an unknown frequency" do
+    series = conference_series(years: [2025, 2026])
+
+    assert_match "#{series.name} is a conference that hosted 2 events between 2025 and 2026", series.description
+  end
+
   test "description leaves out an unknown frequency" do
     series = EventSeries.create!(name: "Fresh.rb", slug: "fresh-rb", kind: :meetup)
     add_meetup(series, 1.week.ago.to_date)
@@ -203,5 +241,16 @@ class EventSeriesTest < ActiveSupport::TestCase
 
   def add_meetup(series, date)
     Event.create!(name: "#{series.name} #{date}", slug: "#{series.slug}-#{date}", series: series, kind: :meetup, start_date: date, end_date: date)
+  end
+
+  def conference_series(years:, kind: :conference)
+    series = EventSeries.create!(name: "Test Conf #{SecureRandom.hex(3)}", kind: kind)
+
+    years.each_with_index do |year, index|
+      date = Date.new(year, (index.even? ? 3 : 9), 10)
+      Event.create!(name: "#{series.name} #{index}", slug: "#{series.slug}-#{index}", series: series, kind: :conference, start_date: date, end_date: date)
+    end
+
+    EventSeries.includes(:events).find(series.id)
   end
 end

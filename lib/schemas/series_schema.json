@@ -55,19 +55,6 @@
       ],
       "description": "Type of event series"
     },
-    "frequency": {
-      "type": "string",
-      "enum": [
-        "yearly",
-        "monthly",
-        "weekly",
-        "irregular",
-        "biweekly",
-        "biyearly",
-        "quarterly"
-      ],
-      "description": "How often the event occurs"
-    },
     "ended": {
       "type": "boolean",
       "description": "The series stopped for good. A meetup group without an upcoming meetup and none in 18 months counts as inactive anyway"

@@ -35,7 +35,6 @@ class EventSchema < ApplicationSchema
     description: "Precision of the date (when exact dates are unknown)",
     enum: ["year", "month", "day"],
     required: false
-  string :frequency, description: "How often the event occurs (for recurring meetups)", required: false
 
   string :location, description: "Location in 'City, Country' format (e.g., 'Detroit, MI' or 'Tokyo, Japan')"
   string :timezone, description: "IANA time zone identifier, e.g. America/New_York", enum: TZInfo::Timezone.all_identifiers

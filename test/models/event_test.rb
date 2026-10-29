@@ -71,6 +71,13 @@ class EventTest < ActiveSupport::TestCase
     assert_match "features 3 talks from various speakers.", Event.find(event.id).description
   end
 
+  test "description leaves out a meetup group's frequency for its conference" do
+    series = EventSeries.create!(name: "Belfast Ruby", slug: "belfastruby", kind: :meetup, frequency: :monthly)
+    event = Event.create!(name: "Belfast RubyFest 2026", slug: "belfast-rubyfest-2026", kind: :conference, series: series, start_date: 1.week.from_now, end_date: 1.week.from_now)
+
+    assert_match "Belfast Ruby is a conference", event.description
+  end
+
   test "meetup_inactive? is false for a conference of an ended series" do
     event = events(:railsconf_2025)
 

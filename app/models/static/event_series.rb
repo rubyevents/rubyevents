@@ -122,7 +122,6 @@ module Static
         website: website || "",
         twitter: twitter || "",
         kind: kind,
-        frequency: (kind == "meetup") ? event_series.frequency : (frequency || "unknown"),
         slug: slug,
         language: language || "",
         parent: parent&.event_series_record,
@@ -168,7 +167,7 @@ module Static
       import_involvements_into!(event_series, involvements) if involvements.exist?
 
       merge_old_events!(event_series)
-      update_meetup_frequency!(event_series)
+      update_frequency!(event_series)
 
       event_series
     end
@@ -203,10 +202,8 @@ module Static
       ::EventCheckIn.where(event: event).delete_all
     end
 
-    def update_meetup_frequency!(event_series)
-      return unless kind == "meetup"
-
-      frequency = ::EventSeries.includes(:events).find(event_series.id).computed_meetup_frequency || :unknown
+    def update_frequency!(event_series)
+      frequency = ::EventSeries.includes(:events).find(event_series.id).computed_frequency || :unknown
       event_series.update!(frequency: frequency)
     end
 
