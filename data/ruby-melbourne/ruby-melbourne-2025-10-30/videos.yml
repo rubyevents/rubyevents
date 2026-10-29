@@ -16,3 +16,13 @@
     Ever wondered what happens when your production PostgreSQL hits the tens of terabytes mark? David will share how Buildkite tackled scaling challenges at extreme size — and what lessons you can take away before your own database gets that big.
   speakers:
     - David Barrell
+
+- id: "dan-milne-ruby-melbourne-2025-10-30"
+  title: "Using PostgreSQL Tablespaces to Boost Performance"
+  date: "2025-10-30"
+  video_provider: "not_recorded"
+  video_id: "dan-milne-ruby-melbourne-2025-10-30"
+  description: |-
+    When my PostgreSQL outgrew local NVMe storage, I moved it to a remote volume—sacrificing speed (50% read, 33% write performance). The solution? Using PostgreSQL tablespaces to strategically place indexes on the local NVMe while keeping data on remote storage. This hybrid approach nearly doubled SELECT performance on large tables, proving that smart storage architecture can reclaim speed without massive hardware upgrades.
+  speakers:
+    - Dan Milne
