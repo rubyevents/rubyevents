@@ -356,9 +356,7 @@ class MeetupSplit
 
     SERIES_OVERRIDES.fetch(series.slug, {}).each { |field, value| series.set(field, value) }
 
-    %w[tickets_url year].each do |field|
-      log(:dropped, "#{group["id"]}: drops #{field} #{group[field].inspect}") if group[field].present?
-    end
+    log(:dropped, "#{group["id"]}: drops tickets_url #{group["tickets_url"].inspect}") if group["tickets_url"].present?
 
     series.save!
 
