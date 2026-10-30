@@ -118,7 +118,7 @@ module Static
         require "public_suffix"
 
         host = URI.parse(website.to_s.strip).host || website.to_s.strip
-        PublicSuffix.parse(host.sub(/\Awww\./, "")).domain
+        PublicSuffix.parse(host).domain
       rescue PublicSuffix::Error, URI::InvalidURIError
         nil
       end

@@ -164,7 +164,7 @@ module Static
       organization.main_location = main_location if main_location.present? && organization.main_location.blank?
       organization.logo_background = logo_background if logo_background.present? && organization.logo_background.in?([nil, "", "white"])
       organization.logo_url = logo_url if logo_url.present? && organization.logo_url.blank?
-      organization.domain = domain_of(organization.website) if organization.website.present?
+      organization.domain = self.class.registrable_domain(organization.website) if organization.website.present?
 
       all_logo_urls.each { |url| organization.add_logo_url(url) }
 
@@ -260,15 +260,6 @@ module Static
       return if organization.logo_url.blank? || all_logo_urls.include?(organization.logo_url)
 
       puts "::warning::Organization #{slug} shows logo #{organization.logo_url}, which is not in its logo_urls in data/organizations.yml"
-    end
-
-    def domain_of(website)
-      require "public_suffix"
-
-      uri = URI.parse(website)
-      PublicSuffix.parse(uri.host || website).domain
-    rescue PublicSuffix::Error, URI::InvalidURIError
-      nil
     end
   end
 end
