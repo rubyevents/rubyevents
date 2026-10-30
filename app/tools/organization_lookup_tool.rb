@@ -20,4 +20,25 @@ class OrganizationLookupTool < RubyLLM::Tool
   rescue => e
     {error: e.message}
   end
+
+  private
+
+  def organization_to_hash(organization)
+    result = {
+      index: organization.index,
+      slug: organization["slug"],
+      name: organization["name"],
+      kind: organization["kind"].presence,
+      website: organization["website"].presence,
+      logo_url: organization["logo_url"].presence,
+      main_location: organization["main_location"].presence,
+      description: organization["description"].presence
+    }.compact
+
+    result[:aliases] = organization.alias_slugs if organization.alias_slugs.any?
+    result[:alternate_names] = organization["alternate_names"] if Array(organization["alternate_names"]).any?
+    result[:websites] = organization["websites"] if Array(organization["websites"]).any?
+
+    result
+  end
 end

@@ -35,6 +35,15 @@ class OrganizationGeneratorTest < Rails::Generators::TestCase
     assert_valid_file
   end
 
+  test "renaming keeps the old name as alternate name" do
+    run_generator ["--slug", "typesense", "--name", "Typesense Search"]
+
+    organization = Static::Organization.find_by(slug: "typesense")
+    assert_equal "Typesense Search", organization.name
+    assert_equal ["Typesense"], organization["alternate_names"]
+    assert_valid_file
+  end
+
   test "adds an alias for a merged duplicate" do
     run_generator ["--slug", "typesense", "--alias-slug", "type-sense", "--alias-name", "Type Sense"]
 

@@ -26,26 +26,4 @@ module OrganizationsFileCheck
     result[:warnings] = warnings if warnings.any?
     result
   end
-
-  def organization_to_hash(organization)
-    entry = organization.to_h
-
-    result = {
-      index: organization.index,
-      slug: entry["slug"],
-      name: entry["name"],
-      kind: entry["kind"].presence,
-      website: entry["website"].presence,
-      logo_url: entry["logo_url"].presence,
-      main_location: entry["main_location"].presence,
-      description: entry["description"].presence
-    }.compact
-
-    aliases = Array(entry["aliases"]).filter_map { |entry_alias| entry_alias["slug"] if entry_alias.is_a?(Hash) }
-    result[:aliases] = aliases if aliases.any?
-    result[:alternate_names] = Array(entry["alternate_names"]) if Array(entry["alternate_names"]).any?
-    result[:websites] = Array(entry["websites"]) if Array(entry["websites"]).any?
-
-    result
-  end
 end

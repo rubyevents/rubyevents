@@ -25,6 +25,7 @@ class OrganizationGenerator < Rails::Generators::Base
     attributes = options.slice(*ATTRIBUTES.map(&:to_s)).compact_blank
 
     if organization
+      organization.rename(attributes.delete("name")) if attributes["name"]
       organization.assign(**attributes.symbolize_keys)
       say "Updating organization #{organization.slug} in data/organizations.yml", :yellow
     else
