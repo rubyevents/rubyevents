@@ -13,10 +13,6 @@ module Yerba
         @declarations ||= {}
       end
 
-      def self.reference_name(item)
-        reference_value(item, "name")
-      end
-
       def self.reference_value(item, key = "name")
         item.is_a?(Hash) ? item[key] : item
       end
