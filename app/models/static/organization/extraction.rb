@@ -177,6 +177,14 @@ module Static
           unresolved.delete(slug)
         end
 
+        # A slug production folded into an organization that is already in organizations.yml becomes its alias
+        @new_aliases = Hash.new { |hash, key| hash[key] = [] }
+        production.select { |_, target| @existing_canonical.key?(target) }.each do |slug, target|
+          @canonical[slug] = @existing_canonical[target]
+          @new_aliases[@existing_canonical[target]] << slug
+          production.delete(slug)
+        end
+
         production.group_by(&:last).each do |target, pairs|
           slugs = (pairs.map(&:first) + [target]).uniq
           @groups[target] = Group.new(canonical: target, slugs: slugs.sort_by { |slug| [(slug == target) ? 0 : 1, slug] }, production: @snapshot.organization(target))
@@ -340,17 +348,18 @@ module Static
       # --- writing ----------------------------------------------------------------------------------------------
 
       def write_organizations!
-        return if @new_organizations.empty?
-
-        path = Static::Organization.file_path
-        File.write(path, "---\n[]\n") unless File.exist?(path)
+        return if @new_organizations.empty? && @new_aliases.empty?
 
         Static::Organization.unload!
         collection = Static::Organization.all
+        @new_aliases.each do |canonical, slugs|
+          organization = collection.find_by(slug: canonical)
+          slugs.each { |slug| organization.add_alias(name: top(values_of(entries_by_slug.fetch(slug, []), :name)) || involvement_name_for(slug) || slug.titleize, slug: slug) }
+        end
         @new_organizations.each { |attributes| collection.build(attributes) }
         collection.save!
 
-        inject_comments!(path)
+        inject_comments!(Static::Organization.file_path)
       end
 
       def inject_comments!(path)
@@ -454,6 +463,7 @@ module Static
 
         @report = {
           organizations_added: @new_organizations.size,
+          aliases_added: @new_aliases.transform_values(&:sort),
           merged_groups: merged.map { |group| [group.canonical, group.slugs - [group.canonical]] }.to_h,
           fallback_groups: fallback.map(&:canonical).sort,
           involvement_slugs: @involvement_references.map { |reference| [reference.name, @canonical.fetch(involvement_slug(reference))] }.uniq.sort.to_h,
@@ -463,11 +473,12 @@ module Static
         }
 
         @log.puts "Added #{report[:organizations_added]} organizations to #{Static::Organization.file_path}"
+        @log.puts "Added #{@new_aliases.values.sum(&:size)} aliases to existing organizations: #{@new_aliases.map { |canonical, slugs| "#{canonical} ← #{slugs.join(", ")}" }.join("; ")}" if @new_aliases.any?
         @log.puts "Rewrote #{report[:rewritten_sponsor_files]} sponsors.yml and #{report[:rewritten_involvement_files]} involvements.yml files"
         @log.puts "Merged #{merged.size} groups (#{merged.sum { |group| group.slugs.size - 1 }} slugs became aliases)"
         @log.puts "#{fallback.size} groups without a production match, grouped by the old import rules: #{fallback.map(&:canonical).sort.join(", ")}" if fallback.any?
         @log.puts "Removed #{@deduplicated.size} sponsor entries that duplicated another one in the same tier after merging" if @deduplicated.any?
-        @log.puts "Nothing to do" if report[:organizations_added].zero? && report[:rewritten_sponsor_files].zero? && report[:rewritten_involvement_files].zero?
+        @log.puts "Nothing to do" if report[:organizations_added].zero? && @new_aliases.empty? && report[:rewritten_sponsor_files].zero? && report[:rewritten_involvement_files].zero?
       end
     end
   end

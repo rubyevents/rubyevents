@@ -102,6 +102,24 @@ class Static::Organization::ExtractionTest < ActiveSupport::TestCase
     end
   end
 
+  test "a slug production folded into an organization that is already in the file becomes its alias" do
+    with_legacy_data do |dir|
+      Static::Organization::Extraction.new(snapshot: snapshot, log: StringIO.new).run!
+      write(dir, "data/testconf/testconf-2025/sponsors.yml", [{"tiers" => [{"name" => "Gold", "sponsors" => [{"slug" => "shopify-plus"}, {"slug" => "typesense"}]}]}])
+      StaticDataSandbox.models.each(&:unload!)
+
+      production = snapshot.to_h
+      production["aliases"]["shopify-plus"] = "shopify"
+      report = Static::Organization::Extraction.new(snapshot: Static::Organization::Snapshot.new(**production.symbolize_keys), log: StringIO.new).run!
+
+      assert_equal 0, report[:organizations_added]
+      assert_equal({"shopify" => %w[shopify-plus]}, report[:aliases_added])
+      assert_equal 1, Static::Organization.all.count { |organization| organization.slug == "shopify" }
+      assert_includes Static::Organization.find_by(slug: "shopify")["aliases"], {"name" => "Shopify Plus", "slug" => "shopify-plus"}
+      assert_equal [{"slug" => "shopify"}, {"slug" => "typesense"}], Yerba.parse_file(File.join(dir, "data/testconf/testconf-2025/sponsors.yml")).value_at("[0].tiers[0].sponsors")
+    end
+  end
+
   test "without a snapshot, slugs are grouped by website domain and name, the shortest slug winning" do
     with_legacy_data do
       report = Static::Organization::Extraction.new(snapshot: nil, log: StringIO.new).run!
