@@ -41,35 +41,21 @@ module Static
       private
 
       def validate_aliases(organizations)
-        slug_owners = organizations.to_h { |organization| [organization["slug"], organization] }
-        name_owners = organizations.to_h { |organization| [organization["name"], organization] }
-        alias_slug_owners = Hash.new { |hash, key| hash[key] = [] }
-        alias_name_owners = Hash.new { |hash, key| hash[key] = [] }
-
-        organizations.each do |organization|
-          organization.alias_slugs.each { |slug| alias_slug_owners[slug] << organization }
-          organization.alias_names.each { |name| alias_name_owners[name] << organization }
-        end
-
         errors = []
 
-        alias_slug_owners.each do |slug, owners|
-          if owners.uniq.size > 1
-            errors << error("Alias slug '#{slug}' shared across organizations: #{owners.map(&:slug).uniq.join(", ")}", owners.first)
-          end
+        [["slug", :alias_slugs], ["name", :alias_names]].each do |field, alias_values|
+          owners = organizations.to_h { |organization| [organization[field], organization] }
+          alias_owners = Hash.new { |hash, key| hash[key] = [] }
+          organizations.each { |organization| organization.public_send(alias_values).each { |value| alias_owners[value] << organization } }
 
-          if (owner = slug_owners[slug]) && owners.any? { |candidate| candidate != owner }
-            errors << error("Alias slug '#{slug}' on #{owners.map(&:slug).uniq.join(", ")} conflicts with the slug of '#{owner.slug}'", owners.first)
-          end
-        end
+          alias_owners.each do |value, holders|
+            if holders.uniq.size > 1
+              errors << error("Alias #{field} '#{value}' shared across organizations: #{holders.map(&:slug).uniq.join(", ")}", holders.first)
+            end
 
-        alias_name_owners.each do |name, owners|
-          if owners.uniq.size > 1
-            errors << error("Alias name '#{name}' shared across organizations: #{owners.map(&:slug).uniq.join(", ")}", owners.first)
-          end
-
-          if (owner = name_owners[name]) && owners.any? { |candidate| candidate != owner }
-            errors << error("Alias name '#{name}' on #{owners.map(&:slug).uniq.join(", ")} conflicts with the name of '#{owner.slug}'", owners.first)
+            if (owner = owners[value]) && holders.any? { |holder| holder != owner }
+              errors << error("Alias #{field} '#{value}' on #{holders.map(&:slug).uniq.join(", ")} conflicts with the #{field} of '#{owner.slug}'", holders.first)
+            end
           end
         end
 
