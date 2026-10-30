@@ -15,10 +15,6 @@ module Static
         pluck(:slug)
       end
 
-      def names
-        pluck(:name)
-      end
-
       def alias_slugs
         all.flat_map(&:alias_slugs)
       end
@@ -34,7 +30,6 @@ module Static
       def known_slug?(slug)
         known_slugs.include?(slug.to_s)
       end
-      alias_method :known_reference?, :known_slug?
 
       def all_organization_references
         all.cached(:all_organization_references) { inbound_references }

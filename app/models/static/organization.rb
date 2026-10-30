@@ -14,10 +14,9 @@ module Static
 
     extend Integrity
 
-    # Fields the import writes whenever the YAML has a value
+    # Fields the import writes whenever the YAML has a value; kind, main_location, logo_background and logo_url
+    # only fill a blank column, so admin edits in the database survive
     SYNCED_FIELDS = %w[name website description].freeze
-    # Fields the import only fills into a blank column, so admin edits in the database survive
-    FILLED_FIELDS = %w[kind main_location logo_background logo_url].freeze
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
     class InvalidOrganizationError < StandardError; end
@@ -135,7 +134,7 @@ module Static
         end
       end
 
-      imported.each { |record| Search::Backend.index(record) } if imported.any? && index && ::Organization.respond_to?(:typesense_index)
+      imported.each { |record| Search::Backend.index(record) } if imported.any? && index
 
       imported
     end
@@ -174,7 +173,7 @@ module Static
       import_aliases!(organization, previous_slug: previous_slug)
       warn_about_dropped_logo(organization)
 
-      Search::Backend.index(organization) if index && changed && ::Organization.respond_to?(:typesense_index)
+      Search::Backend.index(organization) if index && changed
 
       changed ? organization : nil
     rescue ActiveRecord::RecordInvalid => e

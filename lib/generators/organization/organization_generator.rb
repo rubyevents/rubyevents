@@ -4,8 +4,6 @@ require "rails/generators"
 
 # Adds or updates an organization in data/organizations.yml, the file sponsors.yml and involvements.yml reference by slug.
 class OrganizationGenerator < Rails::Generators::Base
-  TOOL_DESC = "Add or update an organization in data/organizations.yml. Only the given fields change. Sponsors and involvements reference the organization by its slug."
-
   class_option :slug, type: :string, desc: "URL-friendly slug (defaults to the parameterized name)", required: false, group: "Fields"
   class_option :name, type: :string, desc: "Organization name, required when adding", required: false, group: "Fields"
   class_option :website, type: :string, desc: "Website URL", required: false, group: "Fields"

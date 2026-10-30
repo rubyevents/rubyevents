@@ -71,7 +71,7 @@ class Static::Organization::SnapshotTest < ActiveSupport::TestCase
     fetcher = lambda do |path|
       requested << path
       body = pages[path]
-      Static::Organization::Snapshot::Page.new(status: body ? 200 : 301, body: body.to_s, location: body ? nil : "https://www.rubyevents.org/organizations")
+      Static::Organization::Snapshot::Page.new(status: body ? 200 : 301, body: body.to_s)
     end
 
     snapshot = Static::Organization::Snapshot.crawl(slugs: %w[appsignal typesense app-signal jetbrains-s-r-o], fetcher: fetcher, delay: 0, log: StringIO.new)

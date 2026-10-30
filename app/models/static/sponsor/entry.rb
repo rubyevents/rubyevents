@@ -9,10 +9,6 @@ module Static
       has_one :series, through: :parent
 
       references :organizations, field: "slug", class_name: "Static::Organization", key: "slug"
-
-      def organization
-        organizations.first
-      end
     end
   end
 end

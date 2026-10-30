@@ -17,13 +17,8 @@ module Static
     # Entries that already follow the new shape are left alone, so a second run is a no-op, and a run after someone
     # added an alias in data/organizations.yml rewrites the sponsors and involvements that used the old slug.
     class Extraction
-      SponsorEntry = Struct.new(:record, :tier, :entry, :slug, :name, :website, :logo_url, :description, :event_slug, :date, :file, keyword_init: true) do
-        def legacy?
-          %w[name website logo_url description].any? { |key| entry.key?(key) }
-        end
-      end
-
-      InvolvementReference = Struct.new(:record, :item, :index, :name, :file, keyword_init: true)
+      SponsorEntry = Struct.new(:record, :tier, :entry, :slug, :name, :website, :logo_url, :description, :event_slug, :date, :file, keyword_init: true)
+      InvolvementReference = Struct.new(:record, :name, :file, keyword_init: true)
 
       Group = Struct.new(:canonical, :slugs, :production, keyword_init: true) do
         def merged?
@@ -33,14 +28,12 @@ module Static
 
       LEGACY_SPONSOR_KEYS = %w[name website logo_url description].freeze
       LEGACY_INVOLVEMENT_KEY = "organisations"
-      ORGANIZATION_KEY_ORDER = %w[slug aliases name alternate_names kind website websites logo_url logo_urls logo_background main_location description].freeze
 
       attr_reader :report
 
       def initialize(snapshot: nil, log: $stdout)
         @snapshot = snapshot
         @log = log
-        @report = {}
       end
 
       def self.referenced_slugs
@@ -90,11 +83,11 @@ module Static
         end
 
         (Static::Involvement.all.to_a + Static::SeriesInvolvement.all.to_a).each do |record|
-          Array(record[LEGACY_INVOLVEMENT_KEY]).each_with_index do |item, index|
+          Array(record[LEGACY_INVOLVEMENT_KEY]).each do |item|
             name = Yerba::Record::References.reference_value(item, "name").to_s.strip
             next if name.blank?
 
-            @involvement_references << InvolvementReference.new(record: record, item: item, index: index, name: name, file: record.project_file_path)
+            @involvement_references << InvolvementReference.new(record: record, name: name, file: record.project_file_path)
           end
         end
 

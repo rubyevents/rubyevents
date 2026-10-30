@@ -13,7 +13,7 @@ module Static
       DEFAULT_PATH = Rails.root.join("lib/tasks/organizations_file/production_snapshot.json")
       USER_AGENT = "rubyevents organizations_file:snapshot (+https://github.com/rubyevents/rubyevents)"
 
-      Page = Data.define(:status, :body, :location)
+      Page = Data.define(:status, :body)
 
       attr_reader :organizations, :aliases, :unknown, :crawled_at, :base_url
 
@@ -41,8 +41,8 @@ module Static
         index.each_with_index do |(slug, name), position|
           page = fetcher.call("/organizations/#{slug}")
           organizations[slug] = parse_organization(page.body).merge("name" => name)
-          log.print "\rCrawled #{position + 1}/#{index.size} organization pages" if log.respond_to?(:print)
-          sleep(delay) if delay.positive?
+          log.print "\rCrawled #{position + 1}/#{index.size} organization pages"
+          sleep(delay)
         end
         log.puts
 
@@ -62,8 +62,8 @@ module Static
             unknown << slug
           end
 
-          log.print "\rChecked #{position + 1}/#{missing.size} slugs missing from the index" if log.respond_to?(:print)
-          sleep(delay) if delay.positive?
+          log.print "\rChecked #{position + 1}/#{missing.size} slugs missing from the index"
+          sleep(delay)
         end
         log.puts if missing.any?
 
@@ -76,7 +76,7 @@ module Static
           http.request(Net::HTTP::Get.new(uri, "User-Agent" => USER_AGENT, "Accept" => "text/html"))
         end
 
-        Page.new(status: response.code.to_i, body: response.body.to_s, location: response["Location"])
+        Page.new(status: response.code.to_i, body: response.body.to_s)
       end
 
       # [[slug, name], ...] from the index page, which lists every organization once with a logo and its name
