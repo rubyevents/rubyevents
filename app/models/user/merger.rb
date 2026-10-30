@@ -17,6 +17,7 @@ class User::Merger < ActiveRecord::AssociatedObject
       transfer_talks
       transfer_event_participations
       transfer_event_involvements
+      transfer_event_series_subscriptions
       transfer_watched_talks
       transfer_bookmarks
       transfer_favorite_users
@@ -72,6 +73,16 @@ class User::Merger < ActiveRecord::AssociatedObject
         involvement.destroy
       else
         involvement.update!(involvementable: user)
+      end
+    end
+  end
+
+  def transfer_event_series_subscriptions
+    @other_user.event_series_subscriptions.each do |subscription|
+      if user.event_series_subscriptions.exists?(event_series_id: subscription.event_series_id)
+        subscription.destroy
+      else
+        subscription.update!(user: user)
       end
     end
   end

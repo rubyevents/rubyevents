@@ -56,6 +56,27 @@ class User::MergerTest < ActiveSupport::TestCase
     assert_equal 1, @user_to_keep.event_participations.where(event: event).count
   end
 
+  test "transfers event series subscriptions to user_to_keep" do
+    series = event_series(:railsconf)
+    EventSeriesSubscription.create!(user: @user_to_merge, event_series: series)
+
+    merge
+    @user_to_keep.reload
+
+    assert_includes @user_to_keep.subscribed_event_series, series
+  end
+
+  test "does not duplicate event series subscriptions already on user_to_keep" do
+    series = event_series(:railsconf)
+    EventSeriesSubscription.create!(user: @user_to_keep, event_series: series)
+    EventSeriesSubscription.create!(user: @user_to_merge, event_series: series)
+
+    merge
+    @user_to_keep.reload
+
+    assert_equal 1, @user_to_keep.event_series_subscriptions.where(event_series: series).count
+  end
+
   test "transfers watched talks to user_to_keep" do
     talk = talks(:one)
     WatchedTalk.create!(user: @user_to_merge, talk: talk, watched: true, watched_at: Time.current)
