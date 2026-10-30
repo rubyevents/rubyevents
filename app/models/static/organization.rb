@@ -142,28 +142,35 @@ module Static
     # Writes this entry into the organizations table. kind, main_location, logo_background and logo_url only fill
     # a blank column, so what admins picked in Avo or the logo picker survives a seed; logo_urls are never removed.
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
-      organization = ::Organization.find_by(slug: slug) || organization_by_alias_slug || ::Organization.new(slug: slug)
-      previous_slug = organization.slug
+      organization = nil
+      changed = false
 
-      organization.slug = slug if organization.slug != slug
-      merge_rows_under_alias_slugs!(organization) if organization.persisted?
+      # One savepoint per organization, so a failed merge or alias leaves no half-moved rows behind
+      ::Organization.transaction(requires_new: true) do
+        organization = ::Organization.find_by(slug: slug) || organization_by_alias_slug || ::Organization.new(slug: slug)
 
-      SYNCED_FIELDS.each do |field|
-        organization[field] = self[field] if self[field].present?
+        organization.slug = slug
+        merge_rows_under_alias_slugs!(organization) if organization.persisted?
+
+        SYNCED_FIELDS.each do |field|
+          organization[field] = self[field] if self[field].present?
+        end
+
+        organization.kind = kind if kind.present? && organization.unknown?
+        organization.main_location = main_location if main_location.present? && organization.main_location.blank?
+        # "white" is the column default, so it counts as not picked yet
+        organization.logo_background = logo_background if logo_background.present? && organization.logo_background.in?([nil, "", "white"])
+        organization.logo_url = logo_url if logo_url.present? && organization.logo_url.blank?
+        organization.domain = self.class.registrable_domain(organization.website) if organization.website.present?
+
+        all_logo_urls.each { |url| organization.add_logo_url(url) }
+
+        changed = organization.changed? || organization.new_record?
+        organization.save! if changed
+
+        import_aliases!(organization)
       end
 
-      organization.kind = kind if kind.present? && organization.unknown?
-      organization.main_location = main_location if main_location.present? && organization.main_location.blank?
-      organization.logo_background = logo_background if logo_background.present? && organization.logo_background.in?([nil, "", "white"])
-      organization.logo_url = logo_url if logo_url.present? && organization.logo_url.blank?
-      organization.domain = self.class.registrable_domain(organization.website) if organization.website.present?
-
-      all_logo_urls.each { |url| organization.add_logo_url(url) }
-
-      changed = organization.changed? || organization.new_record?
-      organization.save! if changed
-
-      import_aliases!(organization, previous_slug: previous_slug)
       warn_about_dropped_logo(organization)
 
       Search::Backend.index(organization) if index && changed
@@ -215,9 +222,8 @@ module Static
       end
     end
 
-    def import_aliases!(organization, previous_slug:)
+    def import_aliases!(organization)
       wanted = Array(self["aliases"]).filter_map { |entry| [entry["name"], entry["slug"]] if entry.is_a?(Hash) && entry["slug"].present? }
-      wanted << [previous_slug, previous_slug] if previous_slug.present? && previous_slug != slug && wanted.none? { |_, alias_slug| alias_slug == previous_slug }
 
       wanted.each do |alias_name, alias_slug|
         alias_name = alias_name.presence || alias_slug
@@ -248,7 +254,6 @@ module Static
     end
 
     def warn_about_dropped_logo(organization)
-      return if Rails.env.test?
       return if organization.logo_url.blank? || all_logo_urls.include?(organization.logo_url)
 
       puts "::warning::Organization #{slug} shows logo #{organization.logo_url}, which is not in its logo_urls in data/organizations.yml"

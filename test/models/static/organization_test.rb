@@ -108,7 +108,7 @@ class Static::OrganizationTest < ActiveSupport::TestCase
 
     organization = Static::Organization.find_by(slug: "appsignal")
     organization.assign(kind: "company", main_location: "Amsterdam, Netherlands", logo_background: "black")
-    organization.import!(index: false)
+    assert_output(%r{appsignal shows logo https://example.com/admin-pick.png, which is not in its logo_urls}) { organization.import!(index: false) }
 
     existing.reload
     assert_equal "AppSignal", existing.name
@@ -139,15 +139,32 @@ class Static::OrganizationTest < ActiveSupport::TestCase
     assert_equal 1, Organization.where(slug: %w[appsignal app-signal]).count
   end
 
-  test "import! keeps the old slug as alias when the YAML renamed the slug without listing it" do
-    existing = Organization.create!(slug: "typesense-inc", name: "Typesense")
-    organization = Static::Organization.find_by(slug: "typesense")
-    organization.add_alias(name: "Typesense Inc", slug: "typesense-inc")
+  test "import! skips an alias slug that belongs to something else and says so" do
+    Alias.create!(aliasable: event_series(:railsconf), name: "App Signal Conf", slug: "app-signal")
 
-    organization.import!(index: false)
+    organization = nil
+    assert_output(/Alias conflict: appsignal alias 'App Signal' \(app-signal\) conflicts with alias on EventSeries/) do
+      organization = Static::Organization.find_by(slug: "appsignal").import!(index: false)
+    end
 
-    assert_equal "typesense", existing.reload.slug
-    assert_equal existing, Organization.find_by_slug_or_alias("typesense-inc")
+    assert_empty organization.aliases
+  end
+
+  test "import! rolls back a merge that fails halfway" do
+    kept = Organization.create!(slug: "appsignal", name: "AppSignal")
+    duplicate = Organization.create!(slug: "app-signal", name: "App Signal")
+    sponsor = Sponsor.create!(event: events(:railsconf_2017), organization: duplicate, tier: "Gold")
+    failing_alias = ->(**) { raise ActiveRecord::RecordInvalid.new(Alias.new) }
+
+    Alias.stub(:create!, failing_alias) do
+      assert_output(/Couldn't save organization appsignal/) do
+        assert_nil Static::Organization.find_by(slug: "appsignal").import!(index: false)
+      end
+    end
+
+    assert Organization.exists?(duplicate.id)
+    assert_equal duplicate, sponsor.reload.organization
+    assert_equal "AppSignal", kept.reload.name
   end
 
   test "import! merges a row that still exists under an alias slug, moving its sponsorships and involvements" do
@@ -160,7 +177,7 @@ class Static::OrganizationTest < ActiveSupport::TestCase
     Sponsor.create!(event: other_event, organization: kept, tier: "Gold")
     involvement = EventInvolvement.create!(event: event, involvementable: duplicate, role: "Organizer")
 
-    Static::Organization.find_by(slug: "appsignal").import!(index: false)
+    assert_output(/shows logo https:\/\/example.com\/old.png/) { Static::Organization.find_by(slug: "appsignal").import!(index: false) }
 
     assert_nil Organization.find_by(id: duplicate.id)
     assert_equal kept, moved.reload.organization
