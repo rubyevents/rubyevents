@@ -5,7 +5,8 @@
   "properties": {
     "slug": {
       "type": "string",
-      "description": "URL-friendly slug, the key that sponsors.yml and involvements.yml reference"
+      "description": "URL-friendly slug, the key that sponsors.yml and involvements.yml reference",
+      "pattern": "^[a-z0-9]+([-_][a-z0-9]+)*$"
     },
     "aliases": {
       "type": "array",
@@ -17,7 +18,8 @@
             "type": "string"
           },
           "slug": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[a-z0-9]+([-_][a-z0-9]+)*$"
           }
         },
         "required": [

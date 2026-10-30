@@ -45,7 +45,6 @@ class Static::Validators::Validator
   def self.organization_validator_classes
     @organization_validator_classes ||= [
       Static::Validators::Schema,
-      Static::Validators::OrganizationSlugFormat,
       Static::Validators::UniqueOrganizationFields
     ]
   end

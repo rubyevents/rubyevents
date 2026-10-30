@@ -5,13 +5,15 @@ class OrganizationSchema < ApplicationSchema
 
   KINDS = %w[unknown company community foundation non_profit organisation].freeze
   LOGO_BACKGROUNDS = %w[white black transparent].freeze
+  # Lowercase letters, digits, dashes and underscores, as `parameterize` produces them
+  SLUG_PATTERN = "^[a-z0-9]+([-_][a-z0-9]+)*$"
 
-  string :slug, description: "URL-friendly slug, the key that sponsors.yml and involvements.yml reference", required: true
+  string :slug, description: "URL-friendly slug, the key that sponsors.yml and involvements.yml reference", required: true, pattern: SLUG_PATTERN
 
   array :aliases, description: "Former slugs and the names they were known under; they redirect to this organization", required: false do
     object do
       string :name, required: true
-      string :slug, required: true
+      string :slug, required: true, pattern: SLUG_PATTERN
     end
   end
 

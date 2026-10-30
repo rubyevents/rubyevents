@@ -37,6 +37,16 @@ class Static::Validators::SchemaTest < ActiveSupport::TestCase
     assert_empty Static::Validators::Schema.new(file_path: file).errors
   end
 
+  test "returns an error for an organization slug that isn't lowercase letters, digits, dashes and underscores" do
+    with_temp_yaml("organizations.yml", %(---\n- slug: "local_tech"\n  name: "#local_tech"\n- slug: "Acme Corp"\n  name: "Acme"\n  aliases:\n    - name: "ACME"\n      slug: "acme.corp"\n)) do |path|
+      errors = Static::Validators::Schema.new(file_path: path).errors
+
+      assert_equal 2, errors.size
+      assert_match(/Acme Corp/, errors.first.message)
+      assert_equal 4, errors.first.line
+    end
+  end
+
   test "returns errors for an invalid mapping-based file" do
     with_temp_yaml("event.yml", %(---\nname: "Bad Event"\n)) do |path|
       errors = Static::Validators::Schema.new(file_path: path).errors
