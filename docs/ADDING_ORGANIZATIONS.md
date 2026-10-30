@@ -87,9 +87,9 @@ Change `name` and keep the old spelling in `alternate_names`. Changing `slug` wo
 `bin/rails db:seed` writes the file into the `organizations` table:
 
 - `name`, `website` and `description` follow the YAML whenever it has a value.
-- `kind`, `main_location`, `logo_background` and `logo_url` only fill a blank column, so what admins picked in Avo or the logo picker survives a seed. The seed prints a warning when the logo an organization shows is missing from its `logo_urls`.
+- `kind`, `main_location`, `logo_background` and `logo_url` only fill a blank column, so what admins picked in Avo or the logo picker survives a seed. `logo_background` counts as blank while it has the column default `white`. The seed prints a warning when the logo an organization shows is missing from its `logo_urls`.
 - `logo_urls` are added to the column, never removed.
-- An organization found through an alias slug is renamed to the current slug; the old slug stays as alias.
+- An organization found through an alias slug is renamed to the current slug; the old slug stays as alias. A row that still exists under an alias slug next to the current one is merged into it: its sponsorships and involvements move over.
 
 ## Tasks
 
@@ -100,7 +100,7 @@ bin/rails organizations_file:add_missing  # adds them, named after their slug, f
 bin/rails organizations_file:orphaned     # entries nothing references
 bin/rails organizations_file:sync         # add missing, remove orphaned
 bin/rails organizations_file:duplicates   # candidates to merge by hand
-bin/rails validate:organizations          # schema, unique slugs and names, slug format, website URLs
+bin/rails validate:organizations          # schema (incl. slug format), unique slugs, names and aliases
 ```
 
 ## Submission Process
