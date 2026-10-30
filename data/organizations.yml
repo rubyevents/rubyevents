@@ -27,9 +27,9 @@
   website: "https://15vision.jp"
 
 - slug: "1password"
-  name: "1password"
+  name: "1Password"
   alternate_names:
-    - "1Password"
+    - "1password"
   website: "https://1password.com"
   logo_url: "https://rubyonrails.org/assets/images/logo-1password.svg"
 
@@ -580,18 +580,18 @@
   website: "https://www.treasuredata.co.jp"
 
 - slug: "ascenda"
+  aliases:
+    - name: "Ascenda Loyalty"
+      slug: "ascenda-loyalty"
   name: "Ascenda"
   website: "https://www.ascenda.com"
+  websites:
+    - "https://www.ascendaloyalty.com"
+    - "https://www.ascenda.com/"
   logo_url: "https://reddotrubyconf.com/assets/images/sponsors/ascenda.png"
   logo_urls:
     - "https://2023.rubyconf.tw/assets/sponsor_avatar/ascenda.png"
-
-- slug: "ascenda-loyalty"
-  name: "Ascenda Loyalty"
-  website: "https://www.ascendaloyalty.com"
-  websites:
-    - "https://www.ascenda.com/"
-  logo_url: "https://rubyconfth.com/past/2019/assets/images/pages/home/sponsors/logo-ascenda.jpg"
+    - "https://rubyconfth.com/past/2019/assets/images/pages/home/sponsors/logo-ascenda.jpg"
 
 - slug: "ashita-team-co-ltd"
   # Merged from:
@@ -627,6 +627,10 @@
   name: "Assembly Four"
   website: "https://assemblyfour.com"
   logo_url: "https://retreat.ruby.org.au/images/sponsors/2025/assembly-four.png"
+
+- slug: "associazione-ruby-italia"
+  name: "Associazione Ruby Italia"
+  website: "https://www.facebook.com/AssociazioneRubyItalia"
 
 - slug: "ateam-inc"
   name: "Ateam Inc."
@@ -1755,9 +1759,9 @@
   logo_url: "https://web.archive.org/web/20150507033928im_/http://tropicalrb.com/images/sponsor-support-compose@2x-86974ec9.png"
 
 - slug: "condense"
-  name: "condense"
+  name: "Condense"
   alternate_names:
-    - "Condense"
+    - "condense"
   website: "https://condense.tech"
   logo_url: "https://2024.rubyday.it/img/logos/condense.svg"
 
@@ -2141,9 +2145,9 @@
   logo_url: "https://2014.steelcityruby.org/assets/img/sponsor_logos/devopsdays.png"
 
 - slug: "devoteam"
-  name: "devoteam"
+  name: "Devoteam"
   alternate_names:
-    - "Devoteam"
+    - "devoteam"
   website: "https://www.devoteam.com"
   logo_url: "https://rubyconfth.com/past/2023/images/sponsors/devoteam.svg"
   logo_urls:
@@ -2664,9 +2668,6 @@
   #   logo_url: "https://rubyconf.at/assets/images/partners/euruko.png"
   #   sources:
   #     - "data/rubyconf-austria/rubyconf-austria-2026/sponsors.yml"
-  aliases:
-    - name: "EuRuKo"
-      slug: "euruko"
   name: "EuRuKo 2025"
   website: "https://2025.euruko.org"
   websites:
@@ -2681,9 +2682,9 @@
   logo_url: "https://web.archive.org/web/20150507033928im_/http://tropicalrb.com/images/sponsor-support-eventick@2x-cb99a7fb.png"
 
 - slug: "eventpop"
-  name: "eventpop"
+  name: "Eventpop"
   alternate_names:
-    - "Eventpop"
+    - "eventpop"
   website: "https://www.eventpop.me"
   logo_url: "https://rubyconfth.com/images/sponsors/eventpop.png"
   logo_urls:
@@ -2765,25 +2766,8 @@
     - "https://2026.rubyworld-conf.org/images/sponsors/fandnext_jp.png"
 
 - slug: "facebook"
-  # Merged from:
-  # - slug: "facebook"
-  #   name: "Facebook"
-  #   website: "https://www.facebook.com"
-  #   logo_url: "https://www.rubyconf.org.au/images/2016/sponsors/facebook.png"
-  #   sources:
-  #     - "data/rubyconf-au/rubyconf-au-2016/sponsors.yml"
-  # - slug: "associazione-ruby-italia"
-  #   name: "Associazione Ruby Italia"
-  #   website: "https://www.facebook.com/AssociazioneRubyItalia"
-  #   sources:
-  #     - "data/rubyday/rubyday-2016/sponsors.yml"
-  aliases:
-    - name: "Associazione Ruby Italia"
-      slug: "associazione-ruby-italia"
   name: "Facebook"
-  website: "https://www.facebook.com/AssociazioneRubyItalia"
-  websites:
-    - "https://www.facebook.com"
+  website: "https://www.facebook.com"
   logo_url: "https://www.rubyconf.org.au/images/2016/sponsors/facebook.png"
 
 - slug: "fairfax-media"
@@ -3317,27 +3301,8 @@
   logo_url: "https://rubykaigi.org/2025/images/sponsors/773-7c7373c5.png"
 
 - slug: "geneva-rb"
-  # Merged from:
-  # - slug: "geneva-rb"
-  #   name: "Geneva.rb"
-  #   website: "https://www.meetup.com/geneva-rb"
-  #   logo_url: "https://balkanruby.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDU2LCJwdXIiOiJibG9iX2lkIn19--2b7fd81d5782fa70cbf7f493c7b0fc2eeafee9d3/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJwbmciLCJyZXNpemVfdG9fbGltaXQiOls1MDAsNTAwXX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--1af0099157b76e9cbcc497a0d35cdb95437cfe52/geneva-rb.avif"
-  #   sources:
-  #     - "data/balkanruby/balkanruby-2026/sponsors.yml"
-  #     - "data/ruby-banitsa-conf/ruby-banitsa-conf-2024/sponsors.yml"
-  # - slug: "vienna-rb"
-  #   name: "Vienna.rb"
-  #   website: "https://www.meetup.com/vienna-rb/"
-  #   logo_url: "https://rubyconf.at/assets/images/partners/viennarb.png"
-  #   sources:
-  #     - "data/rubyconf-austria/rubyconf-austria-2026/sponsors.yml"
-  aliases:
-    - name: "Vienna.rb"
-      slug: "vienna-rb"
   name: "Geneva.rb"
-  website: "https://www.meetup.com/vienna-rb"
-  websites:
-    - "https://www.meetup.com/geneva-rb"
+  website: "https://www.meetup.com/geneva-rb"
   logo_url: "https://conf.rubybanitsa.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzgsInB1ciI6ImJsb2JfaWQifX0=--e7605131c779518c08df4c6299cf8e4145f861c2/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJwbmciLCJyZXNpemVfdG9fbGltaXQiOls1MDAsNTAwXX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--1af0099157b76e9cbcc497a0d35cdb95437cfe52/geneva-rb.avif"
   logo_urls:
     - "https://rubyconf.at/assets/images/partners/viennarb.png"
@@ -4227,7 +4192,7 @@
 
 - slug: "ichizoku-inc"
   name: "Ichizoku inc."
-  website: "https://sentry.io/welcome"
+  website: "https://sentry.ichizoku.io"
   logo_url: "https://2024.rubyworld-conf.org/images/sponsors/sentry_ichizoku_io.png"
 
 - slug: "icook"
@@ -4474,9 +4439,9 @@
   logo_url: "https://2026.rubyworld-conf.org/images/sponsors/it-sp_co_jp.png"
 
 - slug: "iugu"
-  name: "iugu"
+  name: "Iugu"
   alternate_names:
-    - "Iugu"
+    - "iugu"
   website: "https://www.iugu.com"
   websites:
     - "https://iugu.com.br"
@@ -5190,9 +5155,9 @@
   logo_url: "https://www.rubyconf.org.au/images/2016/sponsors/local-search.png"
 
 - slug: "locaweb"
-  name: "locaweb"
+  name: "Locaweb"
   alternate_names:
-    - "Locaweb"
+    - "locaweb"
   website: "https://www.locaweb.com.br"
   logo_url: "https://framerusercontent.com/images/V0fMqwGGEVwzLmS0cMpolcFrAGY.png?scale-down-to=1024&width=1907&height=724"
   logo_urls:
@@ -5883,6 +5848,11 @@
   website: "https://manga.nicovideo.jp"
 
 - slug: "nihon-ruby-no-kai"
+  aliases:
+    - name: "Japan Ruby Association"
+      slug: "japan-ruby-association"
+    - name: "Ruby-no-Kai"
+      slug: "ruby-no-kai"
   # Merged from:
   # - slug: "nihon-ruby-no-kai"
   #   name: "Nihon Ruby no Kai"
@@ -5905,11 +5875,12 @@
   #   logo_url: "https://regional.rubykaigi.org/fukuoka04/astro/nihon_ruby.34dgfPk-_Z1j62v8.webp"
   #   sources:
   #     - "data/fukuoka-rubyistkaigi/fukuoka-rubyistkaigi-04/sponsors.yml"
-  aliases:
-    - name: "Japan Ruby Association"
-      slug: "japan-ruby-association"
   name: "Nihon Ruby no Kai"
+  alternate_names:
+    - "Ruby no Kai"
   website: "https://ruby-no-kai.org"
+  websites:
+    - "https://ruby-no-kai.org/"
   logo_url: "https://regional.rubykaigi.org/fukuoka03/images/sponsor/nihon_ruby.jpg"
   logo_urls:
     - "https://picorubykaigi.org/images/sponsors/ruby-no-kai.png"
@@ -7389,12 +7360,6 @@
   websites:
     - "https://rubykansai.doorkeeper.jp/"
 
-- slug: "ruby-no-kai"
-  name: "Ruby-no-Kai"
-  alternate_names:
-    - "Ruby no Kai"
-  website: "https://ruby-no-kai.org/"
-
 - slug: "ruby-row"
   name: "Ruby Row"
   website: "http://rubyrow.net"
@@ -7452,9 +7417,6 @@
   #   logo_url: "https://lh3.googleusercontent.com/d/1_yp1UHdBHmfV5qyLvSqNOQJbkF94bb7O=w1000?authuser=1/view"
   #   sources:
   #     - "data/rubyconf-africa/rubyconf-africa-2026/sponsors.yml"
-  aliases:
-    - name: "Rubycon Italy"
-      slug: "rubycon-italy"
   name: "Rubycon.it"
   website: "https://rubycon.it"
   logo_url: "https://rubyconf.at/assets/images/partners/rubyconit.png"
@@ -7701,9 +7663,9 @@
   logo_background: "black"
 
 - slug: "seesaw"
-  name: "seesaw"
+  name: "Seesaw"
   alternate_names:
-    - "Seesaw"
+    - "seesaw"
   website: "https://seesaw.it"
   logo_url: "https://2024.rubyday.it/img/logos/seesaw.png"
   logo_urls:
@@ -7718,9 +7680,9 @@
 
 - slug: "sentry"
   name: "Sentry"
-  website: "https://sentry.ichizoku.io"
+  website: "https://sentry.io"
   websites:
-    - "https://sentry.io/"
+    - "https://sentry.ichizoku.io"
     - "https://sentry.io/welcome/"
   logo_url: "https://railsconf.org/images/uploads/sentry-wordmark-dark-400x119.png"
   logo_urls:
@@ -7832,12 +7794,10 @@
 
 - slug: "shopify-engineering"
   name: "Shopify Engineering"
-  website: "https://bit.ly/shopifyatrubykaigi"
+  website: "https://shopify.engineering"
   websites:
     - "https://www.shopify.com"
-  logo_url: "https://2018.bathruby.co.uk/assets/images/supporters/cookpad.png"
-  logo_urls:
-    - "https://rubykaigi.org/2026/images/sponsors/943-2a628fe3.png"
+    - "https://bit.ly/shopifyatrubykaigi"
 
 - slug: "shopline"
   name: "SHOPLINE"
@@ -9209,10 +9169,10 @@
     - "https://regional.rubykaigi.org/tokyo12/_astro/twogate.com.DWbCFLKu.svg"
 
 - slug: "typesense"
-  name: "typesense"
+  name: "Typesense"
   alternate_names:
     - "TypeSense"
-    - "Typesense"
+    - "typesense"
   website: "https://typesense.org"
   logo_url: "https://rubyonrails.org/assets/world/2025/images/sponsors/RW-logo-typesense.svg"
   logo_urls:
@@ -9365,9 +9325,9 @@
   logo_url: "https://rubyaz.org/images/sponsors/velocity-labs.webp"
 
 - slug: "ventrata"
-  name: "ventrata"
+  name: "Ventrata"
   alternate_names:
-    - "Ventrata"
+    - "ventrata"
   website: "https://ventrata.com"
   logo_url: "https://2025.euruko.org/images/sponsors/ventrata.svg"
   logo_urls:
@@ -9389,6 +9349,11 @@
   name: "Viddler"
   website: "http://viddler.com/magicruby"
   logo_url: "https://web.archive.org/web/20110208061529im_/http://magic-ruby.com/images/viddler.png"
+
+- slug: "vienna-rb"
+  name: "Vienna.rb"
+  website: "https://www.meetup.com/vienna-rb"
+  logo_url: "https://rubyconf.at/assets/images/partners/viennarb.png"
 
 - slug: "viget-labs"
   name: "Viget Labs"
@@ -9668,9 +9633,9 @@
   logo_url: "https://sfruby.com/sponsor_workos.svg"
 
 - slug: "workwave"
-  name: "workwave"
+  name: "Workwave"
   alternate_names:
-    - "Workwave"
+    - "workwave"
   website: "https://www.workwave.com"
   logo_url: "https://2024.rubyday.it/img/logos/workwave.svg"
 
