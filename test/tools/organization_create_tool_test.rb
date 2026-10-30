@@ -1,7 +1,14 @@
 require "test_helper"
 
 class OrganizationCreateToolTest < ActiveSupport::TestCase
-  include OrganizationToolFile
+  include StaticOrganizationsSandbox
+
+  setup do
+    sandbox_organizations(
+      {slug: "appsignal", aliases: [{"name" => "App Signal", "slug" => "app-signal"}], name: "AppSignal", kind: "company", website: "https://www.appsignal.com"},
+      {slug: "typesense", name: "Typesense", alternate_names: ["TypeSense"], website: "https://typesense.org"}
+    )
+  end
 
   test "adds an organization with a derived slug" do
     result = build_tool.execute(name: "Planet Argon", website: "https://www.planetargon.com", kind: "company")
@@ -9,7 +16,7 @@ class OrganizationCreateToolTest < ActiveSupport::TestCase
     assert result[:success]
     assert_equal "planet-argon", result[:slug]
 
-    organization = Static::Organization.in_file(@tmp_file.path).find_by(slug: "planet-argon")
+    organization = Static::Organization.find_by(slug: "planet-argon")
     assert_equal "Planet Argon", organization["name"]
     assert_equal "https://www.planetargon.com", organization["website"]
     assert_equal "company", organization["kind"]
@@ -24,6 +31,6 @@ class OrganizationCreateToolTest < ActiveSupport::TestCase
   private
 
   def build_tool
-    OrganizationCreateTool.new(organizations_file_path: @tmp_file.path)
+    OrganizationCreateTool.new
   end
 end

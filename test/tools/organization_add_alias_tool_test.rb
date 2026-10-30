@@ -1,7 +1,14 @@
 require "test_helper"
 
 class OrganizationAddAliasToolTest < ActiveSupport::TestCase
-  include OrganizationToolFile
+  include StaticOrganizationsSandbox
+
+  setup do
+    sandbox_organizations(
+      {slug: "appsignal", aliases: [{"name" => "App Signal", "slug" => "app-signal"}], name: "AppSignal", kind: "company", website: "https://www.appsignal.com"},
+      {slug: "typesense", name: "Typesense", alternate_names: ["TypeSense"], website: "https://typesense.org"}
+    )
+  end
 
   test "adds an alias" do
     result = build_tool.execute(slug: "typesense", alias_slug: "type-sense", alias_name: "Type Sense")
@@ -11,14 +18,14 @@ class OrganizationAddAliasToolTest < ActiveSupport::TestCase
     assert_equal 1, result[:total_aliases]
     assert_match(/organizations_file:extract/, result[:next_step])
 
-    organization = Static::Organization.in_file(@tmp_file.path).find_by(slug: "type-sense")
+    organization = Static::Organization.find_by(slug: "type-sense")
     assert_equal "typesense", organization["slug"]
   end
 
   test "defaults the alias name to the organization's name" do
     build_tool.execute(slug: "typesense", alias_slug: "typesense-inc")
 
-    assert_includes Static::Organization.in_file(@tmp_file.path).find_by(slug: "typesense")["aliases"], {"name" => "Typesense", "slug" => "typesense-inc"}
+    assert_includes Static::Organization.find_by(slug: "typesense")["aliases"], {"name" => "Typesense", "slug" => "typesense-inc"}
   end
 
   test "rejects unknown organizations, existing aliases and slugs of other organizations" do
@@ -30,6 +37,6 @@ class OrganizationAddAliasToolTest < ActiveSupport::TestCase
   private
 
   def build_tool
-    OrganizationAddAliasTool.new(organizations_file_path: @tmp_file.path)
+    OrganizationAddAliasTool.new
   end
 end

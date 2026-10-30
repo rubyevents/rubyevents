@@ -1,7 +1,14 @@
 require "test_helper"
 
 class OrganizationUpdateToolTest < ActiveSupport::TestCase
-  include OrganizationToolFile
+  include StaticOrganizationsSandbox
+
+  setup do
+    sandbox_organizations(
+      {slug: "appsignal", aliases: [{"name" => "App Signal", "slug" => "app-signal"}], name: "AppSignal", kind: "company", website: "https://www.appsignal.com"},
+      {slug: "typesense", name: "Typesense", alternate_names: ["TypeSense"], website: "https://typesense.org"}
+    )
+  end
 
   test "updates the given fields" do
     result = build_tool.execute(slug: "typesense", website: "https://typesense.org/", main_location: "Houston, TX")
@@ -9,7 +16,7 @@ class OrganizationUpdateToolTest < ActiveSupport::TestCase
     assert result[:success]
     assert_equal({website: "https://typesense.org/", main_location: "Houston, TX"}, result[:updated_fields])
 
-    organization = Static::Organization.in_file(@tmp_file.path).find_by(slug: "typesense")
+    organization = Static::Organization.find_by(slug: "typesense")
     assert_equal "https://typesense.org/", organization["website"]
     assert_equal "Houston, TX", organization["main_location"]
   end
@@ -17,7 +24,7 @@ class OrganizationUpdateToolTest < ActiveSupport::TestCase
   test "renaming keeps the old name as alternate name" do
     build_tool.execute(slug: "typesense", name: "Typesense Inc")
 
-    organization = Static::Organization.in_file(@tmp_file.path).find_by(slug: "typesense")
+    organization = Static::Organization.find_by(slug: "typesense")
     assert_equal "Typesense Inc", organization["name"]
     assert_equal %w[TypeSense Typesense], organization["alternate_names"].sort
   end
@@ -28,7 +35,7 @@ class OrganizationUpdateToolTest < ActiveSupport::TestCase
     assert_equal "typesense", result[:alias_created]
     assert_match(/organizations_file:extract/, result[:next_step])
 
-    organization = Static::Organization.in_file(@tmp_file.path).find_by(slug: "typesense-search")
+    organization = Static::Organization.find_by(slug: "typesense-search")
     assert_equal "typesense-search", organization["slug"]
     assert_includes organization["aliases"], {"name" => "Typesense", "slug" => "typesense"}
   end
@@ -38,7 +45,7 @@ class OrganizationUpdateToolTest < ActiveSupport::TestCase
     result = build_tool.execute(slug: "typesense-search", new_slug: "typesense")
 
     assert result[:success], result[:error]
-    organization = Static::Organization.in_file(@tmp_file.path).find_by(slug: "typesense")
+    organization = Static::Organization.find_by(slug: "typesense")
     assert_equal "typesense", organization["slug"]
     assert_equal [{"name" => "Typesense", "slug" => "typesense-search"}], organization["aliases"]
   end
@@ -53,6 +60,6 @@ class OrganizationUpdateToolTest < ActiveSupport::TestCase
   private
 
   def build_tool
-    OrganizationUpdateTool.new(organizations_file_path: @tmp_file.path)
+    OrganizationUpdateTool.new
   end
 end

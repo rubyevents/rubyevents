@@ -1,7 +1,14 @@
 require "test_helper"
 
 class OrganizationLookupToolTest < ActiveSupport::TestCase
-  include OrganizationToolFile
+  include StaticOrganizationsSandbox
+
+  setup do
+    sandbox_organizations(
+      {slug: "appsignal", aliases: [{"name" => "App Signal", "slug" => "app-signal"}], name: "AppSignal", kind: "company", website: "https://www.appsignal.com"},
+      {slug: "typesense", name: "Typesense", alternate_names: ["TypeSense"], website: "https://typesense.org"}
+    )
+  end
 
   test "finds organizations by slug, name, alias, alternate name and website" do
     assert_equal ["appsignal"], build_tool.execute(query: "AppSignal").map { |result| result[:slug] }
@@ -28,6 +35,6 @@ class OrganizationLookupToolTest < ActiveSupport::TestCase
   private
 
   def build_tool
-    OrganizationLookupTool.new(organizations_file_path: @tmp_file.path)
+    OrganizationLookupTool.new
   end
 end

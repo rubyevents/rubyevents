@@ -3,12 +3,10 @@
 require "test_helper"
 
 class Static::Validators::OrganizationExistsTest < ActiveSupport::TestCase
-  include StaticOrganizationsSandbox
   include StaticDataSandbox
 
   setup do
     Static::Validators::OrganizationExists.reset!
-    sandbox_organizations({slug: "appsignal", name: "AppSignal", aliases: [{"name" => "App Signal", "slug" => "app-signal"}]})
   end
 
   teardown do
@@ -50,9 +48,7 @@ class Static::Validators::OrganizationExistsTest < ActiveSupport::TestCase
 
   def with_files
     with_static_data_dir do |dir|
-      Static::Organization.path = @sandboxed_organizations_file.path
-      Static::Organization.unload!
-
+      write(dir, "data/organizations.yml", [{"slug" => "appsignal", "name" => "AppSignal", "aliases" => [{"name" => "App Signal", "slug" => "app-signal"}]}])
       write(dir, "data/testconf/series.yml", {"id" => "testconf", "name" => "TestConf", "kind" => "conference"})
       write(dir, "data/testconf/testconf-2025/event.yml", {"id" => "testconf-2025", "title" => "TestConf 2025", "start_date" => "2025-05-01", "end_date" => "2025-05-02"})
       sponsors_path = write(dir, "data/testconf/testconf-2025/sponsors.yml", [{"tiers" => [{"name" => "Gold", "sponsors" => [{"slug" => "appsignal"}, {"slug" => "app-signal"}, {"slug" => "ghost-inc"}]}]}])
