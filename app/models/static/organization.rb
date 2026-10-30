@@ -24,33 +24,6 @@ module Static
     class DuplicateOrganizationError < StandardError; end
     class MissingOrganizationError < StandardError; end
 
-    def self.find_by(**criteria)
-      if criteria.any? && criteria.keys.all? { |key| key.in?(%i[slug name]) }
-        return find_organization(**criteria)
-      end
-
-      super
-    end
-
-    def self.find_organization(slug: nil, name: nil)
-      slug = slug&.to_s&.strip
-      name = name&.to_s&.strip
-
-      (slug.present? && all.find_by(slug: slug)) ||
-        (name.present? && (all.find_by(name: name) || find_by_alternate_name(name))) ||
-        nil
-    end
-
-    def self.find_by_alternate_name(name)
-      return nil if name.blank?
-
-      all.cached(:organizations_by_alternate_name) {
-        all.each_with_object({}) do |organization, index|
-          Array(organization["alternate_names"]).each { |alternate| index[alternate.to_s.downcase] = organization }
-        end
-      }[name.to_s.strip.downcase]
-    end
-
     def self.slug_for(name)
       I18n.transliterate(name.to_s.strip.downcase).parameterize
     end

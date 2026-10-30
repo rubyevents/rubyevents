@@ -13,17 +13,12 @@ class Static::OrganizationTest < ActiveSupport::TestCase
     )
   end
 
-  test "find_by slug, alias slug, name, alias name and alternate name" do
+  test "find_by slug, alias slug, name and alias name" do
     assert_equal "AppSignal", Static::Organization.find_by(slug: "appsignal").name
     assert_equal "AppSignal", Static::Organization.find_by(slug: "app-signal").name
     assert_equal "appsignal", Static::Organization.find_by(name: "AppSignal").slug
     assert_equal "appsignal", Static::Organization.find_by(name: "App Signal").slug
-    assert_equal "appsignal", Static::Organization.find_by(name: "Appsignal").slug
     assert_nil Static::Organization.find_by(slug: "nobody-#{SecureRandom.hex(4)}")
-  end
-
-  test "find_by falls back to a scan for non-indexed fields" do
-    assert_equal "typesense", Static::Organization.find_by(website: "https://typesense.org").slug
   end
 
   test "known_slug? includes alias slugs" do
