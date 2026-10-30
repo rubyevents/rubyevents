@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_07_02_130000) do
+ActiveRecord::Schema[8.2].define(version: 2026_10_27_120000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -97,12 +97,14 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_02_130000) do
   create_table "cfps", force: :cascade do |t|
     t.date "close_date"
     t.datetime "created_at", null: false
-    t.integer "event_id", null: false
+    t.integer "event_id"
     t.string "link"
     t.string "name"
     t.date "open_date"
     t.datetime "updated_at", null: false
+    t.integer "event_series_id"
     t.index ["event_id"], name: "index_cfps_on_event_id"
+    t.index ["event_series_id"], name: "index_cfps_on_event_series_id"
   end
 
   create_table "cities", force: :cascade do |t|
@@ -165,27 +167,31 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_02_130000) do
 
   create_table "event_involvements", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "event_id", null: false
+    t.integer "event_id"
     t.integer "involvementable_id", null: false
     t.string "involvementable_type", null: false
     t.integer "position", default: 0
     t.string "role", null: false
     t.datetime "updated_at", null: false
+    t.integer "event_series_id"
+    t.date "started_on"
+    t.date "ended_on"
     t.index ["event_id"], name: "index_event_involvements_on_event_id"
+    t.index ["event_series_id"], name: "index_event_involvements_on_event_series_id"
     t.index ["involvementable_type", "involvementable_id", "event_id", "role"], name: "idx_involvements_on_involvementable_and_event_and_role", unique: true
     t.index ["involvementable_type", "involvementable_id"], name: "index_event_involvements_on_involvementable"
     t.index ["role"], name: "index_event_involvements_on_role"
   end
 
   create_table "event_participations", force: :cascade do |t|
-    t.string "attended_as", null: false
     t.datetime "created_at", null: false
     t.integer "event_id", null: false
+    t.string "role", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
-    t.index ["attended_as"], name: "index_event_participations_on_attended_as"
     t.index ["event_id"], name: "index_event_participations_on_event_id"
-    t.index ["user_id", "event_id", "attended_as"], name: "idx_on_user_id_event_id_attended_as_ca0a2916e2", unique: true
+    t.index ["role"], name: "index_event_participations_on_role"
+    t.index ["user_id", "event_id"], name: "index_event_participations_on_user_id_and_event_id", unique: true
     t.index ["user_id"], name: "index_event_participations_on_user_id"
   end
 
@@ -202,9 +208,18 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_02_130000) do
     t.string "website", default: "", null: false
     t.string "youtube_channel_id", default: ""
     t.string "youtube_channel_name", default: ""
+    t.integer "parent_id"
+    t.string "location", default: "", null: false
+    t.string "city"
+    t.string "state_code"
+    t.string "country_code"
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
+    t.index ["country_code"], name: "index_event_series_on_country_code"
     t.index ["frequency"], name: "index_event_series_on_frequency"
     t.index ["kind"], name: "index_event_series_on_kind"
     t.index ["name"], name: "index_event_series_on_name"
+    t.index ["parent_id"], name: "index_event_series_on_parent_id"
     t.index ["slug"], name: "index_event_series_on_slug"
   end
 
@@ -237,12 +252,15 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_02_130000) do
     t.string "location"
     t.decimal "longitude", precision: 10, scale: 6
     t.string "name", default: "", null: false
+    t.date "recordings_published_date"
     t.string "slug", default: "", null: false
     t.date "start_date"
     t.string "state_code"
     t.integer "talks_count", default: 0, null: false
     t.datetime "updated_at", null: false
     t.string "website", default: ""
+    t.string "subtitle", default: "", null: false
+    t.boolean "ruby_focused", default: true, null: false
     t.index ["canonical_id"], name: "index_events_on_canonical_id"
     t.index ["country_code", "state_code"], name: "index_events_on_country_code_and_state_code"
     t.index ["event_series_id"], name: "index_events_on_event_series_id"
@@ -363,13 +381,17 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_02_130000) do
   create_table "sponsors", force: :cascade do |t|
     t.string "badge"
     t.datetime "created_at", null: false
-    t.integer "event_id", null: false
+    t.integer "event_id"
     t.integer "level"
     t.integer "organization_id", null: false
     t.string "tier"
     t.datetime "updated_at", null: false
+    t.integer "event_series_id"
+    t.date "started_on"
+    t.date "ended_on"
     t.index ["event_id", "organization_id", "tier"], name: "index_sponsors_on_event_organization_tier_unique", unique: true
     t.index ["event_id"], name: "index_sponsors_on_event_id"
+    t.index ["event_series_id"], name: "index_sponsors_on_event_series_id"
     t.index ["organization_id"], name: "index_sponsors_on_organization_id"
   end
 
@@ -384,11 +406,15 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_02_130000) do
   end
 
   create_table "talk_transcripts", force: :cascade do |t|
+    t.boolean "auto_generated"
     t.datetime "created_at", null: false
     t.text "enhanced_transcript"
+    t.string "language", default: "en", null: false
     t.text "raw_transcript"
     t.integer "talk_id", null: false
+    t.boolean "translated", default: false, null: false
     t.datetime "updated_at", null: false
+    t.index ["talk_id", "language"], name: "index_talk_transcripts_on_talk_id_and_language", unique: true
     t.index ["talk_id"], name: "index_talk_transcripts_on_talk_id"
   end
 
@@ -422,6 +448,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_02_130000) do
     t.string "thumbnail_xl", default: "", null: false
     t.string "thumbnail_xs", default: "", null: false
     t.string "title", default: "", null: false
+    t.datetime "transcript_checked_at"
     t.datetime "updated_at", null: false
     t.datetime "video_availability_checked_at"
     t.string "video_id", default: "", null: false
@@ -558,14 +585,17 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_02_130000) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cfps", "event_series"
   add_foreign_key "cfps", "events"
   add_foreign_key "connected_accounts", "users"
   add_foreign_key "contributors", "users"
   add_foreign_key "email_verification_tokens", "users"
   add_foreign_key "event_check_ins", "events"
+  add_foreign_key "event_involvements", "event_series"
   add_foreign_key "event_involvements", "events"
   add_foreign_key "event_participations", "events"
   add_foreign_key "event_participations", "users"
+  add_foreign_key "event_series", "event_series", column: "parent_id"
   add_foreign_key "event_series_subscriptions", "event_series"
   add_foreign_key "event_series_subscriptions", "users"
   add_foreign_key "events", "event_series"
@@ -575,6 +605,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_07_02_130000) do
   add_foreign_key "password_reset_tokens", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "speakers", "speakers", column: "canonical_id"
+  add_foreign_key "sponsors", "event_series"
   add_foreign_key "sponsors", "events"
   add_foreign_key "sponsors", "organizations"
   add_foreign_key "talk_topics", "talks"

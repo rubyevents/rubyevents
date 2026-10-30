@@ -1,0 +1,39 @@
+---
+- id: "sam-burns-lrug-2026-05-11"
+  old_id: "sam-burns-lrug-may-2026"
+  title: "Ruby in Parallel: Fibers, Ractors, and Ruby 4"
+  date: "2026-05-11"
+  announced_at: "2026-04-20T06:00:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2026/may/sam-burns-ruby-in-parallel-fibers-ractors-and-ruby-4-may-2026.mp4"
+  description: |-
+    Ruby 4 builds on Ruby 3's concurrency features, introducing refinements to Fibers and Ractors.
+    This milestone in the language's evolution transforms concurrency from an experimental
+    frontier to a production-ready reality.
+
+    This talk provides an up-to-date guide to Ruby’s modern concurrency toolkit, from the
+    lightweight efficiency of Fibers to the parallel power of Ractors.
+
+    Join us to explore the core concurrency features of Ruby, and get an up-to-date picture of
+    the latest developments in Ruby 4.
+  speakers:
+    - Sam Burns
+
+- id: "adrian-booth-lrug-2026-05-11"
+  old_id: "adrian-booth-lrug-may-2026"
+  title: "PRs without code review: Building a risk classification pipeline in Ruby"
+  date: "2026-05-11"
+  announced_at: "2026-04-20T06:00:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2026/may/adrian-booth-prs-without-code-review-building-a-risk-classification-pipeline-in-ruby-may-2026.mp4"
+  description: |-
+    Agents are shifting the bottleneck from implementation to verification.
+
+    In this talk I'll discuss how to build a risk classification pipeline in Ruby which we've
+    beenusing since January of this year to classify our code changes, which opened the door for
+    us to safely enable auto-approvals on Github PRs
+
+    The talk will spend roughly 10-15 minutes on implementation and another 10 minutes
+    explaining how to convince teams / engineers to adopt in your org.
+  speakers:
+    - Adrian Booth

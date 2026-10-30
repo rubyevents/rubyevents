@@ -1,6 +1,9 @@
 ---
-id: "<%= options[:event] %>"
-title: "<%= options[:title] %>"
+id: "<%= event_id %>"
+title: "<%= title %>"
+<%- if options[:subtitle].present? -%>
+subtitle: "<%= options[:subtitle] %>"
+<%- end -%>
 <%- if @location -%>
 location: "<%= @location %>"
 <%- end -%>
@@ -12,27 +15,48 @@ kind: "<%= options[:kind] %>"
 description: |-
 <%= optimize_indentation(options[:description], 4) %>
 <%- end -%>
-<%- if options[:published_at] -%>
-published_at: "<%= options[:published_at] %>"
+<%- if options[:recordings_published_date] -%>
+recordings_published_date: "<%= options[:recordings_published_date] %>"
 <%- end -%>
 <%- if options[:announced_on] -%>
 announced_on: "<%= options[:announced_on] %>"
 <%- end -%>
-start_date: "<%= options[:start_date] %>"
-end_date: "<%= options[:end_date] %>"
-year: <%= @year %>
+<%- if start_date -%>
+start_date: "<%= start_date %>"
+<%- end -%>
+<%- if end_date -%>
+end_date: "<%= end_date %>"
+<%- end -%>
+<%- if options[:start_time] -%>
+start_time: "<%= options[:start_time] %>"
+<%- end -%>
+<%- if options[:end_time] -%>
+end_time: "<%= options[:end_time] %>"
+<%- end -%>
 <%- if options[:date_precision] -%>
 date_precision: "<%= options[:date_precision] %>"
 <%- end -%>
+<%- if options[:status] -%>
+status: "<%= options[:status] %>"
+<%- end -%>
+<%- if options[:website].present? || !meetup? -%>
 website: "<%= options[:website] %>"<%= " # TODO" if options[:website].blank? %>
+<%- end -%>
 <%- if options[:original_website] -%>
 original_website: "<%= options[:original_website] %>"
 <%- end -%>
-tickets_url: "<%= options[:tickets_url] %>"<%= " # TODO" if options[:tickets_url].blank? %>
+<%- if options[:tickets_url].present? -%>
+tickets_url: "<%= options[:tickets_url] %>"
+<%- end -%>
+<%- MeetupLinks::PLATFORMS.each do |field| -%>
+<%- if options[field].present? -%>
+<%= field %>: "<%= options[field] %>"
+<%- end -%>
+<%- end -%>
 <%- if options[:last_edition] -%>
 last_edition: true
 <%- end -%>
-coordinates:<%- if options[:online] || @coordinates.nil? -%>
+coordinates:<%- if options[:online] || @coordinates.nil? || @coordinates.values.compact.empty? -%>
  false
 <% else %>
   latitude: <%= @coordinates[:latitude] %>

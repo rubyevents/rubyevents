@@ -21,7 +21,7 @@ class Avo::Resources::EventSeries < Avo::BaseResource
     field :website, as: :text
     field :language, as: :text
     field :kind, as: :select, enum: ::EventSeries.kinds
-    field :frequency, as: :select, enum: ::EventSeries.frequencies, hide_on: :index
+    field :frequency, as: :select, enum: ::EventSeries.frequencies, hide_on: [:index, :forms]
     field :youtube_channels, name: "YouTube Channels", as: :text, hide_on: [:index, :forms] do
       record.static_metadata&.all_youtube_channels&.map { |c| [c["name"], c["id"]].compact.join(" — ") }&.join(", ")
     end
@@ -29,6 +29,9 @@ class Avo::Resources::EventSeries < Avo::BaseResource
     field :twitter, as: :text, hide_on: :index
     field :events, as: :has_many
     field :talks, as: :has_many, through: :events
+    field :sponsors, as: :has_many
+    field :event_involvements, as: :has_many
+    field :cfps, as: :has_many
   end
 
   def filters

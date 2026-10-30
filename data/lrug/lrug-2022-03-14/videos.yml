@@ -1,0 +1,44 @@
+---
+- id: "christian-gregg-lrug-2022-03-14"
+  old_id: "christian-gregg-lrug-march-2022"
+  title: "Running full builds after merging? 🥱: Ship faster with git tree based caching"
+  date: "2022-03-14"
+  announced_at: "2022-03-06T21:30:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2022/march/christian-gregg-running-full-builds-after-merging-ship-faster-with-git-tree-based-caching-lrug-mar-2022.mp4"
+  description: |-
+    Fast deploy pipelines are an important facet of a fast moving engineering team; allowing you
+    to ship smaller, safer units of value to production, [faster](https://xkcd.com/303/), and
+    more often.
+
+    In this talk we'll be covering how using [git tree
+    objects](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_tree_objects) can allow
+    you to run CI less or potentially not at all (in a not scary manner :) after merging your
+    changes into your default branch, allowing you to get straight to deploying! 🚂
+
+    In cases where your team can precompile deployment artefacts your changes could make it into
+    production in under 60s. If your team uses Heroku or Buildpacks to deploy your code, I'll
+    point you to [some](https://buildpacks.io/docs/app-developer-guide/build-an-app/)
+    [tricks](https://github.com/CGA1123/slugcmplr) to help you do just that by detaching
+    building and releasing your application to production!
+  speakers:
+    - Christian Gregg
+  additional_resources:
+    - name: "Write-Up"
+      type: "write-up"
+      title: "🚢 Ship faster with git-tree based caching"
+      url: "https://blog.bissy.io/posts/merge_to_deploy_in_a_minute/"
+
+- id: "eleanor-mchugh-lrug-2022-03-14"
+  old_id: "eleanor-mchugh-lrug-march-2022"
+  title: "The Browser Environment - A Systems Programmer's Perspective"
+  date: "2022-03-14"
+  announced_at: "2022-03-06T21:30:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2022/march/eleanor-mchugh-the-browser-environment-a-system-programmer-perspective-lrug-mar-2022.mp4"
+  description: |-
+    A quirky introduction to writing realtime web systems with Sinatra as
+    the backend. The highlight will be WebSockets but there'll also be
+    coverage of DOM manipulation, AJAX/fetch, and timer events.
+  speakers:
+    - Eleanor McHugh

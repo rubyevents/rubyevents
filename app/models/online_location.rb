@@ -45,7 +45,7 @@ class OnlineLocation
   end
 
   def events
-    Event.not_geocoded.includes(:series)
+    Event.ruby_focused.not_geocoded.includes(:series)
   end
 
   def users

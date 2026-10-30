@@ -2,7 +2,7 @@
 
 class SpeakerdeckUserDecksTool < RubyLLM::Tool
   description "Fetch all slide decks from a speaker's SpeakerDeck profile. Lookup by user name or slug."
-  param :name, desc: "User name or slug to lookup in the database (e.g., 'Aaron Patterson' or 'tenderlove')"
+  parameter :name, description: "User name or slug to lookup in the database (e.g., 'Aaron Patterson' or 'tenderlove')"
 
   def execute(name:)
     user = User.find_by(name: name) ||

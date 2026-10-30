@@ -3,8 +3,9 @@
 module Static
   module Validators
     class UniqueSpeakers
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       PATTERNS = [
@@ -15,7 +16,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -26,7 +27,7 @@ module Static
       def validate
         return [] unless applicable?
 
-        speakers = Static::SpeakersFile.new(@file_path)
+        speakers = Static::Speaker.in_file(@file_path, document: @document)
         errors = []
 
         errors += validate_same_name_duplicates(speakers)
@@ -41,8 +42,7 @@ module Static
         errors = []
 
         speakers.same_name_duplicates.each do |name, count|
-          location = speakers.document.find_by(name: name)&.location
-          location ||= speakers.document.find_by("aliases[].name" => name)&.location
+          location = speakers.find_by(name: name)&.source_location
 
           errors << Static::Validators::Error.new(
             "Same name duplicate: #{name} (#{count} occurrences)",
@@ -59,8 +59,7 @@ module Static
         errors = []
 
         speakers.reversed_name_duplicates.each do |pair|
-          location = speakers.document.find_by(name: pair[0])&.location
-          location ||= speakers.document.find_by("aliases[].name" => pair[0])&.location
+          location = speakers.find_by(name: pair[0])&.source_location
 
           errors << Static::Validators::Error.new(
             "Reversed name duplicate: #{pair[0]} ↔ #{pair[1]}",

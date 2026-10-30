@@ -2,7 +2,7 @@
 
 class EventSeriesEventsTool < RubyLLM::Tool
   description "Get all events from an event series by name or slug. Returns the list of events within a conference series or meetup group."
-  param :query, desc: "Event series slug (e.g., 'rails-world') or name (e.g., 'Rails World')"
+  parameter :query, description: "Event series slug (e.g., 'rails-world') or name (e.g., 'Rails World')"
 
   def execute(query:)
     series = Static::EventSeries.find_by_slug(query)
@@ -18,7 +18,7 @@ class EventSeriesEventsTool < RubyLLM::Tool
       kind: series.kind,
       frequency: series.frequency,
       website: series.website,
-      data_path: "data/#{series.slug}/series.yml",
+      data_path: series.project_file_path,
       events_count: events.size,
       events: events.map { |event| event_to_hash(event, series) }
     }
@@ -29,13 +29,12 @@ class EventSeriesEventsTool < RubyLLM::Tool
   private
 
   def event_to_hash(event, series)
-    base_path = "data/#{series.slug}/#{event.slug}"
+    base_path = File.dirname(event.project_file_path)
 
     {
       slug: event.slug,
       title: event.title,
       kind: event.kind,
-      year: event.year,
       location: event.location,
       start_date: event.start_date&.to_s,
       end_date: event.end_date&.to_s,

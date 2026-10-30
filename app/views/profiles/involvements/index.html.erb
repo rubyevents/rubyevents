@@ -10,5 +10,5 @@
       countries_with_events: @countries_with_events,
       favorite_user: @favorite_user
     } do %>
-  <%= render partial: "profiles/involvements", locals: {user: @user, events: @involved_events, involvements_by_role: @involvements_by_role} %>
+  <%= render partial: "profiles/involvements", locals: {user: @user, involvements_by_role: @involvements_by_role} %>
 <% end %>

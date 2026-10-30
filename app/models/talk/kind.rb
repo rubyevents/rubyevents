@@ -5,6 +5,12 @@ class Talk::Kind
       :keynote
     when /^(lightning\ talk:|lightning\ talk|lightning\ talks|micro\ talk:|micro\ talk).*/i
       :lightning_talk
+    when /^(open\ mic:|open\ mic|open\ mics|open\ mic\ night).*/i
+      :open_mic
+    when /^announcements?(:|\s|$).*/i
+      :announcement
+    when /^(city\ pitch:|city\ pitch|city\ pitches).*/i
+      :city_pitch
     when /\bpanel\b/i
       :panel
     when /^(workshop:|workshop).*/i
@@ -22,7 +28,7 @@ class Talk::Kind
       :discussion
     when /^(fireside\ chat:|fireside\ chat).*/i
       :fireside_chat
-    when /^(award:|award\ show|ruby\ heroes\ awards|ruby\ heroes\ award|rails\ luminary).*/i
+    when /^(award:|award\ show|ruby\ hero(es)?\ awards?|rails\ luminary).*/i
       :award
     when /^(interview:|interview\ with).*/i
       :interview
@@ -30,13 +36,13 @@ class Talk::Kind
       :demo
     when /.*(trailer).*/i
       :trailer
-    when /.*(recap).*/i
+    when /\brecaps?\b/i
       :recap
     when /.*(after\ ?movie).*/i
       :aftermovie
-    when /^(intro|introduction)(:|\s*$)/i, /^(opening\ (remarks|session|address)|welcome\b).*/i
+    when /^intro(:|\s*$|\s+(?!to\b|of\b))/i, /^introduction(:|\s*$)/i, /^(opening\ (remarks|session|address|words)|welcome\b|day\ (opening|start)\b).*/i
       :intro
-    when /^(outro:?|closing\ remarks:?|closing\ words|closing\ session|closing\ address).*/i
+    when /^(outro:?|closing\ remarks:?|closing\ words|closing\ session|closing\ address|day\ (closing|end)).*/i
       :outro
     else
       :talk

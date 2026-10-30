@@ -85,6 +85,10 @@ tracks:
     text_color: "#ffffff"
 ```
 
+### Overlapping Schedules
+
+If you have overlapping events on the schedule, eg. a workshop track that spans 3 talk slots, or a lightning talk block over lunch, order them by the start time and then end time.
+
 ### Unrecorded Activities
 
 Typical schedule-only items (activities without recordings, simple string format):
@@ -204,9 +208,14 @@ bin/lint
 
 ## FAQ
 
-### Schedules in other Languages
-
-We prefer the English translation of the schedule if provided, otherwise use the content provided by the organizers.
+<details><summary>How do I handle pre-conference and post-conference events?</summary>
+  start_date and end_date on the event describe the conference proper — the days the event is "on", but the schedule can reach outside that window.
+  Common cases are pre-conference activities on the day before (early registration, a local user group meetup, a welcome party) and post-conference extras on the day after (a city tour, a farewell brunch, a hack day).
+  Keep the event dates as the organizer frames them and add additional days to the schedule.
+</details>
+<details><summary>How do I handle scehdules in other languages?</summary>
+We prefer the English translation of the schedule if provided, otherwise use the content provided by the organizers in the original language. Do not translate schedule content.
+</details>
 
 ## Submission Process
 

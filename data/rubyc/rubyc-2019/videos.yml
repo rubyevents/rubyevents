@@ -1,6 +1,168 @@
-# TODO: Add talks and videos
-
 # Website: https://rubyc.eu/
 # Videos: https://www.youtube.com/playlist?list=PLmEf5ppiRneTkaPA4fz6KBQKq-jAvTRkb
 ---
-[]
+- id: "aaron-cruz-rubyc-2019"
+  title: "Steal This Talk"
+  raw_title: "RubyC 2019. Aaron Cruz: \"Steal This Talk\""
+  date: "2019-09-14"
+  published_at: "2019-09-17T14:04:32Z"
+  video_provider: "youtube"
+  video_id: "wwQ45w0JfnE"
+  description: |-
+    I like to give talks. Tragedy has hit for the past year and I haven't been able to come up with anything interesting to speak about. I had almost given up, thrown in the towel. But then I had an idea... I will build an app that will write a talk for me! It's been a long journey building "Talkie", but in the process, I've consumed 100's of Ruby talks from over the last years and I want to boil them down to the best things I can fit into this time slot. We can also see how far I've come with the app. (Hint: AI is hard)
+  speakers:
+    - Aaron Cruz
+
+- id: "alexey-vasiliev-rubyc-2019"
+  title: "Application Security for Rails Engineers"
+  raw_title: "RubyC 2019. Alexey Vasiliev: \"Application Security for Rails Engineers\""
+  date: "2019-09-14"
+  published_at: "2019-09-17T13:57:04Z"
+  video_provider: "youtube"
+  video_id: "v_bfy6-BSvE"
+  description: |-
+    Security is a shared responsibility and something we should all be familiar with when writing web applications. In this talk, I will describe common security problems, how to avoid them and make your code secure by default.
+  speakers:
+    - Alexey Vasiliev
+
+- id: "mugurel-chirica-rubyc-2019"
+  title: "Taming your Rails monolith"
+  raw_title: "RubyC 2019. Mugurel Chirica: \"Taming your Rails monolith\""
+  date: "2019-09-14"
+  published_at: "2019-09-17T13:54:17Z"
+  video_provider: "youtube"
+  video_id: "_332PMjVO9g"
+  description: |-
+    Rails can be a perfect choice when starting a new project. Until your application gets too big! That's when your development can start to suffer. Your team may grumble. Is Rails adequate for the job? Rails is not inherently unfit for big systems. But if the Rails way that got you this far is not the solution going forward, and spending months to get an application into shape is a no go, what’s the alternative? This talk will give you some practical steps to make your Rails application scalable and speed up its development.
+  speakers:
+    - Mugurel Chirica
+
+- id: "emily-stolfo-rubyc-2019"
+  title: "Beauty and the Beast: Applications and Distributed Systems"
+  raw_title: "RubyC 2019. Emily Stolfo: \"Beauty and the Beast: Applications and Distributed Systems\""
+  date: "2019-09-14"
+  published_at: "2019-09-17T13:39:57Z"
+  video_provider: "youtube"
+  video_id: "rk5G9_LjpYY"
+  description: |-
+    Writing code that interfaces with a distributed system is not trivial but we can usually depend on libraries to encapsulate the details. Nevertheless, with more web applications employing service-oriented architectures, web developers must also know how to talk to distributed technologies and be able to handle errors and failures appropriately. This talk will explore common errors and failures so you are better able to understand and predict the behavior of your distributed systems. It will arm you with algorithms and testing strategies so you can tame your services and build robust applications.
+  speakers:
+    - Emily Stolfo
+
+- id: "katrina-owen-rubyc-2019"
+  title: "One Small Step"
+  raw_title: "RubyC 2019. Katrina Owen: \"One Small Step\""
+  date: "2019-09-14"
+  published_at: "2019-09-17T13:38:57Z"
+  video_provider: "youtube"
+  video_id: "3_Obmtfy3dA"
+  description: |-
+    Refactoring sometimes devolves into an appalling mess. You're chasing a broken test suite, and every change just makes it worse. At other times it's a slow, controlled process culminating in dreadful design. This talk presents an end-to-end refactoring that demonstrates simple strategies to avoid such misadventures.
+  speakers:
+    - Katrina Owen
+
+- id: "dan-demeyere-rubyc-2019"
+  title: "Misadventures in Continuous Delivery"
+  raw_title: "RubyC 2019. Dan DeMeyere: \"Misadventures in Continuous Delivery\""
+  date: "2019-09-14"
+  published_at: "2019-09-17T14:21:48Z"
+  video_provider: "youtube"
+  video_id: "Wm4tIEuIyWA"
+  description: |-
+    There are plenty of posts on Hacker News extolling the virtues of CD and how to implement it in your favorite tech stack. But what if you’re not starting from scratch? What if you’ve already got a large Ruby on Rails/Node.js/Java code base that the company depends on? What if the way your team worked for the better part of a decade requires a paradigm shift? We all know how open engineers are to change… The best way to grow is to learn from your mistakes, but it’s even better if you can learn from someone else’s blunders. So come with me on a cathartic journey through my team’s CD misadventures. From deployment rollback horror stories to Black Friday engineering nightmares, I’ll detail the good, the bad, and the ugly on our continuous delivery quest.
+  speakers:
+    - Dan DeMeyere
+
+- id: "david-halasz-rubyc-2019"
+  title: "How to hijack, proxy and smuggle sockets with Rack/Ruby"
+  raw_title: "RubyC 2019. Dávid Halász: \"How to hijack, proxy and smuggle sockets with Rack/Ruby\""
+  date: "2019-09-14"
+  published_at: "2019-09-17T13:19:52Z"
+  video_provider: "youtube"
+  video_id: "RlQam2SmHN0"
+  description: |-
+    Rack is a super simple, yet a very versatile tool to implement web servers in Ruby. It beats under the hood of Rails, but it can do much more. The socket hijacking has been implemented into Rack to support WebSockets by bypassing the middleware and so not blocking the worker threads. Together with the HTTP Upgrade requests, this can be used to send regular TCP traffic through an open HTTP connection. This talk is about leveraging socket hijacking to smuggle an SSH connection through an HTTP session using Rack. All this by using Ruby, a language that’s not ideal for doing concurrency and IO.
+  speakers:
+    - Dávid Halász
+
+- id: "benoit-daloze-rubyc-2019"
+  title: "Parallel and Thread-Safe Ruby at High-Speed with TruffleRuby"
+  raw_title: "RubyC 2019. Benoit Daloze: \"Parallel and Thread-Safe Ruby at High-Speed with TruffleRuby\""
+  date: "2019-09-14"
+  published_at: "2019-09-20T10:58:43Z"
+  video_provider: "youtube"
+  video_id: "EEzY91Fc-ng"
+  description: |-
+    Array and Hash are used in every Ruby program, but current implementations either prevent to use them in parallel (MRI) or lack thread-safety guarantees (JRuby raises on concurrent Array#). We show how to make Array and Hash thread-safe while allowing Ruby collections to scale up to tens of cores!
+  speakers:
+    - Benoit Daloze
+
+- id: "ivan-shamatov-rubyc-2019"
+  title: "It's all about money, money, money"
+  raw_title: "RubyC 2019. Ivan Shamatov: \"It's all about money, money, money\""
+  date: "2019-09-14"
+  published_at: "2019-09-20T10:58:24Z"
+  video_provider: "youtube"
+  video_id: "x4nMt0MfBGk"
+  description: |-
+    Simple scenarios of how to deal with money at your project. Tasks you faced if you've ever tried to implement any kind of billing/payment gateway/exchange/wallet/accounting app.
+  speakers:
+    - Ivan Shamatov
+
+- id: "aleksander-dabrowski-rubyc-2019"
+  title: "10 performance sins of Rails applications"
+  raw_title: "RubyC 2019. Aleksander Dąbrowski: \"10 performance sins of Rails applications\""
+  date: "2019-09-14"
+  published_at: "2019-09-20T10:58:21Z"
+  video_provider: "youtube"
+  video_id: "_MUez2wuhh0"
+  description: |-
+    It’s easy to write Rails app. It’s also easy to write slow Rails app. In this talk you will learn abthe out most popular performance smells, and how to fix them. It will include database, caching, views and serialisation anti-patterns.
+  speakers:
+    - Aleksander Dąbrowski
+
+- id: "yevhen-kuzminov-rubyc-2019"
+  title: "A year with Hanami in production: the Good, the Bad and some Recipes"
+  raw_title: "RubyC 2019.  Yevhen Kuzminov: \"A year with Hanami in production: the Good, the Bad and some Recipes\""
+  date: "2019-09-14"
+  published_at: "2019-09-20T10:58:16Z"
+  video_provider: "youtube"
+  video_id: "jDMUBRPI5zc"
+  description: |-
+    A story of one commercial project grown with Hanami:
+
+    • Brief comparison major differences between Hanami and Ruby on Rails web apps;
+
+    • Solving "well known" issues using Hanami and facing "now known yet";
+
+    • Recipes for what we used to with Rails: "doсkerization", Trailblazer, background jobs, caching, WebSockets, etc.; 
+
+    • Vision of the ideal Hanami app, comparison with Elixir/Phoenix;
+
+    • Hanami as a modular puzzle - an example of building somewhat exotic.
+  speakers:
+    - Yevhen Kuzminov
+
+- id: "walerian-sobczak-rubyc-2019"
+  title: "Distributed stream processing in Ruby"
+  raw_title: "RubyC 2019. Walerian Sobczak: \"Distributed stream processing in Ruby\""
+  date: "2019-09-14"
+  published_at: "2019-09-20T10:58:10Z"
+  video_provider: "youtube"
+  video_id: "iNJza23EbMw"
+  description: |-
+    How to handle and process hundreds of thousands of requests per minute? How does introducing a distributed real-time computation platform can help build a reliable product? Let’s figure it out by discovering Apache Storm topologies and their functionalities powered by Ruby. Continuous data streams are becoming omnipresent and the software we build is required to process those huge volumes of data. This is where Apache Storm comes in with its benchmarked million tuples processed per second. Let’s see how the Storm topologies work, how to build them using Ruby and how they can help us build powerful and predictable data transformation pipelines.
+  speakers:
+    - Walerian Sobczak
+
+- id: "yulia-oletskaya-rubyc-2019"
+  title: "RPC frameworks overview"
+  raw_title: "RubyC 2019. Yulia Oletskaya: \"RPC frameworks overview\""
+  date: "2019-09-14"
+  published_at: "2019-09-21T21:39:24Z"
+  video_provider: "youtube"
+  video_id: "6PjgBY-yClo"
+  description: |-
+    Lately, a lot of web developers tend to find out that REST isn't always the ultimate solution for services communication problems. Some people thrift to search for new architectural styles (e.g. GraphQL) and others give a new breath to long-forgotten of RPCs. This talk is a brief overview of existing RPC frameworks (e.g. gRPC, Apache Thrift, Twirp) including Ruby specific pitfalls.
+  speakers:
+    - Yulia Oletskaya

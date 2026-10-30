@@ -157,7 +157,7 @@ class Search::Backend::Typesense
         {
           id: "online",
           type: "online",
-          name: "Online",
+          name: "online",
           slug: "online",
           emoji_flag: "🌐",
           event_count: event_count

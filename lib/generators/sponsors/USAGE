@@ -1,12 +1,21 @@
 Description:
-    Generate a sponsors.yml file for an event series and event.
-    Provide sponsor names and tiers as arguments in the format "Name:Tier".
-    The first tier listed will be considered the highest tier.
+   Generate a sponsors.yml file for a given event.
+   If the file already exists, adds the sponsor in the correct tier.
+   If the sponsor already exists in the file, updates the existing sponsor record.
+   Tiers can only be added on the first pass.
 
-Example:
-    bin/rails generate sponsors typesense:Platinum AppSignal:Gold JetRockets:Gold
-      "Planet Argon:Silver" --event-series tropicalrb --event tropical-on-rails-2026
+Example: Create a new sponsors.yml file for an event with the first sponsor added.
+    bin/rails generate sponsors --event rails-world-2026 --tiers "Platinum,Gold,Silver,Sponsors,Members" \
+      --name "App Signal" --website "https://www.appsignal.com" \
+      --logo_url "https://rubyonrails.org/assets/images/logo-appsignal.svg" \
+      --tier "Platinum"
 
     This will create:
-        /data/tropicalrb/tropical-on-rails-2026/sponsors.yml
-    with the sponsors organized into tiers accordingly.
+        /data/rails-world/rails-world-2026/sponsors.yml
+
+Example: Add a new sponsor to an existing sponsors.yml file
+  bin/rails g sponsors --event rubyconf-austria-2026 --name "Teamtailor" --website "https://teamtailor.com/" \
+    --tier "Gold Online" --logo_url "https://rubyconf.at/assets/images/sponsors/teamtailor.png"
+
+Example: Update a sponsor's tier
+  bin/rails g sponsors --event tropical-on-rails-2026 --name "Sponsor Name" --tier "Platinum"

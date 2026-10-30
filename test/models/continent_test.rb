@@ -40,6 +40,8 @@ class ContinentTest < ActiveSupport::TestCase
     assert_includes slugs, "europe"
     assert_includes slugs, "north-america"
     assert_includes slugs, "asia"
+    assert_includes slugs, "oceania"
+    assert_not_includes slugs, "australia"
   end
 
   test "name returns continent name" do
@@ -126,6 +128,30 @@ class ContinentTest < ActiveSupport::TestCase
     location = continent.to_location
 
     assert_equal "North America", location.to_text
+  end
+
+  test "oceania is findable by slug and ISO Australia alias" do
+    continent = Continent.find("oceania")
+
+    assert_equal "Oceania", continent.name
+    assert_equal "oceania", continent.slug
+    assert_equal Continent.find_by_name("Oceania"), continent
+    assert_equal Continent.find_by_name("Australia"), continent
+  end
+
+  test "oceania includes Australia and New Zealand countries" do
+    continent = Continent.oceania
+    codes = continent.country_codes
+
+    assert_includes codes, "AU"
+    assert_includes codes, "NZ"
+  end
+
+  test "country continent_name returns Oceania for Australia" do
+    country = Country.find_by(country_code: "AU")
+
+    assert_equal "Oceania", country.continent_name
+    assert_equal Continent.oceania, country.continent
   end
 
   test "to_location for all continents returns name" do

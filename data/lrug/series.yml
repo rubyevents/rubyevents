@@ -1,13 +1,30 @@
 ---
+id: "lrug"
+old_event_ids:
+  - "lrug-meetup"
 name: "London Ruby User Group"
+meetup_name: "LRUG"
+location: "London, UK"
+timezone: "Europe/London"
 website: "https://lrug.org"
 kind: "meetup"
-frequency: "monthly"
 language: "English"
 twitter: "lrug"
 default_country_code: "UK"
 github: "https://github.com/lrug"
 mastodon: "https://ruby.social/@lrug"
+linkedin: "https://www.linkedin.com/groups/117315/"
+description: "LRUG is a London-based community for anyone who is interested in the Ruby programming language, especially beginners."
+banner_background: "#FFF7B9"
+featured_background: "#FFF7B9"
+featured_color: "#c61300"
+coordinates:
+  latitude: 51.5072178
+  longitude: -0.1275862
 aliases:
   - LRUG
   - El Rug
+feeds:
+  - type: "ical"
+    url: "https://lrug.org/meetings.ics"
+    name: "iCal"

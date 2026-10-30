@@ -5,7 +5,7 @@ API_ENDPOINT = "https://www.rubyevents.org/talks.json"
 namespace :dump do
   desc "dump talks slugs to a local yml file"
   task talks_slugs: :environment do
-    data = YAML.load_file(TALKS_SLUGS_FILE)
+    data = Yerba.parse_file(TALKS_SLUGS_FILE).to_h
     dump_updated_at = data&.dig("updated_at")
 
     talks_slugs = data&.dig("talks_slugs") || {}
@@ -27,10 +27,16 @@ namespace :dump do
       total_pages = parsed_response.dig("pagination", "total_pages")
       break if parsed_response.dig("pagination", "next_page").nil? || current_page > total_pages
     end
-    data = {"updated_at" => Time.current.to_date.to_s, "talks_slugs" => talks_slugs}.to_yaml
-    File.write("data/talks_slugs.yml", data)
 
-    data = YAML.load_file(TALKS_SLUGS_FILE)
+    document = Yerba::Document.from({
+      "updated_at" => Time.current.to_date.to_s,
+      "talks_slugs" => talks_slugs
+    })
+
+    document.save_to!(TALKS_SLUGS_FILE)
+
+    data = Yerba.parse_file(TALKS_SLUGS_FILE).to_h
+
     puts "Total talks slugs: #{data.dig("talks_slugs").size}"
   end
 end

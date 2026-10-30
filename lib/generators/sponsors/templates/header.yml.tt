@@ -1,0 +1,11 @@
+# docs/ADDING_SPONSORS.md
+# Do not remove todo until event is over and all sponsors are added.
+# TODO: Add missing sponsors.
+---
+- tiers:
+<%- @tiers.each_with_index do |tier, index| -%>
+  - name: "<%= tier %>"
+    level: <%= index %>
+    sponsors: []
+
+<%- end -%>

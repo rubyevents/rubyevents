@@ -1,0 +1,23 @@
+---
+- id: "javier-honduvilla-coto-lrug-2022-08-08"
+  old_id: "javier-honduvilla-coto-lrug-august-2022"
+  title: "Low overhead Ruby profiling and tracing with rbperf"
+  date: "2022-08-08"
+  announced_at: "2022-08-02T13:00:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2022/august/javier-honduvilla-coto-low-overhead-ruby-profiling-and-tracing-with-rbperf-lrug-aug-2022.mp4"
+  description: |-
+    Understanding our applications' performance can be tricky. Some of the readily available
+    performance tools introduce a big overhead which makes them not suitable for use in
+    production environments, where in many cases, it's the best place to troubleshoot performance
+    issues.
+
+    [rbperf](https://github.com/javierhonduco/rbperf/) is a low-overhead on-CPU profiler and
+    tracer that is suitable for usage in production environments. It doesn't require the
+    application under investigation to be restarted or disturbed in any way.
+
+    We will discuss some of the tradeoffs in its design, its architecture, the features that make
+    it unique, as well as its limitations compared to other tools. We will also take a look at
+    how the Ruby stack is laid out in memory and the role BPF plays in rbperf.
+  speakers:
+    - Javier Honduvilla Coto

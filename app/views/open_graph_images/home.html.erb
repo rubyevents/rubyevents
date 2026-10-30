@@ -1,0 +1,14 @@
+<div class="stage">
+  <% logos.each do |logo| %>
+    <%= image_tag logo[:src],
+          class: "logo",
+          alt: logo[:alt],
+          style: "left: #{logo[:cx]}px; top: #{logo[:cy]}px; width: #{logo[:size]}px; height: #{logo[:size]}px; transform: translate(-50%, -50%) rotate(#{logo[:rotation]}deg); opacity: #{logo[:opacity]};" %>
+  <% end %>
+
+  <div class="center">
+    <h1>Ruby<span class="accent">Events</span></h1>
+    <p class="sub">On a mission to index all Ruby events</p>
+    <div class="url">rubyevents.org</div>
+  </div>
+</div>

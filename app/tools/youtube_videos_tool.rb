@@ -2,7 +2,7 @@
 
 class YouTubeVideosTool < RubyLLM::Tool
   description "Fetch YouTube video metadata for multiple videos by their IDs (up to 50 at a time)"
-  param :ids, desc: "Comma-separated YouTube video IDs (e.g., 'abc123,def456,ghi789')"
+  parameter :ids, description: "Comma-separated YouTube video IDs (e.g., 'abc123,def456,ghi789')"
 
   def execute(ids:)
     video_ids = ids.split(",").map(&:strip).reject(&:empty?).first(50)

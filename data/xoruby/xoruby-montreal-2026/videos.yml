@@ -1,0 +1,117 @@
+# TODO: Add recordings - docs/ADDING_VIDEOS.md
+---
+- id: "david-cornu-xoruby-montreal-2026"
+  title: "Ideas Worth Stealing: What Rubyists Can Learn From Other Ecosystems"
+  date: "2026-10-17"
+  start_time: "10:00"
+  end_time: "10:30"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "david-cornu-xoruby-montreal-2026"
+  description: |-
+    Ruby has never been shy about borrowing from its predecessors and peers, like Smalltalk's blocks, Perl's regular expressions, and CLU's `yield`. Combined with the community's sense of what idiomatic Ruby is, those ideas deeply impacted the way I approach code.
+
+    The programming world hasn't stood still though, and my exposure to yet more good ideas in other ecosystems has pushed me to try and bring them back into the Ruby I write. This talk will cover some of these, from straightforward newtypes to the more controversial runtime assertions.
+  speakers:
+    - David Cornu
+
+- id: "kasper-timm-hansen-xoruby-montreal-2026"
+  title: "Building gem.coop"
+  date: "2026-10-17"
+  start_time: "10:45"
+  end_time: "11:15"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "kasper-timm-hansen-xoruby-montreal-2026"
+  description: |-
+    Let's dive deep into the code of gem.coop and its underlying Rails app 🏔️ Peak. gem.coop is a brand new Ruby gem server that's fully Bundler compatible but working on next-generation features like namespaces, cooldowns, staged publishing, preview builds of gems and more. We'll look at what it took to build peak, including the domain modeling, what Bundler needs for compatibility, fun new tooling we built, and other discoveries we made along the way.
+  speakers:
+    - Kasper Timm Hansen
+
+- id: "marc-andre-cournoyer-xoruby-montreal-2026"
+  title: "You Can Build More Than Software Now"
+  date: "2026-10-17"
+  start_time: "11:15"
+  end_time: "11:45"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "marc-andre-cournoyer-xoruby-montreal-2026"
+  description: |-
+    After 30 years of programming, I reached a strange point: I could keep building software without writing the code myself. That left me with a new question: now what? This is the story of how that question took me from running agents on a spare Raspberry Pi to building a physical electronic instrument from scratch.
+  speakers:
+    - Marc-André Cournoyer
+
+- id: "jess-sullivan-xoruby-montreal-2026"
+  title: "Guitars, Squirrels, and Other Things That Aren't Birds"
+  date: "2026-10-17"
+  start_time: "13:15"
+  end_time: "13:45"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "jess-sullivan-xoruby-montreal-2026"
+  description: |-
+    Exploratory depth and iterative breadth have never been more achievable. Merlin Sound ID, the project you've probably heard about for detecting bird song, was possible because of this iterative approach. We'll swiftly cover some fun groundwork for the MLOps development of the project: speedrunning FFTs and ML concepts as rapid-fire discussable demos, extracting and folding in expert inputs, evolving our data tools right into the tip of the deep end (where those annotations went, and how the model was trained).
+  speakers:
+    - Jess Sullivan
+
+- id: "daniela-velasquez-xoruby-montreal-2026"
+  title: "Agents on Rails: Building AI Pipelines in Plain Ruby"
+  date: "2026-10-17"
+  start_time: "13:45"
+  end_time: "14:15"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "daniela-velasquez-xoruby-montreal-2026"
+  description: |-
+    Every application with users sits on a mountain of data. Buried within it are opportunities worth acting on, but finding them at the right time takes effort most people can't spare. In this talk, I'll walk you through how at Shopify we designed a multi-stage pipeline in plain Rails — no Python, no ML platform. The pipeline runs as a sequence of ApplicationJob batches, where some jobs call agents to research, and others call independent critic agents to validate what the researcher found. The pipeline also learns: when a suggestion is disliked, an ActiveRecord callback triggers a job that captures insights and feeds them back into the researcher.
+  speakers:
+    - Daniela Velasquez
+
+- id: "miles-georgi-xoruby-montreal-2026"
+  title: "Love Your Verbs!"
+  date: "2026-10-17"
+  start_time: "14:45"
+  end_time: "15:15"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "miles-georgi-xoruby-montreal-2026"
+  description: |-
+    Ever notice the verbs a stakeholder uses when discussing the systems they desire? Verbs galore! They might say "make reservation," a verb in the imperative, or "reservation made," a verb's past participle.
+
+    Yet, we often deliver systems that marginalize or even lack these information-juicy verbs. We send a "reservation" and expect the other end to safely reconstitute the meaning despite the lossy compression of our engineering mental models.
+
+    But what if we champion verbs instead of discarding them? And what if we were to do so using the world's best programming language for expressing our intent clearly? 🤔
+  speakers:
+    - Miles Georgi
+
+- id: "bart-de-water-xoruby-montreal-2026"
+  title: "How to Quit Your Job (And Come Back Later)"
+  date: "2026-10-17"
+  start_time: "15:15"
+  end_time: "15:45"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "bart-de-water-xoruby-montreal-2026"
+  description: |-
+    Your background job ran for six hours, processed 2 million records, then died 94% of the way through a deploy. Sound familiar?
+
+    Retries with exponential backoff don't help when your job was aborted, not failed. The Ruby ecosystem has evolved multiple answers to this problem: Shopify's job-iteration and Rails 8.1's Active Job continuations. Outside of pure-Ruby solutions, Temporal brings a workflow-based approach.
+
+    This talk surveys the landscape of resilient background job options in Ruby. We'll dig into the history, compare the tradeoffs between iteration-based, step-based, and workflow-based approaches, and explore when you need to graduate from "resilient jobs" to "orchestrated workflows." You'll leave with a framework for choosing the right tool for your workload.
+  speakers:
+    - Bart de Water
+
+- id: "garrett-dimon-xoruby-montreal-2026"
+  title: "Nobody Hires a Founder"
+  date: "2026-10-17"
+  start_time: "16:15"
+  end_time: "16:45"
+  language: "English"
+  video_provider: "scheduled"
+  video_id: "garrett-dimon-xoruby-montreal-2026"
+  description: |-
+    "Nobody hires a founder." A mentor told me that at one point in my career, and he was right. I'd spent years following my curiosity — front-end, information architecture, Rails, marketing, writing — and ended up a solid generalist at a lot of things but the obvious hire for none of them.
+
+    If that sounds like you, you've probably got an idea you keep not starting. Let's talk about why that hesitation feels so reasonable, why starting is a lot smaller and cheaper than it used to be, and the unglamorous, low-risk, no-leap tactics that can make the process less scary and more predictable.
+  speakers:
+    - Garrett Dimon

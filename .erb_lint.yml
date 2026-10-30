@@ -11,6 +11,13 @@ exclude:
 linters:
   ErbSafety:
     enabled: true
+
+  ExtraNewline:
+    enabled: false
+
+  SpaceInHtmlTag:
+    enabled: false
+
   PartialInstanceVariable:
     enabled: true
     exclude:
@@ -30,6 +37,12 @@ linters:
       require: standard
       inherit_gem:
         standard: config/base.yml
+      Layout/ArgumentAlignment:
+        Enabled: false
+      Layout/HashAlignment:
+        Enabled: false
+      Layout/FirstArgumentIndentation:
+        Enabled: false
       Layout/InitialIndentation:
         Enabled: false
       Layout/TrailingEmptyLines:

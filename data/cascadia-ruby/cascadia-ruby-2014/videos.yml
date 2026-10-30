@@ -1,6 +1,294 @@
-# TODO: Add talks and videos
-
 # Website: http://cascadiaruby.com/
-# Videos: http://confreaks.com/events/cascadiaruby2014
+# Videos: https://www.youtube.com/playlist?list=PLE7tQUdRKcyaL7R9d_WR760gIcu_qxYLD
 ---
-[]
+- id: "lightning-talk-cascadia-ruby-2014"
+  title: "Lightning Talks"
+  raw_title: "Cascadia Ruby 2014- Lightning Talks"
+  kind: "lightning_talk"
+  date: "2014-08-11"
+  published_at: "2014-08-21T23:02:38Z"
+  video_provider: "youtube"
+  video_id: "Inu7fkdkneQ"
+  description: ""
+  talks: []
+
+- id: "davy-stevenson-cascadia-ruby-2014"
+  title: "The Science of Success"
+  raw_title: "Cascadia Ruby 2014- The Science of Success"
+  date: "2014-08-11"
+  published_at: "2014-08-18T20:12:57Z"
+  video_provider: "youtube"
+  video_id: "A3vR9GIC_MA"
+  description: |-
+    Software is approached mainly from the angle of engineering. Let's step back and take a look at software as science. How can we increase the quality of our code, tune our minds to efficiently solve problems, and correctly reapply known solutions to new problems? Learn a few new tricks about how to easily benchmark your code and how to analyze code complexity.
+
+    Framed by the story of my own path from would-be Physicist to happy Software Engineer, let's look at using the scientific method as a guide for software development.
+  speakers:
+    - Davy Stevenson
+
+- id: "aaron-patterson-cascadia-ruby-2014"
+  title: "Speed up Rails, Speed up Your Code"
+  raw_title: "Cascadia Ruby 2014- Speed up Rails, Speed up Your Code"
+  date: "2014-08-11"
+  published_at: "2014-08-18T14:49:04Z"
+  video_provider: "youtube"
+  video_id: "NKs1PjkheQY"
+  description: |-
+    Let's talk about speed! In this talk, we'll examine ways that we've been speeding up Rails for the next release. We'll look at techniques used for speeding up database interaction as well as view processing. Techniques for finding bottlenecks and eliminating them will be presented, and we'll talk about how these techniques work with regard to Rails applications themselves. The presenter will also be discussing ways to speak in first person.
+  speakers:
+    - Aaron Patterson
+
+- id: "t-j-schuck-cascadia-ruby-2014"
+  title: "80,000 Plaintext Passwords: An Open Source Love Story in Three Acts"
+  raw_title: "Cascadia Ruby 2014- 80,000 Plaintext Passwords: An Open Source Love Story in Three Acts"
+  date: "2014-08-11"
+  published_at: "2014-08-20T17:21:08Z"
+  video_provider: "youtube"
+  video_id: "xxr24ficpPU"
+  description: |-
+    fluffmuffin, peppercorn, gilligan — those are just a few of our users' plaintext passwords.
+
+    I have 80,000 more, and it only took me 87 seconds to gather them from our customer database in a white-hat attack.
+
+    In Act I, we'll cover the history of secure password storage, examine the hack, and mitigate the threat. Act II will address the difficulties of working on libraries with complicated external dependencies (like bcrypt-ruby, of which I'm now a maintainer). In Act III, we'll celebrate the power of global collaboration via OSS.
+
+    [Scene.]
+  speakers:
+    - T.J. Schuck
+
+- id: "liz-rush-hsing-hui-hsu-cascadia-ruby-2014"
+  title: "\"Good luck with that\": Tag Teaming Civic Data"
+  raw_title: "Cascadia Ruby 2014- \"Good luck with that\": Tag Teaming Civic Data"
+  date: "2014-08-11"
+  published_at: "2014-08-20T20:44:41Z"
+  video_provider: "youtube"
+  video_id: "S1jgYWiCItU"
+  description: |-
+    In this end-to-end discussion about the challenges with civic data, from no-documentation & incomplete government code to figuring out how to scale data-driven SOA, we'll show you how two Ruby newbies managed to create an awesomely useful parking app in just four weeks. For those new to coding, or experienced devs looking to work with civic data, we'll show you our roadmap as well as what we learned pairing as two junior developers just starting out in the big bad world of programming.
+  speakers:
+    - Liz Rush
+    - Hsing-Hui Hsu
+
+- id: "bradley-grzesiak-cascadia-ruby-2014"
+  title: "SPAAAAAAAAACE"
+  raw_title: "Cascadia Ruby 2014- SPAAAAAAAAACE"
+  date: "2014-08-11"
+  published_at: "2014-08-21T21:43:33Z"
+  video_provider: "youtube"
+  video_id: "S--w1AP6WSs"
+  description: |-
+    Let's learn us a space exploration! In this talk, Brad will wax poetic on the particulars of getting into space, getting around in space, and getting things done in space. Extraterrestrial mining, orbital insertion, and how rockets work by smashing molecules together. There may or may not be any math, programming, or vacuum-induced hypoxia in this talk.
+  speakers:
+    - Bradley Grzesiak
+
+- id: "john-feminella-cascadia-ruby-2014"
+  title: "Why We Can't Have Nice Things: Unicode, Dates, and Names"
+  raw_title: "Cascadia Ruby 2014- Why We Can't Have Nice Things: Unicode, Dates, and Names"
+  date: "2014-08-11"
+  published_at: "2014-08-18T20:54:14Z"
+  video_provider: "youtube"
+  video_id: "8pzJq-jtd7g"
+  description: |-
+    The real world is a messy place, and software reflects this to some extent. This messiness, however, doesn't mesh well with the general tendencies of software developers, who like to try to simplify the world with assumptions. When those assumptions later turn out to be wrong, bad things happen.
+
+    In this talk, we'll discuss three perennial sources of bad developer assumptions:
+
+    - Unicode; 
+    - dates and times; and 
+    - the names of people, places, and things.
+
+    We'll illustrate why each of several commonly-made assumptions is incorrect, show how to use Ruby to arrive at the correct answer, and empower you to make better decisions about your own code in the process.
+  speakers:
+    - John Feminella
+
+- id: "miles-forrest-cascadia-ruby-2014"
+  title: "Cloning the Seattle Ruby Brigade"
+  raw_title: "Cascadia Ruby 2014- Cloning the Seattle Ruby Brigade"
+  date: "2014-08-11"
+  published_at: "2014-08-19T17:32:41Z"
+  video_provider: "youtube"
+  video_id: "MJsoYPJOMOU"
+  description: |-
+    Do you love Ruby? Do you like geeking out with other Ruby coders? Do you have a project you would love to build but might need some help making it happen?
+
+    The Seattle Ruby Brigade is arguably the most successful Ruby User Group in the world. They were not only the first Ruby group in the world, but have also shipped and support hundreds of open source projects, and they still meeting every single week for over 12 years. How do they do it? Why do so many User Groups languish and die while Seattle.rb thrives?
+
+    Miles Forrest tried to start a Ruby user group three times, but each attempt failed miserably. Here's the full story of how he cloned the Seattle Ruby Brigade back in 2009 and built his own club out in a rural area, which is also still going strong after 5 years.
+  speakers:
+    - Miles Forrest
+
+- id: "sam-livingston-gray-cascadia-ruby-2014"
+  title: "Cognitive Shortcuts: Models, Visualizations, Metaphors, and Other Lies"
+  raw_title: "Cascadia Ruby 2014- Cognitive Shortcuts: Models, Visualizations, Metaphors, and Other Lies"
+  date: "2014-08-11"
+  published_at: "2014-08-18T20:44:07Z"
+  video_provider: "youtube"
+  video_id: "35wXNdmcvIs"
+  description: |-
+    Experienced developers tend to build up a library of creative problem-solving tools: rubber ducks, code smells, anthropomorphizing code, et cetera.
+
+    These tools map abstract problems into forms our brains are good at solving. But our brains are also good at lying to us.
+
+    We'll talk about some of these tools, when to use them (or not), and how their biases can lead us astray.
+
+    “A change in perspective is worth 80 IQ points.” -Alan Kay
+  speakers:
+    - Sam Livingston-Gray
+
+- id: "terence-lee-kenichi-nakamura-cascadia-ruby-2014"
+  title: "Creating a Chat App in 15 Minutes with Angelo"
+  raw_title: "Cascadia Ruby 2014- Creating a Chat App in 15 Minutes with Angelo"
+  date: "2014-08-11"
+  published_at: "2014-08-20T20:42:21Z"
+  video_provider: "youtube"
+  video_id: "7cKqLzm0cF4"
+  description: |-
+    Blogs were so 2000s. Everyone is talking about real time these days. 
+    It should be easy to build a communication platform and become 
+    gazillionaires!
+
+    So let’s jump in and start slinging some Node! Whoops! I’m pretty sure 
+    we can use Ruby everywhere*. I mean, if we can use Ruby to fly some 
+    drones then how hard can two-way communication be?
+
+    We are cutting down the amount of code and repetition needed to add 
+    real time components to your killer chat app.
+
+    “Look at all the code I’m *not* writing!”
+
+    * Whoops, still need some Javascript.
+  speakers:
+    - Terence Lee
+    - Kenichi Nakamura
+
+- id: "lauren-voswinkel-cascadia-ruby-2014"
+  title: "Nitty Gritty Service Building"
+  raw_title: "Cascadia Ruby 2014- Nitty Gritty Service Building"
+  date: "2014-08-11"
+  published_at: "2014-08-21T20:28:20Z"
+  video_provider: "youtube"
+  video_id: "Qve0LXKqJl8"
+  description: |-
+    You've learned about Service Oriented Architecture. You want to use it. You know the benefits to testing speeds, to team velocity, and page load (why do in sequence what can be done in parallel?). 
+    Problem is, you're tearing your hair out trying to figure out how to actually pull those services out of your monorail. 
+    This talk isn't about the overview. This isn't about the metrics to determine what should be pulled out into a service. 
+    This talk isn't even about optimizing the service you pull out. This talk is a step-by-step approach about how to successfully pull that service, embedded in your app, out so it can be the best little service it can be, and you can get back to that velocity that your managers keep saying "we used to be able to do".
+  speakers:
+    - Lauren Voswinkel
+
+- id: "dan-hon-cascadia-ruby-2014"
+  title: "Designing for Empathy"
+  raw_title: "Cascadia Ruby 2014- Designing for Empathy"
+  date: "2014-08-11"
+  published_at: "2014-08-18T20:47:15Z"
+  video_provider: "youtube"
+  video_id: "1CbLZ50gI2g"
+  description: |-
+    Moore’s law has meant that computing and communications power has been getting cheaper, smaller and faster. Soon, everything really will have an IP address. And yet.
+
+    Designing an internet of things that’s for humans means understanding when we might be creating an empathy gap. That gap doesn’t just apply to Silicon Valley releasing new technology into the world. This gap is experienced everywhere from when an airline’s customer service can frequently feel indifferent to the needs of those on a long journey; to government, when legislative policy reaches implementation.
+
+    This session is the story of how, in a more connected world, we should remember to design those things, products and services to understand us
+  speakers:
+    - Dan Hon
+
+- id: "john-hyland-cascadia-ruby-2014"
+  title: "Be Awesome By Being Boring"
+  raw_title: "Cascadia Ruby 2014- Be Awesome By Being Boring"
+  date: "2014-08-11"
+  published_at: "2014-08-20T18:24:06Z"
+  video_provider: "youtube"
+  video_id: "Iheymi5QFEY"
+  description: |-
+    Boring technology is awesome. The more boring, the better. It's less shiny, but you get to spend all your time writing code and building new things that actually work, and that's the most exciting part anyway!
+
+    Come to this talk and you'll walk away armed with simple, proven tools that can save you countless hours of wrestling with problems that have been solved for decades. We'll cover specific examples of existing network protocols and unix utilities that can serve the same purposes as trendy new approaches, letting you get on with the business of writing the code you actually want to write instead of spinning your wheels trying to integrate a bunch of bleeding edge technologies. On the other hand, sometimes you really do need something new, so we'll discuss the limitations of the simple solutions, and explore some criteria to evaluate whether the benefits of throwing in the new hotness outweigh the risks, as well as strategies to mitigate those risks when it does turn out to be warranted.
+
+    Embrace boring. Build simpler, more reliable code, and experience the joy of shipping a working product in less time than it takes to get your Mongular DirectiveBase talking to the ClojThrift.js componoids (much less writing any actual code).
+  speakers:
+    - John Hyland
+
+- id: "jeremy-flores-cascadia-ruby-2014"
+  title: "How Not to Be Lonely: An Extrovert's Guide to Working Alone"
+  raw_title: "Cascadia Ruby 2014- How Not to Be Lonely: An Extrovert's Guide to Working Alone"
+  date: "2014-08-11"
+  published_at: "2014-08-21T18:58:48Z"
+  video_provider: "youtube"
+  video_id: "OEXEMsQWOXA"
+  description: |-
+    Working remotely—full or part time, across town or across timezones—takes a special set of skills that develop with practice. Remote work further blurs the lines of work/life balance in an already grey industry. With the right tools, you can sustainably keep your balance and stay focused and energized without burning out. I've done it multiple times with multiple groups and experienced a multitude of results. I've tallied my experiences into a set of guidelines to help you, the new remote worker, do things like:
+
+    ✦ build team engagement—without being gabby—by recognizing and focusing on relevant conversations.
+
+    ✦ grow a voice to which others respond by knowing yourself and what sets you apart.
+
+    ✦ advocate your needs by illustrating added value to others and yourself.
+
+    ✦ integrate into an existing culture by exposing expertise and exuding affability,
+
+    ✦ and push that culture in a healthy direction by using your voice and expertise.
+  speakers:
+    - Jeremy Flores
+
+- id: "aja-hammerly-cascadia-ruby-2014"
+  title: "N design patterns you might actually use (where N is < 10)"
+  raw_title: "Cascadia Ruby 2014- N design patterns you might actually use"
+  date: "2014-08-11"
+  published_at: "2014-08-19T17:35:17Z"
+  video_provider: "youtube"
+  video_id: "Oxd_DBuX8R8"
+  description: |-
+    Imagine a chef who doesn't know what the words braise, julienne, or sauté mean. Even if he is a good chef, and uses these techniques daily, he's not going to be able to work effectively with others. He won't be able to use published recipes. He may struggle to improve his craft since he lacks the vocabulary to ask succinct questions and likely won't understand instruction from other chefs.
+
+    Professions have specialized vocabulary for common techniques because it makes communicating and sharing knowledge easier. In programming, design patterns are a large part of our specialized vocabulary. Knowing the names for these common techniques and efficient ways to implement them makes you a better programmer and teammate.
+
+    In this talk, I'll discuss design patterns commonly used in web applications. I'll give examples of each and demonstrate how to integrate them into existing projects.
+  speakers:
+    - Aja Hammerly
+
+- id: "jason-clark-cascadia-ruby-2014"
+  title: "Programming in the Small - Teaching my 5 Year Old Ruby"
+  raw_title: "Cascadia Ruby 2014- Programming in the Small - Teaching my 5 Year Old Ruby"
+  date: "2014-08-11"
+  published_at: "2014-08-20T19:53:38Z"
+  video_provider: "youtube"
+  video_id: "jAnSsNga5Nk"
+  description: |-
+    My dad's a programmer, so I grew up with PCs and--more importantly--programming tools my friends didn't have. I learned early on that text I typed could make these machines do anything I could imagine.
+
+    Now I have kids of my own, and as my daughter's learning letters and arithmetic, I'm scheming to give her similar experiences. Come along on the journey of introducing her to programming. We'll talk about the software we used, the puzzles and games we made, what worked and what didn't. Along the way we'll pick up tips on teaching programming to novices of any age.
+  speakers:
+    - Jason Clark
+
+- id: "starr-horne-cascadia-ruby-2014"
+  title: "Biggish Data With Rails and Postgresql"
+  raw_title: "Cascadia Ruby 2014- Biggish Data With Rails and Postgresql"
+  date: "2014-08-11"
+  published_at: "2014-08-19T17:31:33Z"
+  video_provider: "youtube"
+  video_id: "rVrsaL_PnYE"
+  description: |-
+    Once your database hits a few hundred million rows normal ActiveRecord conventions don't work so well.
+
+    ...you find yourself in a new world. One where calling count() can bring your app to its knees. One where migrations can take all day.
+
+    This talk will show you how to work with big datasets in Rails and Postgresql. We'll show how normal conventions break down, and offer practical real-world advice on maintaining performance, doing maintenance, and tuning rails for optimal DB performance.
+  speakers:
+    - Starr Horne
+
+# TODO: add missing talk - https://www.youtube.com/watch?v=A3vR9GIC_MA  Cascadia Ruby 2014- The Science of Success
+# TODO: add missing talk - https://www.youtube.com/watch?v=35wXNdmcvIs  Cascadia Ruby 2014- Cognitive Shortcuts: Models, Visualizations, Metaphors, and Other Lies
+# TODO: add missing talk - https://www.youtube.com/watch?v=8pzJq-jtd7g  Cascadia Ruby 2014- Why We Can't Have Nice Things: Unicode, Dates, and Names
+# TODO: add missing talk - https://www.youtube.com/watch?v=rVrsaL_PnYE  Cascadia Ruby 2014- Biggish Data With Rails and Postgresql
+# TODO: add missing talk - https://www.youtube.com/watch?v=MJsoYPJOMOU  Cascadia Ruby 2014- Cloning the Seattle Ruby Brigade
+# TODO: add missing talk - https://www.youtube.com/watch?v=Oxd_DBuX8R8  Cascadia Ruby 2014- N design patterns you might actually use
+# TODO: add missing talk - https://www.youtube.com/watch?v=NKs1PjkheQY  Cascadia Ruby 2014- Speed up Rails, Speed up Your Code
+# TODO: add missing talk - https://www.youtube.com/watch?v=xxr24ficpPU  Cascadia Ruby 2014- 80,000 Plaintext Passwords: An Open Source Love Story in Three Acts
+# TODO: add missing talk - https://www.youtube.com/watch?v=Iheymi5QFEY  Cascadia Ruby 2014- Be Awesome By Being Boring
+# TODO: add missing talk - https://www.youtube.com/watch?v=jAnSsNga5Nk  Cascadia Ruby 2014- Programming in the Small - Teaching my 5 Year Old Ruby
+# TODO: add missing talk - https://www.youtube.com/watch?v=7cKqLzm0cF4  Cascadia Ruby 2014- Creating a Chat App in 15 Minutes with Angelo
+# TODO: add missing talk - https://www.youtube.com/watch?v=S1jgYWiCItU  Cascadia Ruby 2014- "Good luck with that": Tag Teaming Civic Data
+# TODO: add missing talk - https://www.youtube.com/watch?v=OEXEMsQWOXA  Cascadia Ruby 2014- How Not to Be Lonely: An Extrovert's Guide to Working Alone
+# TODO: add missing talk - https://www.youtube.com/watch?v=Qve0LXKqJl8  Cascadia Ruby 2014- Nitty Gritty Service Building
+# TODO: add missing talk - https://www.youtube.com/watch?v=S--w1AP6WSs  Cascadia Ruby 2014- SPAAAAAAAAACE
+# TODO: add missing talk - https://www.youtube.com/watch?v=Inu7fkdkneQ  Cascadia Ruby 2014- Lightning Talks

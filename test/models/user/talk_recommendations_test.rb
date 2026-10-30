@@ -55,6 +55,24 @@ class User::TalkRecommendationsTest < ActiveSupport::TestCase
     assert_empty (watched_ids & recommended_ids), "Should not recommend already watched talks"
   end
 
+  test "does not recommend filler kinds like intro and outro" do
+    recommendable_talk = talks(:meetup_past_talk)
+    @talk3.update_column(:kind, "intro")
+
+    @user.watched_talks.create!(talk: @talk1, watched: true)
+    @user.watched_talks.create!(talk: @talk2, watched: true)
+
+    @other_user.watched_talks.create!(talk: @talk1, watched: true)
+    @other_user.watched_talks.create!(talk: @talk2, watched: true)
+    @other_user.watched_talks.create!(talk: @talk3, watched: true)
+    @other_user.watched_talks.create!(talk: recommendable_talk, watched: true)
+
+    recommended_ids = @user.talk_recommender.talks.map(&:id)
+
+    assert_includes recommended_ids, recommendable_talk.id, "Should recommend the non-filler talk"
+    assert_not_includes recommended_ids, @talk3.id, "Should not recommend the intro talk"
+  end
+
   test "respects limit parameter" do
     limit = 3
     recommendations = @user.talk_recommender.talks(limit: limit)

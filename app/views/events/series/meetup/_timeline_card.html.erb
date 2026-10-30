@@ -1,0 +1,79 @@
+<%# locals: (meetup:) %>
+
+<% talks = meetup.talks.to_a %>
+<% speakers = talks.flat_map(&:speakers).uniq.reject { |speaker| speaker.name == "TODO" } %>
+<% venue = meetup.venue.name if meetup.venue.exist? %>
+<% place = venue ? [venue, ("online" if meetup.static_metadata.hybrid?)].compact.join(" & ") : meetup.to_location.to_text %>
+<% time_range = meetup_time_range(meetup) %>
+<% links = meetup.static_metadata.own_links %>
+<% rsvp_field = links.keys.find { |field| meetup_link_call_to_action?(field, meetup) } %>
+<% recorded = talks.any?(&:published?) %>
+<% thumbnail = talks.find(&:published?)&.thumbnail_sm.presence %>
+
+<article class="relative flex gap-4 p-4 transition hover:bg-gray-50 md:gap-5 md:p-5 <%= "opacity-60" if meetup.cancelled? %>">
+  <div class="flex size-14 shrink-0 flex-col items-center self-start overflow-hidden rounded-xl border text-center">
+    <span class="w-full bg-[var(--accent)] text-[10px] font-semibold uppercase leading-4 text-white"><%= meetup.start_date.strftime("%b") %></span>
+    <span class="text-lg font-bold leading-6 text-gray-900"><%= meetup.start_date.day %></span>
+    <span class="text-[9px] uppercase leading-3 text-gray-500"><%= meetup.start_date.strftime("%a") %></span>
+  </div>
+
+  <div class="flex min-w-0 flex-1 flex-col gap-2">
+    <% if time_range || meetup.cancelled? %>
+      <p class="text-sm">
+        <% if meetup.cancelled? %>
+          <span class="font-semibold text-red-600">Cancelled</span>
+        <% else %>
+          <span class="font-medium text-[var(--accent)]"><%= time_range %></span>
+        <% end %>
+      </p>
+    <% end %>
+
+    <h3 class="text-lg font-semibold leading-snug text-gray-900">
+      <%= link_to meetup.name, event_path(meetup), class: "after:absolute after:inset-0 hover:underline", data: {turbo_frame: "_top"} %>
+    </h3>
+
+    <% if meetup.subtitle.present? %>
+      <p class="-mt-1 text-sm font-medium text-gray-700"><%= meetup.subtitle %></p>
+    <% end %>
+
+    <% if speakers.any? || talks.any? %>
+      <div class="flex items-center gap-2 text-sm text-gray-500">
+        <% if speakers.any? %>
+          <span class="flex shrink-0 -space-x-2">
+            <% speakers.first(3).each do |speaker| %>
+              <span class="rounded-full ring-2 ring-white"><%= ui_avatar(speaker, size: :xs) %></span>
+            <% end %>
+          </span>
+        <% end %>
+
+        <span class="line-clamp-1">
+          <%= pluralize(talks.size, "talk") %>
+
+          <% if speakers.any? %>
+            by <%= speakers.map(&:name).to_sentence(two_words_connector: " & ", last_word_connector: " & ") %>
+          <% end %>
+        </span>
+      </div>
+    <% end %>
+
+    <p class="flex items-center gap-2 text-sm text-gray-500">
+      <%= fa("location-dot", size: :xs, class: "shrink-0 fill-current text-gray-400") %>
+      <span class="truncate"><%= place %></span>
+
+      <% if recorded %>
+        <span class="flex shrink-0 items-center gap-1 text-green-700">· <%= fa("play", size: :xs, class: "fill-current") %> Recorded</span>
+      <% end %>
+    </p>
+
+    <% if rsvp_field %>
+      <div class="mt-1">
+        <%= link_to links[rsvp_field], target: "_blank", rel: "noopener", class: "btn btn-primary btn-sm relative z-10 gap-2 normal-case" do %>
+          <%= meetup_link_icon(rsvp_field, size: :xs, class: "shrink-0 fill-current") %> RSVP on
+          <%= meetup_link_label(rsvp_field) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= image_tag(thumbnail || image_path(meetup.card_image_path), alt: "", loading: :lazy, class: "hidden aspect-video w-28 shrink-0 self-center rounded-lg border object-cover sm:block md:w-32") %>
+</article>

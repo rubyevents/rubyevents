@@ -127,7 +127,7 @@ class TalksController < ApplicationController
         .order(date: :desc)
         .distinct
     when "events_attended"
-      attended_event_ids = Current.user.participated_events.pluck(:id)
+      attended_event_ids = Current.user.attended_events.pluck(:id)
       return Talk.none if attended_event_ids.empty?
 
       watched_talk_ids = Current.user.watched_talks.pluck(:talk_id)
@@ -203,6 +203,10 @@ class TalksController < ApplicationController
   def set_talk
     @talk = Talk.includes(:approved_topics, :speakers, event: :series, watched_talks: :user).find_by(slug: params[:slug])
     @talk ||= Talk.find_by_slug_or_alias(params[:slug])
+
+    if @talk.blank? && (event = Alias.find_by(aliasable_type: "Event", slug: params[:slug])&.aliasable)
+      return redirect_to event_path(event), status: :moved_permanently
+    end
 
     return redirect_to talks_path, status: :moved_permanently if @talk.blank?
 

@@ -3,9 +3,11 @@ class Events::InvolvementsController < ApplicationController
 
   def index
     @event = Event.includes(:event_involvements).find_by(slug: params[:event_slug])
-    set_meta_tags(@event) if @event
+    return redirect_to(root_path, status: :moved_permanently) unless @event
+
+    set_meta_tags(@event)
     involvements = @event.event_involvements.includes(:involvementable).order(:position).to_a
     @involvements_by_role = involvements.group_by(&:role)
-    @participation = Current.user&.main_participation_to(@event)
+    @participation = Current.user&.participation_for(@event)
   end
 end

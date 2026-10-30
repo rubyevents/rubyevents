@@ -5,25 +5,38 @@
 # Database name: primary
 #
 #  id                   :integer          not null, primary key
+#  city                 :string
+#  country_code         :string           indexed
 #  description          :text             default(""), not null
 #  frequency            :integer          default("unknown"), not null, indexed
 #  kind                 :integer          default("conference"), not null, indexed
 #  language             :string           default(""), not null
+#  latitude             :decimal(10, 6)
+#  location             :string           default(""), not null
+#  longitude            :decimal(10, 6)
 #  name                 :string           default(""), not null, indexed
 #  slug                 :string           default(""), not null, indexed
+#  state_code           :string
 #  twitter              :string           default(""), not null
 #  website              :string           default(""), not null
 #  youtube_channel_name :string           default("")
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  parent_id            :integer          indexed
 #  youtube_channel_id   :string           default("")
 #
 # Indexes
 #
-#  index_event_series_on_frequency  (frequency)
-#  index_event_series_on_kind       (kind)
-#  index_event_series_on_name       (name)
-#  index_event_series_on_slug       (slug)
+#  index_event_series_on_country_code  (country_code)
+#  index_event_series_on_frequency     (frequency)
+#  index_event_series_on_kind          (kind)
+#  index_event_series_on_name          (name)
+#  index_event_series_on_parent_id     (parent_id)
+#  index_event_series_on_slug          (slug)
+#
+# Foreign Keys
+#
+#  parent_id  (parent_id => event_series.id)
 #
 # rubocop:enable Layout/LineLength
 class EventSeries < ApplicationRecord
@@ -39,6 +52,11 @@ class EventSeries < ApplicationRecord
   has_many :events, dependent: :destroy, inverse_of: :series, foreign_key: :event_series_id, strict_loading: true
   has_many :talks, through: :events
   has_many :aliases, as: :aliasable, class_name: "Alias", dependent: :destroy
+  has_many :cfps, dependent: :destroy, class_name: "CFP"
+  has_many :sponsors, dependent: :destroy
+  has_many :event_involvements, dependent: :destroy
+  belongs_to :parent, class_name: "EventSeries", optional: true, inverse_of: :children
+  has_many :children, class_name: "EventSeries", foreign_key: :parent_id, inverse_of: :parent, dependent: :nullify
   has_many :event_series_subscriptions, dependent: :destroy
   has_many :subscribers, through: :event_series_subscriptions, source: :user
   has_object :static_metadata
@@ -48,7 +66,9 @@ class EventSeries < ApplicationRecord
 
   # enums
   enum :kind, {conference: 0, meetup: 1, organisation: 2, retreat: 3, hackathon: 4, event: 5, workshop: 6}
-  enum :frequency, {unknown: 0, yearly: 1, monthly: 2, biyearly: 3, quarterly: 4, irregular: 5, weekly: 6, biweekly: 7}
+  enum :frequency, {
+    unknown: 0, yearly: 1, monthly: 2, biyearly: 3, quarterly: 4, irregular: 5, weekly: 6, biweekly: 7, bimonthly: 8
+  }
 
   def self.find_by_name_or_alias(name)
     return nil if name.blank?
@@ -73,18 +93,24 @@ class EventSeries < ApplicationRecord
   def sync_aliases_from_list(alias_names)
     Array.wrap(alias_names).each do |alias_name|
       slug = alias_name.parameterize
-
-      # Check if this alias already belongs to us
       existing_own = aliases.find_by(name: alias_name) || aliases.find_by(slug: slug)
+
       if existing_own
         existing_own.update(name: alias_name) if existing_own.name != alias_name
+
         next
       end
 
-      # Check if alias exists globally for another EventSeries
       existing_global = ::Alias.find_by(aliasable_type: "EventSeries", name: alias_name) ||
         ::Alias.find_by(aliasable_type: "EventSeries", slug: slug)
-      next if existing_global # Skip if it belongs to another series
+
+      if existing_global
+        existing_global.update!(aliasable: self) if alias_moved_here?(existing_global)
+
+        next
+      end
+
+      next if ::Alias.exists?(slug: slug)
 
       aliases.create!(name: alias_name, slug: slug)
     end
@@ -99,7 +125,13 @@ class EventSeries < ApplicationRecord
   end
 
   def description
-    non_cancelled = events.reject { |e| e.static_metadata.cancelled? }
+    non_cancelled = events.reject(&:cancelled?)
+
+    if non_cancelled.empty?
+      noun = meetup? ? "meetup" : "event"
+
+      return "#{name} is a #{meetup? ? "meetup group" : kind}. We don't know of any of its #{noun.pluralize} yet.\n"
+    end
 
     event_years = non_cancelled.filter_map { |e| (e.date || e.start_date || e.end_date)&.year }
     start_year = event_years.min
@@ -113,12 +145,25 @@ class EventSeries < ApplicationRecord
       ""
     end
 
-    event_type = pluralize(non_cancelled.size, meetup? ? "event-series" : "event")
-    frequency_text = (kind == "organisation") ? "" : " is a #{frequency} #{kind} and "
+    event_type = pluralize(non_cancelled.size, meetup? ? "meetup" : "event")
+    tense = (meetup? && inactive?) ? "was" : "is"
+    frequency_text = if organisation?
+      ""
+    elsif unknown?
+      "#{tense} #{kind_with_frequency} that "
+    else
+      "#{tense} #{kind_with_frequency} and "
+    end
 
     <<~DESCRIPTION
       #{name} #{frequency_text}hosted #{event_type}#{time_range}. We have currently indexed #{pluralize(non_cancelled.sum(&:talks_count), "#{name} talk")}.
     DESCRIPTION
+  end
+
+  def kind_with_frequency(kind = self.kind)
+    noun = [(frequency if !unknown? && meetup? == (kind == "meetup")), kind].compact.join(" ")
+
+    "#{noun.match?(/\A[aeiou]/) ? "an" : "a"} #{noun}"
   end
 
   def to_meta_tags
@@ -149,13 +194,136 @@ class EventSeries < ApplicationRecord
     }
   end
 
+  def data_folder
+    static_metadata.data_folder || Rails.root.join("data", slug)
+  end
+
+  scope :meetup_groups, -> { where(kind: :meetup).or(where(id: Event.where(kind: :meetup).select(:event_series_id))) }
+  scope :searchable, -> { where(kind: :meetup).or(where(id: Event.select(:event_series_id))) }
+
+  def meetups
+    events.select { |event| event.meetup? && event.start_date.present? }.sort_by(&:start_date)
+  end
+
+  MEETUP_FREQUENCIES = [
+    [10, :weekly],
+    [21, :biweekly],
+    [45, :monthly],
+    [75, :bimonthly],
+    [120, :quarterly],
+    [240, :biyearly],
+    [Float::INFINITY, :yearly]
+  ].freeze
+
+  MEETUP_FREQUENCY_PHRASES = {
+    weekly: "weekly",
+    biweekly: "every two weeks",
+    monthly: "monthly",
+    bimonthly: "every two months",
+    quarterly: "quarterly",
+    biyearly: "twice a year",
+    yearly: "yearly",
+    irregular: "irregularly"
+  }.freeze
+
+  def computed_meetup_frequency
+    dates = meetups.reject(&:cancelled?).map(&:start_date).uniq.last(13)
+    return nil if dates.size < 4
+
+    gaps = dates.each_cons(2).map { |earlier, later| (later - earlier).to_i }
+    median = gaps.sort[gaps.size / 2]
+    mean = gaps.sum.to_f / gaps.size
+    spread = Math.sqrt(gaps.sum { |gap| (gap - mean)**2 } / gaps.size) / mean
+
+    return :irregular if spread > 1
+
+    MEETUP_FREQUENCIES.find { |limit, _frequency| median <= limit }.last
+  end
+
+  PANDEMIC_YEARS = [2020, 2021].freeze
+
+  def computed_frequency
+    return computed_meetup_frequency if meetup?
+    return nil if organisation?
+
+    editions = events.reject { |event| event.cancelled? || event.meetup? }
+    editions_per_year = editions.filter_map { |event| (event.start_date || event.date)&.year }.tally
+    years = editions_per_year.keys.sort.last(4)
+    return nil if years.size < 3
+
+    skipped_years = years.each_cons(2).flat_map { |earlier, later| ((earlier + 1)...later).to_a } - PANDEMIC_YEARS
+    return nil if skipped_years.any?
+
+    counts = years.map { |year| editions_per_year[year] }.sort
+
+    (counts[(counts.size - 1) / 2] >= 2) ? :biyearly : :yearly
+  end
+
+  def meetup_frequency
+    MEETUP_FREQUENCY_PHRASES[computed_meetup_frequency]
+  end
+
+  INACTIVE_AFTER = 18.months
+
+  def ended?
+    static_metadata.ended?
+  end
+
+  def inactive?
+    return true if ended?
+    return false unless meetup? && next_meetup.nil?
+
+    last_meetup.present? && last_meetup.start_date < INACTIVE_AFTER.ago.to_date
+  end
+
+  def meetup_frequency_sentence
+    phrase = meetup_frequency
+    return nil if phrase.nil?
+
+    inactive? ? "Used to meet #{phrase}" : "Meets #{phrase}"
+  end
+
+  def next_meetup
+    meetups.find { |event| event.start_date >= Date.today }
+  end
+
+  def last_meetup
+    meetups.rfind { |event| event.start_date < Date.today }
+  end
+
+  def to_location
+    @to_location ||= Location.from_record(self)
+  end
+
+  def ancestors
+    parent ? [*parent.ancestors, parent] : []
+  end
+
+  def card_image_path = default_image_path("card.webp")
+  def avatar_image_path = default_image_path("avatar.webp")
+  def banner_image_path = default_image_path("banner.webp")
+
+  def default_image_path(filename)
+    file = static_metadata.default_image(filename)
+
+    file ? file.relative_path_from(Rails.root.join("app/assets/images")).to_s : "events/default/#{filename}"
+  end
+
   private
 
+  # The YAML lists the alias here and no longer on the series that has it, like a conference's aliases after the
+  # conference moved out of its old series into one of its own.
+  def alias_moved_here?(alias_record)
+    owner = alias_record.aliasable
+
+    owner.is_a?(EventSeries) && owner != self && owner.static_metadata.aliases.exclude?(alias_record.name)
+  end
+
   def todos_data_path
-    Rails.root.join("data", slug)
+    data_folder
   end
 
   def todos_file_prefix
-    slug
+    data_folder.relative_path_from(Rails.root.join("data")).to_s
   end
 end

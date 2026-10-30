@@ -21,7 +21,7 @@
       show_stamps: true %>
 
 <div class="container py-8">
-  <div class="flex items-center justify-between mb-6">
+  <div class="mb-6 flex items-center justify-between">
     <h2 class="text-xl font-bold text-gray-900">Stamps from <%= location.name %></h2>
 
     <%= ui_badge(stamps.count, kind: :secondary, outline: true) %>
@@ -30,6 +30,6 @@
   <% if stamps.any? %>
     <%= render partial: "shared/stamps_grid", locals: {stamps: stamps, min_rows: 1} %>
   <% else %>
-    <p class="text-gray-500 py-8 text-center">No stamps from <%= location.name %> yet.</p>
+    <p class="py-8 text-center text-gray-500">No stamps from <%= location.name %> yet.</p>
   <% end %>
 </div>

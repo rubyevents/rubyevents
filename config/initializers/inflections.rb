@@ -10,18 +10,26 @@
 #   inflect.uncountable %w( fish sheep )
 # end
 
-# These inflection rules are supported but not enabled by default:
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym "CFP"
   inflect.acronym "FTS"
   inflect.acronym "GitHub"
   inflect.acronym "IOS"
   inflect.acronym "LLM"
+  inflect.acronym "MCP"
   inflect.acronym "RubyEvents"
   inflect.acronym "SQL"
   inflect.acronym "SQLite"
   inflect.acronym "SQLiteFTS"
+  inflect.acronym "StaticID"
   inflect.acronym "UK"
   inflect.acronym "YAML"
   inflect.acronym "YouTube"
+end
+
+Rails.autoloaders.each do |autoloader|
+  autoloader.inflector.inflect(
+    "static_id" => "StaticID",
+    "website_url" => "WebsiteURL"
+  )
 end

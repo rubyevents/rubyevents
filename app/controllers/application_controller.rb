@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include Metadata
   include Analytics
   include WatchedTalks
+  include EventSlugRedirect
 
   prepend_before_action :redirect_to_ruby_events
 

@@ -39,8 +39,8 @@ gem "turbo-rails"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[windows jruby]
+# Bundle tzinfo-data on all platforms, so TZInfo::Timezone.all_identifiers is deterministic
+gem "tzinfo-data"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -64,13 +64,10 @@ gem "iso-639"
 gem "minisky", "~> 0.4.0"
 
 # A single delightful Ruby way to work with AI.
-gem "ruby_llm", "~> 1.15.0"
+gem "ruby_llm", "~> 2.1.0"
 
 # A simple and clean Ruby DSL for creating JSON schemas.
-gem "ruby_llm-schema", github: "crmne/ruby_llm-schema", branch: "main"
-
-# JSON Schema validator
-gem "json_schemer"
+gem "schematist", "~> 1.1"
 
 # YouTube V3 API client.
 gem "yt"
@@ -79,13 +76,13 @@ gem "yt"
 gem "rss", "~> 0.3.1"
 
 # YAML Editing and Refactoring with Better Accuracy
-gem "yerba", "~> 0.7.3"
+gem "yerba", "~> 0.10.1"
 
 # Powerful and seamless HTML-aware ERB parsing and tooling.
-gem "herb", "~> 0.9"
+gem "herb", "~> 0.11.1"
 
 # An ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
-gem "reactionview", "~> 0.3"
+gem "reactionview", "~> 0.6.0"
 
 # Agnostic pagination in plain ruby.
 gem "pagy"
@@ -135,17 +132,14 @@ gem "dry-initializer-rails"
 # Type system for Ruby supporting coercions, constraints and complex types
 gem "dry-types", "~> 1.7"
 
-# Protocol Buffers are Google's data interchange format.
-gem "google-protobuf", require: false
+# YouTube transcript unofficial API client.
+gem "youtube-transcript-rb"
 
 # Extract Collaborator Objects from your Active Records, a new concept called Associated Objects
 gem "active_record-associated_object"
 
 # ActiveJob::Performs adds the `performs` macro to set up jobs by convention.
 gem "active_job-performs"
-
-# Use the OpenAI API with Ruby!
-gem "ruby-openai"
 
 # Markdown that smells nice
 gem "redcarpet", "~> 3.6"
@@ -172,9 +166,6 @@ gem "marksmith"
 # A fast, safe, extensible parser for CommonMark. This wraps the comrak Rust crate.
 gem "commonmarker", ">= 2.6.1"
 
-# ActiveRecord like interface to read only access and query static YAML files
-gem "frozen_record", "~> 0.27.2"
-
 # ActiveRecord soft-deletes done right
 gem "discard"
 
@@ -183,9 +174,6 @@ gem "omniauth"
 
 # Official OmniAuth strategy for GitHub.
 gem "omniauth-github"
-
-# An accessible autocomplete for Ruby on Rails apps using Hotwire.
-gem "hotwire_combobox", "~> 0.4.0"
 
 # Common locale data and translations for Rails i18n.
 gem "rails-i18n", "~> 8.0"
@@ -203,7 +191,10 @@ gem "geocoder", github: "alexreisner/geocoder" # Use latest geocoder with Nomina
 gem "gems"
 
 # A glamorous CLI toolkit for Ruby
-gem "gum", "~> 0.3.1"
+gem "charm", require: false
+
+# Run blocks in parallel processes
+gem "parallel"
 
 # Regex pattern searching in files
 gem "grepfruit"
@@ -226,8 +217,9 @@ gem "fastimage", "~> 2.4"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "bundler-audit", require: false
-  gem "debug", platforms: %i[mri windows]
+  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "minitest-difftastic", "~> 0.2"
+  gem "minitest-mock", "~> 5.27"
 end
 
 group :development do

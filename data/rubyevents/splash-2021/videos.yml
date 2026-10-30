@@ -1,0 +1,22 @@
+---
+- id: "maxime-chevalier-boisvert-splash-2021"
+  title: "YJIT: A Basic Block Versioning JIT Compiler for CRuby"
+  raw_title: "YJIT: A Basic Block Versioning JIT Compiler for CRuby"
+  location: "Chicago, IL"
+  date: "2021-10-19"
+  start_time: "14:50"
+  end_time: "15:10"
+  published_at: "2021-11-10T17:00:24Z"
+  track: "VMIL"
+  video_provider: "youtube"
+  video_id: "PFb5wNj2ztM"
+  description: |-
+    Ruby is a dynamically typed programming language with a large breadth of features which has grown in popularity with the rise of the modern web, and remains at the core of the implementation of many widely-used websites.
+
+    CRuby, the default implementation of the language, features a JIT compiler known as MJIT, but developers often do not enable it in production environments, because it does not always yield performance improvements on real-world software. Attempts to independently reimplement the Ruby language, such as JRuby and TruffleRuby have shown impressive performance results on benchmarks, but often lag behind CRuby when it comes to supporting new additions to the language, which limits their adoption.
+
+    We introduce YJIT, a new JIT compiler built inside CRuby based on a Lazy Basic Block Versioning (LBBV) architecture. We show that while our compiler does not match the peak performance of TruffleRuby, it offers near-100% compatibility with existing Ruby code, impressively fast warmup, and speedups from 15% to 19% on sizeable benchmarks based on real-world software.
+
+    https://2021.splashcon.org/details/vmil-2021-papers/1/YJIT-A-Basic-Block-Versioning-JIT-Compiler-for-CRuby
+  speakers:
+    - Maxime Chevalier-Boisvert

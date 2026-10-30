@@ -106,7 +106,7 @@ class UKNation
   end
 
   def events
-    Event.where(country_code: "GB", state_code: [state_code, nation_name])
+    Event.ruby_focused.where(country_code: "GB", state_code: [state_code, nation_name])
   end
 
   def users
@@ -118,7 +118,7 @@ class UKNation
   end
 
   def stamps
-    Stamp.all.select { |stamp| stamp.code == alpha2 }
+    Static::Stamp.all.select { |stamp| stamp.code == alpha2 }
   end
 
   def bounds

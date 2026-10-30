@@ -1,8 +1,12 @@
 ---
+id: "belfastruby"
 name: "Belfast Ruby"
 website: "https://lu.ma/BelfastRuby"
 kind: "meetup"
-frequency: "monthly"
 language: "English"
 twitter: ""
 default_country_code: "GB"
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-6rPmMIYodqbr6WA"
+    name: "Luma"

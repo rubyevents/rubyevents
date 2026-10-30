@@ -4,7 +4,7 @@ class Events::CollectiblesController < ApplicationController
 
   # GET /events/:event_slug/collectibles
   def index
-    @stamps = Stamp.for_event(@event)
+    @stamps = Static::Stamp.for_event(@event)
     @stickers = @event.stickers
   end
 
@@ -12,8 +12,8 @@ class Events::CollectiblesController < ApplicationController
 
   def set_event
     @event = Event.find_by(slug: params[:event_slug])
+    return redirect_to(events_path, status: :moved_permanently, notice: "Event not found") if @event.blank?
 
-    redirect_to events_path, status: :moved_permanently, notice: "Event not found" if @event.blank?
     set_meta_tags(@event)
   end
 end

@@ -1,39 +1,25 @@
-<div id="<%= dom_id(user, :socials) %>">
-  <div id="socials" class="flex items-center gap-2">
-    <% if user.github_handle.present? %>
-      <%= ui_button url: "https://www.github.com/#{user.github_handle}", kind: :circle, size: :sm, target: "_blank", class: "hover:bg-black hover:fill-white border-base-200" do %>
-        <%= fab("github", size: :md) %>
-      <% end %>
-    <% end %>
+<%# locals: (user:, variant: :circle) %>
 
-    <% if user.twitter.present? %>
-      <%= ui_button url: "https://www.x.com/#{user.twitter}", kind: :circle, size: :sm, target: "_blank", class: "hover:bg-black hover:fill-white border-base-200" do %>
-        <%= fab("x-twitter", size: :md) %>
-      <% end %>
-    <% end %>
+<% inline = variant == :inline %>
+<% inline_class = "inline-flex items-center justify-center size-6 box-content p-2 -m-2 text-gray-400 hover:text-gray-900 rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary focus-visible:text-gray-900" %>
+<% platforms = [] %>
+<% platforms << {label: "GitHub", url: "https://www.github.com/#{user.github_handle}", icon: "github", hover: "hover:bg-black hover:fill-white border-base-200"} if user.github_handle.present? %>
+<% platforms << {label: "X", url: "https://www.x.com/#{user.twitter}", icon: "x-twitter", hover: "hover:bg-black hover:fill-white border-base-200"} if user.twitter.present? %>
+<% platforms << {label: "Bluesky", url: "https://bsky.app/profile/#{user.bsky}", icon: "bluesky", hover: "hover:bg-[#0085FF] hover:fill-white border-base-200"} if user.bsky.present? %>
+<% platforms << {label: "Mastodon", url: user.mastodon, icon: "mastodon", hover: "hover:bg-[#6364FF] hover:fill-white border-base-200", tip: user.mastodon} if user.mastodon.present? %>
+<% platforms << {label: "LinkedIn", url: "https://www.linkedin.com/in/#{user.linkedin}", icon: "linkedin", hover: "hover:bg-[#0A66C2] hover:fill-white border-base-200", tip: user.linkedin} if user.linkedin.present? %>
+<% platforms << {label: "Speakerdeck", url: "https://speakerdeck.com/#{user.speakerdeck}", icon: "speaker-deck", hover: "hover:bg-[#009287] hover:fill-white border-base-200", tip: user.speakerdeck} if user.speakerdeck.present? %>
 
-    <% if user.bsky.present? %>
-      <%= ui_button url: "https://bsky.app/profile/#{user.bsky}", kind: :circle, size: :sm, target: "_blank", class: "hover:bg-[#0085FF] hover:fill-white border-base-200" do %>
-        <%= fab("bluesky", size: :md) %>
+<div id="<%= dom_id(user, "socials_#{variant}") %>" class="flex items-center <%= inline ? "gap-3" : "gap-2" %>">
+  <% platforms.each do |p| %>
+    <% if inline %>
+      <%= link_to p[:url], target: "_blank", rel: "noopener noreferrer", class: inline_class, aria: {label: p[:label]} do %>
+        <%= fab(p[:icon], size: :sm) %>
+      <% end %>
+    <% else %>
+      <%= ui_button url: p[:url], kind: :circle, size: :sm, target: "_blank", class: p[:hover], data: (p[:tip] ? {tip: p[:tip]} : {}) do %>
+        <%= fab(p[:icon], size: :md) %>
       <% end %>
     <% end %>
-
-    <% if user.mastodon.present? %>
-      <%= ui_button url: user.mastodon, kind: :circle, size: :sm, target: "_blank", class: "hover:bg-[#6364FF] hover:fill-white border-base-200", data: {tip: user.mastodon} do %>
-        <%= fab("mastodon", size: :md) %>
-      <% end %>
-    <% end %>
-
-    <% if user.linkedin.present? %>
-      <%= ui_button url: "https://www.linkedin.com/in/#{user.linkedin}", kind: :circle, size: :sm, target: "_blank", class: "hover:bg-[#0A66C2] hover:fill-white border-base-200", data: {tip: user.linkedin} do %>
-        <%= fab("linkedin", size: :md) %>
-      <% end %>
-    <% end %>
-
-    <% if user.speakerdeck.present? %>
-      <%= ui_button url: "https://speakerdeck.com/#{user.speakerdeck}", kind: :circle, size: :sm, target: "_blank", class: "hover:bg-[#009287] hover:fill-white border-base-200", data: {tip: user.speakerdeck} do %>
-        <%= fab("speaker-deck", size: :md) %>
-      <% end %>
-    <% end %>
-  </div>
+  <% end %>
 </div>

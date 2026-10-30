@@ -2,10 +2,8 @@ class Profiles::EventsController < ApplicationController
   include ProfileData
 
   def index
-    @events = @user.participated_events.includes(:series).in_order_of(:attended_as, EventParticipation.attended_as.keys)
-    event_participations = @user.event_participations.includes(:event).where(event: @events).in_order_of(:attended_as, EventParticipation.attended_as.keys)
-
-    @participations = event_participations.group_by(&:event_id).transform_values(&:first)
+    @events = @user.participated_events.includes(:series)
+    @participations = @user.event_participations.index_by(&:event_id)
     @checked_in_event_ids = @user.checked_in_event_ids
 
     checked_in_only_event_ids = @checked_in_event_ids - @events.map(&:id).to_set

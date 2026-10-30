@@ -5,6 +5,7 @@ class Sponsors::MissingController < ApplicationController
   def index
     @back_path = organizations_path
     @events_without_sponsors = Event.not_meetup
+      .ruby_focused
       .left_joins(:sponsors)
       .where(sponsors: {id: nil})
       .past

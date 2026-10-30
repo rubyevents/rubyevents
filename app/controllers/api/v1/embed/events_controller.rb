@@ -28,11 +28,12 @@ module Api
         end
 
         def show
-          event = Event.find_by!(slug: params[:slug])
+          event = Event.find_by_slug_or_alias(params[:slug])
+          raise ActiveRecord::RecordNotFound, "Event not found" unless event
 
-          keynote_speakers = event.keynote_speaker_participants.limit(20).to_a
-          speakers = (event.speaker_participants.limit(30).to_a - keynote_speakers).first(20)
-          attendees = event.visitor_participants.limit(20).to_a
+          keynote_speakers = event.keynote_speakers.limit(20).to_a
+          speakers = event.speakers.where.not(id: event.keynote_speakers.select(:id)).limit(20).to_a
+          attendees = event.participants.where(event_participations: {role: :attendee}).limit(20).to_a
 
           render json: {
             name: event.name,
@@ -62,20 +63,21 @@ module Api
               attendees: attendees.map { |user| participant_json(user) }
             },
             counts: {
-              keynote_speakers: event.keynote_speaker_participants.count,
-              speakers: event.speaker_participants.count,
-              attendees: event.visitor_participants.count,
-              total: event.participants.count
+              keynote_speakers: event.keynote_speakers.count,
+              speakers: event.speakers.where.not(id: event.keynote_speakers.select(:id)).count,
+              attendees: event.participants.where(event_participations: {role: :attendee}).count,
+              total: event.going_participants.count
             }
           }
         end
 
         def participants
-          event = Event.find_by!(slug: params[:slug])
+          event = Event.find_by_slug_or_alias(params[:slug])
+          raise ActiveRecord::RecordNotFound, "Event not found" unless event
 
-          keynote_speakers = event.keynote_speaker_participants.to_a
-          speakers = event.speaker_participants.to_a - keynote_speakers
-          attendees = event.visitor_participants.to_a
+          keynote_speakers = event.keynote_speakers.to_a
+          speakers = event.speakers.where.not(id: event.keynote_speakers.select(:id)).to_a
+          attendees = event.participants.where(event_participations: {role: :attendee}).to_a
 
           render json: {
             event: {

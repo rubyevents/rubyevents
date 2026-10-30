@@ -3,6 +3,9 @@
 module User::TypesenseSearchable
   extend ActiveSupport::Concern
 
+  SEARCH_QUERY_BY = "name,slug,bio,location,alias_names,alias_slugs,github_handle,twitter,topic_names,event_names,recent_talk_titles"
+  SEARCH_QUERY_BY_WEIGHTS = "10,9,3,4,8,7,5,5,4,3,2"
+
   included do
     include ::Typesense
 
@@ -126,11 +129,15 @@ module User::TypesenseSearchable
       TypesenseIndexJob.perform_later(record, remove ? "typesense_remove_from_index!" : "typesense_index!")
     end
 
+    def typesense_multi_search_config
+      {collection: "User", query_by: SEARCH_QUERY_BY, query_by_weights: SEARCH_QUERY_BY_WEIGHTS}
+    end
+
     def typesense_search_speakers(query, options = {})
-      query_by_fields = "name,slug,bio,location,alias_names,alias_slugs,github_handle,twitter,topic_names,event_names,recent_talk_titles"
+      query_by_fields = SEARCH_QUERY_BY
 
       search_options = {
-        query_by_weights: "10,9,3,4,8,7,5,5,4,3,2",
+        query_by_weights: SEARCH_QUERY_BY_WEIGHTS,
         per_page: options[:per_page] || 20,
         page: options[:page] || 1
       }

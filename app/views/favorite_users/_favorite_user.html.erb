@@ -1,7 +1,7 @@
-<%# locals: (favorite_user:) %>
+<%# locals: (favorite_user:, id: nil) %>
 
 <% if Current.user && favorite_user %>
-  <div id="<%= dom_id favorite_user %>">
+  <div id="<%= id || dom_id(favorite_user) %>">
     <% if favorite_user.persisted? && favorite_user.mutual_favorite_user&.persisted? %>
       <%= ui_tooltip "Remove from your list of Ruby Friends" do %>
         <%= button_to favorite_user_path(favorite_user), method: :delete, form_class: "mt-1" do %>

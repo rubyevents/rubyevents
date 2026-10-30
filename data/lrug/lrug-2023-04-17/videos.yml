@@ -1,0 +1,43 @@
+---
+- id: "alex-chan-lrug-2023-04-17"
+  old_id: "alex-chan-lrug-april-2023"
+  title: "Making a working upwards assignment operator"
+  date: "2023-04-17"
+  announced_at: "2023-03-23T00:00:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2023/april/alex-making-a-working-upwards-assignment-operator-lrug-apr-2023.mp4"
+  description: |-
+    Ruby has leftward assignment. It has rightward assignment. But what about upward assignment?
+
+    In this talk, we’ll misuse Ruby’s internals to build an arrow operator that lets us assign
+    upwards. We’ll see some powerful Ruby metaprogramming features that allow us to bend Ruby
+    to our will – and we’ll talk about why it’s good to write code that’s just plain daft.
+  speakers:
+    - Alex Chan
+  additional_resources:
+    - name: "Write-Up"
+      type: "write-up"
+      title: "Upward assignment in Ruby"
+      url: "https://alexwlchan.net/2023/upward-assignment/"
+
+- id: "stan-lo-lrug-2023-04-17"
+  old_id: "stan-lo-lrug-april-2023"
+  title: "Build a mini Ruby debugger in under 300 lines"
+  date: "2023-04-17"
+  announced_at: "2023-03-23T00:00:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2023/april/stan-lo-build-a-mini-ruby-debugger-in-under-300-lines-lrug-apr-2023.mp4"
+  description: |-
+    As developers, we know that the best way to learn is by doing. Many of us have
+    built mini-rails, mini-sinatra, and even mini-rubies. But have you ever built
+    your own debugger?
+
+    In this talk, I'll show you how to create a mini Ruby debugger that's both
+    powerful and fun to use. You'll learn how to:
+    - Run your program with debugger with a simple command
+    - Set breakpoints and through debugger commands
+    - Step through your code to find bugs
+
+    And best of all, you'll do it all in under 300 lines of code!
+  speakers:
+    - Stan Lo

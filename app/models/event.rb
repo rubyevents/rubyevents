@@ -3,31 +3,34 @@
 # Table name: events
 # Database name: primary
 #
-#  id                  :integer          not null, primary key
-#  banner_background   :string
-#  city                :string
-#  country_code        :string           indexed => [state_code]
-#  date                :date
-#  date_precision      :string           default("day"), not null
-#  end_date            :date
-#  featured_background :string
-#  featured_color      :string
-#  geocode_metadata    :json             not null
-#  home_sort_date      :date
-#  kind                :string           default("event"), not null, indexed
-#  latitude            :decimal(10, 6)
-#  location            :string
-#  longitude           :decimal(10, 6)
-#  name                :string           default(""), not null, indexed
-#  slug                :string           default(""), not null, uniquely indexed
-#  start_date          :date
-#  state_code          :string           indexed => [country_code]
-#  talks_count         :integer          default(0), not null
-#  website             :string           default("")
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  canonical_id        :integer          indexed
-#  event_series_id     :integer          not null, indexed
+#  id                        :integer          not null, primary key
+#  banner_background         :string
+#  city                      :string
+#  country_code              :string           indexed => [state_code]
+#  date                      :date
+#  date_precision            :string           default("day"), not null
+#  end_date                  :date
+#  featured_background       :string
+#  featured_color            :string
+#  geocode_metadata          :json             not null
+#  home_sort_date            :date
+#  kind                      :string           default("event"), not null, indexed
+#  latitude                  :decimal(10, 6)
+#  location                  :string
+#  longitude                 :decimal(10, 6)
+#  name                      :string           default(""), not null, indexed
+#  recordings_published_date :date
+#  ruby_focused              :boolean          default(TRUE), not null
+#  slug                      :string           default(""), not null, uniquely indexed
+#  start_date                :date
+#  state_code                :string           indexed => [country_code]
+#  subtitle                  :string           default(""), not null
+#  talks_count               :integer          default(0), not null
+#  website                   :string           default("")
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  canonical_id              :integer          indexed
+#  event_series_id           :integer          not null, indexed
 #
 # Indexes
 #
@@ -62,8 +65,8 @@ class Event < ApplicationRecord
   has_many :talks, dependent: :destroy, inverse_of: :event, foreign_key: :event_id
   has_many :watchable_talks, -> { watchable }, class_name: "Talk"
   has_many :speakers, -> { distinct }, through: :talks, class_name: "User"
-  has_many :keynote_speakers, -> { joins(:talks).where(talks: {kind: "keynote"}).distinct },
-    through: :talks, source: :speakers
+  has_many :keynote_talks, -> { where(kind: "keynote") }, class_name: "Talk", foreign_key: :event_id, inverse_of: :event
+  has_many :keynote_speakers, -> { distinct }, through: :keynote_talks, source: :speakers
   has_many :topics, -> { distinct }, through: :talks
   has_many :sponsors, dependent: :destroy
   has_many :organizations, through: :sponsors
@@ -76,11 +79,9 @@ class Event < ApplicationRecord
   # Event participation associations
   has_many :event_participations, dependent: :destroy
   has_many :participants, through: :event_participations, source: :user
-  has_many :speaker_participants, -> { where(event_participations: {attended_as: :speaker}) },
+  has_many :going_participants, -> { where(event_participations: {role: EventParticipation::GOING_ROLES}) },
     through: :event_participations, source: :user
-  has_many :keynote_speaker_participants, -> { where(event_participations: {attended_as: :keynote_speaker}) },
-    through: :event_participations, source: :user
-  has_many :visitor_participants, -> { where(event_participations: {attended_as: :visitor}) },
+  has_many :interested_participants, -> { where(event_participations: {role: :interested}) },
     through: :event_participations, source: :user
 
   # Event involvement associations
@@ -99,7 +100,6 @@ class Event < ApplicationRecord
   has_object :sponsors_file
   has_object :cfp_file
   has_object :involvements_file
-  has_object :transcripts_file
   has_object :venue
   has_object :videos_file
 
@@ -116,6 +116,7 @@ class Event < ApplicationRecord
   scope :with_watchable_talks, -> { where.associated(:watchable_talks) }
   scope :canonical, -> { where(canonical_id: nil) }
   scope :featurable, -> { where.not(featured_background: nil).where.not(featured_color: nil) }
+  scope :ruby_focused, -> { where(ruby_focused: true) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
   scope :ft_search, ->(query) {
     joins(<<~SQL.squish)
@@ -130,7 +131,7 @@ class Event < ApplicationRecord
           AND series_aliases.aliasable_id = search_series.id
       SQL
       .where(
-        "lower(events.name) LIKE :query OR lower(event_aliases.name) LIKE :query " \
+        "lower(events.name) LIKE :query OR lower(events.subtitle) LIKE :query OR lower(event_aliases.name) LIKE :query " \
         "OR lower(search_series.name) LIKE :query OR lower(series_aliases.name) LIKE :query",
         query: "%#{query.downcase}%"
       )
@@ -138,14 +139,6 @@ class Event < ApplicationRecord
   }
   scope :past, -> { where(end_date: ..Date.today).order(end_date: :desc) }
   scope :upcoming, -> { where(start_date: Date.today..).order(start_date: :asc) }
-
-  scope :past_meetups, -> {
-    joins(:talks).where(kind: :meetup, talks: {date: ..Date.today}).distinct
-  }
-
-  scope :upcoming_meetups, -> {
-    joins(:talks).where(kind: :meetup, talks: {date: Date.today..}).distinct
-  }
 
   def upcoming?
     start_date.present? && start_date >= Date.today
@@ -155,8 +148,17 @@ class Event < ApplicationRecord
     end_date.present? && end_date < Date.today
   end
 
+  def cancelled? = static_metadata.cancelled?
+  def meetup_group? = meetup? && start_date.nil?
+  def meetup_inactive? = meetup_group? && series.ended?
+  def cancelled_or_inactive? = cancelled? || meetup_inactive?
+
   def happening?
     start_date.present? && end_date.present? && (start_date..end_date).cover?(Date.today)
+  end
+
+  def live?
+    happening? && schedule.exist?
   end
 
   def happening_tomorrow?
@@ -205,6 +207,29 @@ class Event < ApplicationRecord
     end
   end
 
+  def self.featured(limit: 15, today: Date.today)
+    base = distinct.not_meetup.featurable.ruby_focused.where.not(home_sort_date: nil)
+
+    ids = (
+      base.where.not(recordings_published_date: nil).pluck(:id) +
+      base.where(start_date: ..today, end_date: today..).pluck(:id) +
+      base.where(end_date: (today - FEATURED_RECENTLY_ENDED_WINDOW)..today.prev_day).pluck(:id) +
+      base.where(start_date: today.next_day..(today + FEATURED_UPCOMING_WINDOW)).pluck(:id) +
+      base.joins(:cfps).where(cfps: {close_date: today..(today + FEATURED_CFP_CLOSING_WINDOW)}).where.not(cfps: {link: nil}).pluck(:id)
+    ).uniq
+
+    ordered_ids = where(id: ids)
+      .includes(:cfps)
+      .sort_by { |event| event.featured_distance(today: today) }
+      .reject(&:cancelled_or_inactive?)
+      .first(limit)
+      .map(&:id)
+
+    where(id: ordered_ids)
+      .includes(:series, :keynote_speakers, :speakers, :cfps)
+      .in_order_of(:id, ordered_ids)
+  end
+
   def self.find_by_name_or_alias(name)
     return nil if name.blank?
 
@@ -223,6 +248,14 @@ class Event < ApplicationRecord
 
     alias_record = ::Alias.find_by(aliasable_type: "Event", slug: slug)
     alias_record&.aliasable
+  end
+
+  def self.find_by_series_slug_or_alias(slug)
+    series = ::EventSeries.find_by_slug_or_alias(slug)
+    return if series.nil? || series.meetup?
+
+    events = series.events.limit(2).to_a
+    events.first if events.one?
   end
 
   def self.grouped_by_country
@@ -270,12 +303,15 @@ class Event < ApplicationRecord
   end
 
   def data_folder
-    Rails.root.join("data", series.slug, slug)
+    static_metadata.data_folder || Rails.root.join("data", series.slug, slug)
   end
 
   def location_and_country_code
-    default_country = series&.static_metadata&.default_country_code
+    return location if location.blank?
+    return nil if location.strip.casecmp?("online")
+    return location if location_includes_country?
 
+    default_country = series&.static_metadata&.default_country_code
     [location, default_country].compact.join(", ")
   end
 
@@ -283,16 +319,34 @@ class Event < ApplicationRecord
     location_previously_changed?
   end
 
-  def today?
-    return talks.where(date: Date.today).exists? if meetup?
+  # True when the location string already names a country. Ignores Country.find's
+  # US-subdivision fallback (e.g. "NY" => US) so short state codes still get the
+  # series default_country_code appended for geocoding.
+  def location_includes_country?
+    term = location.to_s.split(",").last&.strip
+    return false if term.blank?
+    return false if term.downcase.in?(%w[online earth unknown])
 
+    if term.length == 2
+      iso = ISO3166::Country.new(term.upcase)
+      return iso&.alpha2.present?
+    end
+
+    Country.find(term).present?
+  end
+
+  def today?
     (start_date..end_date).cover?(Date.today)
   rescue => _e
     false
   end
 
   def formatted_dates
-    return "Recurring" if meetup?
+    if meetup_group?
+      return "Inactive" if meetup_inactive?
+      return "Recurring"
+    end
+
     case date_precision
     when "year"
       start_date.strftime("%Y")
@@ -329,17 +383,33 @@ class Event < ApplicationRecord
 
     event_name = series.organisation? ? name : series.name
 
+    if meetup? && start_date.present?
+      return @description = <<~DESCRIPTION
+        #{name} #{past? ? "was" : "is"}#{held_in_sentence.presence || " organized"} by #{series.name}#{talks_text}.
+      DESCRIPTION
+    end
+
     @description = <<~DESCRIPTION
-      #{event_name} is a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
+      #{event_name} #{meetup_inactive? ? "was" : "is"} #{series.kind_with_frequency(kind)}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
     DESCRIPTION
   end
 
   def keynote_speakers_text
+    return "" if talks.size <= 2
+
     keynote_speakers.size.positive? ? %(, including keynotes by #{keynote_speakers.map(&:name).to_sentence}) : ""
   end
 
   def talks_text
-    talks.size.positive? ? " and features #{talks.size} #{"talk".pluralize(talks.size)} from various speakers" : ""
+    return "" unless talks.size.positive?
+
+    speakers_text = if talks.size > 2
+      " from various speakers"
+    elsif (speaker_names = speakers.order(:name).pluck(:name)).any?
+      " by #{speaker_names.to_sentence}"
+    end
+
+    " and #{(meetup_inactive? || (meetup? && past?)) ? "featured" : "features"} #{talks.size} #{"talk".pluralize(talks.size)}#{speakers_text}"
   end
 
   def to_meta_tags
@@ -397,6 +467,7 @@ class Event < ApplicationRecord
         host: "#{request.protocol}#{request.host}:#{request.port}"),
       featured_background: static_metadata.featured_background,
       featured_color: static_metadata.featured_color,
+      live: live?,
       url: Router.event_url(self, host: "#{request.protocol}#{request.host}:#{request.port}")
     }
   end
@@ -415,17 +486,17 @@ class Event < ApplicationRecord
       event.description = description.strip
       event.location = static_metadata.location
       event.url = website
-      event.status = static_metadata.cancelled? ? "CANCELLED" : "CONFIRMED"
+      event.status = cancelled? ? "CANCELLED" : "CONFIRMED"
     end
   end
 
   private
 
   def todos_data_path
-    Rails.root.join("data", series.slug, slug)
+    data_folder
   end
 
   def todos_file_prefix
-    "#{series.slug}/#{slug}"
+    data_folder.relative_path_from(Rails.root.join("data")).to_s
   end
 end

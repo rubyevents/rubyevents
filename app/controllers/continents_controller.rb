@@ -9,7 +9,7 @@ class ContinentsController < ApplicationController
   def index
     @continents = Continent.all.sort_by(&:name)
 
-    @events_by_continent = Event.includes(:series)
+    @events_by_continent = Event.ruby_focused.includes(:series)
       .where.not(country_code: [nil, ""])
       .group_by(&:country)
       .transform_keys(&:continent)
@@ -32,7 +32,6 @@ class ContinentsController < ApplicationController
     @events = @continent.events.includes(:series).order(start_date: :desc)
     @countries = @continent.countries.sort_by(&:name)
     @users = @continent.users
-    @stamps = @continent.stamps
     @location = @continent
 
     upcoming_events = @events.upcoming.to_a

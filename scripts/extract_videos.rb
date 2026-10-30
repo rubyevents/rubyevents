@@ -1,3 +1,5 @@
+# TODO: remove this script
+
 # start this script with the rails runner command
 # $ rails runner scripts/extract_videos.rb
 #
@@ -10,7 +12,7 @@
 def extract_videos_for_event(event_file_path)
   event_slug = File.basename(File.dirname(event_file_path))
   File.basename(File.dirname(event_file_path, 2))
-  event_data = YAML.load_file(event_file_path)
+  event_data = Yerba.parse_file(event_file_path).to_h
   event = OpenStruct.new(event_data.merge("slug" => event_slug))
 
   # Skip if no playlist ID
@@ -28,13 +30,9 @@ def extract_videos_for_event(event_file_path)
   videos_file = File.join(File.dirname(event_file_path), "videos.yml")
   puts "  #{playlist_videos.length} videos extracted"
 
-  yaml = playlist_videos.map { |item| item.to_h.stringify_keys }.to_yaml
+  videos = playlist_videos.map { |item| item.to_h.stringify_keys }
+  Yerba::Document.from(videos, path: videos_file).save!
 
-  yaml = yaml
-    .gsub("- title:", "\n- title:") # Visually separate the talks with a newline
-    .gsub("speakers:\n  -", "speakers:\n    -") # Indent the first speaker name for readability
-
-  File.write(videos_file, yaml)
   puts "  Written to: #{videos_file}"
 end
 

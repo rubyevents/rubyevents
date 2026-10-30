@@ -1,5 +1,8 @@
 <div
-  class="w-full md:h-[198px] lg:h-[267px] xl:h-[336px] 2xl:h-[405px] justify-center align-center flex mt-3 border-t border-b hotwire-native:hidden"
+  class="
+    align-center mt-3 flex w-full justify-center border-b border-t hotwire-native:hidden md:h-[198px] lg:h-[267px]
+    xl:h-[336px] 2xl:h-[405px]
+  "
   style="
     view-transition-name: hero;
     <% if organization.organization_image_for("banner.webp") %>
@@ -9,25 +12,29 @@
     <% else %>
       background: linear-gradient(135deg, #3B82F6, #10B981, #60A5FA);
     <% end %>
-  ">
+  "
+>
   <% if organization.organization_image_for("banner.webp") %>
-    <%= image_tag image_path(organization.banner_image_path), class: "w-full md:container object-cover" %>
+    <%= image_tag image_path(organization.banner_image_path), alt: organization.name, class: "w-full md:container object-cover" %>
   <% end %>
 </div>
 
 <div class="container py-8">
-  <div class="block lg:flex gap-8 align-center justify-between">
-    <div class="flex flex-col lg:flex-row gap-8 items-center lg:justify-right text-center lg:text-left mb-6 lg:mb-0">
+  <div class="align-center block justify-between gap-8 lg:flex">
+    <div class="lg:justify-right mb-6 flex flex-col items-center gap-8 text-center lg:mb-0 lg:flex-row lg:text-left">
       <% if organization.has_logo_image? %>
-        <div class="<%= organization.logo_background_class %> rounded-lg border <%= organization.logo_border_class %> size-24 md:size-36 p-2"
-             style="view-transition-name: avatar">
+        <div
+          class="size-24 rounded-lg border p-2 md:size-36 <%= organization.logo_background_class %> <%= organization.logo_border_class %>"
+          style="view-transition-name: avatar"
+        >
           <%= image_tag organization.logo_image_path,
                 class: "w-full h-full object-contain",
                 alt: "#{organization.name} Logo",
                 loading: :lazy,
                 onerror: "this.style.display='none'; this.nextElementSibling.style.display='flex';" %>
-          <div class="w-full h-full bg-gray-100 items-center justify-center hidden">
-            <span class="text-4xl md:text-6xl font-bold text-gray-600"><%= organization.name.first %></span>
+
+          <div class="hidden h-full w-full items-center justify-center bg-gray-100">
+            <span class="text-4xl font-bold text-gray-600 md:text-6xl"><%= organization.name.first %></span>
           </div>
         </div>
       <% elsif organization.organization_image_for("avatar.webp") %>
@@ -37,27 +44,32 @@
               style: "view-transition-name: avatar",
               loading: :lazy %>
       <% else %>
-        <div class="rounded-lg border border-[#D9DFE3] size-24 md:size-36 bg-gray-100 flex items-center justify-center"
-             style="view-transition-name: avatar">
-          <span class="text-4xl md:text-6xl font-bold text-gray-600"><%= organization.name.first %></span>
+        <div
+          class="flex size-24 items-center justify-center rounded-lg border border-[#D9DFE3] bg-gray-100 md:size-36"
+          style="view-transition-name: avatar"
+        >
+          <span class="text-4xl font-bold text-gray-600 md:text-6xl"><%= organization.name.first %></span>
         </div>
       <% end %>
 
-      <div class="flex-col flex justify-center break-all">
-        <div class="flex items-center gap-3 mb-2">
-          <h1 class="text-black font-bold"><%= title organization.name %></h1>
+      <div class="flex flex-col justify-center break-all">
+        <div class="mb-2 flex items-center gap-3">
+          <h1 class="font-bold text-black"><%= title organization.name %></h1>
         </div>
+
         <% if organization.main_location.present? %>
           <h3 class="text-[#636B74]"><%= organization.main_location %></h3>
         <% end %>
+
         <% if organization.website.present? %>
           <%= external_link_to organization.website.gsub(%r{^https?://}, "").gsub(%r{/$}, ""), organization.website %>
         <% end %>
       </div>
     </div>
 
-    <div class="flex flex-col gap-3 place-items-center">
+    <div class="flex flex-col place-items-center gap-3">
       <%= ui_button "Back to Organizations", url: organizations_path, kind: :secondary, size: :sm, class: "w-full" %>
+
       <% if Current.user&.admin? && organization.logo_urls.present? %>
         <%= ui_button "Manage Logos", url: organization_logos_path(organization), kind: :primary, size: :sm, class: "w-full" %>
       <% end %>
@@ -65,7 +77,7 @@
   </div>
 
   <% if organization.description.present? %>
-    <p class="mt-6 text-[#636B74] max-w-[700px]">
+    <p class="mt-6 max-w-[700px] text-[#636B74]">
       <%= organization.description %>
     </p>
   <% end %>

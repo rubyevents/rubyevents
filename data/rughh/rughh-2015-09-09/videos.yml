@@ -1,0 +1,24 @@
+---
+- id: "ben-rexin-rughh-2015-09-09"
+  old_id: "rughh-event-290-topic-378"
+  title: "Desktop Anwendungen mit HTML/CSS/Javascript?"
+  date: "2015-09-09"
+  video_provider: "not_recorded"
+  video_id: "ben-rexin-rughh-2015-09-09"
+  description: |-
+    Ich würde euch gern kurz und knapp zeigen wie man mit Electron (ehemals AtomShell) eine Desktop Anwendung baut.
+  speakers:
+    - Ben Rexin
+
+- id: "kerstin-puschke-rughh-2015-09-09"
+  old_id: "rughh-event-290-topic-390"
+  title: "Decouple all the things: Asynchronous messaging keeps it simple"
+  date: "2015-09-09"
+  video_provider: "not_recorded"
+  video_id: "kerstin-puschke-rughh-2015-09-09"
+  description: |-
+    Sneak preview of my upcoming talk at ArrrrCamp http://2015.arrrrcamp.be
+
+    If a customer changes their address, it's often not enough to update their master data record. E.g. the component processing customer orders might have to learn about the update in order to ship to the correct address. In a distributed architecture, you have to spread information about a master data update to several client apps. You can do this via REST, but if a client app is temporarily down or too busy to accept requests, it's going to miss the information. Adding a new client app requires changes to the master app. Asynchronous messaging helps to avoid such a tight coupling of components. And it offers much more than a simple action trigger: parallelizing computing-heavy tasks, load testing, or migrating existing components to new services are some of the possibilities explored in this talk. You're going to learn how to get started with asynchronous messaging from within Ruby, and how it helps you to keep your codebase clean and your overall system stable as well as maintainable.
+  speakers:
+    - Kerstin Puschke

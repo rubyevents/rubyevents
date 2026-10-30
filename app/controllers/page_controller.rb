@@ -14,27 +14,7 @@ class PageController < ApplicationController
     @speakers_count = home_page_cached_data[:speakers_count]
     @events_count = home_page_cached_data[:events_count]
 
-    today = Date.today
-    base = Event.distinct.not_meetup.featurable.where.not(home_sort_date: nil)
-
-    featured_ids = (
-      base.with_watchable_talks.pluck(:id) +
-      base.with_talks.where(start_date: ..today, end_date: today..).pluck(:id) +
-      base.with_talks.where(end_date: (today - Event::FEATURED_RECENTLY_ENDED_WINDOW)..today.prev_day).pluck(:id) +
-      base.with_talks.where(start_date: today.next_day..(today + Event::FEATURED_UPCOMING_WINDOW)).pluck(:id) +
-      base.joins(:cfps).where(cfps: {close_date: today..(today + Event::FEATURED_CFP_CLOSING_WINDOW)}).where.not(cfps: {link: nil}).pluck(:id)
-    ).uniq
-
-    featured_ids = Event.where(id: featured_ids)
-      .includes(:cfps)
-      .sort_by { |event| event.featured_distance(today: today) }
-      .first(15)
-      .map(&:id)
-
-    @featured_events = Event
-      .where(id: featured_ids)
-      .includes(:series, :keynote_speakers, :speakers, :cfps)
-      .in_order_of(:id, featured_ids)
+    @featured_events = Event.featured(limit: 15)
 
     respond_to do |format|
       format.html
@@ -67,12 +47,12 @@ class PageController < ApplicationController
           events: [
             {
               name: "Upcoming Events",
-              items: Event.upcoming.limit(10).map { |event| event.to_mobile_json(request) },
+              items: Event.ruby_focused.upcoming.limit(10).map { |event| event.to_mobile_json(request) },
               url: events_url
             },
             {
               name: "Recent Events",
-              items: Event.past.limit(10).map { |event| event.to_mobile_json(request) },
+              items: Event.ruby_focused.past.limit(10).map { |event| event.to_mobile_json(request) },
               url: past_events_url
             }
           ]
@@ -82,6 +62,10 @@ class PageController < ApplicationController
   end
 
   def featured
+    @events = Event.not_meetup.featurable
+      .includes(:series)
+      .order(date: :desc)
+      .reject(&:cancelled_or_inactive?)
   end
 
   def components
@@ -107,7 +91,7 @@ class PageController < ApplicationController
 
   def stickers
     @events = Event.all.select(&:sticker?)
-    @stickers = @events.flat_map(&:stickers)
+    @stickers = @events.flat_map(&:stickers).uniq(&:code)
   end
 
   def contributors
@@ -115,7 +99,7 @@ class PageController < ApplicationController
   end
 
   def assets
-    @events = Event.includes(:series).order("event_series.name, events.name")
+    @events = Event.not_meetup.ruby_focused.includes(:series).order("event_series.name, events.name")
 
     @asset_types = {
       "avatar" => {width: 256, height: 256, name: "Avatar"},
@@ -127,7 +111,7 @@ class PageController < ApplicationController
       "stamp" => {width: 512, height: 512, name: "Stamp"}
     }
 
-    @events_with_assets = @events.map do |event|
+    @all_events_with_assets = @events.map do |event|
       assets = {}
       @asset_types.except("sticker", "stamp").each do |type, _|
         asset_path = event.event_image_for("#{type}.webp")
@@ -145,6 +129,15 @@ class PageController < ApplicationController
         sticker_paths: sticker_paths,
         stamp_paths: stamp_paths
       }
+    end
+
+    @filter = params[:filter].presence_in(%w[missing incomplete complete])
+
+    @events_with_assets = case @filter
+    when "missing" then @all_events_with_assets.reject { |e| e[:has_any_assets] }
+    when "incomplete" then @all_events_with_assets.select { |e| e[:has_any_assets] && e[:missing_assets].any? }
+    when "complete" then @all_events_with_assets.select { |e| e[:missing_assets].empty? }
+    else @all_events_with_assets
     end
   end
 end

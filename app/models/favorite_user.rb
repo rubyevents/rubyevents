@@ -33,6 +33,18 @@ class FavoriteUser < ApplicationRecord
     persisted? && mutual_favorite_user&.persisted?
   end
 
+  # Returns the earliest upcoming event both the user and each favorite user are going to,
+  # keyed by favorite user id
+  def self.next_mutual_events_for(user, favorite_user_ids)
+    EventParticipation
+      .joins(:event).merge(Event.upcoming)
+      .where(role: EventParticipation::GOING_ROLES)
+      .where(user_id: favorite_user_ids, event_id: user.event_participations.where(role: EventParticipation::GOING_ROLES).select(:event_id))
+      .preload(:event)
+      .group_by(&:user_id)
+      .transform_values { |participations| participations.first.event }
+  end
+
   # Suggest favorite users based on talks the user has watched
   # No check for existing favorite users
   def self.recommendations_for(user)

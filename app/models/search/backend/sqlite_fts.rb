@@ -68,6 +68,7 @@ class Search::Backend::SQLiteFTS
     def search_events(query, limit:)
       events = Event.includes(:series).canonical.ft_search(query)
       total_count = events.except(:select).count
+      events = events.order(Arel.sql("events.kind = 'meetup'"), start_date: :desc)
 
       [events.limit(limit), total_count]
     end
@@ -81,7 +82,7 @@ class Search::Backend::SQLiteFTS
     end
 
     def search_series(query, limit:)
-      series = EventSeries.joins(:events).distinct.order(name: :asc)
+      series = EventSeries.searchable.order(name: :asc)
       series = series.where("event_series.name LIKE ?", "%#{query}%")
       total_count = series.count
 
@@ -148,6 +149,10 @@ class Search::Backend::SQLiteFTS
 
     def search_kinds(query, limit:)
       [[], 0]
+    end
+
+    def search_transcript_passages(query, limit:, page: 1)
+      [[], 0, 0]
     end
 
     def available?

@@ -37,21 +37,18 @@ class StatesController < ApplicationController
     end
 
     @continent = @country.continent
-
     @events = @state.events.includes(:series).order(start_date: :desc)
     @cities = @state.cities.order(:name)
-
     @users = @state.users
-    @stamps = @state.stamps
 
-    @country_events = Event.includes(:series)
+    @country_events = Event.ruby_focused.includes(:series)
       .where(country_code: @country.alpha2)
       .where.not(state_code: [@state.code, @state.name])
       .upcoming
       .limit(8)
 
     continent_country_codes = @continent&.countries&.map(&:alpha2) || []
-    @continent_events = Event.includes(:series)
+    @continent_events = Event.ruby_focused.includes(:series)
       .where(country_code: continent_country_codes - [@country.alpha2])
       .upcoming
       .limit(8)

@@ -3,8 +3,9 @@
 module Static
   module Validators
     class EventCityNames
-      def initialize(file_path:)
+      def initialize(file_path:, document: nil)
         @file_path = file_path
+        @document = document
       end
 
       PATTERNS = [
@@ -15,7 +16,7 @@ module Static
         return false unless File.exist?(@file_path)
 
         PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME)
+          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
       end
 
@@ -26,10 +27,9 @@ module Static
       def validate
         return [] unless applicable?
 
-        document = Yerba.parse_file(@file_path)
-        location = document["location"]
+        location = event.source_location("location")
 
-        city_part = location&.value&.split(",")&.first&.strip
+        city_part = event["location"]&.split(",")&.first&.strip
         return [] if city_part.blank?
 
         alias_to_canonical = Static::City.alias_lookup
@@ -41,10 +41,16 @@ module Static
           Static::Validators::Error.new(
             "Location uses city alias \"#{city_part}\" instead of canonical name \"#{canonical}\"",
             file_path: @file_path,
-            line: location&.location&.start_line || 1,
-            end_line: location&.location&.end_line
+            line: location&.start_line || 1,
+            end_line: location&.end_line
           )
         ]
+      end
+
+      private
+
+      def event
+        @event ||= Static::Event.in_file(@file_path.to_s, document: @document).first
       end
     end
   end

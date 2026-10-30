@@ -1,4 +1,4 @@
-<%# locals: (location:, meetups:) %>
+<%# locals: (location:, meetup_groups:) %>
 
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
@@ -9,7 +9,7 @@
       subtitle: location.to_location.to_text,
       flag_code: (location.respond_to?(:alpha2) && !location.is_a?(Continent)) ? location.alpha2 : nil,
       emoji: location.is_a?(Continent) ? location.emoji_flag : nil,
-      stats: "#{pluralize(meetups.size, "meetup")} in #{location.name}",
+      stats: "#{pluralize(meetup_groups.size, "meetup group")} in #{location.name}",
       location: location %>
 
 <%= render "shared/location_navigation",
@@ -21,17 +21,17 @@
       show_stamps: location.respond_to?(:stamps) && location.stamps.any? %>
 
 <div class="container py-8">
-  <div class="flex items-center justify-between mb-6">
+  <div class="mb-6 flex items-center justify-between">
     <h2 class="text-xl font-bold text-gray-900">Meetups in <%= location.name %></h2>
 
-    <%= ui_badge(meetups.size, kind: :secondary, outline: true) %>
+    <%= ui_badge(meetup_groups.size, kind: :secondary, outline: true) %>
   </div>
 
-  <% if meetups.any? %>
+  <% if meetup_groups.any? %>
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      <%= render partial: "events/card", collection: meetups, as: :event %>
+      <%= render partial: "events/series/meetup_card", collection: meetup_groups, as: :series %>
     </div>
   <% else %>
-    <p class="text-gray-500 py-8 text-center">No known meetups in <%= location.name %> yet.</p>
+    <p class="py-8 text-center text-gray-500">No known meetups in <%= location.name %> yet.</p>
   <% end %>
 </div>

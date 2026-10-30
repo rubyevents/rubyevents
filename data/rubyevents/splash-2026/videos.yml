@@ -1,0 +1,25 @@
+---
+- id: "support-local-variables-splash-2026"
+  title: "Support Local Variables"
+  date: "2026-10-08"
+  start_time: "13:30"
+  end_time: "14:00"
+  track: "VMIL"
+  video_provider: "not_published"
+  video_id: "support-local-variables-splash-2026"
+  description: |-
+    Ruby is a dynamically typed and object-oriented programming language. Its primary implementation, CRuby, contains a bytecode virtual machine and a mature lazy basic block versioning (LBBV) just-in-time (JIT) compiler called YJIT.
+
+    In order to both implement more advanced optimizations than YJIT supports and also encourage more outside contributions, we present a new method-based JIT called ZJIT. Like YJIT, ZJIT compiles from bytecode to machine code. Unlike YJIT, ZJIT has multiple global and local optimization passes.
+
+    ZJIT’s high-level intermediate representation is in static single assignment (SSA) form. In order to optimize Ruby’s local variables, ZJIT lifts local variables into SSA values. This is a departure from how other Ruby compilers handle locals: other JIT compilers either leave local variables as memory loads and stores or do advanced partial evaluation to recover SSA values from memory.
+
+    While implementing locals, we (re-)discovered what features make local variables in Ruby especially challenging to compile correctly and efficiently. We demonstrate these features and illustrate how we solved these problems in ZJIT.
+
+    https://conf.researchr.org/details/splash-issta-2026/vmil-2026/3/Support-Local-Variables
+  speakers:
+    - Max Bernstein
+    - Takashi Kokubun
+    - Aaron Patterson
+    - Alan Wu
+    - Kevin Menard

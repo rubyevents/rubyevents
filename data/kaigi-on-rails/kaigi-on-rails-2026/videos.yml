@@ -1,22 +1,719 @@
 ---
 - id: "david-heinemeier-hansson-kaigi-on-rails-2026"
-  title: "Keynote by David Heinemeier Hansson"
+  title: "Keynote: Where the tracks go next"
+  raw_title: "Keynote: Where the tracks go next / David Heinemeier Hansson - Kaigi on Rails 2026"
   kind: "keynote"
-  event_name: "Kaigi on Rails 2026"
   date: "2026-10-16"
-  video_provider: "scheduled"
-  video_id: "david-heinemeier-hansson-kaigi-on-rails-2026"
+  start_time: "11:20"
+  end_time: "12:00"
+  published_at: "2026-10-30T11:54:42Z"
+  language: "English"
+  track: "Magenta Hall"
+  video_provider: "youtube"
+  video_id: "ayVzHr75gls"
   description: ""
   speakers:
     - David Heinemeier Hansson
 
-- id: "dave-thomas-kaigi-on-rails-2026"
-  title: "Keynote by Dave Thomas"
-  kind: "keynote"
-  event_name: "Kaigi on Rails 2026"
-  date: "2026-10-17"
+- id: "yasuo-honda-kaigi-on-rails-2026"
+  title: "Active Record Connection Adaptersにおける長年の課題に再び取り組む"
+  date: "2026-10-16"
+  start_time: "13:30"
+  end_time: "14:00"
+  language: "Japanese"
+  track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/yahonda/active-record-connection-adapters-niokeru-naganen-no-kadai-ni-futatabi-torikumu"
   video_provider: "scheduled"
-  video_id: "dave-thomas-kaigi-on-rails-2026"
+  video_id: "yasuo-honda-kaigi-on-rails-2026"
+  description: |-
+    日々のCI failureや細かなライブラリの互換性変更といった、緊急性の高い作業に生成AIを活用できるようになった結果、これまで後回しにせざるを得なかった「重要だが緊急ではない」課題に、ようやく時間を割けるようになりました。
+
+    私にとっては、Active RecordのConnection Adaptersにある2つの課題がそれにあたります。ひとつは2019年に自分の力不足で断念したマイグレーションのサードパーティアダプター対応で、いまも設計を何度も練り直しながら取り組んでいます。もうひとつは2017年から動きが止まっていた、SUPER権限なしでPostgreSQLの外部キー制約を一時的に無効化する対応で、こちらはPostgreSQLの修正をおこなったパッチがPostgreSQL 18.4でリリースされ、それを前提にRails 8.2でリリースされる予定です。
+
+    生成AIはどんな問いにもそれなりの答えを返してくれるからこそ、その問いは本当に重要なのか、その答えは自分の課題を本当に解決するのかを考え抜く必要がある — この1年で得たその実感も含めてお話しします。
+  speakers:
+    - Yasuo Honda
+
+- id: "yuta-onishi-kaigi-on-rails-2026"
+  title: "FactoryBotをやめればRSpecは速くなるのか？"
+  date: "2026-10-16"
+  start_time: "13:30"
+  end_time: "14:00"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/yuta_onishi_97/factorybot-o-yamere-ba-rspec-ha-hayaku-naru-no-ka"
+  video_provider: "scheduled"
+  video_id: "yuta-onishi-kaigi-on-rails-2026"
+  description: |-
+    「いつの間にかCIの実行時間が伸びている…」
+
+    Railsアプリケーションを運用するなかで、そんな経験をした方も多いのではないでしょうか？
+    私もその一人です。
+
+    CI高速化の手がかりを探していたある日、XでDHHのポストを発見しました。
+
+    > [FactoryBot is the quickest way to kill your test suite performance with Rails. ... The secret? Rails Fixtures! ](https://x.com/dhh/status/1919291397909233858)
+
+    このポストに影響を受けた私は、FactoryBotをRails Fixturesへ移行する取り組みを始めました。
+    しかし、単純な置き換えでは済みませんでした。また、Fixturesを使えば必ず速くなるわけでもありませんでした。
+
+    本セッションでは、FactoryBotからFixturesへの移行で直面した課題や失敗を振り返りながら、`let_it_be`やFixtureKitなども含め、それぞれの手段の特徴を整理します。
+    そのうえで、実行速度、保守性、導入コストといった観点から、改善手段を選ぶための判断軸を紹介します。
+  speakers:
+    - Yuta Onishi
+
+- id: "rira-kaigi-on-rails-2026"
+  title: "AIエージェントのデバッグ能力を向上させよう — AI時代にRailsが輝く理由"
+  date: "2026-10-16"
+  start_time: "14:10"
+  end_time: "14:25"
+  language: "Japanese"
+  track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/rira100000000/ai-ejento-no-debaggu-nouryoku-o-koujou-saseyou-ai-jidai-ni-rails-ga-kagayaku-riyuu"
+  video_provider: "scheduled"
+  video_id: "rira-kaigi-on-rails-2026"
+  description: |-
+    AIエージェントにバグ修正を任せると、得意と不得意がはっきり分かれます。コードとテスト出力から原因を特定できるバグには強い一方、実行時の状態(レコードの実値、saveで実際に変わった属性、メモ化に残った古い値)に依存するバグでは切れ味が鈍ります。実行中のプロセスをその場で確かめる手段がないため、printの差し込みと再実行を重ね、最後は「動作確認をお願いします」と検証が人間に返ってきます。
+
+    本トークでは、debug gemをMCP(AIエージェントに外部ツールを接続する共通規格)経由でAIに開放します。AIは実行中のRailsアプリをブレークポイントで止め、その瞬間の内部状態を自分で確かめ、仮説を事実として確定させてから修正し、直ったことまで変数レベルで検証できるようになります。
+    実際にAIがrdbgに接続しバグを修正する様子をデモでお見せします。応用として、テスト失敗の瞬間のプロセスを保全しAIに調査させる構想にも触れます。
+
+    この解法を支えているのは、Railsが積み上げてきた資産です。ActiveSupport::Notificationsを使えば、アプリのコードに手を入れずにSQL発行やジョブ投入をAIに観測させられます。モデルのリフレクションを使えば、スキーマ、関連、バリデーション定義をAIがその場で確認できます。これらがAI時代になぜ効くのかを整理して紹介します。
+  speakers:
+    - rira
+  additional_resources:
+    - name: "rira100000000/debug-mcp"
+      type: "repo"
+      url: "https://github.com/rira100000000/debug-mcp"
+
+- id: "gogutan-kaigi-on-rails-2026"
+  title: "Local CI × GitHub Actions ― 長所を活かすハイブリッドCIの実践"
+  date: "2026-10-16"
+  start_time: "14:10"
+  end_time: "14:25"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/gogutan/local-ci-x-github-actions"
+  video_provider: "scheduled"
+  video_id: "gogutan-kaigi-on-rails-2026"
+  description: |-
+    Rails 8.1で追加されたLocal CIは、CIの大幅な速度向上とコスト削減を両立する大きな可能性を秘めています。しかし、
+
+    - 全てのCIをローカルで実行するのは不安
+    - Dependabotなど、自動で起票されたPRの作業が不便になりそう
+
+    などの懸念から導入を見送っていませんか？
+    弊社では、Local CIとGitHub Actionsを併用することでこれらの懸念を解消し、それぞれの強みを活かして開発をしています。具体的には、mainブランチへのマージ時やDependabotのPRでは引き続きGitHub Actionsを利用しつつ、平常時はLocal CIを活用し、約140のモデルを持つRailsアプリケーションのCI実行時間を10分から2分程度に短縮しました。またGitHub Actionsのコストも約45%削減しました。
+    本トークでは、まずLocal CIとそれを支えるGitHub CLI 拡張機能のgh-signoffを紹介し、Local CIの結果をGitHub上に安全に反映する仕組みについてお話しします。その後、Rails 8.2で導入予定の`group`を活用した高速化のコツ、CIの併用に必要なBranch protection rulesやWorkflowsの設定、両者の実行コマンドをDRYに保つ方法など、半年間の実運用で得たTipsを余すことなくお伝えします。
+  speakers:
+    - gogutan
+
+- id: "svyatoslav-kryukov-kaigi-on-rails-2026"
+  title: "Inertia Rails: The One-Person Framework with React & Friends"
+  date: "2026-10-16"
+  start_time: "14:35"
+  end_time: "15:05"
+  language: "English"
+  track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/skryukov/inertia-rails-the-one-person-framework-with-react-and-friends"
+  video_provider: "scheduled"
+  video_id: "svyatoslav-kryukov-kaigi-on-rails-2026"
+  description: |-
+    Rails promises a small team can stay productive across the whole stack. But what if you want to build your UI in React (or Vue, or Svelte)? Reach for it the usual way and Rails loses some of its magic. It becomes a JSON API behind a separate React app, and your small application grows into two codebases you sync by hand. The Rails ecosystem has a way out. Inertia Rails turns React into a view layer: your controllers still render the pages, with no API and no tangled client-state in between. Let's see how React learns to play by the rules of the One-Person Framework!
+  speakers:
+    - Svyatoslav Kryukov
+  additional_resources:
+    - name: "inertiajs/inertia-rails"
+      type: "repo"
+      url: "https://github.com/inertiajs/inertia-rails"
+
+- id: "yuichi-goto-kaigi-on-rails-2026"
+  title: "Domain Modeling with Vanilla Rails: 「操作」から再考するRailsの設計論"
+  date: "2026-10-16"
+  start_time: "14:35"
+  end_time: "15:05"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://decks.yasaichi.com/20261016/domain-modeling-with-vanilla-rails"
+  video_provider: "scheduled"
+  video_id: "yuichi-goto-kaigi-on-rails-2026"
+  description: |-
+    複雑なロジックをどこに実装すべきか、そのために新しいレイヤーを導入すべきか。導入するならどこまでの責務を持たせるべきか。Railsコミュニティはこうした問いを長らく議論してきました。本発表は、これらの問いを一度手放すことを提案します。実装先に迷うとき、多くの場合、起きているのはレイヤーの不足ではなくモデリングの不足だからです。
+
+    Railsのモデルはテーブルと対となる形で定義され、比較的単純なアプリケーションであればうまく機能します。しかし、機能要求が複雑になると、注文の確定や在庫の補充、ポイントの付与といった「操作」に固有のルールが現れます。Railsでは、操作のルールはその主体や対象となるモデルに実装されやすく、独立した概念として見落とされる傾向があります。その結果、これらのモデルが静かに肥大化し、保守性が低下していきます。
+
+    本発表では、モデルとそのCRUD操作を中心としたRailsの設計が、高い生産性と引き換えにドメインにおける重要な操作を見落としやすい構造を持つことを解き明かします。そのうえで、ドメインのルールを、それを担うモデルごとに整理し、どの既存のモデルにも帰属しないルールから新しいモデルが生まれるまでの過程を設計判断とともに示します。
+
+    本発表のあと、みなさんは実装先やレイヤーを議論する前に問うべきことを手にしているはずです。「このルールを担う概念は何か」という問いです。
+  speakers:
+    - Yuichi Goto
+
+- id: "hayato-okumoto-kaigi-on-rails-2026"
+  title: "PumaからFalconに移行したRailsアプリケーションでの実践"
+  date: "2026-10-16"
+  start_time: "15:50"
+  end_time: "16:05"
+  language: "Japanese"
+  track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/falcon8823/puma-kara-falcon-ni-ikou-shita-rails-apurikeshon-deno-jissen"
+  video_provider: "scheduled"
+  video_id: "hayato-okumoto-kaigi-on-rails-2026"
+  description: |-
+    ライブエンタメのチケット販売や会場物販、ECでは、熱狂的なファンが販売開始と同時にアクセスし、販売プラットフォーム全体で数分間に100万件を超えるリクエストが発生します。一方、クラウドプラットフォームの提供するオートスケーリングでは、アクセス増加の検知からコンテナ起動まで約5分かかり、増設が完了する頃にはピークを過ぎてしまいます。
+
+    そこで、外部ID基盤とのプロトコル変換で販売開始時のログインを支えるRailsアプリケーションに、Fiberを活用するRack対応アプリケーションサーバ「Falcon」を使えないか検討しました。Pumaは外部API待ちにもスレッドを使いますが、FalconはFiber Scheduler対応のHTTP通信を待つ間に別のFiberへ処理を切り替えられます。定常時のコンテナ数を増やさず、短時間のピークを効率良く処理できる点に着目しました。
+
+    このトークでは、既存のRailsアプリケーションへのFalcon本番導入を紹介します。既存のgemとHTTP通信の見直し、PumaとFalconを並行稼働させた段階導入、切り戻せる状態で比較・評価を進めた方法をお話しします。Falconと新しいHTTPクライアントを組み合わせた構成のレイテンシとCPU使用量、移行中の500エラー、運用上の注意点を、具体的な本番データで共有します。
+  speakers:
+    - Hayato OKUMOTO
+
+- id: "emiko-ando-kaigi-on-rails-2026"
+  title: "現場と育てるRailsモデリング 〜Spreadsheetから始めたモデル設計〜"
+  date: "2026-10-16"
+  start_time: "15:50"
+  end_time: "16:05"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/siroemk/genba-to-sodateru-rails-moderingu-spreadsheet-kara-hajimeta-moderu-sekkei"
+  video_provider: "scheduled"
+  video_id: "emiko-ando-kaigi-on-rails-2026"
+  description: |-
+    「エンジニアの知らないところで作られたSpreadsheetが重要な業務の一部になっている。Spreadsheetの運用をRailsアプリに移行したい。」
+
+    こうした状況は多くの現場にあると思います。
+
+    弊社は英語塾でRailsを使った学習管理システムを開発しています。弊社でもコーチングに欠かせない「レッスン報告」がGoogleスプレッドシート(以下、Spreadsheet)で管理されていました。
+
+    東京から福岡まで分散する9つの校舎がそれぞれ独自のSpreadsheetを作り、レッスンごとに引き継ぎなどの業務日報を記録していました。レッスン報告は随時追記されるため、上書きで消える、データごとの権限管理ができないといった問題がありましたが、校舎ごとの差異が大きく、Railsアプリへの移行は長らく出来ずにいました。
+
+    そこで私たちが最初に作ったのは「全校舎共通のシンプルなSpreadsheet」でした。
+
+    当初は妥協案でしたが、このSpreadsheetが現場と業務概念を整理する場として機能し始めます。本セッションでは、半年の運用を通して業務概念が整理され、Railsアプリへの移行と約7万件のデータ移行が実現した過程を紹介します。
+
+    理想のモデルを最初から設計できない状況で、現場と一緒に段階的にモデリングを進めるヒントを持ち帰っていただけたら嬉しいです。
+  speakers:
+    - Emiko Ando
+
+- id: "marco-roth-kaigi-on-rails-2026"
+  title: "Herb in Rails 8.2: Your ERB views, now HTML-aware"
+  date: "2026-10-16"
+  start_time: "16:15"
+  end_time: "16:45"
+  language: "English"
+  track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/marcoroth/herb-in-rails-8-dot-2-your-erb-views-now-html-aware-at-kaigi-on-rails-2026-tokyo-japan"
+  video_provider: "scheduled"
+  video_id: "marco-roth-kaigi-on-rails-2026"
+  description: |-
+    With teams, companies, and open source projects adopting Herb in their daily workflows, the foundation is proving itself at scale and is on track to become an opt-in view engine in Rails 8.2.
+
+    This talk covers what Herb brings to Rails. How we made the integration possible, how we adapted and extended ActionView, and the toolchain and dev tools every Rails developer gets out of the box as a result.
+  speakers:
+    - Marco Roth
+  additional_resources:
+    - name: "marcoroth/herb"
+      type: "repo"
+      url: "https://github.com/marcoroth/herb"
+
+- id: "sorah-fukumori-kaigi-on-rails-2026"
+  title: "ActionController meets Protocol Buffers… たのしい API スキーマ定義!"
+  date: "2026-10-16"
+  start_time: "16:15"
+  end_time: "16:45"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/sorah/actioncontroller-meets-protocol-buffers"
+  video_provider: "scheduled"
+  video_id: "sorah-fukumori-kaigi-on-rails-2026"
+  description: |-
+    Protocol Buffers (aka: Protobuf). 主にgRPCで利用するものだと思われている事が多いかもしれません。実はスキーマ付きデータフォーマットとして、gRPCなどに留まらず気軽に利用できる仕組みです。バイナリ列にシリアライズできる・言語を問わない以上に、分かりやすくスキーマ定義を行える点が非常に強力です。
+
+    本講演ではprotobufをフル活用し、ActionContollerのAPIリクエスト・レスポンスからActiveRecordのjson型データまで、あらゆる所でスキーマ定義をしたRailsアプリを元に、活用法を紹介します。これには `{foo: 42, …}` といった雑なHashリテラルが存在せず、ほとんど全てProtobufを通してデータを生成しています。さらにOpenAPIスキーマもProtobufから自動生成されクライアントへ提供しています。
+
+    また、実験的にConnect RPCやgRPCをRailsで提供してみています。これまでRailsにおけるgRPCサーバーはUnicorn/Pumaではなくgrpc gemを利用する必要があり、これはRackではないため、開発や運用で難がありました。本セッションではFalconでActionControllerを通したRPCサーバーの実装も紹介します。
+  speakers:
+    - Sorah Fukumori
+  additional_resources:
+    - name: "sorah/protobufable"
+      type: "repo"
+      url: "https://github.com/sorah/protobufable"
+
+- id: "nobo-kaigi-on-rails-2026"
+  title: "小さく作ってわかるRailsの仕組み 〜mini-rails〜"
+  date: "2026-10-16"
+  start_time: "16:55"
+  end_time: "17:10"
+  language: "Japanese"
+  track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/nobo/mini-rails-kaigionrails2026-en"
+  video_provider: "scheduled"
+  video_id: "nobo-kaigi-on-rails-2026"
+  description: |-
+    ブラウザから送られたHTTPリクエストは、Rails内で「Rack → Router → Controller → View → Response」という流れで処理されています。この仕組みを知りたいと思っても、どこから読み進めればいいのかわからずにいました。
+    そこで、Railsを参考に、mini-rails という小さなフレームワークを作ってみることにしました。
+
+    本発表では、mini-rails上で簡易的なブログが動く様子を見ながら、リクエストを受け付けてからレスポンスを返すまでの実装をお話しします。
+    普段何気なく使っているRailsの内部がどうなっているのかを、一緒に覗いてみましょう。
+  speakers:
+    - Nobo
+  additional_resources:
+    - name: "Hitoshi-Noborikawa/mini-rails"
+      type: "repo"
+      url: "https://github.com/Hitoshi-Noborikawa/mini-rails"
+
+- id: "skytomo-kaigi-on-rails-2026"
+  title: "Railsバージョンを4倍にした話 〜Rails 2系から8系へ〜"
+  date: "2026-10-16"
+  start_time: "16:55"
+  end_time: "17:10"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/optim/20261016-kaigionrails-skytomo"
+  video_provider: "scheduled"
+  video_id: "skytomo-kaigi-on-rails-2026"
+  description: |-
+    Ruby 1.8.7 / Rails 2.3で長年稼働してきた社内製品の管理サーバを、Ruby 3.4 / Rails 8へ載せ替えた実録です。フレームワークの破壊的変更だけでなく、散在する設計書、本番と乖離したブランチ、誰も触らなくなった運用が、バージョンアップを何倍も難しくします。Gemの移行、GET/POSTの食い違い、一気に上げるか段階的に上げるかの判断といったRailsのEoLに関する情報に加えて、ドキュメント探しの修行、AIにレガシー文脈を教える工夫、ブランチ整理の修羅場といった周辺の知識も含めて、チームで実際に踏んだ話としてお届けします。
+  speakers:
+    - skytomo
+
+- id: "morohashi-kyosuke-kaigi-on-rails-2026"
+  title: "Event is what happens"
+  date: "2026-10-16"
+  start_time: "17:20"
+  end_time: "17:50"
+  language: "Japanese"
+  track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/moro/event-is-what-happens"
+  video_provider: "scheduled"
+  video_id: "morohashi-kyosuke-kaigi-on-rails-2026"
+  description: |-
+    Rails 8.1 でStructured Event Reportingという新機能が導入されました。
+    これはRailsのアプリケーションレイヤにpub/subの仕組みを導入するという機能です。
+
+    Rails.event.notify()でなんらかの「イベント」が起こったことを通知でき、通知されたイベントは事前に登録されているサブスクライバで処理されます。典型的には、サービス内で発生したコンバージョンのログ取得などに役立つでしょう。
+
+    さらに、イベントという語はDB論理設計にも現れます。コトを表す「イベントエンティティ」ですね。CRUDのシンプルさを実アプリケーションに適用するために重要な概念です。
+
+    他方で、アプリケーション設計における「イベント」といえば、イベント駆動アーキテクチャ(EDA)も想起されます。EDAは、システム内で発生した状態の変化すなわちイベントを起点にして処理を動作させる設計パターンです。話者は、RailsでこのEDAを手軽に導入する手段としても、このRails.eventに可能性を感じています。
+
+    本トークでは、これが同じ「イベント」と呼ばれる理由を考察し、「サービスで大事なことが起きた」ことを扱う標準のインターフェースが導入されたことを讃えながら、Structured Event Reportingの発展的な利用法を紹介します。
+  speakers:
+    - MOROHASHI Kyosuke
+
+- id: "yukitaka-iha-kaigi-on-rails-2026"
+  title: "Railsのためのパスキー実践入門 〜マルチテナントSaaSでの意思決定〜"
+  date: "2026-10-16"
+  start_time: "17:20"
+  end_time: "17:50"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/utakaha/rails-no-tame-no-pasu-ki-jissen-nyuumon-maruchi-tenanto-saas-deno-ishi-kettei"
+  video_provider: "scheduled"
+  video_id: "yukitaka-iha-kaigi-on-rails-2026"
+  description: |-
+    パスキーによるログインは、金融機関から大手Webサービスまで急速に広がっています。そろそろ自社のサービスでも、と思いつつ、しくみがよく分からない、何から検討すればいいのか分からない、と後回しにしていませんか。
+
+    このトークでは、まずパスキーそのものについて解説します。パスキーとは何か、どういうしくみでログインできるのかを、登録・認証のフローとRailsでの実装例とあわせて解説します。
+
+    そのうえで、パスキーをマルチテナントのRailsアプリケーションに実装するときにどういう意思決定が必要になるのかを、SmartHRでの導入により得られた知見をもとに紹介します。パスキーをオートフィルで呼び出すか、専用ボタンで呼び出すかの意思決定や、サブドメインでテナントを分けるマルチテナント構成でのRP IDの決め方など、実際に下した判断とその理由についてお話しします。
+  speakers:
+    - Yukitaka Iha
+
+- id: "toru-kawamura-kaigi-on-rails-2026"
+  title: "真のREST 2026"
+  date: "2026-10-16"
+  start_time: "18:00"
+  end_time: "18:30"
+  language: "Japanese"
+  track: "Magenta Hall"
+  slides_url: "https://tkawa.github.io/true-rest-2026/ja/"
+  video_provider: "scheduled"
+  video_id: "toru-kawamura-kaigi-on-rails-2026"
+  description: |-
+    RESTはRailsにおいて重要な要素であり、RESTという用語が普及するひとつのきっかけにもなりました。しかし多くの現場で、「RESTはAPIの設計手法」のように誤解されています。
+
+    本来のRESTは、Webがなぜ成功したかを分析した9つの制約です。本発表ではまず、この制約を満たすと「古いものを壊さずに新しいものを足せる」拡張性と、「制御できない相手と通信しても壊れない」インターネット規模という2つの特性が得られることを、RESTの原典の論文に基づいて解説します。そのうえで、Hotwire、React + JSON API、Inertiaといった現在のRailsで採用されるアーキテクチャが、2つの特性のどれを得てどれを失っているかを一枚の図で診断します。
+
+    両方の特性を満たす「真のREST API」、すなわちハイパーメディアAPIは、理想だが現実には難しいと長年言われてきました。その評価が、いま反転しつつあります。真のREST APIが前提としていた、あるクライアントがついに現れたからです。後半では、同じToDoアプリをHotwire版とReact + JSON API版で用意し、そのクライアントで動作させる比較を行います。どちらのスタイルの開発者も、自分の設計の現在地と、明日から取れる一歩を持ち帰れます。
+  speakers:
+    - Toru Kawamura
+  additional_resources:
+    - name: "tkawa/true-rest-2026"
+      type: "repo"
+      url: "https://github.com/tkawa/true-rest-2026"
+
+- id: "ryo-kajiwara-kaigi-on-rails-2026"
+  title: "全ての永続トークンを、生まれる前に消し去りたい！"
+  date: "2026-10-16"
+  start_time: "18:00"
+  end_time: "18:30"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/sylph01/subete-no-eizoku-tokun-o-umareru-mae-ni-keshi-saritai"
+  video_provider: "scheduled"
+  video_id: "ryo-kajiwara-kaigi-on-rails-2026"
+  description: |-
+    「すべての永続トークンを、生まれる前に消し去りたい！すべての宇宙、過去と未来の全ての永続トークンを、この手で」
+
+    外部サービス連携やマイクロサービスにおいて、アクセストークンを永続的に利用可能なものに設定して使い続けたい、と思ったことはあるでしょう。しかし同時に、それがセキュリティホールであるということもなんとなく感じていることでしょう。また、トークンリフレッシュというものについて聞いたことはあるけれど、トークンのライフサイクルの管理が難しい、ということも考えたことがあるでしょう。
+
+    このトークでは、永続トークンをやめる理由、やめるための方法、その上でも気をつけるべきセキュリティ上の懸念事項などについて話します。みなさんの使う・作るサービスの認証について、改めて考えてみませんか？
+  speakers:
+    - Ryo Kajiwara
+
+- id: "yukihiro-matz-matsumoto-kaigi-on-rails-2026"
+  title: "Keynote: I Want Both"
+  raw_title: "Keynote: I Want Both / Yukihiro \"Matz\" Matsumoto - Kaigi on Rails 2026"
+  kind: "keynote"
+  date: "2026-10-17"
+  start_time: "10:15"
+  end_time: "10:55"
+  published_at: "2026-10-30T11:54:42Z"
+  language: "Japanese"
+  track: "Magenta Hall"
+  video_provider: "youtube"
+  video_id: "7SwNQw-rWZE"
   description: ""
   speakers:
-    - Dave Thomas
+    - "Yukihiro \"Matz\" Matsumoto"
+
+- id: "miyuki-koshiba-kaigi-on-rails-2026"
+  title: "作れる、でも消せるか？──安全に「枯らして消す」機能削除術"
+  date: "2026-10-17"
+  start_time: "11:05"
+  end_time: "11:20"
+  language: "Japanese"
+  track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/chobishiba/drain-then-delete"
+  video_provider: "scheduled"
+  video_id: "miyuki-koshiba-kaigi-on-rails-2026"
+  description: |-
+    機能を作るのは簡単になりました。でも、消すのはどうでしょう？
+    どこからも呼ばれていないと判断することは可能です、でも「呼ばれる経路は残っているが、使われない」機能はどうでしょう？
+
+    目的があって追加した機能も、機能刷新や、別の機能に役割を奪われたりする場合もあります。検証のために追加したが、役目を終え不要になるケースもあります。そうして"あまり"使われなくなった機能は静かに積み上がります。残したままにすると、回帰テストは膨らみ、コードは少しずつ重くなり、変更のたびに足を引っ張る。
+
+    では、どうすれば安全に消せるのか。鍵は「もう誰からも呼ばれていない」状態を作ることです。別のコードからも、積まれたジョブからも、古いアプリからも呼ばれなくなれば、その機能は安心して消せます。この「呼ばれなくしていく」作業を、このトークでは「枯らす」と呼びます。いきなり消すのではなく、まず使わせない。値を返すのをやめる。旧バージョンのアプリを壊さないよう受け止める。そうしてトラフィックやデータが枯れてから、順序を守って消す。
+
+    実際に廃止したRails APIの機能を題材に、この「枯らしてから消す」一連の流れをお見せします。型を持てば、削除は一大事ではなく日常の選択肢になる。すると、作る合間に消せる。作るときから「どう消すか」も一緒に考える。そんな当たり前を持ち帰ってもらう15分です。
+  speakers:
+    - Miyuki Koshiba
+
+- id: "hiroyuki-kanda-kaigi-on-rails-2026"
+  title: "デプロイの先まで全部面倒を見る ― Kamal を社内 PaaS に育てた話"
+  date: "2026-10-17"
+  start_time: "11:05"
+  end_time: "11:20"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/dkan75/no-saki-made-zenbu-mendou-o-miru-kamal-o-shanai-paas-ni-sodateta-hanashi"
+  video_provider: "scheduled"
+  video_id: "hiroyuki-kanda-kaigi-on-rails-2026"
+  description: |-
+    「試しにアプリをデプロイしたい」— そう思っても、サーバーの準備に加えて DB やストレージを整えるにはインフラの知識が必要で、"ちょっと試す" には敷居が高い。結局ローカルで動かして終わり、という経験はないでしょうか。
+
+    Rails 8 に標準搭載された Kamal を使うと、自前サーバーへのデプロイ自体はコマンド一発になります。それでも「アプリを動かすこと」までで、DB やストレージの準備、複数サーバーをうまく扱う運用の手間は、変わらず残ります。
+
+    そこで、Kamal を土台に、その "残り" を丸ごと引き受ける社内 PaaS を Rails で作りました。リポジトリを選んでボタンを押すだけでサービスが動き出す、例えるなら社内版 Heroku です。
+    狙いは "動かす" だけではなく、限られたサーバー群に多数のアプリを安全に同居させ、実運用に耐えること。複数サーバーへの自動分散やゼロダウンタイム入れ替えも裏側で担います。運用もデバッグもブラウザだけで完結。さらに API を通じて、AI Agent に会話で原因調査や修正まで任せられます。
+
+    本発表では、Kamal にどこまで任せ、どこを作り込んだのかを紹介しながら、「インフラの仕組みも、使い慣れた Rails の道具で作れる」という実感を、きっと持ち帰ってもらえるはずです。
+  speakers:
+    - Hiroyuki Kanda
+
+- id: "cristian-planas-kaigi-on-rails-2026"
+  title: "The Revenge of the Cucumber: Safety Nets for AI Code"
+  date: "2026-10-17"
+  start_time: "11:30"
+  end_time: "12:00"
+  language: "English"
+  track: "Magenta Hall"
+  video_provider: "scheduled"
+  video_id: "cristian-planas-kaigi-on-rails-2026"
+  description: |-
+    AI can generate code at unprecedented speed, but it can also generate bugs and regressions at unprecedented speed. As software creation becomes cheaper, the bottleneck shifts from writing code to verifying behavior.
+
+    This talk revisits the rise and fall of Cucumber and BDD, exploring why executable specifications struggled to gain adoption and how AI may have changed the economics behind them. We'll discuss how Ruby teams can build practical testing pipelines for AI-generated code using AI-assisted system tests as a safety net.
+  speakers:
+    - Cristian Planas
+
+- id: "kondo-uchio-kaigi-on-rails-2026"
+  title: "Zen and the Art of File Upload Maintenance"
+  date: "2026-10-17"
+  start_time: "11:30"
+  end_time: "12:00"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://udzura.jp/slides/2026/kaigionrails/"
+  video_provider: "scheduled"
+  video_id: "kondo-uchio-kaigi-on-rails-2026"
+  description: |-
+    ファイルアップロードは一見地味ですが、現代のWebサービスには欠かせない機能です。一方Railsでは、Active Storage登場以前のライブラリが本番環境で動き続けていることも多く、設計の負債が溜まりやすい領域でもあります。
+
+    このトークでは、とある人事労務系SaaSで長年稼働してきたファイルアップロード機能を題材に、サービスを止めずに改善してきた実践の記録をお話しします。動き続ける古い基盤に対して、「どの順番で負債をほどくか」「今ある大量のデータをどう扱うか」「既存ライブラリをどこまで延命し、どこまでモンキーパッチし、どこから置き換えを検討するか」などなどの、現場の試行錯誤と格闘の過程をそのまま開示します。
+
+    具体的には以下のテーマを扱います。
+
+    - ファイルアップロードライブラリに共通するライフサイクルなど基本事項の理解
+    - ファイルパスの決定ロジックや、「[履歴機能](https://kaigionrails.org/2025/talks/hypermkt/)」との相性が生んだ課題
+    - 負債を一つずつほどいていく改善ロードマップと、その裏での試行錯誤
+    - ライブラリを更新するか、置き換えるかの判断基準
+
+    このトークが、皆さんにとって自分のサービスの負債と向き合うための道標となり、ファイルアップロード機能の「禅」に触れるきっかけになれば幸いです。
+  speakers:
+    - Kondo Uchio
+
+- id: "ryusei-aoki-kaigi-on-rails-2026"
+  title: "RailsはAIという責務をどう受け入れるのか — AIという新しい責務をRailsらしく設計する"
+  date: "2026-10-17"
+  start_time: "13:30"
+  end_time: "13:45"
+  language: "Japanese"
+  track: "Magenta Hall"
+  video_provider: "scheduled"
+  video_id: "ryusei-aoki-kaigi-on-rails-2026"
+  description: |-
+    LLMを利用したAI機能をRailsアプリケーションへ組み込むこと自体は、それほど難しくありません。APIへプロンプトを送り、結果を受け取るだけであれば、これまでの外部API連携と同じように実装できます。
+
+    しかし、実際にプロダクトへ導入してみると、プロンプト管理、モデル選択、Structured Output、非同期実行など、AIならではの設計上の課題に直面しました。AIでは、API通信だけでなく、アプリケーション側がAIの振る舞いそのものを設計する必要があります。
+
+    本セッションでは、RailsアプリケーションへAI機能を導入した実例をもとに、「AIという責務をRailsでどのように設計するべきか」という問いに向き合った過程を紹介します。
+
+    当初の実装でどのような課題が生まれたのか、どのような選択肢を検討したのか、そして最終的にどのような観点で責務を整理したのかを、実際の設計判断や採用しなかった選択肢も交えながら共有します。
+
+    これからAI機能を導入する方はもちろん、すでに導入しているものの設計や責務分割に悩んでいるRailsエンジニアにとって、AIという新しい責務をRailsアプリケーションの中でどのように位置付けるべきかを考えるきっかけとなるセッションです。
+  speakers:
+    - Ryusei Aoki
+
+- id: "taiju-higashi-kaigi-on-rails-2026"
+  title: "Hypertext on Rails — HATEOAS が示す Rails の正しさ"
+  date: "2026-10-17"
+  start_time: "13:30"
+  end_time: "13:45"
+  language: "Japanese"
+  track: "Lime Hall"
+  video_provider: "scheduled"
+  video_id: "taiju-higashi-kaigi-on-rails-2026"
+  description: |-
+    普段Railsで開発していて、フロントエンドとバックエンドを二重に管理している感覚はありませんか？その問題の原因と解決策のひとつは、RESTの**忘れ去られた4つめの制約**にあるのかもしれません。
+
+    RESTの統一インターフェースには4つの制約があります。最初の3つはRESTful API設計でおなじみのものです。しかし4つめは **H**ypermedia **a**s **t**he **E**ngine **o**f **A**pplication **S**tateという制約で、後にHATEOASと名付けられましたが、あまり多くは語られてきませんでした。
+
+    Fielding博士はこうも言っています。
+
+    > REST APIs must be hypertext-driven
+
+    気になります。私は「作者の気持ちを答えよ」の本当の正解が気になって仕方がないたちです。
+    そこで、私はRailsでHATEOASを実践することをテーマに自分用の易占い（六十四卦）アプリを作り始めました。
+
+    本トークでは易占いアプリの、特にHATEOASを意識した仕様や実装を紹介しながら、**アプリケーションの状態遷移をハイパーメディアに駆動させる**という設計がもたらす恩恵を具体的にお見せします。そして、普通のRailsアプリとHATEOASの関係、HotwireがHTMLを扱う必然性にも迫ります。
+  speakers:
+    - Taiju Higashi
+
+- id: "yuji-teshima-kaigi-on-rails-2026"
+  title: "ActionCableの相手はブラウザだけじゃない — Railsでデバイス群をリアルタイム管制する"
+  date: "2026-10-17"
+  start_time: "13:55"
+  end_time: "14:25"
+  language: "Japanese"
+  track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/yujiteshima/actioncable-no-aite-ha-dakejanai-rails-de-debaisugun-o-riarutaimu-kansei-suru"
+  video_provider: "scheduled"
+  video_id: "yuji-teshima-kaigi-on-rails-2026"
+  description: |-
+    ActionCable の相手は、いつもブラウザとは限りません。センサーを積んだ Raspberry Pi をコンシューマにすると、Rails はデバイス群にコマンドを配り、結果を受け取る「制御プレーン」になります。
+
+    本発表では、その設計を実機の Raspberry Pi を繋いだ動くシステムで紹介します。物理デバイスを Device モデルと状態機械で扱い、heartbeat と定期照合で生死を追いかける。ActionCable を双方向の transport にして、結果は冪等に取り込む。ActiveJob で「実行先が物理デバイス」なジョブを組み、落ちる前提でリトライとバックプレッシャを設計する——おなじみの道具だけで、ここまで作れます。
+
+    山場は「リアルタイムで Turbo Streams と生 ActionCable をどう使い分けるか」。毎秒届くスペクトルを HTML で撒くと転送量は約26倍、毎フレーム257個の DOM ノードが生まれます。実測ベンチから、低頻度の状態変化は Turbo Streams、高頻度の数値ストリームは生 ActionCable + canvas という判断基準を導きます。通知やダッシュボードなど、ふつうの Rails 開発にそのまま効く勘所です。
+
+    ライブデモとともに、見慣れた Rails の意外な射程をお見せします。
+  speakers:
+    - Yuji Teshima
+
+- id: "occhi-kaigi-on-rails-2026"
+  title: "Railsで挑む大量データ永続化 〜600億件を永続化するための設計とボトルネックとの戦い〜"
+  date: "2026-10-17"
+  start_time: "13:55"
+  end_time: "14:25"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/occhi/rails-de-idomu-tairyou-deta-eizokuka-600-okuken-o-eizokuka-suru-tame-no-sekkei-to-botorunekku-tono-tatakai"
+  video_provider: "scheduled"
+  video_id: "occhi-kaigi-on-rails-2026"
+  description: |-
+    Railsアプリでの大量データ永続化や移行では、普段のCRUD中心の開発とは異なる設計が求められます。
+    データ量が増えるにつれ、単純な保存処理だけではなく、データモデル、データストア、バッチアーキテクチャ、システム負荷まで考慮した設計が必要になります。
+    弊社では、ユーザーの不正利用対策等のために、2.5億件を超える電話番号と、その20年以上にわたる使用履歴データをRailsアプリケーションへ取り込むプロジェクトに取り組みました。
+    最初の課題は、20年以上の使用履歴をそのまま保存すると、600億件を超えるレコードになってしまうことでした。そこで、「状態が変化したタイミングだけを保存する」データモデルへ変更し、保存件数を大幅に削減しました。
+    この変更により保存件数を大幅に削減できました。しかし、それでも数億件規模のデータを扱う必要があり、データストア選定、50GBを超えるCSVのストリーミング読み込み、並列Bulk Upsert、バッチのリラン設計、OOM、デッドロック、RDBMSのCPU負荷など、さまざまな課題に直面しました。
+    本セッションでは、それぞれの課題に対する設計判断と、そのトレードオフを紹介します。
+    単なる高速化テクニックではなく、Railsアプリケーションで大量データを安全かつ継続的に扱うための設計の考え方を持ち帰っていただける内容を目指します。
+  speakers:
+    - occhi
+
+- id: "paul-mcmahon-kaigi-on-rails-2026"
+  title: "How Reasonable Decisions Created a Security Incident (Cancelled)"
+  date: "2026-10-17"
+  start_time: "14:35"
+  end_time: "15:05"
+  status: "cancelled"
+  language: "English"
+  track: "Magenta Hall"
+  video_provider: "not_recorded"
+  video_id: "paul-mcmahon-kaigi-on-rails-2026"
+  description: |-
+    A security incident exposed the resumes of 460 job seekers. The surprising part? There was no single bug or obviously wrong decision to blame. Instead, a series of reasonable technical choices interacted in unexpected ways, creating a vulnerability that went unnoticed until it was too late. In this talk, I’ll share how the incident was discovered, investigated, and resolved, along with practical lessons on security, complexity, and hidden assumptions in Ruby on Rails applications.
+  speakers:
+    - Paul McMahon
+
+- id: "masayoshi-takahashi-kaigi-on-rails-2026"
+  title: "Browser Spec: HotwireをRubyでテストする"
+  date: "2026-10-17"
+  start_time: "14:35"
+  end_time: "15:05"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/takahashim/browser-spec-testing-hotwire-with-ruby"
+  video_provider: "scheduled"
+  video_id: "masayoshi-takahashi-kaigi-on-rails-2026"
+  description: |-
+    現代Webの動作環境において、JSは欠かすことができません。
+    フルスタックRailsアプリケーションですら、TurboやStimulusやその他JSのコードを当たり前のように使っています。
+    しかし、いざ動作確認をしようとすると、ヘッドレスブラウザを使ったSystem Specが必要となり、遅い上にflakyなテストとの戦いが勃発します。つらい。
+
+    本発表では、新たなテストの枠組みとしてBrowser Specを提唱し、その実装であるDommy::Browserについて解説します。
+    DommyはRubyで書かれたDOM実装で、Dommy::BrowserはDommy上に構築されたテスト向け軽量ブラウザです。本セッションではDommy::Browserを使って、単一のRubyプロセス内でJSを使ったWebアプリケーションのテストを行い、Railsにおけるテストの可能性を広げることに挑戦します。
+  speakers:
+    - Masayoshi Takahashi
+  additional_resources:
+    - name: "takahashim/dommy"
+      type: "repo"
+      url: "https://github.com/takahashim/dommy"
+
+- id: "shugo-maeda-kaigi-on-rails-2026"
+  title: "Refining Active Record"
+  date: "2026-10-17"
+  start_time: "15:50"
+  end_time: "16:05"
+  language: "Japanese"
+  track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/shugo/refining-active-record"
+  video_provider: "scheduled"
+  video_id: "shugo-maeda-kaigi-on-rails-2026"
+  description: |-
+    以下のコードのように、文字列操作やArelのようなメソッドチェインではなく、Rubyの自然な式でクエリを書きたいと思いませんか？
+
+    ```ruby
+    Employee.where { :age >= 50 }.select { [avg(:vacation_hours), sum(:sick_leave_hours)] }
+    ```
+
+    かつてRefinementsを使ってwhereを拡張するactiverecord-refinementsというgemがありましたが、Refinementsをブロックスコープで有効にする機能が処理系の実装上の都合でRuby 2.0から削除されてしまい、その夢は潰えました。
+    Ruby 4.1の新機能となる予定のProc#refinedを使って、activerecord-refinementsを現代に蘇らせてみましょう。
+  speakers:
+    - Shugo Maeda
+  additional_resources:
+    - name: "shugo/activerecord-refined"
+      type: "repo"
+      url: "https://github.com/shugo/activerecord-refined"
+
+- id: "takafumi-onaka-kaigi-on-rails-2026"
+  title: "その Valkey 使いこなしていますか？"
+  date: "2026-10-17"
+  start_time: "15:50"
+  end_time: "16:05"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/onk/2026-10-17-are-you-making-the-most-of-valkey"
+  video_provider: "scheduled"
+  video_id: "takafumi-onaka-kaigi-on-rails-2026"
+  description: |-
+    Valkey (Redis) は単なる KVS ではありません。多彩なデータ構造を備えたインメモリデータストアです。
+
+    それなのに、普段のアプリケーション開発では session store や cache、Sidekiq の queue としてしか使っていない、というケースは少なくないのではないでしょうか。せっかくそこにある機能を使わないのは、少しもったいないと思っています。
+
+    このセッションでは、まず Sorted Set を使ったランキング実装を題材にして Valkey のパワーを紹介します。ランキング専用のロジックをアプリケーション側に持たず、Valkey のデータ構造そのものに仕事を任せる設計は、とても気持ちが良いものです。
+
+    さらに、公式モジュールである Valkey Search によるベクトル検索や、Bloom Filter のような確率的データ構造にも触れ、「Valkey をアプリケーションの機能として使う」という発想を紹介します。
+
+    「Valkey = キャッシュ」ではもったいない。ランキング、検索、レコメンド、重複判定など、アプリケーションの中核となる機能を支えるデータストアとして Valkey を使い倒す。その面白さを、実例を交えながらお話しします。
+  speakers:
+    - Takafumi ONAKA
+
+- id: "shinichi-maeshima-kaigi-on-rails-2026"
+  title: "How to Design Configuration for Rails Applications"
+  date: "2026-10-17"
+  start_time: "16:15"
+  end_time: "16:45"
+  language: "Japanese"
+  track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/willnet/how-to-design-configuration-for-rails-applications"
+  video_provider: "scheduled"
+  video_id: "shinichi-maeshima-kaigi-on-rails-2026"
+  description: |-
+    Railsアプリケーションを動かすには、Railsやインフラの設定、アプリケーション固有の設定など、数多くの設定が必要です。その管理方法にも、環境変数、Credentials、YAML、DB、PaaSやIaaSの設定管理機能、各種gemなど、多くの選択肢があります。さらに、管理した設定値をアプリケーションからどのように参照するかにも、ENV、config.x、独自のクラスやメソッドなどの選択肢があります。これらをどのように組み合わせれば、開発者がアプリケーション開発に集中できるでしょうか。
+
+    設定の管理方法は、アプリケーション開発の初期には深く検討されないことも少なくありません。そして、問題に気づいてもリファクタリングされにくい領域です。設定の変更は障害につながる可能性があり変更の心理的ハードルが高いうえ、そもそも設定の管理方法をリファクタリングするという発想自体が生まれにくいからです。
+
+    この発表では、設定を「起点・中継点・終点」という流れと、秘密性や変更タイミングなどの性質から整理したうえで、「まとめる」「確認しやすい形にする」という2つの方針を軸に、Railsアプリケーションにおける設定の設計方法を説明します。発表を通じて、アプリケーションの規模や要件に応じて設定方法を選択し、設定に関する負債を溜めにくい設計を考えられるようになることを目指します。
+  speakers:
+    - Shinichi Maeshima
+
+- id: "naoto-takai-kaigi-on-rails-2026"
+  title: "3回つくってわかった、定期実行ジョブ基盤の本質情報"
+  date: "2026-10-17"
+  start_time: "16:15"
+  end_time: "16:45"
+  language: "Japanese"
+  track: "Lime Hall"
+  slides_url: "https://speakerdeck.com/takai/i-built-a-scheduled-job-platform-three-times-and-now-i-know-the-essential-truths"
+  video_provider: "scheduled"
+  video_id: "naoto-takai-kaigi-on-rails-2026"
+  description: |-
+    多くのRailsアプリケーションには、日次の集計やデータ連携のような、決まった時刻に動くジョブがあります。こうした処理は、Solid QueueやSidekiqのような非同期ジョブを使えば手軽に始められます。しかし、業務システムが複雑になると、定期実行ジョブには単なるスケジューリング以上の要件が求められるようになります。
+
+    たとえば、同時実行の防止、長時間実行による突き抜け、失敗時の再実行、依存関係の制御、実行履歴の追跡、通知、可観測性などです。これらを扱うには、専用の実行管理基盤として進化させる必要があります。
+
+    また、こうした基盤をアプリケーションの外につくっても、ジョブが実行するドメインロジックはRailsアプリケーションの中にあります。そのため、Railsに書かれた処理を基盤からうまく呼び出す工夫が欠かせません。
+
+    この発表は、sidekiq-schedulerの定期実行ジョブを、AWS中心のクラウドネイティブな実行基盤へ移行した経験にもとづきます。発表者が定期実行ジョブ基盤をつくるのは、これで3回目です。Railsアプリケーションのための定期実行ジョブ基盤をどのように設計し、実装するかに焦点を当てます。どうやって既存のジョブを移行しやすくするか、どうやってアプリケーションエンジニアの認知的負荷を下げるか、どうやって運用しやすくするか、という観点から具体的に議論します。
+  speakers:
+    - Naoto Takai
+
+- id: "akira-matsuda-kaigi-on-rails-2026"
+  title: "Web Framework Benchmark Battle 2026, Any%"
+  date: "2026-10-17"
+  start_time: "16:55"
+  end_time: "17:25"
+  language: "Japanese"
+  track: "Magenta Hall"
+  slides_url: "https://speakerdeck.com/a_matsuda/web-framework-benchmark-battle-2026-any-percent"
+  video_provider: "scheduled"
+  video_id: "akira-matsuda-kaigi-on-rails-2026"
+  description: |-
+    世間に出回っている「webフレームワークベンチマーク対決」みたいなコンテンツを眺めていると、Ruby on Railsは他言語のプロダクトたちに比べてかなり遅い部類のフレームワークという位置付けにされていることに気づきます。やられ役ですね。かませ犬ですね。そんな立場に甘んじているのはRailsのマーケティング上よろしくありません。どうにかしたいですね。
+
+    そこで、本セッションでは、この手のベンチマークのスコアを、あらゆる手段を用いて改善してみます。要はRails本体をホゲるISUC○Nです。
+    レギュレーションは、Any%とします。すなわち、対象のベンチマークがそれっぽく完走しさえすれば過程は問わないという競技となっています。
+
+    本セッションを通じて、参加者の皆さまには、以下のようなものをお伝えできる予定です。
+    - ソフトウェアのパフォーマンスをチューニングする際の考え方や進め方
+    - Rails本体にパッチを当てる実作業の風景
+    - OSSで遊ぶたのしさ
+  speakers:
+    - Akira Matsuda
+
+- id: "rosa-gutierrez-kaigi-on-rails-2026"
+  title: "Solid Queue: two years on Rails"
+  date: "2026-10-17"
+  start_time: "17:35"
+  end_time: "18:05"
+  language: "English"
+  track: "Magenta Hall"
+  slides_url: "https://rosa.codes/sq2026/"
+  video_provider: "scheduled"
+  video_id: "rosa-gutierrez-kaigi-on-rails-2026"
+  description: |-
+    Solid Queue 1.0 was released on 26 Sept 2024 and added as the default Active Job backend in Rails. Two years later, we're ready for version 2.0 in a totally different world. Let's review the basics and explore the path to a new major version. We'll go through new features such as single-process mode, batches or sharding, the non-linear path to them, and how maintaining an open-source project has changed since Solid Queue got started.
+  speakers:
+    - Rosa Gutiérrez

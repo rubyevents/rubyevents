@@ -5,6 +5,16 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
 
   delegate :published_date, :home_sort_date, :time_zone, to: :static_repository, allow_nil: true
 
+  def bsky = social(:bsky)
+  def facebook = social(:facebook)
+  def github = social(:github)
+  def instagram = social(:instagram)
+  def linkedin = social(:linkedin)
+  def luma = social(:luma)
+  def mastodon = social(:mastodon)
+  def meetup = social(:meetup)
+  def twitter = social(:twitter)
+
   def kind
     return static_repository.kind if static_repository&.kind
     return "conference" if event.series&.conference?
@@ -29,10 +39,6 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     kind == "hackathon"
   end
 
-  def frequency
-    static_repository&.frequency || event.series.frequency
-  end
-
   def start_date
     @start_date ||= static_repository.start_date.present? ? static_repository.start_date : event.talks.minimum(:date)
   rescue => _e
@@ -47,12 +53,6 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
 
   def date_precision
     static_repository.date_precision || "day"
-  end
-
-  def year
-    static_repository.year.present? ? static_repository.year : event.talks.first.try(:date).try(:year)
-  rescue => _e
-    event.talks.first.try(:date).try(:year)
   end
 
   def featured_background?
@@ -102,6 +102,22 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     !!static_repository.try(:hybrid) || false
   end
 
+  def description
+    static_repository.try(:[], "description")
+  end
+
+  def start_time
+    static_repository.try(:[], "start_time")
+  end
+
+  def end_time
+    static_repository.try(:[], "end_time")
+  end
+
+  def own_links
+    [*MeetupLinks::FIELDS, "tickets_url"].index_with { |field| static_repository.try(:[], field) }.compact_blank
+  end
+
   def cancelled?
     static_repository&.status == "cancelled"
   end
@@ -110,7 +126,15 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     static_repository&.playlist
   end
 
+  def data_folder
+    Pathname.new(File.dirname(static_repository.file_path)) if static_repository&.file_path
+  end
+
   private
+
+  def social(field)
+    static_repository.try(field).presence || event.series&.static_metadata&.try(field)
+  end
 
   def static_repository
     @static_repository ||= Static::Event.find_by_slug(event.slug)

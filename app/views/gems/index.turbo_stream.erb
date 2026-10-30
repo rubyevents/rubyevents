@@ -1,7 +1,5 @@
 <%= turbo_stream.append "gems" do %>
-  <% @gems.each do |topic_gem| %>
-    <%= render partial: "gem_card", locals: { topic_gem: topic_gem } %>
-  <% end %>
+  <%= render partial: "gem_card", collection: @gems, as: :topic_gem %>
 <% end %>
 
 <% if @pagy.next.present? %>

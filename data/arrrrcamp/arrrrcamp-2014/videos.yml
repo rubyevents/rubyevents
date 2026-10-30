@@ -1,6 +1,191 @@
-# TODO: Add talks and videos
-
 # Website: http://arrrrcamp.be/
 # Videos: https://www.arrrrcamp.be/videos/
+# Playlist: https://www.youtube.com/playlist?list=PLE7tQUdRKcybnl3Ql5v9_p_vH7ypfe46H
 ---
-[]
+- id: "piotr-szotkowski-arrrrcamp-2014"
+  title: "Weak References Strongly Held"
+  raw_title: "ArrrrCamp 2014- Weak References Strongly Held"
+  date: "2014-10-02"
+  published_at: "2014-11-13T22:28:51Z"
+  video_provider: "youtube"
+  video_id: "khFGIeOOVeQ"
+  description: |-
+    Ruby’s standard library is full of little-known... well, gems of interesting code – which might not be needed on a daily basis, but are super useful when required. From `continuation` and `etc` to `tsort` and `weakref`, learning about them means not only they might save you one day, but also make you a better developer (even if by researching the question ‘why on Earth would anyone package such a thing?’ Come and learn about the libraries you’re already using!
+  speakers:
+    - Piotr Szotkowski
+
+- id: "michael-ries-arrrrcamp-2014"
+  title: "How I Accidentally Wrote the Best Code of my Career"
+  raw_title: "ArrrrCamp 2014- How I Accidentally Wrote the Best Code of my Career"
+  date: "2014-10-02"
+  published_at: "2014-11-13T19:39:41Z"
+  video_provider: "youtube"
+  video_id: "c6rtwWy5V8w"
+  description: |-
+    Picking the right abstractions can be very hard. Understanding object design helps us evaluate tradeoffs, but where do you get the raw ideas to evaluate?
+    A group of developers attempted to rewrite a registration system for the 3rd time, and it turned out amazingly well because of some creative thinking. We'll focus on several concrete practices that can help to spark the creative process and give you new ideas the next time you have to do some design.
+  speakers:
+    - Michael Ries
+
+- id: "lightning-talk-arrrrcamp-2014"
+  title: "Lightning Talks"
+  raw_title: "ArrrrCamp 2014- LIGHTNING TALKS"
+  kind: "lightning_talk"
+  date: "2014-10-02"
+  published_at: "2014-11-14T17:25:31Z"
+  video_provider: "youtube"
+  video_id: "RPMX_o5Y1tg"
+  description: ""
+  talks: []
+
+- id: "aaron-patterson-arrrrcamp-2014"
+  title: "Cat Care and Maintenance"
+  raw_title: "ArrrrCamp 2014- Cat Care and Maintenance"
+  date: "2014-10-02"
+  published_at: "2014-11-14T00:59:15Z"
+  video_provider: "youtube"
+  video_id: "-D15q-_hdzs"
+  description: |-
+    In this talk we'll look at Rails view performance and implementation. We'll see how it currently works, and how it has changed. The process of changing and refactoring the code, including code inspection tools will be discussed so that applications outside of the Rails world can take advantage of the presented techniques. We will also discuss how to take care of cats, and which emoji is best.
+  speakers:
+    - Aaron Patterson
+
+- id: "michal-taszycki-arrrrcamp-2014"
+  title: "Ruby - Write Once, Run Anywhere"
+  raw_title: "ArrrrCamp 2014- Ruby - Write Once, Run Anywhere"
+  date: "2014-10-02"
+  published_at: "2014-11-14T00:09:13Z"
+  video_provider: "youtube"
+  video_id: "kBjNwEBhQnw"
+  description: |-
+    Few years ago we could only envy Javascript programmers while their favourite language was becoming ubiquitous. Now, thanks to RubyMotion we can write iOS, OSX and Android applications. Opal.rb can execute Ruby in every browser. Finally, mruby allows us to embed Ruby in any C or C++ application. With these tools we can finally write truly Cross Platform Ruby apps.
+
+    In this talk you'll learn how to structure your application to reuse as much code as possible.
+  speakers:
+    - Michał Taszycki
+
+- id: "konstantin-tennhard-arrrrcamp-2014"
+  title: "Natural Language Processing with Ruby"
+  raw_title: "ArrrrCamp 2014- Natural Language Processing with Ruby"
+  date: "2014-10-02"
+  published_at: "2014-11-14T16:39:59Z"
+  video_provider: "youtube"
+  video_id: "5u86qVh8r0M"
+  description: |-
+    Natural Language Processing (NLP) is the art and science of making sense of user-generated data. It is a combination of state-of-the-art computer science techniques and linguistics.
+
+    Being able to analyze plain text data allows us to gain a lot of insights. Popular NLP tasks are text summarization, keyword extraction or automatic extraction of the author's opinion from a text. In the age of social media, only NLP provides solutions to analyze what users are really care about. Companies such as Google or Facebook invest millions in NLP solutions to harvest information from all the data they have been gathering over the years.
+
+    In this talk, I will present you a real-world NLP problem. We will discuss this problem from both the linguistic and the computer science perspective. Throughout the talk, we will develop a processing pipeline to efficiently solve this problem in an automated fashion. An NLP pipeline usually consists of multiple components, each solving one aspect of the problem and presenting its own challenges. Among other things, you will learn how to tackle the following essential NLP problems using JRuby and OpenNLP: sentence segmentation, tokenization, part-of-speech tagging, and named entity recognition.
+  speakers:
+    - Konstantin Tennhard
+
+- id: "fred-heath-arrrrcamp-2014"
+  title: "Behavior-Driven Development: Feature this!"
+  raw_title: "ArrrrCamp 2014- Behavior-Driven Development: Feature this!"
+  date: "2014-10-02"
+  published_at: "2014-11-13T23:29:29Z"
+  video_provider: "youtube"
+  video_id: "eTxDoFatfHg"
+  description: |-
+    Have you tried BDD and given up? Thought it was too much trouble for too little reward? Didn't quite work for you? Fear not, you're not the only one. Many of us have been there, done it and got the 'not really my thing' t-shirt. But here's what I learned: it's not BDD, it's us! BDD works really well, but it has to be applied properly, following certain guidelines and avoiding specific errors.
+
+    During this talk we'll demonstrate the best way to start our BDD journey by defining our system, discovering our Features and writing them correctly, identifying best practices, detecting common traps and pitfalls and learning how to avoid them.
+  speakers:
+    - Fred Heath
+
+- id: "lena-reinhard-arrrrcamp-2014"
+  title: "This is bigger than us: Building a future for Open Source"
+  raw_title: "ArrrrCamp 2014- This is bigger than us: Building a future for Open Source"
+  date: "2014-10-02"
+  published_at: "2014-11-14T17:26:18Z"
+  video_provider: "youtube"
+  video_id: "bTwEGxkBG5Y"
+  description: |-
+    This talk will take you on a journey – from the days of the Easter Islands in the southeastern Pacific Ocean around 700CE, over the mid-15th century in England to Mars, rain forests and coral reefs of our days. On our way, we'll think about the relevance of Open Source Software technology-wise, see why the software we build is a hybrid and which impact this hybridism has on what we build and how. We'll think about Open Source Software's core values, and find out in which terms aiming for diversity (regarding gender, skills, ethnicities and ideas / backgrounds), user-centered approaches, democracy, decentralization and language will be core values when we're building the future of Open Source.
+
+    This talk aims to encourage everyone of us to broaden our horizons when it comes to how far we can go collectively with all our Open Source projects when we're thinking about the future, - and it will show how widening our communities, aiming for diversity, sustainability and attracting new contributours to our projects will enable us to make this future a bright and great one together.
+  speakers:
+    - Lena Reinhard
+
+- id: "thorsten-ball-arrrrcamp-2014"
+  title: "Unicorn Unix Magic Tricks"
+  raw_title: "ArrrrCamp 2014- Unicorn Unix Magic Tricks"
+  date: "2014-10-02"
+  published_at: "2014-11-13T23:35:54Z"
+  video_provider: "youtube"
+  video_id: "DGhlQomeqKc"
+  description: |-
+    A couple of years ago, when I set out to really understand Unix from a developer's perspective, I found one invaluable resource for my Unix studies: the source code of the Unicorn web server. When I first encountered Unicorn, it seemed like magic to me: just by sending different signals to the server I could control important runtime settings. Unicorn allows me to scale the number of worker processes simply by sending a signal. Reloading configuration files and reopening log files is possible by sending signals. It even allows me to hot reload code once deployed. Again, all I need to do is send it a signal. But how does it do all that? Magic? This talk answers exactly this question.
+
+    We'll take a look at small snippets of the Unicorn source code and see that it isn't magic, but plain old Unix: forking, signal handling, pipes (even self-pipes), pre-spawning, master-worker architecture, file descriptor handling, system calls, the classic socket/bind/listen/accept sequence, Unix sockets, PID files and a lot more. There is even `eval`, but I'll keep quiet about that, I promise.
+
+    Unicorn is full of Unix. By studying its code we do not only learn how one of the most important pieces of Ruby infrastructure works, but also how Unix systems work. The talk will provide you with a foundation for programming in the Unix environment and show you how to leverage the powers of Unix.
+  speakers:
+    - Thorsten Ball
+
+- id: "grzegorz-witek-arrrrcamp-2014"
+  title: "Patterns, patterns everywhere"
+  raw_title: "ArrrrCamp 2014- Patterns, patterns everywhere"
+  date: "2014-10-02"
+  published_at: "2014-11-14T17:22:06Z"
+  video_provider: "youtube"
+  video_id: "xf0QdvA7lO4"
+  description: |-
+    They're everywhere. They're on the leaf that falls from the tree straight on your head. They're on the building you pass everyday morning. They're on the socks you wear today and in the code you write. Patterns.
+
+    Design patterns are defined as general, reused solutions to recurring design problems. The term, coming from architecture, appeared in software development 20 years ago and since then has been one of the most controversial topics among programmers. Are software design patterns really general and can be reused in various programs? Or are they just solutions with limited scope and don't deserve all the buzz they get?
+
+    Let's have a short trip through the software design patterns we use, the one we don't need anymore and the ones we wish had never been used - all with a pinch of object orientation and a dram of dynamism.
+  speakers:
+    - Grzegorz Witek
+
+- id: "t-j-schuck-arrrrcamp-2014"
+  title: "80,000 Plaintext Passwords: An Open Source Love Story in Three Acts"
+  raw_title: "ArrrrCamp 2014- 680,000 Plaintext Passwords: An Open Source Love Story in Three Acts"
+  date: "2014-10-02"
+  published_at: "2014-11-13T23:37:13Z"
+  video_provider: "youtube"
+  video_id: "knILamfZ0Gc"
+  description: |-
+    Fluffmuffin, peppercorn, gilligan — those are just a few of our users' plaintext passwords. I have 80,000 more, and it only took me 87 seconds to gather them from our customer database in a white-hat attack. In Act I of this talk, we'll cover the history of secure password storage, examine the hack, and mitigate the threat. Act II will address the difficulties of working on libraries with complicated external dependencies (like bcrypt-ruby, of which I'm now a maintainer). In Act III, we'll celebrate the power of global collaboration via OSS.
+  speakers:
+    - T.J. Schuck
+
+- id: "katherine-wu-arrrrcamp-2014"
+  title: "Be a better developer (no code required)"
+  raw_title: "ArrrrCamp 2014- Be a better developer (no code required)"
+  date: "2014-10-02"
+  published_at: "2014-11-13T22:28:56Z"
+  video_provider: "youtube"
+  video_id: "u-LS1hMdSg4"
+  description: |-
+    Most developers focus on increasing their technical knowledge. However, there are many aspects to working as a professional developer besides coding proficiency. If you have interests or experience in other fields, you can pull in even those non-technical skills (like building relationships, project management) and immediately increase your impact on a project or team. When you mentor someone, you can help them play to their strengths and ramp up more quickly as a result.
+  speakers:
+    - Katherine Wu
+
+- id: "arne-brasseur-arrrrcamp-2014"
+  title: "Functional Programming for Rubyists"
+  raw_title: "ArrrrCamp 2014- Functional Programming for Rubyists"
+  date: "2014-10-02"
+  published_at: "2014-11-14T17:24:29Z"
+  video_provider: "youtube"
+  video_id: "JcFmnF3BDIM"
+  description: |-
+    Ruby isn't exactly know for being a functional programming language, but neither is it known for not being a functional programming language. With lambdas, blocks, and Matz himself citing LISP as a major influence, there is very little stopping us from writing code in a functional style.
+
+    We'll cut straight through the smugness and jargon that typefies functional programming literature, and go straight to the essence. What does it mean to program "functionally", and what does it buy us. What patterns and techniques can we incorporate to write more flexible, maintainable code, and what are the caveats Rubyists specifically need to look out for.
+  speakers:
+    - Arne Brasseur
+
+# TODO: add missing talk - https://www.youtube.com/watch?v=c6rtwWy5V8w  ArrrrCamp 2014- How I Accidentally Wrote the Best Code of my Career
+# TODO: add missing talk - https://www.youtube.com/watch?v=eTxDoFatfHg  ArrrrCamp 2014- Behavior-Driven Development: Feature this!
+# TODO: add missing talk - https://www.youtube.com/watch?v=DGhlQomeqKc  ArrrrCamp 2014- Unicorn Unix Magic Tricks
+# TODO: add missing talk - https://www.youtube.com/watch?v=knILamfZ0Gc  ArrrrCamp 2014- 680,000 Plaintext Passwords: An Open Source Love Story in Three Acts
+# TODO: add missing talk - https://www.youtube.com/watch?v=kBjNwEBhQnw  ArrrrCamp 2014- Ruby - Write Once, Run Anywhere
+# TODO: add missing talk - https://www.youtube.com/watch?v=-D15q-_hdzs  ArrrrCamp 2014- Cat Care and Maintenance
+# TODO: add missing talk - https://www.youtube.com/watch?v=5u86qVh8r0M  ArrrrCamp 2014- Natural Language Processing with Ruby
+# TODO: add missing talk - https://www.youtube.com/watch?v=xf0QdvA7lO4  ArrrrCamp 2014- Patterns, patterns everywhere
+# TODO: add missing talk - https://www.youtube.com/watch?v=JcFmnF3BDIM  ArrrrCamp 2014- Functional Programming for Rubyists
+# TODO: add missing talk - https://www.youtube.com/watch?v=RPMX_o5Y1tg  ArrrrCamp 2014- LIGHTNING TALKS
+# TODO: add missing talk - https://www.youtube.com/watch?v=bTwEGxkBG5Y  ArrrrCamp 2014- This is bigger than us: Building a future for Open Source

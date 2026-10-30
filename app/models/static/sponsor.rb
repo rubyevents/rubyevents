@@ -1,6 +1,16 @@
+# frozen_string_literal: true
+
 module Static
-  class Sponsor < FrozenRecord::Base
-    self.backend = Backends::MultiFileBackend.new("**/**/sponsors.yml")
-    self.base_path = Rails.root.join("data")
+  class Sponsor < Yerba::Record::Base
+    self.path = "data/*parent_path/:series_id/:event_id/sponsors.yml"
+    self.skipped_beside = "series.yml"
+    self.flatten = true
+
+    schema SponsorsSchema
+
+    belongs_to :event
+    has_one :series, through: :event
+
+    has_many :tiers, nested: true, class_name: "Static::Sponsor::Tier"
   end
 end

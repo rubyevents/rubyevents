@@ -1,7 +1,22 @@
 ---
+id: "ruby-tuesday"
+old_event_ids:
+  - "ruby-tuesday-osaka-meetup"
 name: "Ruby Tuesday"
+location: "Osaka, Japan"
+timezone: "Asia/Tokyo"
 website: "https://ruby-tuesday.doorkeeper.jp"
 kind: "meetup"
-frequency: "weekly"
 language: "Japanese"
 default_country_code: "JP"
+description: "A weekly Osaka gathering for focused hacking, lightning talks, and casual drinks around Ruby."
+banner_background: "#0A0935"
+featured_background: "#0A0935"
+featured_color: "#FFFFFF"
+coordinates:
+  latitude: 34.6937569
+  longitude: 135.5014539
+feeds:
+  - type: "ical"
+    url: "https://ruby-tuesday.doorkeeper.jp/events.ics"
+    name: "Doorkeeper"

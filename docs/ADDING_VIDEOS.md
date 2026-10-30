@@ -29,7 +29,6 @@ website: https://myconference.org/
 twitter: myconference
 youtube_channel_name: myconference
 kind: conference  # conference, meetup, retreat, or hackathon
-frequency: yearly # yearly, monthly, quarterly, etc.
 language: english
 default_country_code: US
 youtube_channel_id: ""  # Will be filled by prepare_series.rb
@@ -112,6 +111,21 @@ If this doesn't work well for your conference, you can create a custom parser an
 id: PL9_jjLrTYxc2uUcqG2wjZ1ppt-TkFG-gm
 title: RubyConf AU 2015
 metadata_parser: "YouTube::VideoMetadata::RubyConfAu"
+```
+
+## Removing a Talk
+
+`bin/rails validate:all` flags any talk id that disappears from a `videos.yml`, because a
+vanished id is usually an unrecorded rename and production still knows the talk under the old id.
+
+- **Renamed?** Keep the previous id on the renamed entry as `old_id`, so its record gets migrated
+  on the next seed. `bin/rails talk_ids:backfill_old_ids` writes it for you.
+- **Removed on purpose?** List the id under `removed_talk_ids` in the event's `event.yml`:
+
+```yaml
+# data/kaigi-on-rails/kaigi-on-rails-2026/event.yml
+removed_talk_ids:
+  - "dave-thomas-kaigi-on-rails-2026"
 ```
 
 ## Troubleshooting

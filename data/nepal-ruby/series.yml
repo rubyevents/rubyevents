@@ -1,15 +1,32 @@
 ---
+id: "nepal-ruby"
+old_event_ids:
+  - "nepal-ruby-meetup"
 name: "Nepal Ruby Community"
-website: "https://rubynepal.org"
-kind: "organisation"
-frequency: "monthly"
+meetup_name: "Nepal Ruby"
+location: "Kathmandu, Nepal"
+timezone: "Asia/Kathmandu"
+website: "https://rubynepal.netlify.app"
+kind: "meetup"
 language: "English"
 twitter: "ruby_nepal"
 default_country_code: "NP"
 meetup: "https://www.meetup.com/nepal-ruby-users-group"
 github: "https://github.com/rubynepal"
+original_website: "https://rubynepal.org"
+description: "Join a group of fellow Rubyists to hang out for a quick chat, gather tips or engage in discussions."
+banner_background: "#FFFFFF"
+featured_background: "#FFFFFF"
+featured_color: "#6194BC"
+coordinates:
+  latitude: 27.7103145
+  longitude: 85.3221634
 youtube_channels:
   - id: "UCoRCDWyFmaby7F4qWRUHgAQ"
     name: "RubyNepal"
     handle: "@rubynepal"
     playlist_matcher: "RubyNepal"
+feeds:
+  - type: "rss"
+    url: "https://rubynepal.netlify.app/feed.xml"
+    name: "RubyNepal blog"

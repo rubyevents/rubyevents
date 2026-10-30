@@ -1,6 +1,222 @@
-# TODO: Add talks and videos
-
 # Website: https://rubyrussia.club/
 # Videos: https://www.youtube.com/playlist?list=PLiWUIs1hSNeMBqHPF7HcO6O2WBjzfiUQw
 ---
-[]
+- id: "richard-schneeman-railsclub-2017"
+  title: "Threads Aren't Evil"
+  raw_title: "Richard Schneeman. Threads Aren't Evil"
+  date: "2017-09-23"
+  published_at: "2017-10-09T12:11:13Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "PcUfNcOe458"
+  description: |-
+    Okay, so threads are pretty evil. But they are also useful, and given the right development patterns, not impossible to work with. In this talk we'll look at some real world Ruby libraries where threads were applied to accomplish otherwise impossible tasks. We'll look at re-writing a real world library to support parallel execution by threads for performance gains. If you're not comfortable with the "T" word (threads), this talk is the perfect introduction to practical thread programming in Ruby
+  speakers:
+    - Richard Schneeman
+
+- id: "piotr-solnica-railsclub-2017"
+  title: "Rom-rb 4.0"
+  raw_title: "Piotr Solnica. Rom-rb 4.0"
+  date: "2017-09-23"
+  published_at: "2017-10-06T10:07:50Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "HVBkcq_7gJI"
+  description: |-
+    We’ve come a long way with rom-rb and changed the way people can work with data in Ruby. In this talk I’ll introduce you to rom-rb and explain why this alternative way works better than Active Record. We’ll take a look at functional data processing, flexible data transformations, altering data using changesets and the importance of type-safety. You’ll see how rom-rb is evolving and where we’re going with this big effort!
+  speakers:
+    - Piotr Solnica
+
+- id: "vladimir-dementyev-railsclub-2017"
+  title: "Тесты тоже должны быть быстрыми"
+  raw_title: "Владимир Дементьев. Тесты тоже должны быть быстрыми"
+  date: "2017-09-23"
+  published_at: "2017-10-10T17:37:01Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "8S7oHjEiVzs"
+  description: |-
+    Тесты занимают важную часть разработки, особенно на Ruby и Rails. Как правило, мы мало уделяем вниманию организации кода тестов и их оптимизации. До тех пор, пока не замечаем, что тратим слишком много времени, чтобы увидеть зелёный цвет в конце тоннеля. Я хочу рассказать о том, как обнаружить проблемные места в тестах, показать способы их устранения, а также представить новый инструмент, который поможет вам в этом – TestProf.
+  speakers:
+    - Vladimir Dementyev
+
+- id: "nikita-shilnikov-railsclub-2017"
+  title: "Решаем проблемы типа"
+  raw_title: "Никита Шильников. Решаем проблемы типа"
+  date: "2017-09-23"
+  published_at: "2017-10-09T20:39:55Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "pTBwdgRwOSA"
+  description: |-
+    Ruby — динамически типизированный язык, но это не значит, что в нем нет типов. Иногда мы хотим большей предсказуемости и очевидности от кода, но у нас нет инструментов для этого в самом языке. Речь пойдет о геме dry-types — одной из основных зависимостей dry-validation и ROM.
+  speakers:
+    - Nikita Shilnikov
+
+- id: "bozhidar-batsov-railsclub-2017"
+  title: "The Long Journey to Ruby Mastery"
+  raw_title: "Bozhidar Batsov. The Long Journey to Ruby Mastery"
+  date: "2017-09-23"
+  published_at: "2017-10-09T18:47:47Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "zqq6_zu8x6o"
+  description: |-
+    In this talk we'll examine the long journey from being a Ruby novice to achieving true Ruby mastery and will try to shorten it a bit for you by sharing some important insight. A Master Rubyist has a great theoretical foundation, relies on an extensive toolbox, has deep understanding of the core values and principles of Ruby and is always honing their skills. Perhaps you're telling yourself "Wow, this is pretty vague!", but if you attend this session I promise that you'll be enlightened, amused and you'll totally enjoy it! Sounds good? The great books will be part of the resources I'd suggest to people to level-up their skills.
+  speakers:
+    - Bozhidar Batsov
+
+- id: "luca-guidi-railsclub-2017"
+  title: "Functional web with Ruby"
+  raw_title: "Luca Guidi. Functional web with Ruby"
+  date: "2017-09-23"
+  published_at: "2017-10-09T13:45:28Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "SRQVhHzW-Eo"
+  description: |-
+    Web applications are complex. MVC helps you to structure them, but you're still you're struggling with tangled dependencies, difficult reusability, byzantine patterns, hard to maintain model domains? What if you can have small, simple, and deterministic components that can be easily used (and reused) in your web apps? Let's see how functions, FP/OOP blending, data transformations, immutability, Dependency Injection can help to solve these problems. With this talk you'll learn how Hanami makes these principle easy to use, and what's the future of this uprising Ruby web framework.
+  speakers:
+    - Luca Guidi
+
+- id: "nick-sutterer-railsclub-2017"
+  title: "Ruby Is Dead"
+  raw_title: "Nick Sutterer. Ruby Is Dead"
+  date: "2017-09-23"
+  published_at: "2017-10-10T18:11:23Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "x0JlOxdXA_g"
+  description: |-
+    Having a simple programming language doesn't mean the applications will be simple. Higher abstractions are needed - but Ruby doesn't seem to give us those! Here is a tour through other languages, and how we can have nice things in Ruby
+  speakers:
+    - Nick Sutterer
+
+- id: "kir-shatrov-railsclub-2017"
+  title: "Архитектура фреймворка фоновых задач"
+  raw_title: "Кир Шатров. Архитектура фреймворка фоновых задач"
+  date: "2017-09-23"
+  published_at: "2017-10-09T14:54:43Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "91uZlmZg3l0"
+  description: |-
+    Наверное, каждый Ruby-разработчик использовал очередь задач и Sidekiq. Однако в сложном проекте фоновые задачи это гораздо больше, чем просто очередь: это приоритетизация очередей, ограничение ресурсов, "уникальные" задачи и батчинг на группы задач. Как обеспечить "справедливую" очередь на случае когда один клиент добавил миллион задач, а другой - всего одну? Что происходит с задачами, когда мы хотим остановить воркер после выкатки новой версии приложения? Что делать с задачами, которые проходят по всем записям в БД и занимают неделю? В докладе поговорим о том, что скрывается под капотом всех этих фич - и как некоторые из них реализует Sidekiq (Pro). Послушав доклад, эти фичи перестанут быть для вас магией и станут обычными структурами данных.
+  speakers:
+    - Kir Shatrov
+
+- id: "andrey-kumanyaev-railsclub-2017"
+  title: "Конфигурирование приложений: True-way"
+  raw_title: "Андрей Куманяев. Конфигурирование приложений: True-way"
+  date: "2017-09-23"
+  published_at: "2017-10-09T13:35:07Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "q17hyBStQrU"
+  description: |-
+    Невозможно представить себе проект, в котором не было бы хотя бы одно строчки конфигурации. Она используется для решения ряда задач и предназначена не только для хранения статических параметров и секретных данных. Это мощный инструмент, который позволяет, в том числе, влиять на работу приложения... Мы всегда сталкиваемся с конфигурацией и она должна, как минимум, не вставлять палки в колеса, как максимум, помогать. В докладе систематизируем основные подходы, покажу какие из них устарели и почему не способны ответить всем вызовам современной разработки. Покажу на проблемы, которые стали причинять боль в больших проектах, распределенных проектах и, тем более, в микросервисах на руби. Выведу на чистую воду нашу лень, покажу с чем не стоит мириться. Расскажу о том, как можно посмотреть на конфигурацию с другой стороны, как облегчить свою жизнь. Расскажу каких правил стоит придерживаться и что делать не стоит. Расскажу про изменение конфигурации в рантайме, отвечу на вопросы 'Зачем?', 'Как?' и 'Какие проблемы можно огрести?'. А также скажу и покажу, почему конфигурация - это не только способ преобразования магических строк и переменных окружения в понятные нотации, причем тут DI, Railway и подобные штуки.
+  speakers:
+    - Andrey Kumanyaev
+
+- id: "anton-davydov-railsclub-2017"
+  title: "Что нам стоит экосистему построить"
+  raw_title: "Антон Давыдов. Что нам стоит экосистему построить."
+  date: "2017-09-23"
+  published_at: "2017-10-09T11:21:48Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "uIxG1ONqN9k"
+  description: |-
+    Два года назад, работая над Hanami, я не подозревал, насколько важна экосистема для проекта. Каждый день в своей работе мы используем самые современные технологии: языки, фреймворки, плагины и другие продукты. Мы не задумываемся, сколько времени экономим благодаря развитой экосистеме и готовым решениям распространенных проблем. Например, многие любят Rails за возможность создать MVP в максимально короткие сроки. В этом заслуга не только самого фреймворка: вокруг Rails существует целая система гемов, а решения большинства задач уже описаны. Поэтому развитая экосистема важна для продукта, которым будет легко и комфортно пользоваться. Я поделюсь опытом создания экосистемы Hanami. Расскажу, как технология развивается благодаря ее окружению, на какие грабли мы наступили в процессе работы и с чего бы я начал разработку экосистемы, если бы вернулся на 2 года назад.
+  speakers:
+    - Anton Davydov
+
+- id: "nikita-sobolev-railsclub-2017"
+  title: "Elixir - не Ruby, а лучше"
+  raw_title: "Никита Соболев. Elixir - не Ruby, а лучше"
+  date: "2017-09-23"
+  published_at: "2017-10-19T20:29:16Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "88Kp-HQ6LX4"
+  description: |-
+    Один из создателей Rails - Jose Valim - создал свой язык программирования. Такой непохожий, но такой знакомый! Еще бы, ведь он частично вдохновлялся Ruby, когда создавал его. И многие стали считать язык Elixir - новым Ruby. А вот и нет! Elixir - принципиально другой язык, и непонимание различия подходов и принципов погубили уже не один проект. Предлагаю разобраться, что же за новые идеи нам предлагают.
+  speakers:
+    - Nikita Sobolev
+
+- id: "stanislav-german-railsclub-2017"
+  title: "Лингвистическая относительность Ruby"
+  raw_title: "Стас Герман. Лингвистическая относительность Ruby"
+  date: "2017-09-23"
+  published_at: "2017-10-19T19:40:19Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "n5c3EopBwAo"
+  description: |-
+    У каждого языка есть принципы, на которых он основан. В то время, как одни взгляды нам близки, другие мы не принимаем, они формируют не только дизайн языка, но и архитектуру библиотек и систем, разрабатывающихся на этом языке.
+  speakers:
+    - Stanislav German
+
+- id: "alexander-shcheglov-stanislav-tyutin-railsclub-2017"
+  title: "Избавляемся от legacy-code вместе с Trailblazer"
+  raw_title: "Александр Щеглов и Станислав Тютиню Избавляемся от legacy-code вместе с Trailblazer"
+  date: "2017-09-23"
+  published_at: "2017-10-19T17:48:10Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "i9vjN9_DGf0"
+  description: |-
+    На конкретном примере вы поймете, как можно прийти на legacy-проект и не начать плодить такой же устаревший код, а начать делать хорошо, не сильно теряя во времени и не устраивая глобальный рефакторинг. На примере проекта ServiceGuru расскажем, как можно большой и старый проект эффективно развивать и одновременно рефакторить, используя Trailblazer.
+     - Кратко о legacy, как появляется сложная структура, почему проекты, написанные на Rails + ActiveRecord быстро становятся сложно поддерживаемыми и как с этим бороться.
+     - Что такое Trailblazer, как он появился, какие проблемы решает. Где его нужно использовать а где не нужно. Порог вхождения.
+     - Как выглядит обычный рефакторинг. 
+    - Как мы проводим рефакторинг и одновременно разрабатываем новые фичи c Trailblazer. 
+    - Минусы Trailblazer. С какими проблемами придется столкнуться. В каких случаях не стоит использовать trailblazer.
+    - Что дальше? Webpacker. Краткий обзор в какую сторону смотреть для рефакторинга фронтенда
+  speakers:
+    - Alexander Shcheglov
+    - Stanislav Tyutin
+
+- id: "andrey-molchanov-railsclub-2017"
+  title: "Виртуальная машина Ruby"
+  raw_title: "Андрей Молчанов. Виртуальная машина Ruby"
+  date: "2017-09-23"
+  published_at: "2017-10-19T18:00:41Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "WNbnxuOOncM"
+  description: |-
+    Рассмотрим, какое место занимает виртуальная машина в этапе компиляции программы и для чего она нужна. Узнаем, что из себя представляла виртуальная машина в своей первой версии, проанализируем ее недостатки как причины дальнейших изменений. Беря во внимание текущую реализацию, мы пройдем путь компиляции программы до машинного кода, детально рассмотрев, что происходит внутри нее. В заключение, мы обсудим куда движется этот проект, что в нем хотят улучшить и каким способом.
+  speakers:
+    - Andrey Molchanov
+
+- id: "alexander-ermolaev-railsclub-2017"
+  title: "Ruby приложения в кластере Kubernetes"
+  raw_title: "Александр Ермолаев. Ruby приложения в кластере Kubernetes"
+  date: "2017-09-23"
+  published_at: "2017-10-19T17:16:14Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "j7M0EuNYvyM"
+  description: |-
+    Расскажем о разработке и поддержке отказоустойчивого масштабируемого кластера для Ruby приложений
+     * Масштабирование приложений в кластере Kubernetes
+     * Ruby приложения в Docker контейнерах
+     * Ceph для распределенного хранилища и репликаций
+     * Готовые облачные решения кластеризации контейнеров
+     * Пример кластера для видео кодирования в Integros
+  speakers:
+    - Alexander Ermolaev
+
+- id: "anna-shcherbinina-railsclub-2017"
+  title: "Сказ о синхронных и асинхронных парадигмах"
+  raw_title: "Анна Щербинина. Сказ о синхронных и асинхронных парадигмах"
+  date: "2017-09-23"
+  published_at: "2017-10-22T20:17:38Z"
+  language: "Russian"
+  video_provider: "youtube"
+  video_id: "ZIReRhnSiL0"
+  description: |-
+    Web основан на коммуникации: взаимодействие между сервисами, серверами, утилитами, классами в приложении. Изначально выделились две полярности, синхронное взаимодействие между компонентами и асинхронное. Очевидно, без синхронного взаимодействия не обойтись когда реакция напрямую связана с ответом, полученным на запрос. С асинхронными запросами тоже довольно просто, нам не важно когда они выполнятся, главное, чтобы были выполнены. Позже появились гибриды, которые семантически синхронны, а в реализации асинхронны. Как пример - общеизвестный лонг-пуллинг. Для асинхронных нередко указывается время за которое они должны отработать. Случается, что ответить надо нескольким клиентам, вместо одного. Каждый из типов имеет свои особенности, сильные и слабые стороны, которые мы рассмотрим. Но что если взглянуть на синхронность и асинхронность под другим углом?
+  speakers:
+    - Anna Shcherbinina

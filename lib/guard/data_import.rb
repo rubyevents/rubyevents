@@ -40,20 +40,18 @@ module Guard
         import_topics
       when "data/featured_cities.yml"
         import_featured_cities
-      when %r{^data/([^/]+)/series\.yml$}
-        import_series($1)
-      when %r{^data/([^/]+)/([^/]+)/event\.yml$}
-        import_event($1, $2)
-      when %r{^data/([^/]+)/([^/]+)/videos\.yml$}
-        import_videos($1, $2)
-      when %r{^data/([^/]+)/([^/]+)/cfp\.yml$}
-        import_cfps($1, $2)
-      when %r{^data/([^/]+)/([^/]+)/sponsors\.yml$}
-        import_sponsors($1, $2)
-      when %r{^data/([^/]+)/([^/]+)/schedule\.yml$}
+      when %r{\Adata/.+/schedule\.yml\z}
         UI.info "Schedule file changed - no import action needed"
 
         true
+      when %r{\Adata/.+/(series|event|videos|cfp|sponsors|involvements|venue)\.yml\z}
+        directory = File.dirname(path)
+
+        if File.exist?(File.join(directory, "series.yml"))
+          import_series(File.join(directory, "series.yml"))
+        else
+          import_event(File.join(directory, "event.yml"))
+        end
       else
         UI.warning "Unknown file pattern: #{path}"
 
@@ -81,50 +79,14 @@ module Guard
       run_rails_runner("Static::FeaturedCity.import_all!")
     end
 
-    def import_series(series_slug)
-      UI.info "Importing series: #{series_slug}"
-      run_rails_runner("Static::EventSeries.find_by_slug('#{series_slug}')&.import!")
+    def import_series(series_file)
+      UI.info "Importing series: #{File.dirname(series_file)}"
+      run_rails_runner("Static::EventSeries.find_by_file_path(Rails.root.join('#{series_file}'))&.import!")
     end
 
-    def import_event(series_slug, event_slug)
-      UI.info "Importing event: #{series_slug}/#{event_slug}"
-      run_rails_runner("Static::Event.find_by_slug('#{event_slug}')&.import!")
-    end
-
-    def import_videos(series_slug, event_slug)
-      UI.info "Importing videos for: #{series_slug}/#{event_slug}"
-      run_rails_runner(<<~RUBY)
-        event = Event.find_by(slug: '#{event_slug}')
-        if event
-          Static::Event.find_by_slug('#{event_slug}')&.import_videos!(event)
-        else
-          puts "Event '#{event_slug}' not found in database. Import event first."
-        end
-      RUBY
-    end
-
-    def import_cfps(series_slug, event_slug)
-      UI.info "Importing CFPs for: #{series_slug}/#{event_slug}"
-      run_rails_runner(<<~RUBY)
-        event = Event.find_by(slug: '#{event_slug}')
-        if event
-          Static::Event.find_by_slug('#{event_slug}')&.import_cfps!(event)
-        else
-          puts "Event '#{event_slug}' not found in database. Import event first."
-        end
-      RUBY
-    end
-
-    def import_sponsors(series_slug, event_slug)
-      UI.info "Importing sponsors for: #{series_slug}/#{event_slug}"
-      run_rails_runner(<<~RUBY)
-        event = Event.find_by(slug: '#{event_slug}')
-        if event
-          Static::Event.find_by_slug('#{event_slug}')&.import_sponsors!(event)
-        else
-          puts "Event '#{event_slug}' not found in database. Import event first."
-        end
-      RUBY
+    def import_event(event_file)
+      UI.info "Importing event: #{File.dirname(event_file)}"
+      run_rails_runner("Static::Event.find_by_file_path(Rails.root.join('#{event_file}'))&.import!")
     end
 
     def run_rails_runner(code)

@@ -5,7 +5,7 @@
     <div class="avatar placeholder">
       <div class="w-12 rounded-full bg-primary text-neutral-content">
         <% if event.avatar_image_path.present? %>
-          <%= image_tag image_path(event.avatar_image_path) %>
+          <%= image_tag image_path(event.avatar_image_path), alt: event.name %>
         <% else %>
           <span class="text-lg"><%= event.name.split(" ").map(&:first).join %></span>
         <% end %>
@@ -13,17 +13,19 @@
     </div>
 
     <div>
-      <div class="text-xs text-gray-500 line-clamp-1">
+      <div class="line-clamp-1 text-xs text-gray-500">
+        <% held = video_provider == "not_recorded" || (video_provider == "scheduled" && event.date&.past?) %>
+
         <% if video_provider == "scheduled" && event.date&.future? %>
           Scheduled for
-        <% elsif video_provider == "not_recorded" || (video_provider == "scheduled" && event.date&.past?) %>
+        <% elsif held %>
           Held at
         <% else %>
           Recorded at
         <% end %>
       </div>
 
-      <div class="font-semibold text-base line-clamp-1 flex items-center gap-1">
+      <div class="line-clamp-1 flex items-center gap-1 text-base font-semibold">
         <span><%= event.name %></span>
       </div>
     </div>

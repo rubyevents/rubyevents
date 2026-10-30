@@ -25,34 +25,34 @@ class SeedTest < ActiveSupport::TestCase
         Rake::Task["db:seed:all"].invoke
       end
 
-      # ensure that all talks have a date
       assert_equal Talk.where(date: nil).count, 0
 
-      static_video_ids = Static::Video.pluck(:video_id)
+      static_video_ids = Static::Talk.top_level.pluck(:video_id)
       talk_video_ids = Talk.all.pluck(:video_id)
-      duplicate_ids = static_video_ids.tally.select { |_, count| count > 1 }
+      duplicate_ids = Static::Talk.top_level.group_by(&:video_id).reject { |_, talks| talks.one? || talks.all? { |talk| talk["start_cue"].present? && talk["end_cue"].present? } }.transform_values(&:size)
+
       assert User.speakers.count >= 3000
 
       assert_equal({}, duplicate_ids)
 
       not_created_videos_id = static_video_ids - talk_video_ids
-      events = Static::Video.where(video_id: not_created_videos_id).map(&:event_name)
+      missing_talks = Static::Talk.where(video_id: not_created_videos_id).group_by { |talk| talk.event&.slug }
 
-      events.tally.each do |event_name, missing_count|
-        all_talk_count = Static::Video.where(event_name: event_name).count
+      missing_talks.each do |event_slug, talks|
+        all_talk_count = Static::Talk.all.count { |talk| talk.event&.slug == event_slug }
 
-        puts "#{event_name} - All: #{all_talk_count}, missing: #{missing_count}"
+        puts "#{event_slug} - All: #{all_talk_count}, missing: #{talks.size}"
 
-        if missing_count != all_talk_count
-          Static::Video.where(event_name: event_name, video_id: not_created_videos_id).each do |missing_talk|
-            puts "Missing talk for #{event_name}: #{missing_talk.raw_title}"
+        if talks.size != all_talk_count
+          talks.each do |missing_talk|
+            puts "Missing talk for #{event_slug}: #{missing_talk.raw_title}"
           end
           puts ""
         end
         puts "---"
       end
 
-      assert_equal({}, events.tally)
+      assert_equal({}, missing_talks.transform_values(&:size))
       assert_equal 0, not_created_videos_id.count
     end
   end

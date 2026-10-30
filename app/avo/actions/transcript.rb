@@ -3,7 +3,7 @@ class Avo::Actions::Transcript < Avo::BaseAction
 
   def handle(query:, fields:, current_user:, resource:, **args)
     query.each do |record|
-      record.fetch_and_update_raw_transcript_later!
+      record.youtube_transcript.fetch_and_store_later!
     end
 
     succeed "Fetching the transcript in the background"

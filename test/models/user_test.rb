@@ -153,6 +153,13 @@ class UserTest < ActiveSupport::TestCase
     assert_equal user.id, found_user.id
   end
 
+  test "find_by_name_or_alias falls back to the GitHub handle" do
+    user = User.create!(name: "Keith Gaddis", github_handle: "karmajunkie-test")
+
+    assert_equal user.id, User.find_by_name_or_alias("karmajunkie-test").id
+    assert_equal user.id, User.find_by_name_or_alias("KarmaJunkie-Test").id
+  end
+
   test "find_by_name_or_alias returns nil for non-existent name" do
     found_user = User.find_by_name_or_alias("Nonexistent Person")
     assert_nil found_user
@@ -262,7 +269,7 @@ class UserTest < ActiveSupport::TestCase
     series = EventSeries.create!(name: "Test Series", slug: "test-series")
     event = Event.create!(name: "Test Event", slug: "test-event", series: series, date: Date.today)
 
-    EventParticipation.create!(user: user, event: event, attended_as: :speaker)
+    EventParticipation.create!(user: user, event: event, role: :speaker)
 
     assert_equal 1, user.event_participations.count
     assert_equal 0, canonical_user.event_participations.count
@@ -283,7 +290,7 @@ class UserTest < ActiveSupport::TestCase
     EventParticipation.create!(
       user: user,
       event: event,
-      attended_as: :keynote_speaker
+      role: :speaker
     )
 
     user.assign_canonical_user!(canonical_user: canonical_user)
@@ -291,7 +298,7 @@ class UserTest < ActiveSupport::TestCase
 
     new_participation = canonical_user.event_participations.first
     assert_not_nil new_participation
-    assert_equal "keynote_speaker", new_participation.attended_as
+    assert_equal "speaker", new_participation.role
     assert_equal event.id, new_participation.event_id
   end
 
@@ -658,17 +665,6 @@ class UserTest < ActiveSupport::TestCase
     )
     assert_equal "Amsterdam", user.city_record.name
     assert user.city_record.users.include?(user)
-  end
-
-  test "participated_events returns each event once even with multiple participations" do
-    user = users(:one)
-    event = events(:railsconf_2025)
-
-    user.event_participations.create!(event: event, attended_as: :keynote_speaker)
-    user.event_participations.create!(event: event, attended_as: :speaker)
-
-    assert_equal 2, user.event_participations.where(event: event).count
-    assert_equal [event], user.participated_events.where(id: event.id).to_a
   end
 
   test "understands? and does_not_understand? reflect the stored preferences" do

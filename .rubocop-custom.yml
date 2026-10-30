@@ -1,0 +1,11 @@
+require:
+  - ./lib/rubocop/cop/rubyevents/prefer_yerba.rb
+  - ./lib/rubocop/cop/rubyevents/prefer_static_models.rb
+
+RubyEvents/PreferYerba:
+  Enabled: true
+
+RubyEvents/PreferStaticModels:
+  Enabled: true
+  Include:
+    - "app/models/static/validators/**/*.rb"

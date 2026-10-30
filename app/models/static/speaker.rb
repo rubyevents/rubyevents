@@ -1,11 +1,118 @@
 # frozen_string_literal: true
 
 module Static
-  class Speaker < FrozenRecord::Base
-    self.backend = Backends::FileBackend.new("speakers.yml")
-    self.base_path = Rails.root.join("data")
+  class Speaker < Yerba::Record::Base
+    self.path = "data/speakers.yml"
 
+    schema SpeakerSchema
+
+    add_index :name, include: "aliases[].name"
+    add_index :slug
+    add_index :github
+
+    self.order_by = "name"
+
+    extend Integrity
+
+    SOCIAL_HANDLE_FIELDS = %w[github twitter mastodon bluesky linkedin speakerdeck].freeze
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
+
+    class InvalidSpeakerError < StandardError; end
+    class DuplicateSpeakerError < StandardError; end
+
+    def self.find_by(**criteria)
+      if criteria.any? && criteria.keys.all? { |key| key.in?(%i[name slug github]) }
+        return find_speaker(**criteria)
+      end
+
+      super
+    end
+
+    def self.find_or_create_by(name:)
+      find_by(name: name) || create(name: name)
+    end
+
+    def self.find_speaker(name: nil, slug: nil, github: nil)
+      name = name&.strip
+      slug = slug&.strip
+      github = github&.strip
+
+      (slug.present? && all.find_by(slug: slug)) ||
+        (github.present? && all.find_by(github: github)) ||
+        (name.present? && (all.find_by(name: name) || find_by_github_handle(name))) ||
+        nil
+    end
+
+    def self.find_by_github_handle(handle)
+      return nil if handle.blank?
+
+      all.cached(:speakers_by_github_handle) {
+        all.each_with_object({}) { |speaker, index| index[speaker.github.downcase] = speaker if speaker.github.present? }
+      }[handle.to_s.strip.downcase]
+    end
+
+    def self.add(name:, github: "", slug: nil, **attributes)
+      name = name.to_s.strip
+      github = github.to_s.strip
+      slug = slug&.strip
+
+      raise InvalidSpeakerError, "Speaker name cannot be blank" if name.blank?
+      raise DuplicateSpeakerError, "Speaker '#{name}' already exists" if known_reference?(name)
+      raise DuplicateSpeakerError, "A speaker with GitHub handle '#{github}' already exists" if github.present? && all.find_by(github: github)
+
+      all.build({"name" => name, "github" => github, "slug" => slug || name.parameterize}.merge(clean_attributes(attributes)))
+    end
+
+    def self.upsert(name:, github: "", **attributes)
+      raise InvalidSpeakerError, "Speaker name cannot be blank" if name.blank?
+
+      speaker = find_speaker(name: name, github: github)
+      return add(name: name, github: github, **attributes) unless speaker
+
+      speaker.assign(github: github, **attributes)
+    end
+
+    def self.create(name:, **attributes)
+      speakers = all
+
+      add(name: name, **attributes)
+      speakers.save!
+
+      find_by(name: name)
+    ensure
+      unload!
+    end
+
+    def self.save!
+      all.save!
+    end
+
+    def self.changed?
+      all.changed?
+    end
+
+    def self.clean_attributes(attributes)
+      attributes
+        .transform_keys(&:to_s)
+        .reject { |_, value| value.blank? }
+        .transform_values { |value| value.is_a?(String) ? value.strip : value }
+    end
+
+    def assign(**attributes)
+      self.class.clean_attributes(attributes).each { |key, value| self[key] = value }
+
+      self
+    end
+
+    def add_alias(name:, slug: nil)
+      self["aliases"] = Array(self["aliases"]) + [{"name" => name, "slug" => (slug || name.parameterize).to_s}]
+
+      self
+    end
+
+    def social_handle?
+      SOCIAL_HANDLE_FIELDS.any? { |field| self[field].to_s.strip.present? }
+    end
 
     def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       imported_users = []
@@ -28,6 +135,7 @@ module Static
         ::User.find_by(slug: slug) ||
         ::User.find_by_name_or_alias(name) ||
         ::User.find_by(slug: name.parameterize) ||
+        find_user_by_aliases ||
         ::User.new
 
       if slug.present? && user.slug != slug
@@ -80,6 +188,19 @@ module Static
       user_changed ? user : nil
     rescue ActiveRecord::RecordInvalid => e
       puts "Couldn't save: #{name} (#{github}), error: #{e.message}"
+      nil
+    end
+
+    private
+
+    def find_user_by_aliases
+      Array(aliases).each do |alias_data|
+        next unless alias_data.is_a?(Hash)
+
+        user = ::User.find_by(slug: alias_data["slug"]) || ::User.find_by_name_or_alias(alias_data["name"])
+        return user if user
+      end
+
       nil
     end
   end

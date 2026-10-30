@@ -15,6 +15,9 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     get profile_url(@user_with_talk)
     assert_response :success
     assert_equal @user_with_talk.talks_count, assigns(:talks).length
+
+    talk = assigns(:talks).first
+    assert_select "a##{dom_id(talk, :card_horizontal)}[data-turbo-frame='_top']"
   end
 
   test "should redirect to canonical user" do

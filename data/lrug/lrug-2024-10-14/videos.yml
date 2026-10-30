@@ -1,0 +1,62 @@
+---
+- id: "james-smith-lrug-2024-10-14"
+  old_id: "james-smith-lrug-october-2024"
+  title: "Fighting Enshittification with ActivityPub"
+  date: "2024-10-14"
+  announced_at: "2024-09-09T12:00:00Z"
+  slides_url: "https://floppy.org.uk/activitypub-talk/"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2024/october/james-smith-fighting-enshittification-with-activity-pub-lrug-oct-2024.mp4"
+  description: |-
+    ActivityPub is the protocol that powers the Fediverse, a web of social sites
+    like Mastodon, PixelFed, and a host of other free and open source tools. I’ll
+    explain what ActivityPub is, how it works, and discuss the Federails Rails
+    engine which allows you to add federation into your existing Rails web apps.
+    By breaking open the silos of existing social media like this, we can fight
+    the enshittification of the web and reclaim a bit of power from the massive
+    companies that own our online lives.
+  speakers:
+    - James Smith
+  additional_resources:
+    - name: "Source Code"
+      type: "code"
+      title: "Federails, a Rails engine to add ActivityPub to your app"
+      url: "https://gitlab.com/experimentslabs/federails"
+
+    - name: "Source Code"
+      type: "code"
+      title: "Caber, a simple ReBAC / Zanzibar gem"
+      url: "https://github.com/manyfold3d/caber"
+
+    - name: "Source Code"
+      type: "code"
+      title: "Mittsu, a Ruby port of Three.js"
+      url: "https://github.com/danini-the-panini/mittsu"
+
+    - name: "Link"
+      type: "link"
+      title: "And the reason behind all this: Manyfold, a Rails app for managing and sharing 3d models"
+      url: "https://manyfold.app"
+
+- id: "jade-dickinson-lrug-2024-10-14"
+  old_id: "jade-dickinson-lrug-october-2024"
+  title: "Plan to scale or plan to fail: an evidence-based approach for improving systems performance"
+  date: "2024-10-14"
+  announced_at: "2024-09-09T12:00:00Z"
+  video_provider: "not_published"
+  video_id: "jade-dickinson-lrug-2024-10-14"
+  description: |-
+    In this talk, I will present a methodology for replicating most standard
+    Rails systems, for the purpose of load testing.
+
+    You can use this to find out how your system performs with more traffic than
+    you currently encounter. This will be useful if you are on a Rails team that
+    is starting to see scaling challenges.
+
+    At Theta Lake we operate at scale and are applying this methodology to
+    proactively find ways to bring down our server costs. You don’t want to leave
+    it until either your server costs soar out of control, or your entire system
+    is about to fail. By seeing into the future just a little bit, you can find
+    bottlenecks in your system and so find where you can improve its scalability.
+  speakers:
+    - Jade Dickinson

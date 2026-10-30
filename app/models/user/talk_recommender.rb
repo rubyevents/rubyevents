@@ -48,6 +48,7 @@ class User::TalkRecommender < ActiveRecord::AssociatedObject
       .where.not(id: watched_talk_ids)
       .where.not(id: own_talk_ids)
       .where(video_provider: Talk::WATCHABLE_PROVIDERS)
+      .where.not(kind: Talk::NON_RECOMMENDABLE_KINDS)
       .group(:id)
       .order(Arel.sql("COUNT(watched_talks.id) DESC"))
       .limit(limit)
@@ -64,6 +65,7 @@ class User::TalkRecommender < ActiveRecord::AssociatedObject
       .where.not(id: watched_talk_ids)
       .where.not(id: own_talk_ids)
       .where(video_provider: Talk::WATCHABLE_PROVIDERS)
+      .where.not(kind: Talk::NON_RECOMMENDABLE_KINDS)
       .order("created_at DESC")
       .limit(limit)
   end

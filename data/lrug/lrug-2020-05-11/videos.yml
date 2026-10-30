@@ -1,0 +1,41 @@
+---
+- id: "peter-bell-lrug-2020-05-11"
+  old_id: "peter-bell-lrug-may-2020"
+  title: "Comparing the speed and elegance of different computer languages using a Hamiltonian curve algorithm as the comparator"
+  date: "2020-05-11"
+  announced_at: "2020-04-25T19:22:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2020/may/peter-bell-comparing-the-speed-and-elegance-of-different-computer-languages-lrug-may-2020.mp4"
+  description: |-
+    My company (Trapeze) specialises in public transport including schedule
+    optimisation. Finding Hamiltonian curves is a sub-problem to the
+    travelling salesman problem and of the general problem of optimising
+    pickup and drop-offs in demand responsive public transport. This talk
+    will compare implementing a Hamiltonian curve finder in a number of
+    different languages. The talk looks both at the speed of the language
+    and the elegance. For Ruby, I compare a couple of different
+    implementations. Other languages that are compared are Elixir, Go,
+    Javascript, Java, C++, C# and Python.
+
+    The source code is in a public Github repository details of which I will
+    provide as part of my talk
+  speakers:
+    - Peter Bell
+
+- id: "sam-joseph-lrug-2020-05-11"
+  old_id: "sam-joseph-lrug-may-2020"
+  title: "Debugging Ruby HTTP Library Surprises"
+  date: "2020-05-11"
+  announced_at: "2020-04-25T19:22:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2020/may/sam-joseph-debugging-ruby-http-library-surprises-lrug-may-2020.mp4"
+  description: |-
+    Some folks prefer 'puts' to debugging with something like
+    pry-byebug, but I'm a huge fan of debuggers, particularly stepping
+    through my own code and the code of the many libraries we all rely on.
+    In combination with `bundle open` to insert breakpoints into the code of
+    gems being used in your stack, debugging can expose really tricky
+    dependency bugs, as I aim to demonstrate with one that I found in the
+    way different ruby HTTP libraries can interact.
+  speakers:
+    - Sam Joseph

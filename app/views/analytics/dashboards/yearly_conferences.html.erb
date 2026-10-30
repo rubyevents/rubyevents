@@ -1,5 +1,7 @@
+<%# herb:formatter ignore %>
+
 <%= turbo_frame_tag "yearly_conferences" do %>
-  <h2 class="text-center mb-4 flex items-center justify-center">
+  <h2 class="mb-4 flex items-center justify-center text-center">
     Ruby conferences by year
     <span class="ml-2">
       <%= ui_tooltip "Note the last year might be incomplete until the year is over" do %>
@@ -7,5 +9,6 @@
       <% end %>
     </span>
   </h2>
+
   <%= column_chart @yearly_conferences, id: :yearly_conferences_chart, xtitle: "Year", ytitle: "# Confs" %>
 <% end %>

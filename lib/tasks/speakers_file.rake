@@ -1,7 +1,7 @@
 namespace :speakers_file do
   desc "Show speakers.yml stats"
   task stats: :environment do
-    speakers = Static::SpeakersFile.new
+    speakers = Static::Speaker.all
 
     puts "Speakers: #{speakers.count}"
     puts "Known names (incl. aliases): #{speakers.known_names.size}"
@@ -14,7 +14,7 @@ namespace :speakers_file do
 
   desc "List speakers referenced in videos but missing from speakers.yml"
   task missing: :environment do
-    speakers = Static::SpeakersFile.new
+    speakers = Static::Speaker.all
     missing = speakers.missing_speakers
 
     if missing.empty?
@@ -28,7 +28,7 @@ namespace :speakers_file do
 
   desc "Add missing speakers to speakers.yml"
   task add_missing: :environment do
-    speakers = Static::SpeakersFile.new
+    speakers = Static::Speaker.all
     added = speakers.add_missing_speakers
 
     if added.empty?
@@ -46,7 +46,7 @@ namespace :speakers_file do
 
   desc "List orphaned speakers in speakers.yml (not referenced in any video or involvement)"
   task orphaned: :environment do
-    speakers = Static::SpeakersFile.new
+    speakers = Static::Speaker.all
     orphaned = speakers.orphaned_speakers
 
     if orphaned.empty?
@@ -60,7 +60,7 @@ namespace :speakers_file do
 
   desc "Remove orphaned speakers from speakers.yml"
   task remove_orphaned: :environment do
-    speakers = Static::SpeakersFile.new
+    speakers = Static::Speaker.all
     removed = speakers.remove_orphaned_speakers!
 
     if removed.empty?
@@ -78,13 +78,13 @@ namespace :speakers_file do
 
   desc "Sync speakers.yml: add missing and remove orphaned speakers"
   task sync: :environment do
-    speakers = Static::SpeakersFile.new
+    speakers = Static::Speaker.all
 
     puts "Before: #{speakers.count} speakers"
     puts
 
-    added = speakers.add_missing_speakers
     removed = speakers.remove_orphaned_speakers!
+    added = speakers.add_missing_speakers
 
     if added.any?
       puts "Added #{added.length} missing speakers:"
@@ -109,7 +109,7 @@ namespace :speakers_file do
 
   desc "Check if speakers.yml is in sync (exits 1 if not)"
   task check: :environment do
-    speakers = Static::SpeakersFile.new
+    speakers = Static::Speaker.all
     missing = speakers.missing_speakers
     orphaned = speakers.orphaned_speakers
     in_sync = missing.empty? && orphaned.empty?
@@ -134,5 +134,34 @@ namespace :speakers_file do
       puts "Run `rails speakers_file:sync` to fix and review the output."
       exit 1
     end
+  end
+
+  desc "List near-duplicate speaker names (typos/accents) for review. THRESHOLD=0.85"
+  task duplicates: :environment do
+    include ActionView::Helpers::TextHelper
+
+    threshold = (ENV["THRESHOLD"] || "0.85").to_f
+    speakers = Static::Speaker.all
+    clusters = speakers.near_duplicate_names(threshold: threshold)
+      .reject { |cluster| cluster.names.all? { |name| speakers.social_handle?(name) } }
+
+    require "difftastic"
+    differ = Difftastic::Differ.new(color: :always, display: "inline", underline_highlights: true)
+
+    clusters.each do |cluster|
+      names = cluster.names
+      primary = names.first
+
+      if differ
+        names.drop(1).each do |name|
+          puts differ.diff_strings(primary, name)
+          puts "-----"
+        end
+      end
+
+      puts
+    end
+
+    puts "#{pluralize(speakers.count, "speaker")}, #{pluralize(clusters.size, "near-duplicate cluster")} (threshold #{threshold})."
   end
 end

@@ -48,6 +48,19 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "shows a language switcher when a talk has transcripts in multiple languages" do
+    @talk.talk_transcripts.create!(
+      language: "ja",
+      raw_transcript: Talk::Transcript::CueList.new(cues: [Talk::Transcript::Cue.new(start_time: "00:00:01.000", end_time: "00:00:02.000", text: "こんにちは")])
+    )
+
+    get talk_url(@talk)
+
+    assert_response :success
+    assert_select "button[data-language=?]", "en", text: "English"
+    assert_select "button[data-language=?]", "ja", text: "Japanese"
+  end
+
   test "should redirect to talks for wrong slugs" do
     get talk_url("wrong-slug")
     assert_response :moved_permanently

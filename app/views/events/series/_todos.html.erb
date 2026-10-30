@@ -1,0 +1,46 @@
+<%# locals: (todos:) %>
+
+<% if todos.any? %>
+  <div id="todos" class="mt-12">
+    <section class="flex w-full flex-col gap-4">
+      <div class="flex w-full items-center justify-between">
+        <h2 class="shrink-0 text-primary">TODOs</h2>
+        <span class="badge badge-primary"><%= todos.size %></span>
+      </div>
+
+      <div class="card bg-base-200">
+        <div class="card-body p-4">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Content</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% todos.first(20).each do |todo| %>
+                <tr>
+                  <td class="font-mono text-xs">
+                    <%= link_to todo.url, target: "_blank", class: "link link-primary" do %>
+                      <%= todo.file.split("/").last(2).join("/") %>:<%= todo.line %>
+                    <% end %>
+                  </td>
+
+                  <td><code class="break-all text-xs"><%= todo.content %></code></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+          <% if todos.size > 20 %>
+            <p class="mt-2 text-sm text-base-content/70">
+              ... and <%= todos.size - 20 %> more.
+              <%= link_to "View all TODOs", todos_path(view: "by_event"), class: "link link-primary" %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </div>
+<% end %>

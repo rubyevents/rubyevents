@@ -168,15 +168,6 @@ Rails.application.routes.draw do
   resources :contributions, only: [:index, :show], param: :step
   resources :todos, only: [:index], path: "data/todos"
 
-  resources :templates, only: [:new, :create] do
-    collection do
-      get :new_child
-      delete :delete_child
-      get :speakers_search
-      post :speakers_search_chips
-    end
-  end
-
   # resources
   namespace :analytics do
     resource :dashboards, only: [:show] do
@@ -260,6 +251,7 @@ Rails.application.routes.draw do
         get "/cities", to: redirect("/cities", status: 301)
         get "/cities/:city", to: redirect("/cities", status: 301)
         resources :series, param: :slug, only: [:index, :show] do
+          get :events, on: :member
           post :reimport, on: :member
           post :reindex, on: :member
           resources :event_series_subscriptions, only: [:create, :destroy]
@@ -276,7 +268,7 @@ Rails.application.routes.draw do
       resources :involvements, only: [:index]
       resources :talks, only: [:index]
       resources :related_talks, only: [:index]
-      resources :events, only: [:index, :show]
+      get "/events(/:id)" => redirect { |params, _| "/events/#{params[:event_slug]}" }
       resources :videos, only: [:index]
       resources :sponsors, only: [:index]
       resources :cfp, only: [:index]
@@ -316,7 +308,10 @@ Rails.application.routes.draw do
     resources :locations, only: [:index]
     resources :languages, only: [:index]
     resources :kinds, only: [:index]
+    resources :transcripts, only: [:index]
   end
+
+  get "search/transcripts", to: "transcript_searches#index", as: :transcript_search
 
   resources :recommendations, only: [:index]
 
@@ -340,6 +335,13 @@ Rails.application.routes.draw do
     namespace :native do
       namespace :v1 do
         get "home", to: "/page#home", defaults: {format: "json"}
+
+        resources :events, only: [], param: :slug do
+          resource :live_schedule, only: :show, controller: "live_schedules", defaults: {format: "json"}
+        end
+
+        resource :search_config, only: :show, controller: "search_configs", defaults: {format: "json"}
+        resource :next_event, only: :show, controller: "next_events", defaults: {format: "json"}
         resource :refresh, only: :show, controller: "refresh"
         resource :oauth, only: :show, controller: "oauth"
         resources :start, only: :show, param: :provider, controller: "start"

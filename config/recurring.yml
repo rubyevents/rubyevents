@@ -22,3 +22,6 @@ clear_solid_queue_finished_jobs:
 mark_suspicious_users:
   class: Recurring::MarkSuspiciousUsersJob
   schedule: every 6 hours
+transcript_backfill_job:
+  class: Recurring::TranscriptBackfillJob
+  schedule: every 5 minutes

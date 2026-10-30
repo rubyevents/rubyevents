@@ -1,0 +1,19 @@
+<%# locals: (meetups:, show_years: false) %>
+
+<% groups = show_years ? meetups.group_by { |meetup| meetup.start_date.year } : {nil => meetups} %>
+
+<div class="flex flex-col gap-6">
+  <% groups.each do |year, year_meetups| %>
+    <section>
+      <% if year %>
+        <h3 class="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-400"><%= year %></h3>
+      <% end %>
+
+      <ol class="divide-y overflow-hidden rounded-2xl border bg-white shadow-sm">
+        <% year_meetups.each do |meetup| %>
+          <li><%= render "events/series/meetup/timeline_card", meetup: meetup %></li>
+        <% end %>
+      </ol>
+    </section>
+  <% end %>
+</div>

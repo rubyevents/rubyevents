@@ -3,28 +3,32 @@
 # Table name: cfps
 # Database name: primary
 #
-#  id         :integer          not null, primary key
-#  close_date :date
-#  link       :string
-#  name       :string
-#  open_date  :date
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  event_id   :integer          not null, indexed
+#  id              :integer          not null, primary key
+#  close_date      :date
+#  link            :string
+#  name            :string
+#  open_date       :date
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  event_id        :integer          indexed
+#  event_series_id :integer          indexed
 #
 # Indexes
 #
-#  index_cfps_on_event_id  (event_id)
+#  index_cfps_on_event_id         (event_id)
+#  index_cfps_on_event_series_id  (event_series_id)
 #
 # Foreign Keys
 #
-#  event_id  (event_id => events.id)
+#  event_id         (event_id => events.id)
+#  event_series_id  (event_series_id => event_series.id)
 #
 class CFP < ApplicationRecord
-  belongs_to :event
+  include SeriesOrEventOwned
 
   scope :open, -> { where("close_date IS NULL OR close_date >= ?", Date.today) }
   scope :closed, -> { where("close_date < ?", Date.today) }
+  scope :with_dates, -> { where.not(open_date: nil).where.not(close_date: nil) }
 
   def open?
     return false if closed?
@@ -92,5 +96,16 @@ class CFP < ApplicationRecord
 
   def formatted_close_date
     I18n.l(close_date, default: "unknown")
+  end
+
+  def to_ical
+    Icalendar::Event.new.tap do |cal_event|
+      cal_event.uid = "RUBYEVENTS-CFP-#{id}"
+      cal_event.last_modified = updated_at
+      cal_event.dtstart = Icalendar::Values::Date.new(open_date)
+      cal_event.dtend = Icalendar::Values::Date.new(close_date + 1.day)
+      cal_event.summary = "#{owner.name} - #{name.presence || "Call for Proposals"}"
+      cal_event.url = link
+    end
   end
 end

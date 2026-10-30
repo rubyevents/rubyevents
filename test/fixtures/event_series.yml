@@ -5,25 +5,38 @@
 # Database name: primary
 #
 #  id                   :integer          not null, primary key
+#  city                 :string
+#  country_code         :string           indexed
 #  description          :text             default(""), not null
 #  frequency            :integer          default("unknown"), not null, indexed
 #  kind                 :integer          default("conference"), not null, indexed
 #  language             :string           default(""), not null
+#  latitude             :decimal(10, 6)
+#  location             :string           default(""), not null
+#  longitude            :decimal(10, 6)
 #  name                 :string           default(""), not null, indexed
 #  slug                 :string           default(""), not null, indexed
+#  state_code           :string
 #  twitter              :string           default(""), not null
 #  website              :string           default(""), not null
 #  youtube_channel_name :string           default("")
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  parent_id            :integer          indexed
 #  youtube_channel_id   :string           default("")
 #
 # Indexes
 #
-#  index_event_series_on_frequency  (frequency)
-#  index_event_series_on_kind       (kind)
-#  index_event_series_on_name       (name)
-#  index_event_series_on_slug       (slug)
+#  index_event_series_on_country_code  (country_code)
+#  index_event_series_on_frequency     (frequency)
+#  index_event_series_on_kind          (kind)
+#  index_event_series_on_name          (name)
+#  index_event_series_on_parent_id     (parent_id)
+#  index_event_series_on_slug          (slug)
+#
+# Foreign Keys
+#
+#  parent_id  (parent_id => event_series.id)
 #
 # rubocop:enable Layout/LineLength
 
@@ -31,7 +44,7 @@ railsconf:
   name: RailsConf
   description: RailsConf organized by Ruby central
   website: https://railsconf.org/
-  kind: 1
+  kind: 0
   frequency: 1
 
   slug: railsconf
@@ -40,7 +53,7 @@ rubyconfth:
   name: RubyConfTH
   description: Ruby Rails Thailand
   website: https://rubyconfth.com/
-  kind: 1
+  kind: 0
   frequency: 1
 
   slug: railsconfth
@@ -49,7 +62,7 @@ rails_world:
   name: RailsWorld
   description: Rails World
   website: https://rubyonrails.org/world
-  kind: 1
+  kind: 0
   frequency: 1
 
   slug: rails-world
@@ -59,7 +72,7 @@ brightonruby:
   name: Brighton Ruby
   description: Brighton Ruby
   website: https://brightonruby.com/
-  kind: 1
+  kind: 0
   frequency: 1
   slug: brightonruby
 

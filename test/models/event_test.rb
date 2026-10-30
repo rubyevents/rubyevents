@@ -35,6 +35,56 @@ class EventTest < ActiveSupport::TestCase
     refute event.valid?
   end
 
+  test "formatted_dates shows a meetup as recurring" do
+    assert_equal "Recurring", events(:wnb_rb_meetup).formatted_dates
+    refute events(:wnb_rb_meetup).meetup_inactive?
+  end
+
+  test "formatted_dates shows a meetup of an ended series as inactive" do
+    series = EventSeries.create!(name: "Triangle.rb", slug: "raleighrb", kind: :meetup)
+    event = Event.create!(name: "Triangle.rb Meetup", kind: :meetup, series: series)
+
+    assert event.meetup_inactive?
+    assert_equal "Inactive", event.formatted_dates
+  end
+
+  test "description uses the past tense for a meetup of an ended series" do
+    series = EventSeries.create!(name: "Triangle.rb", slug: "raleighrb", kind: :meetup)
+    event = Event.create!(name: "Triangle.rb Meetup", kind: :meetup, series: series)
+
+    assert_match "Triangle.rb was a", event.description
+  end
+
+  test "description names the speakers of a meetup with one or two talks" do
+    series = EventSeries.create!(name: "Geneva.rb", slug: "genevarb", kind: :meetup)
+    event = Event.create!(name: "Geneva.rb Meetup November 2026", slug: "genevarb-2026-11-18", kind: :meetup, series: series, start_date: 1.week.from_now, end_date: 1.week.from_now)
+
+    [users(:one), users(:two)].each_with_index do |speaker, index|
+      talk = Talk.create!(title: "Talk #{index}", static_id: "talk-#{index}-genevarb", event: event, date: 1.week.from_now, video_provider: "not_recorded", video_id: "talk-#{index}-genevarb")
+      talk.user_talks.create!(user: speaker)
+    end
+
+    assert_match "features 2 talks by #{[users(:one).name, users(:two).name].sort.to_sentence}.", Event.find(event.id).description
+
+    Talk.create!(title: "Talk 2", static_id: "talk-2-genevarb", event: event, date: 1.week.from_now, video_provider: "not_recorded", video_id: "talk-2-genevarb")
+
+    assert_match "features 3 talks from various speakers.", Event.find(event.id).description
+  end
+
+  test "description leaves out a meetup group's frequency for its conference" do
+    series = EventSeries.create!(name: "Belfast Ruby", slug: "belfastruby", kind: :meetup, frequency: :monthly)
+    event = Event.create!(name: "Belfast RubyFest 2026", slug: "belfast-rubyfest-2026", kind: :conference, series: series, start_date: 1.week.from_now, end_date: 1.week.from_now)
+
+    assert_match "Belfast Ruby is a conference", event.description
+  end
+
+  test "meetup_inactive? is false for a conference of an ended series" do
+    event = events(:railsconf_2025)
+
+    assert event.series.ended?
+    refute event.meetup_inactive?
+  end
+
   test "find_by_slug_or_alias finds event by slug" do
     event = events(:rails_world_2023)
     found = Event.find_by_slug_or_alias(event.slug)
@@ -157,6 +207,32 @@ class EventTest < ActiveSupport::TestCase
     just_published = Event.new(name: "test", series: @series, start_date: Date.today - 30, end_date: Date.today - 30, home_sort_date: Date.today - 5)
 
     assert_operator upcoming_soon.featured_distance, :<, just_published.featured_distance
+  end
+
+  test "featured returns eligible events in priority order up to the limit" do
+    today = Date.today
+    Event.update_all(featured_background: nil, featured_color: nil, home_sort_date: nil, recordings_published_date: nil)
+
+    happening = events(:rails_world_2023)
+    happening.update!(
+      start_date: today.prev_day,
+      end_date: today.next_day,
+      home_sort_date: today,
+      featured_background: "#000000",
+      featured_color: "#ffffff"
+    )
+
+    upcoming = events(:future_conference)
+    upcoming.update!(
+      start_date: today + 2.days,
+      end_date: today + 3.days,
+      home_sort_date: today,
+      featured_background: "#000000",
+      featured_color: "#ffffff"
+    )
+
+    assert_equal [happening], Event.featured(limit: 1, today: today).to_a
+    assert_equal [happening, upcoming], Event.featured(limit: 2, today: today).to_a
   end
 
   test "sync_aliases_from_list creates aliases from array" do
@@ -327,17 +403,13 @@ class EventTest < ActiveSupport::TestCase
   end
 
   test "today? meetup is not today" do
-    event = events(:wnb_rb_meetup)
-    talk = talks(:non_english_talk_one)
-    talk.update!(date: 3.days.ago, event: event)
+    event = Event.new(start_date: 3.days.ago, end_date: 3.days.ago, kind: :meetup)
 
-    assert !event.today?
+    assert_not event.today?
   end
 
   test "today? meetup is today" do
-    event = events(:wnb_rb_meetup)
-    talk = talks(:non_english_talk_one)
-    talk.update!(date: Date.today, event: event)
+    event = Event.new(start_date: Date.today, end_date: Date.today, kind: :meetup)
 
     assert event.today?
   end

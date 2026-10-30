@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TranscriptSchema",
   "type": "object",
   "properties": {
     "video_id": {
@@ -37,6 +39,5 @@
     "video_id",
     "cues"
   ],
-  "additionalProperties": false,
-  "strict": true
+  "additionalProperties": false
 }

@@ -5,21 +5,54 @@ module Generators
     class_option :event_series, type: :string, desc: "Event series folder name - defaults to the series of the event", required: false, group: "Fields"
     class_option :event, type: :string, desc: "Event folder name", required: true, aliases: ["-e"], group: "Fields"
 
-    def event_directory
-      @event_directory ||= File.join(destination_root, "data", event_series_slug, options[:event])
+    # For files that also exist for a whole series, like a meetup group's organizers in data/lrug/involvements.yml
+    def self.series_level_files!
+      class_option :event, type: :string, desc: "Event folder name. Not needed with --series-level", required: false, aliases: ["-e"], group: "Fields"
+      class_option :series_level, type: :boolean, default: false, desc: "Write the series' file instead of an event's, like a meetup group's data/lrug/involvements.yml", group: "Options"
     end
 
-    def event_series_slug
-      @series_slug ||= options[:event_series]
-        || static_event&.series_slug
-        || say_error("Could not determine event series.", :red) && exit(1)
-    end
+    # Helpers, not generator steps
+    no_commands do
+      def event_directory
+        @event_directory ||= File.join(series_directory, event_folder)
+      end
 
-    def static_event
-      @static_event ||= Static::Event.find_by_slug options[:event]
+      # The series folder, nested ones included: "data/rails-girls/rails-girls-bern".
+      def series_directory
+        @series_directory ||= File.join(destination_root, "data", static_series&.directory || event_series_slug)
+      end
+
+      def event_folder
+        static_event&.[]("id") || options[:event]
+      end
+
+      def event_series_slug
+        @series_slug ||= options[:event_series]
+          || static_event&.series_slug
+          || say_error("Could not determine event series.", :red)
+      end
+
+      def static_series
+        return @static_series if defined?(@static_series)
+
+        @static_series = Static::EventSeries.find_by_slug(event_series_slug.to_s)
+      end
+
+      def static_event
+        return @static_event if defined?(@static_event)
+
+        @static_event = Static::Event.find_by_slug(options[:event].to_s)
+      end
     end
 
     private
+
+    # The event's folder, or the series' with --series-level
+    def target_directory
+      raise Thor::RequiredArgumentMissingError, "No value provided for required options '--event'" if !options[:series_level] && options[:event].blank?
+
+      options[:series_level] ? series_directory : event_directory
+    end
 
     def destination_path(path)
       File.join(destination_root, path)

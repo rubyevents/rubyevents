@@ -1,12 +1,24 @@
 <%# locals: (kinds:, current_filter: "all") %>
 
-<div role="tablist" class="tabs tabs-boxed inline-flex mb-4">
-  <button type="button" class="tab <%= "tab-active" if current_filter == "all" %>" data-events-filter-target="button" data-kind="all" data-action="click->events-filter#filter">
+<div role="tablist" class="tabs-boxed tabs mb-4 inline-flex">
+  <button
+    type="button"
+    class="tab <%= "tab-active" if current_filter == "all" %>"
+    data-events-filter-target="button"
+    data-kind="all"
+    data-action="click->events-filter#filter"
+  >
     All
   </button>
 
   <% kinds.each do |kind| %>
-    <button type="button" class="tab <%= "tab-active" if current_filter == kind %>" data-events-filter-target="button" data-kind="<%= kind %>" data-action="click->events-filter#filter">
+    <button
+      type="button"
+      class="tab <%= "tab-active" if current_filter == kind %>"
+      data-events-filter-target="button"
+      data-kind="<%= kind %>"
+      data-action="click->events-filter#filter"
+    >
       <%= kind.humanize.pluralize %>
     </button>
   <% end %>

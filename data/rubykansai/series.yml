@@ -1,8 +1,23 @@
 ---
+id: "rubykansai"
+old_event_ids:
+  - "rubykansai-meetup"
 name: "Ruby関西"
+location: "Osaka, Japan"
+timezone: "Asia/Tokyo"
 website: "https://github.com/rubykansai/workshops/wiki"
-kind: "organisation"
-frequency: "irregular"
+kind: "meetup"
 language: "Japanese"
 default_country_code: "JP"
 meetup: "https://rubykansai.doorkeeper.jp"
+description: "A long-running community that organizes Ruby-related events across the Kansai region, including study sessions, KansaiRubyKaigi, and Rails meetups in Kansai."
+banner_background: "#FFFFFF"
+featured_background: "#FFFFFF"
+featured_color: "#000000"
+coordinates:
+  latitude: 34.6937569
+  longitude: 135.5014539
+feeds:
+  - type: "ical"
+    url: "https://rubykansai.doorkeeper.jp/events.ics"
+    name: "Doorkeeper"
