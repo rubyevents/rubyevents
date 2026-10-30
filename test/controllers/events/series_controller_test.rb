@@ -33,6 +33,21 @@ class Events::SeriesControllerTest < ActionDispatch::IntegrationTest
     assert_select "#meetups h3", text: "Test.rb Meetup January 2020"
   end
 
+  test "should show whether the user follows a meetup group" do
+    series = EventSeries.create!(name: "Test.rb", slug: "testrb", kind: :meetup)
+    Event.create!(name: "Test.rb Meetup January 2099", slug: "testrb-2099-01-14", series: series, kind: :meetup, start_date: "2099-01-14", end_date: "2099-01-14")
+    user = sign_in_as(users(:one))
+
+    get series_url(series)
+
+    assert_select ".follow_button", text: /Follow Series/
+
+    user.event_series_subscriptions.create!(event_series: series)
+    get series_url(series)
+
+    assert_select ".follow_button", text: /Following/
+  end
+
   test "should list all past meetups of a group on its events page" do
     series = EventSeries.create!(name: "Test.rb", slug: "testrb", kind: :meetup)
     meetups = (1..25).map { |month| Event.create!(name: "Test.rb #{month}", slug: "testrb-2020-#{month}", series: series, kind: :meetup, start_date: Date.new(2018, 1, 1) + (month * 30), end_date: Date.new(2018, 1, 1) + (month * 30)) }

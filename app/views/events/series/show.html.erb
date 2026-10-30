@@ -28,15 +28,15 @@
       </div>
     </div>
 
-    <div class="flex items-center gap-2 mb-6 lg:mb-0">
-      <%= render partial: "events/series/follow_button", locals: {event_series: @event_series, subscription: @subscription} %>
-    </div>
-
     <%= render "events/series/admin_actions", series: @event_series %>
 
-    <% if (yaml_link = data_file_link_for(@event_series)) %>
-      <div class="mt-4"><%= yaml_link %></div>
-    <% end %>
+    <div class="mt-4 flex items-center gap-4">
+      <%= render partial: "events/series/follow_button", locals: {event_series: @event_series, subscription: @subscription} %>
+
+      <% if (yaml_link = data_file_link_for(@event_series)) %>
+        <%= yaml_link %>
+      <% end %>
+    </div>
   </div>
 
   <p class="mb-3 mt-3 max-w-[700px] text-[#636B74] md:mt-9">

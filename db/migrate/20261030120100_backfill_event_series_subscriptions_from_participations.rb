@@ -6,7 +6,8 @@ class BackfillEventSeriesSubscriptionsFromParticipations < ActiveRecord::Migrati
       FROM event_participations ep
       INNER JOIN events e ON e.id = ep.event_id
       WHERE e.event_series_id IS NOT NULL
-        AND ep.attended_as = 'visitor'
+        AND ep.role = 'attendee'
+        AND e.kind = 'meetup'
       GROUP BY ep.user_id, e.event_series_id
       ON CONFLICT (user_id, event_series_id) DO NOTHING
     SQL
@@ -18,8 +19,8 @@ class BackfillEventSeriesSubscriptionsFromParticipations < ActiveRecord::Migrati
       WHERE id IN (
         SELECT esf.id
         FROM event_series_subscriptions esf
-        INNER JOIN event_participations ep ON ep.user_id = esf.user_id AND ep.attended_as = 'visitor'
-        INNER JOIN events e ON e.id = ep.event_id AND e.event_series_id = esf.event_series_id
+        INNER JOIN event_participations ep ON ep.user_id = esf.user_id AND ep.role = 'attendee'
+        INNER JOIN events e ON e.id = ep.event_id AND e.kind = 'meetup' AND e.event_series_id = esf.event_series_id
       )
     SQL
   end
