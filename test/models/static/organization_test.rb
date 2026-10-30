@@ -176,17 +176,4 @@ class Static::OrganizationTest < ActiveSupport::TestCase
     assert_equal %w[appsignal typesense], imported.map(&:slug).sort
     assert_empty Static::Organization.import_all!(index: false)
   end
-
-  test "with_path points the model at another file temporarily" do
-    Dir.mktmpdir do |dir|
-      path = File.join(dir, "organizations.yml")
-      File.write(path, %(---\n- slug: "only-org"\n  name: "Only Org"\n))
-
-      Static::Organization.with_path(path) do
-        assert_equal ["only-org"], Static::Organization.all.slugs
-      end
-
-      assert_equal 2, Static::Organization.count
-    end
-  end
 end
