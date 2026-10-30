@@ -51,10 +51,6 @@ module Static
       }[name.to_s.strip.downcase]
     end
 
-    def self.find_or_create_by(slug:, name: nil)
-      find_by(slug: slug) || create(slug: slug, name: name || slug.to_s.titleize)
-    end
-
     def self.slug_for(name)
       I18n.transliterate(name.to_s.strip.downcase).parameterize
     end
@@ -71,32 +67,8 @@ module Static
       all.build({"slug" => slug, "name" => name}.merge(clean_attributes(attributes)))
     end
 
-    def self.upsert(slug:, **attributes)
-      raise InvalidOrganizationError, "Organization slug cannot be blank" if slug.blank?
-
-      organization = find_by(slug: slug)
-      return add(slug: slug, **attributes) unless organization
-
-      organization.assign(**attributes)
-    end
-
-    def self.create(slug:, **attributes)
-      organizations = all
-
-      add(slug: slug, **attributes)
-      organizations.save!
-
-      find_by(slug: slug)
-    ensure
-      unload!
-    end
-
     def self.save!
       all.save!
-    end
-
-    def self.changed?
-      all.changed?
     end
 
     def self.clean_attributes(attributes)

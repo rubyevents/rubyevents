@@ -40,23 +40,14 @@ class Static::OrganizationTest < ActiveSupport::TestCase
     assert_raises(Static::Organization::DuplicateOrganizationError) { Static::Organization.add(slug: "other", name: "AppSignal") }
   end
 
-  test "upsert adds or updates and create writes the file" do
-    Static::Organization.upsert(slug: "appsignal", description: " Monitoring ", website: "")
+  test "add and save! write a new organization to the file in slug order" do
+    Static::Organization.add(slug: "honeybadger", name: "Honeybadger", website: " https://www.honeybadger.io ", description: "")
     Static::Organization.save!
 
-    reloaded = Static::Organization.find_by(slug: "appsignal")
-    assert_equal "Monitoring", reloaded.description
-    assert_equal "https://www.appsignal.com", reloaded.website
-
-    created = Static::Organization.create(slug: "honeybadger", name: "Honeybadger", website: "https://www.honeybadger.io")
-    assert_equal "Honeybadger", created.name
-    assert_match(/slug: "?honeybadger"?$/, File.read(@sandboxed_organizations_file.path))
+    reloaded = Static::Organization.find_by(slug: "honeybadger")
+    assert_equal "https://www.honeybadger.io", reloaded.website
+    assert_nil reloaded["description"]
     assert_equal %w[appsignal honeybadger typesense], Static::Organization.all.slugs
-  end
-
-  test "find_or_create_by names a new organization after its slug" do
-    assert_equal "AppSignal", Static::Organization.find_or_create_by(slug: "app-signal").name
-    assert_equal "Planet Argon", Static::Organization.find_or_create_by(slug: "planet-argon").name
   end
 
   test "add_alias and add_alternate_name edit an organization" do
