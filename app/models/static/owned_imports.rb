@@ -86,8 +86,7 @@ module Static
       ::User.create!(name: name)
     end
 
-    # Organizations come from data/organizations.yml, imported before events. A slug that isn't there is a data error
-    # (`bin/rails validate:sponsors` and `validate:involvements` catch it), not something to paper over here.
+    # Organizations come from data/organizations.yml, imported before events.
     def organization_for(slug, source)
       organization = ::Organization.find_by_slug_or_alias(slug.to_s)
       return organization if organization

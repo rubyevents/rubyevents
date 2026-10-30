@@ -2,12 +2,8 @@
 
 module Static
   class Organization
-    # Moves the organization data out of the sponsors.yml and involvements.yml files into data/organizations.yml.
-    #
-    # Sponsor entries used to carry `name`, `website`, `logo_url` and `description` next to their `slug`; involvements
-    # named organizations by name under `organisations`. After a run, sponsor entries carry only `slug`, `badge`,
-    # `from` and `to`, involvements list slugs under `organizations`, and every slug is an entry (or alias) in
-    # data/organizations.yml.
+    # Moves the organization data out of the sponsors.yml and involvements.yml files into data/organizations.yml,
+    # leaving sponsor entries with `slug`, `badge`, `from` and `to`, and involvements with organization slugs.
     #
     # Grouping follows production (see Snapshot): a slug production lists keeps its slug and name; a slug production
     # folded into another organization becomes an alias of it. Slugs production doesn't know are grouped the way the

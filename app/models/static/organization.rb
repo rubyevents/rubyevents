@@ -139,15 +139,8 @@ module Static
       imported
     end
 
-    # Writes this entry into the organizations table.
-    #
-    # - name, website and description follow the YAML whenever it has a value
-    # - kind, main_location, logo_background and logo_url only fill a blank column, so what admins
-    #   picked in Avo or the logo picker survives
-    # - logo_urls are added to the column, never removed
-    # - a row found through an alias slug is renamed to this slug and keeps the old slug as alias
-    # - a row that still exists under an alias slug next to this one is merged into it: its sponsorships and
-    #   involvements move over, then it is removed and its slug becomes the alias
+    # Writes this entry into the organizations table. kind, main_location, logo_background and logo_url only fill
+    # a blank column, so what admins picked in Avo or the logo picker survives a seed; logo_urls are never removed.
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       organization = ::Organization.find_by(slug: slug) || organization_by_alias_slug || ::Organization.new(slug: slug)
       previous_slug = organization.slug
