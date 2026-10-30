@@ -131,7 +131,6 @@ module Static
           existing&.slug ||
             @snapshot&.slug_by_name(name) ||
             Static::Organization.slug_for(name).presence ||
-            name.parameterize.presence ||
             raise(InvalidOrganizationError, "Cannot derive a slug for organization '#{name}'#{" in #{file}" if file}")
         end
       end
@@ -361,11 +360,11 @@ module Static
         lines = File.readlines(path, chomp: true)
         output = []
 
-        lines.each_with_index do |line, index|
+        lines.each do |line|
           output << line
 
           slug = line[/\A- slug: "?([^"]+)"?\z/, 1]
-          output.concat(@comments[slug]) if slug && @comments.key?(slug) && lines[index + 1] != @comments[slug].first
+          output.concat(@comments[slug]) if slug && @comments.key?(slug)
         end
 
         File.write(path, output.join("\n") + "\n")
