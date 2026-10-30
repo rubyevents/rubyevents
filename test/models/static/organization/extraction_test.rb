@@ -102,6 +102,23 @@ class Static::Organization::ExtractionTest < ActiveSupport::TestCase
     end
   end
 
+  test "an alias listed after its organization in the same tier is removed too" do
+    with_legacy_data do |dir|
+      Static::Organization::Extraction.new(snapshot: snapshot, log: StringIO.new).run!
+
+      organizations = Static::Organization.all
+      organizations.find_by(slug: "typesense").add_alias(name: "Typesense Search", slug: "typesense-search")
+      organizations.save!
+      write(dir, "data/testconf/testconf-2024/sponsors.yml", [{"tiers" => [{"name" => "Gold", "sponsors" => [{"slug" => "typesense"}, {"slug" => "typesense-search", "badge" => "Coffee Sponsor"}]}]}])
+      StaticDataSandbox.models.each(&:unload!)
+
+      report = Static::Organization::Extraction.new(snapshot: snapshot, log: StringIO.new).run!
+
+      assert_equal 1, report[:rewritten_sponsor_files]
+      assert_equal [{"slug" => "typesense", "badge" => "Coffee Sponsor"}], Yerba.parse_file(File.join(dir, "data/testconf/testconf-2024/sponsors.yml")).value_at("[0].tiers[0].sponsors")
+    end
+  end
+
   test "a slug production folded into an organization that is already in the file becomes its alias" do
     with_legacy_data do |dir|
       Static::Organization::Extraction.new(snapshot: snapshot, log: StringIO.new).run!

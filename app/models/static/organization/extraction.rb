@@ -395,6 +395,7 @@ module Static
                 kept.entry["badge"] = sponsor.entry["badge"] if sponsor.entry["badge"].present? && kept.entry["badge"].blank?
                 @deduplicated << [sponsor.file, sponsor.slug, target]
                 duplicates << sponsor.entry
+                changed = true
                 next
               end
 
