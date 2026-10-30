@@ -1,0 +1,16 @@
+Description:
+    Adds or updates an organization in data/organizations.yml. Sponsors (sponsors.yml) and
+    involvements (involvements.yml) reference organizations by slug.
+
+Example: Add an organization
+    bin/rails g organization --name "AppSignal" --website https://www.appsignal.com \
+      --logo_url https://rubyonrails.org/assets/images/logo-appsignal.svg
+
+    This adds an entry with slug "appsignal" to data/organizations.yml.
+
+Example: Update fields of an existing organization
+    bin/rails g organization --slug appsignal --kind company --main_location "Amsterdam, Netherlands"
+
+Example: Merge a duplicate into this organization
+    bin/rails g organization --slug appsignal --alias-slug app-signal --alias-name "App Signal"
+    bin/rails organizations_file:extract   # rewrites sponsors.yml and involvements.yml that used app-signal

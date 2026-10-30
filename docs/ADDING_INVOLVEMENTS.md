@@ -4,7 +4,7 @@ This guide explains how to add involvement information (organizers, program comm
 
 ## Overview
 
-Involvement data is stored in YAML files within the conference/event directories. Each conference can have its own involvements file that defines the people and organisations involved in the event and their roles.
+Involvement data is stored in YAML files within the conference/event directories. Each conference can have its own involvements file that defines the people and organizations involved in the event and their roles. Organizations are referenced by their slug in [`data/organizations.yml`](/data/organizations.yml) (see [ADDING_ORGANIZATIONS.md](ADDING_ORGANIZATIONS.md)).
 
 ## File Structure
 
@@ -62,7 +62,7 @@ ls data/{series-name}/{event}/involvements.yml
 If the file doesn't exist, create it:
 
 ```bash
-bin/rails g involvements --event <event-slug> --name <role-name> --users "Name One" "Name Two" --organisations "Org One" "Org Two"
+bin/rails g involvements --event <event-slug> --name <role-name> --users "Name One" "Name Two" --organizations "org-one" "org-two"
 ```
 
 ### 3. Gather Involvement Information
@@ -70,7 +70,7 @@ bin/rails g involvements --event <event-slug> --name <role-name> --users "Name O
 For each role, collect:
 - The role title
 - Names of people who have this role
-- Any organisations associated with the role (optional)
+- The slugs of any organizations associated with the role (optional); add missing ones with `bin/rails g organization` first
 
 ### 4. Format the yaml
 
@@ -102,7 +102,8 @@ bin/dev
 
 - **Invalid YAML syntax**: Check indentation (use spaces, not tabs)
 - **Missing required fields**: Ensure `name` and `users` are present for each role entry
-- **Empty users list**: Use `users: []` if a role only has organisations
+- **Empty users list**: Use `users: []` if a role only has organizations
+- **Unknown organization**: `bin/rails validate:involvements` fails when an organization slug isn't in `data/organizations.yml`
 
 ## Submission Process
 

@@ -158,7 +158,8 @@ class Static::AssociationsTest < ActiveSupport::TestCase
 
   test "records nested in another model belong to the event and series of their parent" do
     [Static::Talk::AlternativeRecording, Static::Sponsor::Tier, Static::Sponsor::Entry].each do |model|
-      record = model.all.first
+      # Sponsor tiers also live in a series' sponsors.yml, whose owner has no event
+      record = model.all.find(&:event)
       owner = record.parent
       owner = owner.parent while owner.parent
 

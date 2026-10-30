@@ -78,10 +78,12 @@ module Yerba
         end
 
         def nested_all
-          owner_name, association = Associations.nested_owners[name]
-          return unless owner_name
+          owners = Associations.nested_owners[name]
+          return if owners.empty?
 
-          records = owner_name.constantize.all.select { |record| record.key?(association) }.flat_map { |record| record.public_send(association).to_a }
+          records = owners.flat_map do |owner_name, association|
+            owner_name.constantize.all.select { |record| record.key?(association) }.flat_map { |record| record.public_send(association).to_a }
+          end
 
           Collection.new(record_class: self, records: records)
         end

@@ -106,7 +106,7 @@ rules:
           value_style: plain
 
       - quote_style:
-          selector: "[].organisations"
+          selector: "[].organizations"
           value_style: plain
 
       - quote_style:
@@ -122,15 +122,15 @@ rules:
           value_style: double
 
       - quote_style:
-          selector: "[].organisations[].name"
+          selector: "[].organizations[].slug"
           value_style: double
 
       - quote_style:
-          selector: "[].organisations[].from"
+          selector: "[].organizations[].from"
           value_style: double
 
       - quote_style:
-          selector: "[].organisations[].to"
+          selector: "[].organizations[].to"
           value_style: double
 
       - blank_lines:
@@ -184,6 +184,14 @@ rules:
       - quote_style:
           key_style: "plain"
           value_style: "double"
+
+      - sort_keys:
+          selector: "[].tiers[].sponsors[]"
+          order:
+            - slug
+            - badge
+            - from
+            - to
 
   - files: "data/**/venue.yml"
     pipeline:
@@ -412,6 +420,41 @@ rules:
       - sort:
           by: ".date .start_time .end_time"
           missing: keep
+
+  - files: "data/organizations.yml"
+    pipeline:
+      - schema:
+          file: "lib/schemas/organization_schema.json"
+          selector: "[]"
+
+      - blank_lines:
+          selector: ""
+          count: 1
+
+      - sort_keys:
+          selector: "[]"
+          order:
+            - slug
+            - aliases
+            - name
+            - alternate_names
+            - kind
+            - website
+            - websites
+            - logo_url
+            - logo_urls
+            - logo_background
+            - main_location
+            - description
+
+      - sort_keys:
+          selector: "[].aliases[]"
+          order:
+            - name
+            - slug
+
+      - sort:
+          by: ".slug"
 
   - files: "data/speakers.yml"
     pipeline:

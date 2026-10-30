@@ -163,7 +163,7 @@ A meetup without talks doesn't need a `videos.yml`.
 
 ## Organizers and sponsors of the group
 
-`data/{series}/involvements.yml` and `data/{series}/sponsors.yml` describe the whole group. Each person, organisation or sponsor can carry the period it held the role, as `YYYY`, `YYYY-MM` or `YYYY-MM-DD`. Leave `to` out while it lasts, and leave both out when you don't know:
+`data/{series}/involvements.yml` and `data/{series}/sponsors.yml` describe the whole group. Each person, organization or sponsor can carry the period it held the role, as `YYYY`, `YYYY-MM` or `YYYY-MM-DD`. Leave `to` out while it lasts, and leave both out when you don't know:
 
 ```yaml
 ---
@@ -173,8 +173,8 @@ A meetup without talks doesn't need a `videos.yml`.
     - name: "Jane Doe"
       from: "2018"
       to: "2022-06"
-  organisations:
-    - name: "Codebar"
+  organizations:
+    - slug: "codebar"
       from: "2021-03-01"
 ```
 
@@ -182,7 +182,7 @@ The group's page lists current and former organizers and sponsors, and each meet
 
 ```bash
 bin/rails g involvements --event-series lrug --series-level --name Organizer --users "Jane Doe" --from 2018 --to 2022-06
-bin/rails g sponsors --event-series lrug --series-level --name "Example Ltd" --website https://example.com --from 2024
+bin/rails g sponsors --event-series lrug --series-level --name "Example Ltd" --website https://example.com --from 2024  # adds Example Ltd to data/organizations.yml
 bin/rails g cfp --event-series lrug --series-level --link https://lrug.org/speaking
 ```
 

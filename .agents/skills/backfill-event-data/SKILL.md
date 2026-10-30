@@ -28,7 +28,8 @@ data/speakers.yml          # global, one entry per speaker
 ### Generators (`bin/rails g <name> --help` for each)
 
 `involvements`, `sponsors`, `venue`, `schedule`, `event`, `cfp`, `talk`, `newsletter`. They write via yerba and validate. Quirks that bite:
-- **sponsors**: args are pipe-separated `"Name|url|Tier|badge"`, `--event-series --event`. The template **ignores the url and hardcodes placeholder `website`/`logo_url`** — you must fill real values afterward (`yerba set`). Tiers get `level` 1,2,3… in first-seen order, so list all Gold, then all Silver, etc.
+- **sponsors**: one sponsor per call, `--slug <organization slug> --tier Gold [--badge ...]`, `--event-series --event`. The entry holds only `slug`/`badge`/`from`/`to`; name, website and logos live in `data/organizations.yml`. For an organization that isn't there yet pass `--name --website --logo_url` and the generator adds it. `--tiers "Platinum,Gold"` on the first call creates the tier skeleton (`level` 1,2,3… in that order).
+- **organization**: `bin/rails g organization --name --website --logo_url [--kind --main_location]` adds or updates `data/organizations.yml`; `--alias-slug` merges a duplicate (then `bin/rails organizations_file:extract`).
 - **venue**: `--name --address` (address is **geocoded**); flags `--hotels/--locations/ --rooms/--spaces/--accessibility/--nearby` add **one placeholder** section each. It **also overwrites `event.yml` coordinates** with the geocoded venue coords. Geocoding by *name* can resolve the wrong place (e.g. wrong campus) — verify and fix with the `geocode` MCP tool + `yerba set`.
 - **schedule**: auto-fills the talk *count* from videos.yml into a **uniform** grid you then rewrite to the real program (see Schedule below).
 - Generators leave a `# docs/ADDING_*.md` / `# TODO:` header. Convention is files start at `---`; delete the header lines (sed) once the file is real, then `yerba check`.
@@ -70,7 +71,7 @@ Gotchas:
 - `geocode(location)` — venue & hotel coordinates/address. Pass a **precise street address**, not just a venue name.
 - `github_profile(username)` / `github_search(query, language?)` — find & **verify** handles. **Always confirm by matching the profile's `name` to the speaker.** A twitter handle often equals the github one but not always, and the data contains wrong-person values (e.g. a handle that actually belongs to someone else).
 - `youtube_*`, `vimeo_video`, `speakerdeck_*` — media metadata.
-- `speaker_lookup/create/update/add_alias`, `event_*`, `venue_create` — DB helpers, but the **YAML is the source of truth** (DB is seeded from it); prefer editing the files.
+- `speaker_lookup/create/update/add_alias`, `organization_lookup/create/update/add_alias`, `event_*`, `venue_create` — DB helpers, but the **YAML is the source of truth** (DB is seeded from it); prefer editing the files.
 
 ### Scraping the conference site
 
@@ -81,11 +82,11 @@ Gotchas:
 
 ### involvements.yml
 
-`bin/rails g involvements --event <slug> --name "Organizer" --users "A" "B" --organisations "Org"`. Run once per role (Organizer, MC, Volunteer, Program Committee, Video Production, …); role names are singularized and the singular form is convention. Users don't need to pre-exist (seeding auto-creates bare Users) — but to give them social handles, add speaker entries.
+`bin/rails g involvements --event <slug> --name "Organizer" --users "A" "B" --organizations "org-slug"`. Run once per role (Organizer, MC, Volunteer, Program Committee, Video Production, …); role names are singularized and the singular form is convention. Users don't need to pre-exist (seeding auto-creates bare Users) — but to give them social handles, add speaker entries. Organizations must exist in `data/organizations.yml` (`organization_lookup`, else `bin/rails g organization`).
 
 ### sponsors.yml
 
-Generate the tier skeleton, then `yerba set` each sponsor's real `website` and `logo_url` (the generator only writes placeholders). Level order = tier order in the args.
+Look each sponsor up in `data/organizations.yml` (`organization_lookup`); `bin/rails g sponsors --slug <slug> --tier <Tier>` per sponsor, with `--name --website --logo_url` for organizations that are new. A logo from the event site goes into the organization's `logo_urls` (`organization_update` / `yerba insert`). Level order = `--tiers` order on the first call.
 
 ### venue.yml + hotels
 

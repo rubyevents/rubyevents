@@ -65,6 +65,7 @@ Run `yerba --help` for a full overview of all commands, selectors, conditions, a
 Conference data is stored in YAML files under `/data/`:
 
 - `data/speakers.yml` - Global speaker database
+- `data/organizations.yml` - Global organization database (sponsors and organizing companies/communities), referenced by slug from `sponsors.yml` and `involvements.yml`
 - `data/{series-slug}/series.yml` - Event series metadata (conference organizers/series)
 - `data/{series-slug}/{event-name}/event.yml` - Event metadata (dates, location, colors, etc.)
 - `data/{series-slug}/{event-name}/videos.yml` - Individual talk data

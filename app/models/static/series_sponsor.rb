@@ -10,5 +10,14 @@ module Static
 
     belongs_to :event_series
     has_many :tiers, nested: true, class_name: "Static::Sponsor::Tier"
+
+    # Tiers and entries reach their owner's event and series through the parent chain; a series' sponsors have no event
+    def event
+      nil
+    end
+
+    def series
+      event_series
+    end
   end
 end

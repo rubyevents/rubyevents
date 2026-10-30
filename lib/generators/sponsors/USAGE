@@ -4,18 +4,21 @@ Description:
    If the sponsor already exists in the file, updates the existing sponsor record.
    Tiers can only be added on the first pass.
 
+   Sponsors reference an organization in data/organizations.yml by slug. Pass --slug for an
+   organization that is already there, or --name (with --website and --logo_url) to add it.
+
 Example: Create a new sponsors.yml file for an event with the first sponsor added.
     bin/rails generate sponsors --event rails-world-2026 --tiers "Platinum,Gold,Silver,Sponsors,Members" \
-      --name "App Signal" --website "https://www.appsignal.com" \
+      --name "AppSignal" --website "https://www.appsignal.com" \
       --logo_url "https://rubyonrails.org/assets/images/logo-appsignal.svg" \
       --tier "Platinum"
 
     This will create:
         /data/rails-world/rails-world-2026/sponsors.yml
+    and add AppSignal to data/organizations.yml when it isn't there yet.
 
-Example: Add a new sponsor to an existing sponsors.yml file
-  bin/rails g sponsors --event rubyconf-austria-2026 --name "Teamtailor" --website "https://teamtailor.com/" \
-    --tier "Gold Online" --logo_url "https://rubyconf.at/assets/images/sponsors/teamtailor.png"
+Example: Add a known organization to an existing sponsors.yml file
+  bin/rails g sponsors --event rubyconf-austria-2026 --slug teamtailor --tier "Gold Online"
 
-Example: Update a sponsor's tier
-  bin/rails g sponsors --event tropical-on-rails-2026 --name "Sponsor Name" --tier "Platinum"
+Example: Update a sponsor's tier or badge
+  bin/rails g sponsors --event tropical-on-rails-2026 --slug appsignal --tier "Platinum" --badge "Wifi Sponsor"

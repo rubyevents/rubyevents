@@ -27,25 +27,9 @@
             "items": {
               "type": "object",
               "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "Sponsor Name"
-                },
                 "slug": {
                   "type": "string",
-                  "description": "Sponsor identifier slug"
-                },
-                "website": {
-                  "type": "string",
-                  "description": "Sponsor's website URL"
-                },
-                "description": {
-                  "type": "string",
-                  "description": "Description of the sponsor"
-                },
-                "logo_url": {
-                  "type": "string",
-                  "description": "URL to the sponsor's logo image"
+                  "description": "Slug of the organization in data/organizations.yml"
                 },
                 "badge": {
                   "type": "string",
@@ -63,9 +47,7 @@
                 }
               },
               "required": [
-                "name",
-                "slug",
-                "website"
+                "slug"
               ],
               "additionalProperties": false
             }

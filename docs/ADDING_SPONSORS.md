@@ -19,7 +19,7 @@ For example:
 - [`data/rubykaigi/rubykaigi-2025/sponsors.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/rubykaigi/rubykaigi-2025/sponsors.yml)
 - [`data/railsconf/railsconf-2025/sponsors.yml`](https://github.com/rubyevents/rubyevents/blob/main/data/railsconf/railsconf-2025/sponsors.yml)
 
-All permitted fields are defined in [SponsorSchema.](/app/schemas/sponsor_schema.rb)
+All permitted fields are defined in [SponsorsSchema](/app/schemas/sponsors_schema.rb). A sponsor entry names the organization by its `slug` in [`data/organizations.yml`](/data/organizations.yml), where the name, website, logo and description live (see [ADDING_ORGANIZATIONS.md](ADDING_ORGANIZATIONS.md)). The entry itself only carries what is specific to this sponsorship: `badge`, and `from`/`to` in a series' file.
 
 ## Common Sponsor Tiers
 
@@ -51,16 +51,12 @@ Generate a sponsors.yml in the correct folder using the SponsorsGenerator!
 bin/rails g sponsors --event-series tropicalrb --event tropical-on-rails-2026
 ```
 
-Pass multiple sponsors at once, and list the sponsor tier.
-If there is no tier, it will default to "Sponsors".
+Add one sponsor per call. An organization that is already in `data/organizations.yml` only needs its slug; a new one needs `--name` (and `--website`, `--logo_url`), which also adds it to `data/organizations.yml`. If there is no tier, it will default to "Sponsors".
 
 ```bash
-bin/rails g sponsors typesense|Platinum AppSignal|Gold JetRockets|Gold "Planet Argon|Silver" --event-series tropicalrb --event tropical-on-rails-2026
+bin/rails g sponsors --event-series tropicalrb --event tropical-on-rails-2026 --slug typesense --tier Platinum
+bin/rails g sponsors --event-series tropicalrb --event tropical-on-rails-2026 --name "Planet Argon" --website https://www.planetargon.com --tier Silver
 ```
-
-If you are adding a new sponsor to an existing file, you can list all the sponsors as arguments and then use the merge tool when there's a conflict.
-It'll feel very similar to resolving merge conflicts in git, but for different versions of the generated file.
-Expect improvements to the generator for changes soon!
 
 Check the usage instructions using help.
 
@@ -90,27 +86,20 @@ bin/rails g sponsors --event-series tropicalrb --event tropical-on-rails-2026
 
 For each sponsor, collect:
 
-- Official company name
-- Company website URL
-- Logo image URL (preferably high-resolution)
+- Its slug in `data/organizations.yml` (`grep -n 'name: "AppSignal"' data/organizations.yml`, or the `organization_lookup` MCP tool)
+- For an organization that isn't there yet: official name, website URL and a logo image URL (preferably high-resolution)
 - Sponsorship tier
 - Any special designations
 
 ### 4. Structure the YAML
 
-Fill in the logo_url (from the event website) and website for each sponsor.
-
 ```yml
-- name: "AppSignal"
-  website: "https://www.appsignal.com/?utm_source=tropicalrb"
-  slug: "Appsignal"
-  logo_url: "https://framerusercontent.com/images/Ej8aWi209QFR5YrNB6Rl1aN8RqY.png"
+- slug: "appsignal"
+  badge: "Wifi Sponsor"
 ```
 
-Check for an existing sponsor in other sponsors files.
-Ensure the company names and slugs match.
-We prefer the sponsor names to be in English and use latin characters if possible.
-A badge field can be added for special sponsor designations eg. "Wifi Sponsor"
+A `badge` can be added for special sponsor designations. Name, website, logo and description belong to the organization in `data/organizations.yml`; a logo seen on the event website goes into its `logo_urls`.
+We prefer organization names in English and latin characters if possible.
 
 ### 5. Format your yaml
 
@@ -142,7 +131,8 @@ bin/dev
 
 - **Invalid YAML syntax**: Check indentation (use spaces, not tabs)
 - **Missing required fields**: Ensure all required properties are present
-- **Old sponsor logos**: All sponsor logos listed in any sponsors file are associated with a sponsor, and the first logo stored is displayed
+- **Unknown organization**: `bin/rails validate:sponsors` fails when a slug isn't in `data/organizations.yml`; add it with `bin/rails g organization` or `bin/rails organizations_file:add_missing`
+- **Logos**: an organization shows its `logo_url`, or `app/assets/images/organizations/{slug}/logo.webp` when that exists; other logos are kept in `logo_urls`
 - **Sponsors out of order**: Enter sponsors in the correct order in the file, which may not be how they are displayed
 
 ## Submission Process

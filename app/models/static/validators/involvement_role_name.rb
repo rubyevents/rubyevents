@@ -41,11 +41,11 @@ module Static
             )
           end
 
-          if name.blank? && involvement["organisations"].blank?
+          if name.blank? && involvement["organizations"].blank?
             location = involvement.source_location
 
             errors << Static::Validators::Error.new(
-              "'#{name || "Involvement"}' must have at least one name or organisation",
+              "'#{name || "Involvement"}' must have at least one name or organization",
               file_path: @file_path,
               line: location&.start_line || 1,
               end_line: location&.end_line
