@@ -42,7 +42,7 @@ class Events::SeriesControllerTest < ActionDispatch::IntegrationTest
 
     assert_select ".follow_button", text: /Follow Series/
 
-    user.event_series_subscriptions.create!(event_series: series)
+    user.subscriptions.create!(subscribable: series)
     get series_url(series)
 
     assert_select ".follow_button", text: /Following/

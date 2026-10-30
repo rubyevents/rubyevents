@@ -58,7 +58,7 @@ class User::MergerTest < ActiveSupport::TestCase
 
   test "transfers event series subscriptions to user_to_keep" do
     series = event_series(:railsconf)
-    EventSeriesSubscription.create!(user: @user_to_merge, event_series: series)
+    Subscription.create!(user: @user_to_merge, subscribable: series)
 
     merge
     @user_to_keep.reload
@@ -68,13 +68,13 @@ class User::MergerTest < ActiveSupport::TestCase
 
   test "does not duplicate event series subscriptions already on user_to_keep" do
     series = event_series(:railsconf)
-    EventSeriesSubscription.create!(user: @user_to_keep, event_series: series)
-    EventSeriesSubscription.create!(user: @user_to_merge, event_series: series)
+    Subscription.create!(user: @user_to_keep, subscribable: series)
+    Subscription.create!(user: @user_to_merge, subscribable: series)
 
     merge
     @user_to_keep.reload
 
-    assert_equal 1, @user_to_keep.event_series_subscriptions.where(event_series: series).count
+    assert_equal 1, @user_to_keep.subscriptions.where(subscribable: series).count
   end
 
   test "transfers watched talks to user_to_keep" do

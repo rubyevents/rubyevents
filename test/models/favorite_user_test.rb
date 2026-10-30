@@ -14,6 +14,18 @@ class FavoriteUserTest < ActiveSupport::TestCase
     assert_nil favorite3.mutual_favorite_user
   end
 
+  test "mutual_favorite_user ignores subscriptions to other kinds of things" do
+    chael = users(:chael)
+    marco = users(:marco)
+    series = EventSeries.create!(id: marco.id, name: "Same Id Series", slug: "same-id-series")
+
+    Subscription.create!(user: chael, subscribable: series)
+    favorite = FavoriteUser.create!(user: marco, favorite_user: chael)
+
+    assert_nil favorite.mutual_favorite_user
+    assert_not favorite.ruby_friend?
+  end
+
   test "build mutual_favorite_user" do
     chael = users(:chael)
     marco = users(:marco)

@@ -1,9 +1,9 @@
-class Events::EventSeriesSubscriptionsController < ApplicationController
+class Events::SubscriptionsController < ApplicationController
   before_action :set_event_series
 
-  # POST /events/series/:series_slug/event_series_subscriptions
+  # POST /events/series/:series_slug/subscriptions
   def create
-    @subscription = @event_series.event_series_subscriptions.build(user: Current.user)
+    @subscription = Current.user.subscriptions.find_or_initialize_by(subscribable: @event_series)
 
     if @subscription.save
       respond_to do |format|
@@ -18,9 +18,9 @@ class Events::EventSeriesSubscriptionsController < ApplicationController
     end
   end
 
-  # DELETE /events/series/:series_slug/event_series_subscriptions/:id
+  # DELETE /events/series/:series_slug/subscriptions/:id
   def destroy
-    @subscription = Current.user.event_series_subscriptions.find_by(id: params[:id])
+    @subscription = Current.user.subscriptions.find_by(id: params[:id])
     @subscription&.destroy
 
     respond_to do |format|
