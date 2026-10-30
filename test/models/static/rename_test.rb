@@ -79,7 +79,7 @@ class Static::RenameTest < ActiveSupport::TestCase
       error = assert_raises(ArgumentError) { event.save! }
 
       assert_includes error.message, %(The series "newconf" doesn't exist yet (no data/newconf/series.yml))
-      assert_includes error.message, %(Static::EventSeries.create(name: "Newconf", slug: "newconf"))
+      assert_includes error.message, %(Static::EventSeries.create(name: "Newconf", slug: "newconf", kind: "conference"))
       assert File.exist?(File.join(root, "data/testconf/testconf-2024/event.yml"))
       assert_not File.exist?(File.join(root, "data/newconf"))
     end
