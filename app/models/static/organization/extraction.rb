@@ -252,15 +252,13 @@ module Static
         all_names = (entries.filter_map(&:name) + group.slugs.flat_map { |slug| @involvement_references.select { |reference| involvement_slug(reference) == slug }.map(&:name) }).uniq
         alternate_names = (all_names - [name] - aliases.map { |entry| entry["name"] }).sort
 
-        website_groups = values_of(entries, :website).group_by { |website, _| normalize_url(website) }
-        website = production["website"].presence || top(website_groups.values.map { |values| [top(values), values.size] }, count: true)
-        websites = website_groups.values.map { |values| [top(values), values.size, latest(values)] }.reject { |raw, _, _| normalize_url(raw) == normalize_url(website) }
-        websites = websites.sort_by { |raw, count, date| [-count, date ? -date.jd : 0, raw] }.map(&:first)
+        website_groups = values_of(entries, :website).group_by { |website, _| normalize_url(website) }.values
+        website = production["website"].presence || top(website_groups.max_by { |values| [values.size, top(values)] } || [])
+        websites = other_variants(website_groups) { |raw| normalize_url(raw) == normalize_url(website) }
 
-        logo_values = values_of(entries, :logo_url)
-        logo_url = production["logo_url"].presence || top(logo_values)
-        logo_urls = logo_values.group_by(&:first).map { |raw, values| [raw, values.size, latest(values)] }.reject { |raw, _, _| raw == logo_url }
-        logo_urls = logo_urls.sort_by { |raw, count, date| [-count, date ? -date.jd : 0, raw] }.map(&:first)
+        logo_groups = values_of(entries, :logo_url).group_by(&:first).values
+        logo_url = production["logo_url"].presence || top(logo_groups.flatten(1))
+        logo_urls = other_variants(logo_groups) { |raw| raw == logo_url }
 
         description = production["description"].presence || top(values_of(entries, :description))
         logo_background = production["logo_background"].presence
@@ -291,14 +289,17 @@ module Static
       end
 
       # Most frequent value; ties go to the most recent event, then alphabetically
-      def top(pairs, count: false)
-        return nil if pairs.empty?
+      def top(pairs)
+        pairs.group_by(&:first).max_by { |value, values| [values.size, latest(values)&.jd || 0, value] }&.first
+      end
 
-        if count
-          pairs.max_by { |value, size| [size, value] }&.first
-        else
-          pairs.group_by(&:first).max_by { |value, values| [values.size, latest(values)&.jd || 0, value] }&.first
-        end
+      # The other spellings or URLs seen in a group, each by its most frequent raw form, most frequent first
+      # (then most recent, then alphabetical); `groups` are [value, date] pairs grouped by what counts as one variant
+      def other_variants(groups)
+        groups.map { |values| [top(values), values.size, latest(values)] }
+          .reject { |raw, _, _| yield(raw) }
+          .sort_by { |raw, count, date| [-count, date ? -date.jd : 0, raw] }
+          .map(&:first)
       end
 
       def latest(pairs)
