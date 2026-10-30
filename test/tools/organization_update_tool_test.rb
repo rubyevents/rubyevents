@@ -33,9 +33,19 @@ class OrganizationUpdateToolTest < ActiveSupport::TestCase
     assert_includes organization["aliases"], {"name" => "Typesense", "slug" => "typesense"}
   end
 
+  test "renaming back to a former slug takes it out of the aliases" do
+    build_tool.execute(slug: "typesense", new_slug: "typesense-search")
+    result = build_tool.execute(slug: "typesense-search", new_slug: "typesense")
+
+    assert result[:success], result[:error]
+    organization = Static::Organization.in_file(@tmp_file.path).find_by(slug: "typesense")
+    assert_equal "typesense", organization["slug"]
+    assert_equal [{"name" => "Typesense", "slug" => "typesense-search"}], organization["aliases"]
+  end
+
   test "rejects unknown organizations, taken slugs, empty updates and invalid enums" do
     assert_match(/not found/, build_tool.execute(slug: "nobody", name: "X")[:error])
-    assert_match(/already taken/, build_tool.execute(slug: "typesense", new_slug: "app-signal")[:error])
+    assert_match(/belongs to organization 'appsignal'/, build_tool.execute(slug: "typesense", new_slug: "app-signal")[:error])
     assert_match(/No fields to update/, build_tool.execute(slug: "typesense")[:error])
     assert_match(/logo_background must be one of/, build_tool.execute(slug: "typesense", logo_background: "pink")[:error])
   end

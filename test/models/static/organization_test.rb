@@ -72,6 +72,24 @@ class Static::OrganizationTest < ActiveSupport::TestCase
     assert_equal ["Typesense", "TypeSense Inc", "TypeSense"], reloaded.all_names
   end
 
+  test "rename_slug keeps the old slug as alias and rename keeps the old spelling" do
+    organization = Static::Organization.find_by(slug: "typesense")
+
+    organization.rename("Typesense Search")
+    assert_equal ["Typesense"], organization["alternate_names"]
+
+    organization.rename("Typesense")
+    assert_equal ["Typesense Search"], organization["alternate_names"]
+
+    organization.rename_slug("typesense-search")
+    assert_equal [{"name" => "Typesense", "slug" => "typesense"}], organization["aliases"]
+
+    organization.rename_slug("typesense")
+    assert_equal [{"name" => "Typesense", "slug" => "typesense-search"}], organization["aliases"]
+    assert_equal organization, organization.add_alias(name: "Again", slug: "typesense-search"), "adding an existing alias is a no-op"
+    assert_equal 1, organization.alias_slugs.size
+  end
+
   test "slug_for parameterizes like the organizations table" do
     assert_equal "planet-argon", Static::Organization.slug_for("Planet Argon")
     assert_equal "fjordbootcamp", Static::Organization.slug_for("FjordBootCamp")

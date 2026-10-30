@@ -30,16 +30,14 @@ class OrganizationUpdateTool < RubyLLM::Tool
     old_slug = organization["slug"]
 
     if new_slug.present? && new_slug != old_slug
-      return {error: "Slug '#{new_slug}' is already taken in organizations.yml"} if organizations.known_slug?(new_slug)
+      owner = organizations.find_by(slug: new_slug)
+      return {error: "Slug '#{new_slug}' belongs to organization '#{owner["slug"]}'"} if owner && owner != organization
 
-      organization.add_alias(name: organization["name"], slug: old_slug)
-      organization["slug"] = new_slug.to_s
+      organization.rename_slug(new_slug)
       alias_created = old_slug
     end
 
-    old_name = organization["name"]
-    updates.each { |key, value| organization[key] = value.to_s }
-    organization.add_alternate_name(old_name) if updates[:name].present? && updates[:name] != old_name
+    updates.each { |key, value| (key.to_s == "name") ? organization.rename(value) : organization[key] = value.to_s }
 
     organizations.save!
 

@@ -39,9 +39,10 @@ class OrganizationGenerator < Rails::Generators::Base
     Array(options[:alternate_names]).each { |name| organization.add_alternate_name(name) }
 
     if options[:alias_slug].present?
-      raise Thor::Error, "Alias slug '#{options[:alias_slug]}' is already known" if organizations.known_slug?(options[:alias_slug]) && organization.alias_slugs.exclude?(options[:alias_slug])
+      owner = organizations.find_by(slug: options[:alias_slug])
+      raise Thor::Error, "Slug '#{options[:alias_slug]}' belongs to organization '#{owner.slug}'" if owner && owner != organization
 
-      organization.add_alias(name: options[:alias_name].presence || organization.name, slug: options[:alias_slug]) if organization.alias_slugs.exclude?(options[:alias_slug])
+      organization.add_alias(name: options[:alias_name].presence || organization.name, slug: options[:alias_slug])
     end
 
     organizations.save!

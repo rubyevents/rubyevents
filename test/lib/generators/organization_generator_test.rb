@@ -44,6 +44,14 @@ class OrganizationGeneratorTest < Rails::Generators::TestCase
     assert_valid_file
   end
 
+  test "refuses an alias slug that belongs to another organization" do
+    sandbox_organizations({slug: "typesense", name: "Typesense"}, {slug: "appsignal", name: "AppSignal"})
+    error = capture(:stderr) { run_generator ["--slug", "typesense", "--alias-slug", "appsignal"] }
+
+    assert_match(/belongs to organization 'appsignal'/, error)
+    assert_nil Static::Organization.find_by(slug: "typesense")["aliases"]
+  end
+
   test "fails for an unknown slug without a name" do
     error = capture(:stderr) { run_generator ["--slug", "nobody"] }
 

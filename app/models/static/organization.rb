@@ -112,10 +112,41 @@ module Static
       self
     end
 
+    # A former slug and the name it was known under; a no-op when it is already an alias
     def add_alias(name:, slug:)
-      self["aliases"] = Array(self["aliases"]) + [{"name" => name.to_s, "slug" => slug.to_s}]
+      slug = slug.to_s
+      return self if alias_slugs.include?(slug)
+
+      self["aliases"] = Array(self["aliases"]) + [{"name" => name.to_s, "slug" => slug}]
 
       self
+    end
+
+    # Moves the organization to another slug and keeps the current one as alias, so URLs and references
+    # using it still resolve. Renaming back to a former slug takes it out of the aliases again.
+    def rename_slug(new_slug)
+      new_slug = new_slug.to_s
+      return self if new_slug == slug
+
+      add_alias(name: name, slug: slug)
+      self["aliases"] = Array(self["aliases"]).reject { |entry| entry["slug"] == new_slug }
+      delete("aliases") if self["aliases"].empty?
+      self["slug"] = new_slug
+
+      self
+    end
+
+    # Renames the organization and keeps the current spelling as alternate name
+    def rename(new_name)
+      new_name = new_name.to_s
+      return self if new_name == name
+
+      former = name
+      self["name"] = new_name
+      self["alternate_names"] = Array(self["alternate_names"]) - [new_name]
+      delete("alternate_names") if self["alternate_names"].empty?
+
+      add_alternate_name(former)
     end
 
     def add_alternate_name(name)
