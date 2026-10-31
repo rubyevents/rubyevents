@@ -1,6 +1,7 @@
 Search::Backend.without_indexing do
   Static::City.import_all!
   Static::Speaker.import_all!
+  Static::Organization.import_all!
   Static::EventSeries.import_all_series!
   Static::Event.import_recent!
   Static::Event.import_meetups!

@@ -18,7 +18,8 @@ module StaticDataSandbox
       Static::SeriesCFP,
       Static::SeriesInvolvement,
       Static::SeriesSponsor,
-      Static::SeriesSticker
+      Static::SeriesSticker,
+      Static::Organization
     ]
   end
 

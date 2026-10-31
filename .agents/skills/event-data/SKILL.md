@@ -120,9 +120,15 @@ Reference the documentation in docs/ADDING_SPONSORS.md if needed.
 
 Run `bin/rails g sponsors --help` to review the available parameters for the SponsorsGenerator.
 
-Create a command or call the GenerateSponsorTool for each sponsor to add or update their details.
+A sponsor entry only carries the organization's `slug` (from `data/organizations.yml`) plus `badge`, `from`, `to`. Look the organization up first with the OrganizationLookupTool (or `grep -n 'name: "..."' data/organizations.yml`). Pass every sponsor as `slug_or_name|tier|badge` in `--sponsors` (a series' file: `slug_or_name|tier|badge|from|to`). Each organization is found by exactly its slug, an alias slug, its name, an alias name or an alternate name; if one isn't in `data/organizations.yml`, the generator writes nothing, so create it with the OrganizationCreateTool first. See docs/ADDING_ORGANIZATIONS.md.
+
+Create one command or GenerateSponsorsTool call with all sponsors; another call adds sponsors or updates the tier and badge of existing ones.
 
 If you create a sponsor, capture a screenshot from http://localhost:3000/events/<event-slug>/sponsors after the changes are seeded.
+
+## Organizations
+
+Sponsors and the organizations in involvements reference `data/organizations.yml` by slug. Use the OrganizationLookupTool, OrganizationCreateTool, OrganizationUpdateTool and OrganizationAddAliasTool, or `bin/rails g organization --help`. Add a logo seen on an event website to the organization's `logo_urls`, not to the sponsor entry. Merging duplicates is a human decision: add the duplicate's slug as an alias, then run `bin/rails validate:fix` to update the files that use it.
 
 ## Generate a Venue file
 
