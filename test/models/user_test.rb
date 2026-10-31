@@ -740,4 +740,21 @@ class UserTest < ActiveSupport::TestCase
     assert_equal :given, prompt[:source]
     assert_equal 1, prompt[:count]
   end
+
+  test "recently_active orders speakers by their latest past talk" do
+    event = events(:railsconf_2017)
+    earlier = User.create!(name: "Earlier Speaker")
+    later = User.create!(name: "Later Speaker")
+    upcoming_only = User.create!(name: "Upcoming Speaker")
+
+    {earlier => 2.years.ago, later => 1.month.ago, upcoming_only => 1.month.from_now}.each do |user, time|
+      talk = Talk.create!(title: "Talk by #{user.name}", date: time.to_date, event: event, static_id: "test-recent-#{user.id}")
+      UserTalk.create!(user: user, talk: talk)
+    end
+
+    speakers = User.recently_active.to_a
+
+    assert_operator speakers.index(later), :<, speakers.index(earlier)
+    assert_not_includes speakers, upcoming_only
+  end
 end

@@ -1,0 +1,45 @@
+<%# locals: (title:, subtitle:, highlights:) %>
+
+<% if highlights.any? %>
+  <section class="group/row flex flex-col gap-4">
+    <div>
+      <h2 class="text-xl font-bold"><%= title %></h2>
+      <p class="text-sm text-gray-500"><%= subtitle %></p>
+    </div>
+
+    <div class="relative" data-controller="content-row">
+      <button
+        class="
+          absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 opacity-0 shadow-lg
+          transition-all hover:bg-gray-100 disabled:opacity-0 group-hover/row:opacity-100 lg:flex
+        "
+        data-content-row-target="prevButton"
+        data-action="click->content-row#scrollLeft"
+      >
+        <%= fa("chevron-left", size: :md, class: "text-gray-700") %>
+      </button>
+
+      <div
+        class="snap-x snap-mandatory overflow-x-auto scroll-smooth"
+        style="-ms-overflow-style: none; scrollbar-width: none;"
+        data-content-row-target="container"
+        data-action="scroll->content-row#handleScroll"
+      >
+        <div class="flex gap-4 pb-2" data-content-row-target="track">
+          <%= render partial: "speakers/highlight_card", collection: highlights, as: :highlight %>
+        </div>
+      </div>
+
+      <button
+        class="
+          absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 opacity-0 shadow-lg
+          transition-all hover:bg-gray-100 disabled:opacity-0 group-hover/row:opacity-100 lg:flex
+        "
+        data-content-row-target="nextButton"
+        data-action="click->content-row#scrollRight"
+      >
+        <%= fa("chevron-right", size: :md, class: "text-gray-700") %>
+      </button>
+    </div>
+  </section>
+<% end %>
