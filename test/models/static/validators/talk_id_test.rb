@@ -194,16 +194,6 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     end
   end
 
-  test "ignores talks of the undated meetup groups" do
-    videos = [
-      {"id" => "some-freeform-meetup-id", "title" => "Building Things", "speakers" => ["Jane Doe"]}
-    ]
-
-    with_temp_video(videos, event: {"id" => "rails-girls-copenhagen", "kind" => "meetup"}) do |path|
-      assert_empty Static::Validators::TalkId.new(file_path: path).errors
-    end
-  end
-
   test "adds old_id when fixing an id that was committed in another file" do
     videos = [
       {"id" => "jane-doe-testrb-meetup-january-2024", "title" => "Building Things", "speakers" => ["Jane Doe"]}

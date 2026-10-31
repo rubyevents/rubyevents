@@ -132,7 +132,6 @@ class MeetupSplit
 
   def groups
     Static::Event.all.select(&:meetup?)
-      .reject { |event| Static::Validators::MeetupNaming.ignored?(event) }
       .select { |event| event["start_date"].blank? }
       .select { |event| @only.empty? || @only.include?(event["id"]) }
   end
