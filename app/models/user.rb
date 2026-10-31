@@ -223,6 +223,10 @@ class User < ApplicationRecord
   scope :without_github, -> { where(github_handle: [nil, ""]) }
   scope :canonical, -> { where(canonical_id: nil) }
   scope :not_canonical, -> { where.not(canonical_id: nil) }
+  scope :recently_active, -> {
+    last_talk_dates = UserTalk.dated.where(talks: {date: ..Date.current}).group(:user_id).maximum("talks.date")
+    in_order_of(:id, last_talk_dates.sort_by(&:last).reverse.map(&:first))
+  }
   scope :marked_for_deletion, -> { where(marked_for_deletion: true) }
   scope :not_marked_for_deletion, -> { where(marked_for_deletion: false) }
   scope :with_public_wrapped, -> { where("json_extract(settings, '$.wrapped_public') = ?", true) }

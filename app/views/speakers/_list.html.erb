@@ -1,0 +1,3 @@
+<%# locals: (speakers:, activities:) %>
+
+<%= render partial: "speakers/speaker", collection: speakers, as: :speaker, locals: {activities: activities}, cached: ->(speaker) { [speaker, speaker.talks_count, *activities[speaker.id]&.to_h&.values] } %>

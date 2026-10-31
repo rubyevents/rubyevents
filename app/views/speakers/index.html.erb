@@ -1,29 +1,60 @@
 <div class="container py-8 hotwire-native:py-3">
-  <h1 class="title hotwire-native:hidden">
-    <%= title "Speakers" %>
+  <div class="hotwire-native:hidden">
+    <h1 class="title">
+      <%= title "Speakers" %>
 
-    <% if params[:s].present? %>
-      : search results for "<%= params[:s] %>"
+      <% if params[:s].present? %>
+        : search results for "<%= params[:s] %>"
+      <% end %>
+    </h1>
+  </div>
+
+  <% if @directory %>
+    <% cache ["speakers-highlights", Date.current], expires_in: 1.hour do %>
+      <% stats = @directory.stats %>
+
+      <p class="mt-2 text-gray-500 hotwire-native:hidden">
+        <span class="font-semibold text-base-content"><%= number_with_delimiter(stats[:speakers]) %></span> Rubyists
+        have shared their work on stage.
+        <span class="font-semibold text-base-content"><%= number_with_delimiter(stats[:active_this_year]) %></span>
+        spoke in <%= Date.current.year %>,
+        <span class="font-semibold text-base-content"><%= number_with_delimiter(stats[:new_this_year]) %></span> of them
+        for the first time.
+      </p>
+
+      <div class="mt-8 flex flex-col gap-12">
+        <%= render "speakers/highlight_row", title: "Speaking Soon", subtitle: "On stage in the next few weeks", highlights: @directory.speaking_soon %>
+        <%= render "speakers/highlight_row", title: "Upcoming Debuts", subtitle: "About to give their first talk", highlights: @directory.upcoming_debuts %>
+        <%= render "speakers/highlight_row", title: "New Voices", subtitle: "Gave their first talk in the last year", highlights: @directory.new_voices %>
+      </div>
     <% end %>
-  </h1>
+  <% end %>
 
-  <%= render "shared/alphabet_filter" %>
+  <div
+    id="all-speakers"
+    class="flex flex-col gap-3 border-b border-gray-200 pb-3 hotwire-native:hidden sm:flex-row sm:items-end sm:justify-between <%= "mt-16" if @directory %> <%= "mt-6" unless @directory %>"
+  >
+    <h2 class="text-xl font-bold">
+      <%= @directory ? "All Speakers" : pluralize(number_with_delimiter(@pagy.count), "speaker") %>
+    </h2>
+
+    <div class="tabs-boxed tabs tabs-sm w-fit">
+      <% {"name" => "A–Z", "talks" => "Most talks", "recent" => "Recently active"}.each do |sort, label| %>
+        <%= link_to label, speakers_path(letter: params[:letter], s: params[:s], sort: (sort unless sort == "name"), anchor: "all-speakers"), class: class_names("tab", "tab-active": @sort == sort) %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= render "shared/alphabet_filter", extra_params: {sort: (@sort unless @sort == "name"), anchor: "all-speakers"}.compact %>
 
   <div
     id="speakers"
-    class="grid min-w-full gap-x-8 gap-y-2 hotwire-native:mt-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12 xl:grid-cols-4"
+    class="grid min-w-full grid-cols-1 gap-x-8 gap-y-1 hotwire-native:mt-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12"
   >
-    <%# we need special cache key for speakers because @speakers is paginated %>
-    <% cache [@speakers.except(:order).pluck(:id, :updated_at).hash] do %>
-      <%= render partial: "speakers/speaker", collection: @speakers, as: :speaker, cached: true %>
-    <% end %>
+    <%= render "speakers/list", speakers: @speakers, activities: @activity %>
   </div>
 
   <% if @pagy.next.present? %>
-    <%= turbo_frame_tag :pagination,
-          data: {
-            controller: "lazy-loading",
-            lazy_loading_src_value: speakers_path(letter: params[:letter], s: params[:s], page: @pagy.next, format: :turbo_stream)
-          } %>
+    <%= turbo_frame_tag :pagination, data: {controller: "lazy-loading", lazy_loading_src_value: speakers_path(letter: params[:letter], s: params[:s], sort: (@sort unless @sort == "name"), page: @pagy.next, format: :turbo_stream)} %>
   <% end %>
 </div>

@@ -1,0 +1,25 @@
+<%# locals: (highlight:) %>
+
+<% speaker = highlight.speaker %>
+
+<%= link_to profile_path(speaker), class: "group flex w-72 shrink-0 snap-start items-center gap-4 rounded-xl border bg-white p-4 transition-colors hover:bg-gray-50 sm:w-80" do %>
+  <%= ui_avatar(speaker) %>
+
+  <div class="min-w-0 flex-1">
+    <div class="flex items-center gap-1.5 font-bold">
+      <span class="line-clamp-1 group-hover:text-primary"><%= speaker.name %></span>
+
+      <% if speaker.verified? %>
+        <%= fa("badge-check", class: "fill-blue-500 shrink-0", size: :xs) %>
+      <% end %>
+    </div>
+
+    <% if highlight.event %>
+      <div class="line-clamp-2 text-sm text-gray-500"><%= highlight.event.name %></div>
+    <% end %>
+
+    <% if highlight.date && highlight.date >= Date.current %>
+      <div class="text-xs font-medium text-primary"><%= highlight.date.strftime("%b %-d") %></div>
+    <% end %>
+  </div>
+<% end %>

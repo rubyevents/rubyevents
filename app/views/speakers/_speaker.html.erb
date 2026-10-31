@@ -1,7 +1,21 @@
-<%= link_to profile_path(speaker), id: dom_id(speaker), class: "flex justify-between items-center" do %>
-  <div class="flex items-center gap-3">
-    <span><%= sanitize speaker.name_with_snippet %></span>
+<%# locals: (speaker:, activities: {}) %>
+
+<% activity = activities[speaker.id] %>
+
+<%= link_to profile_path(speaker), id: dom_id(speaker), class: "group flex min-w-0 items-center justify-between gap-3 rounded-lg px-2 py-1.5 -mx-2 hover:bg-base-200" do %>
+  <div class="flex min-w-0 flex-col">
+    <span class="truncate font-medium group-hover:text-primary"><%= sanitize speaker.name_with_snippet %></span>
+
+    <% if activity %>
+      <span class="truncate text-xs text-gray-500">
+        <%= [activity.first_year, activity.last_year].uniq.compact.join("–") %>
+
+        <% if activity.latest_event %>
+          · <%= activity.latest_event.name %>
+        <% end %>
+      </span>
+    <% end %>
   </div>
 
-  <%= ui_badge(speaker.talks_count, kind: :secondary, outline: true, size: :lg, class: "min-w-10") %>
+  <%= ui_badge(speaker.talks_count, kind: :secondary, outline: true, size: :lg, class: "min-w-10 shrink-0") %>
 <% end %>

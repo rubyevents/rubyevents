@@ -31,6 +31,9 @@ class UserTalk < ApplicationRecord
 
   validates :user_id, uniqueness: {scope: :talk_id}
 
+  # scopes
+  scope :dated, -> { kept.joins(:talk).where.not(talks: {date: nil}) }
+
   # callbacks
   after_commit :update_user_talks_count
 
