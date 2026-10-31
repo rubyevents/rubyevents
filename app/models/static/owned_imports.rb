@@ -98,10 +98,10 @@ module Static
       entries.each do |involvement_data|
         role = involvement_data["name"]
         users = Array.wrap(involvement_data["users"]).select { |item| Yerba::Record::References.reference_name(item).present? }
-        organisations = Array.wrap(involvement_data["organisations"]).select { |item| Yerba::Record::References.reference_name(item).present? }
+        organizations = Array.wrap(involvement_data["organizations"]).select { |item| Yerba::Record::References.reference_name(item).present? }
 
         members = users.map { |item| [item, involvement_user(Yerba::Record::References.reference_name(item))] } +
-          organisations.map { |item| [item, involvement_organization(Yerba::Record::References.reference_name(item))] }
+          organizations.map { |item| [item, involvement_organization(Yerba::Record::References.reference_name(item))] }
 
         members.each_with_index do |(item, involvementable), position|
           period = item.is_a?(Hash) ? item : {}

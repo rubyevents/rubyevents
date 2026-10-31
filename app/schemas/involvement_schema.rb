@@ -18,7 +18,7 @@ class InvolvementSchema < ApplicationSchema
     end
   end
 
-  array :organisations, description: "Organization names involved in this role. In a series' involvements.yml, a name can carry the period it held the role", required: false do
+  array :organizations, description: "Organization names involved in this role. In a series' involvements.yml, a name can carry the period it held the role", required: false do
     any_of do
       string
       object do
