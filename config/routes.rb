@@ -58,6 +58,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :data do
+    resources :changes, only: :index
+    resources :todos, only: :index
+  end
   resources :topics, param: :slug, only: [:index, :show]
   resources :cfp, only: :index
 
@@ -166,7 +170,6 @@ Rails.application.routes.draw do
   end
 
   resources :contributions, only: [:index, :show], param: :step
-  resources :todos, only: [:index], path: "data/todos"
 
   # resources
   namespace :analytics do

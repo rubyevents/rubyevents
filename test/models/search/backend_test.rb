@@ -38,4 +38,24 @@ class Search::BackendTest < ActiveSupport::TestCase
       Search::Backend.remove(record)
     end
   end
+
+  test "reindex_changed_since indexes changed talks with their speakers and events" do
+    talk = talks(:one)
+    speaker = talk.user_talks.first&.user || flunk("fixture talk needs a speaker")
+    started_at = 1.minute.from_now
+
+    travel_to 2.minutes.from_now do
+      talk.touch
+    end
+
+    indexed = []
+    Search::Backend.stub(:index, ->(record) { indexed << record }) do
+      Search::Backend.reindex_changed_since(started_at)
+    end
+
+    assert_includes indexed, talk
+    assert_includes indexed, speaker
+    assert_includes indexed, talk.event
+    assert_not_includes indexed, talks(:two)
+  end
 end

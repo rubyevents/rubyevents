@@ -83,6 +83,7 @@ aliases:
   shell: app exec --interactive --reuse "bash"
   console: app exec --reuse -i "bin/rails console"
   stats: server exec "docker stats --no-stream"
+  seed: app exec --reuse "bin/rails db:seed"
   seed_all: app exec "rake db:seed:all"
 
 # Use a persistent storage volume.

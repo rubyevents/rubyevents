@@ -116,6 +116,7 @@ module Static
 
     def self.import_all!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
       imported_users = []
+      failed = []
       speakers = all.to_a
 
       puts "Importing #{speakers.count} speakers..."
@@ -124,10 +125,15 @@ module Static
         speakers.each do |speaker|
           user = speaker.import!(index: false)
           imported_users << user if user
+        rescue ActiveRecord::RecordInvalid => e
+          puts "Couldn't save: #{speaker.name} (#{speaker.github}), error: #{e.message}"
+          failed << speaker.name
         end
       end
 
       imported_users.each { |user| Search::Backend.index(user) } if imported_users.any? && index
+
+      raise ImportError, "Couldn't save #{failed.size} #{"speaker".pluralize(failed.size)}: #{failed.join(", ")}" if failed.any?
     end
 
     def import!(index: SEARCH_INDEX_ON_IMPORT_DEFAULT)
@@ -186,9 +192,6 @@ module Static
       Search::Backend.index(user) if index && user_changed
 
       user_changed ? user : nil
-    rescue ActiveRecord::RecordInvalid => e
-      puts "Couldn't save: #{name} (#{github}), error: #{e.message}"
-      nil
     end
 
     private

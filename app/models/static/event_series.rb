@@ -162,14 +162,26 @@ module Static
       event_series = import_series!(index: index)
       events.each { |event| event.import!(index: index) }
 
-      import_cfps_into!(event_series, cfps) if cfps.exist?
-      import_sponsors_into!(event_series, sponsors) if sponsors.exist?
-      import_involvements_into!(event_series, involvements) if involvements.exist?
+      import_cfps!(event_series)
+      import_sponsors!(event_series)
+      import_involvements!(event_series)
 
       merge_old_events!(event_series)
       update_frequency!(event_series)
 
       event_series
+    end
+
+    def import_cfps!(event_series)
+      import_cfps_into!(event_series, cfps) if cfps.exist?
+    end
+
+    def import_sponsors!(event_series)
+      import_sponsors_into!(event_series, sponsors) if sponsors.exist?
+    end
+
+    def import_involvements!(event_series)
+      import_involvements_into!(event_series, involvements) if involvements.exist?
     end
 
     def move_speaker_participations!(event, event_series)
