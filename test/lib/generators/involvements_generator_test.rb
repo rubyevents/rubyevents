@@ -2,9 +2,12 @@ require "test_helper"
 require "generators/involvements/involvements_generator"
 
 class InvolvementsGeneratorTest < Rails::Generators::TestCase
+  include StaticOrganizationsSandbox
+
   tests InvolvementsGenerator
   setup do
     self.class.destination Dir.mktmpdir("involvements_generator", Rails.root.join("tmp").to_s)
+    sandbox_organizations({slug: "flagrant", name: "Flagrant", aliases: [{"name" => "Be Flagrant", "slug" => "be-flagrant"}]}, {slug: "another-org", name: "Another Org"})
   end
   teardown { FileUtils.remove_entry(destination_root) }
 
@@ -32,13 +35,13 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
       run_generator [
         "--event", "xoruby-austin-2025",
         "--name", "Organizer",
-        "--organisations", "Flagrant", "Another Org"
+        "--organizations", "flagrant", "another-org"
       ]
     end
     assert_valid_file file_path do |content|
       assert_match(/Organizer/, content)
-      assert_match(/- Flagrant/, content)
-      assert_match(/- Another Org/, content)
+      assert_match(/- flagrant/, content)
+      assert_match(/- another-org/, content)
     end
   end
 
@@ -50,13 +53,13 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
         "--event", "2026",
         "--name", "Organizer",
         "--users", "Jim Remsik",
-        "--organisations", "Flagrant"
+        "--organizations", "be-flagrant"
       ]
     end
     assert_valid_file file_path do |content|
       assert_match(/Organizer/, content)
       assert_match(/- Jim Remsik/, content)
-      assert_match(/- Flagrant/, content)
+      assert_match(/- flagrant/, content)
     end
   end
 
@@ -76,13 +79,13 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
         "--event-series", "xoruby",
         "--event", "2027",
         "--name", "Organizer",
-        "--organisations", "Flagrant"
+        "--organizations", "be-flagrant"
       ]
     end
 
     assert_valid_file file_path do |content|
       assert_match(/Organizer/, content)
-      assert_match(/- Flagrant/, content)
+      assert_match(/- flagrant/, content)
       refute_match(/- Jim Remsik/, content) # Ensure the old user is removed
     end
   end
@@ -94,12 +97,12 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
     run_generator ["--event-series", "xoruby", "--event", "2029", "--name", "Volunteer", "--users", "Alice Smith"]
 
     assert_nothing_raised do
-      run_generator ["--event-series", "xoruby", "--event", "2029", "--name", "Organizer", "--organisations", "Flagrant"]
+      run_generator ["--event-series", "xoruby", "--event", "2029", "--name", "Organizer", "--organizations", "be-flagrant"]
     end
 
     assert_valid_file file_path do |content|
       assert_match(/- Alice Smith/, content)
-      assert_match(/- Flagrant/, content)
+      assert_match(/- flagrant/, content)
       refute_match(/- Jim Remsik/, content)
     end
   end

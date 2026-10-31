@@ -5,24 +5,27 @@ module Yerba
     module References
       extend ActiveSupport::Concern
 
-      Declaration = Data.define(:owner, :field, :target)
+      # field — the key in the YAML holding the reference(s), `name` unless given
+      # key   — the key inside a hash item that holds the referenced value, like `name` in `{name:, from:}`
+      Declaration = Data.define(:owner, :field, :target, :key)
 
       def self.declarations
         @declarations ||= {}
       end
 
-      def self.reference_name(item)
-        item.is_a?(Hash) ? item["name"] : item
+      def self.reference_value(item, key = "name")
+        item.is_a?(Hash) ? item[key] : item
       end
 
       class_methods do
-        def references(name, class_name: nil, resolver: nil, creator: nil)
+        def references(name, class_name: nil, resolver: nil, creator: nil, field: nil, key: "name")
+          field = (field || name).to_s
           target = class_name.is_a?(Class) ? class_name.name : (class_name || infer_class_name(name, singularize: true))
-          References.declarations[[self.name, name.to_s]] = Declaration.new(owner: self.name, field: name.to_s, target: target)
+          References.declarations[[self.name, name.to_s]] = Declaration.new(owner: self.name, field: field, target: target, key: key)
 
           define_method(name) do
             raw = lambda do
-              raw_value = node[name.to_s]
+              raw_value = node[field]
 
               if raw_value.respond_to?(:each)
                 raw_value
@@ -31,12 +34,12 @@ module Yerba
               end
             end
 
-            resolved_resolver = resolver || default_resolver_for(target)
-            resolved_creator = creator || default_creator_for(target)
+            resolved_resolver = resolver || default_resolver_for(target, key)
+            resolved_creator = creator || default_creator_for(target, key)
 
             ReferencesProxy.new(
               raw: raw,
-              values: Array(self[name.to_s]).map { |item| References.reference_name(item) },
+              values: Array(self[field]).map { |item| References.reference_value(item, key) },
               resolver: resolved_resolver,
               creator: resolved_creator,
               entry: self
@@ -51,8 +54,8 @@ module Yerba
 
               if value.is_a?(Array)
                 value.each_with_index.filter_map do |item, index|
-                  selector = item.is_a?(Hash) ? "#{declaration.field}[#{index}].name" : "#{declaration.field}[#{index}]"
-                  name = References.reference_name(item)
+                  selector = item.is_a?(Hash) ? "#{declaration.field}[#{index}].#{declaration.key}" : "#{declaration.field}[#{index}]"
+                  name = References.reference_value(item, declaration.key)
 
                   Reference.new(value: name, record: record, selector: selector) if name.present?
                 end
@@ -68,18 +71,18 @@ module Yerba
 
       private
 
-      def default_resolver_for(target)
+      def default_resolver_for(target, key)
         record_class = target.safe_constantize
         return ->(value) { value } unless record_class
 
-        ->(value) { record_class.find_by(name: value) }
+        ->(value) { record_class.find_by(key.to_sym => value) }
       end
 
-      def default_creator_for(target)
+      def default_creator_for(target, key)
         record_class = target.safe_constantize
         return nil unless record_class.respond_to?(:find_or_create_by)
 
-        ->(value) { record_class.find_or_create_by(name: value) }
+        ->(value) { record_class.find_or_create_by(key.to_sym => value) }
       end
     end
   end

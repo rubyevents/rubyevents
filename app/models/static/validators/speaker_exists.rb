@@ -2,53 +2,23 @@
 
 module Static
   module Validators
-    class SpeakerExists
+    class SpeakerExists < ReferenceExists
       PATTERNS = ["**/videos.yml", "**/involvements.yml"].freeze
 
-      def initialize(file_path:, document: nil)
-        @file_path = file_path.to_s.sub("#{Rails.root}/", "")
+      def self.model
+        Static::Speaker
       end
 
-      def applicable?
-        return false unless File.exist?(@file_path)
-
-        PATTERNS.any? do |pattern|
-          File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
-        end
+      def self.missing_references(speakers)
+        speakers.missing_speaker_references
       end
 
-      def errors
-        return [] unless applicable?
-
-        self.class.errors.select { |e| e.file_path == @file_path }
+      def self.add_missing
+        Static::Speaker.add_missing_speakers
       end
 
-      def fix
-        return if errors.empty?
-
-        added = Static::Speaker.add_missing_speakers
-        Static::Speaker.save!
-        self.class.reset!
-
-        {changed: added.size, file_path: @file_path}
-      end
-
-      def self.errors
-        @errors ||= Static::Speaker.in_file(Static::Speaker.file_path).missing_speaker_references.map do |reference|
-          Static::Validators::Error.new(
-            %(Speaker "#{reference.value}" not found in data/speakers.yml),
-            file_path: reference.file_path || "",
-            line: reference.line || 1
-          )
-        end
-      end
-
-      def self.warmup
-        errors
-      end
-
-      def self.reset!
-        @errors = nil
+      def self.message(reference)
+        %(Speaker "#{reference.value}" not found in data/speakers.yml)
       end
     end
   end

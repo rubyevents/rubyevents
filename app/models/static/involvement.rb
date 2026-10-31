@@ -12,5 +12,6 @@ module Static
     has_one :series, through: :event
 
     references :users, class_name: "Static::Speaker"
+    references :organizations, class_name: "Static::Organization", key: "slug"
   end
 end

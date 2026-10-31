@@ -41,9 +41,9 @@
         ]
       }
     },
-    "organisations": {
+    "organizations": {
       "type": "array",
-      "description": "Organization names involved in this role. In a series' involvements.yml, a name can carry the period it held the role",
+      "description": "Slugs of organizations (data/organizations.yml) involved in this role. In a series' involvements.yml, a slug can carry the period it held the role",
       "items": {
         "anyOf": [
           {
@@ -52,9 +52,9 @@
           {
             "type": "object",
             "properties": {
-              "name": {
+              "slug": {
                 "type": "string",
-                "description": "Organization name"
+                "description": "Organization slug"
               },
               "from": {
                 "type": "string",
@@ -68,7 +68,7 @@
               }
             },
             "required": [
-              "name"
+              "slug"
             ],
             "additionalProperties": false
           }

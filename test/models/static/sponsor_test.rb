@@ -6,19 +6,14 @@ class Static::SponsorTest < ActiveSupport::TestCase
     - tiers:
         - name: "Gold"
           sponsors:
-            - name: "Avo"
-              slug: "avo"
-              website: "https://avohq.io"
+            - slug: "avo"
 
         - name: "Silver"
           sponsors:
-            - name: "AppSignal"
-              slug: "appsignal"
-              website: "https://appsignal.com"
+            - slug: "appsignal"
+              badge: "Coffee Sponsor"
 
-            - name: "Typesense"
-              slug: "typesense"
-              website: "https://typesense.org"
+            - slug: "typesense"
   YAML
 
   setup do
@@ -44,7 +39,7 @@ class Static::SponsorTest < ActiveSupport::TestCase
     assert_equal "Silver", tier["name"]
     assert_equal "typesense", entry["slug"]
     assert_equal tier, entry.parent
-    assert_equal 16, entry.source_line("slug")
+    assert_equal 12, entry.source_line("slug")
   end
 
   test "nested records of another model stay out of the model's collection" do
@@ -56,7 +51,7 @@ class Static::SponsorTest < ActiveSupport::TestCase
     tiers = sponsors.first.tiers
     tiers.last.sponsors.find_by(slug: "appsignal").tap { |entry| entry["slug"] = "app-signal" }.save!
     tiers.first.sponsors.find_by(slug: "avo").destroy
-    tiers.first.sponsors.create(name: "Fly.io", slug: "fly-io", website: "https://fly.io")
+    tiers.first.sponsors.create(slug: "fly-io")
 
     document = Yerba.parse_file(@path)
 

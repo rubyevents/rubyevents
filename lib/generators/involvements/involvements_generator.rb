@@ -5,12 +5,12 @@ require "generators/event_base"
 # Generator for creating a new involvement entry in the involvements.yml file of a specific event.
 class InvolvementsGenerator < Generators::EventBase
   source_root File.expand_path("templates", __dir__)
-  TOOL_DESC = "Create or update a new involvement entry in the involvements.yml file of a given event."
+  TOOL_DESC = "Create or update a new involvement entry in the involvements.yml file of a given event. Organizations are referenced by their slug in data/organizations.yml."
 
   class_option :name, type: :string, desc: "Role or involvement type (e.g., 'Organizer', 'Program Committee member')", required: true, group: "Fields"
   class_option :users, type: :array, desc: "Person names involved in this role", required: false, group: "Fields"
-  class_option :organisations, type: :array, desc: "Organization names involved in this role", required: false, group: "Fields"
-  class_option :from, type: :string, desc: "With --series-level: when the users and organisations started in this role (YYYY, YYYY-MM or YYYY-MM-DD)", required: false, group: "Fields"
+  class_option :organizations, type: :array, desc: "Slugs of organizations (data/organizations.yml) involved in this role", required: false, group: "Fields"
+  class_option :from, type: :string, desc: "With --series-level: when the users and organizations started in this role (YYYY, YYYY-MM or YYYY-MM-DD)", required: false, group: "Fields"
   class_option :to, type: :string, desc: "With --series-level: when they ended in this role (YYYY, YYYY-MM or YYYY-MM-DD)", required: false, group: "Fields"
 
   series_level_files!
@@ -19,11 +19,18 @@ class InvolvementsGenerator < Generators::EventBase
     @involvements_file_path ||= File.join(target_directory, "involvements.yml")
   end
 
+  def ensure_organizations_exist
+    unknown = Array(options[:organizations]).reject { |slug| Static::Organization.find_by(slug: slug) }
+    return if unknown.empty?
+
+    raise Thor::Error, "No organization with slug #{unknown.map { |slug| "'#{slug}'" }.join(", ")} in #{Static::Organization.file_path}. Add it with bin/rails g organization first."
+  end
+
   def involvement_attributes
     @involvement ||= {
       "name" => options[:name].singularize,
-      "users" => with_period(options[:users]),
-      "organisations" => with_period(options[:organisations])
+      "users" => with_period(options[:users], "name"),
+      "organizations" => with_period(options[:organizations]&.map { |slug| Static::Organization.find_by(slug: slug).slug }, "slug")
     }.compact
   end
 
@@ -55,9 +62,9 @@ class InvolvementsGenerator < Generators::EventBase
     gsub_file path, /^(\s+(?:from|to): )(\d{4}(?:-\d{2}(?:-\d{2})?)?)$/, '\1"\2"', verbose: false
   end
 
-  def with_period(names)
-    return names if names.nil? || (options[:from].blank? && options[:to].blank?)
+  def with_period(values, key)
+    return values if values.nil? || (options[:from].blank? && options[:to].blank?)
 
-    names.map { |name| {"name" => name, "from" => options[:from], "to" => options[:to]}.compact }
+    values.map { |value| {key => value, "from" => options[:from], "to" => options[:to]}.compact }
   end
 end

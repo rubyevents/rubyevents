@@ -23,6 +23,16 @@ class Static::ReferencesTest < ActiveSupport::TestCase
     assert_equal %w[speakers users], references.map { |reference| reference.selector[/\A\w+/] }.uniq.sort
   end
 
+  test "inbound_references collects organization slugs from sponsors and involvements" do
+    references = Static::Organization.inbound_references
+
+    assert_equal %w[Static::Involvement Static::SeriesInvolvement Static::Sponsor::Entry], references.map { |reference| reference.record.class.name }.uniq.sort
+    assert_equal %w[organizations slug], references.map { |reference| reference.selector[/\A\w+/] }.uniq.sort
+
+    reference = references.find { |candidate| candidate.record.is_a?(Static::Sponsor::Entry) }
+    assert_equal reference.value, Yerba.parse_file(reference.file_path).value_at(reference.full_selector)
+  end
+
   test "a reference knows the file and line of its value" do
     references = Static::Speaker.inbound_references.group_by { |reference| reference.record.class }
 

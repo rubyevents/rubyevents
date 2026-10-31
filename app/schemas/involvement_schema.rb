@@ -18,11 +18,11 @@ class InvolvementSchema < ApplicationSchema
     end
   end
 
-  array :organisations, description: "Organization names involved in this role. In a series' involvements.yml, a name can carry the period it held the role", required: false do
+  array :organizations, description: "Slugs of organizations (data/organizations.yml) involved in this role. In a series' involvements.yml, a slug can carry the period it held the role", required: false do
     any_of do
       string
       object do
-        string :name, description: "Organization name"
+        string :slug, description: "Organization slug"
         string :from, description: "When the role started (YYYY, YYYY-MM or YYYY-MM-DD)", required: false, pattern: PERIOD_PATTERN
         string :to, description: "When the role ended (YYYY, YYYY-MM or YYYY-MM-DD), omitted while it lasts", required: false, pattern: PERIOD_PATTERN
       end

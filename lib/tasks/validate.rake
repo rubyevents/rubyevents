@@ -166,6 +166,47 @@ namespace :validate do
     exit 1 if validate_involvements_file.any?
   end
 
+  def validate_organizations_file
+    validate_files(
+      files: [Static::Organization.file_path],
+      validators: Static::Validators::Validator.organization_validator_classes,
+      success_message: "✓ data/organizations.yml passed validations!"
+    )
+  end
+
+  desc "Validate data/organizations.yml"
+  task organizations: :environment do
+    exit 1 if validate_organizations_file.any?
+  end
+
+  def validate_organizations_in_sync
+    organizations = Static::Organization.all
+    missing = organizations.missing_organizations
+    orphaned = organizations.orphaned_organizations
+
+    if missing.empty? && orphaned.empty?
+      puts Gum.style("✓ organizations.yml is in sync", foreground: "2")
+
+      true
+    else
+      if missing.any?
+        puts Gum.style("#{missing.length} organizations referenced in sponsors or involvements but missing from organizations.yml:", foreground: "1")
+        missing.sort.each { |slug| puts Gum.style("  ❌ #{slug}", foreground: "1") }
+        puts
+      end
+
+      if orphaned.any?
+        puts Gum.style("#{orphaned.length} orphaned organizations in organizations.yml:", foreground: "1")
+        orphaned.sort.each { |slug| puts Gum.style("  ❌ #{slug}", foreground: "1") }
+        puts
+      end
+
+      puts Gum.style("Run: rails organizations_file:sync", foreground: "3")
+
+      false
+    end
+  end
+
   def validate_schedule_files
     validate_files(
       files: Dir.glob(Static::Schedule.file_glob),
@@ -421,6 +462,8 @@ namespace :validate do
       "Validating event asset dimensions" => -> { validate_event_assets.none? },
       "Validating event.yml files" => -> { validate_event_files.none? },
       "Validating involvements.yml file" => -> { validate_involvements_file.none? },
+      "Validating organizations.yml file" => -> { validate_organizations_file.none? },
+      "Validating organizations.yml is in sync" => -> { validate_organizations_in_sync },
       "Validating redundant thumbnails" => -> { validate_thumbnails.none? },
       "Validating schedule.yml files" => -> { validate_schedule_files.none? },
       "Validating series.yml files" => -> { validate_series_files.none? },

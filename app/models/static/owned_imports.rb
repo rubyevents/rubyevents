@@ -3,6 +3,7 @@
 module Static
   # Imports the CFPs, sponsors and involvements of an event or a whole series into the record that owns them.
   # Series entries can carry a `from` and `to`, which become `started_on` and `ended_on`.
+  # Sponsors and involved organizations reference data/organizations.yml by slug, imported by Static::Organization.
   module OwnedImports
     private
 
@@ -21,14 +22,12 @@ module Static
     end
 
     def import_sponsors_into!(owner, entries)
-      require "public_suffix"
-
       sponsor_ids = []
 
       entries.each do |sponsors_entry|
         sponsors_entry["tiers"].each do |tier|
           tier["sponsors"].each do |sponsor|
-            organization = sponsor_organization(sponsor)
+            organization = organization_for(sponsor["slug"], entries.relative_path)
 
             sponsor_record = owner.sponsors.find_or_initialize_by(
               organization: organization,
@@ -50,58 +49,16 @@ module Static
       raise e
     end
 
-    def sponsor_organization(sponsor)
-      organization = nil
-      domain = nil
-
-      if sponsor["website"].present?
-        begin
-          uri = URI.parse(sponsor["website"])
-          host = uri.host || sponsor["website"]
-          parsed = PublicSuffix.parse(host)
-          domain = parsed.domain
-
-          organization = ::Organization.find_by(domain: domain) if domain.present?
-        rescue PublicSuffix::Error, URI::InvalidURIError
-        end
-      end
-
-      organization ||= ::Organization.find_by_name_or_alias(sponsor["name"]) || ::Organization.find_by_slug_or_alias(sponsor["slug"]&.downcase)
-      organization ||= ::Organization.find_or_initialize_by(name: sponsor["name"])
-
-      # Names like "フィヨルドブートキャンプ" parameterize to "", so fall back to the sponsor's slug
-      if organization.new_record? && sponsor["name"].to_s.parameterize.blank?
-        organization.slug = sponsor["slug"].to_s.parameterize
-      end
-
-      organization.update(
-        website: sponsor["website"],
-        description: sponsor["description"],
-        domain: domain
-      )
-
-      organization.add_logo_url(sponsor["logo_url"]) if sponsor["logo_url"].present?
-      organization.logo_url = sponsor["logo_url"] if sponsor["logo_url"].present? && organization.logo_url.blank?
-
-      unless organization.persisted?
-        organization = ::Organization.find_by_slug_or_alias(organization.slug) || ::Organization.find_by_name_or_alias(organization.name) || organization
-      end
-
-      organization.save! if organization.changed? || organization.new_record?
-
-      organization
-    end
-
     def import_involvements_into!(owner, entries)
       involvement_ids = []
 
       entries.each do |involvement_data|
         role = involvement_data["name"]
-        users = Array.wrap(involvement_data["users"]).select { |item| Yerba::Record::References.reference_name(item).present? }
-        organisations = Array.wrap(involvement_data["organisations"]).select { |item| Yerba::Record::References.reference_name(item).present? }
+        users = Array.wrap(involvement_data["users"]).select { |item| Yerba::Record::References.reference_value(item, "name").present? }
+        organizations = Array.wrap(involvement_data["organizations"]).select { |item| Yerba::Record::References.reference_value(item, "slug").present? }
 
-        members = users.map { |item| [item, involvement_user(Yerba::Record::References.reference_name(item))] } +
-          organisations.map { |item| [item, involvement_organization(Yerba::Record::References.reference_name(item))] }
+        members = users.map { |item| [item, involvement_user(Yerba::Record::References.reference_value(item, "name"))] } +
+          organizations.map { |item| [item, organization_for(Yerba::Record::References.reference_value(item, "slug"), entries.relative_path)] }
 
         members.each_with_index do |(item, involvementable), position|
           period = item.is_a?(Hash) ? item : {}
@@ -129,12 +86,15 @@ module Static
       ::User.create!(name: name)
     end
 
-    def involvement_organization(name)
-      organization = ::Organization.find_by_name_or_alias(name) || ::Organization.find_by_slug_or_alias(name.parameterize)
+    # Organizations come from data/organizations.yml, imported before events.
+    def organization_for(slug, source)
+      organization = ::Organization.find_by_slug_or_alias(slug.to_s)
       return organization if organization
 
-      puts "Creating organization: #{name}" unless Rails.env.test?
-      ::Organization.create!(name: name)
+      static_organization = Static::Organization.find_by(slug: slug.to_s)
+      return static_organization.import!(index: false) || ::Organization.find_by_slug_or_alias(static_organization.slug) if static_organization
+
+      raise Static::Organization::MissingOrganizationError, "Organization '#{slug}' referenced in #{source} is not in data/organizations.yml"
     end
   end
 end

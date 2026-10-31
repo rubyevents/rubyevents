@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OrganizationSchema",
+  "type": "object",
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug, the key that sponsors.yml and involvements.yml reference",
+      "pattern": "^[a-z0-9]+([-_][a-z0-9]+)*$"
+    },
+    "aliases": {
+      "type": "array",
+      "description": "Former slugs and the names they were known under; they redirect to this organization",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+([-_][a-z0-9]+)*$"
+          }
+        },
+        "required": [
+          "name",
+          "slug"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the organization"
+    },
+    "alternate_names": {
+      "type": "array",
+      "description": "Other spellings and former names, kept for search and history",
+      "items": {
+        "type": "string"
+      }
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "unknown",
+        "company",
+        "community",
+        "foundation",
+        "non_profit",
+        "organisation"
+      ],
+      "description": "What kind of organization this is"
+    },
+    "website": {
+      "type": "string",
+      "description": "Website URL"
+    },
+    "websites": {
+      "type": "array",
+      "description": "Other website URLs seen for this organization (careers pages, regional sites)",
+      "items": {
+        "type": "string"
+      }
+    },
+    "logo_url": {
+      "type": "string",
+      "description": "URL of the logo to show"
+    },
+    "logo_urls": {
+      "type": "array",
+      "description": "Other logo URLs seen for this organization",
+      "items": {
+        "type": "string"
+      }
+    },
+    "logo_background": {
+      "type": "string",
+      "enum": [
+        "white",
+        "black",
+        "transparent"
+      ],
+      "description": "Background the logo is shown on"
+    },
+    "main_location": {
+      "type": "string",
+      "description": "Where the organization is based (City, Country)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the organization"
+    }
+  },
+  "required": [
+    "slug",
+    "name"
+  ],
+  "additionalProperties": false
+}

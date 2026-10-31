@@ -9,6 +9,9 @@ bundle exec yerba apply
 echo "Syncing speakers.yml ..."
 bin/rails speakers_file:sync
 
+echo "Syncing organizations.yml ..."
+bin/rails organizations_file:sync
+
 echo "Syncing SpeakerDeck usernames ..."
 bin/rails speakerdeck:sync
 
