@@ -26,6 +26,7 @@ class Static::Validators::Validator
       Static::Validators::EventRecordingsPublishedDate,
       Static::Validators::EventRenames,
       Static::Validators::IdMatchesFolder,
+      Static::Validators::LocationCountry,
       Static::Validators::MeetupFolder,
       Static::Validators::MeetupTitle,
       Static::Validators::MissingSeriesSocials,
@@ -52,6 +53,7 @@ class Static::Validators::Validator
     @series_validator_classes ||= [
       Static::Validators::Schema,
       Static::Validators::IdMatchesFolder,
+      Static::Validators::LocationCountry,
       Static::Validators::MeetupSeriesName,
       Static::Validators::SeriesDefaultColors
     ]

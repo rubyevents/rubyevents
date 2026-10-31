@@ -20,7 +20,7 @@ Example:
 
   Create an upcoming event that doesn't have a scheduled date yet - only a year.
     bin/rails g event --event-series rubyconf-au --event rubyconf-au-2027 --title "RubyConf AU 2027" \
-      --kind "conference" --location "Melbourne, VIC, AU" --date-precision "year" --start-date "2027-12-31" \
+      --kind "conference" --location "Melbourne, VIC, Australia" --date-precision "year" --start-date "2027-12-31" \
       --end-date "2027-12-31" --timezone "Australia/Melbourne"
 
     This will create:

@@ -38,7 +38,7 @@ A group without an upcoming meetup and none in the last 18 months shows as inact
 ---
 id: "lrug"
 name: "London Ruby User Group"
-location: "London, UK"
+location: "London, United Kingdom"
 timezone: "Europe/London"
 website: "https://lrug.org"
 kind: "meetup"
@@ -59,7 +59,7 @@ New groups can be created with the series generator:
 
 ```bash
 bin/rails g series --series lrug --name "London Ruby User Group" --kind meetup \
-  --location "London, UK" --timezone Europe/London --meetup https://www.meetup.com/lrug
+  --location "London, United Kingdom" --timezone Europe/London --meetup https://www.meetup.com/lrug
 ```
 
 The group's images (avatar, banner, card, featured, poster) go in `app/assets/images/events/{series}/default/`, and every meetup uses them unless it has images of its own. A group sticker or stamp goes in `app/assets/images/events/{series}/sticker.webp` / `stamp.webp`, and is collected at any of its meetups.
@@ -73,7 +73,7 @@ Each meetup is an event with `kind: "meetup"`, in a folder named after its serie
 id: "lrug-2026-01-12"
 title: "LRUG Meetup January 2026"
 subtitle: "New Year Lightning Talks"
-location: "London, UK"
+location: "London, United Kingdom"
 timezone: "Europe/London"
 kind: "meetup"
 description: |-
