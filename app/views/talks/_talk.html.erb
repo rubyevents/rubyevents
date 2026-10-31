@@ -131,11 +131,12 @@
 
           <% if talk.video_available? %>
             <%= ui_tooltip "Toggle theater mode" do %>
-              <%= ui_button kind: :pill, class: "hidden lg:inline-flex", aria: {pressed: "false"}, data: {theater_button: "", action: "theater#toggle"} do %>
-                <%= fa("expand", size: :xs, data: {theater_icon: "inactive"}) %>
-                <%= fa("compress", size: :xs, class: "hidden", data: {theater_icon: "active"}) %>
+              <%= ui_button kind: :pill, class: "hidden lg:inline-flex", aria: {pressed: "false"}, data: {theater_target: "button", action: "theater#toggle"} do %>
+                <%= fa("expand", size: :xs, class: "group-[.theater-mode]/theater:hidden") %>
+                <%= fa("compress", size: :xs, class: "hidden group-[.theater-mode]/theater:inline-block") %>
 
-                <span class="text-xs" data-theater-label>Theater</span>
+                <span class="text-xs group-[.theater-mode]/theater:hidden">Theater</span>
+                <span class="hidden text-xs group-[.theater-mode]/theater:inline">Exit theater</span>
               <% end %>
             <% end %>
           <% end %>

@@ -1,10 +1,10 @@
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
 <div
-  class="theater-available container my-8 flex w-full flex-col gap-4"
+  class="group/theater container my-8 flex w-full flex-col gap-4"
   data-controller="theater"
   data-theater-active-class="theater-mode"
-  data-action="theater:toggle@window->theater#toggle turbo:morph@document->theater#restore"
+  data-action="turbo:morph@document->theater#restore"
 >
   <% back_path = params[:back_to].presence || talks_path %>
   <% back_to_title = params[:back_to_title].presence || "Talks" %>

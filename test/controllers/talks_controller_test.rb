@@ -65,7 +65,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     get talk_url(@talk)
 
     assert_response :success
-    assert_select "[data-theater-button]"
+    assert_select "[data-theater-target=button]"
   end
 
   test "does not render the theater mode toggle when the talk has no video" do
@@ -74,7 +74,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     get talk_url(@talk)
 
     assert_response :success
-    assert_select "[data-theater-button]", false
+    assert_select "[data-theater-target=button]", false
   end
 
   test "should redirect to talks for wrong slugs" do
