@@ -48,6 +48,20 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "says held on for a past talk" do
+    @talk.update!(date: 1.week.ago.to_date)
+    get talk_url(@talk)
+    assert_select "p", /Held on:/
+    assert_select "p", text: /Takes place on:/, count: 0
+  end
+
+  test "says takes place on for an upcoming talk" do
+    @talk.update!(date: 1.week.from_now.to_date)
+    get talk_url(@talk)
+    assert_select "p", /Takes place on:/
+    assert_select "p", text: /Held on:/, count: 0
+  end
+
   test "shows a language switcher when a talk has transcripts in multiple languages" do
     @talk.talk_transcripts.create!(
       language: "ja",

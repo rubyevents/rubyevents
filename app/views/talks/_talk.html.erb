@@ -283,7 +283,7 @@
           </p>
 
           <p>
-            Held on: <%= talk.formatted_date %><br>
+            <%= talk.date&.future? ? "Takes place on" : "Held on" %>: <%= talk.formatted_date %><br>
             <span class="text-gray-400">
               Published:
               <% if talk.published_at %>
