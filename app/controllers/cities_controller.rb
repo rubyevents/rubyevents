@@ -84,7 +84,7 @@ class CitiesController < ApplicationController
     nearby_event_ids = (@nearby_events || []).map { |n| n[:event].id }
     exclude_ids = @events.pluck(:id) + nearby_event_ids
 
-    @country_events = Event.includes(:series)
+    @country_events = Event.ruby_focused.includes(:series)
       .where(country_code: @city.country_code)
       .where.not(city: @city.name)
       .where.not(id: exclude_ids)
@@ -126,7 +126,7 @@ class CitiesController < ApplicationController
 
     continent_country_codes = @continent.countries.map(&:alpha2) - exclude_country_codes
 
-    Event.includes(:series)
+    Event.ruby_focused.includes(:series)
       .where(country_code: continent_country_codes)
       .upcoming
   end

@@ -128,9 +128,6 @@
               "type": "string"
             }
           },
-          "event_name": {
-            "type": "string"
-          },
           "date": {
             "type": "string",
             "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
@@ -653,9 +650,6 @@
                 "published_at": {
                   "type": "string"
                 },
-                "event_name": {
-                  "type": "string"
-                },
                 "speakers": {
                   "type": "array",
                   "items": {
@@ -779,10 +773,6 @@
         }
       }
     },
-    "event_name": {
-      "type": "string",
-      "description": "Name of the event (e.g., 'RailsConf 2024')"
-    },
     "date": {
       "type": "string",
       "description": "Date of the talk (YYYY-MM-DD format)",
@@ -800,13 +790,13 @@
     },
     "published_at": {
       "type": "string",
-      "description": "Date when the video was published (YYYY-MM-DD format)",
-      "minLength": 1
+      "description": "When the video was published (YYYY-MM-DD, or YYYY-MM-DDTHH:MM:SSZ in UTC)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}Z)?$"
     },
     "announced_at": {
       "type": "string",
-      "description": "Date when the talk was announced",
-      "minLength": 1
+      "description": "When the talk was announced (YYYY-MM-DD, or YYYY-MM-DDTHH:MM:SSZ in UTC)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}Z)?$"
     },
     "location": {
       "type": "string",
@@ -828,6 +818,21 @@
     "video_id": {
       "type": "string",
       "description": "Video ID on the provider platform"
+    },
+    "start_cue": {
+      "type": "string",
+      "description": "Where this talk starts in a video it shares with other talks, like a meetup's full recording (MM:SS, HH:MM:SS, or 'TODO')",
+      "pattern": "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
+    },
+    "end_cue": {
+      "type": "string",
+      "description": "Where this talk ends in a shared video (MM:SS, HH:MM:SS, or 'TODO')",
+      "pattern": "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
+    },
+    "thumbnail_cue": {
+      "type": "string",
+      "description": "Thumbnail time cue in a shared video (MM:SS, HH:MM:SS, or 'TODO')",
+      "pattern": "^(TODO|\\d{1,2}:\\d{2}(:\\d{2})?)$"
     },
     "external_player": {
       "type": "boolean",
@@ -1243,9 +1248,6 @@
             "type": "string"
           },
           "published_at": {
-            "type": "string"
-          },
-          "event_name": {
             "type": "string"
           },
           "speakers": {

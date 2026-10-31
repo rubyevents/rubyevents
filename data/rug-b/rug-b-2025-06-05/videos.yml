@@ -1,0 +1,38 @@
+---
+- id: "sean-smith-rug-b-2025-06-05"
+  old_id: "sean-smith-rug-b-meetup-june-2025"
+  title: "Rails Connection Pools + PGBouncer"
+  date: "2025-06-05"
+  video_provider: "not_recorded"
+  video_id: "sean-smith-rug-b-2025-06-05"
+  description: |-
+    Rails DB Connections use the built in Rails Connection Pool. When used in combination with PGBouncer this allows for handling a much larger number of DB connections, but also leads to some unforeseen issues.
+
+    Sharing learnings about PGBouncer (What is it? Why use it?) and some important findings about managing the interaction between the Rails connection pool and a third party connection pool like PGBouncer.
+  speakers:
+    - Sean Smith
+
+- id: "dennis-denicio-rug-b-2025-06-05"
+  old_id: "dennis-denicio-rug-b-meetup-june-2025"
+  title: "Embracing Clarity and Flexibility with dry-rb"
+  date: "2025-06-05"
+  video_provider: "not_recorded"
+  video_id: "dennis-denicio-rug-b-2025-06-05"
+  description: |-
+    Abstract
+
+    dry-rb is a powerful set of Ruby libraries designed to promote code clarity, immutability, and maintainability—without compromising on flexibility. In this talk, I’ll introduce three core components of the dry-rb ecosystem: dry-struct, dry-validation, and dry-transaction. Together, they enable a clean, explicit approach to data modeling, validation, and business logic orchestration.
+
+    We'll explore:
+
+    - How to use dry-struct for typed value objects and safer data handling
+    - Validating input and domain data with dry-validation
+    - Structuring business logic into composable steps with dry-transaction
+
+    I’ll walk through practical examples from real-world Ruby applications and demonstrate how these tools can replace tangled service classes and model callbacks with something more explicit, testable, and intention-revealing.
+
+    Target Audience
+
+    Rubyists of all levels who are curious about alternatives to Rails conventions or interested in writing more maintainable, modular business logic.
+  speakers:
+    - Dennis Denicio

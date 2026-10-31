@@ -1,6 +1,148 @@
-# TODO: Add talks and videos
-
 # Website: https://regional.rubykaigi.org/tokyo11/
-# Videos: -
+# Videos: https://www.youtube.com/@Ruby-nz3je
 ---
-[]
+- id: "yukihiro-matz-matsumoto-tokyo-rubykaigi-11"
+  title: "Streem"
+  raw_title: "【招待講演】Streem　まつもと ゆきひろ氏"
+  date: "2016-05-28"
+  published_at: "2016-05-31T07:38:53Z"
+  language: "Japanese"
+  slides_url: "https://speakerdeck.com/matz/streem"
+  video_provider: "youtube"
+  video_id: "TnD8HPQl2Jg"
+  description: ""
+  speakers:
+    - "Yukihiro \"Matz\" Matsumoto"
+
+- id: "kazuaki-tanaka-tokyo-rubykaigi-11"
+  title: "mruby/c"
+  raw_title: "【一般講演】mruby/c　田中 和明氏"
+  date: "2016-05-28"
+  published_at: "2016-05-31T07:39:08Z"
+  language: "Japanese"
+  slides_url: "http://www.slideshare.net/kazuakitanaka391/mrubyc-in-tokyorubykaigi11"
+  video_provider: "youtube"
+  video_id: "Opq50qdiaYE"
+  description: |-
+    mruby is a lightweight Ruby interpreter with the intention of being easily embeddable. mruby/c is a VM implementation that works on even less resources than the OSS version of mruby. It works with around 40KB of memory. This implementation assumes the use of a one-chip microcomputer, so it has a considerably reduced number of classes. Therefore, it is not suitable for general Ruby programming; however, its application is aimed at the control of embedded system devices and the development of IoT products.
+  speakers:
+    - Kazuaki Tanaka
+
+- id: "yuki-kurihara-tokyo-rubykaigi-11"
+  title: "Pseudo Type System on Struct"
+  original_title: "Rubyに型があると便利か"
+  raw_title: "【一般講演】Rubyに型があると便利か　栗原 勇樹氏"
+  date: "2016-05-28"
+  published_at: "2016-05-31T07:39:20Z"
+  language: "Japanese"
+  slides_url: "https://speakerdeck.com/ksss/rubynixing-gaarutobian-li-ka"
+  video_provider: "youtube"
+  video_id: "HwdWbJxLRdE"
+  description: |-
+    Everyone knows Ruby is a dynamic programming language, but what if it was statically typed? In this talk, I'll talk about whether having a type system in Ruby would be useful or not by walking through what we can do with type_struct. Come and join me for a conversation about the future of Ruby 3 and its type system.
+  speakers:
+    - Yuki Kurihara
+
+- id: "kazuho-oku-tokyo-rubykaigi-11"
+  title: "How to make the fastest web server"
+  original_title: "最速ウェブサーバの作り方"
+  raw_title: "【招待講演】最速ウェブサーバの作り方　奥 一穂氏"
+  date: "2016-05-28"
+  published_at: "2016-05-31T07:39:30Z"
+  language: "Japanese"
+  slides_url: "http://www.slideshare.net/kazuho/developing-the-fastest-http2-server"
+  video_provider: "youtube"
+  video_id: "Iu5Uynq7ubo"
+  description: |-
+    In recent years, performance bottleneck of the Web has shifted from network bandwidth to latency.  In response, technologies that reduce and / or conceal the latency are getting standardized, which include, but not limited to TCP Fast Open, HTTP/2, TLS 1.3.  In the session, lead developer of the HTTP/2 server H2O will present server programming techniques that reduce the negative influence of latency, introduce "Cache Digest" - a proposed approach to farther optimize HTTP/2, etc., and also discuss how to control them from ruby.
+  speakers:
+    - Kazuho Oku
+
+- id: "kouhei-sutou-tokyo-rubykaigi-11"
+  title: "How I embedded a Ruby interpreter into my apps"
+  original_title: "アプリケーションへのRubyインタープリターの組み込み"
+  raw_title: "【一般講演】アプリケーションへのRubyインタープリターの組み込み　須藤 功平氏"
+  date: "2016-05-28"
+  published_at: "2016-05-31T07:39:40Z"
+  language: "Japanese"
+  slides_url: "http://slide.rabbit-shocker.org/authors/kou/tokyork-11/"
+  video_provider: "youtube"
+  video_id: "53NFGS4O7zo"
+  description: |-
+    I'll talk about how to embed CRuby to milter manager. milter manager is an email filtering application. It should be able to handle a large number of simultaneous connections, so it’s been implemented as multi-processing and event-driven server program. I've made a self-contained package in order to customize it using Ruby. Let’s take a deep dive into the implementation of the elements needed for this case to work successfully: GC, forks, signals, and event loops.
+  speakers:
+    - Kouhei Sutou
+
+- id: "kazuki-tsujimoto-tokyo-rubykaigi-11"
+  title: "Re: Pattern Matching in Ruby"
+  raw_title: "【一般講演】Re: Pattern Matching in Ruby　辻本 和樹氏"
+  date: "2016-05-28"
+  published_at: "2016-05-31T07:40:29Z"
+  language: "Japanese"
+  slides_url: "https://speakerdeck.com/k_tsj/re-pattern-matching-in-ruby"
+  video_provider: "youtube"
+  video_id: "2IBgvipZDDI"
+  description: |-
+    I'll talk about implementation details of the pattern-match gem which uses Ruby's powerful features like metaprogramming and Refinements.
+  speakers:
+    - Kazuki Tsujimoto
+
+- id: "aaron-patterson-tokyo-rubykaigi-11"
+  title: "Image Recognition and Code that shouldn't exist"
+  raw_title: "【招待講演】Image Recognition and Code that shouldn't exist　Aaron Patterson氏"
+  date: "2016-05-28"
+  published_at: "2016-05-31T07:40:39Z"
+  language: "Japanese"
+  slides_url: "https://speakerdeck.com/tenderlove/tokyo-ruby-kaigi"
+  video_provider: "youtube"
+  video_id: "x3UANgL98wk"
+  description: |-
+    In this presentation we will look at how to use Ruby to do image recognition that will improve over time.  We will also look at some other code that has no reason to exist.  The point of the projects I will present is not to produce something useful, but to challenge myself to do something creative.  Think of this presentation as a Quine that cannot print itself.
+  speakers:
+    - Aaron Patterson
+
+- id: "kenta-murata-tokyo-rubykaigi-11"
+  title: "IMF: Image Manipulation Framework"
+  raw_title: "【一般講演】IMF: Image Manipulation Framework　村田 賢太氏"
+  date: "2016-05-28"
+  published_at: "2016-05-31T07:40:47Z"
+  language: "Japanese"
+  slides_url: "https://speakerdeck.com/mrkn/imf-and-tensor-interchange-system"
+  video_provider: "youtube"
+  video_id: "H1IgKhGoj90"
+  description: |-
+    I've recently started developing a library for processing images. In this talk, I'll demonstrate what we can do with the library, and explain the future development plans.
+
+    I hope to remove the need for RMagick with this library as soon as possible, and I would be delighted if my presentation inspired people to help make this kind of library a reality.
+  speakers:
+    - Kenta Murata
+
+- id: "yusuke-endoh-tokyo-rubykaigi-11"
+  title: "Optcarrot: A pure-ruby NES emulator"
+  raw_title: "【一般講演】Optcarrot: A pure-ruby NES emulator　遠藤 侑介氏"
+  date: "2016-05-28"
+  published_at: "2016-05-31T07:40:55Z"
+  language: "Japanese"
+  slides_url: "http://www.slideshare.net/mametter/optcarrot-a-pureruby-nes-emulator"
+  video_provider: "youtube"
+  video_id: "oD35gcGPGQc"
+  description: |-
+    We developed a Nintendo Entertainment System (NES) emulator in Ruby, called Optcarrot, as a non-trivial benchmark program for driving performance improvement of Ruby implementations.  We present ProTips(TM) for writing a fast Ruby program and a benchmark result of some Ruby implementations, and discuss some promising approaches to improve performance of MRI.
+  speakers:
+    - Yusuke Endoh
+
+- id: "sadayuki-furuhashi-tokyo-rubykaigi-11"
+  title: '"Digdag" - Implementation of A Distributed Workflow Engine'
+  original_title: "分散ワークフローエンジン『Digdag』の実装"
+  raw_title: "【基調講演】分散ワークフローエンジン『Digdag』の実装　古橋 貞之氏"
+  kind: "keynote"
+  date: "2016-05-28"
+  published_at: "2016-05-31T07:41:09Z"
+  language: "Japanese"
+  slides_url: "http://www.slideshare.net/frsyuki/digdag-at-tokyo-rubykaigi-11"
+  video_provider: "youtube"
+  video_id: "OAaFr_CnXvk"
+  description: |-
+    A workflow engine is a tool that processes multiple tasks with dependencies. Historically, there are a lot of implementations including traditional Makefile, open-source Python software "Luigi", and "JP1/AJS3" made by Hitachi. Digdag is a new workflow engine that is in active development. In this session, I'll cover implementation techniques used in workflow engines by explaining details of Digdag such as efficient state transition of nodes in a tree structure, persistent store and transfer of execution state of tasks over network, fair task scheduling, and sandboxed task execution in Docker containers.
+  speakers:
+    - Sadayuki Furuhashi

@@ -3,6 +3,8 @@
 require "test_helper"
 
 class Static::Validators::TalkIdTest < ActiveSupport::TestCase
+  include StaticDataSandbox
+
   test "applicable? returns true for a videos.yml file" do
     with_temp_video([{"id" => "x", "title" => "Something"}]) do |path|
       assert Static::Validators::TalkId.new(file_path: path).applicable?
@@ -179,13 +181,60 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     end
   end
 
-  test "ignores talks at meetup events" do
+  test "checks talks at meetup events against the meetup's slug" do
     videos = [
       {"id" => "some-freeform-meetup-id", "title" => "Building Things", "speakers" => ["Jane Doe"]}
     ]
 
-    with_temp_video(videos, event: {"kind" => "meetup"}) do |path|
+    with_temp_video(videos, event: {"id" => "testconf-2024", "kind" => "meetup"}) do |path|
+      errors = Static::Validators::TalkId.new(file_path: path).errors
+
+      assert_equal 1, errors.size
+      assert_includes errors.first.message, %(expected id "jane-doe-testconf-2024")
+    end
+  end
+
+  test "ignores talks of the undated meetup groups" do
+    videos = [
+      {"id" => "some-freeform-meetup-id", "title" => "Building Things", "speakers" => ["Jane Doe"]}
+    ]
+
+    with_temp_video(videos, event: {"id" => "rails-girls-copenhagen", "kind" => "meetup"}) do |path|
       assert_empty Static::Validators::TalkId.new(file_path: path).errors
+    end
+  end
+
+  test "adds old_id when fixing an id that was committed in another file" do
+    videos = [
+      {"id" => "jane-doe-testrb-meetup-january-2024", "title" => "Building Things", "speakers" => ["Jane Doe"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      Static::Validators::TalkId.stub(:baseline_talk_ids, Set["jane-doe-testrb-meetup-january-2024"]) do
+        Static::Validators::TalkId.new(file_path: path).fix
+      end
+
+      node = Yerba.parse_file(path).find_by("id" => "jane-doe-testconf-2024")
+
+      assert_equal "jane-doe-testrb-meetup-january-2024", node.value_at("old_id")
+    end
+  end
+
+  test "moves the thumbnail of a talk cut from a shared recording when fixing its id" do
+    videos = [
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"], "start_cue" => "01:00", "end_cue" => "20:00", "video_provider" => "youtube", "video_id" => "abcdefghijk"}
+    ]
+
+    with_temp_video(videos) do |path|
+      with_temp_thumbnails(path) do |thumbnails|
+        File.write(File.join(thumbnails, "wrong.webp"), "webp")
+
+        Static::Validators::TalkId.new(file_path: path).fix
+
+        assert File.exist?(File.join(thumbnails, "rachael-wright-munn-testconf-2024.webp"))
+        assert_not File.exist?(File.join(thumbnails, "wrong.webp"))
+        assert_equal "abcdefghijk", Yerba.parse_file(path).find_by("id" => "rachael-wright-munn-testconf-2024").value_at("video_id")
+      end
     end
   end
 
@@ -240,7 +289,7 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     end
   end
 
-  test "keeps an existing old_id when fixing an id" do
+  test "replaces an existing old_id with the committed id when fixing an id" do
     videos = [
       {"id" => "wrong", "old_id" => "some-legacy-id", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
     ]
@@ -254,6 +303,22 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
         baseline: Static::Talk.parse(baseline.to_yaml)
       )
       validator.fix
+
+      node = Yerba.parse_file(path).find_by("id" => "rachael-wright-munn-testconf-2024")
+
+      assert_equal "wrong", node.value_at("old_id")
+    end
+  end
+
+  test "keeps an existing old_id when the current id was never committed" do
+    videos = [
+      {"id" => "wrong", "old_id" => "some-legacy-id", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      Static::Validators::TalkId.stub(:baseline_talk_ids, Set.new) do
+        Static::Validators::TalkId.new(file_path: path).fix
+      end
 
       node = Yerba.parse_file(path).find_by("id" => "rachael-wright-munn-testconf-2024")
 
@@ -331,16 +396,14 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
 
   test "renames thumbnail files when fixing an id" do
     videos = [
-      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"], "video_provider" => "not_recorded", "video_id" => "wrong"}
     ]
 
     with_temp_video(videos) do |path|
-      with_temp_thumbnails do |thumbnails|
+      with_temp_thumbnails(path) do |thumbnails|
         File.write(File.join(thumbnails, "wrong.webp"), "webp")
 
-        Rails.stub(:root, Pathname.new(File.dirname(thumbnails, 5))) do
-          Static::Validators::TalkId.new(file_path: path).fix
-        end
+        Static::Validators::TalkId.new(file_path: path).fix
 
         assert File.exist?(File.join(thumbnails, "rachael-wright-munn-testconf-2024.webp"))
         assert_not File.exist?(File.join(thumbnails, "wrong.webp"))
@@ -350,17 +413,15 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
 
   test "renames a thumbnail directory when fixing an id" do
     videos = [
-      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"], "video_provider" => "not_recorded", "video_id" => "wrong"}
     ]
 
     with_temp_video(videos) do |path|
-      with_temp_thumbnails do |thumbnails|
+      with_temp_thumbnails(path) do |thumbnails|
         FileUtils.mkdir_p(File.join(thumbnails, "wrong"))
         File.write(File.join(thumbnails, "wrong", "lightning.webp"), "webp")
 
-        Rails.stub(:root, Pathname.new(File.dirname(thumbnails, 5))) do
-          Static::Validators::TalkId.new(file_path: path).fix
-        end
+        Static::Validators::TalkId.new(file_path: path).fix
 
         renamed = File.join(thumbnails, "rachael-wright-munn-testconf-2024", "lightning.webp")
         assert File.exist?(renamed)
@@ -371,20 +432,18 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
 
   test "does not clobber an existing thumbnail or directory when fixing an id" do
     videos = [
-      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"]}
+      {"id" => "wrong", "title" => "Fixing in Validators", "speakers" => ["Rachael Wright-Munn"], "video_provider" => "not_recorded", "video_id" => "wrong"}
     ]
 
     with_temp_video(videos) do |path|
-      with_temp_thumbnails do |thumbnails|
+      with_temp_thumbnails(path) do |thumbnails|
         File.write(File.join(thumbnails, "wrong.webp"), "new")
         FileUtils.mkdir_p(File.join(thumbnails, "wrong"))
         File.write(File.join(thumbnails, "rachael-wright-munn-testconf-2024.webp"), "keep-file")
         FileUtils.mkdir_p(File.join(thumbnails, "rachael-wright-munn-testconf-2024"))
         File.write(File.join(thumbnails, "rachael-wright-munn-testconf-2024", "talk.webp"), "keep-dir")
 
-        Rails.stub(:root, Pathname.new(File.dirname(thumbnails, 5))) do
-          Static::Validators::TalkId.new(file_path: path).fix
-        end
+        Static::Validators::TalkId.new(file_path: path).fix
 
         assert_equal "keep-file", File.read(File.join(thumbnails, "rachael-wright-munn-testconf-2024.webp"))
         assert_equal "keep-dir", File.read(File.join(thumbnails, "rachael-wright-munn-testconf-2024", "talk.webp"))
@@ -397,22 +456,19 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
   private
 
   def with_temp_video(videos, event: nil)
-    dir = Dir.mktmpdir
-    videos_path = File.join(dir, "data", "testconf", "testconf-2024", "videos.yml")
-    FileUtils.mkdir_p(File.dirname(videos_path))
-    File.write(videos_path, videos.to_yaml)
-    File.write(File.join(File.dirname(videos_path), "event.yml"), event.to_yaml) if event
-    yield videos_path
-  ensure
-    FileUtils.rm_rf(dir)
+    with_static_data_dir do |dir|
+      videos_path = File.join(dir, "data", "testconf", "testconf-2024", "videos.yml")
+      FileUtils.mkdir_p(File.dirname(videos_path))
+      File.write(videos_path, videos.to_yaml)
+      File.write(File.join(File.dirname(videos_path), "event.yml"), event.to_yaml) if event
+      yield videos_path
+    end
   end
 
-  def with_temp_thumbnails
-    dir = Dir.mktmpdir
-    thumbnails = File.join(dir, "app", "assets", "images", "thumbnails", "testconf-2024")
+  def with_temp_thumbnails(videos_path)
+    thumbnails = File.join(File.dirname(videos_path, 4), "app", "assets", "images", "thumbnails", "testconf-2024")
     FileUtils.mkdir_p(thumbnails)
+
     yield thumbnails
-  ensure
-    FileUtils.rm_rf(dir)
   end
 end

@@ -54,7 +54,7 @@ In May, we had 5 conferences - Blue Ridge Ruby, Rubycon, Balkan Ruby, RubyConf A
 
 ## Contributions
 
-This month, we merged [54 PRs from 21 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+created%3A>%3D2026-05-01+-created%3A>2026-06-01+) 26 PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+created%3A>%3D2026-05-01+-created%3A>2026-06-01+label%3Acontent).
+This month, we merged [54 PRs from 21 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-05-01..2026-05-31+) 26 PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-05-01..2026-05-31+label%3Adata).
 
 ### Big Updates
 

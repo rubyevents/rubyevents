@@ -42,23 +42,21 @@ class Geolocate < Thor
   private
 
   def process_event_file(file_path, overwrite)
-    document = Yerba.parse_file(file_path)
-    data = document.to_h
+    event = Static::Event.in_file(file_path).first
 
-    unless data.is_a?(Hash)
+    if event.to_h.empty?
       puts "⚠ Skipping #{file_path}, invalid YAML structure"
       return
     end
 
     # Prioritize venue.yml if it exists and has coordinates
-    venue_file = File.join(File.dirname(file_path), "venue.yml")
-    if File.exist?(venue_file)
-      venue_data = Yerba.parse_file(venue_file).to_h
-      venue_coordinates = venue_data["coordinates"]
+    venue = event.venue
+    if venue
+      venue_coordinates = venue["coordinates"]
       if venue_coordinates && venue_coordinates["latitude"] && venue_coordinates["longitude"]
-        if data["coordinates"] != venue_coordinates || overwrite
-          document["coordinates"] = venue_coordinates
-          document.save!
+        if event["coordinates"] != venue_coordinates || overwrite
+          event["coordinates"] = venue_coordinates
+          event.save!
           puts "✓ #{file_path}: Updated from venue.yml -> #{venue_coordinates}"
         else
           puts "⚠ Skipping #{file_path}: Already has coordinates from venue"
@@ -67,13 +65,13 @@ class Geolocate < Thor
       end
     end
 
-    location = data["location"]
+    location = event["location"]
     unless location.present?
       puts "⚠ Skipping #{file_path}: No location field"
       return
     end
 
-    if data["coordinates"] && !overwrite
+    if event["coordinates"] && !overwrite
       puts "⚠ Skipping #{file_path}: Already has coordinates"
       return
     end
@@ -81,9 +79,9 @@ class Geolocate < Thor
     coordinates = geocode_location(location)
 
     if coordinates
-      document["coordinates"] = coordinates
-      document.save!
-      puts "✓ #{file_path}: #{data["title"]} (#{location}) -> #{coordinates}"
+      event["coordinates"] = coordinates
+      event.save!
+      puts "✓ #{file_path}: #{event["title"]} (#{location}) -> #{coordinates}"
     else
       puts "✗ #{file_path}: Failed to geocode (#{location})"
     end

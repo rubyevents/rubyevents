@@ -11,7 +11,7 @@ module Static
 
       def initialize(file_path:, document: nil, baseline: nil)
         @file_path = file_path
-        @document = document || Yerba.parse_file(@file_path)
+        @document = document
         @baseline = baseline
       end
 
@@ -46,22 +46,44 @@ module Static
       def fix
         return unless applicable?
 
+        cued_thumbnails = {}
+
         changes = map_unexpected_ids do |node, expected|
           current = node["id"].to_s
-          node["old_id"] = current if node["old_id"].blank? && id_in_baseline?(current)
+
+          # Production is seeded from the baseline, so a committed id is the one it knows the talk by
+          node["old_id"] = current if id_in_baseline?(current)
           node.delete("old_id") if node["old_id"] == expected
+
           if node["video_id"] == current && !watchable_video?(node)
             node["video_id"] = expected
           end
-          rename_thumbnails(current, expected)
+
+          cued_thumbnails[current] = expected if watchable_video?(node) && node["start_cue"].present?
           node["id"] = expected
         end.compact
+
         return unless changes.any?
+
         videos_file.save!
+
+        move_cued_thumbnails(cued_thumbnails)
+
         {changed: changes.size, file_path: @file_path}
       end
 
       private
+
+      def move_cued_thumbnails(renames)
+        directory = File.join(Static::Talk.root, "app/assets/images/thumbnails", event_slug)
+
+        renames.each do |current, expected|
+          source = File.join(directory, "#{current}.webp")
+          target = File.join(directory, "#{expected}.webp")
+
+          FileUtils.mv(source, target) if File.exist?(source) && !File.exist?(target)
+        end
+      end
 
       def map_unexpected_ids
         expected_ids.map do |node, expected|
@@ -71,7 +93,7 @@ module Static
       end
 
       def id_in_baseline?(id)
-        baseline_ids.include?(id)
+        baseline_ids.include?(id) || self.class.baseline_talk_ids.include?(id)
       end
 
       def baseline_ids
@@ -90,7 +112,7 @@ module Static
       end
 
       def expected_ids
-        return {} if meetup_event?
+        return {} if meetup_event? && MeetupNaming.ignored?(nodes.first.event)
 
         @expected_ids ||= nodes.group_by { |node| speaker_id(node) }.each_with_object({}) do |(id, group), result|
           next if id.blank?
@@ -124,10 +146,7 @@ module Static
       end
 
       def meetup_event?
-        event_file = File.join(File.dirname(File.expand_path(@file_path)), "event.yml")
-        return false unless File.exist?(event_file)
-
-        Yerba.parse_file(event_file)["kind"] == "meetup"
+        nodes.first&.event&.[]("kind") == "meetup"
       end
 
       def id_for(node)
@@ -155,19 +174,6 @@ module Static
 
       def watchable_video?(node)
         node["video_provider"].in?(::Talk::WATCHABLE_PROVIDERS)
-      end
-
-      def rename_thumbnails(from, to)
-        event_thumbnails = Rails.root.join("app/assets/images/thumbnails", event_slug)
-
-        Dir.glob(event_thumbnails.join("**/#{from}.webp")).each do |thumbnail|
-          renamed_thumbnail = File.join(File.dirname(thumbnail), "#{to}.webp")
-          FileUtils.mv(thumbnail, renamed_thumbnail) unless File.exist?(renamed_thumbnail)
-        end
-
-        directory = event_thumbnails.join(from)
-        renamed_directory = event_thumbnails.join(to)
-        FileUtils.mv(directory, renamed_directory) if Dir.exist?(directory) && !Dir.exist?(renamed_directory)
       end
 
       def numbered(node, id, index)

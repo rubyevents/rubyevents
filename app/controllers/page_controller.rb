@@ -47,12 +47,12 @@ class PageController < ApplicationController
           events: [
             {
               name: "Upcoming Events",
-              items: Event.upcoming.limit(10).map { |event| event.to_mobile_json(request) },
+              items: Event.ruby_focused.upcoming.limit(10).map { |event| event.to_mobile_json(request) },
               url: events_url
             },
             {
               name: "Recent Events",
-              items: Event.past.limit(10).map { |event| event.to_mobile_json(request) },
+              items: Event.ruby_focused.past.limit(10).map { |event| event.to_mobile_json(request) },
               url: past_events_url
             }
           ]
@@ -62,9 +62,10 @@ class PageController < ApplicationController
   end
 
   def featured
-    @events = Event.featurable
+    @events = Event.not_meetup.featurable
+      .includes(:series)
       .order(date: :desc)
-      .reject { |event| event.static_metadata.cancelled? }
+      .reject(&:cancelled_or_inactive?)
   end
 
   def components
@@ -90,7 +91,7 @@ class PageController < ApplicationController
 
   def stickers
     @events = Event.all.select(&:sticker?)
-    @stickers = @events.flat_map(&:stickers)
+    @stickers = @events.flat_map(&:stickers).uniq(&:code)
   end
 
   def contributors
@@ -98,7 +99,7 @@ class PageController < ApplicationController
   end
 
   def assets
-    @events = Event.includes(:series).order("event_series.name, events.name")
+    @events = Event.not_meetup.ruby_focused.includes(:series).order("event_series.name, events.name")
 
     @asset_types = {
       "avatar" => {width: 256, height: 256, name: "Avatar"},
@@ -110,7 +111,7 @@ class PageController < ApplicationController
       "stamp" => {width: 512, height: 512, name: "Stamp"}
     }
 
-    @events_with_assets = @events.map do |event|
+    @all_events_with_assets = @events.map do |event|
       assets = {}
       @asset_types.except("sticker", "stamp").each do |type, _|
         asset_path = event.event_image_for("#{type}.webp")
@@ -128,6 +129,15 @@ class PageController < ApplicationController
         sticker_paths: sticker_paths,
         stamp_paths: stamp_paths
       }
+    end
+
+    @filter = params[:filter].presence_in(%w[missing incomplete complete])
+
+    @events_with_assets = case @filter
+    when "missing" then @all_events_with_assets.reject { |e| e[:has_any_assets] }
+    when "incomplete" then @all_events_with_assets.select { |e| e[:has_any_assets] && e[:missing_assets].any? }
+    when "complete" then @all_events_with_assets.select { |e| e[:missing_assets].empty? }
+    else @all_events_with_assets
     end
   end
 end

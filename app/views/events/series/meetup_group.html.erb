@@ -1,0 +1,116 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% series = @event_series %>
+<% accent = series.static_metadata.accent_color %>
+<% past_limit = @all_past_meetups ? nil : 20 %>
+<% timeline_meetups = (@meetups_view == "past") ? @past_meetups.first(past_limit || @past_meetups.size) : @upcoming_meetups %>
+
+<div style="--accent: <%= accent || "#DC2626" %>;">
+  <%= render "events/series/meetup/banner", series: series %>
+
+  <div class="container pb-12">
+    <%= render "events/series/meetup/hero", series: series, stats: @meetup_stats, subscription: @subscription %>
+
+    <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <div class="flex min-w-0 flex-col gap-12">
+        <section id="meetups">
+          <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+            <h2 class="text-primary">Meetups</h2>
+
+            <nav class="tabs-boxed tabs" aria-label="Upcoming or past meetups">
+              <%= link_to "Upcoming (#{@upcoming_meetups.size})", series_path(series, view: "upcoming", anchor: "meetups"), class: class_names("tab", "tab-active" => @meetups_view == "upcoming"), aria: {current: (@meetups_view == "upcoming") ? "page" : nil} %>
+              <%= link_to "Past (#{@past_meetups.size})", series_path(series, view: "past", anchor: "meetups"), class: class_names("tab", "tab-active" => @meetups_view == "past"), aria: {current: (@meetups_view == "past") ? "page" : nil} %>
+            </nav>
+          </div>
+
+          <% if timeline_meetups.any? %>
+            <%= render "events/series/meetup/timeline", meetups: timeline_meetups, show_years: @meetups_view == "past" %>
+
+            <% if @meetups_view == "past" && past_limit && @past_meetups.size > past_limit %>
+              <div class="mt-2 text-center">
+                <%= link_to "Show all #{@past_meetups.size} past meetups", events_series_path(series, anchor: "meetups"), class: "btn btn-outline btn-sm normal-case" %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="rounded-2xl border border-dashed bg-white/70 p-8 text-center text-gray-500">
+              <% if @upcoming_meetups.none? && @past_meetups.none? %>
+                We don't know of any meetups of <%= series.name %> yet.
+              <% elsif @meetups_view == "upcoming" %>
+                No upcoming meetups announced yet.
+                <%= link_to "See past meetups", series_path(series, view: "past", anchor: "meetups"), class: "link" %>
+              <% else %>
+                No past meetups yet.
+              <% end %>
+            </div>
+          <% end %>
+        </section>
+
+        <% if @recent_recordings.any? %>
+          <section id="latest-recordings" class="flex flex-col gap-4">
+            <h2 class="text-primary">Latest recordings</h2>
+
+            <div class="flex flex-col gap-2 rounded-2xl border bg-white p-3 shadow-sm">
+              <%= render partial: "talks/card_horizontal",
+                    collection: @recent_recordings,
+                    as: :talk,
+                    locals: {
+                      user_watched_talks: user_watched_talks,
+                      show_event_name: true,
+                      tooltip: false,
+                      turbo_frame: "_top"
+                    } %>
+            </div>
+          </section>
+        <% end %>
+
+        <% if @meetup_speakers.any? %>
+          <section id="meetup-speakers">
+            <h2 class="mb-4 text-primary">Speakers</h2>
+
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+              <% @meetup_speakers.each do |speaker| %>
+                <%= link_to profile_path(speaker), class: "flex items-center gap-3 rounded-xl border bg-white p-3 transition hover:shadow-sm", data: {turbo_frame: "_top"} do %>
+                  <%= ui_avatar(speaker, size: :sm) %>
+
+                  <span class="flex min-w-0 flex-col">
+                    <span class="truncate text-sm font-medium text-gray-900"><%= speaker.name %></span>
+                    <span class="text-xs text-gray-500"><%= pluralize(@meetup_talk_counts[speaker.id].to_i, "talk") %></span>
+                  </span>
+                <% end %>
+              <% end %>
+            </div>
+          </section>
+        <% end %>
+      </div>
+
+      <div class="flex flex-col gap-6">
+        <%= render "events/series/meetup/links", series: series %>
+        <%= render "events/series/meetup/sidebar", cfps: @series_cfps, organizers: @organizers, sponsors: @series_sponsors %>
+      </div>
+    </div>
+
+    <% if @child_series.any? %>
+      <section id="child-series" class="mt-12">
+        <h2 class="mb-4 text-primary">Series</h2>
+
+        <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <% @child_series.each do |child| %>
+            <%= render(child.meetup? ? "events/series/meetup_card" : "events/series/card", series: child) %>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+
+    <% if @other_events.any? %>
+      <section id="events" class="mt-12">
+        <h2 class="mb-4 text-primary">Other events</h2>
+
+        <div class="grid min-w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <%= render partial: "events/card", collection: @other_events, as: :event %>
+        </div>
+      </section>
+    <% end %>
+
+    <%= render "events/series/todos", todos: @todos %>
+  </div>
+</div>

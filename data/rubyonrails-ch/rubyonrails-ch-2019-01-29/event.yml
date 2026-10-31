@@ -1,0 +1,19 @@
+---
+id: "rubyonrails-ch-2019-01-29"
+old_talk_ids:
+  - "railshoeck-meetup-january-2019"
+  - "railshock-january-2019"
+title: "Railshöck Meetup January 2019"
+location: "Zurich, Switzerland"
+timezone: "Europe/Zurich"
+kind: "meetup"
+description: |-
+  Array and Hash are used in every Ruby program. Yet, current implementations either prevent the use of them in parallel (the global interpreter lock in MRI) or lack thread-safety guarantees (JRuby raises an exception on concurrent Array#<<). Concurrent::Array from concurrent-ruby is thread-safe but prevents parallel access.
+
+  This talk starts with an introduction to show how TruffleRuby works and then shows a technique to make Array and Hash thread-safe while enabling parallel access, with no penalty on single-threaded performance. In short, we keep the most important thread-safety guarantees of the global lock while allowing Ruby to scale up to tens of cores!
+start_date: "2019-01-29"
+end_date: "2019-01-29"
+meetup: "https://www.meetup.com/rubyonrails-ch/events/258090195"
+coordinates:
+  latitude: 47.3768866
+  longitude: 8.541694

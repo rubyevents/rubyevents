@@ -23,6 +23,17 @@ class Static::SpeakerTest < ActiveSupport::TestCase
     assert_equal "Aaron Patterson", Static::Speaker.find_by(github: "tenderlove").name
   end
 
+  test "find_by name falls back to the GitHub handle" do
+    assert_equal "Aaron Patterson", Static::Speaker.find_by(name: "tenderlove").name
+    assert_equal "Aaron Patterson", Static::Speaker.find_by(name: "TenderLove").name
+  end
+
+  test "known_reference? includes GitHub handles" do
+    assert Static::Speaker.known_reference?("Aaron Patterson")
+    assert Static::Speaker.known_reference?("tenderlove")
+    assert_not Static::Speaker.known_reference?("Nobody #{SecureRandom.hex(4)}")
+  end
+
   test "find_by returns nil for unknown speakers" do
     assert_nil Static::Speaker.find_by(name: "Nobody #{SecureRandom.hex(4)}")
   end
@@ -88,6 +99,21 @@ class Static::SpeakerTest < ActiveSupport::TestCase
   test "social_handle? is true when any social field is present" do
     assert Static::Speaker.find_by(name: "Aaron Patterson").social_handle?
     assert_not Static::Speaker.new(name: "Nobody").social_handle?
+  end
+
+  test "importing a renamed speaker without a GitHub handle renames their user and keeps the old slug as an alias" do
+    user = User.create!(name: "Tom Heina", slug: "tom-heina")
+
+    Dir.mktmpdir do |dir|
+      path = File.join(dir, "speakers.yml")
+      File.write(path, %(---\n- name: "Tom Heinan"\n  github: ""\n  slug: "tom-heinan"\n  aliases:\n    - name: "Tom Heina"\n      slug: "tom-heina"\n))
+
+      Static::Speaker.with_path(path) { Static::Speaker.all.first.import!(index: false) }
+    end
+
+    assert_equal ["Tom Heinan", "tom-heinan"], [user.reload.name, user.slug]
+    assert_equal user, User.find_by_slug_or_alias("tom-heina")
+    assert_equal 1, User.where(name: ["Tom Heina", "Tom Heinan"]).count
   end
 
   test "with_path points the model at another file temporarily" do

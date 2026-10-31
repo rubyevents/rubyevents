@@ -55,7 +55,7 @@ featured_image:
 
 ## Contributions
 
-This month, we merged [70 PRs from 30 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-06-01..2026-06-30) 40 PRs were [new event data and videos.](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-06-01..2026-06-30+label%3Acontent)
+This month, we merged [70 PRs from 30 contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-06-01..2026-06-30) 40 PRs were [new event data and videos.](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A2026-06-01..2026-06-30+label%3Adata)
 
 ### Big Updates
 

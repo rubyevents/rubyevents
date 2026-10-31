@@ -44,16 +44,14 @@ module Static
       end
 
       def event_context
-        event_path = File.join(File.dirname(@file_path), "event.yml")
-        return [nil, nil, nil, nil] unless File.exist?(event_path)
-
-        document = Yerba.parse_file(event_path)
+        event = videos_file.first&.event
+        return [nil, nil, nil, nil] unless event
 
         [
-          parse_date(document["start_date"]&.value),
-          parse_date(document["end_date"]&.value),
-          document["timezone"]&.value,
-          parse_date(document["pre_date"]&.value)
+          parse_date(event["start_date"]),
+          parse_date(event["end_date"]),
+          event["timezone"],
+          parse_date(event["pre_date"])
         ]
       end
 

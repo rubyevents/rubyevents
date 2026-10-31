@@ -1,0 +1,114 @@
+---
+- id: "mayumi-emori-sendai-rubykaigi-03"
+  title: "会社は好きじゃなかった。コードは好きだった ― rubyist.send(:❤️) が社内で通るまで"
+  kind: "keynote"
+  date: "2026-11-21"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "mayumi-emori-sendai-rubykaigi-03"
+  description: |-
+    社内にコードの話をする仲間は一人もいませんでした。メソッドパラメータにフラグを5つ渡す先輩、飲みに誘うために個人携帯に何度も電話をかけてくる上司…。「早く結婚して辞めてやる」と思いながら、ひとりでコードを書いていたあの頃。Rubyとコミュニティが教えてくれた「共有する楽しさ」を、権限も実績もなかった私がどうやって会社の中に持ち込んだのか。public にしていない話も、仙台Ruby会議03 では send します。
+  speakers:
+    - Mayumi EMORI
+
+- id: "miyuki-koshiba-sendai-rubykaigi-03"
+  title: "手のひら美術館 ― 自分の❤️を自分でつくる"
+  date: "2026-11-21"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "miyuki-koshiba-sendai-rubykaigi-03"
+  description: |-
+    たった数行のRubyコードで、LEDを光らせ絵が描けます。絵やアニメーションを描くところからはじまり、センサーに反応して表情を変える小さなロボットなど、気がついたら1年以上ずっと作って遊んでいます。
+    作品は手のひらサイズ。持ち歩けば、どこでも小さな美術館になります。
+    このトークでは作ってきたものと作り方を紹介します。光らせるだけならほんの数ステップです。あなたの❤️も、手のひらからはじめてみませんか？
+  speakers:
+    - Miyuki Koshiba
+
+- id: "hiroshi-shibata-sendai-rubykaigi-03"
+  title: "Ruby で学ぶ Windows システムプログラミング"
+  date: "2026-11-21"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "hiroshi-shibata-sendai-rubykaigi-03"
+  description: |-
+    Ruby のコア開発の現場でも AI エージェントの活用が始まっています。本発表では、長年の課題だった Windows の長いパス制限を AI とともに解決した事例を題材に、コア開発者が AI をどのように使い、より効果的かつ広範囲に影響を与える問題をどのように見つけて取り組んでいるのかを紹介します。あわせて、AI との協働を通じて私自身が Windows の問題とその解決方法への学びを深めた経験を共有します。
+  speakers:
+    - Hiroshi SHIBATA
+
+- id: "takeshi-komiya-sendai-rubykaigi-03"
+  title: "Building a Unified Ecosystem for ERB Development"
+  date: "2026-11-21"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "takeshi-komiya-sendai-rubykaigi-03"
+  description: |-
+    ERB は Rails 標準のビュー形式ですが、リンターや型チェッカーが進化したRubyに比べると、ERBの開発体験は遅れたままです。本トークでは、ERBを「構造化されたドキュメント」として扱う新しいツールを提案します。Herb と Rubocop をベースとして、HTML と Ruby の解析を協調し、インデントから冗長なロジックに至るまであらゆる問題を修正します。ERBでもモダンな開発を行いましょう。
+  speakers:
+    - Takeshi KOMIYA
+
+- id: "shuta-mugikura-sendai-rubykaigi-03"
+  title: "「使うRails」から「共に育てるRails」へ 〜コミュニティから受け取った❤️を、次の誰かへと巡らせて〜"
+  date: "2026-11-21"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "shuta-mugikura-sendai-rubykaigi-03"
+  description: |-
+    毎日使っているRails。でも、本体へのPull Requestは遠い世界の話だと思っていました。しかしKaigi on Railsでの学びをきっかけに思い切って提案し、レビューでつまずきながらも、コミュニティに助けられ変更を育てました。その経験からOSSは「誰かが作るもの」から「自分たちも関われるもの」へ。受け取った❤️が自分の一歩につながり、次の誰かへつながっていく循環を実体験から共有します。
+  speakers:
+    - Shuta Mugikura
+
+- id: "oda-hirohito-sendai-rubykaigi-03"
+  title: "ruby/uri meets WHATWG"
+  date: "2026-11-21"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "oda-hirohito-sendai-rubykaigi-03"
+  description: |-
+    ruby/uri のパーサーは、Ruby 3.4 から RFC3986 に準拠しています。しかし、現代のブラウザは WHATWG の規格に則っています。このトークでは ruby/uri を WHATWG に準拠させるには、どのようなアプローチがあるかをお話します。
+  speakers:
+    - ODA Hirohito
+
+- id: "toshiaki-bash-koshiba-sendai-rubykaigi-03"
+  title: "How to craft YOUR handmade PicoRuby Instrument"
+  date: "2026-11-21"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "toshiaki-bash-koshiba-sendai-rubykaigi-03"
+  description: |-
+    組み込みのHello, World「Lチカ」の次は、PicoRubyで「楽器」を作ってみませんか？楽器は小中学校で触って以来の人も多いと思いますが、音楽の予備知識は不要です。このセッションでは、マイコンやセンサーの選び方、音程の作り方、波としての出力デモ、そしてこの後すぐ作ってみる方法を解説します。PicoRuby装置開発スタートにうってつけの題材であり、そのものづくりの面白さを感じてみてください。
+  speakers:
+    - "Toshiaki \"bash\" KOSHIBA"
+
+- id: "kitamura-daisuke-sendai-rubykaigi-03"
+  title: "メンテナンス可能な全部入りライブラリは可能なのか？Ruby製xlsxライブラリ作成の現場から"
+  date: "2026-11-21"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "kitamura-daisuke-sendai-rubykaigi-03"
+  description: |-
+    機能の拡張を進めると多くの要望に応えられるライブラリになります。しかし無秩序な拡張は利用者がどう使ってよいか迷うAPIになったり、将来にわたってのメンテナンス可能性を下げてしまいます。多くのライブラリ製作者はこの見定めを賢明に行っていることでしょう。生成AIの普及はこの点をどう変えたでしょうか。Ruby製Excelライブラリxlsxrbの開発を通して、生成AIを使えば機能の網羅とメンテナンス可能性は両立するだろう、だが開発者が強くかかわるべきポイントはまだあるという見通しを立てられたので共有します。
+  speakers:
+    - KITAMURA Daisuke
+
+- id: "hasumi-hitoshi-sendai-rubykaigi-03"
+  title: "5分でつくる！Funicular on Railsチャットアプリ"
+  date: "2026-11-21"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "hasumi-hitoshi-sendai-rubykaigi-03"
+  description: |-
+    FunicularはPicoRuby.wasmで動くSPAフレームワークです。Railsと統合しやすいエコシステムとして設計されており、フルスタックピュアRubyによるWebアプリ開発を実現しました。このトークでは「rails newから5分」で稼働できるチャットアプリのライブコーディングから始まり、FunicularがいかにRubyistフレンドリーに溢れているかをお話しします。
+  speakers:
+    - HASUMI Hitoshi
+
+- id: "morohashi-kyosuke-sendai-rubykaigi-03"
+  title: "You deserve that"
+  kind: "keynote"
+  date: "2026-11-21"
+  language: "Japanese"
+  video_provider: "scheduled"
+  video_id: "morohashi-kyosuke-sendai-rubykaigi-03"
+  description: |-
+    進学を機に地元を出て暮らした仙台は、世界の広がりを実感し、人生でとても楽しい時間を過ごした、私の大好きな街です。いっぽうで、世界が広がるほど、もっとすごい人たちやものごとがあることを知り、自分の至らなさを感じてしまいました。卒業後のRubyプログラマーとしてのキャリアでも、そしてこの大AI時代にも、同じような気持ちを抱くことがあります。それでも、自分が「たのしい」「しっくりくる」と感じることを受け入れられるようになってきた。その経験をお話しします。
+  speakers:
+    - MOROHASHI Kyosuke

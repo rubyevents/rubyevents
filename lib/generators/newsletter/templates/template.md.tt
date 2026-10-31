@@ -27,7 +27,7 @@ TODO - excerpt
 ## <%= @month %>'s events
 
 <%- @this_month_events.each do |event| -%>
-<%- next if event.static_metadata.cancelled? -%>
+<%- next if event.cancelled? -%>
 📆 [<%= event.name.gsub(/ #{@year}/, "") %>](<%= Router.event_path(event) %>)(<%= "#{event.formatted_dates} in #{event.location})"%> <% if event.talks.watchable.any? %>[Videos are available!](<%= Router.event_videos_path(event) %>)<% end %>
 <%- end -%>
 
@@ -35,11 +35,11 @@ TODO - excerpt
 
 ## <%= @next_month %>'s events
 
-<%- @next_month_events.reject { it.static_metadata.cancelled? }.each do |event| -%>
+<%- @next_month_events.reject(&:cancelled?).each do |event| -%>
 📆 [<%= event.name.gsub(/ #{@year}/, "")%>](<%= Router.event_path(event) %>)<%= "(#{event.formatted_dates} in #{event.location})"%><%if event.talks.count > 0%> 🎤 Check out the <%= event.talks.count %> scheduled [talks](<%= Router.event_talks_path(event) %>)!<% end %><% if event.tickets.url %> 🎟️[Tickets](<%= event.tickets.url %>) are available for $TICKETPRICE.<% end %>
 
 <%- end -%>
-<%- @next_month_events.filter { it.static_metadata.cancelled? }.each do |event| -%>
+<%- @next_month_events.filter(&:cancelled?).each do |event| -%>
 _If you were planning on attending [<%= event.name.gsub(/ #{@year}/, "")%>](<%= Router.event_path(event) %>), please be advised that it has been cancelled._
 <%- end -%>
 
@@ -56,7 +56,7 @@ _If you were planning on attending [<%= event.name.gsub(/ #{@year}/, "")%>](<%= 
 
 ## Contributions
 
-This month, we merged [<%= @pr_count %> PRs from <%= @contributors_count %> contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A<%= @github_date_range %>) <%= @content_pr_count %> PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A<%= @github_date_range %>+label%3Acontent).
+This month, we merged [<%= @pr_count %> PRs from <%= @contributors_count %> contributors!](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A<%= @github_date_range %>) <%= @data_pr_count %> PRs were [new event data and videos](https://github.com/rubyevents/rubyevents/pulls?q=is%3Apr+is%3Amerged+merged%3A<%= @github_date_range %>+label%3Adata).
 
 ### Big Updates
 

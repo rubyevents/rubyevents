@@ -42,7 +42,7 @@
       <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         <% @favorite_rubyists.each do |favorite_user| %>
           <div class="relative w-48 sm:w-64">
-            <%= render partial: "speakers/card", locals: {speaker: favorite_user.favorite_user} %>
+            <%= render partial: "speakers/card", locals: {speaker: favorite_user.favorite_user, next_mutual_event: @next_mutual_events[favorite_user.favorite_user_id]} %>
 
             <div class="absolute right-2 top-2 z-10">
               <%= render partial: "favorite_users/favorite_user", locals: {favorite_user: favorite_user} %>
@@ -64,7 +64,7 @@
       <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         <% @ruby_friends.each do |favorite_user| %>
           <div class="relative w-48 sm:w-64">
-            <%= render partial: "speakers/card", locals: {speaker: favorite_user.favorite_user} %>
+            <%= render partial: "speakers/card", locals: {speaker: favorite_user.favorite_user, next_mutual_event: @next_mutual_events[favorite_user.favorite_user_id]} %>
 
             <div class="absolute right-2 top-2 z-10">
               <%= render partial: "favorite_users/favorite_user", locals: {favorite_user: favorite_user} %>

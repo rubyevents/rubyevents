@@ -1,0 +1,283 @@
+---
+
+- id: "yukihiro-matz-matsumoto-rubyconf-taiwan-2012"
+  title: "Keynote"
+  kind: "keynote"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "yukihiro-matz-matsumoto-rubyconf-taiwan-2012"
+  description: ""
+  speakers:
+    - "Yukihiro \"Matz\" Matsumoto"
+
+- id: "koichi-sasada-rubyconf-taiwan-2012"
+  title: "(Implementation Details of Ruby 2.0 VM).succ"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "koichi-sasada-rubyconf-taiwan-2012"
+  description: |-
+    As a member of Matz's team in Heroku, I'm working Ruby 2.0 to be released in next February. Ruby 2.0 doesn't have drastic changes in behavior except adding some new features. However, an internal of Ruby
+
+    2.0 VM is changing to improve performance! For example, we changed VM data structures and method invocation processes to achieve fast execution. In this presentation, I will introduce the internal changes and its performance. This presentation is plus one version of my presentation at RubyConf 2012.
+  speakers:
+    - Koichi Sasada
+
+- id: "akira-matsuda-rubyconf-taiwan-2012"
+  title: "Ruby 2.0: New Features"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "akira-matsuda-rubyconf-taiwan-2012"
+  description: |-
+    Ruby 2.0 is coming very soon. The specification is fixed, and the first stable release will be in production in several months.
+
+    Now is the time to get prepared for 2.0
+
+    What new features are available in 2.0? How can our code, and lives be improved by these new features? Where are the examples?
+
+    This session will detail some of the great improvements in Ruby 2.0 such as:
+
+    refinements
+
+    Module#prepend
+
+    keyword arguments
+
+    Enumerator::Lazy
+
+    new literals
+
+    and other lovely new features
+
+    We'll cover these new features in depth with working code samples extracted from everyone's favorite and most widely read Ruby code - the Ruby on Rails framework, plugins, your Rails applications, and test codes.
+  speakers:
+    - Akira Matsuda
+
+- id: "koan-sin-tan-rubyconf-taiwan-2012"
+  title: "從一個業餘 Smalltalk programmer 的觀點看 Ruby 的 object model 和 bytecode"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "koan-sin-tan-rubyconf-taiwan-2012"
+  description: |-
+    Understanding object model and bytecode is a crucial part in understanding an interpreted object-oriented language. Smalltalk, one of the oldest object-oriented programming languages, has a great object model and has been used bytecode and VM since 1970s. It is interesting to compare Smalltalk's and Ruby's object model and bytecode.
+  speakers:
+    - Koan-Sin Tan
+
+- id: "david-tian-rubyconf-taiwan-2012"
+  title: "Ruby on Rails在VMWare Mozy云备份服务中的应用"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "david-tian-rubyconf-taiwan-2012"
+  description: |-
+    1. VMWare Mozy简介
+
+    2. Ruby on Rail在管理Mozy核心数据和业务中的应用
+
+    3. Ruby on Rails实践的经验和教训
+
+    4. VMWare CloudFoundry简介
+
+    5. 移植Ruby on Rails App到CloudFoundry尝试
+
+    6. Q&A
+  speakers:
+    - David Tian
+
+- id: "eddie-kao-rubyconf-taiwan-2012"
+  title: "May the Source Be with You - Learning Ruby by Reading Ruby Source Code"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "eddie-kao-rubyconf-taiwan-2012"
+  description: |-
+    Learn more about Ruby internal by read Ruby source code, which may or may not be revealed on textbook.
+
+    藉由閱讀Ruby的原始碼，來更了解Ruby的運作機制跟原理。
+  speakers:
+    - Eddie Kao
+
+- id: "lin-jen-shin-rubyconf-taiwan-2012"
+  title: "Concurrent Ruby Application Servers"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "lin-jen-shin-rubyconf-taiwan-2012"
+  description: |-
+    By understanding various of ways to achieve concurrency (i.e. serving
+
+    more requests in a short period of time with less resource), we can
+
+    pick the right model which suits our needs for a certain kind of web
+
+    application and make it more responsive under high load/traffics and
+
+    less vulnerable to DoS attack.
+
+    There's no perfect one-and-for-all model, but only ones can suit our
+
+    need best. We'll talk about various ways for concurrency, and what's
+
+    current implementations which we can pick from and how to implement
+
+    them.
+  speakers:
+    - Lin Jen-Shin
+
+- id: "gosuke-miyashita-rubyconf-taiwan-2012"
+  title: "Inside Sqale's Backend"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "gosuke-miyashita-rubyconf-taiwan-2012"
+  description: |-
+    Sqale is a cloud application platform for Ruby
+
+    from paperboy&co., Inc, Japan.
+
+    Sqale uses some Ruby technologies and others like these in its backend.
+
+    * Ruby/Ruby On Rails
+
+    * Puppet/Chef
+
+    * Resque
+
+    * Unicorn * AWS(EC2, ELB, RDS, Route53)
+
+    * Patched version of OpenSSH
+
+    * Patched version of Linux kernel * OpenResty(ngx_openresty)
+
+    * Redis
+
+    * Git
+
+    * LXC
+
+    * etc.
+
+    I will talk about the backend architecture of Sqale through explaining
+
+    how we use these technologies in it.
+
+    If you are interested in the inside architecture of a cloud
+
+    application platform, this session will be very helpful.
+  speakers:
+    - Gosuke Miyashita
+
+- id: "hiroshi-shibata-rubyconf-taiwan-2012"
+  title: "How to discover the Ruby's defects with web application."
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "hiroshi-shibata-rubyconf-taiwan-2012"
+  description: |-
+    To discover the Ruby's defects is too difficult because they are in
+
+    hidden place. So we need high contexts and techniques if we try to
+
+    discover Ruby's defects without any ruby application.
+
+    A remarkable feature of the Japanese Ruby is that we have many Ruby
+
+    applications. A tDiary(http://www.tdiary.org/) is one of oldest web
+
+    application with ruby. tDiary has been growing up with ruby, and found
+
+    defects in ruby. Because tDiary uses Ruby functions that other
+
+    softwares do not use.
+
+    I will talk about Ruby's useful but rare functions and how to discover
+
+    Ruby's defects.
+  speakers:
+    - Hiroshi SHIBATA
+
+- id: "joseph-ku-rubyconf-taiwan-2012"
+  title: "RubyMotion: Hack Your iOS App Like Never Before"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "joseph-ku-rubyconf-taiwan-2012"
+  description: |-
+    * What's RubyMotion
+
+    * Why RubyMotion
+
+    * Under the hood
+
+    * RubyMotion Workflow: From Text Editor to App Store
+
+    * Demo
+
+    * Pros & Cons
+
+    * Is RubyMotion the future?
+
+    * Q & A
+  speakers:
+    - Joseph Ku
+
+- id: "jim-huang-rubyconf-taiwan-2012"
+  title: "Apply mruby into Deeply Embedded Environments"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "jim-huang-rubyconf-taiwan-2012"
+  description: |-
+    mruby 的出現，就是將 Ruby 帶到更多運算環境，不在只是個人電腦或伺服器，而是有機會在機器人一類的自動控制領域，大放異彩。本議程將以實際應用 mruby 到 MCU (微控制單元) 與 RTOS 領域的經驗，分享給對 Ruby 多樣應用有興趣的朋友
+  speakers:
+    - Jim Huang
+
+- id: "nomadcoder-rubyconf-taiwan-2012"
+  title: "Modular web-apps with Rails, Sencha Ext JS, and Netzke"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "nomadcoder-rubyconf-taiwan-2012"
+  description: |-
+    Modular approach to complex RIA (rich internet applications) gives considerable advantages over the commonly used MVC: structuring code into well defined components provides for high scalability, reusability and testability of the code. Besides, with a component being a Ruby class, the developers have full access to such OOP techniques as inheritance and mixing-in. The Netzke open source framework takes all the hard work of giving the developers clean and consistent techniques to create web components using Ruby for the server-side, and Sencha Ext JS for the client-side code. This talk will give you the introduction to the rationale behind Netzke, as well as show you some very cool code during the live coding session, which will make you want to use Netzke in your next project.
+  speakers:
+    - nomadcoder
+
+- id: "richard-lee-rubyconf-taiwan-2012"
+  title: "Ruby Toolbox for DevOps"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "richard-lee-rubyconf-taiwan-2012"
+  description: |-
+    隨著各種行動、社交網路服務的蓬勃發展，以及敏捷軟體開發和 SaaS、雲端運算的普及化，在現今的網路服務，程式的開發以及服務的維運已經變得密不可分。開發者時常是身兼得伺服器管理以及營運的角色，也因此產生了 DevOps 這樣的新一代工作職位。
+
+    在本次的演講當中，主要希望和觀眾從三個面向去切入 DevOps 們可以如何使用 Ruby 來改善工作流程：
+
+    1. Provisioning - 透過 Chef / Vagarnt 等 Ruby 相關工具來達成自動化部署以及彈性的調整伺服器數量
+
+    2. Continous Integration & Deployment - 透過 Capistrano / Janky / Hubot 以及 GitHub 的 API 整合來達成持續整合和部署
+
+    3. Monitoring - 透過 God / Fluentd 等工具來監控伺服器以及程式狀況、並且收集所需要的記錄以便後續進行分析
+
+    在演講的內容中，將會使用目前本公司的服務以及工作流程來作為例子分享，會特別針對中小型的 Startups 要如何善用這些工具來改善工作流程和節省會加以描述。
+  speakers:
+    - Richard Lee
+
+- id: "thegiive-rubyconf-taiwan-2012"
+  title: "Puppet, the next level deploy system on all platform"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "thegiive-rubyconf-taiwan-2012"
+  description: |-
+    Puppet is a open source deploy and configuration system written by
+
+    Ruby, and thanks to the beauty of Ruby DSL. It has a beautiful config
+
+    language name puppet language. I would like to introduce the puppet's
+
+    architecture, the puppet language, the configuration management system
+
+    and more.
+  speakers:
+    - thegiive
+
+- id: "wei-lu-rubyconf-taiwan-2012"
+  title: "A Journey into Pair Programming"
+  date: "2012-12-07"
+  video_provider: "not_published"
+  video_id: "wei-lu-rubyconf-taiwan-2012"
+  description: |-
+    What’s the deal with pair programming? Why do it? Is it for me? How to do it? This talk will discuss these questions by walking through one’s firsthand experience of switching from solo programming to pairing, as well as her takeaways gathered from pairing with various developers: ranging from the very experienced Jedi masters, to those whom she shares similar skill levels; and from those who read her mind to those who are very principled and opinionated. Pairing with different types of people has its respective pros and cons. Regardless, there are ways to make almost every combination of pairs work more efficiently and effectively than soloing, with both pair gaining valuable skills from the mutually beneficial relationship.
+  speakers:
+    - Wei Lu

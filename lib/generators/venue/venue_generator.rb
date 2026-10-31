@@ -50,9 +50,9 @@ class VenueGenerator < Generators::EventBase
     return unless File.exist?(event_file)
     @coordinates = {latitude: geocoded_address.latitude, longitude: geocoded_address.longitude}
 
-    event_document = Yerba.parse_file(event_file)
-    event_document["coordinates.latitude"] = @coordinates[:latitude]
-    event_document["coordinates.longitude"] = @coordinates[:longitude]
-    event_document.save!
+    event = Static::Event.in_file(event_file).first
+    event["coordinates.latitude"] = @coordinates[:latitude]
+    event["coordinates.longitude"] = @coordinates[:longitude]
+    event.save!
   end
 end

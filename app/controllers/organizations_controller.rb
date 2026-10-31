@@ -16,12 +16,14 @@ class OrganizationsController < ApplicationController
     @events_by_year = @events.group_by { |event| event.start_date&.year || "Unknown" }
 
     @countries_with_events = @events.grouped_by_country
+    @group_sponsorships = @organization.sponsors.for_series.includes(event_series: :events).sort_by { |sponsor| sponsor.event_series.name.downcase }
 
-    involvements = @organization.event_involvements.joins(:event).order(
-      Arel.sql("COALESCE(events.start_date, events.created_at) ASC")
+    involvements = @organization.event_involvements.left_joins(:event).includes(:event, event_series: :events).order(
+      Arel.sql("COALESCE(events.start_date, events.created_at, event_involvements.created_at) ASC")
     )
+
     @involvements_by_role = involvements.group_by(&:role)
-    @involved_events = @organization.involved_events.includes(:series).distinct.order(start_date: :desc)
+    @involvements_count = involvements.map(&:owner).uniq.size
 
     @statistics = prepare_organization_statistics
   end
@@ -29,20 +31,20 @@ class OrganizationsController < ApplicationController
   private
 
   def prepare_organization_statistics
-    sponsors = @organization.sponsors.includes(event: [:talks, :series])
+    sponsors = @organization.sponsors.includes(:event_series, event: [:talks, :series])
 
     {
       total_events: @events.size,
       total_countries: @countries_with_events.size,
       total_continents: @countries_with_events.map { |country, _| country.continent_name }.uniq.size,
-      total_series: @events.map(&:series).uniq.size,
+      total_series: (@events.map(&:series) + @group_sponsorships.map(&:event_series)).uniq.size,
       total_talks: @events.joins(:talks).size,
       years_active: @events_by_year.keys.reject { |y| y == "Unknown" }.sort,
       first_sponsorship: @events.minimum(:start_date),
       latest_sponsorship: @events.maximum(:start_date),
       sponsorship_tiers: sponsors.group(:tier).count.sort_by { |_, count| -count },
       events_by_series: @events.group_by(&:series).transform_values(&:count).sort_by { |_, count| -count }.first(5),
-      badges_with_events: sponsors.includes(:event).map { |s| [s.badge, s.event] if s.badge.present? }.compact,
+      badges_with_events: sponsors.map { |s| [s.badge, s.owner] if s.badge.present? }.compact,
       events_by_size: @events.includes(:talks).group_by { |event| classify_event_size(event) }.transform_values(&:count)
     }
   end

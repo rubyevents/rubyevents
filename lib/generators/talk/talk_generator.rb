@@ -51,10 +51,6 @@ class TalkGenerator < Generators::EventBase
       @id ||= generate_talk_id
     end
 
-    def event_name
-      @event.name
-    end
-
     def language
       @language ||= "English"
     end
@@ -93,7 +89,7 @@ class TalkGenerator < Generators::EventBase
 
     attrs = @attributes.merge({
       event: static_event,
-      event_slug: options[:event],
+      event_slug: static_event&.slug || options[:event],
       existing_ids: existing_ids
     })
 
@@ -172,7 +168,7 @@ class TalkGenerator < Generators::EventBase
       @existing_talk[key] = value
     end
     videos_file.save!
-    Static::Validators::TalkId.new(file_path: videos_file_path, document: videos_file.document).fix
+    Static::Validators::TalkId.new(file_path: videos_file_path).fix
 
     say("#{@attributes.keys.to_sentence} updated.", :green)
   end

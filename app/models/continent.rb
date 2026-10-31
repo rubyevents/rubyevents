@@ -103,7 +103,7 @@ class Continent
   end
 
   def events
-    Event.where(country_code: country_codes)
+    Event.ruby_focused.where(country_code: country_codes)
   end
 
   def users
@@ -111,7 +111,7 @@ class Continent
   end
 
   def stamps
-    Stamp.all.select { |stamp| stamp.has_country? && country_codes.include?(stamp.country&.alpha2) }
+    Static::Stamp.all.select { |stamp| stamp.has_country? && country_codes.include?(stamp.country&.alpha2) }
   end
 
   def ==(other)

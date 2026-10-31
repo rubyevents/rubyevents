@@ -116,6 +116,6 @@ module EventSeries::TypesenseSearchable
   private
 
   def should_index?
-    Event.where(event_series_id: id).exists?
+    meetup? || Event.where(event_series_id: id).exists?
   end
 end

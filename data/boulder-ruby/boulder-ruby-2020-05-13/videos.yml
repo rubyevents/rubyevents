@@ -1,0 +1,29 @@
+---
+- id: "aaron-patterson-boulder-ruby-2020-05-13"
+  title: "Don't @ me! Instance Variable Performance in Ruby"
+  raw_title: "Don't @ me! Instance Variable Performance in Ruby by Aaron Patterson"
+  date: "2020-05-13"
+  published_at: "2020-05-15T02:20:05Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "HEFBDqly4ms"
+  description: |-
+    Abstract:
+
+    How do instance variables work? We've all used instance variables in our programs, but how do they actually work? In this presentation we'll look at how instance variables are implemented in Ruby. We'll start with a very strange benchmark, then dive in to Ruby internals to understand why the code behaves the way it does. Once we've figured out this strange behavior, we'll follow up with a patch to increase instance variable performance. Be prepared for a deep dive in to a weird area of Ruby, and remember: don't @ me!
+
+    Details:
+
+    In this presentation I'm going to cover how instance variables work in Ruby. I'm going to cover the data structures used for storing instance variables, including inline caches, etc. Part of this presentation will cover basic Ruby program compilation so that the audience will understand where inline caches are stored and how they are used.
+
+    Finally I'm going to cover patch that increases instance variable performance in some cases.
+
+    Pitch:
+
+    This talk will be a fairly detailed talk about the internals of the Ruby interpreter. As I mentioned, we will cover compilation processes, inline method caches, as well as the data structures and algorithms used for dealing with instance variables.
+
+    I am qualified to talk about this topic because I wrote the patch I'll be speaking about! The patch is already committed, so people can see the code too.
+
+    Bio: Aaron is a Rails and Ruby core contributor
+  speakers:
+    - Aaron Patterson

@@ -12,8 +12,7 @@ Think of it as [`frozen_record`](https://github.com/byroot/frozen_record) but wr
 
 ```ruby
 class Static::Speaker < Yerba::Record::Base
-  self.path = "speakers.yml"
-  self.base_path = Rails.root.join("data")
+  self.path = "data/speakers.yml"
 
   schema SpeakerSchema
 
@@ -23,29 +22,29 @@ class Static::Speaker < Yerba::Record::Base
 end
 ```
 
-For multi-file globs (one record per file):
+`path` is relative to `root` (`Yerba::Record::Base.root = Rails.root`, set in `config/initializers/static_models.rb`). Like a route, it can name its segments, and the model then loads every file that matches, one record per file:
 
 ```ruby
 class Static::Event < Yerba::Record::Base
-  self.glob = "**/event.yml"
-  self.base_path = Rails.root.join("data")
+  self.path = "data/:series_id/:id/event.yml"
 
   schema EventSchema
 
-  belongs_to :series, class_name: "Static::EventSeries", foreign_key: :series_slug
-  has_many :talks, in_file: "videos.yml", class_name: "Static::Talk"
-  has_many :cfps, in_file: "cfp.yml", class_name: "Static::CFP"
-  has_one :venue, in_file: "venue.yml", class_name: "Static::Venue"
-  has_one :schedule, in_file: "schedule.yml", class_name: "Static::Schedule"
+  belongs_to :series, class_name: "Static::EventSeries"
+  has_many :talks, class_name: "Static::Talk"
+  has_many :cfps, class_name: "Static::CFP"
+  has_one :venue
+  has_one :schedule
 end
+
+event.path_params  # => {series_id: "rubyconf", id: "rubyconf-2024"}
 ```
 
-For multi-file globs where each file contains an array of records:
+For files that each contain an array of records:
 
 ```ruby
 class Static::Talk < Yerba::Record::Base
-  self.glob = "**/videos.yml"
-  self.base_path = Rails.root.join("data")
+  self.path = "data/:series_id/:event_id/videos.yml"
   self.flatten = true
 
   schema VideoSchema
@@ -60,8 +59,7 @@ For scalar arrays (e.g., topics.yml is a list of strings):
 
 ```ruby
 class Static::Topic < Yerba::Record::Base
-  self.path = "topics.yml"
-  self.base_path = Rails.root.join("data")
+  self.path = "data/topics.yml"
   self.scalar_field = "name"
 
   schema do
@@ -123,7 +121,7 @@ Static::Speaker.pluck(:name)                  # => ["Aaron Patterson", ...]
 
 ## Collections
 
-`Model.all` (every file of the model), `Model.in_file(path, document: nil)` (one file or parsed document), `Model.parse(yaml)`, `has_many ..., in_file:` associations, nested children and `where` results are all a `Yerba::Record::Collection`, spanning one or more documents:
+`Model.all` (every file of the model), `Model.in_file(path, document: nil)` (one file or parsed document), `Model.parse(yaml)`, path-based `has_many` associations, nested children and `where` results are all a `Yerba::Record::Collection`, spanning one or more documents:
 
 ```ruby
 Static::Talk.all.count                                    # every talk across every videos.yml, nested ones included
@@ -162,7 +160,7 @@ talks.move("closing", to: 0)
 talks.destroy("opening")
 ```
 
-A Yerbafile `sort` rule re-sorts on save (e.g. videos.yml by date and time). The sort is stable, so a running order persists between talks with the same sort keys.
+A Yerbafile `sort` rule re-sorts on save. The sort is stable, so a running order persists between talks with the same sort keys.
 
 ## Nested records
 
@@ -186,6 +184,22 @@ lightning_talk.insert("old_id", "previous-id", after: "id")
 lightning_talk.save!
 
 lightning_talks.talks.reorder(lightning_talks.talks.map(&:id).reverse)
+```
+
+Nested records can also be of another model. They stay out of the owning model's collections, and the nested model's `all` collects them from every owning record (`Static::Sponsor::Tier.all`):
+
+```ruby
+class Static::Sponsor < Yerba::Record::Base
+  has_many :tiers, nested: true, class_name: "Static::Sponsor::Tier"
+end
+
+class Static::Sponsor::Tier < Yerba::Record::Base
+  has_many :sponsors, nested: true, class_name: "Static::Sponsor::Entry"
+end
+
+entry = static_event.sponsors.first.tiers.first.sponsors.find_by(slug: "avo")
+entry["slug"] = "avo-hq"
+entry.save!
 ```
 
 ## Reading
@@ -213,6 +227,12 @@ Shortcut:
 
 ```ruby
 speaker.update(website: "https://ruby-lang.org", twitter: "yukihiro_matz")
+```
+
+`set` replaces a value, or inserts the key at a position when it isn't there yet, and can set the quote style of the value:
+
+```ruby
+talk.set("published_at", "2024-05-01T10:00:00Z", after: "date", quote_style: :double)
 ```
 
 ## Creating
@@ -246,7 +266,31 @@ Removes the record from the array and saves the file:
 ```ruby
 speaker = Static::Speaker.find_by(name: "Old Speaker")
 speaker.destroy
+
+speaker.destroyed?  # => true
+speaker.name        # => "Old Speaker", the values it had before it was removed
+speaker.save!       # => raises FrozenError
 ```
+
+## Renaming and moving
+
+A record owns the directory at the `:id` segment of its path, like `data/:series_id/:id/` for an event. Every named segment other than `:id` gets an accessor, like `event.series_id`. Saving a changed `id` or segment moves that directory, and the record then reads from its new path:
+
+```ruby
+event["id"] = "rubyconf-2025"
+event.save!                             # data/rubyconf/rubyconf-2024/ -> data/rubyconf/rubyconf-2025/
+
+event.series_id = "rubyconf"
+event.save!                             # data/other/rubyconf-2024/ -> data/rubyconf/rubyconf-2024/
+
+event.rename!("rubyconf-2025")          # assigns the id and saves
+event.move_to!(series_id: "rubyconf")   # assigns the segments and saves
+series.rename!("ruby-conf")             # data/rubyconf/ -> data/ruby-conf/, with all its events
+```
+
+The files and directories a model declares with `has_file` and `has_files` move along (see below).
+
+Nothing moves when a target directory already exists, or when the directory it moves into doesn't exist yet, like the folder of a series that wasn't created. A model can say how to create that record by overriding `missing_parent_message(directory, path_params)`, as `Static::Event` does for its series. Values that only contain the old id, like talk ids ending in the event slug, stay as they are, and `bin/rails validate:fix` renames them afterwards, with their thumbnails.
 
 ## Associations
 
@@ -266,17 +310,20 @@ event.series
 
 ### `belongs_to` (file-path derived)
 
-When no `foreign_key:` is given, the parent slug is derived from the directory name:
+When no `foreign_key:` is given, the path of the associated record is built from the path params of this one. The associated model's `:id` is this record's `:<association>_id`, and the other named segments are shared by name. So a talk in `data/rubyconf/rubyconf-2024/videos.yml` belongs to the event in `data/rubyconf/rubyconf-2024/event.yml`:
 
 ```ruby
 class Static::Talk < Yerba::Record::Base
-  belongs_to :event
+  self.path = "data/:series_id/:event_id/videos.yml"
+
+  belongs_to :event   # data/:series_id/:id/event.yml
+  belongs_to :series  # data/:id/series.yml
 end
 ```
 
 ```ruby
 talk.event
-talk.event_slug
+talk.event_slug  # => "rubyconf-2024", the :event_id path param
 ```
 
 ### `has_many` (query-based)
@@ -293,14 +340,14 @@ end
 series.events
 ```
 
-### `has_many` with `in_file:` (per-directory YAML array)
+### `has_many` (path-based)
 
-Load records from an array YAML file in the same directory:
+Without `foreign_key:` or `nested:`, the records come from the file the associated model's path names for this record. Its `:<model>_id` is this record's `:id`, so an event's talks are in `data/:series_id/:event_id/videos.yml` with the event's id as `:event_id`:
 
 ```ruby
 class Static::Event < Yerba::Record::Base
-  has_many :talks, in_file: "videos.yml", class_name: "Static::Talk"
-  has_many :cfps, in_file: "cfp.yml"
+  has_many :talks, class_name: "Static::Talk"
+  has_many :cfps
 end
 ```
 
@@ -311,14 +358,14 @@ event.talks.create(id: "new-talk", title: "My Talk")
 event.talks.save!
 ```
 
-### `has_one` with `in_file:` (per-directory YAML object)
+### `has_one` (path-based)
 
-Load a single record from an object YAML file in the same directory:
+Load a single record from the file the associated model's path names for this record:
 
 ```ruby
 class Static::Event < Yerba::Record::Base
-  has_one :venue, in_file: "venue.yml"
-  has_one :schedule, in_file: "schedule.yml"
+  has_one :venue     # data/:series_id/:event_id/venue.yml
+  has_one :schedule  # data/:series_id/:event_id/schedule.yml
 end
 ```
 
@@ -352,9 +399,113 @@ end
 talk.series
 ```
 
+A record nested in another model has no file of its own to take the event from, so it goes through its parent:
+
+```ruby
+class Static::Talk::AlternativeRecording < Yerba::Record::Base
+  has_one :event, through: :parent
+  has_one :series, through: :parent
+end
+```
+
+### `has_file` and `has_files` (files named by the path)
+
+Files and directories named by segments of the record's path, or by its attributes when the path doesn't have the segment. They move when those segments or attributes change and the record is saved, unless a file already exists at the new path:
+
+```ruby
+class Static::Event < Yerba::Record::Base
+  self.path = "data/:series_id/:id/event.yml"
+
+  has_files :images, "app/assets/images/events/:series_id/:id"
+  has_files :thumbnails, "app/assets/images/thumbnails/:id", recursive: true
+  has_files :stamps, "app/assets/images/events/:series_id/:id/stamp*.webp"
+
+  has_file :avatar, "app/assets/images/events/:series_id/:id/avatar.webp"
+end
+
+class Static::Talk < Yerba::Record::Base
+  self.path = "data/:series_id/:event_id/videos.yml"
+
+  has_file :thumbnail, "app/assets/images/thumbnails/:event_id/**/:video_id.webp"   # :video_id is an attribute
+  has_files :child_thumbnails, "app/assets/images/thumbnails/:event_id/:id"
+end
+```
+
+`has_file` returns the `Pathname`, whether the file exists or not. With `**`, it finds the file in any subdirectory, or else returns the path without it:
+
+```ruby
+event.avatar.exist?
+event.avatar.read
+talk.thumbnail                 # => app/assets/images/thumbnails/rubyconf-2024/lightning-talks-rubyconf-2024/jane-doe-rubyconf-2024.webp
+```
+
+`has_files` returns a `Yerba::Record::Files`, which lists the files of the directory as `Pathname`s (with `recursive: true` also the files in its subdirectories), or the files matching a wildcard in the last segment:
+
+```ruby
+event.stamps.count             # => 3
+event.stamps.first             # => #<Pathname app/assets/images/events/euruko/euruko-2025/stamp-1.webp>
+event.images.map(&:basename)   # => [avatar.webp, banner.webp, card.webp, ...]
+event.images["card.webp"]      # => the Pathname, or nil when there is no such file
+event.images.path              # => the directory, whether it exists or not
+```
+
+Saving a talk with a changed `video_id` renames its thumbnail, and a changed `id` renames the directory with the thumbnails of its child talks, the same way renaming an event moves its images.
+
+### File records
+
+A model backed by files instead of YAML, like stickers, inherits from `Yerba::Record::FileRecord`. Each file matching its path is a record, and the segments of the path are its attributes:
+
+```ruby
+class Static::Sticker < Yerba::Record::FileRecord
+  self.path = "app/assets/images/events/:series_id/:event_id/sticker*.webp"
+
+  belongs_to :event
+end
+
+class Static::Event < Yerba::Record::Base
+  has_many :stickers, class_name: "Static::Sticker"
+end
+```
+
+```ruby
+Static::Sticker.all
+Static::Sticker.where(event_id: "rubyconf-2024")
+event.stickers                 # the files matching the event's path params
+sticker.event                  # the Static::Event in the same folder
+sticker.event_id               # => "rubyconf-2024"
+sticker.path                   # => Pathname
+sticker.event_id = "rubyconf-2025"
+sticker.save!                  # moves the file
+```
+
+Subclasses with their own paths make a file model polymorphic. The base class lists them in order of precedence with `types`, and a file is the first of them its path matches. `constraints` restrict what a segment matches, like route constraints, and `order_by` sorts `all`:
+
+```ruby
+class Static::Stamp < Yerba::Record::FileRecord
+  types "Static::CountryStamp", "Static::UKNationStamp", "Static::EventStamp", "Static::AchievementStamp"
+  self.order_by = :name
+
+  def owner = nil   # a Country, UKNation or Static::Event in the subclasses
+end
+
+class Static::CountryStamp < Static::Stamp
+  self.path = "app/assets/images/stamps/:country_code.webp"
+  self.constraints = {country_code: /[a-z]{2}/}
+end
+
+class Static::AchievementStamp < Static::Stamp
+  self.path = "app/assets/images/stamps/:stamp_id.webp"   # the stamps the other types don't match
+end
+```
+
+```ruby
+Static::Stamp.all                  # every stamp, each as its type, sorted by name
+Static::AchievementStamp.all       # only the achievement stamps
+```
+
 ### `references` (cross-file foreign keys)
 
-Declare that a field contains names that reference records in another file:
+Declare that a field contains names that reference records in another file. Like `has_many`, the referenced model defaults to the singular field name in the model's namespace (`Static::Speaker` for `Static::Talk`), and `class_name:` takes the full name of another model:
 
 ```ruby
 class Static::Talk < Yerba::Record::Base
@@ -375,6 +526,27 @@ Writing appends to the YAML and auto-creates missing records:
 speaker = talk.speakers << "New Person"
 speaker.save!
 talk.save!
+```
+
+The referenced model knows every declaration made against it, so it can collect the values that reference it, each with its record and the selector of the value. A declaration is registered when its model is loaded, so with lazy loading, load the declaring models first (RubyEvents does this in `config/initializers/static_models.rb`):
+
+```ruby
+class Static::Involvement < Yerba::Record::Base
+  references :users, class_name: "Static::Speaker"
+end
+
+class Static::Talk::AlternativeRecording < Yerba::Record::Base
+  references :speakers, class_name: "Static::Speaker"
+end
+
+Static::Speaker.inbound_references.each do |reference|
+  reference.value          # => "Aaron Patterson"
+  reference.record         # => #<Static::Talk ...>, #<Static::Involvement ...> or #<Static::Talk::AlternativeRecording ...>
+  reference.file_path      # => ".../data/rubyconf/rubyconf-2024/videos.yml"
+  reference.line           # => 42
+  reference.selector       # => "speakers[0]", relative to the record
+  reference.full_selector  # => "[6].alternative_recordings[0].speakers[0]", in the file
+end
 ```
 
 ## Indexing
@@ -401,10 +573,44 @@ speaker.node["name"].selector   # => "[42].name"
 speaker.node["name"].source     # => '"Aaron Patterson"' (original YAML text)
 speaker.node.source             # => full YAML text of the entry
 
-speaker.source_line             # => 1234, line of the entry
-speaker.source_line("github")   # => 1235, line of a value
-speaker.source_location("name") # => Yerba::Location (start/end line and column)
+speaker.source_line                    # => 1234, line of the entry
+speaker.source_line("github")          # => 1235, line of a value
+speaker.source_line("aliases[1].slug") # => 1240, a selector relative to the record
+speaker.source_location("name")        # => Yerba::Location (start/end line and column)
 ```
+
+## Git History
+
+Every record reads its history from `git blame` of the lines it spans in its file on disk:
+
+```ruby
+talk = Static::Talk.find_by(id: "david-heinemeier-hansson-rails-world-2026")
+
+talk.created_at                     # => when the oldest of its lines was committed
+talk.updated_at                     # => when the newest of its lines was committed
+talk.commit                         # => the last commit that changed one of its lines
+talk.first_commit                   # => the oldest commit among its lines
+talk.commits                        # => every commit among its lines, oldest first
+talk.commit_for(:video_provider)    # => the last commit that changed that field
+
+commit = talk.commit_for(:video_provider)
+commit.subject                      # => "Add Rails World 2026 talks (#2158)"
+commit.pr_number                    # => 2158
+commit.author                       # => the commit's author name
+commit.date                         # => the commit's committer date
+```
+
+Because these are methods on the record, `where` filters by them like any other field:
+
+```ruby
+Static::Talk.where(created_at: Date.new(2026, 9, 1)..Date.new(2026, 9, 30))
+Static::Event.where(updated_at: 1.week.ago..)
+Static::Talk.where(first_commit: {pr_number: 2158})
+```
+
+Each file is blamed once and cached until it is modified, so the first query over every `videos.yml` takes a while and later ones are fast. Lines that aren't committed yet are skipped, and records parsed from a string have no history.
+
+Blame reports the last commit that touched a line, so a commit that reformats or moves many records at once, like a sorting pass or extracting a file, becomes their `first_commit`. Listing those commits in a file passed through git's `blame.ignoreRevsFile` setting makes blame look past them.
 
 ## Stale File Detection
 
@@ -423,11 +629,17 @@ Yerba::Record::Base                # Record class (read + write + schema)
   include Querying                 # .all, .find_by, .where, .pluck
   include Indexing                 # add_index, LazyIndex
   include References               # references :speakers DSL
-  include Associations             # belongs_to, has_many, has_one (in_file:, through:)
+  include Associations             # belongs_to, has_many, has_one (path-based, through:), has_files
   include Schema                   # schema, create, field method generation
+  include History                  # created_at, updated_at, commit from git blame
 
-Yerba::Record::Collection          # Records of one or more documents (all, in_file, has_many in_file:, nested, where)
+Yerba::Record::Collection          # Records of one or more documents (all, in_file, has_many, nested, where)
 Yerba::Record::Collection::Source  # One document, or a nested sequence in it, contributing records
 Yerba::Record::ReferencesProxy     # Resolved cross-file references
 Yerba::Record::LazyIndex           # value -> position index, resolves records on access
+Yerba::Record::PathPattern         # A model's path with named segments, like data/:series_id/:id/event.yml
+Yerba::Record::Files              # The files of a has_files directory or wildcard
+Yerba::Record::FileRecord         # A record backed by a file, with its path segments as attributes
+Yerba::Record::Blame              # git blame of a file, cached until the file is modified
+Yerba::Record::Commit             # A commit from git blame, with its pull request number
 ```

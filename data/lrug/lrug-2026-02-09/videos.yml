@@ -1,0 +1,104 @@
+---
+- id: "niall-mullally-lrug-2026-02-09"
+  old_id: "niall-mullally-lrug-february-2026"
+  title: "Automating Feature Flag Cleanup with AI"
+  date: "2026-02-09"
+  announced_at: "2026-01-22T17:17:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2026/february/niall-mullally-automating-feature-flag-cleanup-with-ai-lrug-feb-2026.mp4"
+  description: |-
+    At [BBB](https://www.british-business-bank.co.uk/), we use feature flags extensively in one
+    of our Rails applications.
+
+    Removing fully rolled-out feature flags is always a chore that’s easy to ignore and
+    eventually becomes a source of tech debt. In the talk, I’ll show how we use GitHub Actions
+    and GitHub Copilot to automatically generate PRs that remove obsolete flags and their
+    associated code paths.
+  speakers:
+    - Niall Mullally
+
+- id: "lorenzo-barasti-lrug-2026-02-09"
+  old_id: "lorenzo-barasti-lrug-february-2026"
+  title: "Why you might like some Truffle with your Ruby"
+  date: "2026-02-09"
+  announced_at: "2026-01-22T17:17:00Z"
+  slides_url: "https://docs.google.com/presentation/d/1UGQLaQ8JjGjpPkwoWC5Zw_jcQ78e4CyL9oOOJoT49go/edit?usp=sharing"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2026/february/lorenzo-barasti-why-you-might-like-some-truffle-with-your-ruby-lrug-feb-2026.mp4"
+  description: |-
+    An overview of [TruffleRuby](https://truffleruby.dev)’s latest release and some of the
+    perks of running on [GraalVM](https://www.graalvm.org)
+  speakers:
+    - Lorenzo Barasti
+  additional_resources:
+    - name: "Source Code"
+      type: "code"
+      title: "Github repository for the truffle ruby demo used in the talk"
+      url: "https://github.com/lbarasti/truffleruby-jfr-demo"
+
+    - name: "Link"
+      type: "link"
+      title: "Benchmarking blog post by Benoit Daloze mentioned in the talk"
+      url: "https://eregon.me/blog/2022/01/06/benchmarking-cruby-mjit-yjit-jruby-truffleruby.html"
+
+- id: "scott-matthewman-lrug-2026-02-09"
+  old_id: "scott-matthewman-lrug-february-2026"
+  title: "THE BLOB MUST DIE! – How we destroyed a 1400-line monster"
+  date: "2026-02-09"
+  announced_at: "2026-01-22T17:17:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2026/february/scott-matthewman-the-blob-must-die-how-we-destroyed-a-1400-line-monster-lrug-feb-2026.mp4"
+  description: |-
+    A lightning talk about how we are replacing an all-consuming User object with domain-specific
+    roles, delegated types and a smattering of metaprogramming – presented with a 1950s B-movie
+    vibe
+  speakers:
+    - Scott Matthewman
+
+- id: "david-smith-lrug-2026-02-09"
+  old_id: "david-smith-lrug-february-2026"
+  title: "Junior Developers need your help"
+  date: "2026-02-09"
+  announced_at: "2026-01-22T17:17:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2026/february/david-smith-junior-developers-need-your-help-lrug-feb-2026.mp4"
+  description: |-
+    Raising awareness on how the junior/graduate developer market has collapsed - not sure on
+    this yet, will probably be more apparent as I write it.
+  speakers:
+    - David Smith
+  additional_resources:
+    - name: "Write-Up"
+      type: "write-up"
+      title: "Blog post - The Junior Developer Crisis by David Smith"
+      url: "https://open.substack.com/pub/davidrec/p/the-junior-developer-crisis?r=2xxv7&utm_campaign=post&utm_medium=web"
+
+- id: "jade-dickinson-lrug-2026-02-09"
+  old_id: "jade-dickinson-lrug-february-2026"
+  title: "Managing a job search efficiently"
+  date: "2026-02-09"
+  announced_at: "2026-01-22T17:17:00Z"
+  video_provider: "not_published"
+  video_id: "jade-dickinson-lrug-2026-02-09"
+  description: |-
+    How to manage a job search and interview prep
+  speakers:
+    - Jade Dickinson
+  additional_resources:
+    - name: "Write-Up"
+      type: "write-up"
+      title: "Jade Dickinson: ~# /blog/lrug/ \"Managing a job search efficiently\""
+      url: "https://jadedickinson.com/blog/lrug/"
+
+- id: "eleanor-mchugh-lrug-2026-02-09"
+  old_id: "eleanor-mchugh-lrug-february-2026"
+  title: "Shayk.online - anonymous chat with Sinatra and websockets"
+  date: "2026-02-09"
+  announced_at: "2026-01-22T17:17:00Z"
+  slides_url: "https://www.slideshare.net/slideshow/shayk-online-anonymous-chat-with-sinatra-and-websockets/285948608"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2026/february/eleanor-mchugh-shayk-online-anonymous-chat-with-sinatra-and-websockets-lrug-feb-2026.mp4"
+  description: |-
+    A quick peek at one of my research projects and why Sinatra is a great tool for prototyping.
+  speakers:
+    - Eleanor McHugh

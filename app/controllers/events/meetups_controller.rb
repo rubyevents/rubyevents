@@ -3,26 +3,27 @@ class Events::MeetupsController < ApplicationController
 
   # GET /events/meetups
   def index
-    @meetups = Event.where(kind: :meetup)
-      .left_joins(:talks)
-      .distinct
-      .includes(:series)
-      .group("events.id")
-      .order("max(talks.date) DESC")
+    @meetup_groups = EventSeries.meetup_groups.includes(:events).to_a.sort_by { |series| meetup_activity(series) }.reverse
+    @upcoming_meetups_count = Event.where(kind: :meetup).upcoming.count
+    @past_meetups_count = Event.where(kind: :meetup).past.count
 
-    @countries_by_continent = Event.distinct
-      .where(kind: :meetup)
-      .where.not(country_code: [nil, ""])
-      .pluck(:country_code)
-      .filter_map { |code| Country.find_by(country_code: code) }
+    @groups_by_country = @meetup_groups
+      .select { |series| series.country_code.present? }
+      .group_by { |series| Country.find_by(country_code: series.country_code) }
+      .except(nil)
+
+    @countries_by_continent = @groups_by_country.keys
       .group_by(&:continent)
       .sort_by { |continent, _| continent&.name || "ZZ" }
       .to_h
+  end
 
-    @events_by_country = Event.includes(:series)
-      .where(kind: :meetup)
-      .where.not(country_code: [nil, ""])
-      .grouped_by_country
-      .to_h
+  private
+
+  def meetup_activity(series)
+    dates = series.meetups.map(&:start_date)
+    upcoming = dates.select { |date| date >= Date.today }.min
+
+    upcoming ? [1, -upcoming.jd] : [0, dates.max&.jd || 0]
   end
 end

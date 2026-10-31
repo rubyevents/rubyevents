@@ -21,7 +21,6 @@ module YouTube
           title: title,
           raw_title: raw_title,
           speakers: speakers,
-          event_name: @event_name,
           published_at: @metadata.published_at,
           description: description,
           video_provider: :youtube,

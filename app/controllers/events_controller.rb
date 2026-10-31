@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   include WatchedTalks
   include ContinentFilterable
+  include KindFilterable
   include Pagy::Backend
 
   skip_before_action :authenticate_user!, only: %i[index show]
@@ -10,16 +11,18 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = filter_by_continent(
-      Event.includes(:series, :keynote_speakers).where(end_date: Date.today..)
-    ).order(start_date: :asc)
+    events = filter_by_continent(Event.ruby_focused.includes(:series, :keynote_speakers).where(end_date: Date.today..))
+
+    @kind_counts = kind_counts(events)
+    @events = filter_by_kind(events).order(start_date: :asc)
 
     respond_to do |format|
       format.html
       format.ics do
         calendar = Icalendar::Calendar.new
+        calendar_events = selected_kind ? @events : @events.conference
 
-        @events.where(date_precision: :day).each do |event|
+        calendar_events.where(date_precision: :day).each do |event|
           calendar.add_event(event.to_ical)
         end
 
@@ -32,18 +35,18 @@ class EventsController < ApplicationController
   def show
     set_meta_tags(@event)
 
-    if @event.meetup?
-      all_meetup_events = @event.talks.where(meta_talk: true).includes(:speakers, :parent_talk, child_talks: :speakers)
-      @upcoming_meetup_events = all_meetup_events.where("date >= ?", Date.today).order(date: :asc).limit(4)
-      @recent_meetup_events = all_meetup_events.where("date < ?", Date.today).order(date: :desc).limit(4)
-      @recent_talks = @event.talks.where(meta_talk: false).includes(:speakers, :parent_talk, child_talks: :speakers).order(date: :desc).to_a.sample(8)
-      @featured_speakers = @event.speakers.joins(:talks).distinct.to_a.sample(8)
-    else
-      @keynotes = @event.talks.joins(:speakers).where(kind: "keynote").includes(:speakers, event: :series)
-      @recent_talks = @event.talks.watchable.includes(:speakers, event: :series).limit(8).shuffle
-      keynote_speakers = @event.speakers.joins(:talks).where(talks: {kind: "keynote"}).distinct
-      other_speakers = @event.speakers.joins(:talks).where.not(talks: {kind: "keynote"}).distinct.limit(8)
-      @featured_speakers = (keynote_speakers + other_speakers.first(8 - keynote_speakers.size)).uniq.shuffle
+    @keynotes = @event.talks.joins(:speakers).where(kind: "keynote").includes(:speakers, event: :series)
+    @recent_talks = @event.talks.watchable.includes(:speakers, event: :series).limit(8).shuffle
+    keynote_speakers = @event.speakers.joins(:talks).where(talks: {kind: "keynote"}).distinct
+    other_speakers = @event.speakers.joins(:talks).where.not(talks: {kind: "keynote"}).distinct.limit(8)
+    @featured_speakers = (keynote_speakers + other_speakers.first(8 - keynote_speakers.size)).uniq.shuffle
+
+    if @event.meetup? && @event.start_date.present?
+      sibling_meetups = Event.where(event_series_id: @event.event_series_id, kind: :meetup).where.not(id: @event.id)
+      @previous_meetup = sibling_meetups.where(start_date: ...@event.start_date).order(start_date: :desc).first
+      @next_meetup = sibling_meetups.where(start_date: @event.start_date.next_day..).order(start_date: :asc).first
+      @group_sponsors = @event.series.sponsors.active_on(@event.start_date).includes(:organization).order(:level)
+      @meetup_talks = @event.talks.includes(:speakers, event: :series).order(:date, :id)
     end
 
     @sponsors = @event.sponsors.includes(:organization).joins(:organization).order(level: :asc)
@@ -79,6 +82,11 @@ class EventsController < ApplicationController
   def set_event
     @event = Event.includes(:series).find_by(slug: params[:slug])
     @event ||= Event.find_by_slug_or_alias(params[:slug])
+    @event ||= Event.find_by_series_slug_or_alias(params[:slug])
+
+    if @event.nil? && (series = EventSeries.find_by_slug_or_alias(params[:slug]))
+      return redirect_to(series_path(series), status: :moved_permanently)
+    end
 
     return redirect_to(root_path, status: :moved_permanently) unless @event
 

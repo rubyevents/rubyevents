@@ -2,8 +2,7 @@
 
 module Static
   class City < Yerba::Record::Base
-    self.path = "featured_cities.yml"
-    self.base_path = Rails.root.join("data")
+    self.path = "data/featured_cities.yml"
 
     schema FeaturedCitySchema
 

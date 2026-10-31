@@ -1,0 +1,27 @@
+---
+- id: "andrew-atkinson-posette-2024"
+  title: "SaaS on Rails on PostgreSQL"
+  raw_title: "SaaS on Rails on PostgreSQL"
+  location: "online"
+  date: "2024-06-11"
+  published_at: "2024-06-13T11:53:35Z"
+  video_provider: "youtube"
+  video_id: "RwXJ4s2pw1A"
+  description: |-
+    Video of a conference talk about Saas on Rails on PostgreSQL presented by Andrew Atkinson at POSETTE: An Event for Postgres 2024. In this talk attendees will learn how Ruby on Rails and PostgreSQL can be used to create scalable SaaS applications, focusing on schema and query design, and leveraging database capabilities. We’ll define SaaS concepts, B2B, B2C, and multi-tenancy. Although Rails doesn't natively support SaaS or multi-tenancy, solutions like Bullet Train and Jumpstart Rails can be used for common SaaS needs. Next we'll cover database designs from the Apartment and actsastenant gems which support multi-tenancy concepts, and connect their designs to Citus's row and schema sharding capabilities from version 12.0. We’ll also cover PostgreSQL's LIST partitioning and how to use it for efficient detachment of unneeded customer data. We'll cover the basics of leveraging Rails 6.1's Horizontal Sharding for database-per-tenant designs. Besides the benefits for each tool, limitations will be described so that attendees can make informed choices. Attendees will leave with a broad survey of building multi-tenant SaaS applications, having reviewed application level designs, database designs, to help them put these into action in their own applications.
+
+    Andrew is a Staff Software Engineer who specializes in building high performance web applications using PostgreSQL and Ruby on Rails.
+
+    Andrew wrote a book "High Performance PostgreSQL for Rails," published by Pragmatic Programmers in 2024. Andrew has spoken previously at RailsConf, Sin City Ruby, PGDay Chicago, PGConf NYC, and RubyConf Argentina.
+
+    Chapters:
+    00:00 - Intro
+    00:39 - Overview of the presentation
+    01:10 - Definition of terms
+    05:36 - Adding multi-tenancy to Rideshare application
+    12:55 - Scaling beyond a single PostgreSQL instance
+    14:27 - Multi-Tenancy and Sharding with Active Record
+    17:02 - Citus and Sharding
+    22:52 - Wrap Up and Advice
+  speakers:
+    - Andrew Atkinson

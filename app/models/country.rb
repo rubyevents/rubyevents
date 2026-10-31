@@ -108,7 +108,7 @@ class Country
   end
 
   def events
-    Event.where(country_code: alpha2)
+    Event.ruby_focused.where(country_code: alpha2)
   end
 
   def users
@@ -128,10 +128,10 @@ class Country
   end
 
   def stamps
-    stamps = Stamp.all.select { |stamp| stamp.has_country? && stamp.country&.alpha2 == alpha2 }
+    stamps = Static::Stamp.all.select { |stamp| stamp.has_country? && stamp.country&.alpha2 == alpha2 }
 
     if alpha2 == "GB"
-      uk_nation_stamps = Stamp.all.select { |stamp| stamp.has_country? && stamp.country.is_a?(UKNation) }
+      uk_nation_stamps = Static::Stamp.all.select { |stamp| stamp.has_country? && stamp.country.is_a?(UKNation) }
       stamps = (stamps + uk_nation_stamps).uniq { |s| s.code }
     end
 

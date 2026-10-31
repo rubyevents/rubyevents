@@ -40,7 +40,7 @@ class ToolGenerationTest < ActiveSupport::TestCase
   test "builds tool parameters from the generator's Fields and Options class_options" do
     tool = ToolGeneration.generate_tools([build_generator]).first
 
-    assert_equal %i[event_series event title tags kind alternate_format], tool.declared_parameters.keys
+    assert_equal %i[event_series event title tags kind duration alternate_format], tool.declared_parameters.keys
 
     title_param = tool.declared_parameters[:title]
     assert_equal "string", title_param.type.to_s
@@ -55,6 +55,12 @@ class ToolGenerationTest < ActiveSupport::TestCase
     assert_equal "string", kind_param.type.to_s
     assert_equal "Kind of the thing", kind_param.description
     refute kind_param.required
+  end
+
+  test "maps Thor numeric options to JSON schema numbers" do
+    tool = ToolGeneration.generate_tools([build_generator]).first
+
+    assert_equal "number", tool.new.parameters_schema.dig("properties", "duration", "type")
   end
 
   test "excludes the generator's default framework options" do
@@ -72,13 +78,14 @@ class ToolGenerationTest < ActiveSupport::TestCase
 
   private
 
-  # Builds an anonymous Generators::EventBase subclass with one string, one array
-  # and one enum field option. Sets TOOL_DESC if provided.
+  # Builds an anonymous Generators::EventBase subclass with one string, one array,
+  # one enum and one numeric field option. Sets TOOL_DESC if provided.
   def build_generator(tool_desc: "Do the sample thing.")
     generator = Class.new(Generators::EventBase) do
       class_option :title, type: :string, desc: "Title of the thing", group: "Fields", required: true
       class_option :tags, type: :array, desc: "Tags for the thing", group: "Fields"
       class_option :kind, type: :string, enum: %w[foo bar], desc: "Kind of the thing", group: "Fields"
+      class_option :duration, type: :numeric, desc: "Duration of the thing", group: "Fields"
       class_option :alternate_format, type: :string, desc: "Alternate format of the thing", group: "Options"
     end
 

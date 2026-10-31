@@ -1,0 +1,69 @@
+---
+- id: "fritz-meissner-lrug-2021-10-11"
+  old_id: "fritz-meissner-lrug-october-2021"
+  title: "Solargraph: A Ruby language server to make your editor smart"
+  date: "2021-10-11"
+  announced_at: "2021-09-20T21:04:00Z"
+  slides_url: "http://iftheshoefritz.com/lsp/intellisense/solargraph/lrug/2021/10/11/lrug-solargraph.html"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2021/october/fritz-meissner-your-editor-language-server-protocol-and-solargraph-lrug-oct-2021.mp4"
+  description: |-
+    Language servers like [Solargraph](https://solargraph.org) can give code
+    editing superpowers to your favourite editor (Emacs, Vim, VSCode, etc.).
+    I'll talk about the Language Server Protocol and its advantages over
+    editor-specific plugins, as well as how Solargraph learns about your
+    Ruby. I'll also talk about the challenges that Rails poses for such
+    tooling and how solargraph-rails attempts to overcome them.
+  speakers:
+    - Fritz Meissner
+  additional_resources:
+    - name: "Write-Up"
+      type: "write-up"
+      title: "If The Shoe Fritz - A conversation between your editor and a language server"
+      url: "http://iftheshoefritz.com/lsp/intellisense/solargraph/2021/07/24/conversation-editor-lsp.html"
+
+    - name: "Source Code"
+      type: "code"
+      title: "The solargraph-rails plugin"
+      url: "https://github.com/iftheshoefritz/solargraph-rails"
+
+    - name: "Source Code"
+      type: "code"
+      title: "The solargraph project"
+      url: "https://github.com/castwide/solargraph"
+
+- id: "thierry-deo-lrug-2021-10-11"
+  old_id: "thierry-deo-lrug-october-2021"
+  title: "How denormalizing our Postgres turned great"
+  date: "2021-10-11"
+  announced_at: "2021-09-20T21:04:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2021/october/thierry-deo-how-denormalizing-our-postgres-turned-great-lrug-oct-2021.mp4"
+  description: |-
+    It's often considered best practice to normalize the database structure
+    to avoid data redundancy and incoherence. In Pennylane's accounting
+    platform we've found that this actually does not always help with data
+    coherence, and even introduces additional complexity in managing data
+    access. Our combination of denormalizing some of our data, enhancing
+    some of ActiveRecord's methods, and introducing default behaviors in our
+    application models has enabled us to greatly simplify access control
+    management and given us confidence that our production data is in a
+    consistent state.
+  speakers:
+    - Thierry Deo
+
+- id: "joel-biffin-lrug-2021-10-11"
+  old_id: "joel-biffin-lrug-october-2021"
+  title: "Memoization: My Favourite Antipattern"
+  date: "2021-10-11"
+  announced_at: "2021-09-20T21:04:00Z"
+  video_provider: "mp4"
+  video_id: "https://assets.lrug.org/videos/2021/october/joel-biffin-memoization-my-favourite-antipattern-lrug-oct-2021.mp4"
+  description: |-
+    As Rubyists we love to use built-in language features to set ourselves
+    apart for the rest. It's part of what makes programming in Ruby so
+    enjoyable! **Memoization** is no exception to this. But, *what if we
+    don't really need all of that memoization*? *Is memoization an
+    anti-pattern in its own right?*
+  speakers:
+    - Joel Biffin

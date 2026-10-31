@@ -67,10 +67,10 @@
                     <%= stamp.name %>
                   </h3>
 
-                  <% if stamp.event %>
+                  <% if stamp.has_event? %>
                     <div class="card-actions mt-2">
                       <%= link_to "View Event",
-                            event_path(stamp.event),
+                            stamp.url_path,
                             class: "btn btn-xs btn-secondary" %>
                     </div>
                   <% end %>

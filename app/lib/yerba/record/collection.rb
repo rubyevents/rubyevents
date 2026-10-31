@@ -116,11 +116,12 @@ module Yerba
       def path = source.path
       def selector = source.selector
       def parent = source.parent
+      def ensure_file! = source.ensure_file!
 
       def relative_path
         return nil if path.blank?
 
-        path.to_s.delete_prefix("#{Rails.root}/")
+        path.to_s.delete_prefix("#{record_class.root}/")
       end
 
       def exist?
@@ -132,9 +133,15 @@ module Yerba
       end
 
       def save!
+        changed_records = @filtered_records || @records || []
+        file_moves = changed_records.flat_map { |record| record.send(:planned_file_moves) }
+
         changed = documents.select(&:changed?)
         changed.each { |document| document.sort("", by: record_class.order_by.to_s) } if record_class.try(:order_by)
         changed.each { |document| document.save!(apply: true) }
+
+        Base.move_files!(file_moves)
+        changed_records.each { |record| record.instance_variable_set(:@original_attributes, nil) }
 
         written!
       end
@@ -222,7 +229,7 @@ module Yerba
 
       def inspect
         paths = filtered? ? documents.map(&:path) : sources.map(&:path)
-        location = (paths.size == 1) ? (paths.first&.delete_prefix("#{Rails.root}/") || "(parsed)") : "#{paths.size} #{"file".pluralize(paths.size)}"
+        location = (paths.size == 1) ? (paths.first&.delete_prefix("#{record_class.root}/") || "(parsed)") : "#{paths.size} #{"file".pluralize(paths.size)}"
 
         class_name = instance_of?(Collection) ? "Yerba::Record::Collection[#{record_class.name}]" : self.class.name
 

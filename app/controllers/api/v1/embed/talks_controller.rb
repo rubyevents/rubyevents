@@ -14,7 +14,8 @@ module Api
         end
 
         def show
-          talk = Talk.includes(:event, :users).find_by!(slug: params[:slug])
+          talk = Talk.find_by_slug_or_alias(params[:slug])
+          raise ActiveRecord::RecordNotFound, "Talk not found" unless talk
 
           render json: {
             slug: talk.slug,

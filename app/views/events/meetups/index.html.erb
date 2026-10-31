@@ -8,8 +8,8 @@
       <%= title "Meetups" %>
 
       <span class="text-base text-gray-500">
-        (<%= pluralize(Event.upcoming_meetups.count, "upcoming meetup") %>,
-        <%= pluralize(Event.past_meetups.count, "past meetup") %>)
+        (<%= pluralize(@meetup_groups.size, "group") %>, <%= pluralize(@upcoming_meetups_count, "upcoming meetup") %>,
+        <%= pluralize(@past_meetups_count, "past meetup") %>)
       </span>
     </h1>
 
@@ -58,11 +58,13 @@
   </div>
 
   <div data-events-view-switcher-target="view" data-events-view-switcher-view-param="preview">
-    <%= render partial: "events/featured_card_list", locals: {events: @meetups} %>
+    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <%= render partial: "events/series/meetup_card", collection: @meetup_groups, as: :series %>
+    </div>
   </div>
 
   <div class="mt-6 hidden" data-events-view-switcher-target="view" data-events-view-switcher-view-param="list">
-    <%= render partial: "events/plain_list", locals: {events: @meetups} %>
+    <%= render partial: "events/series/meetup_list", locals: {meetup_groups: @meetup_groups} %>
   </div>
 
   <div class="mt-6 hidden" data-events-view-switcher-target="view" data-events-view-switcher-view-param="country">
@@ -81,8 +83,8 @@
           class="grid min-w-full gap-x-8 gap-y-2 pb-8 pt-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12 2xl:grid-cols-4"
         >
           <% countries.sort_by(&:iso_short_name).each do |country| %>
-            <% events = @events_by_country[country] %>
-            <% next if events.nil? %>
+            <% groups = @groups_by_country[country] %>
+            <% next if groups.nil? %>
 
             <%= link_to location_meetups_path(country), id: "country-#{country.alpha2}", class: "event flex justify-between items-center" do %>
               <div class="flex items-center gap-2">
@@ -91,7 +93,7 @@
 
               <div class="flex items-center gap-2">
                 <%= ui_badge(
-                      events.count,
+                      groups.size,
                       kind: :secondary,
                       outline: true,
                       size: :lg,

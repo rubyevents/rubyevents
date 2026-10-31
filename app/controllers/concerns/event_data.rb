@@ -43,7 +43,7 @@ module EventData
       @participants = {
         "Ruby Friends" => [],
         "Favorites" => [],
-        "Known Participants" => []
+        "Attendees" => []
       }
 
       all_participants.each do |participant|
@@ -54,11 +54,11 @@ module EventData
         elsif favorite_user&.persisted?
           @participants["Favorites"] << participant
         else
-          @participants["Known Participants"] << participant
+          @participants["Attendees"] << participant
         end
       end
     else
-      @participants = {"Known Participants" => all_participants}
+      @participants = {"Attendees" => all_participants}
     end
   end
 end

@@ -1,0 +1,84 @@
+<%# locals: (series:, stats:, subscription:) %>
+
+<% links = series.static_metadata.own_links %>
+<% time_zone = series.static_metadata.time_zone %>
+<% description = series.static_metadata.description.presence %>
+<% description = nil if description&.strip == series.name %>
+<% frequency_sentence = series.meetup_frequency_sentence %>
+
+<div class="-mt-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between md:-mt-14">
+  <%= image_tag image_path(series.avatar_image_path), alt: "#{series.name} logo", class: "relative size-20 rounded-2xl border-4 border-white bg-white object-contain shadow-md md:size-28" %>
+
+  <div class="flex flex-wrap items-center gap-2">
+    <% if links.any? %>
+      <% field, url = links.first %>
+
+      <%= link_to url, target: "_blank", rel: "noopener", class: "btn btn-primary btn-sm flex-nowrap gap-2 normal-case" do %>
+        <%= meetup_link_icon(field, size: :xs, class: "shrink-0 fill-current") %>
+        <%= (field == "website") ? "Visit website" : "Join on #{meetup_link_label(field)}" %>
+      <% end %>
+    <% end %>
+
+    <%= render "events/series/follow_button", event_series: series, subscription: subscription %>
+
+    <% if (yaml_link = data_file_link_for(series)) %>
+      <span class="ml-2"><%= yaml_link %></span>
+    <% end %>
+  </div>
+</div>
+
+<div class="mt-4">
+  <%= render "events/series/breadcrumbs", series: series %>
+
+  <h1 class="text-3xl font-bold text-gray-900 md:text-4xl"><%= series.name %></h1>
+
+  <p class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-gray-600">
+    <% if series.location.present? %>
+      <span class="flex items-center gap-1.5">
+        <%= fa("location-dot", size: :xs, class: "fill-current text-gray-400") %>
+        <span><%= series.to_location.to_html %></span>
+
+        <% if time_zone %>
+          <span class="text-gray-400">· <%= Time.current.in_time_zone(time_zone).strftime("%H:%M %Z") %></span>
+        <% end %>
+      </span>
+    <% end %>
+
+    <% if frequency_sentence %>
+      <span class="flex items-center gap-1.5">
+        <%= fa("calendar", size: :xs, class: "fill-current text-gray-400") %>
+        <%= frequency_sentence %>
+      </span>
+    <% end %>
+  </p>
+
+  <% if description %>
+    <div class="prose mt-3 max-w-3xl text-gray-700 prose-a:break-all">
+      <%= description_markdown_to_html(description) %>
+    </div>
+  <% end %>
+
+  <p class="mt-4 text-sm text-gray-500">
+    <span class="font-semibold text-gray-900"><%= stats["meetups"] %></span>
+    <%= "meetup".pluralize(stats["meetups"]) %> · <span class="font-semibold text-gray-900"><%= stats["talks"] %></span>
+    <%= "talk".pluralize(stats["talks"]) %> · <span class="font-semibold text-gray-900"><%= stats["speakers"] %></span>
+    <%= "speaker".pluralize(stats["speakers"]) %>
+    <% if stats["since"] %>
+      · since <span class="font-semibold text-gray-900"><%= stats["since"] %></span>
+    <% end %>
+  </p>
+
+  <% if series.inactive? %>
+    <p class="mt-3 flex items-center gap-1.5 text-sm text-gray-500">
+      <%= fa "box-archive", size: :xs, class: "fill-current" %>
+
+      <% if series.ended? %>
+        This group doesn't meet anymore.
+      <% else %>
+        No meetups since <%= l(series.last_meetup.start_date, format: "%B %Y") %>.
+      <% end %>
+    </p>
+  <% end %>
+
+  <%= render "events/series/admin_actions", series: series %>
+</div>

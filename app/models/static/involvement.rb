@@ -2,12 +2,15 @@
 
 module Static
   class Involvement < Yerba::Record::Base
-    self.glob = "**/involvements.yml"
-    self.base_path = Rails.root.join("data")
+    self.path = "data/*parent_path/:series_id/:event_id/involvements.yml"
+    self.skipped_beside = "series.yml"
     self.flatten = true
 
     schema InvolvementSchema
 
     belongs_to :event
+    has_one :series, through: :event
+
+    references :users, class_name: "Static::Speaker"
   end
 end

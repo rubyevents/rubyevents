@@ -63,6 +63,8 @@ If you create an involvement, capture a screenshot from http://localhost:3000/ev
 
 ## Adding a talk
 
+**Talks must be added before schedules.**
+
 Review documentation in docs/ADDING_UNPUBLISHED_TALKS.md.
 
 Run `bin/rails g talk --help` to review the available parameters for the TalkGenerator.
@@ -91,6 +93,8 @@ removed_talk_ids:
 ```
 
 ## Generating a Schedule
+
+**Schedules populate empty slots with talks from videos.yml**
 
 Add the `start_time` and `end_time` to each talk using the generator or the GenerateTalkTool.
 

@@ -2,8 +2,7 @@
 
 module Static
   class Speaker < Yerba::Record::Base
-    self.path = "speakers.yml"
-    self.base_path = Rails.root.join("data")
+    self.path = "data/speakers.yml"
 
     schema SpeakerSchema
 
@@ -40,8 +39,16 @@ module Static
 
       (slug.present? && all.find_by(slug: slug)) ||
         (github.present? && all.find_by(github: github)) ||
-        (name.present? && all.find_by(name: name)) ||
+        (name.present? && (all.find_by(name: name) || find_by_github_handle(name))) ||
         nil
+    end
+
+    def self.find_by_github_handle(handle)
+      return nil if handle.blank?
+
+      all.cached(:speakers_by_github_handle) {
+        all.each_with_object({}) { |speaker, index| index[speaker.github.downcase] = speaker if speaker.github.present? }
+      }[handle.to_s.strip.downcase]
     end
 
     def self.add(name:, github: "", slug: nil, **attributes)
@@ -50,7 +57,7 @@ module Static
       slug = slug&.strip
 
       raise InvalidSpeakerError, "Speaker name cannot be blank" if name.blank?
-      raise DuplicateSpeakerError, "Speaker '#{name}' already exists" if known_names.include?(name)
+      raise DuplicateSpeakerError, "Speaker '#{name}' already exists" if known_reference?(name)
       raise DuplicateSpeakerError, "A speaker with GitHub handle '#{github}' already exists" if github.present? && all.find_by(github: github)
 
       all.build({"name" => name, "github" => github, "slug" => slug || name.parameterize}.merge(clean_attributes(attributes)))
@@ -128,6 +135,7 @@ module Static
         ::User.find_by(slug: slug) ||
         ::User.find_by_name_or_alias(name) ||
         ::User.find_by(slug: name.parameterize) ||
+        find_user_by_aliases ||
         ::User.new
 
       if slug.present? && user.slug != slug
@@ -180,6 +188,19 @@ module Static
       user_changed ? user : nil
     rescue ActiveRecord::RecordInvalid => e
       puts "Couldn't save: #{name} (#{github}), error: #{e.message}"
+      nil
+    end
+
+    private
+
+    def find_user_by_aliases
+      Array(aliases).each do |alias_data|
+        next unless alias_data.is_a?(Hash)
+
+        user = ::User.find_by(slug: alias_data["slug"]) || ::User.find_by_name_or_alias(alias_data["name"])
+        return user if user
+      end
+
       nil
     end
   end

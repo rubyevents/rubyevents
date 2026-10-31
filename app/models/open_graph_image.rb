@@ -71,6 +71,7 @@ class OpenGraphImage
 
   def logo_candidates
     Event.not_meetup
+      .ruby_focused
       .where.not(home_sort_date: nil)
       .order(
         Arel.sql("ABS(JULIANDAY(home_sort_date) - JULIANDAY(CURRENT_DATE))"),

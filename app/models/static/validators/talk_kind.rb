@@ -53,12 +53,11 @@ module Static
           return [] if inferred == DEFAULT_KIND
 
           location = node.source_location("title")
-          message = "kind is inferred as \"#{inferred}\" from the title but is not set explicitly. Add `kind: \"#{inferred}\"` to the entry if this is a \"#{inferred}\". Otherwise you can explicitly set `kind: \"talk\"` if the title classifiier didn't get it right."
+          message = "kind is inferred as \"#{inferred}\" from the title but is not set explicitly. Add `kind: \"#{inferred}\"` to the entry if this is a \"#{inferred}\". Otherwise you can explicitly set `kind: \"talk\"` if the title classifier didn't get it right."
         elsif kind == DEFAULT_KIND && inferred == DEFAULT_KIND
           return [] if short?(node)
 
           location = node.source_location("kind")
-
           message = "kind: \"#{DEFAULT_KIND}\" is redundant because the title already classifies as \"#{DEFAULT_KIND}\". Remove it (only keep an explicit \"#{DEFAULT_KIND}\" to override a non-default classification)."
         else
           return []

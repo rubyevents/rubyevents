@@ -3,14 +3,14 @@
 module Event::TypesenseSearchable
   extend ActiveSupport::Concern
 
-  SEARCH_QUERY_BY = "name,description,series_name,series_slug,alias_names,alias_slugs,series_alias_names,series_alias_slugs,keynote_speaker_names,topic_names,talk_language_names,kind,city,country_name"
-  SEARCH_QUERY_BY_WEIGHTS = "10,3,8,7,5,5,6,6,4,3,3,3,2,2"
+  SEARCH_QUERY_BY = "name,subtitle,description,series_name,series_slug,alias_names,alias_slugs,series_alias_names,series_alias_slugs,keynote_speaker_names,topic_names,talk_language_names,kind,city,country_name"
+  SEARCH_QUERY_BY_WEIGHTS = "10,8,3,8,7,5,5,6,6,4,3,3,3,2,2"
 
   included do
     include ::Typesense
 
     typesense enqueue: :trigger_typesense_job, if: :should_index?, disable_indexing: -> { Search::Backend.skip_indexing } do
-      attributes :name, :slug, :kind, :website
+      attributes :name, :subtitle, :slug, :kind, :website
 
       attribute :start_date_timestamp do
         start_date&.to_time&.to_i || 0
@@ -104,6 +104,7 @@ module Event::TypesenseSearchable
 
       predefined_fields [
         {"name" => "name", "type" => "string"},
+        {"name" => "subtitle", "type" => "string", "optional" => true},
         {"name" => "description", "type" => "string", "optional" => true},
         {"name" => "series_name", "type" => "string", "optional" => true},
         {"name" => "alias_names", "type" => "string[]", "optional" => true},

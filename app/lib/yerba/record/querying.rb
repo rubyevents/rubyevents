@@ -6,21 +6,84 @@ module Yerba
       extend ActiveSupport::Concern
 
       class_methods do
-        attr_reader :path, :glob, :scalar_field, :nested_key, :order_by
-        attr_writer :path, :glob, :base_path, :flatten, :scalar_field, :order_by
+        attr_reader :path, :scalar_field, :nested_key, :order_by
+        attr_writer :glob, :base_path, :flatten, :scalar_field, :order_by, :root, :sibling_file, :skipped_beside
 
         delegate :count, :first, :last, :empty?, :each, :pluck, to: :all
 
+        def path=(value)
+          @path = value&.to_s
+          @path_pattern = nil
+
+          define_path_segment_accessors
+        end
+
+        def path_pattern
+          @path_pattern ||= PathPattern.new(path) if path
+        end
+
+        def root
+          @root || superclass.try(:root) || Dir.pwd
+        end
+
         def base_path
-          @base_path || superclass.try(:base_path)
+          @base_path || (File.expand_path(path_pattern.prefix, root) if path) || superclass.try(:base_path)
+        end
+
+        def glob
+          @glob || (path_pattern.glob.delete_prefix("#{path_pattern.prefix}/") if path_pattern&.dynamic?)
+        end
+
+        def path_params_for(file_path)
+          return nil unless file_path && path_pattern&.dynamic?
+
+          path_pattern.match(File.expand_path(file_path.to_s))
+        end
+
+        def path_for(params, root: self.root)
+          relative_path = path_pattern&.expand(params)
+
+          File.expand_path(relative_path, root.to_s) if relative_path
+        end
+
+        def find_by_file_path(file_path)
+          return nil unless file_path
+
+          all.cached(:records_by_file_path) { all.index_by { |record| record.file_path.to_s } }[File.expand_path(file_path.to_s)]
         end
 
         def flatten
           @flatten || false
         end
 
+        def sibling_file
+          @sibling_file || superclass.try(:sibling_file)
+        end
+
+        def skipped_beside
+          @skipped_beside || superclass.try(:skipped_beside)
+        end
+
+        def sibling_file?(file_path)
+          directory = File.dirname(file_path.to_s)
+
+          return false if sibling_file && !File.exist?(File.join(directory, sibling_file))
+          return false if skipped_beside && File.exist?(File.join(directory, skipped_beside))
+
+          true
+        end
+
         def all
-          current_scope || (@all ||= Collection.new(record_class: self, sources: default_sources))
+          current_scope || nested_all || (@all ||= Collection.new(record_class: self, sources: default_sources))
+        end
+
+        def nested_all
+          owner_name, association = Associations.nested_owners[name]
+          return unless owner_name
+
+          records = owner_name.constantize.all.select { |record| record.key?(association) }.flat_map { |record| record.public_send(association).to_a }
+
+          Collection.new(record_class: self, records: records)
         end
 
         def where(...)
@@ -37,13 +100,13 @@ module Yerba
 
         def with_path(path)
           previous = @path
-          @path = path.to_s
+          self.path = path
 
           unload!
 
           yield
         ensure
-          @path = previous
+          self.path = previous
           unload!
         end
 
@@ -71,9 +134,9 @@ module Yerba
         end
 
         def file_path
-          return nil unless path
+          return nil unless path && !path_pattern.dynamic?
 
-          base_path ? File.expand_path(path, base_path) : path
+          File.expand_path(path, root)
         end
 
         def file_glob
@@ -105,9 +168,16 @@ module Yerba
 
         private
 
+        def define_path_segment_accessors
+          (path_pattern&.names.to_a - [:id]).each do |name|
+            define_method(name) { path_changes.fetch(name) { path_params[name] } } unless method_defined?(name)
+            define_method(:"#{name}=") { |value| path_changes[name] = value.to_s } unless method_defined?(:"#{name}=")
+          end
+        end
+
         def default_sources
           if glob
-            Dir.glob(file_glob).sort.map { |file| Collection::Source.new(path: file, mode: source_mode) }
+            Dir.glob(file_glob).sort.select { |file| sibling_file?(file) }.map { |file| Collection::Source.new(path: file, mode: source_mode) }
           elsif path
             [Collection::Source.new(path: file_path, mode: source_mode)]
           else

@@ -87,7 +87,7 @@ class State
   end
 
   def events
-    Event.where(country_code: country.alpha2, state_code: [code, name])
+    Event.ruby_focused.where(country_code: country.alpha2, state_code: [code, name])
   end
 
   def users
@@ -99,8 +99,9 @@ class State
   end
 
   def stamps
-    state_events = events.to_a
-    Stamp.all.select { |stamp| stamp.has_event? && state_events.include?(stamp.event) }
+    event_slugs = events.map(&:slug)
+
+    Static::Stamp.event_stamps.select { |stamp| event_slugs.include?(stamp.event_id) }
   end
 
   def alpha2

@@ -83,8 +83,8 @@ namespace :speakers_file do
     puts "Before: #{speakers.count} speakers"
     puts
 
-    added = speakers.add_missing_speakers
     removed = speakers.remove_orphaned_speakers!
+    added = speakers.add_missing_speakers
 
     if added.any?
       puts "Added #{added.length} missing speakers:"

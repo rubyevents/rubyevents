@@ -3,6 +3,8 @@
 require "test_helper"
 
 class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
+  include StaticDataSandbox
+
   BASELINE = [
     {"id" => "jane-doe-testconf-2024", "title" => "Building Things", "video_provider" => "youtube", "video_id" => "abc12345678"}
   ].freeze
@@ -203,14 +205,13 @@ class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
   end
 
   def with_temp_video(videos, removed_talk_ids: nil)
-    dir = Dir.mktmpdir
-    videos_path = File.join(dir, "data", "testconf", "testconf-2024", "videos.yml")
-    FileUtils.mkdir_p(File.dirname(videos_path))
-    File.write(videos_path, videos.to_yaml)
-    write_event_file(File.dirname(videos_path), removed_talk_ids) if removed_talk_ids
-    yield videos_path
-  ensure
-    FileUtils.rm_rf(dir)
+    with_static_data_dir do |dir|
+      videos_path = File.join(dir, "data", "testconf", "testconf-2024", "videos.yml")
+      FileUtils.mkdir_p(File.dirname(videos_path))
+      File.write(videos_path, videos.to_yaml)
+      write_event_file(File.dirname(videos_path), removed_talk_ids) if removed_talk_ids
+      yield videos_path
+    end
   end
 
   def write_event_file(dir, removed_talk_ids)

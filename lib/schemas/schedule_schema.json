@@ -15,7 +15,8 @@
           },
           "date": {
             "type": "string",
-            "description": "Date of the day (YYYY-MM-DD format)"
+            "description": "Date of the day (YYYY-MM-DD format)",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
           },
           "grid": {
             "type": "array",

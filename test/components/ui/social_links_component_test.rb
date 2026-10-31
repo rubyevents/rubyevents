@@ -19,6 +19,12 @@ class Ui::SocialLinksComponentTest < ViewComponent::TestCase
     assert_equal ["twitter"], platforms.map(&:field)
   end
 
+  def test_renders_series_socials_for_an_event_without_its_own
+    render_inline(Ui::SocialLinksComponent.new(events(:railsconf_2017).static_metadata))
+
+    assert_selector "a[href='https://x.com/railsconf']"
+  end
+
   def test_platforms_excludes_fields_source_does_not_respond_to
     source = OpenStruct.new(twitter: "railsconf")
     component = Ui::SocialLinksComponent.new(source)
@@ -33,6 +39,7 @@ class Ui::SocialLinksComponentTest < ViewComponent::TestCase
       twitter: "railsconf",
       github: "rails",
       bsky: "railsconf.bsky.social",
+      instagram: "railsconf",
       linkedin: "railsconf"
     )
     component = Ui::SocialLinksComponent.new(source)
@@ -41,6 +48,7 @@ class Ui::SocialLinksComponentTest < ViewComponent::TestCase
     assert_equal "https://x.com/railsconf", urls["twitter"]
     assert_equal "https://github.com/rails", urls["github"]
     assert_equal "https://bsky.app/profile/railsconf.bsky.social", urls["bsky"]
+    assert_equal "https://www.instagram.com/railsconf", urls["instagram"]
     assert_equal "https://www.linkedin.com/in/railsconf", urls["linkedin"]
   end
 
@@ -61,6 +69,7 @@ class Ui::SocialLinksComponentTest < ViewComponent::TestCase
   def test_url_building_passes_through_full_urls
     source = OpenStruct.new(
       github: "https://github.com/amsrb",
+      instagram: "https://www.instagram.com/tremonrails",
       linkedin: "https://www.linkedin.com/company/berlinrb",
       twitter: "https://x.com/rubyfloripa"
     )
@@ -68,6 +77,7 @@ class Ui::SocialLinksComponentTest < ViewComponent::TestCase
 
     urls = component.platforms.each_with_object({}) { |p, h| h[p.field] = p.url }
     assert_equal "https://github.com/amsrb", urls["github"]
+    assert_equal "https://www.instagram.com/tremonrails", urls["instagram"]
     assert_equal "https://www.linkedin.com/company/berlinrb", urls["linkedin"]
     assert_equal "https://x.com/rubyfloripa", urls["twitter"]
   end
@@ -80,6 +90,13 @@ class Ui::SocialLinksComponentTest < ViewComponent::TestCase
 
     assert_selector("a[href='https://x.com/railsconf'][target='_blank']")
     assert_selector("a[href='https://github.com/rails'][target='_blank']")
+  end
+
+  def test_renders_instagram_link_with_icon
+    source = OpenStruct.new(instagram: "tremonrails")
+    render_inline(Ui::SocialLinksComponent.new(source))
+
+    assert_selector("a[href='https://www.instagram.com/tremonrails'][aria-label='Instagram'] svg")
   end
 
   def test_renders_links_with_inline_styles

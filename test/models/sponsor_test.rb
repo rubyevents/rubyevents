@@ -59,10 +59,15 @@ class SponsorTest < ActiveSupport::TestCase
     assert_instance_of Organization, sponsor.organization
   end
 
-  test "requires event" do
+  test "requires an event or a series" do
     sponsor = Sponsor.new(organization: @organization, tier: "gold")
     assert_not sponsor.valid?
-    assert_includes sponsor.errors[:event], "must exist"
+    assert_includes sponsor.errors[:base], "must belong to either an event or an event series"
+  end
+
+  test "can belong to a series instead of an event" do
+    sponsor = Sponsor.new(organization: @organization, event_series: @event.series, tier: "gold")
+    assert sponsor.valid?
   end
 
   test "requires organization" do

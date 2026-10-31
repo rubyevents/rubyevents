@@ -104,7 +104,7 @@ class MCPServer
       {
         name: name,
         description: tool_class.description,
-        inputSchema: build_input_schema(tool_class)
+        inputSchema: tool_class.new.parameters_schema
       }
     end
 
@@ -118,16 +118,11 @@ class MCPServer
     tool_class = @tools[tool_name]
     return error_response(id, -32602, "Unknown tool: #{tool_name}") unless tool_class
 
-    tool = tool_class.new
-    result = tool.execute(**arguments.symbolize_keys)
+    output = tool_class.new.call(**arguments)
+    result = {content: [{type: "text", text: output.is_a?(String) ? output : JSON.pretty_generate(output)}]}
+    result[:isError] = true if output.is_a?(Hash) && output.key?(:error)
 
-    {
-      jsonrpc: "2.0",
-      id: id,
-      result: {
-        content: [{type: "text", text: result.is_a?(String) ? result : JSON.pretty_generate(result)}]
-      }
-    }
+    {jsonrpc: "2.0", id: id, result: result}
   rescue => e
     {
       jsonrpc: "2.0",
@@ -137,33 +132,6 @@ class MCPServer
         isError: true
       }
     }
-  end
-
-  def build_input_schema(tool_class)
-    schema = {type: "object", properties: {}, required: []}
-
-    if tool_class.respond_to?(:declared_parameters)
-      tool_class.declared_parameters.each do |name, param|
-        schema[:properties][name.to_s] = {
-          type: map_type(param.type) || "string",
-          description: param.description
-        }
-        schema[:required] << name.to_s if param.required
-      end
-    end
-
-    schema
-  end
-
-  def map_type(type)
-    case type.to_s
-    when "numeric", "number", "float", "double" then "number"
-    when "integer", "int" then "integer"
-    when "boolean" then "boolean"
-    when "array" then "array"
-    when "object" then "object"
-    when "string" then "string"
-    end
   end
 
   def send_response(response)

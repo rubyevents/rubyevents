@@ -1,6 +1,192 @@
-# TODO: Add talks and videos
-
 # Website: https://www.facebook.com/events/551051368675115/
 # Videos: https://www.youtube.com/playlist?list=PLRQ_gUZhiTmvN_KgcpEkREJF-tD43W7jZ
 ---
-[]
+- id: "ivan-zarea-ruby-wine-2019"
+  title: "What happens in a request, stays... where?"
+  raw_title: "What happens in a request, stays... where? - Ivan Zarea (ENG) | Ruby Wine"
+  date: "2019-04-13"
+  published_at: "2019-05-02T14:34:17Z"
+  video_provider: "youtube"
+  video_id: "CmWTnu9mIzQ"
+  description: |-
+    Speech of  Ivan Zarea, Lead Architect at YoungCapital, at Ruby Wine in Chisinau, 13.04.2019
+    http://www.rubywine.org
+
+    During the talk, I will guide the audience through everything that happens in a Rails app from the moment a browser sends a request request to the app returning a response response. The talk covers DNS resolution, reaching Puma (or Unicorn, if that's your thing), how Rails finds the relevant code to execute. It also goes a bit into middleware and finally, how your browser interprets the response rendered by your Rails app.
+
+    The talk is aimed to fill the gaps for junior-mid level developers in their understanding of the web stack and how Rails operates. I'm certain it will be fun!
+
+    Announcements and conference materials https://www.fb.me/RubyMeditation
+    News https://twitter.com/RubyMeditation
+    Photos https://www.instagram.com/RubyMeditation
+    The stream of Ruby conferences (not just ours) https://t.me/RubyMeditation
+  speakers:
+    - Ivan Zarea
+
+- id: "ivan-nemytchenko-ruby-wine-2019"
+  title: "Embrace multi-model thinking!"
+  raw_title: "Embrace multi-model thinking! - Ivan Nemytchenko (ENG) | Ruby Wine"
+  date: "2019-04-13"
+  published_at: "2019-05-02T12:40:05Z"
+  video_provider: "youtube"
+  video_id: "lSihfT1Z3NY"
+  description: |-
+    Speech of  Ivan Nemytchenko at Ruby Wine in Chisinau, 13.04.2019
+    Slides - 
+    http://www.rubywine.org
+
+    "Building apps is a complex and multi-paradigm process. Rails made it easy for us, but when you're building a very big app, conceptual compression no longer works. Even minor flaws lead to serious unwanted effects. This is how legendary Big Balls of Mud apps are born.
+
+    To understand complex things, people develop multiple mental models and combine them during the decision-making process. We'll use these seven different points of views to inspect our job as Rails developers:
+
+    - State management
+    - Object types (diversity) management
+    - Logic management (Application and Business logic)
+    - Entry point management
+    - Dispersion management (Levels of abstractions)
+    - Execution flow management
+    - Side effects management
+
+    It will not make you a CTO but definitely will improve your ability to win a dispute about application architecture
+
+    Announcements and conference materials https://www.fb.me/RubyMeditation
+    News https://twitter.com/RubyMeditation
+    Photos https://www.instagram.com/RubyMeditation
+    The stream of Ruby conferences (not just ours) https://t.me/RubyMeditation
+  speakers:
+    - Ivan Nemytchenko
+
+- id: "alexander-kudrin-ruby-wine-2019"
+  title: "Domain Driven Design"
+  raw_title: "Domain Driven Design - Alexander Kudrin (ENG) | Ruby Wine"
+  date: "2019-04-13"
+  published_at: "2019-05-02T10:34:18Z"
+  video_provider: "youtube"
+  video_id: "C9kpq7_Ccyw"
+  description: |-
+    Speech of  Alexander Kudrin, Teach Lead at Amarkets, at Ruby Wine in Chisinau, 13.04.2019
+    Slides - 
+    http://www.rubywine.org
+
+    Each successful commercial project contains a large number of business processes. Over time, the number of them increases, current processes are often changing, as a result - rise in entropy. Entropy leads to a decrease in productivity of the development team, one hour task takes up to two days. I would like to talk about Domain Driven Design, which may help to solve this problem. This approach comes from Java and .NET worlds where it has been working for more than 15 years. But what to do if your project is written on Rails?Proposed agenda: 
+    1) Short review of the methodology. 
+    2) Talk about ubiquitous language 
+    3) Bounded context 
+    4) Model-Driven Design 
+    5) What to start from?
+
+    Announcements and conference materials https://www.fb.me/RubyMeditation
+    News https://twitter.com/RubyMeditation
+    Photos https://www.instagram.com/RubyMeditation
+    The stream of Ruby conferences (not just ours) https://t.me/RubyMeditation
+  speakers:
+    - Alexander Kudrin
+
+- id: "andrei-lisnic-ruby-wine-2019"
+  title: "Writing a simple programming language in Ruby"
+  raw_title: "Writing a simple programming language in Ruby - Andrei Lisnic (ENG) | Ruby Wine"
+  date: "2019-04-13"
+  published_at: "2019-04-26T14:00:17Z"
+  video_provider: "youtube"
+  video_id: "fHqIg6_fEko"
+  description: |-
+    Speech of  Andrei Lisnic, CTO at Salt Edge, at Ruby Wine in Chisinau, 13.04.2019
+    Materials from talk - https://github.com/alisnic/rubywine2019?fbclid=IwAR1Ov_QlyDxCcCPnJQ_o8tEHkZ5XF0uDHpVkkhRpHu-2E5HbIs5slfXUkaY
+    http://www.rubywine.org
+
+    Any complex problem becomes easy and achievable if you split it in small parts. In this talk, I will explain what the programming language job consists of and will implement them live during the talk
+
+    Announcements and conference materials https://www.fb.me/RubyMeditation
+    News https://twitter.com/RubyMeditation
+    Photos https://www.instagram.com/RubyMeditation
+    The stream of Ruby conferences (not just ours) https://t.me/RubyMeditation
+  speakers:
+    - Andrei Lisnic
+
+- id: "kirill-shevchenko-ruby-wine-2019"
+  title: "Event-Driven Architecture and Messaging Patterns for Ruby Microservices"
+  raw_title: "Event-Driven Architecture and Messaging Patterns for Ruby Microservices - Kirill Shevchenko"
+  date: "2019-04-13"
+  published_at: "2019-04-26T13:35:19Z"
+  video_provider: "youtube"
+  video_id: "e9AAUy4kkek"
+  description: |-
+    Speech of  Kirill Shevchenko, Ruby/JS developer at RubyGarage, at Ruby Wine in Chisinau, 13.04.2019
+
+    Slides - 
+    http://www.rubywine.org
+
+    How to choose a communication protocol for services? Synchronous vs Asynchronous approach. HTTP, Brokered Messaging and gRPC. Issues when working with Threads and asynchronous message queues in Ruby and their solutions. Logging and monitoring of transactional integrity. Publish/Subscribe messaging systems and brief comparison of them.
+
+    Announcements and conference materials https://www.fb.me/RubyMeditation
+    News https://twitter.com/RubyMeditation
+    Photos https://www.instagram.com/RubyMeditation
+    The stream of Ruby conferences (not just ours) https://t.me/RubyMeditation
+  speakers:
+    - Kirill Shevchenko
+
+- id: "david-halasz-ruby-wine-2019"
+  title: "How to hijack, proxy and smuggle sockets with Rack/Ruby"
+  raw_title: "How to hijack, proxy and smuggle sockets with Rack/Ruby - Dávid Halász | Ruby Wine"
+  date: "2019-04-13"
+  published_at: "2019-05-02T15:19:28Z"
+  video_provider: "youtube"
+  video_id: "KWUfDLC0kPw"
+  description: |-
+    Speech of Dávid Halász, Software Engineer at Red Hat, at Ruby Wine in Chisinau, 13.04.2019
+    http://www.rubywine.org
+
+    Rack is a super simple, yet a very versatile tool to implement web servers in Ruby. It beats under the hood of Rails, but it can do much more. The socket hijacking has been implemented into Rack to support WebSockets by bypassing the middleware and so not blocking the worker threads. Together with the HTTP Upgrade requests, this can be used to send regular TCP traffic through an open HTTP connection. This talk is about leveraging socket hijacking to smuggle an SSH connection through an HTTP session using Rack. All this by using Ruby, a language that’s not ideal for doing concurrency and IO.
+
+    Announcements and conference materials https://www.fb.me/RubyMeditation
+    News https://twitter.com/RubyMeditation
+    Photos https://www.instagram.com/RubyMeditation
+    The stream of Ruby conferences (not just ours) https://t.me/RubyMeditation
+  speakers:
+    - Dávid Halász
+
+- id: "denis-defreyne-ruby-wine-2019"
+  title: "An introduction to fibers"
+  raw_title: "An introduction to fibers - Denis Defreyne (ENG) | Ruby Wine"
+  date: "2019-04-13"
+  published_at: "2019-05-02T15:49:16Z"
+  video_provider: "youtube"
+  video_id: "rOHIDzMdITE"
+  description: |-
+    Speech of  Denis Defreyne, Software engineer at Movinga, at Ruby Wine in Chisinau, 13.04.2019
+    http://www.rubywine.org
+
+    The audience for this talk ranges from beginner to advanced; the concepts are easy to understand, but even advanced Rubyists will likely learn something new.
+
+    Fibers: they’re often associated with threads, but they’re a different beast altogether. Fibers subvert common understanding of how typical computer programs work (functions that can return twice?!).This talk is an introduction to fibers, and also demonstrates practical and interesting applications.
+
+    Announcements and conference materials https://www.fb.me/RubyMeditation
+    News https://twitter.com/RubyMeditation
+    Photos https://www.instagram.com/RubyMeditation
+    The stream of Ruby conferences (not just ours) https://t.me/RubyMeditation
+  speakers:
+    - Denis Defreyne
+
+- id: "bartosz-bonislawski-ruby-wine-2019"
+  title: "Services, operations, transactions, monads and other fancy words"
+  raw_title: "Services, operations, transactions, monads and other fancy words -  Bartosz Bonisławski (ENG)"
+  date: "2019-04-13"
+  published_at: "2019-05-02T16:04:00Z"
+  video_provider: "youtube"
+  video_id: "7CYfFfDl70Y"
+  description: |-
+    Speech of  Bartosz Bonisławski, Software Engineer at Toptal, at Ruby Wine in Chisinau, 13.04.2019
+    http://www.rubywine.org
+
+    Some time ago we started doing so-called ‘Service Objects’, but no one ever created community accepted guidelines for creating them. 
+
+    Solutions based on ""railway oriented programming"" are getting more and more popular. We’ve got dry-transaction, trailblazer-operation, waterfall, and few others.
+
+    I'd like to present whole concept of railway oriented programming and compare existing solutions for handling it in ruby.
+
+    Announcements and conference materials https://www.fb.me/RubyMeditation
+    News https://twitter.com/RubyMeditation
+    Photos https://www.instagram.com/RubyMeditation
+    The stream of Ruby conferences (not just ours) https://t.me/RubyMeditation
+  speakers:
+    - Bartosz Bonisławski

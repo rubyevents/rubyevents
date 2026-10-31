@@ -64,7 +64,7 @@ class BrowseController < ApplicationController
     when "topic_rows" then {topic_rows: @topic_rows}
     when "language_rows" then {language_rows: @language_rows}
     when "closing_cfps" then {events: @closing_cfp_events}
-    when "always_open_cfps" then {events: @always_open_cfp_events}
+    when "always_open_cfps" then {events: @always_open_cfp_events, series: @always_open_cfp_series}
     when "upcoming_events" then {events: @upcoming_events}
     when "recent_events" then {events: @recent_events}
     when "featured_organizations" then {organizations: @featured_organizations}
@@ -391,6 +391,7 @@ class BrowseController < ApplicationController
   def featured_events_query
     Event
       .not_meetup
+      .ruby_focused
       .where.not(recordings_published_date: nil)
       .featurable
       .where.not(home_sort_date: nil)
@@ -458,7 +459,8 @@ class BrowseController < ApplicationController
   end
 
   def build_event_sections
-    Event.joins(:talks)
+    Event.ruby_focused
+      .joins(:talks)
       .where(talks: {video_provider: Talk::WATCHABLE_PROVIDERS})
       .where("talks.published_at > ?", 12.months.ago)
       .group("events.id")
@@ -475,6 +477,7 @@ class BrowseController < ApplicationController
 
   def load_closing_cfps
     @closing_cfp_events = Event
+      .ruby_focused
       .joins(:cfps)
       .merge(CFP.open.where.not(close_date: nil))
       .includes(:series, :cfps)
@@ -484,7 +487,15 @@ class BrowseController < ApplicationController
   end
 
   def load_always_open_cfps
+    @always_open_cfp_series = EventSeries
+      .joins(:cfps)
+      .merge(CFP.open.where(close_date: nil))
+      .includes(:cfps)
+      .distinct
+      .limit(15)
+
     @always_open_cfp_events = Event
+      .ruby_focused
       .joins(:cfps)
       .merge(CFP.open.where(close_date: nil))
       .includes(:series, :cfps)
@@ -493,13 +504,13 @@ class BrowseController < ApplicationController
   end
 
   def load_upcoming_events
-    @upcoming_events = Event.upcoming
+    @upcoming_events = Event.ruby_focused.upcoming
       .includes(:series)
       .limit(15)
   end
 
   def load_recent_events
-    @recent_events = Event.conference.past
+    @recent_events = Event.ruby_focused.conference.past
       .includes(:series)
       .limit(15)
   end
@@ -508,7 +519,7 @@ class BrowseController < ApplicationController
     define_method("load_upcoming_events_#{continent_key}") do
       slug = continent_key.tr("_", "-")
       @continent = Continent.find(slug)
-      @continent_events = Event.upcoming
+      @continent_events = Event.ruby_focused.upcoming
         .includes(:series)
         .where(country_code: @continent.country_codes)
         .limit(15)
