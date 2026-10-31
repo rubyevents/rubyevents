@@ -1,33 +1,34 @@
 # == Schema Information
 #
-# Table name: favorite_users
+# Table name: subscriptions
 # Database name: primary
 #
-#  id               :integer          not null, primary key
-#  notes            :text
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  favorite_user_id :integer          not null, indexed
-#  user_id          :integer          not null, indexed
+#  id                :integer          not null, primary key
+#  notes             :text
+#  subscribable_type :string           not null, uniquely indexed => [user_id, subscribable_id], indexed => [subscribable_id]
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  subscribable_id   :integer          not null, uniquely indexed => [user_id, subscribable_type], indexed => [subscribable_type]
+#  user_id           :integer          not null, uniquely indexed => [subscribable_type, subscribable_id], indexed
 #
 # Indexes
 #
-#  index_favorite_users_on_favorite_user_id  (favorite_user_id)
-#  index_favorite_users_on_user_id           (user_id)
+#  idx_on_user_id_subscribable_type_subscribable_id_fb68f3bd3a  (user_id,subscribable_type,subscribable_id) UNIQUE
+#  index_subscriptions_on_subscribable                          (subscribable_type,subscribable_id)
+#  index_subscriptions_on_user_id                               (user_id)
 #
 # Foreign Keys
 #
-#  favorite_user_id  (favorite_user_id => users.id)
-#  user_id           (user_id => users.id)
+#  user_id  (user_id => users.id)
 #
-class FavoriteUser < ApplicationRecord
-  belongs_to :user
-  belongs_to :favorite_user, class_name: "User"
+class FavoriteUser < Subscription
+  default_scope { where(subscribable_type: "User") }
 
-  validates :user, comparison: {other_than: :favorite_user}
-  validates :favorite_user_id, uniqueness: {scope: :user_id}
+  alias_attribute :favorite_user_id, :subscribable_id
 
-  has_one :mutual_favorite_user, class_name: "FavoriteUser", primary_key: [:user_id, :favorite_user_id], foreign_key: [:favorite_user_id, :user_id]
+  belongs_to :favorite_user, class_name: "User", foreign_key: :subscribable_id
+
+  has_one :mutual_favorite_user, class_name: "FavoriteUser", primary_key: [:user_id, :subscribable_id], foreign_key: [:subscribable_id, :user_id]
 
   def ruby_friend?
     persisted? && mutual_favorite_user&.persisted?

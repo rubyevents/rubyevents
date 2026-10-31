@@ -254,6 +254,7 @@ Rails.application.routes.draw do
           get :events, on: :member
           post :reimport, on: :member
           post :reindex, on: :member
+          resources :subscriptions, only: [:create, :destroy]
         end
         resources :attendances, only: [:index, :show], param: :event_slug
       end

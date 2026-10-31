@@ -57,6 +57,8 @@ class EventSeries < ApplicationRecord
   has_many :event_involvements, dependent: :destroy
   belongs_to :parent, class_name: "EventSeries", optional: true, inverse_of: :children
   has_many :children, class_name: "EventSeries", foreign_key: :parent_id, inverse_of: :parent, dependent: :nullify
+  has_many :subscriptions, as: :subscribable, dependent: :destroy
+  has_many :subscribers, through: :subscriptions, source: :user
   has_object :static_metadata
 
   # validations

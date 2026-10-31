@@ -19,7 +19,7 @@ class User::Merger < ActiveRecord::AssociatedObject
       transfer_event_involvements
       transfer_watched_talks
       transfer_bookmarks
-      transfer_favorite_users
+      transfer_subscriptions
       transfer_favorited_by
       transfer_connected_accounts
       clear_unique_fields_from_merged_user
@@ -104,12 +104,12 @@ class User::Merger < ActiveRecord::AssociatedObject
     end
   end
 
-  def transfer_favorite_users
-    @other_user.favorite_users.each do |fav|
-      if fav.favorite_user_id == user.id || user.favorite_users.exists?(favorite_user_id: fav.favorite_user_id)
-        fav.destroy
+  def transfer_subscriptions
+    @other_user.subscriptions.each do |subscription|
+      if subscription.subscribable == user || user.subscriptions.exists?(subscribable: subscription.subscribable)
+        subscription.destroy
       else
-        fav.update!(user: user)
+        subscription.update!(user: user)
       end
     end
   end
