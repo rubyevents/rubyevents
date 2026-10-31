@@ -1,0 +1,34 @@
+---
+- id: "drew-neil-lrug-2013-10-14"
+  title: "Modelling state machines with Ragel"
+  date: "2013-10-14"
+  slides_url: "https://speakerdeck.com/nelstrom/modelling-state-machines-with-ragel"
+  video_provider: "not_recorded"
+  video_id: "drew-neil-lrug-2013-10-14"
+  description: |-
+    Ragel is a State Machine Compiler, which can generate Ruby code (as well as C, Java, Go, and more). It can be used for writing robust protocol implementations, parsing data formats, and performing lexical analysis of programming languages. Ragel is used in many open source projects including Gherkin, Thin, Min, Mongrel, Redcloth, Radiant, and Hpricot.
+
+    To demonstrate Ragel's capabilities we'll model Vim, which is a Finite State Machine. We'll do so by parsing a stream of Vim keystrokes, using Ragel state machines to manage the transitions between Vim's modes. We'll see how to generate state chart visualisations with Ragel, and how these can be used to debug our state machines. The resulting program will enable us to analyse and visualise the interactions of a Vim user.
+  speakers:
+    - Drew Neil
+  additional_resources:
+    - name: "Handout"
+      type: "handout"
+      title: "Code used in presentation"
+      url: "https://github.com/nelstrom/ragel-vim-demo"
+
+- id: "olly-legg-lrug-2013-10-14"
+  title: "Enumerators in Ruby"
+  date: "2013-10-14"
+  slides_url: "https://speakerdeck.com/ollylegg/enumerators"
+  video_provider: "not_recorded"
+  video_id: "olly-legg-lrug-2013-10-14"
+  description: |-
+    Enumerators are a little known class in the standard library. I'll discuss where they're used in stdlib, how you can implement them and (at least) one practical example where they might be the right solution.
+  speakers:
+    - Olly Legg
+  additional_resources:
+    - name: "Handout"
+      type: "handout"
+      title: "Examples of using Enumnerators: paginated_collection.rb"
+      url: "https://github.com/olly/grim_repo/blob/master/lib/grim_repo/paginated_collection.rb"

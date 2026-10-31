@@ -1,0 +1,36 @@
+---
+- id: "paul-mucur-lrug-2011-08-08"
+  title: "Managing Web Application Servers with Puppet"
+  date: "2011-08-08"
+  slides_url: "https://mudge.name/managing_web_application_servers_with_puppet/"
+  video_provider: "not_recorded"
+  video_id: "paul-mucur-lrug-2011-08-08"
+  description: |-
+    Joshua Sierles of 37signals once described configuration management as something that "doesn't sound sexy, but it's the single most important thing we do as sysadmins" but what is it and what do tools like Chef and Puppet offer from the point of view of a developer?
+
+    In this presentation I want to talk about how configuration management allowed me -- a developer with no access to the live servers and working with system administrators in a different time zone -- to not only install and configure servers quickly and in a repeatable way but also let me be confident about the consistency of each and every machine I deploy to.
+
+    Using the example of getting a server ready to run a Rails application using Puppet (and testing things out with the aid of Vagrant), I will showcase some patterns that we have developed for managing versions of Ruby with RVM, the installation of Phusion Passenger and how to deploy a database.yml when you're not allowed to see live passwords.
+  speakers:
+    - Paul Mucur
+  additional_resources:
+    - name: "Handout"
+      type: "handout"
+      title: "Worked example of Vagrant and Puppet"
+      url: "https://github.com/mudge/managing_web_application_servers_with_puppet/tree/master/example"
+
+    - name: "Transcript"
+      type: "transcript"
+      title: "Managing Web Application Servers with Puppet"
+      url: "https://mudge.name/2011/08/11/managing-web-application-servers-with-puppet.html"
+
+- id: "gareth-rushgrove-lrug-2011-08-08"
+  title: "Chef and Vagrant"
+  date: "2011-08-08"
+  slides_url: "http://morethanseven.net/2011/08/11/Talking-configuration-management-vagrant-and-chef-at-lrug.html"
+  video_provider: "not_recorded"
+  video_id: "gareth-rushgrove-lrug-2011-08-08"
+  description: |-
+    Most developers spend far too much time managing a development environment that is different to the one they use for production applications. Different tools, different underlying libraries and different bugs. Local virtualisation provides an answer, but historically it's been time consuming and annoying to setup and manage. Using configuration management tools like Chef to set things up, and Vagrant to easily manage the virtual machines from the command line provides modern developers the best of all possible worlds.
+  speakers:
+    - Gareth Rushgrove

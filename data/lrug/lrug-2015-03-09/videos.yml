@@ -1,0 +1,32 @@
+---
+- id: "paul-mucur-lrug-2015-03-09"
+  title: "Exploring #to_proc"
+  date: "2015-03-09"
+  slides_url: "https://speakerdeck.com/mudge/exploring-number-to-proc"
+  video_provider: "not_recorded"
+  video_id: "paul-mucur-lrug-2015-03-09"
+  description: |-
+    A look at how some "odd syntax" introduced in Rails 1.1 and then added to Ruby itself might not solely be for the sake of convenience but hint at a more powerful idea seen in other programming languages.
+  speakers:
+    - Paul Mucur
+  additional_resources:
+    - name: "Write-Up"
+      type: "write-up"
+      title: "Data Structures as Functions (or, Implementing Set#to_proc and Hash#to_proc in Ruby)"
+      url: "https://mudge.name/2014/11/26/data-structures-as-functions/"
+
+- id: "lukasz-korecki-lrug-2015-03-09"
+  title: "pkgr - Packaging Ruby applications with no sweat"
+  date: "2015-03-09"
+  video_provider: "not_recorded"
+  video_id: "lukasz-korecki-lrug-2015-03-09"
+  description: |-
+    In the life of every* project there is this moment where standard deployment methods just don’t cut it. You have many servers, many applications, many developers. It can become a mess very, very quickly.
+
+    Have you ever dreamed of hosting your own apt repository? When was the last time you were annoyed about slow deployment times because the asset pipeline needs to run every single server your app runs on? Oh and lets not mention installing ruby version managers on servers, ok? (I will though).
+
+    In this talk I will show how packaging (and deploying) Ruby applications doesn’t have to be hard or time consuming and can work with a project of any size.
+
+    * - huge assumption warning!”
+  speakers:
+    - Łukasz Korecki

@@ -1,0 +1,39 @@
+---
+- id: "javier-ramirez-lrug-2014-01-13"
+  title: "API Analytics with Redis and Bigquery"
+  date: "2014-01-13"
+  slides_url: "http://www.slideshare.net/supercoco9/api-analytics-redis-bigquery-lrug"
+  video_provider: "not_recorded"
+  video_id: "javier-ramirez-lrug-2014-01-13"
+  description: |-
+    At teowaki we have a system for API usage analytics, with Redis as a fast intermediate store and bigquery as a big data backend. As a result, we can launch aggregated queries on our traffic/usage data in just a few seconds and we can try and find for usage patterns that wouldn’t be obvious otherwise.
+
+    In this session I will talk about how we entered the Big Data world, which alternatives we evaluated, and how we are using Redis and Bigquery to solve our problem.
+  speakers:
+    - Javier Ramirez
+  additional_resources:
+    - name: "Notes"
+      type: "notes"
+      title: "Interesting links to complement my talk about google bigquery"
+      url: "https://teowaki.com/teams/javier-community/link-categories/bigquery-talk"
+
+- id: "julien-letessier-lrug-2014-01-13"
+  title: "Using data tiering to squeeze scale out of SQL"
+  date: "2014-01-13"
+  slides_url: "http://www.slideshare.net/mezis/data-tiering-squeezing-scale-out-of-mysql-lrug-presentation-20140113"
+  video_provider: "not_recorded"
+  video_id: "julien-letessier-lrug-2014-01-13"
+  description: |-
+    As traffic grows, some of the data structures our application has to manipulate gets contended. Ours is an unusual, but effective solution: segregate data into read-mostly and write-mostly.
+  speakers:
+    - Julien Letessier
+  additional_resources:
+    - name: "Link"
+      type: "link"
+      title: "data-tiering gem"
+      url: "https://github.com/hubb/data-tiering"
+
+    - name: "Write-Up"
+      type: "write-up"
+      title: "Using data tiering to squeeze scale out of SQL"
+      url: "http://dev.housetrip.com/2013/11/15/data-tiering/"

@@ -197,9 +197,20 @@
   video_provider: "youtube"
   video_id: "goQZps9vt3o"
   description: |-
-    Some people test in isolation, mocking everything except the class under test. We'll start with that idea, quickly examine the drawbacks, and ask how we might fix them without losing the benefits. This will send us on a trip through behavior vs. data, mutation vs. immutability, interface vs. data dependencies, how data shape affords parallelism, and what a system optimizing each of these for natural isolation might look like.
+    Experimenting with programming languages is a whole lot of fun. Unfortunately, it can mean writing a stack of boilerplate before you really get to do anything interesting. By the time you've got Yacc/Bison, Flex and GCC playing nicely together, you might well be wondering why it all has to be this hard.
+
+    Great news: it doesn't!
+
+    Racc is Yacc for Ruby: a LALR(1) parser generator that emits Ruby code from a grammar file. The Ruby/Racc combination is the most rapid means I've found for prototyping programming language ideas, and to prove it I intend to build a real, working compiler during this presentation.
+
+    If you're a newbie to the world of compiler construction, I'll also be giving a brief overview of a generalized compiler architecture along with some basic terminology.
   speakers:
     - Tom Lee
+  additional_resources:
+    - name: "Repository"
+      type: "repo"
+      title: "thomaslee/rubyconf-2012"
+      url: "https://github.com/thomaslee/rubyconf-2012"
 
 - id: "gary-bernhardt-rubyconf-2012"
   title: "Boundaries"

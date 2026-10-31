@@ -98,6 +98,7 @@ class Static::Validators::Validator
       Static::Validators::TalkTrack,
       Static::Validators::TalkVideoId,
       Static::Validators::UniqueTalkIds,
+      Static::Validators::UniqueTalkSpeakers,
       Static::Validators::RecordingCues,
       Static::Validators::MissingThumbnails
     ]

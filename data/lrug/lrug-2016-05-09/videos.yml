@@ -1,0 +1,37 @@
+---
+- id: "john-cinnamond-lrug-2016-05-09"
+  title: "The Art of Code Review"
+  date: "2016-05-09"
+  slides_url: "https://speakerdeck.com/jcinnamond/the-art-of-code-review"
+  video_provider: "not_recorded"
+  video_id: "john-cinnamond-lrug-2016-05-09"
+  description: |-
+    Most of us do some form of code review, increasingly often through pull requests. Done well it can be a great tool for improving quality, sharing knowledge, and building a sense of cohesion in a team. Done badly it can be toxic. In this talk I’d like to look at the motivations for code review, examine research into its value, and suggest some practices on how to do it well.
+  speakers:
+    - John Cinnamond
+
+- id: "asfand-yar-qazi-lrug-2016-05-09"
+  title: "A Tale of Two Deployments - Machine Images, Immutable Servers And Green/Blue Deployment"
+  date: "2016-05-09"
+  slides_url: "https://drive.google.com/file/d/0B_eY8bjtumvEZzZBbkVHWFJXbnM/view?usp=sharing"
+  video_provider: "not_recorded"
+  video_id: "asfand-yar-qazi-lrug-2016-05-09"
+  description: |-
+    Imagine some of the worst things that could happen to you during cap deploy -- well, they happened to Ali on the same day, and it turned into one of the worst days of his life. Interestingly, Sally in the office across the street had the exact same issues come up during her deployment. However her team had invested in their infrastructure sensibly, and deployed fresh immutable server clusters from pre-built machine images on each deploy. She could just relax, as the infrastructure had been designed to filter out most problems that could occur during deployment. Here is their story!
+  speakers:
+    - Asfand Yar Qazi
+  additional_resources:
+    - name: "Link"
+      type: "link"
+      title: "A Tale of Two Deployments - The blog post that the speech was based on"
+      url: "http://www.thedevopsdoctors.com/blog/2016/3/6/a-tale-of-two-deployments"
+
+- id: "matthew-ford-lrug-2016-05-09"
+  title: "Convox: Painless deployment of Docker on AWS"
+  date: "2016-05-09"
+  video_provider: "not_recorded"
+  video_id: "matthew-ford-lrug-2016-05-09"
+  description: |-
+    Bit Zesty have been playing with Docker to help with Dev/Prod parity, but deploying and managing Docker images in production has been a pain. Convox helps by providing a simple Heroku-esque CLI to deploy and manage your application on AWS. We've been able to replace a bunch of terraform + chef/ansible scripts and use Docker in production without the headache.
+  speakers:
+    - Matthew Ford

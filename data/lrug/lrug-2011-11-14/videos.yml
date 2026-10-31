@@ -1,0 +1,37 @@
+---
+- id: "aanand-prasad-lrug-2011-11-14"
+  title: "Transformers: Code Blocks In Disguise"
+  date: "2011-11-14"
+  slides_url: "http://transformers-talk.heroku.com/"
+  video_provider: "not_recorded"
+  video_id: "aanand-prasad-lrug-2011-11-14"
+  description: |-
+    Aanand has some Ruby code to show you. It looks a little strange - in fact, it doesn't even look valid.
+
+    Array.run do
+      x <- ["first", "second"]
+      y <- ["once", "twice"]
+
+      ["#{x} cousin #{y} removed"]
+    end
+
+    What does it do, and how does it do it? If you know what a macro is, or a continuation, or a monad, you might be able to guess. If not, don't worry - by the end, you'll probably be as confused as everyone else, including the speaker.
+  speakers:
+    - Aanand Prasad
+
+- id: "abdel-a-saleh-lrug-2011-11-14"
+  title: "My Adventures in Objective-C"
+  date: "2011-11-14"
+  slides_url: "http://www.slideshare.net/abdels/my-adventuresinobjc"
+  video_provider: "not_recorded"
+  video_id: "abdel-a-saleh-lrug-2011-11-14"
+  description: |-
+    I have been ducking Objective-C at every turn for a very long time. Who wants to learn a heavily typed static behemoth just to write an iPhone app?!
+
+    So, I did what every self respecting programmer would do, throw alternative open solutions aka Javascript frameworks at the problem.
+
+    But in the end I had to succumb to the will of the Almighty Apple - I needed their Objective C to make stuff happen ... and it wasn't that bad :)
+
+    This is all the learning, similarities (of which there are a few) and differences between Objective-C and Ruby.
+  speakers:
+    - Abdel A. Saleh
