@@ -26,7 +26,6 @@ module Static
 
       def validate
         return [] unless applicable?
-        return [] if event["kind"] == "meetup" && MeetupNaming.ignored?(event)
 
         errors = []
 
@@ -34,7 +33,7 @@ module Static
           location = event.source_location("start_date")
 
           errors << Static::Validators::Error.new(
-            "start_date is required for non-meetup events at /start_date",
+            "start_date is required at /start_date",
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
@@ -45,7 +44,7 @@ module Static
           location = event.source_location("end_date")
 
           errors << Static::Validators::Error.new(
-            "end_date is required for non-meetup events at /end_date",
+            "end_date is required at /end_date",
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
