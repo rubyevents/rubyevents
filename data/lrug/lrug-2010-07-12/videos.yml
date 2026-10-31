@@ -1,0 +1,26 @@
+---
+- id: "jon-leighton-lrug-2010-07-12"
+  title: "Carat: An interpreted language, written in Ruby"
+  date: "2010-07-12"
+  video_provider: "not_recorded"
+  video_id: "jon-leighton-lrug-2010-07-12"
+  description: |-
+    I ended up writing an interpreter, in Ruby, for a language heavily inspired by Ruby. A sort of distilled Ruby-like language which is far too simplistic to be useful and probably overlooks tonnes of important things.
+
+    But anyway! The point is not really that the language is utterly pointless. The point is that it's an interpreter written in a very high-level language, which I think it relatively easy to understand.
+
+    So I'm offering to do a talk which would take the listener through the workings of this interpreter. The parsing is done with Treetop, although I wouldn't propose really talking about the parsing at all as I think a lot of people are quite familiar with Treetop.
+
+    I might as well finish with some buzzwords. If you ever wondered what "trampoline function" or "continuation passing style" means then this is your chance :)
+  speakers:
+    - Jon Leighton
+
+- id: "phil-cowans-lrug-2010-07-12"
+  title: "ActionEmbedding"
+  date: "2010-07-12"
+  video_provider: "not_recorded"
+  video_id: "phil-cowans-lrug-2010-07-12"
+  description: |-
+    ActionEmbedding is a simple Rails plugin I've been using to look at ways of building up pages from independent user interface elements called pagelets. The idea is to implement a number of different patterns, including Hierarchical MVC, and make it as easy as possible to switch between them. I'll try to explain why I think this is a good idea, show you what the plugin can do at the moment and talk about how I see it evolving.
+  speakers:
+    - Phil Cowans

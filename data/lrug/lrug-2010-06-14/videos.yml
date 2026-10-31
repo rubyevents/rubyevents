@@ -1,0 +1,33 @@
+---
+- id: "murray-steele-lrug-2010-06-14"
+  title: "\"My First Ruby\""
+  date: "2010-06-14"
+  video_provider: "not_recorded"
+  video_id: "murray-steele-lrug-2010-06-14"
+  description: |-
+    1. It's a mailing list with a web front-end. The web stuff is pre-rails and I think it's interesting in terms of "look how far we've come". Seriously, if you've never done web development without a higher-level framework like rails you'll be amazed. (For anyone who's heard of it, it uses NARF).
+
+    2. I can pretty much guarantee that my first ruby code is worse than your first ruby code. So for any newbies in the room, it should come as welcome relief that even apparent old-hands like myself have written terrible code (and it truly is terrible code), made terrible design decisions, and done both without the safety net of TDD. Of course, hopefully in the talk I'll point out why, if writing this again, I would use TDD. At the end I hope this talk will make people feel less embarrassed about showing off code of their own at future events; I'll be setting a base-level of awfulness.
+
+    3. This bit of software was written in a weekend and has been in "production" for 7 years 11 months (according to the date I filled in for "when I first started using Ruby" on my Working With Rails profile) and it's been remarkably stable and unchanged for those 7 years. I've no real evidence for this, but it's a scientific fact that it's the longest running piece of ruby software in the world... wouldn't you like to see inside it?
+  speakers:
+    - Murray Steele
+  additional_resources:
+    - name: "Transcript"
+      type: "transcript"
+      title: "Talks ∋ My first ruby"
+      url: "http://www.h-lame.com/talks/my-first-ruby"
+
+- id: "john-leach-lrug-2010-06-14"
+  title: "UNIX: Rediscovering the wheel"
+  date: "2010-06-14"
+  video_provider: "not_recorded"
+  video_id: "john-leach-lrug-2010-06-14"
+  description: |-
+    "Those who don't understand UNIX are condemned to reinvent it, poorly."
+
+    We in the Ruby Community seem to have a habit of re-inventing things. Sometimes this is for good reason, but in some cases we don't know we're even doing it! We're wasting valuable time that could be spent learning Erlang!
+
+    UNIX-like operating systems have been around for decades and lots of problems have come and gone in that time. I'm going to talk about some of the tools available that can be used to solve common Ruby and Rails deployment and development problems.
+  speakers:
+    - John Leach

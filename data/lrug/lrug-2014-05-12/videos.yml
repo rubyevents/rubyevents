@@ -1,0 +1,37 @@
+---
+- id: "angela-ebirim-lrug-2014-05-12"
+  title: "Learning to Code"
+  kind: "lightning_talk"
+  date: "2014-05-12"
+  slides_url: "http://www.slideshare.net/trekr5/may-lrug-talk"
+  video_provider: "not_recorded"
+  video_id: "angela-ebirim-lrug-2014-05-12"
+  description: |-
+    It'll be about my adventures, frustrations and triumphs in learning to code and specifically in Ruby.
+  speakers:
+    - Angela Ebirim
+
+- id: "adam-rogers-lrug-2014-05-12"
+  title: "How to win developers and influence designers"
+  date: "2014-05-12"
+  video_provider: "not_recorded"
+  video_id: "adam-rogers-lrug-2014-05-12"
+  description: |-
+    In 1936, Dale Carnegie wrote the book "How to win friends and influence people". You may have heard of it. But what can this book, and others, teach us about working as part of a software team today? Quite a lot, actually.
+
+    We'll look at a few points that'll help us to work better, together.
+  speakers:
+    - Adam Rogers
+
+- id: "gabe-da-silveira-lrug-2014-05-12"
+  title: "Deprecating ActiveResource: Alternative Approaches for Internal Rails Services"
+  date: "2014-05-12"
+  slides_url: "https://speakerdeck.com/gtd/deprecating-activeresource"
+  video_provider: "not_recorded"
+  video_id: "gabe-da-silveira-lrug-2014-05-12"
+  description: |-
+    Ruby on Rails has always been optimized for a single monolithic application architecture. But as applications grow, it has become more and more common for architects to seek out ways to break their monolithic Rails apps into self-contained services. For years the most natural answer of how to hook up one Rails app to another's API has been to use ActiveResource, a core Rails plugin that provides an ActiveRecord-like interface to an external service.
+
+    The allure of such a simple interface to a network service is undeniable, but the downsides not nearly as obvious. Many have built Rails apps relying on ActiveResource only to feel significant unforeseen pain down the line. This talk provides a case study of an early adopter of ActiveResource during the Rails 1.2 era, the pain that it led to, and the eventual replacement of ActiveResource with a bespoke private gem that provides a similar, but more robust interface.
+  speakers:
+    - Gabe da Silveira

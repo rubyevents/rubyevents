@@ -1,0 +1,20 @@
+---
+- id: "scott-matthewman-lrug-2019-11-04"
+  title: "Call the Cops: Bringing style to a lawless codebase"
+  date: "2019-11-04"
+  video_provider: "not_recorded"
+  video_id: "scott-matthewman-lrug-2019-11-04"
+  description: |-
+    Working with legacy codebases can be tricky at the best of times. What can make it worse if there’s no consistency in style. Linters (and Ruby’s RuboCop in particular) can help us write good code going forward – but what about the code that’s already there? There are good ways, and bad, to get RuboCop to help.
+  speakers:
+    - Scott Matthewman
+
+- id: "daniel-magliola-lrug-2019-11-04"
+  title: "Disk is fast, memory is slow. Forget all you think you know"
+  date: "2019-11-04"
+  video_provider: "not_recorded"
+  video_id: "daniel-magliola-lrug-2019-11-04"
+  description: |-
+    Adding metrics to your code should effectively have no impact on performance. When we were recently tasked with doing that in multi-process Ruby servers, we ran into an interesting challenge: could we aggregate our numbers across processes without blowing our target of just one microsecond of overhead? In the process, we found some very counter-intuitive performance results that I'd like to share with you.
+  speakers:
+    - Daniel Magliola

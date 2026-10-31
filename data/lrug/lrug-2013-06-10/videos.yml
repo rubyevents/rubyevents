@@ -1,0 +1,31 @@
+---
+- id: "jb-steadman-lrug-2013-06-10"
+  title: "State Transitions Are People Too"
+  date: "2013-06-10"
+  video_provider: "not_recorded"
+  video_id: "jb-steadman-lrug-2013-06-10"
+  description: |-
+    In this talk I present a simple ActiveRecord-based alternative to the many popular state machine gems.
+
+    Suppose you're dealing with a school application system. Applications can be submitted, rejected, approved. Then you would have
+
+    class Submission < StateTransition end
+
+    and so on. StateTransition is an STI subclass of ActiveRecord::Base.
+
+    Inside each 'concrete' transition subclass, AR validations determine whether the transition can be created, given current system state. Callbacks make changes to other models that result from the transitions, as well as trigger other effects like emails.
+
+    This shifts emphasis from the models to the transitions themselves. Model classes don't get cluttered with logic related to multiple transitions - that logic lives in the transition classes. It works nicely with REST. You are literally creating an Approval, rather than "approving". Logging of transitions is front and center. Nobody has to learn a new lib and you're never beholden to yesteryear's state machine gem-of-the-month.
+  speakers:
+    - JB Steadman
+
+- id: "jairo-diaz-lrug-2013-06-10"
+  title: "Application Example based on Gov.uk public code"
+  date: "2013-06-10"
+  slides_url: "https://speakerdeck.com/javicus/application-example-based-on-gov-dot-uk-public-code"
+  video_provider: "not_recorded"
+  video_id: "jairo-diaz-lrug-2013-06-10"
+  description: |-
+    This talk describes an experience of reusing the public code available from the GOV.UK project. It shows how we can implement custom customer service flows based on the SmartAnswers project.
+  speakers:
+    - Jairo Diaz

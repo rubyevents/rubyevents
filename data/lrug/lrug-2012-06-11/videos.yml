@@ -1,0 +1,34 @@
+---
+- id: "frederick-cheung-lrug-2012-06-11"
+  title: "Introduction to Elasticsearch"
+  date: "2012-06-11"
+  slides_url: "https://s3-eu-west-1.amazonaws.com/fred-misc/es-lrug.pdf"
+  video_provider: "not_recorded"
+  video_id: "frederick-cheung-lrug-2012-06-11"
+  description: |-
+    Most apps need some form of search or filtering at some point (even if they don't need full text). Elasticsearch is a new(ish) search engine built on top of Lucene with some interesting features that set it apart from other search engines such as sphinx or solr.
+
+    I'll show what we've used elasticsearch for and why we picked it over competing solutions such as solr or sphinx.
+  speakers:
+    - Frederick Cheung
+
+- id: "matt-wynne-steve-tooke-lrug-2012-06-11"
+  title: "Hexagonal Rails"
+  date: "2012-06-11"
+  video_provider: "not_recorded"
+  video_id: "matt-wynne-steve-tooke-lrug-2012-06-11"
+  description: |-
+    The things that make Rails great in the first few weeks of a new project are precisely what makes it hurt after a few months. Anyone who has worked on a medium-sized Rails app will have experienced pain like:
+
+    - High coupling, meaning you have to run all your tests all the time to check each change.
+    - Slow tests.
+    - Logic littered in view templates or helper modules.
+
+    Changes get more and more expensive to make, and the fun grinds to a halt. How can you stop this from happening? And more importantly, how can you turn around a project that’s already hit this wall of pain?
+
+    You need to pull your app away from Rails.
+
+    In this practical talk, we describe an architecture for mature Rails applications where the framework becomes a plug-in to your application. With hands-on demonstrations, you’ll learn how to define clear boundaries between your application’s domain and Rails’ domain. Now Rails can stick to doing what it does best – providing the persistence and HTTP stack – and your valuable business logic will be in plain old Ruby objects that are fast to test and easy to reason about.
+  speakers:
+    - Matt Wynne
+    - Steve Tooke

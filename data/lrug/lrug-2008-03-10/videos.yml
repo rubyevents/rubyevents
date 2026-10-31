@@ -1,0 +1,34 @@
+---
+- id: "kresten-krab-thorup-lrug-2008-03-10"
+  title: "Challenges in making Ruby run effectively on a JVM"
+  date: "2008-03-10"
+  video_provider: "not_recorded"
+  video_id: "kresten-krab-thorup-lrug-2008-03-10"
+  description: |-
+    Kresten Krab Thorup, track host and speaker at both QCon and RubyFools, will provide an overview of the issues, trade-offs and challenges in making dynamic object-oriented languages run effectively; both in general, and specifically making Ruby run well on the JVM. Kresten has many years deep knowledge of getting the most out of a JVM, and has recently been working on an research project on building yet another JVM-based virtual machine for Ruby and thus, the talk is organized around issues and findings in building this virtual machine.
+  speakers:
+    - Kresten Krab Thorup
+
+- id: "thomas-pomfret-lrug-2008-03-10"
+  title: "mobileAct: a high-risk Rails app for Channel 4"
+  date: "2008-03-10"
+  video_provider: "not_recorded"
+  video_id: "thomas-pomfret-lrug-2008-03-10"
+  description: |-
+    mobileAct Unsigned is Channel 4 TV search for the best unsigned band in Britain. The site lets bands and fans to communicate and share media. In addition, users get to vote on who should win the million pound recording deal. "mobileAct: a high-risk Rails app for Channel 4" will report back on Mint's experiences building this mass-market application. In the light of recent TV voting scandals, the spotlight was on voting. In a very public arena, we had to make sure not only that the vote was fair, but that it could be seen to be fair.
+  speakers:
+    - Thomas Pomfret
+
+- id: "andrew-stewart-lrug-2008-03-10"
+  title: "Handling Long-Running Tasks in Rails"
+  date: "2008-03-10"
+  video_provider: "not_recorded"
+  video_id: "andrew-stewart-lrug-2008-03-10"
+  description: |-
+    Rails is a web framework and thus designed for HTTP's synchronous request and response: you make a request to the application, the application executes it and returns the response. For your application to feel snappy its filters and actions should take no more than a few milliseconds to execute. But what do you do if you need to run a task that takes more than a few milliseconds? Perhaps ten minutes or even longer? You need to move execution off the request-response thread and onto a different one.
+
+    Rails doesn't support this out of the box and it's not obvious how to do this correctly. Happily a number of plugins fill the gap. They all work differently, though, and cater for different situations. The one you need for your application depends on your situation.
+
+    This session lays out all your options and explains where each plugin is best suited. It shows you how to work with each plugin. By the end you will be able to make an informed decision about which one you need in any given situation - and how to use it well.
+  speakers:
+    - Andrew Stewart

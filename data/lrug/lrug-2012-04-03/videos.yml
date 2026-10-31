@@ -1,0 +1,37 @@
+---
+- id: "makoto-inoue-lrug-2012-04-03"
+  title: "Demystifying dRuby"
+  date: "2012-04-03"
+  video_provider: "not_recorded"
+  video_id: "makoto-inoue-lrug-2012-04-03"
+  description: |-
+    dRuby stands for "Distributed Ruby" and it's one of less known Ruby standard libraries. It is one of the first use of Metaprogramming long before Rails. dRuby creates proxy objects which lets you to "automagically"(In Matz's word) delegate method calls to remote objects. While I was translating The dRuby Book: Distributed and Parallel Computing with Ruby from Japanese to English, I had a chance to work with Masatoshi Seki, one of the Ruby core committers and has been using Ruby since version 1.2. I learnt a lot of interesting Ruby technique from him and would like to share some of them with you.
+  speakers:
+    - Makoto Inoue
+  additional_resources:
+    - name: "Handout"
+      type: "handout"
+      title: "Sample code (including original 160 line version of dRuby)"
+      url: "https://github.com/makoto/demystifying_druby_lrug_april_2012"
+
+- id: "peter-vandenabeele-lrug-2012-04-03"
+  title: "Converting a Rails project from MRI to JRuby"
+  date: "2012-04-03"
+  slides_url: "https://github.com/petervandenabeele/LRUG_2010_04_presentation"
+  video_provider: "not_recorded"
+  video_id: "peter-vandenabeele-lrug-2012-04-03"
+  description: |-
+    Starting from a scaffold Rails app with RSpec and mysql/postgresl what are the steps to get rspec to pass on JRuby:
+    - use .rvmrc to switch between MRI and JRuby
+    - switch out gems (db, server side js, factory_girl 3 vs. 2)
+    - require_relative => use proper load path
+    - using 1.9 compatible mode for new style hashes
+    - waiting for rspec takes longer ...
+    - use JRuby to connect to a Java lib (e.g. HBase jar) :-)
+  speakers:
+    - Peter Vandenabeele
+  additional_resources:
+    - name: "Handout"
+      type: "handout"
+      title: "Github Repo for demo project used in presentation"
+      url: "https://github.com/petervandenabeele/LRUG_2010_04_demo"

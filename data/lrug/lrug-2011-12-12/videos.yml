@@ -1,0 +1,32 @@
+---
+- id: "mark-burns-lrug-2011-12-12"
+  title: "HATEOAS"
+  date: "2011-12-12"
+  video_provider: "not_recorded"
+  video_id: "mark-burns-lrug-2011-12-12"
+  description: |-
+    I've been trying to understand the HATEOAS constraint myself. Roy Fielding's blog posts are almost indecipherable to an ordinary developer like me. I think there's a huge gap in relevant easily accessible information on understanding it, and how to implement it, what it's benefits are etc.
+
+    One of the aspects that I've found particularly confusing is the concept of not having out-of-band communication and having discoverable APIs.
+
+    In one particular blog post Roy says:
+
+    "A REST API should be entered with no prior knowledge beyond the initial URI (bookmark) and set of standardized media types that are appropriate for the intended audience (i.e., expected to be understood by any client that might use the API). From that point on, all application state transitions must be driven by client selection of server-provided choices that are present in the received representations or implied by the user’s manipulation of those representations. The transitions may be determined (or limited by) the client’s knowledge of media types and resource communication mechanisms, both of which may be improved on-the-fly (e.g., code-on-demand). [Failure here implies that out-of-band information is driving interaction instead of hypertext.]"
+
+    I'd like to talk about how this limitation on out-of-band information seems both insane and impractical, maybe impossible. But then I may go on to explore how actually it makes some form of sense. And how you can use this knowledge to write APIs that are easier to code to, and whilst not resilient to change in some magical sense, it should allow you to write clients that are easier to adapt and update.
+  speakers:
+    - Mark Burns
+
+- id: "javier-ramirez-lrug-2011-12-12"
+  title: "Usable APIs"
+  date: "2011-12-12"
+  video_provider: "not_recorded"
+  video_id: "javier-ramirez-lrug-2011-12-12"
+  description: |-
+    With the adoption of REST, the proliferation of smartphones and tablets, and the second coming of JavaScript, exposing our applications as a service is now more important than ever.
+
+    Rails or Sinatra make really easy to create a (kinda) RESTful API but, in many occassions, these APIs are designed without really thinking on the developers that will have to use them.
+
+    I want to talk about some of the points that can help making your API more developer-friendly. Some of the areas I'll cover will be discoverability, authentication, headers, formats, parameters, documentation and tools.
+  speakers:
+    - Javier Ramirez

@@ -1,0 +1,33 @@
+---
+- id: "james-smith-sam-pikesley-lrug-2014-04-14"
+  title: "Adventures in early-adoption of open-source code"
+  date: "2014-04-14"
+  slides_url: "http://theodi.github.io/presentations/2014-04-how-to-gds.html"
+  video_provider: "not_recorded"
+  video_id: "james-smith-sam-pikesley-lrug-2014-04-14"
+  description: |-
+    Last year, the ODI found themselves wanting to use the code behind gov.uk for a new project. In this talk James and Sam from the ODI tech team will share their experience of picking up a codebase which was open source, but never really designed for reuse, and what they learned along the way.
+  speakers:
+    - James Smith
+    - Sam Pikesley
+
+- id: "camille-baldock-lrug-2014-04-14"
+  title: "Aspect-Oriented Programming in Ruby"
+  date: "2014-04-14"
+  video_provider: "not_recorded"
+  video_id: "camille-baldock-lrug-2014-04-14"
+  description: |-
+    Many of us developers love arguing about architecture that we dislike and refactoring our code to loosen coupling and weaken dependencies between our objects. Unfortunately, some overarching parts of our applications, like persistence, networking, notifications, logging, auditing, are scattered in our code, forcing us to specific explicit dependencies between them and our domain objects.
+
+    Aspect-oriented programming is a solution to the problem of some features affecting virtually all business requirements, and expresses that problem in a compact and DRY way.
+
+    In this practical talk, Camille will:
+
+    - introduce the basic concepts of AOP, and how it is still relevant even in a non-statically typed language like Ruby
+    - show you how to easily and quickly leverage some AOP principles in your Rails application
+    - play with some AOP-friendly constructs in Ruby 2, in particular TracePoint
+    - walk you through two existing Ruby frameworks to practice Aspect-Oriented Programming
+
+    She will even attempt to prove that not all things coming from the Java world are necessarily bad.
+  speakers:
+    - Camille Baldock

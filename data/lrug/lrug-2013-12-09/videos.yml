@@ -1,0 +1,43 @@
+---
+- id: "tymon-tobolski-lrug-2013-12-09"
+  title: "The solution to assets management in Rails"
+  date: "2013-12-09"
+  video_provider: "not_recorded"
+  video_id: "tymon-tobolski-lrug-2013-12-09"
+  description: |-
+    As Ruby web developers we all know the pain of managing client side assets in (not only) Rails applications, especially in legacy applications. I have had enough and that's how http://rails-assets.org was born. The main purpose of this talk, besides spreading the word, is to show some details of how rails-assets works and to compare it with existing solutions
+  speakers:
+    - Tymon Tobolski
+  additional_resources:
+    - name: "Link"
+      type: "link"
+      title: "Rails Assets"
+      url: "https://rails-assets.org/"
+
+- id: "najaf-ali-lrug-2013-12-09"
+  title: "From a raw TCP socket to a Rails application"
+  date: "2013-12-09"
+  video_provider: "not_recorded"
+  video_id: "najaf-ali-lrug-2013-12-09"
+  description: |-
+    Ruby and associated frameworks are notorious for employing magic in the name of developer productivity, especially when building web applications. In this talk I'm going to peel back the layers of voodoo and show you how we go from a raw TCP socket to a Rails app via rack applications and middleware.
+
+    We'll be coving:
+
+    - Very high level overview of TCP connections and a minimum viable web server with netcat
+    - Rack applications, middleware, and how they're typically chained together
+    - How Rails chains together rack middleware to do what it does (i.e. tracing the code path of a request from class Railtie all the way down to your apps controllers).
+
+    There will be live coding, so I request that you sacrifice a llama or three in the name of the demo gods before the event.
+  speakers:
+    - Najaf Ali
+
+- id: "rosario-rascuna-lrug-2013-12-09"
+  title: "A FizzBuzz to rule them all"
+  date: "2013-12-09"
+  video_provider: "not_recorded"
+  video_id: "rosario-rascuna-lrug-2013-12-09"
+  description: |-
+    Do expressive programming languages influence how we approach a problem? We'll look at a few things you can learn about software developers after analysing 1500 FizzBuzz implementations.
+  speakers:
+    - Rosario Rascuna

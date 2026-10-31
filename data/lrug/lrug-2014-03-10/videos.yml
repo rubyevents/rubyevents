@@ -1,0 +1,41 @@
+---
+- id: "andrew-appleton-lrug-2014-03-10"
+  title: "Rage against the state machine"
+  date: "2014-03-10"
+  slides_url: "https://speakerdeck.com/appltn/rage-against-the-state-machine"
+  video_provider: "not_recorded"
+  video_id: "andrew-appleton-lrug-2014-03-10"
+  description: |-
+    A story about the problems we faced modelling state and recording state changes at GoCardless and how we generalised our solution to those problems into a new gem, Statesman.
+  speakers:
+    - Andrew Appleton
+
+- id: "derek-hill-lrug-2014-03-10"
+  title: "Marketing for Developers"
+  date: "2014-03-10"
+  slides_url: "https://s3.amazonaws.com/eBench/LRUG_marketing_for_developers.pdf"
+  video_provider: "not_recorded"
+  video_id: "derek-hill-lrug-2014-03-10"
+  description: |-
+    I’m a relative newcomer to Ruby, but I’ve got lots of experience in marketing.
+
+    Over the last two years I’ve spoken to many experienced devs about their marketing challenges, and witnessed how simple marketing mistakes can derail a project.
+
+    In the consumer goods industry marketing is a discipline, with structured ways of working through it. I will demonstrate that this structure works well for tech startups, and give you a practical checklist you can apply.
+  speakers:
+    - Derek Hill
+
+- id: "ismael-celis-lrug-2014-03-10"
+  title: "Building a SOA network of daemons with Go, Ruby and ZMQ"
+  date: "2014-03-10"
+  slides_url: "http://www.slideshare.net/ismasan/go-rubyudppubsub"
+  video_provider: "not_recorded"
+  video_id: "ismael-celis-lrug-2014-03-10"
+  description: |-
+    I would like to talk about a series of custom-made infrastructure components that I’ve built over several months to support a hosted e-commerce app that I run in my spare time.
+
+    This consists of a central events hub written in Go, to which the user-facing apps send events, and a series of Go and Ruby scripts subscribing to said events on a ZMQ socket and doing varied things such as analytics, periodical backups and house-keeping.
+
+    The code I’ll show is mostly Go, with some Ruby to illustrate how this all hooks in to my Ruby apps and existing infrastructure. I’ll try to show why Go is great for writing small, focused scripts that support your user facing apps.
+  speakers:
+    - Ismael Celis
