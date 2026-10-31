@@ -423,7 +423,7 @@ module Static
       fake_series = Struct.new(:slug, :file_path) do
         define_method(:event_series_record) { :series_record }
         define_method(:merge_old_events!) { |record| calls << [:merge, slug, record] }
-        define_method(:update_meetup_frequency!) { |record| calls << [:frequency, slug, record] }
+        define_method(:update_frequency!) { |record| calls << [:frequency, slug, record] }
       end
       fake_event = Struct.new(:slug, :file_path, :series, :old_talk_ids) do
         define_method(:migrate_old_talks!) { |record| calls << [:migrate, slug, record] }
@@ -450,7 +450,7 @@ module Static
       fake_series = Struct.new(:slug, :file_path) do
         define_method(:event_series_record) { :series_record }
         define_method(:merge_old_events!) { |_record| }
-        define_method(:update_meetup_frequency!) { |_record| }
+        define_method(:update_frequency!) { |_record| }
       end
       fake_event = Struct.new(:slug, :file_path, :series, :old_talk_ids) do
         define_method(:migrate_old_talks!) { |_record| flunk "should not migrate" }

@@ -271,7 +271,7 @@ module Static
         record = static_series.event_series_record
 
         static_series.merge_old_events!(record)
-        static_series.update_meetup_frequency!(record)
+        static_series.update_frequency!(record)
       rescue => e
         failed << forget_after_failure(static_series.file_path, e, logger)
       end
