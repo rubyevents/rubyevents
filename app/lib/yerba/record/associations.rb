@@ -5,8 +5,10 @@ module Yerba
     module Associations
       extend ActiveSupport::Concern
 
+      # nested class name => [[owner class name, association], ...]; a nested class can belong to several owners,
+      # like Static::Sponsor::Tier in an event's and in a series' sponsors.yml
       def self.nested_owners
-        @nested_owners ||= {}
+        @nested_owners ||= Hash.new { |hash, key| hash[key] = [] }
       end
 
       private
@@ -72,7 +74,7 @@ module Yerba
             if nested_class_name == self.name
               @nested_key = name.to_s
             else
-              Associations.nested_owners[nested_class_name] = [self.name, name]
+              Associations.nested_owners[nested_class_name] |= [[self.name, name]]
             end
 
             define_method(name) do
