@@ -79,6 +79,24 @@ module Static
       parent ? [*parent.ancestors, parent] : []
     end
 
+    def default_image(filename)
+      file = default_images[filename]
+
+      file&.exist? ? file : parent&.default_image(filename)
+    end
+
+    def banner_background
+      self["banner_background"].presence || parent&.banner_background
+    end
+
+    def featured_background
+      self["featured_background"].presence || parent&.featured_background
+    end
+
+    def featured_color
+      self["featured_color"].presence || parent&.featured_color
+    end
+
     def old_ids
       Array(self["old_ids"]).compact_blank
     end
@@ -104,7 +122,6 @@ module Static
         website: website || "",
         twitter: twitter || "",
         kind: kind,
-        frequency: (kind == "meetup") ? event_series.frequency : (frequency || "unknown"),
         slug: slug,
         language: language || "",
         parent: parent&.event_series_record,
@@ -150,7 +167,7 @@ module Static
       import_involvements!(event_series)
 
       merge_old_events!(event_series)
-      update_meetup_frequency!(event_series)
+      update_frequency!(event_series)
 
       event_series
     end
@@ -197,10 +214,8 @@ module Static
       ::EventCheckIn.where(event: event).delete_all
     end
 
-    def update_meetup_frequency!(event_series)
-      return unless kind == "meetup"
-
-      frequency = ::EventSeries.includes(:events).find(event_series.id).computed_meetup_frequency || :unknown
+    def update_frequency!(event_series)
+      frequency = ::EventSeries.includes(:events).find(event_series.id).computed_frequency || :unknown
       event_series.update!(frequency: frequency)
     end
 
@@ -240,6 +255,12 @@ module Static
 
         event.slug_aliases.reload
         event.reload.destroy!
+      end
+
+      (old_event_ids - ::Event.where(slug: old_event_ids).pluck(:slug)).each do |old_slug|
+        next if ::Alias.exists?(slug: old_slug) || ::Alias.exists?(aliasable_type: "EventSeries", name: old_slug)
+
+        event_series.aliases.create!(name: old_slug, slug: old_slug)
       end
     end
 

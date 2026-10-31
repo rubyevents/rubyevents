@@ -13,12 +13,8 @@ class SeriesSchema < ApplicationSchema
 
   string :kind,
     description: "Type of event series",
-    enum: ["conference", "meetup", "retreat", "hackathon", "event", "podcast", "online", "organisation", "workshop"],
-    required: false
-  string :frequency,
-    description: "How often the event occurs",
-    enum: ["yearly", "monthly", "weekly", "irregular", "biweekly", "biyearly", "quarterly"],
-    required: false
+    enum: ["conference", "meetup", "retreat", "hackathon", "event", "organisation", "workshop"],
+    required: true
   boolean :ended,
     description: "The series stopped for good. A meetup group without an upcoming meetup and none in 18 months counts as inactive anyway",
     required: false

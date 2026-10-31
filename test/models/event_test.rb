@@ -55,6 +55,29 @@ class EventTest < ActiveSupport::TestCase
     assert_match "Triangle.rb was a", event.description
   end
 
+  test "description names the speakers of a meetup with one or two talks" do
+    series = EventSeries.create!(name: "Geneva.rb", slug: "genevarb", kind: :meetup)
+    event = Event.create!(name: "Geneva.rb Meetup November 2026", slug: "genevarb-2026-11-18", kind: :meetup, series: series, start_date: 1.week.from_now, end_date: 1.week.from_now)
+
+    [users(:one), users(:two)].each_with_index do |speaker, index|
+      talk = Talk.create!(title: "Talk #{index}", static_id: "talk-#{index}-genevarb", event: event, date: 1.week.from_now, video_provider: "not_recorded", video_id: "talk-#{index}-genevarb")
+      talk.user_talks.create!(user: speaker)
+    end
+
+    assert_match "features 2 talks by #{[users(:one).name, users(:two).name].sort.to_sentence}.", Event.find(event.id).description
+
+    Talk.create!(title: "Talk 2", static_id: "talk-2-genevarb", event: event, date: 1.week.from_now, video_provider: "not_recorded", video_id: "talk-2-genevarb")
+
+    assert_match "features 3 talks from various speakers.", Event.find(event.id).description
+  end
+
+  test "description leaves out a meetup group's frequency for its conference" do
+    series = EventSeries.create!(name: "Belfast Ruby", slug: "belfastruby", kind: :meetup, frequency: :monthly)
+    event = Event.create!(name: "Belfast RubyFest 2026", slug: "belfast-rubyfest-2026", kind: :conference, series: series, start_date: 1.week.from_now, end_date: 1.week.from_now)
+
+    assert_match "Belfast Ruby is a conference", event.description
+  end
+
   test "meetup_inactive? is false for a conference of an ended series" do
     event = events(:railsconf_2025)
 

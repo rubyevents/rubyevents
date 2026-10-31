@@ -51,7 +51,7 @@ homepage. Discover them rather than guessing:
 | Sponsors | homepage, `/sponsors` — logos link out to the sponsor's site |
 | Organizers | homepage, `/team`, `/organizers` — capture role labels in the site's language as-is |
 | CFP | homepage badge, `/cfp` — the CFP host is often a *different domain* |
-| Series | Umbrella/series site and `series.yml`. Check frequency and other series-level metadata. |
+| Series | Umbrella/series site and `series.yml`. Check series-level metadata. |
 
 **Read JSON-LD.** A `<script type="application/ld+json">` block is a structured,
 authoritative summary. Cite it if used.
@@ -61,7 +61,7 @@ Swapcard, Brella); the iframe renders little server-side. If the static page is 
 thin, the iframe's `src` and its embedded JSON usually carry the real schedule.
 
 **Cross-check the series site.** The umbrella site (`https://{series}.org` or equivalent) usually has
-a year-by-year table with authoritative dates and metadata (e.g. frequency). Compare `series.yml` against it.
+a year-by-year table with authoritative dates. Compare `series.yml` and the event folders against it, and list editions we don't have.
 
 **Check the video channel** for published recordings, via `series.yml` →
 `youtube_channels` → `youtube_channel_playlists`. If the event is over but there is no
@@ -74,12 +74,12 @@ playlist yet, `video_provider: "scheduled"` is still correct — say so in conte
 Walk each file against what you gathered. For each, note **file:line** so the user can
 jump straight to it.
 
-- **event.yml** — dates, location string, description wording, `year`, `frequency`, `venue`,
+- **event.yml** — dates, location string, description wording, `venue`,
   `tickets_url`. Cross-check dates against *two* sources before calling
   a mismatch: a site may headline the conference days while a pre-day meetup or a
   post-day excursion sits outside that window. Event dates may match conference days only
   or include pre and post days. If a link is provided to buy tickets, we want to add it.
-- **series.yml** — `frequency` and other metadata vs the series/umbrella site.
+- **series.yml** — metadata vs the series/umbrella site.
 - **schedule.yml** — every `start_time`/`end_time`, item titles and descriptions, day boundaries, **and anything present in the source but absent here**. Slots without items are filled by talks from videos.yml in order.
 - **videos.yml** — talk titles (verbatim), kinds, dates, start/end time, speaker lists, running order, descriptions/summaries (check session detail pages), and every talk on the site that's missing here.
 - **cfp.yml** — call for papers open date, close date, and link. **Often, the cfp link is removed once it closes.** If the open/close data cannot be confirmed, trust the file as the authoritative source. Do not raise missing open/close dates or broken cfp links as discrepancies. Only raise them if there is a conflict.

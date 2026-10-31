@@ -30,12 +30,10 @@ class EventSchema < ApplicationSchema
   string :end_time, description: "End time of a one-day event, like a meetup (HH:MM, in the event's timezone)", required: false, pattern: "^\\d{2}:\\d{2}$"
   string :recordings_published_date, description: "Date when the event's recordings were published (YYYY-MM-DD format)", required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
   string :announced_on, description: "Date when the event was announced (YYYY-MM-DD format)", required: false, pattern: "^\\d{4}-\\d{2}-\\d{2}$"
-  integer :year, description: "Year of the event", required: false
   string :date_precision,
     description: "Precision of the date (when exact dates are unknown)",
     enum: ["year", "month", "day"],
     required: false
-  string :frequency, description: "How often the event occurs (for recurring meetups)", required: false
 
   string :location, description: "Location in 'City, Country' format (e.g., 'Detroit, MI' or 'Tokyo, Japan')"
   string :timezone, description: "IANA time zone identifier, e.g. America/New_York", enum: TZInfo::Timezone.all_identifiers

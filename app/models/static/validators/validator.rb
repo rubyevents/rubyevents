@@ -53,7 +53,6 @@ class Static::Validators::Validator
       Static::Validators::Schema,
       Static::Validators::IdMatchesFolder,
       Static::Validators::MeetupSeriesName,
-      Static::Validators::MeetupSeriesFrequency,
       Static::Validators::SeriesDefaultColors
     ]
   end

@@ -48,25 +48,10 @@
         "retreat",
         "hackathon",
         "event",
-        "podcast",
-        "online",
         "organisation",
         "workshop"
       ],
       "description": "Type of event series"
-    },
-    "frequency": {
-      "type": "string",
-      "enum": [
-        "yearly",
-        "monthly",
-        "weekly",
-        "irregular",
-        "biweekly",
-        "biyearly",
-        "quarterly"
-      ],
-      "description": "How often the event occurs"
     },
     "ended": {
       "type": "boolean",
@@ -1046,7 +1031,8 @@
   },
   "required": [
     "id",
-    "name"
+    "name",
+    "kind"
   ],
   "additionalProperties": false
 }

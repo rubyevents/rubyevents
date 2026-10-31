@@ -57,6 +57,8 @@ class EventSeries < ApplicationRecord
   has_many :event_involvements, dependent: :destroy
   belongs_to :parent, class_name: "EventSeries", optional: true, inverse_of: :children
   has_many :children, class_name: "EventSeries", foreign_key: :parent_id, inverse_of: :parent, dependent: :nullify
+  has_many :subscriptions, as: :subscribable, dependent: :destroy
+  has_many :subscribers, through: :subscriptions, source: :user
   has_object :static_metadata
 
   # validations
@@ -148,14 +150,20 @@ class EventSeries < ApplicationRecord
     frequency_text = if organisation?
       ""
     elsif unknown?
-      "#{tense} a #{kind} that "
+      "#{tense} #{kind_with_frequency} that "
     else
-      "#{tense} #{irregular? ? "an" : "a"} #{frequency} #{kind} and "
+      "#{tense} #{kind_with_frequency} and "
     end
 
     <<~DESCRIPTION
       #{name} #{frequency_text}hosted #{event_type}#{time_range}. We have currently indexed #{pluralize(non_cancelled.sum(&:talks_count), "#{name} talk")}.
     DESCRIPTION
+  end
+
+  def kind_with_frequency(kind = self.kind)
+    noun = [(frequency if !unknown? && meetup? == (kind == "meetup")), kind].compact.join(" ")
+
+    "#{noun.match?(/\A[aeiou]/) ? "an" : "a"} #{noun}"
   end
 
   def to_meta_tags
@@ -230,6 +238,25 @@ class EventSeries < ApplicationRecord
     return :irregular if spread > 1
 
     MEETUP_FREQUENCIES.find { |limit, _frequency| median <= limit }.last
+  end
+
+  PANDEMIC_YEARS = [2020, 2021].freeze
+
+  def computed_frequency
+    return computed_meetup_frequency if meetup?
+    return nil if organisation?
+
+    editions = events.reject { |event| event.cancelled? || event.meetup? }
+    editions_per_year = editions.filter_map { |event| (event.start_date || event.date)&.year }.tally
+    years = editions_per_year.keys.sort.last(4)
+    return nil if years.size < 3
+
+    skipped_years = years.each_cons(2).flat_map { |earlier, later| ((earlier + 1)...later).to_a } - PANDEMIC_YEARS
+    return nil if skipped_years.any?
+
+    counts = years.map { |year| editions_per_year[year] }.sort
+
+    (counts[(counts.size - 1) / 2] >= 2) ? :biyearly : :yearly
   end
 
   def meetup_frequency

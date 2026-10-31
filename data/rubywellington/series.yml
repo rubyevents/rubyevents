@@ -14,6 +14,10 @@ language: "English"
 default_country_code: "NZ"
 meetup: "https://www.meetup.com/rubywellington/"
 description: "Wellington's Ruby community, formerly known as Wellrailed (running since 2006). Meets roughly every two months; most talks are recorded and published on the Ruby Wellington YouTube channel."
+luma: "https://luma.com/ruby-wellington"
+banner_background: "#FFFFFF"
+featured_background: "#FFFFFF"
+featured_color: "#CA1D01"
 coordinates:
   latitude: -41.2924
   longitude: 174.7787
@@ -29,3 +33,6 @@ feeds:
   - type: "ical"
     url: "https://www.meetup.com/rubywellington/events/ical/"
     name: "Meetup.com"
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-3Hc7b1mmHMQnF7Q"
+    name: "Luma"

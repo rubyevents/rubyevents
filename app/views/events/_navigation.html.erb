@@ -5,7 +5,7 @@
   <div class="mb-2 flex justify-end"><%= yaml_link %></div>
 <% end %>
 
-<div class="<%= meetup ? "mb-6 flex flex-wrap items-center justify-between gap-2" : "mb-12" %>">
+<div id="event-tabs" class="<%= meetup ? "mb-6 flex flex-wrap items-center justify-between gap-2" : "mb-12" %>">
   <div role="tablist" class="tabs tabs-bordered">
     <%= active_link_to "Overview", event_path(event), class: "tab", active_class: "tab-active", role: "tab" %>
 

@@ -23,9 +23,7 @@ class EventSeries::StaticMetadata < ActiveRecord::AssociatedObject
   end
 
   def default_image(filename)
-    file = static_repository&.default_images&.[](filename)
-
-    file if file&.exist?
+    static_repository&.default_image(filename)
   end
 
   def description
@@ -43,17 +41,17 @@ class EventSeries::StaticMetadata < ActiveRecord::AssociatedObject
   end
 
   def featured_color
-    static_repository.try(:[], "featured_color").presence
+    static_repository.try(:featured_color).presence
   end
 
   def accent_color
-    [featured_color, static_repository.try(:[], "featured_background")].find { |color| accent_color?(color) }
+    [featured_color, static_repository.try(:featured_background)].find { |color| accent_color?(color) }
   end
 
   def banner_background
     return "#081625" unless default_image("banner.webp")
 
-    static_repository.try(:[], "banner_background").presence || "#081625"
+    static_repository.try(:banner_background).presence || "#081625"
   end
 
   def own_links

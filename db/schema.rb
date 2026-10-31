@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_10_27_130000) do
+ActiveRecord::Schema[8.2].define(version: 2026_10_31_120000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -259,16 +259,6 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_27_130000) do
     t.index ["slug"], name: "index_events_on_slug", unique: true
   end
 
-  create_table "favorite_users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.integer "favorite_user_id", null: false
-    t.text "notes"
-    t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.index ["favorite_user_id"], name: "index_favorite_users_on_favorite_user_id"
-    t.index ["user_id"], name: "index_favorite_users_on_user_id"
-  end
-
   create_table "geocode_results", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "query", null: false
@@ -391,6 +381,18 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_27_130000) do
     t.index ["event_id"], name: "index_sponsors_on_event_id"
     t.index ["event_series_id"], name: "index_sponsors_on_event_series_id"
     t.index ["organization_id"], name: "index_sponsors_on_organization_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "notes"
+    t.integer "subscribable_id", null: false
+    t.string "subscribable_type", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["subscribable_type", "subscribable_id"], name: "index_subscriptions_on_subscribable"
+    t.index ["user_id", "subscribable_type", "subscribable_id"], name: "idx_on_user_id_subscribable_type_subscribable_id_fb68f3bd3a", unique: true
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "talk_topics", force: :cascade do |t|
@@ -596,14 +598,13 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_27_130000) do
   add_foreign_key "event_series", "event_series", column: "parent_id"
   add_foreign_key "events", "event_series"
   add_foreign_key "events", "events", column: "canonical_id"
-  add_foreign_key "favorite_users", "users"
-  add_foreign_key "favorite_users", "users", column: "favorite_user_id"
   add_foreign_key "password_reset_tokens", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "speakers", "speakers", column: "canonical_id"
   add_foreign_key "sponsors", "event_series"
   add_foreign_key "sponsors", "events"
   add_foreign_key "sponsors", "organizations"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "talk_topics", "talks"
   add_foreign_key "talk_topics", "topics"
   add_foreign_key "talk_transcripts", "talks"

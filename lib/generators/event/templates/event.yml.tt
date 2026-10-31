@@ -33,9 +33,6 @@ start_time: "<%= options[:start_time] %>"
 <%- if options[:end_time] -%>
 end_time: "<%= options[:end_time] %>"
 <%- end -%>
-<%- if @year -%>
-year: <%= @year %>
-<%- end -%>
 <%- if options[:date_precision] -%>
 date_precision: "<%= options[:date_precision] %>"
 <%- end -%>

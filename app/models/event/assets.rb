@@ -128,7 +128,7 @@ class Event::Assets < ActiveRecord::AssociatedObject
   end
 
   def series_default_file(filename)
-    static_event&.series&.default_images&.[](filename)
+    static_event&.series&.default_image(filename)
   end
 
   def image_path(file)

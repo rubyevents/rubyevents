@@ -43,7 +43,6 @@ class EventGeneratorTest < Rails::Generators::TestCase
       assert_match(/title: "RubyConf 2021"/, content)
       assert_match(/start_date: "2021-11-13"/, content)
       assert_match(/end_date: "2021-11-15"/, content)
-      assert_match(/year: 2021/, content)
       assert_match(/location: "online"/, content)
       assert_match(/coordinates: false/, content)
     end
@@ -82,7 +81,6 @@ class EventGeneratorTest < Rails::Generators::TestCase
       assert_match(/end_date: "2022-11-30"/, content)
       assert_match(/announced_on: "2022-01-01"/, content)
       assert_match(/recordings_published_date: "2022-12-01"/, content)
-      assert_match(/year: 2022/, content)
       assert_match(/kind: "retreat"/, content)
       assert_match(/tickets_url: "https:\/\/example.com\/tickets"/, content)
       assert_match(/website: "https:\/\/example.com\/rubyconf-2022"/, content)
@@ -165,7 +163,6 @@ class EventGeneratorTest < Rails::Generators::TestCase
       assert_match(/start_date: "2026-03-04"/, content)
       assert_match(/end_date: "2026-03-04"/, content)
       assert_match(%r{meetup: "https://www.meetup.com/tokyo-rb/events/123/"}, content)
-      assert_no_match(/year:/, content)
       assert_no_match(/website:/, content)
     end
   end

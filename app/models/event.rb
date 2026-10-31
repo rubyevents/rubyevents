@@ -390,18 +390,26 @@ class Event < ApplicationRecord
     end
 
     @description = <<~DESCRIPTION
-      #{event_name} #{meetup_inactive? ? "was" : "is"} a #{static_metadata.frequency} #{kind}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
+      #{event_name} #{meetup_inactive? ? "was" : "is"} #{series.kind_with_frequency(kind)}#{held_in_sentence}#{talks_text}#{keynote_speakers_text}.
     DESCRIPTION
   end
 
   def keynote_speakers_text
+    return "" if talks.size <= 2
+
     keynote_speakers.size.positive? ? %(, including keynotes by #{keynote_speakers.map(&:name).to_sentence}) : ""
   end
 
   def talks_text
     return "" unless talks.size.positive?
 
-    " and #{(meetup_inactive? || (meetup? && past?)) ? "featured" : "features"} #{talks.size} #{"talk".pluralize(talks.size)} from various speakers"
+    speakers_text = if talks.size > 2
+      " from various speakers"
+    elsif (speaker_names = speakers.order(:name).pluck(:name)).any?
+      " by #{speaker_names.to_sentence}"
+    end
+
+    " and #{(meetup_inactive? || (meetup? && past?)) ? "featured" : "features"} #{talks.size} #{"talk".pluralize(talks.size)}#{speakers_text}"
   end
 
   def to_meta_tags

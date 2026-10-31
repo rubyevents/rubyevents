@@ -21,6 +21,21 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "UID:RUBYEVENTS-#{@event.id}"
   end
 
+  test "should only list conferences in the ics feed" do
+    series = EventSeries.create!(name: "Test.rb", slug: "testrb", kind: :meetup)
+    meetup = Event.create!(name: "Test.rb Meetup", slug: "testrb-2030-01-14", series: series, kind: :meetup, start_date: 1.week.from_now, end_date: 1.week.from_now)
+
+    get events_url(format: :ics)
+
+    assert_includes response.body, "UID:RUBYEVENTS-#{@event.id}"
+    assert_not_includes response.body, "UID:RUBYEVENTS-#{meetup.id}"
+
+    get events_url(format: :ics, kind: "meetup")
+
+    assert_includes response.body, "UID:RUBYEVENTS-#{meetup.id}"
+    assert_not_includes response.body, "UID:RUBYEVENTS-#{@event.id}"
+  end
+
   test "should list past meetups among past events" do
     series = EventSeries.create!(name: "Test.rb", slug: "testrb", kind: :meetup)
     meetup = Event.create!(name: "Test.rb Meetup", slug: "testrb-2020-01-14", series: series, kind: :meetup, start_date: Date.yesterday, end_date: Date.yesterday)

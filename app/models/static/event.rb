@@ -469,7 +469,7 @@ module Static
       relative_directory = Pathname.new(directory).relative_path_from(Pathname.new(path_root.to_s))
 
       %(The series "#{to[:series_id]}" doesn't exist yet (no #{relative_directory}/series.yml). ) +
-        %(Create it first, for example in `bin/rails console` with `Static::EventSeries.create(name: "#{to[:series_id].titleize}", slug: "#{to[:series_id]}")`, ) +
+        %(Create it first, for example in `bin/rails console` with `Static::EventSeries.create(name: "#{to[:series_id].titleize}", slug: "#{to[:series_id]}", kind: "#{kind}")`, ) +
         %(then move the event again.)
     end
 

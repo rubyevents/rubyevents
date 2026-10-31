@@ -39,10 +39,6 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
     kind == "hackathon"
   end
 
-  def frequency
-    static_repository&.frequency || event.series.frequency
-  end
-
   def start_date
     @start_date ||= static_repository.start_date.present? ? static_repository.start_date : event.talks.minimum(:date)
   rescue => _e
@@ -57,12 +53,6 @@ class Event::StaticMetadata < ActiveRecord::AssociatedObject
 
   def date_precision
     static_repository.date_precision || "day"
-  end
-
-  def year
-    static_repository.year.present? ? static_repository.year : event.talks.first.try(:date).try(:year)
-  rescue => _e
-    event.talks.first.try(:date).try(:year)
   end
 
   def featured_background?

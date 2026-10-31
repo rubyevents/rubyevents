@@ -123,6 +123,9 @@ class User < ApplicationRecord
   has_many :interested_events, -> { where(event_participations: {role: :interested}) },
     through: :event_participations, source: :event
 
+  has_many :subscriptions, dependent: :destroy
+  has_many :subscribed_event_series, through: :subscriptions, source: :subscribable, source_type: "EventSeries"
+
   def checked_in_events
     Event.where(id: EventCheckIn.where(connect_id: passports.select(:uid)).select(:event_id))
   end
@@ -146,7 +149,8 @@ class User < ApplicationRecord
 
   # Favorite user associations
   has_many :favorite_users, dependent: :destroy, inverse_of: :user
-  has_many :favorited_by, class_name: "FavoriteUser", foreign_key: "favorite_user_id", inverse_of: :favorite_user
+  has_many :favorited_by, class_name: "FavoriteUser", foreign_key: "subscribable_id", inverse_of: :favorite_user,
+    dependent: :destroy
 
   belongs_to :canonical, class_name: "User", optional: true
   belongs_to :city_record, class_name: "City", optional: true, inverse_of: false,

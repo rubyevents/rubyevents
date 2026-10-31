@@ -27,7 +27,6 @@ website: https://myconference.org/
 twitter: myconference
 youtube_channel_name: myconference
 kind: conference # conference, meetup, retreat, or hackathon
-frequency: yearly # yearly, monthly, quarterly, etc.
 language: english
 default_country_code: US
 youtube_channel_id: "" # Will be filled by prepare_series.rb

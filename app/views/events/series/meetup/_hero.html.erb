@@ -1,4 +1,4 @@
-<%# locals: (series:, stats:) %>
+<%# locals: (series:, stats:, subscription:) %>
 
 <% links = series.static_metadata.own_links %>
 <% time_zone = series.static_metadata.time_zone %>
@@ -18,6 +18,8 @@
         <%= (field == "website") ? "Visit website" : "Join on #{meetup_link_label(field)}" %>
       <% end %>
     <% end %>
+
+    <%= render "events/series/follow_button", event_series: series, subscription: subscription %>
 
     <% if (yaml_link = data_file_link_for(series)) %>
       <span class="ml-2"><%= yaml_link %></span>
