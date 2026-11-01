@@ -4,6 +4,7 @@ old_talk_ids:
   - "railshoeck-meetup-december-2019"
   - "railshock-december-2019"
 title: "Railshöck Meetup December 2019"
+subtitle: "Icecast stream parsing with Ruby"
 location: "Zurich, Switzerland"
 timezone: "Europe/Zurich"
 kind: "meetup"
@@ -12,14 +13,24 @@ description: |-
 
   In this presentation, we are going to see the challenges encountered while building a production-ready airplay matching system, including:
 
-  * writing a Ruby parser for the Icecast protocol from scratch
-  * working around peculiarities in Net::HTTP
-  * threading, queues and ActiveRecord connection pools
-  * gracefully handling network errors
-  * fuzzy matching with PostgreSQL
+  - writing a Ruby parser for the Icecast protocol from scratch
+  - working around peculiarities in Net::HTTP
+  - threading, queues and ActiveRecord connection pools
+  - gracefully handling network errors
+  - fuzzy matching with PostgreSQL
+
+  ---
+
+  18:30 - 18:45
+  Arriving, chat
+
+  19:00 - 19:45
+  Talk by Dimiter Petrov
+
+  19:45 onwards
+  Discussions, drinks
 start_date: "2019-12-04"
 end_date: "2019-12-04"
+start_time: "18:30"
+end_time: "20:30"
 meetup: "https://www.meetup.com/rubyonrails-ch/events/266309675"
-coordinates:
-  latitude: 47.3768866
-  longitude: 8.541694
