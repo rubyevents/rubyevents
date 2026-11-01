@@ -1,6 +1,1380 @@
-# TODO: Add talks and videos
-
 # Website: -
 # Videos: -
 ---
-[]
+
+- id: "eustaquio-rangel-rubyconf-brazil-2015"
+  title: "Free, even without noticing"
+  kind: "keynote"
+  date: "2015-09-18"
+  start_time: "09:00"
+  end_time: "10:00"
+  language: "Portuguese"
+  video_provider: "not_recorded"
+  video_id: "eustaquio-rangel-rubyconf-brazil-2015"
+  description: |-
+    How the past decades helped transform and create developers and tools using free/open source spontaneously.
+  speakers:
+    - Eustáquio Rangel
+
+- id: "nando-vieira-rubyconf-brazil-2015"
+  title: "Creating maintainable Rails apps"
+  kind: "keynote"
+  date: "2015-09-18"
+  start_time: "10:00"
+  end_time: "10:45"
+  language: "Portuguese"
+  video_provider: "not_recorded"
+  video_id: "nando-vieira-rubyconf-brazil-2015"
+  description: |-
+    Developing Rails apps is a joy. The framework abstracts lots of boring parts and gives you the tools to implement complex web applications faster. But it doesn’t take long, until you can't implement new features without tearing your hair out. What about upgrading your project to a new Rails or Ruby version? Some projects just can't get there.
+
+    In this talk we'll see how you can avoid this trap, creating apps that can survive to the test of time.
+  speakers:
+    - Nando Vieira
+
+- id: "regina-chamma-rubyconf-brazil-2015"
+  title: "Google Play and the mobile market’s opportunities"
+  date: "2015-09-18"
+  start_time: "10:00"
+  end_time: "10:45"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "regina-chamma-rubyconf-brazil-2015"
+  description: "" # TODO
+  speakers:
+    - Regina Chamma
+
+- id: "george-guimaraes-rubyconf-brazil-2015"
+  title: "Common architectures we see in Rails apps in 30 minutes or less"
+  date: "2015-09-18"
+  start_time: "10:00"
+  end_time: "10:45"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  slides_url: "https://speakerdeck.com/plataformatec/arquiteturas-comuns-de-apps-rails-at-rubyconf-br-2015"
+  video_provider: "not_recorded"
+  video_id: "george-guimaraes-rubyconf-brazil-2015"
+  description: |-
+    I want to talk about pros and cons of various architectures we find out there and how they can fit into the timeline of your project/product.
+
+    We will give you the names of the various architectures out there, so you can what's what, and what's out there. Fantastic for those just starting out.
+
+    - Monolithics
+
+    - Shared database
+
+    - Services
+
+    - (micro)services
+
+    - Distributed architecture via messages
+
+    - Other integration patterns
+  speakers:
+    - George Guimarães
+
+- id: "fernando-hamasaki-de-amorim-bruno-costa-rubyconf-brazil-2015"
+  title: "Go for Rubyist"
+  date: "2015-09-18"
+  start_time: "10:00"
+  end_time: "10:45"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "fernando-hamasaki-de-amorim-bruno-costa-rubyconf-brazil-2015"
+  description: |-
+    Go is a performant programming language with simple syntax, strongly typed, compiles fast and efficiently, native support, with a high-level support for concurrency, among other features.
+
+    Let's explore Go from Ruby programmers point of view, comparing the approaches of each language in common situations, such as dependency management, error handling and testing.
+
+    We'll look at the interoperability between the two languages, showing where the concepts used in Go can be applied to Ruby code.
+
+    We will examine Go's concurrency model based on CSP and when we can extend our Ruby on Rails projects with Go applications.
+
+    In addition, we will show lots of Go and Ruby code.
+  speakers:
+    - Fernando Hamasaki de Amorim
+    - Bruno Costa
+
+- id: "renan-ranelli-rubyconf-brazil-2015"
+  title: "Don't fear the GIL: What Ruby has in the box for concurrent programming"
+  date: "2015-09-18"
+  start_time: "11:15"
+  end_time: "12:00"
+  language: "Portuguese"
+  track: "Auditorium 1"
+  slides_url: "https://speakerdeck.com/rranelli/rubyconf-brazil-2015-dont-fear-the-gil-what-ruby-has-in-the-box-for-concurrent-programming"
+  video_provider: "not_recorded"
+  video_id: "renan-ranelli-rubyconf-brazil-2015"
+  description: |-
+    It's not uncommon to hear people saying that concurrent programming is hard, especially in Ruby. In the recent years we have seen the focus in concurrent programming rise more and more.
+
+    The basic assumption that Ruby is bad for concurrency has made many programmers look at other languages like Erlang, Scala and Go without actually understanding what Ruby has in the box for concurrent programming.
+
+    But do we really need to look outside of Ruby to find concurrency primitives that can make our work easier? From my experience, there is *a lot* of low hanging fruit out there that the average Ruby developer may miss.
+
+    In this talk I will talk briefly about the fundamentals of concurrent programming and show you how Ruby fares in the realm. I will talk about different models of approaching concurrency like Threads, Actors and Fibers.
+
+    In particular I will focus on how you can take advantage of simple abstractions built above threads showing examples of production code. I will also try to point out the main points and some of the many gotchas required to succeed in this task.
+
+    I will also talk about how the same example could've been implemented using the actor model and contrast both alternatives highlighting their pros and cons.
+  speakers:
+    - Renan Ranelli
+
+- id: "rubens-stulzer-rubyconf-brazil-2015"
+  title: "Using Rails to build Growth Hacks fast"
+  date: "2015-09-18"
+  start_time: "11:15"
+  end_time: "12:00"
+  language: "Portuguese"
+  track: "Auditorium 2"
+  video_provider: "not_recorded"
+  video_id: "rubens-stulzer-rubyconf-brazil-2015"
+  description: |-
+    For this talk I will present a strategy to use Rails to build Growth Hacks faster.
+  speakers:
+    - Rubens Stulzer
+
+- id: "neto-marin-rubyconf-brazil-2015"
+  title: "Simplifying your code using Data Binding"
+  date: "2015-09-18"
+  start_time: "11:15"
+  end_time: "12:00"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "neto-marin-rubyconf-brazil-2015"
+  description: "" # TODO
+  speakers:
+    - Neto Marin
+
+- id: "daniel-romero-rubyconf-brazil-2015"
+  title: "Ruby on Docker, containerized your Ruby applications"
+  date: "2015-09-18"
+  start_time: "11:15"
+  end_time: "12:00"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "daniel-romero-rubyconf-brazil-2015"
+  description: |-
+    Docker is dramatically changing the way we package and deploy applications. It simplifies your infrastructure by running lightweight containers over your kernel userspace, giving you control to decide what to run without affecting other parts of your server.
+
+    Working with Docker, your Ruby applications will have an excellent platform that besides providing an isolated environment has a low overhead.
+
+    In this talk, you will have a brief introduction to the Docker ecosystem, knowing the processes and tools needed to pack your Ruby application in a container.
+  speakers:
+    - Daniel Romero
+
+- id: "guilherme-matsumoto-rubyconf-brazil-2015"
+  title: "Save money and increase productivity by NOT saying people what to do"
+  date: "2015-09-18"
+  start_time: "11:15"
+  end_time: "12:00"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "guilherme-matsumoto-rubyconf-brazil-2015"
+  description: |-
+    I'll talk about the mini-projects and hacks that we made at Resultados Digitais in our free time that increased our productivity, saved money and even our boss' marriage.
+
+    Those projects didn't needed any order, prioritization nor planning, there were just made.
+
+    I'll list them, showing the problem, how much time were spent, how much benefit they brought.
+  speakers:
+    - Guilherme Matsumoto
+
+- id: "hugo-barauna-rubyconf-brazil-2015"
+  title: "Test piramids: rethinking your testing strategy and tactics."
+  date: "2015-09-18"
+  start_time: "12:00"
+  end_time: "12:45"
+  language: "Portuguese"
+  track: "Auditorium 1"
+  slides_url: "https://speakerdeck.com/plataformatec/piramide-de-testes-escrevendo-testes-com-qualidade-at-rubyconf-2015"
+  video_provider: "not_recorded"
+  video_id: "hugo-barauna-rubyconf-brazil-2015"
+  description: |-
+    Rails brought to us the benefit of testing by default, but this was 10 years ago, and now the question is: what's the next step? The first step is to think on your testing strategy. What to test and in which layer. You will learn about the concept of "testing piramid", and how this affects your aproach to testing.
+
+    We will see what makes a good test, that DRY in the testing world is not the same as in the "production code" world, we will also see examples of "test smells", like the "mystery guest".
+
+    Lets break the myth that Cucumber is worthless, you will see that you don't need it in all your acceptance tests, learn when to use it, how to use it, and the concept of executable specification behind this approach.
+
+    Summing it up, you will see various foundation examples, patterns and ideias to take the next step on improving your abilities to write and organize tests.
+
+    This talk is based on my own experience in various projects and on the studies developed while writing my book about TDD/BDD in Ruby.
+  speakers:
+    - Hugo Baraúna
+
+- id: "rafael-sales-rubyconf-brazil-2015"
+  title: "Is your Web Application robust?"
+  date: "2015-09-18"
+  start_time: "12:00"
+  end_time: "12:45"
+  language: "Portuguese"
+  track: "Auditorium 2"
+  video_provider: "not_recorded"
+  video_id: "rafael-sales-rubyconf-brazil-2015"
+  description: |-
+    When hearing ""I built a robust Web Application"" many people abstract what's behind ""robust"" and just imagine it's something that will survive earthquakes - I dare to say it's harder to survive a non-robust application since I never faced an earthquake. Do we just want to be vain when saying that we built something robust? Well, what I want is to be proud when saying that I built a Web Application that meets a minimum set of properties which can be summarized as robustness.
+
+    So, are we verifying the right properties to guarantee that a Web Application is robust? It's common to demand that third-party services meet Distributed Systems properties, but we usually forget offering the same when designing our Web Applications, so how can we guarantee our users won't get disappointed?
+
+    Let's establish which properties are fundamental to say that a production Web Application architecture is robust. We will also revisit idempotency, resilience and some topics of Distributed Systems contextualized in common architectures of Web Applications to help us identify blind spots that need to be addressed.
+
+    I'm challenging you to be proud when saying that you built something robust!
+  speakers:
+    - Rafael Sales
+
+- id: "breno-araujo-rubyconf-brazil-2015"
+  title: "Introduction to DeepLinks and App Indexing"
+  date: "2015-09-18"
+  start_time: "12:00"
+  end_time: "12:45"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "breno-araujo-rubyconf-brazil-2015"
+  description: |-
+    With the increasing volume of applications created every day, more and more necessary to make the adoption of strategies to retain and acquire new users. In this lecture we will demonstrate how to carry out the implementation of Indexing App on Android devices.
+  speakers:
+    - Breno Araújo
+
+- id: "flavia-fortes-rubyconf-brazil-2015"
+  title: "Learn from my mistakes"
+  date: "2015-09-18"
+  start_time: "12:00"
+  end_time: "12:45"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "flavia-fortes-rubyconf-brazil-2015"
+  description: |-
+    The main goal of this talk is to indicate what are the most common mistakes every programmer makes in the beginning of their career. Despite the fact that its directed to beginners, a lot of the presented mistakes are as well produced by experienced and seniors developers. Also, many tips you will hear suit other programming languages and frameworks besides Ruby on Rails. The content of this talk guides you listeners to value many good practices, including TDD/BDD, The Single Responsibility Principle to little ways of improving your code readability.
+  speakers:
+    - Flavia Fortes
+
+- id: "adriano-dadario-rubyconf-brazil-2015"
+  title: "Evolving an application with the use of Elasticsearch"
+  date: "2015-09-18"
+  start_time: "12:00"
+  end_time: "12:45"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "adriano-dadario-rubyconf-brazil-2015"
+  description: |-
+    Building an application using ElasticSearch for vacancy announcements queries and aggregations (former facets). How to separate shards and the importance of replicas. A case of migrating local servers to the Amazon Cloud and how safe is it to store your data in elastic? What we should say, is it safe to use ElasticSearch as a database? And for the future, isolating the cluster using microservices.
+
+    Topics Covered:
+
+    Building an application with ElasticSearch
+
+    Creating queries and aggregations (of facets to aggregations)
+
+    Setting shards and replicas
+
+    Migrating from local servers to AWS
+
+    How safe is your data
+
+    Isolating the cluster with microservices
+  speakers:
+    - Adriano Dadario
+
+- id: "tiago-freire-bruno-bacarini-rubyconf-brazil-2015"
+  title: "Why AMS Adapters, in Rails 5, are so important to a wonderful RESTful API"
+  date: "2015-09-18"
+  start_time: "14:15"
+  end_time: "15:00"
+  language: "Portuguese"
+  track: "Auditorium 1"
+  video_provider: "not_recorded"
+  video_id: "tiago-freire-bruno-bacarini-rubyconf-brazil-2015"
+  description: |-
+    Web APIs have revolutionized all kinds of products and services, and still continue to do so.
+
+    Nowadays the most relevant architecture is REST along with the JSON media type. Furthermore, lots of specifications to serialize those media types are appearing. JSON API has released its first version last May.
+
+    We are going to talk about the importance of those Active Model Serializers (AMS) format adapters, now the default on Rails 5. In additional, we would like to show how AMS can help us implement hypermedia controls and how it can affect your RESTful API.
+
+    Topics:
+
+    - Hypermedia Controls in Restful web services
+
+    Ref: http://martinfowler.com/articles/richardsonMaturityModel.html)
+
+    - Json formats(Json-api, HAL)
+
+    Ref: http://stateless.co/hal_specification.html - http://jsonapi.org/
+
+    - Rails 5 and Rails-api
+
+    Ref: https://github.com/rails/rails/pull/19832
+
+    - Active Model Serializers(AMS) and Adapters
+
+    Ref: https://github.com/rails-api/active_model_serializers
+  speakers:
+    - Tiago Freire
+    - Bruno Bacarini
+
+- id: "ronie-uliana-rubyconf-brazil-2015"
+  title: "Ruby + Linux Pipe + Graph Database + Hard Work = The Looks of the Job Market!"
+  date: "2015-09-18"
+  start_time: "14:15"
+  end_time: "15:00"
+  language: "Portuguese"
+  track: "Auditorium 2"
+  video_provider: "not_recorded"
+  video_id: "ronie-uliana-rubyconf-brazil-2015"
+  description: |-
+    We use Ruby to analyze information of 9 million curriculum at VAGAS.com and to give a vision of how the job market behaves.
+
+    Today we know what are the most common career paths, the best salaries, the most effective graduations and a lot more.
+
+    Here I will tell you about my experience while creating all of this, the diffculties, the successes and the catastrophic failures. Learn the pros and cons of architectures on "Flow Based Programming" using pipes (it worked!!!), how it is to work with graph databases (Neo4j and later OrientDB).
+
+    I'll comment about all that I've learned and also about some curiosities that we found along the road.
+  speakers:
+    - Ronie Uliana
+
+- id: "mateus-pontes-rubyconf-brazil-2015"
+  title: "Your app in a next level with Google Maps API"
+  date: "2015-09-18"
+  start_time: "14:15"
+  end_time: "15:00"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "mateus-pontes-rubyconf-brazil-2015"
+  description: |-
+    Changing the horizon of your application with the usage of Google Maps.
+  speakers:
+    - Mateus Pontes
+
+- id: "lauro-caetano-rubyconf-brazil-2015"
+  title: "Learning Elixir by examples"
+  date: "2015-09-18"
+  start_time: "14:15"
+  end_time: "15:00"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "lauro-caetano-rubyconf-brazil-2015"
+  description: |-
+    In this live coding session we will see some of Elixir's features while solving a small problem.
+  speakers:
+    - Lauro Caetano
+
+- id: "mauro-george-rubyconf-brazil-2015"
+  title: "Learning with open source projects"
+  date: "2015-09-18"
+  start_time: "14:15"
+  end_time: "15:00"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "mauro-george-rubyconf-brazil-2015"
+  description: |-
+    We usually use books, classes, blog posts to learn. In this talk we'll see how we can learn, colaborativelly, with open source projects.
+
+    We will see:
+  speakers:
+    - Mauro George
+
+- id: "thiago-scalone-rubyconf-brazil-2015"
+  title: "How to write rich embedded applications in Ruby"
+  date: "2015-09-18"
+  start_time: "15:00"
+  end_time: "15:45"
+  language: "Portuguese"
+  track: "Auditorium 1"
+  video_provider: "not_recorded"
+  video_id: "thiago-scalone-rubyconf-brazil-2015"
+  description: |-
+    It is possible to have a embedded application written in ruby. In this talk you will discovery how to write rich embedded applications using ruby and avoiding C or any low level programming language. Let's discuss a number of best practices(Logging, Testing, Deploying and etc), tools(Artoo, Mruby) and platforms(raspberry pi, arduino and Pebble).
+  speakers:
+    - Thiago Scalone
+
+- id: "cesar-luiz-dos-anjos-junior-rubyconf-brazil-2015"
+  title: "Rails and Javascript - Do it right!"
+  date: "2015-09-18"
+  start_time: "15:00"
+  end_time: "15:45"
+  language: "Portuguese"
+  track: "Auditorium 2"
+  video_provider: "not_recorded"
+  video_id: "cesar-luiz-dos-anjos-junior-rubyconf-brazil-2015"
+  description: |-
+    This talk will show you how to build a Rails app (not SPA) with an organized Javascript structure.
+
+    You will see concepts like dependency injection, single point entry, dispatcher, promises, IIFE, template JS, Named Route JS and alot more. All of this applied in the real world.
+
+    Enough with brown fields! You can also do the right thing.
+  speakers:
+    - César Luiz dos Anjos Júnior
+
+- id: "nelson-vasconcelos-rubyconf-brazil-2015"
+  title: "Material Design"
+  date: "2015-09-18"
+  start_time: "15:00"
+  end_time: "15:45"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "nelson-vasconcelos-rubyconf-brazil-2015"
+  description: "" # TODO
+  speakers:
+    - Nelson Vasconcelos
+
+- id: "ulisses-almeida-rubyconf-brazil-2015"
+  title: "Learning Phoenix with an example: Let's build a chat app"
+  date: "2015-09-18"
+  start_time: "15:00"
+  end_time: "15:45"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "ulisses-almeida-rubyconf-brazil-2015"
+  description: |-
+    Phoenix is a web framework for Elixir language focused on performance and productivity. In this talk you'll see a live coding demonstration in how to use the framework fundamental features to build a chat application. With this knowledge you'll be able to start your own Phoenix app.
+  speakers:
+    - Ulisses Almeida
+
+- id: "filipe-costa-rubyconf-brazil-2015"
+  title: "Rust for Rubyist"
+  date: "2015-09-18"
+  start_time: "15:00"
+  end_time: "15:45"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  slides_url: "https://speakerdeck.com/filipebarcos/rust-for-rubysts"
+  video_provider: "not_recorded"
+  video_id: "filipe-costa-rubyconf-brazil-2015"
+  description: |-
+    I've being playing a bit with Rust in the last couple of months and I'm liking it so far. Rust is an Open Source programming language, which started from a necessity from the Mozilla team to have a better (safer) language to develop a rendering engine for Firefox.
+
+    We have some big names from Ruby Community ""playing"" with Rust, Steve Klabnik, Yehuda Katz and some others. Also Yehuda's company, Tilde, is adopting Rust in production for Skylight.
+
+    Rust is definitely a different language when compared to Ruby, but still pretty interesting. I found myself interested on it to try something different. I believe that learning is an amazing process, and the act of learning something completely different is really helpful for you, because you can open you thinking to new ideas not explored by you yet. Rust done this to me and to my understanding of the Ruby language.
+
+    In this talk, I want to present some key and basic concepts of Rust and also give some comparison with Ruby. Concepts of ownership, borrowing, immutability and a few other would be covered here, a long with some basic explanation of how Rust handles memory allocations.
+  speakers:
+    - Filipe Costa
+
+- id: "eduardo-mourao-rubyconf-brazil-2015"
+  title: "Ruby na Aviação: Buidling avionics in Ruby and dealing with its restrictions"
+  date: "2015-09-18"
+  start_time: "16:15"
+  end_time: "17:00"
+  language: "Portuguese"
+  track: "Auditorium 1"
+  video_provider: "not_recorded"
+  video_id: "eduardo-mourao-rubyconf-brazil-2015"
+  description: |-
+    The core softwares that are used to controll essential flight system are build in languages like Ada and C. Real time execution and predictability are key requirements when building systems when system failures can have horrible consequences, but the programming language of choice has little to do with this requirements.
+
+    In this talk we'll see how and where Ruby can be used in software shipped on aircrafts. What are the restrictions and how to detect and handle memory leaks and garbage collection. In practice we will build a basic panel that can be used in flight and we will watch it being used by me (in a real aircraft).
+  speakers:
+    - Eduardo Mourão
+
+- id: "marcio-garcia-rubyconf-brazil-2015"
+  title: "Integração de Sistemas utilizando Microservices"
+  date: "2015-09-18"
+  start_time: "16:15"
+  end_time: "17:00"
+  language: "Portuguese"
+  track: "Auditorium 2"
+  video_provider: "not_recorded"
+  video_id: "marcio-garcia-rubyconf-brazil-2015"
+  description: |-
+    I'll show you some cases developed in new and old legacy systems integration using technologies like REST and apps written in Ruby, Python, Java and .NET. I'll also show how to be efficient at this systems development and maintenance by creating an environment completly local using virtualization tools that helps development.
+  speakers:
+    - Marcio Garcia
+
+- id: "ale-borba-rubyconf-brazil-2015"
+  title: "Developer Communities WTF?!"
+  date: "2015-09-18"
+  start_time: "16:15"
+  end_time: "17:00"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "ale-borba-rubyconf-brazil-2015"
+  description: |-
+    What they are, how they are, what they eat and how they reproduce.
+  speakers:
+    - Alê Borba
+
+- id: "lucas-mazza-rubyconf-brazil-2015"
+  title: "Tools of the trade: gems, executables and configurations"
+  date: "2015-09-18"
+  start_time: "16:15"
+  end_time: "17:00"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "lucas-mazza-rubyconf-brazil-2015"
+  description: "" # TODO
+  speakers:
+    - Lucas Mazza
+
+- id: "daniel-romero-workshop-rubyconf-brazil-2015"
+  title: "Workshop - Creating a cluster with CoreOS and Docker"
+  kind: "workshop"
+  date: "2015-09-18"
+  start_time: "16:15"
+  end_time: "17:00"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "daniel-romero-workshop-rubyconf-brazil-2015"
+  description: |-
+    Learn about CoreOS and how it differs from other operating systems in this workshop.
+
+    Find out how CoreOS solve the problems of today's computing needs, such as containers Docker, discovery service with ETCD, systemd init, and how to ensure secure updates.
+
+    Topics:
+
+    - What is CoreOS ?
+
+    - ETCD, Fleet and Systemd
+
+    - Overview of Distributed Systems
+
+    - Linux Containers and Docker
+
+    - Service Discovery with etcd
+
+    - Manager cluster with fleet
+
+    - CoreOS + Docker in AWS
+
+    Prerequisites:
+
+    - Experience with Linux
+  speakers:
+    - Daniel Romero
+
+- id: "christophe-philemotte-rubyconf-brazil-2015"
+  title: "Deep Diving: How to Explore a New Code Base"
+  date: "2015-09-18"
+  start_time: "17:00"
+  end_time: "17:45"
+  language: "Portuguese"
+  track: "Auditorium 1"
+  slides_url: "https://speakerdeck.com/toch/rubyconf-brazil-2015-deep-diving-how-to-explore-a-new-code-base"
+  video_provider: "not_recorded"
+  video_id: "christophe-philemotte-rubyconf-brazil-2015"
+  description: |-
+    As a developer, diving in a new code base is not uncommon: you've just been hired, you change of project,
+    you want to help an open source project, the open source library your project depends on is buggy, etc.
+    It's like entering in a underwater cave, you don't know the treasures or the monsters you'll find there,
+    neither if the path is treacherous or if it's a true labyrinth where you'll get lost. You can prepare yourself,
+    you can plan your visit, you can equip yourself, you can survive and find the gem you're looking for...
+  speakers:
+    - Christophe Philemotte
+
+- id: "marcelo-correia-pinheiro-rubyconf-brazil-2015"
+  title: "fpm-cookery: package artefacts without pain"
+  date: "2015-09-18"
+  start_time: "17:00"
+  end_time: "17:45"
+  language: "Portuguese"
+  track: "Auditorium 2"
+  video_provider: "not_recorded"
+  video_id: "marcelo-correia-pinheiro-rubyconf-brazil-2015"
+  description: |-
+    Commonly in startups, you probably don’t be worry about how your application artefacts are managed to be deployed in a server: compressed or binary files combined with a set of scripts. However, for larger companies that uses not only one or two servers, but a entire pool of machines, it requires some control and organisation to deploy apps.
+
+    You can handle this case with some automation / configuration management tools like Ansible, Puppet, Chef, of course. But using a set of scripts can be hard to maintain all deployment steps, from artefact update to rollback. If you distribute your software using a Operational System package manager like YUM (CentOS) or APT (Debian, Ubuntu), your deployment will be easier because these tools handles software changes in a good way.
+
+    It sounds good, but package binaries is a pain for developers or newer sysadmins that don’t have knowledge about how YUM/APT works. It requires creation of one or a lot of configuration files to be updated and when you have multiple artefacts probably packaging them will be a nightmare.
+
+    Here enters fpm-cookery, a Ruby gem responsible to package artefacts based on recipes, much easy to use. It will be your swiss knife for anything that you need to package, from common binaries not distributed in RPM/DEB formats to programming languages from source, compiling when needed. I will talk how fpm-cookery works, some live demos and introduce Gordon, a CLI built on fpm-cookery focused in package apps without need to write recipes.
+  speakers:
+    - Marcelo Correia Pinheiro
+
+- id: "charles-pessoa-rubyconf-brazil-2015"
+  title: "Google WebDesign and HTML5, the future with Ad$"
+  date: "2015-09-18"
+  start_time: "17:00"
+  end_time: "17:45"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "charles-pessoa-rubyconf-brazil-2015"
+  description: "" # TODO
+  speakers:
+    - Charles Pessoa
+
+- id: "igor-florian-rubyconf-brazil-2015"
+  title: "Concepts that can make you write better tests"
+  date: "2015-09-18"
+  start_time: "17:00"
+  end_time: "17:45"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "igor-florian-rubyconf-brazil-2015"
+  description: |-
+    When we talk about tests in our community, most people tend to focus their attentions in test libraries (like Rspec) and their tools for writing tests. But sometimes we overuse these tools features making our tests harder to understand and maintain, which can have a great impact in our tests quality.
+
+    In this talk I’m going to present some concepts, anti-patterns and practices to improve the way we test.
+  speakers:
+    - Igor Florian
+
+- id: "richard-santos-rubyconf-brazil-2015"
+  title: "OpenCode Ruby Gem - Agility and freedom in the creation of layouts for e-commerces"
+  date: "2015-09-18"
+  start_time: "17:00"
+  end_time: "17:45"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "richard-santos-rubyconf-brazil-2015"
+  description: |-
+    Learn how to use the Opencode Rubygem, the tool that will give you freedom and agility to create layouts for e-commerces. We will learn about the main commands, functions and we will implement a layout together in a couple of minutes.
+  speakers:
+    - Richard Santos
+
+- id: "jean-emer-rubyconf-brazil-2015"
+  title: "Evolution and the future on the use of Javascript paradigms"
+  date: "2015-09-18"
+  start_time: "17:45"
+  end_time: "18:30"
+  language: "Portuguese"
+  track: "Auditorium 1"
+  video_provider: "not_recorded"
+  video_id: "jean-emer-rubyconf-brazil-2015"
+  description: |-
+    This is a talk about the paradigms brought by the libraries and frameworks such as Backbone.js, Angular.js and React. We will learn about the main concepts behind imperative, functional and reactive programming. At the end we will have a clear view of how much we evolved and what's to come in the form and use of the language.
+  speakers:
+    - Jean Emer
+
+- id: "alda-rocha-rubyconf-brazil-2015"
+  title: "Anatomy of responsive design"
+  date: "2015-09-18"
+  start_time: "17:45"
+  end_time: "18:30"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "alda-rocha-rubyconf-brazil-2015"
+  description: |-
+    The web is flexible and on this talk we will explore ways to use this flexibility. Using a simple approach, will be presented what a responsive layout is and its importance. We will understand the difference between responsive, fluid and hybrid, passing through Grids, media query, percentage, measures and mobile first. Let's unravel possibilities with the best ways to have a product that embrace, and perfectly suits, the transience of the world today.
+  speakers:
+    - Alda Rocha
+
+- id: "julio-protzek-rubyconf-brazil-2015"
+  title: "Journey - Exploring JavaScript with games and robots."
+  date: "2015-09-18"
+  start_time: "17:45"
+  end_time: "18:30"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "julio-protzek-rubyconf-brazil-2015"
+  description: |-
+    Let's see some programming fundamentals with JavaScript as we explore how people are using JavaScript to create games (Unity3D) and program robots (cylonjs) in a fun and interactive way. You do not need to know any programming to attend this lecture.
+  speakers:
+    - Julio Protzek
+
+- id: "cassio-zen-rubyconf-brazil-2015"
+  title: "Learn once Write Everywhere: Introdução ao React"
+  date: "2015-09-18"
+  start_time: "17:45"
+  end_time: "18:30"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "cassio-zen-rubyconf-brazil-2015"
+  description: |-
+    React is a library created by Facebook for web and native mobile app development.
+
+    It allows this through a scalable and portable approach based on components for constructions of user interfaces.
+
+    The goal of this talk is to present React in a pratical way and show how it can be used in your next web and mobile projects.
+  speakers:
+    - Cássio Zen
+
+- id: "bryan-helmkamp-rubyconf-brazil-2015"
+  title: "Entrepreneurship for Engineers"
+  kind: "keynote"
+  date: "2015-09-19"
+  start_time: "10:00"
+  end_time: "11:00"
+  language: "Portuguese"
+  video_provider: "not_recorded"
+  video_id: "bryan-helmkamp-rubyconf-brazil-2015"
+  description: |-
+    At some point or another, many engineers entertain the thought of venturing out and starting their own business. It's a scary idea, but the promises of control, flexibility and financial independence are compelling. This talk will explore the path from software engineer to entrepreneur, with it's challenges, rewards and tradeoffs, influenced by my experience founding Code Climate.
+  speakers:
+    - Bryan Helmkamp
+
+- id: "matheus-azzi-rubyconf-brazil-2015"
+  title: "How to test my Javascript code?"
+  date: "2015-09-19"
+  start_time: "10:15"
+  end_time: "11:00"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "matheus-azzi-rubyconf-brazil-2015"
+  description: |-
+    Web applications are becoming more dynamic. Making more work on client-side, leaving our Javascript code with lots of responsibilities.
+
+    Today it is common to have applications using MVC Frameworks on the front-end. Can you imagine that giant app in React not having tests covering their functionality?
+
+    Let's address agile development techniques such as TDD and BDD and how to apply it on the front-end development.
+  speakers:
+    - Matheus Azzi
+
+- id: "willian-molinari-rubyconf-brazil-2015"
+  title: "The developer choices"
+  date: "2015-09-19"
+  start_time: "10:15"
+  end_time: "11:00"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "willian-molinari-rubyconf-brazil-2015"
+  description: |-
+    When building a project we, as developers, need to decide about a lot of different subjects, from languages when starting a project to deployment when it is delivered. In this talk I'll explore a lot of common decisions developers usually make in order to increase their options when the time comes.
+  speakers:
+    - Willian Molinari
+
+- id: "bruno-ghisi-rubyconf-brazil-2015"
+  title: "Scaling teams and saving marriages with continuous delivery"
+  date: "2015-09-19"
+  start_time: "10:15"
+  end_time: "11:00"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "bruno-ghisi-rubyconf-brazil-2015"
+  description: |-
+    In this talk we will show how practices related to continuous delivery helped up in a large restructuring and growth processes - which we scaled from a single team dealing with 300 clients to a scenario of 1,800 clients and 5 teams working in the same product.
+
+    The secret was essentially simple, but difficult to comply: Continuous Delivery. With the growth of the company, the development cycle became the big bottleneck to surpass - deploys which couldn't scale, manual processes and almost destroyed personal relationships because of excessive hours of work. Today we can do 10 daily deploys, we have better quality in the work delivered and the clients and the teams are more satisfied.
+
+    We will talk about topics such as the way we use version control, practices and tools adopted in the development and tests of the features, and even how we revert versions out from production. We will see processes and solutions that can inspire you to begin your own journey towards continuous delivery.
+  speakers:
+    - Bruno Ghisi
+
+- id: "sebastian-sogamoso-rubyconf-brazil-2015"
+  title: "Microservices, a bitter sweet symphony"
+  date: "2015-09-19"
+  start_time: "11:30"
+  end_time: "12:15"
+  language: "Portuguese"
+  track: "Auditorium 1"
+  video_provider: "not_recorded"
+  video_id: "sebastian-sogamoso-rubyconf-brazil-2015"
+  description: |-
+    Like a espresso, code is better served in small portions. Unfortunately most of the time we build systems consisting of a monolithic application that gets bigger and scarier by the day. Fortunately there are a few ways to solve this problem.
+
+    Everyone talks about how good microservices are. At a first glance an architecture of small independently deployable services seems ideal, but it's no free lunch, it comes with some drawbacks.
+
+    In this talk we'll see how microservices help us think differently about writing code and solving problems, and why they are not always the right answer.
+  speakers:
+    - Sebastian Sogamoso
+
+- id: "halan-pinheiro-rubyconf-brazil-2015"
+  title: "How much does 100% cost? Adventures and misfortunes keeping a 100% test coverage"
+  date: "2015-09-19"
+  start_time: "11:30"
+  end_time: "12:15"
+  language: "Portuguese"
+  track: "Auditorium 2"
+  video_provider: "not_recorded"
+  video_id: "halan-pinheiro-rubyconf-brazil-2015"
+  description: |-
+    Everybody that writes software is used to write tests. Sometimes diverging in 'how'. Everytime we write tests we use some tool to 'measure' how deep it goes. The most common way is to measure how much of the written code is actually exercised during the tests. But, what exactly does 100% means in that case? How much does it cost to keep that metric? Is it worth it? Let's talk a bit about this and exchange experiences of how we use this metric.
+  speakers:
+    - Halan Pinheiro
+
+- id: "talysson-de-oliveira-cassiano-rubyconf-brazil-2015"
+  title: "Front-end tooling: porque e como?"
+  date: "2015-09-19"
+  start_time: "11:30"
+  end_time: "12:15"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "talysson-de-oliveira-cassiano-rubyconf-brazil-2015"
+  description: |-
+    In this talk I'll cover why you should use front-end tooling, what are the advantages, how it can make the development faster, and ways to do it using NodeJS/io.js with task runners and builders.
+  speakers:
+    - Talysson de Oliveira Cassiano
+
+- id: "everton-ribeiro-rubyconf-brazil-2015"
+  title: "Configuring development environments with azk"
+  date: "2015-09-19"
+  start_time: "11:30"
+  end_time: "12:15"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "everton-ribeiro-rubyconf-brazil-2015"
+  description: |-
+    Ruby on Rails is synonym of productivity. That was the clear message sent by the famous 15-minute blog presentation from DHH. "Web Development that doesn't hurt" is Rails' motto.
+
+    One decade has passed, but the development environment's configuration is still intimidating. Installing and configuring Ruby, Rails, Bundler, databases, e-mail services and all kinds of components can push way the sample people that can benefit from Rails: novice developers.
+
+    In this workshop we'll see how azk, an open-source tool for development environment configuration, can help you with this challenging task.
+  speakers:
+    - Éverton Ribeiro
+
+- id: "gabriel-mazetto-rubyconf-brazil-2015"
+  title: "ChatOps in Ruby"
+  date: "2015-09-19"
+  start_time: "11:30"
+  end_time: "12:15"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "gabriel-mazetto-rubyconf-brazil-2015"
+  description: |-
+    While DevOps is greatly misunderstood by most modern startups and big cloud companies and ChatOps may even seem alien, it is in reality a simple and straightforward way to tackle complicated operational problems. It's very developer friendly, and can be done from the convenience of your company’s internal chat solution.
+
+    With ChatOps complex deployments can be triggered by anyone with the right permission, even designers, in a lower risk environment.
+
+    You will learn how ChatOps can help you and your company do Ops better, using Ruby and backed by RSpec tests.
+  speakers:
+    - Gabriel Mazetto
+
+- id: "andre-luis-anastacio-rubyconf-brazil-2015"
+  title: "Learn Ruby by Hacking Your First Game!"
+  date: "2015-09-19"
+  start_time: "12:15"
+  end_time: "13:00"
+  language: "Portuguese"
+  track: "Auditorium 1"
+  video_provider: "not_recorded"
+  video_id: "andre-luis-anastacio-rubyconf-brazil-2015"
+  description: |-
+    Many of us came to programming because of computer games and the desire to create them. But games are hard and complex and involves many different things to be done and mastered upfront. Fortunatelly, with the superpowers Ruby gaves us - plus a help from Gosu - we can now create some simple yet funny games while taking our first steps learning how to program computers!
+  speakers:
+    - André Luís Anastácio
+
+- id: "rodrigo-urubatan-ferreira-jardim-rubyconf-brazil-2015"
+  title: "Rich interfaces with Rails and React.JS"
+  date: "2015-09-19"
+  start_time: "12:15"
+  end_time: "13:00"
+  language: "Portuguese"
+  track: "Auditorium 2"
+  video_provider: "not_recorded"
+  video_id: "rodrigo-urubatan-ferreira-jardim-rubyconf-brazil-2015"
+  description: |-
+    This days it is important to create applications with rich interfaces, and taking full advantage of resources like AJAX and partial content replacement of the DOM.
+
+    In this talk we will see how to implement this with React.JS to create interface based components.
+
+    Facilitating code reuse and enabling integration with Rails, enabling the pages to be rendered on the server or on the client, improving the application performance since the first page load.
+
+    The lecture will start with a simple application in rails using React.JS to implement an ajax frontend
+
+    Implementing a simple listing and editing for a model using components to modularize the UI and make it easier iteration with the backend
+
+    After demonstrating the loss of performance while waiting for data in the first rendering, I'll show how to render the components in the server using the same Javascript code.
+
+    Featuring also some ideas on how to improve the performance of the frontend and how to optimize queries on the back end for complex data models.
+  speakers:
+    - Rodrigo Urubatan Ferreira Jardim
+
+- id: "alessandro-dias-batista-rubyconf-brazil-2015"
+  title: "Turbolinks 101"
+  date: "2015-09-19"
+  start_time: "12:15"
+  end_time: "13:00"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "alessandro-dias-batista-rubyconf-brazil-2015"
+  description: |-
+    Rails since version 4.0 brings with it Turbolinks aimed at reducing the server requests response time.
+
+    I'll show you what is Turbolinks, how it works and settings you will need to add in your application if you are not using it yet.
+  speakers:
+    - Alessandro Dias Batista
+
+- id: "gabriel-sobrinho-rubyconf-brazil-2015"
+  title: "Integrating Ruby and Lua"
+  date: "2015-09-19"
+  start_time: "12:15"
+  end_time: "13:00"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "gabriel-sobrinho-rubyconf-brazil-2015"
+  description: |-
+    We will cover the basics of the Lua programming language, use cases and integrating it with a Ruby on Rails application.
+  speakers:
+    - Gabriel Sobrinho
+
+- id: "luiz-fernando-alves-da-silva-rubyconf-brazil-2015"
+  title: "Laravel and the Modern PHP"
+  date: "2015-09-19"
+  start_time: "12:15"
+  end_time: "13:00"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "luiz-fernando-alves-da-silva-rubyconf-brazil-2015"
+  description: |-
+    In this talk will show how practices related to continuous delivery helped us in a process of great growth and restructuring - where we move from one team serving 300 customers, into a scenario with more than 1,800 customers with five 5 teams working on the same product.
+
+    The secret was simple in its essence, but difficult in the application: Continuous Delivery. With the company's growth, the development cycle had become the major bottleneck to be won - deploys that did not climb, manual processes and personal relationships almost destroyed by excessive working hours. Today we held 10 daily deploys, have higher quality of the products delivered and clients and much more satisfied staff.
+
+    Topics will be covered ranging from the way we used version control, through practices and tools used in development and testing the functionalities, until the way we reverted versions in production. We will see processes and solutions that can inspire you to start your journey in search of continuous delivery.
+  speakers:
+    - Luiz Fernando Alves da Silva
+
+- id: "celso-fernandes-rubyconf-brazil-2015"
+  title: "How Trailblazer and Rails Engines can save your Rails monolith application!"
+  date: "2015-09-19"
+  start_time: "14:30"
+  end_time: "15:15"
+  language: "Portuguese"
+  track: "Auditorium 1"
+  video_provider: "not_recorded"
+  video_id: "celso-fernandes-rubyconf-brazil-2015"
+  description: |-
+    rails new foobar is always a green cool field, then it starts to get bigger and bigger, and messy, and ugly!
+
+    how can we handle that? usually the rails way give us 3 ""boxes"" to organize all our code M, V and C... to help organize our architecture we use namespace to isolate and our app become huge, but wait, we can isolate in microservices, many deployments, refactor is now a impossible work! And rails is now a brown messy ugly and boring field, but using trailblazer and components we can save it! \o/
+
+    In this talk we are gonna see a real use case where a huge application was split into small components, for authentication, template, entities, financial (all these can be reused into another applications), and these components are organized into layers for developer happiness, the best part, if you wanna go this way you don't need to break up with Rails, you can refactor small pieces, to start grow in a sustainable way and get that green field again :)
+  speakers:
+    - Celso Fernandes
+
+- id: "jonathan-lima-rubyconf-brazil-2015"
+  title: "Deployment & ChatOps"
+  date: "2015-09-19"
+  start_time: "14:30"
+  end_time: "15:15"
+  language: "Portuguese"
+  track: "Auditorium 2"
+  video_provider: "not_recorded"
+  video_id: "jonathan-lima-rubyconf-brazil-2015"
+  description: |-
+    How a stupid chat bot can change your life.
+    A gentle introduction on how to manage an entire fleet of servers of any size, without having to log in into any of them. All of this using Puppet, GitHub, Slack and some other cool toys.
+  speakers:
+    - Jonathan Lima
+
+- id: "lucas-renan-rubyconf-brazil-2015"
+  title: "A modern approach to software development"
+  date: "2015-09-19"
+  start_time: "14:30"
+  end_time: "15:15"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "lucas-renan-rubyconf-brazil-2015"
+  description: |-
+    The agile manifesto was created in 2001 (and everybody is fed up hearing about it). Since then agile methodologies have been widely diffused breaking the old paradigm of development cascade. Many developers believed that it would be the solution to our problems, but it was not! Have you ever stopped to think what will you do now?
+
+    Agile methodologies are not exactly a cake recipe as were sold.
+
+    If you're curious, come and discover how to be happy with developing quality software using the entire ecosystem Ruby on Rails :)
+  speakers:
+    - Lucas Renan
+
+- id: "leonardo-rodrigues-nogueira-rubyconf-brazil-2015"
+  title: "Creating multitenant application with Rails"
+  date: "2015-09-19"
+  start_time: "14:30"
+  end_time: "15:15"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "leonardo-rodrigues-nogueira-rubyconf-brazil-2015"
+  description: |-
+    This session will describe some basic concepts to create multitenant applications in Rails. We describe various gems available in the Rails ecosystem and how to get an excellent result with a simple approach without the need to add external dependencies.
+  speakers:
+    - Leonardo Rodrigues Nogueira
+
+- id: "elixir-by-a-rubyist-rubyconf-brazil-2015"
+  title: "Elixir by a Rubyist"
+  date: "2015-09-19"
+  start_time: "14:30"
+  end_time: "15:15"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "elixir-by-a-rubyist-rubyconf-brazil-2015"
+  description: |-
+    If you are just getting started with Elixir or want to start learning it, this talk is perfect for you.
+
+    We'll go trough basics and dive into the language! Check the ecosytem that is emerging around it focusing into build web applications using Elixir's greatest features.
+
+    In this talk we'll talk about  what is Functional Programming, how it works, why you should consider using it when building new applications and how elixir is driven by it.
+
+    It'll also point out the similarities between Elixir and Ruby, it aim to help Rubyists to understand it in an easier way. If you are a Rubyist you will probably feel great about this talk.
+  speakers:
+    - João Moura
+
+- id: "ben-langfeld-rubyconf-brazil-2015"
+  title: "Ruby, Javascript and Elixir joining forces for WebRTC"
+  date: "2015-09-19"
+  start_time: "15:15"
+  end_time: "16:00"
+  language: "Portuguese"
+  track: "Auditorium 1"
+  slides_url: "https://speakerdeck.com/benlangfeld/ruby-javascript-and-elixir-joining-forces-for-webrtc"
+  video_provider: "not_recorded"
+  video_id: "ben-langfeld-rubyconf-brazil-2015"
+  description: |-
+    This may be RubyConf, but most of us use more than just Ruby to build out our application stack and deliver a compelling product to our users. With WebRTC, this is even more so. We combine a web application, perhaps in Rails, with a rich communications UI (voice and video) in the browser using Javascript and some heavy-lifting on the backend using a range of technologies, including Elixir. In this presentation, we'll talk about why WebRTC is interesting, how it works, and how you too can leverage your polyglot skills to deliver an out-of-this world experience based on tools in and out-side the Ruby comfort-zone.
+  speakers:
+    - Ben Langfeld
+
+- id: "fabiano-beselga-rubyconf-brazil-2015"
+  title: "Clean Architecture on Rails: find out what Game of Thrones has to do with Uncle Bob"
+  date: "2015-09-19"
+  start_time: "15:15"
+  end_time: "16:00"
+  language: "Portuguese"
+  track: "Auditorium 2"
+  slides_url: "https://speakerdeck.com/bezelga/clean-architecture-on-rails-rubyconf-brasil-2015"
+  video_provider: "not_recorded"
+  video_id: "fabiano-beselga-rubyconf-brazil-2015"
+  description: |-
+    Rails is an awesome framework to build something fast from scratch, but when the app starts to grow it becomes harder to maintain if you keep following only the folders that Rails’s initial configuration provides.
+
+    There are a lot of approaches to get around it, Uncle Bob’s [Clean Architecture](http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) separates the business  from implementation details like delivery mechanism and from the database.
+
+    I will show ways to apply clean architecture to a big Rails project and what are the pros and cons of each approach.
+
+    I will also show the lessons we’ve learned using Clean Architecture for more than 1 year at [Magnetis](magnetis.com.br)
+  speakers:
+    - Fabiano Beselga
+
+- id: "paulo-diovani-goncalves-rubyconf-brazil-2015"
+  title: "Vagrant, LXC and Docker: Know the differences"
+  date: "2015-09-19"
+  start_time: "15:15"
+  end_time: "16:00"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "paulo-diovani-goncalves-rubyconf-brazil-2015"
+  description: |-
+    A comparison of between virtualizations, Linux Containers and Docker, covering the basics, how to use and problems that each one solves.
+  speakers:
+    - Paulo Diovani Gonçalves
+
+- id: "guilherme-guitte-rubyconf-brazil-2015"
+  title: "Improve the text search of your eCommerce"
+  date: "2015-09-19"
+  start_time: "15:15"
+  end_time: "16:00"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "guilherme-guitte-rubyconf-brazil-2015"
+  description: |-
+    Text searches can be very subjective; With synonyms, adjectives, context and several other details that you already hold (like google) in time to find the right product in your store.
+
+    We will share the experiences and challenges we face in "search for the perfect search". The goal is not to be a step-by-step implementation, but rather a description of the main problems and approaches we used to solve them with ElasticSearch at Leroy Merlin.
+  speakers:
+    - Guilherme Guitte
+
+- id: "vinicius-feitosa-pacheco-rubyconf-brazil-2015"
+  title: "Hey ho let's Go"
+  date: "2015-09-19"
+  start_time: "15:15"
+  end_time: "16:00"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "vinicius-feitosa-pacheco-rubyconf-brazil-2015"
+  description: |-
+    A trip through the Go programming language created by Google. Starting by the basic concepts, passing through tests and finishing with high performance micro services. All of this sailing the fantastic ecosystem of Go.
+  speakers:
+    - Vinicius Feitosa Pacheco
+
+- id: "brandon-hilkert-rubyconf-brazil-2015"
+  title: "A Path to Services"
+  date: "2015-09-19"
+  start_time: "16:00"
+  end_time: "16:45"
+  language: "English"
+  track: "Auditorium 1"
+  video_provider: "not_recorded"
+  video_id: "brandon-hilkert-rubyconf-brazil-2015"
+  description: |-
+    Old applications can easily grow out of control. Over the last few years we’ve heard about techniques to organize, improve and simplify our Monolithic Rails applications. Microservices have gotten a lot of attention latest. They’re not a cure-all. However, if implemented properly, microservices can ensure boundaries within an application are respected.
+
+    Most microservice implementations involve the addition of a messaging queue like RabbitMQ. But do they have to? What if we could leverage Sidekiq to handle real-time service communication?
+
+    This talk will explore how PipelineDeals moved from an 8 year-old monolithic Rails application to a microservice-based architecture with over the past 2 years. It will touch on inter-service communication, building for resiliency, leveraging tools we already know and love, and deciding which parts of the application are worthy of separation.
+  speakers:
+    - Brandon Hilkert
+
+- id: "jonatas-davi-paganini-rubyconf-brazil-2015"
+  title: "ø downtime deployments"
+  date: "2015-09-19"
+  start_time: "16:00"
+  end_time: "16:45"
+  language: "Portuguese"
+  track: "Auditorium 2"
+  video_provider: "not_recorded"
+  video_id: "jonatas-davi-paganini-rubyconf-brazil-2015"
+  description: |-
+    Software as a service (SASS) can't stop. Customers and third party applications is coming to communicate with your system all the time. High availability is not a desired feature. It's required.
+
+    Thinking about this context, the software development workflow needs to answer some questions before start deploying crazy new features:
+
+    How can we keep our services running all the time and deploy new fixes on the code without stop?
+
+    How can we deliver new features without stop servers or schedule maintenances?
+
+    How can we deliver high availability and migrate big data at the same time?
+
+    How can we avoid headaches planning reversible changes and adaptative rollouts?
+  speakers:
+    - Jônatas Davi Paganini
+
+- id: "vinicius-almeida-rubyconf-brazil-2015"
+  title: "We need to talk about jQuery"
+  date: "2015-09-19"
+  start_time: "16:00"
+  end_time: "16:45"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "vinicius-almeida-rubyconf-brazil-2015"
+  description: |-
+    Why all that anger, son? Sit here, let's talk about a library used on two-thirds of Internet sites.
+
+    Hypes apart, we need understand why use her and principally if we should abandon her (or not).
+  speakers:
+    - Vinícius Almeida
+
+- id: "robson-agapito-correa-rubyconf-brazil-2015"
+  title: "Continuous Integration, Automated Builds and Continuous Deployment, developing with quality."
+  date: "2015-09-19"
+  start_time: "16:00"
+  end_time: "16:45"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "robson-agapito-correa-rubyconf-brazil-2015"
+  description: |-
+    The participation of a high quality team at Locaweb was essential to improve the deployment process of applications in all environments prior to the production deployment.
+
+    In this lecture we will show how we use this process to create, promote and validate packages regarding its code quality and systems in Locaweb using the Jenkins.
+
+    The union between Devs and QA's was the big difference in the success of this process.
+  speakers:
+    - Robson Agapito Correa
+
+- id: "stefano-benatti-rubyconf-brazil-2015"
+  title: "ADFS or Awesome Dynamic Faceted Search using Mongoid and Solr"
+  date: "2015-09-19"
+  start_time: "16:00"
+  end_time: "16:45"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "stefano-benatti-rubyconf-brazil-2015"
+  description: |-
+    In this talk I will show how and why you can create dynamic faceted search engines in Rails, similar to the ones used in http://escoladigital.org.br or others such as buscape or amazon, without needing to hardcode every field/column in advance. Using Mongoid and Solr, you can create dynamic fields and indexes, and even a dynamic backend admin section to manage fields and options, while still maintaining fast perfomance.
+
+    By doing so, you can create multitenant applications or on the fly data fields with complex search filters with highly customisable options and no database migrations or constant reindexing.
+
+    This technique has been applied to a real case application with millions of visitors per month, which testifies its scalability and perfomance in a real case scenario.
+  speakers:
+    - Stefano Benatti
+
+- id: "building-apis-on-rails-5-with-ams-rubyconf-brazil-2015"
+  title: "Building APIs on Rails 5 with AMS"
+  date: "2015-09-19"
+  start_time: "17:15"
+  end_time: "18:00"
+  language: "Portuguese"
+  track: "Auditorium 1"
+  video_provider: "not_recorded"
+  video_id: "building-apis-on-rails-5-with-ams-rubyconf-brazil-2015"
+  description: |-
+    A lot of people have being using Rails to develop both their internal or external API, but building a high quality API can be hard, and performance is a key point to achieve it.
+
+    I'll share my stories with APIs, and tell you how Active Model Serializer, component of Rails-API, helped me. AMS have being used across thousands of applications bringing convention over configuration to JSON generation.
+
+    This talk will give you a sneak peek of a new version of AMS that we have being working on, it's new cache conventions, and how it's being considered to be shipped by default in new Rails 5.
+  speakers:
+    - João Moura
+
+- id: "lailson-bandeira-rubyconf-brazil-2015"
+  title: "Data Mappers in Ruby"
+  date: "2015-09-19"
+  start_time: "17:15"
+  end_time: "18:00"
+  language: "Portuguese"
+  track: "Auditorium 2"
+  video_provider: "not_recorded"
+  video_id: "lailson-bandeira-rubyconf-brazil-2015"
+  description: |-
+    Due to the popularity of the ActiveRecord gem, the Ruby community traditionally gave preference to persistence solutions based on the Active Record pattern. However, this pattern is not always the best choice, especially in large applications. An alternative for such cases is the Data Mapper pattern, which has been gaining more and more attention from Rubyists recently. This talk discusses the options we currently have for using the Data Mapper pattern in Ruby projects and how each library differ from each other.
+  speakers:
+    - Lailson Bandeira
+
+- id: "andrew-rosa-rubyconf-brazil-2015"
+  title: "Wassup with this Functional Programming thing?"
+  date: "2015-09-19"
+  start_time: "17:15"
+  end_time: "18:00"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "andrew-rosa-rubyconf-brazil-2015"
+  description: |-
+    The current programming scenario is once again changing. We see the rise of several (not so) new languages, many speaking about functional paradigm. But what ultimately would be a functional language? How it differs from what we currently have? And more importantly, what we Rubyists get out of it?
+
+    Here I intend to make a brief statement about what are the differences between FP and OOP, advantages and things you should be careful with. And how can we bring some of their ideas and practices to improve our own Ruby code today.
+  speakers:
+    - Andrew Rosa
+
+- id: "barbara-barbosa-camila-campos-rubyconf-brazil-2015"
+  title: "Rails Girls"
+  date: "2015-09-19"
+  start_time: "17:15"
+  end_time: "18:00"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "barbara-barbosa-camila-campos-rubyconf-brazil-2015"
+  description: |-
+    Rails Girls is a global non-profit organization founded by Linda Liukas and Karri Saarinen in November of 2010, in Helsinki, Finland. The organization has the goal of presenting the world of technology to people that identify in the female gender, of all ages and experience levels. The first event took place with more than 100 attendees and it is today present in all of the world's continents.
+
+    The São Paulo Rails Girl (http://railsgirls.com/saopaulo2015) intends to give the attendees all the needed tools to understand and be inspired by the world of technology. =) Let's talk a little bit about this community, where the events happen, and also comment on other initiatives in computation geared towards the female audience.
+  speakers:
+    - Bárbara Barbosa
+    - Camila Campos
+
+- id: "salviano-ludgerio-felipe-gomes-rubyconf-brazil-2015"
+  title: "Fun with Ruby: The Functional Approach"
+  date: "2015-09-19"
+  start_time: "17:15"
+  end_time: "18:00"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "salviano-ludgerio-felipe-gomes-rubyconf-brazil-2015"
+  description: |-
+    Ruby is known for be an object-oriented language. All are objects, unless blocks, these are a different animal. In this talk I intend to show for developers, beginners or intermediates, some fundamentals of functional programming and how to take advantage of his characteristics present in Ruby. As also, clarify some aspects that can confuse the novice Rubyist.
+
+    Some topics and questions include:
+
+    - What's Closures?
+
+    - How closures in Ruby looks like
+
+    - Examples in other languages: Javascript, Elixir etc. (small snippets)
+
+    - Show as experiment how to use closures to create objects that preserve his states.
+
+    - High order functions
+
+    - Procs Vs. Lambdas
+
+    - Show that blocks aren't high order functions
+
+    - Lexical scope
+
+    - Show that methods in Ruby, unlike procs and lambas, doesn't have lexical scope.
+
+    - Show that methods in Ruby can be converted to procs and pass to other methods .
+  speakers:
+    - Salviano Ludgério Felipe Gomes
+
+- id: "marcello-rocha-rubyconf-brazil-2015"
+  title: "Not-Entreprise Message Bus"
+  date: "2015-09-19"
+  start_time: "18:00"
+  end_time: "18:45"
+  language: "Portuguese"
+  track: "Auditorium 1"
+  video_provider: "not_recorded"
+  video_id: "marcello-rocha-rubyconf-brazil-2015"
+  description: |-
+    Have you ever had to work with decades old legacy software? Have you ever participated in a ""big rewrite"" of the said software? Well... that's my (and my team) job.
+
+    How did we (are we trying to) do it? One of our answers is a event-driven architecture. It has some advantages (like being asynchronous) and made us make some compromises (by being asynchronous)
+
+    How did it help (or hindered) us? Which risks are involved? Which are our goals? Why did we choose RabbitMQ?
+
+    If you want to get a glimpse of how to work with RabbitMQ and with an event driven architecture or even if you wanna see how are we tackling this herculean task, this is the talk for you.
+  speakers:
+    - Marcello Rocha
+
+- id: "guilherme-garnier-rubyconf-brazil-2015"
+  title: "Evolution of a distributed architecture: from Globo.tv to Globosat Play"
+  date: "2015-09-19"
+  start_time: "18:00"
+  end_time: "18:45"
+  language: "Portuguese"
+  track: "Auditorium 2"
+  video_provider: "not_recorded"
+  video_id: "guilherme-garnier-rubyconf-brazil-2015"
+  description: |-
+    When your product grows, one of the biggest challenges is how is your architecture going to evolve in a sustainable way. In this talk, I'm going to show how the platform created for Globo.tv grown and evolved with the rise of a new product: Globosat Play. Among the challenges, how to allow several teams to work on the same platform, how to share components and how to update a project without breaking another. I'll also detail the main benefits and drawbacks of a microservices architecture compared to a monolithic one.
+  speakers:
+    - Guilherme Garnier
+
+- id: "vinicius-palma-rubyconf-brazil-2015"
+  title: "React on Rails"
+  date: "2015-09-19"
+  start_time: "18:00"
+  end_time: "18:45"
+  language: "Portuguese"
+  track: "Workshop Trail 1"
+  video_provider: "not_recorded"
+  video_id: "vinicius-palma-rubyconf-brazil-2015"
+  description: |-
+    React is a new framework javascript, developed by Facebook. And the description on site is ""Lots of people use React as the V in MVC. Since React makes no assumptions about the rest of your technology stack, it's easy to try it out on a small feature in an existing project"".
+
+    I'll talk about how implement this framework, on your workflow with RoR using a gem called react-rails.
+
+    The talk will contain this informations, States and Props, Virtual DOM and JSX about the framework. Using JSX, organization components, Pre-render, React unobtrusive and helpers about the gem.
+  speakers:
+    - Vinicius Palma
+
+- id: "diego-eis-rubyconf-brazil-2015"
+  title: "Flexbox and Grid Layout - The new way to structure layouts"
+  date: "2015-09-19"
+  start_time: "18:00"
+  end_time: "18:45"
+  language: "Portuguese"
+  track: "Workshop Trail 2"
+  video_provider: "not_recorded"
+  video_id: "diego-eis-rubyconf-brazil-2015"
+  description: |-
+    Until today, we only have used workarounds to structure layouts of products and websites. Tables are not the solution, but they have the way we consume and structure content in Web. Float are not the right answer. Float can't make a good work simply because this was not created to do that. However we use float instead tables because float is more flexible and better.
+
+    To solve this problem, we have now two recommendations: Flexbox and Grid Layout.
+
+    This talk is about how this recommendations will help authors to make better structures in any device, with independent HTML code.
+  speakers:
+    - Diego Eis
+
+- id: "matheus-costa-rubyconf-brazil-2015"
+  title: "I don't care if it's Less, Stylus or Sass"
+  date: "2015-09-19"
+  start_time: "18:00"
+  end_time: "18:45"
+  language: "Portuguese"
+  track: "Workshop Trail 3"
+  video_provider: "not_recorded"
+  video_id: "matheus-costa-rubyconf-brazil-2015"
+  description: |-
+    Preprocessors are here, but how to get the most out of them? In this talk you will learn how to improve all the features of these guys, regardless of your choice.
+  speakers:
+    - Matheus Costa
