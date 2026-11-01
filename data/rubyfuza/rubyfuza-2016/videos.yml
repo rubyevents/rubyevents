@@ -1,6 +1,250 @@
-# TODO: Add talks and videos
-
 # Website: http://www.rubyfuza.org/2016/
 # Videos: https://www.youtube.com/playlist?list=PLI113oIao_x4323pftT_Huv0XJvaIsDgm
 ---
-[]
+- id: "sarah-mei-rubyfuza-2016"
+  title: "Factory, Workshop, Stage"
+  raw_title: "Sarah Mei"
+  date: "2016-02-04"
+  published_at: "2019-10-14T00:37:06Z"
+  video_provider: "youtube"
+  video_id: "50pDnHYCOD4"
+  description: |-
+    Once upon a time, writing software felt a lot like working in a factory. A product went through an assembly-line-like series of stages where each team added their contribution. At the end of the line, the finished product was packaged up and physically shipped to a customer.
+
+    Fast forward sixty years. Both the software itself and our process for making it are radically different from this original conception. But in the absence of a newer, more appropriate model for software development, we've unconsciously retained many industrial-era concepts -- and they're holding us back. We need a new model for software development that captures what we do today, and prepares us to build what we need for tomorrow.
+
+    I will outline a new model for software development that places the people who do it in the center of the picture, instead of on the periphery. Applying it to our projects gives us real, immediate answers to the hardest questions of software today.
+  speakers:
+    - Sarah Mei
+
+- id: "assaf-gelber-rubyfuza-2016"
+  title: "Beating Poker With The Help Of Ruby"
+  raw_title: "Assaf Gerber"
+  date: "2016-02-04"
+  published_at: "2019-10-14T03:18:36Z"
+  video_provider: "youtube"
+  video_id: "ZhFPwKvFPwE"
+  description: |-
+    The thing that makes poker such an interesting game is the combination of super deep strategy and the mathematics behind the deck of cards, both of which make decision making around the table extremely difficult. Lucky for us, Ruby can help us with that!
+
+    This talk explores how we can use Ruby to become better poker players by implying various gems and statistical analysis methods both in real time and retrospectively to deepen our understanding of situations and our opponents' strategy and tendencies and ultimately, make better decisions.
+  speakers:
+    - Assaf Gelber
+
+- id: "ridhwana-khan-rubyfuza-2016"
+  title: "Building a better programming interface for your application"
+  date: "2016-02-04"
+  video_provider: "not_recorded"
+  video_id: "ridhwana-khan-rubyfuza-2016"
+  description: |-
+    We are moving towards an era where API’s are now forming the crux of communication between different applications.
+
+    Hence, we need to ensure that our API's follow a good design and architecture, so that integration between different applications can be accomplished with minimal complexity and maximum efficiency.
+
+    In this talk, I would like to explore the JSON API spec, benefits and disadvantages of micro services, Rails 5 for your JSON API's, and the tools and workflow that, we as developers, can use to minimise delays when working in big teams, asynchronously, on the frontend and API.
+  speakers:
+    - Ridhwana Khan
+
+- id: "rishal-hurbans-rubyfuza-2016"
+  title: "Developer Design Thinking"
+  date: "2016-02-04"
+  video_provider: "not_recorded"
+  video_id: "rishal-hurbans-rubyfuza-2016"
+  description: |-
+    Design thinking is a methodology used by designers to create innovative and effective solutions. Most scientific methodologies of working take all the known factors into account when deriving a solution, whereas, design thinking analyses both the known and the unknown. It challenges us to delve deeper into the problem and read between the lines before forming a solution. This talk aims to provide insight into activities and practices that assist developers in building effective, robust, and usable software by utilising the design thinking methodology.
+  speakers:
+    - Rishal Hurbans
+
+- id: "simon-stewart-rubyfuza-2016"
+  title: "Freelancing rates ... without using a random number generator"
+  date: "2016-02-04"
+  video_provider: "not_recorded"
+  video_id: "simon-stewart-rubyfuza-2016"
+  description: |-
+    It's the thing everyone talks about, but no one tends to give full disclosure. This talk covers one of the approaches to figuring out an hourly rate for your time and pitching it to clients.
+
+    It will also cover:
+
+    * the zero value of asking peers for their rates
+
+    * when and how to substantiate a rate
+
+    * how to present the final number
+  speakers:
+    - Simon Stewart
+
+- id: "simon-van-dyk-rubyfuza-2016"
+  title: "Elixir. Much distributed. Such reliable."
+  date: "2016-02-04"
+  video_provider: "not_recorded"
+  video_id: "simon-van-dyk-rubyfuza-2016"
+  description: |-
+    Elixir is a fairly new functional programming language that runs on top of the Erlang virtual machine, known as the BEAM. Elixir opens up the mysterious world of Erlang to the average developer via an accessible syntax. Let us explore what this wonderful language and platform have to offer by looking at how they apply to building real time features into a typical request-response web application. As a bonus we will also look at how Elixir is particularly suited for complex event processing systems - sounds like all the systems we build, doesn’t it?
+  speakers:
+    - Simon van Dyk
+
+- id: "nelson-pascoal-rubyfuza-2016"
+  title: "Reactive Programming Principles"
+  date: "2016-02-04"
+  video_provider: "not_recorded"
+  video_id: "nelson-pascoal-rubyfuza-2016"
+  description: |-
+    Writing distributed applications is tricky enough without throwing concurrency into the mix. As the applications you and I build every day get more and more complex, we need tools and principles that can help us get the job done without sacrificing our sanity. That’s where Reactive Programming comes in. Join me at RubyFuZA where I’ll take you through my journey on learning Reactive Programming Principles and share some of my key learnings with you.
+  speakers:
+    - Nelson Pascoal
+
+- id: "steven-mcdonald-rubyfuza-2016"
+  title: "Improving your Craft through Communication"
+  date: "2016-02-04"
+  video_provider: "not_recorded"
+  video_id: "steven-mcdonald-rubyfuza-2016"
+  description: |-
+    As developers we often focus all our energy into languages and frameworks when we start out. Sadly many new developers won't focus on communication skills until much later in their career.
+
+    This talk aims to explain why communication is so important and how to improve the way we communicate.
+  speakers:
+    - Steven McDonald
+
+- id: "daphne-calitz-rubyfuza-2016"
+  title: "Using LocalStorage for Progressive Saving"
+  date: "2016-02-04"
+  video_provider: "not_recorded"
+  video_id: "daphne-calitz-rubyfuza-2016"
+  description: |-
+    As application developers we often provide users with ways to capture complex data via a UI. What we often don't cater for is when that user is halfway through capturing a record and need to stop what they are doing. This talk will cover how we as developers can leverage LocalStorage in the browser to make our users' lives easier.
+  speakers:
+    - Daphne Calitz
+
+- id: "aja-hammerly-rubyfuza-2016"
+  title: "Stupid Ideas For Many Computers"
+  date: "2016-02-05"
+  video_provider: "not_recorded"
+  video_id: "aja-hammerly-rubyfuza-2016"
+  description: |-
+    There are plenty of useful things you can do with Ruby and a bunch of servers. This talk isn't about useful things. This talk will show off asinine, amusing, and useless things you can do with Ruby and access to cloud computing.
+
+    Sentiment analysis based on emoji? Why not? Hacky performance testing frameworks? Definitely! Multiplayer infinite battleship? Maybe? The world's most inefficient logic puzzle solver? Awesome!
+
+    If you are interested in having some fun and laughing at reasonable code for unreasonable problems (or unreasonable code for reasonable problems) this talk is for you.
+  speakers:
+    - Aja Hammerly
+
+- id: "julian-cheal-rubyfuza-2016"
+  title: "(M)Ruby, Robots, and how to control the World."
+  date: "2016-02-05"
+  video_provider: "not_recorded"
+  video_id: "julian-cheal-rubyfuza-2016"
+  description: |-
+    Ever wanted to control your own robots, using just code and your imagination? Did you know you can make a robot fly with only 9 lines of Ruby?
+
+    With a little bit of Ruby and a variety of hardware; we'll see flying robots, mruby bots, and a lot more. We may even be able to make them... dance! So let's get coding: @robot.do_awesome_stuff!
+  speakers:
+    - Julian Cheal
+
+- id: "brendon-mclean-rubyfuza-2016"
+  title: "Literate Programming in Ruby"
+  date: "2016-02-05"
+  video_provider: "not_recorded"
+  video_id: "brendon-mclean-rubyfuza-2016"
+  description: |-
+    Find out the about the history of literate programming and how it has evolved since Donald Knuth coined the term and implemented it in 1981. You will see several running examples of it in other languages leading up to running implementations in Ruby. Finally, the talk explores what's possible in Rails when you combine markup and code using a Jupyter Kernel for Rails.
+  speakers:
+    - Brendon McLean
+
+- id: "kelvin-smith-rubyfuza-2016"
+  title: "Teaching Kids to Programme with Gosu and Sonic Pi"
+  date: "2016-02-05"
+  video_provider: "not_recorded"
+  video_id: "kelvin-smith-rubyfuza-2016"
+  description: |-
+    People learn at a young age about what was possible and what was not. Sometimes they develop biases that are not entirely valid. Often they believe that becoming a developer is not a realistic goal or don't even consider it an option.
+
+    Using libraries like Gosu and Sonic Pi that turn metaphors into audio and visual experiences, we can captivate and encourage young people. We can help them learn that code isn't a mythical dragon impossible to slay, but magic they can use that lets them see the true beauty of software development.
+  speakers:
+    - Kelvin Smith
+
+- id: "lydia-abel-rubyfuza-2016"
+  title: "Rebranding the 3R’s: reading, reasoning and robotics"
+  date: "2016-02-05"
+  video_provider: "not_recorded"
+  video_id: "lydia-abel-rubyfuza-2016"
+  description: |-
+    ORT SA CAPE is an NGO that was founded in Russia in 1880 and was established as a fund raising entity in SA in 1936. Neurological research shows that the early years before formal school play a key role in children’s brain development.
+
+    ORT SA CAPE works to educate underprivileged youth by addressing the challenges in four ways:
+
+    * CASPER (Construction After-School Programme for EnRichment, Reading and Robotics)
+
+    * Robotics
+
+    * Teacher Training
+
+    * Educational Research and Evaluation
+
+    The “kiddibot” fits into the Robotics section. Shaheer and I, are students from CPUT (Cape Peninsula University of Technology). One of the requirements from university in other to complete your degree, is to have a 6 months internship at any company where a project must be completed during that time. We have been received at ORT SA CAPE for our internship. They realized that, walking or robotics workshop were done by children from 6 years old, however some of the kids who were 4 years old wanted to do that as well. Therefore, ORT SA CAPE gave us the responsibility to make a robot for those youngest kids so that they can program and make it work as well. The project was done in 5 months and has been tested with some kids already and was very successful. However, few modifications in terms of design need to be done for a mass production.
+  speakers:
+    - Lydia Abel
+
+- id: "daniel-smith-rubyfuza-2016"
+  title: "RubyGL"
+  date: "2016-02-05"
+  video_provider: "not_recorded"
+  video_id: "daniel-smith-rubyfuza-2016"
+  description: |-
+    OpenGL is powerful cross-platform library for 3D graphics. It has been used to develop stunning visuals for indie, open-source and AAA games alike, as well as powerful graphics applications for medicine, military, and CAD, to name a few. However, as a C-Library, OpenGL is notoriously difficult to work with, especially for newcomers. Ruby gives us the opportunity to make writing OpenGL applications a more pleasant experience. This talk deals with OpenGL, Ruby, and making the two work together in a way accessible to all developers.
+  speakers:
+    - Daniel Smith
+
+- id: "kevin-mckelvin-rubyfuza-2016"
+  title: "Going Native"
+  date: "2016-02-05"
+  video_provider: "not_recorded"
+  video_id: "kevin-mckelvin-rubyfuza-2016"
+  description: |-
+    Ruby gives us a very friendly syntax to express ourselves with, but it's not without its limitations. Sometimes we need something closer to the hardware in order to make performance gains or for specialised applications such as signal processing.
+
+    We'll live code a Ruby gem with a C native extension and then look at how we can use Go, a modern systems programming language, as an alternative to C for native code interop in Ruby.
+  speakers:
+    - Kevin McKelvin
+
+- id: "austin-fagan-rubyfuza-2016"
+  title: "Assumption is the mother of all fuck-ups"
+  date: "2016-02-05"
+  video_provider: "not_recorded"
+  video_id: "austin-fagan-rubyfuza-2016"
+  description: |-
+    As product developers we tend to get caught up in the solution and lose sight of the problem we are trying to solve. It's through the assumptions we make along the way that we come a cropper. This talk is about taking those assumptions and turning them into something really, really useful.
+  speakers:
+    - Austin Fagan
+
+- id: "eliza-de-jager-rubyfuza-2016"
+  title: "Eigenclasses and other Meta-programming Concepts"
+  date: "2016-02-05"
+  video_provider: "not_recorded"
+  video_id: "eliza-de-jager-rubyfuza-2016"
+  description: |-
+    Eigenclasses are an important construct in Ruby and, although obscured from the everyday developer, are core to many meta-programming principles and techniques. We delve into what an eigenclass is, how to access it, and how to make use of this knowledge in order to improve our meta-programming techniques. Method lookup, singleton methods, class_eval and instance_eval, and include and extend will all be explained in the context of eigenclasses. Other useful meta-programming ideas such as scope gates will also be investigated.
+  speakers:
+    - Eliza de Jager
+
+- id: "rory-mckinley-rubyfuza-2016"
+  title: "What defines quality software?"
+  date: "2016-02-05"
+  video_provider: "not_recorded"
+  video_id: "rory-mckinley-rubyfuza-2016"
+  description: |-
+    For years, I've believed that there was a univeersal constant that defined quality software and, once the secret ingredient for quality software has been identified, it can be distilled, bottled and sprinkled like fairydust over code - ensuring success.
+
+    This talk will try to determine if there is a single overarching definition of quality software or if, like so many other of life's realities, it is a tad more complicated.
+  speakers:
+    - Rory McKinley
+
+- id: "gabriel-fortuna-rubyfuza-2016"
+  title: "Next level release management using feature flags"
+  date: "2016-02-05"
+  video_provider: "not_recorded"
+  video_id: "gabriel-fortuna-rubyfuza-2016"
+  description: |-
+    Deploying an application is getting trickier and trickier as the features we build get ever more complex. In this talk, I’ll be showing you how you can level up your release management and deployment strategies using feature flags, and why they could just be a future core principle in modern app development.
+  speakers:
+    - Gabriel Fortuna
