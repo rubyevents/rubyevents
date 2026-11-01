@@ -106,7 +106,7 @@ rules:
           value_style: plain
 
       - quote_style:
-          selector: "[].organisations"
+          selector: "[].organizations"
           value_style: plain
 
       - quote_style:
@@ -122,15 +122,15 @@ rules:
           value_style: double
 
       - quote_style:
-          selector: "[].organisations[].name"
+          selector: "[].organizations[].name"
           value_style: double
 
       - quote_style:
-          selector: "[].organisations[].from"
+          selector: "[].organizations[].from"
           value_style: double
 
       - quote_style:
-          selector: "[].organisations[].to"
+          selector: "[].organizations[].to"
           value_style: double
 
       - blank_lines:

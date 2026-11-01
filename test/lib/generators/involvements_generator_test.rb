@@ -32,7 +32,7 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
       run_generator [
         "--event", "xoruby-austin-2025",
         "--name", "Organizer",
-        "--organisations", "Flagrant", "Another Org"
+        "--organizations", "Flagrant", "Another Org"
       ]
     end
     assert_valid_file file_path do |content|
@@ -50,7 +50,7 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
         "--event", "2026",
         "--name", "Organizer",
         "--users", "Jim Remsik",
-        "--organisations", "Flagrant"
+        "--organizations", "Flagrant"
       ]
     end
     assert_valid_file file_path do |content|
@@ -76,7 +76,7 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
         "--event-series", "xoruby",
         "--event", "2027",
         "--name", "Organizer",
-        "--organisations", "Flagrant"
+        "--organizations", "Flagrant"
       ]
     end
 
@@ -94,7 +94,7 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
     run_generator ["--event-series", "xoruby", "--event", "2029", "--name", "Volunteer", "--users", "Alice Smith"]
 
     assert_nothing_raised do
-      run_generator ["--event-series", "xoruby", "--event", "2029", "--name", "Organizer", "--organisations", "Flagrant"]
+      run_generator ["--event-series", "xoruby", "--event", "2029", "--name", "Organizer", "--organizations", "Flagrant"]
     end
 
     assert_valid_file file_path do |content|
