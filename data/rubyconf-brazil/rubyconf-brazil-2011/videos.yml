@@ -1,0 +1,544 @@
+# Website: -
+# Videos: -
+---
+
+- id: "david-a-black-rubyconf-brazil-2011"
+  title: "Is Ruby Easy?"
+  date: "2011-11-03"
+  start_time: "09:20"
+  end_time: "10:10"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "david-a-black-rubyconf-brazil-2011"
+  description: |-
+    Ruby has a somewhat mixed reputation when it comes to ease of use and accessibility to programmers -- and, oddly enough, to non-programmers. Its "magic" and meta-powers are often seen as barriers to entry and progress. At the same time, the belief that Ruby is based on a universal POLS (Policy of Least Surprise) persists, and it isn't unusual to hear annoyance expressed when learning Ruby proves to be harder than falling off a log. This talk will explore and troubleshoot notions of ease of use, intuitiveness, and programmer friendliness, all in relation to Ruby the language and Ruby the programming-cultural entity.
+  speakers:
+    - David A. Black
+
+- id: "ricardo-bernardelli-fernando-hamasaki-de-amorim-rubyconf-brazil-2011"
+  title: "Multitenancy em Rails: Cortando custos e aumentando capacidade"
+  date: "2011-11-03"
+  start_time: "10:40"
+  end_time: "11:30"
+  language: "Portuguese"
+  track: "Room 1"
+  video_provider: "not_recorded"
+  video_id: "ricardo-bernardelli-fernando-hamasaki-de-amorim-rubyconf-brazil-2011"
+  description: |-
+    Algumas decisões que parecem boas no começo de um projeto, com o tempo mostram que possuem vantagens mas também deficiências.
+
+    A loja virtual WebStore, desenvolvida pela Locaweb, é um exemplo de produto que nasceu com uma arquitetura suficiente para o momento inicial, como dívida técnica conhecida, que após um ano de projeto tornou-se inviável.
+
+    A palestra apresenta o desafio da equipe de desenvolvimento de SaaS de mudar a arquitetura do produto. Falando em números, antes a WebStore possuía 1.000 clientes, distribuídos em 12 servidores.
+
+    Após estudar as poucas alternativas de multitenancy em Rails e escolher uma opção não tão usual, foi possível acomodar mais de 4.000 clientes em apenas um servidor, pagando a dívida técnica a tempo de aumentar o número de clientes.
+  speakers:
+    - Ricardo Bernardelli
+    - Fernando Hamasaki de Amorim
+
+- id: "marcos-toledo-rubyconf-brazil-2011"
+  title: "Surpresas no uso de Concorrência em Rails"
+  date: "2011-11-03"
+  start_time: "10:40"
+  end_time: "11:30"
+  language: "Portuguese"
+  track: "Room 2"
+  video_provider: "not_recorded"
+  video_id: "marcos-toledo-rubyconf-brazil-2011"
+  description: |-
+    Com o uso cada vez mais frequente de múltiplos servidores e processamento em lote, problemas que somente ocorrem quando tarefas específicas rodam em paralelo se tornam cada vez mais prováveis de acontecer.
+
+    Nesta palestra Marcos fala sobre algumas limitações de concorrência do Rails que você precisa conhecer, incluindo por que você nunca deve confiar no Rails para checar por não-duplicação (unicidade), por que MySQL não consegue fazer trava otimista por padrão e como corrigí-lo, como escolher entre travas otimistas e pessimistas, como processos paralelos podem causar "deadlocks" mesmo que você não esteja usando travas, por que você nunca deve ter atributos serializados em registros que podem ser editados em paralelo, e quando o rails pode concluir suas transações antes de ela terminar caso seu processo multi-threaded seja finalizado e como prevení-lo de deixar seu banco de dados em um estado inconsistente.
+  speakers:
+    - Marcos Toledo
+
+- id: "nick-sutterer-rubyconf-brazil-2011"
+  title: "Hypermedia - The Missing Ingredient in REST"
+  date: "2011-11-03"
+  start_time: "11:30"
+  end_time: "12:20"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_recorded"
+  video_id: "nick-sutterer-rubyconf-brazil-2011"
+  description: |-
+    REST is an architectural style for distributed systems. However, many implementations forget about the distributed part of REST and simply map CRUD operations to HTTP verbs in a monolithic application.
+
+    Why not split this up into a truely distributed system, where applications use REST for communication? Real REST. Where clients travel on hypermedia routes using the REST APIs from the services.
+
+    While discussing the concepts of hypermedia-driven APIs, we'll explore the Roar gem that makes both REST representations and hypermedia fun.
+  speakers:
+    - Nick Sutterer
+
+- id: "saulo-arruda-rubyconf-brazil-2011"
+  title: "Rails nas Nuvens"
+  date: "2011-11-03"
+  start_time: "11:30"
+  end_time: "12:20"
+  language: "Portuguese"
+  track: "Room 2"
+  video_provider: "not_recorded"
+  video_id: "saulo-arruda-rubyconf-brazil-2011"
+  description: |-
+    Vamos demonstrar o processo de configuração e teste de um ambiente para colocar sua aplicação Rails em produção nas nuvens.
+
+    A apresentação será um relato de experiência de configuração e publicação de uma aplicação Rails no estilo SaaS que teve 10.000 usuário no primeiro cliente. O projeto usa estrutura de servidores EC2 da Amazon e Cloud Server Pro da Locaweb como CDN.
+  speakers:
+    - Saulo Arruda
+
+- id: "konstantin-haase-rubyconf-brazil-2011"
+  title: "Real Time Rack"
+  date: "2011-11-03"
+  start_time: "13:40"
+  end_time: "14:30"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "konstantin-haase-rubyconf-brazil-2011"
+  description: |-
+    At least since node.js everyone knows that real time HTTP responses are the next big thing. The secrets of handling incoming requests asynchronously with Ruby is not yet far spread among Rubyists, as the internals needed for such responses are neither specified nor documented and there is a lack of tools. Still, it is possible to use Server-Sent Events, WebSockets and akin with Rack today. This talk will demonstrate the underlying technologies and how to use them in your Ruby application.
+  speakers:
+    - Konstantin Haase
+
+- id: "carlos-brando-luis-gustavo-rubyconf-brazil-2011"
+  title: "Ruby em todos os lugares e dispositivos"
+  date: "2011-11-03"
+  start_time: "14:30"
+  end_time: "15:20"
+  language: "Portuguese"
+  track: "Room 1"
+  video_provider: "not_recorded"
+  video_id: "carlos-brando-luis-gustavo-rubyconf-brazil-2011"
+  description: |-
+    Já imaginou se fosse possível executar código Ruby em qualquer dispositivo como celulares, televisores e até em caixas eletrônicos?
+
+    Essa palestra altamente técnica descreve os passos para a criação de uma máquina virtual capaz de executar código Ruby em qualquer dispositivo. Venha preparado para ver muito código em Ruby, C e Assembly.
+  speakers:
+    - Carlos Brando
+    - Luis Gustavo
+
+- id: "lucas-hungaro-rubyconf-brazil-2011"
+  title: "SOLID através de BDD - um guia prático para Rubistas"
+  date: "2011-11-03"
+  start_time: "14:30"
+  end_time: "15:20"
+  language: "Portuguese"
+  track: "Room 2"
+  video_provider: "not_recorded"
+  video_id: "lucas-hungaro-rubyconf-brazil-2011"
+  description: |-
+    Já conhecemos muitos dos benefícios do BDD para design de código. Mas há algo que deveríamos fazer mais: ouvir a voz de nossas suítes de testes.
+    Nessa palestra mostrarei como você pode fazer isso enquanto aprendemos a identificar e resolver os seguintes problemas através do BDD:
+     Alto acoplamento Baixa coesão Overmocking Domínios anêmicos Programação Orientada a Objetos mal aplicada (ou: como aplicar SOLID através do BDD)
+    Veremos como todos esses problemas estão interconectados e como resolvê-los e colher benefícios como testes que rodam mais rápido, código flexível e tempo de manutenção reduzido.
+  speakers:
+    - Lucas Húngaro
+
+- id: "martyn-loughran-rubyconf-brazil-2011"
+  title: "From the event loop to the distributed system"
+  date: "2011-11-03"
+  start_time: "15:20"
+  end_time: "16:10"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_recorded"
+  video_id: "martyn-loughran-rubyconf-brazil-2011"
+  description: |-
+    Generally people don't wake up one day and build a scalable distributed system. We certainly didn't! Pusher started as a single process with a single event loop. I'll share some of my experience scaling Pusher, showing how you can manage complexity in an event driven application, and sharing some strategies we used to expand beyond a single process, and to recover automatically from failure.
+  speakers:
+    - Martyn Loughran
+
+- id: "diogo-biazus-rubyconf-brazil-2011"
+  title: "YesSQL, como as funcionalidades avançadas do PostgreSQL podem ajudar o desenvolvedor Rails"
+  date: "2011-11-03"
+  start_time: "15:20"
+  end_time: "16:10"
+  language: "Portuguese"
+  track: "Room 2"
+  video_provider: "not_recorded"
+  video_id: "diogo-biazus-rubyconf-brazil-2011"
+  description: |-
+    Desenvolvedores Rails tradicionalmente evitaram usar funcionalidades específicas de bancos relacionais, preferindo construir muito da lógica de negócios nos modelos da aplicação. No entanto existem muitos casos onde o PostgreSQL oferece vantagens sobre as soluções mais populares.
+
+    Esta palestra será sobre três casos interessantes onde a aproximação do banco de dados pode levar a uma melhor performance e código mais elegante.
+     Hstore vs NoSQL / dados serializados Earthdistance vs Geokit With recursive vs Nested sets
+  speakers:
+    - Diogo Biazus
+
+- id: "roberto-rodriguez-artavia-rubyconf-brazil-2011"
+  title: "Ruby on Rails Applications without Page Reloading"
+  date: "2011-11-03"
+  start_time: "16:40"
+  end_time: "17:30"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_recorded"
+  video_id: "roberto-rodriguez-artavia-rubyconf-brazil-2011"
+  description: |-
+    Facebook, Twitter, Google+ and many Mobile Apps have a Javascript Frontend that provide for great user experiences and make Traditional Web Apps that require page reload after page reload look slow and boring.
+
+    By leveraging the thrust of Javascript, Rails(RoR) and Ruby communities, a new breed of web applications has emerged that is transforming , in an exponential way , our online experiences.
+
+    With these innovative libraries it is possible to create Javascript Applications backed by Rails that use very similar Syntax to Ruby along with Controllers, Models and Views with a modular file structure that becomes concatenated into one production ready javascript file automatically.
+
+    Those interested in how to build Javascript MVC Applications and those who want to be introduced to the technologies that makes it possible should walk away with a clear picture on how to proceed.
+
+    The session introduces the importance of Single Page Applications from an UX viewpoint and then move into demos / tutorial and code review of Single Page Applications.
+
+    Using Rails 3.1 newest additions like Haml, Coffeescript, Saas and the Asset Pipeline is really fun to build beautiful, structured Client Side Application using Javascript Object Oriented Programming and Model-View-Controller Frameworks.
+
+    "Javascript Applications don't need to be a spaghetti of Jquery selectors"; but rather a structured MVC application that is easy to maintain and quick to develop.
+
+    In this session I explain how to use Spine JS (an alternative to Backbone.js ) to create Javascript Single Page Applications that connects asynchronously to a Rails and MongoDB Backend.
+
+    Initially we will examine a Hello World CRUD application that connects with a standard Rails Rest API, then move on to a Single Page Application that uses Infinite Scrolling and given enough time we will review the code of a Real-World Offline-Online Remote Application for Salesman that are on the road.
+
+    The code for each application and several boiler-plates will available in GitHub @rodriguezartav after the conference; I will also be providing a One Page step-by-step Getting Started Tutorial including Documentation and Resources so that attendees can get started building single page apps right away.
+
+    If you have any questions about the content of the session feel free to contact me via twitter.
+  speakers:
+    - Roberto Rodriguez Artavia
+
+- id: "ivan-acosta-rubio-rubyconf-brazil-2011"
+  title: "Replicating ActiveRecord objects to MongoDB"
+  date: "2011-11-03"
+  start_time: "16:40"
+  end_time: "17:30"
+  language: "English"
+  track: "Room 2"
+  video_provider: "not_recorded"
+  video_id: "ivan-acosta-rubio-rubyconf-brazil-2011"
+  description: |-
+    We had to move much of MySQL / Active Record objects to a huge MongoDB document. We'll show you the code that makes this happen and share a few of the lessons learned.
+
+    Ever wonder how to migrate from MySQL to MongoDB?
+
+    This is the detailed story of how the report generating code of venuedriver.com went from providing great business value to taking more than 5 minutes to just generate an error.
+
+    We had to generate reports that needed to join 8 tables. This approach was ok for the first 2 years of the app, but as we grew our report generating codebase became a joke.
+  speakers:
+    - Ivan Acosta-Rubio
+
+- id: "koichiro-eto-rubyconf-brazil-2011"
+  title: "The Timeless Way of Software Development"
+  date: "2011-11-03"
+  start_time: "17:30"
+  end_time: "18:20"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_recorded"
+  video_id: "koichiro-eto-rubyconf-brazil-2011"
+  description: |-
+    I'd like to introduce my book "Patterns, Wiki and XP", which discover the relationship between Pattern Language, Design Patterns, Wiki and Extreme Programming.  I'm a media artist creating art works using Ruby from 2001. I'll introduce you my works including "A Hands-on Model of the Internet".
+  speakers:
+    - Koichiro Eto
+
+- id: "rodrigo-franco-rubyconf-brazil-2011"
+  title: "Suba da Nível na sua aplicação usando bigdoor e outras gems de game-ficação"
+  date: "2011-11-03"
+  start_time: "17:30"
+  end_time: "18:20"
+  language: "Portuguese"
+  track: "Room 2"
+  video_provider: "not_recorded"
+  video_id: "rodrigo-franco-rubyconf-brazil-2011"
+  description: |-
+    2011 é o ano da Game-ficação - a integração de semânticas de jogos em ambientes que não são jogos para aumentar o compromisso, lealdade e diversão.
+
+    Nesta palestra, Rodrigo Franco o guiará pelos pilares básicos do 'gameful design' e mostrará como implementar patterns de teoria de jogos em sua aplicação Ruby usando as melhores bibliotecas e ferramentas disponíveis para a tarefa.
+  speakers:
+    - Rodrigo Franco
+
+- id: "who-makes-the-best-churrasco-rubyconf-brazil-2011"
+  title: "Who makes the best Churrasco?"
+  date: "2011-11-04"
+  start_time: "08:50"
+  end_time: "09:40"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "who-makes-the-best-churrasco-rubyconf-brazil-2011"
+  description: |-
+    Starting a holy war is easy, understanding Rails internals is not.  In this talk we'll take a look at some of the code that makes Rails tick.
+
+    Highlights will include ActiveRecord, connection pooling, resource management, and how these impact the request and response life cycle.
+
+    Based on what we learn from exploring these facets of Rails, we'll discuss what we need to do improve our development skills, and how this will shape the future of Rails itself!
+  speakers:
+    - Aaron Patterson
+
+- id: "ivan-moscoso-rubyconf-brazil-2011"
+  title: "Groupon, Ruby (and the Great Divide)"
+  date: "2011-11-04"
+  start_time: "09:40"
+  end_time: "10:30"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "ivan-moscoso-rubyconf-brazil-2011"
+  description: |-
+    Great teams can build great companies, but the effort that goes into it is rarely linear. Groupon was built with Ruby on Rails at its core, and growing from thousands to millions of users in two years is a testament to the power and flexibility of the tools and practices we chose as a team.  But progress along that path was often a struggle.
+
+    This talk will cover how the team in the U.S. adapted our technology stack during an initial period of immense growth, describing crucial inflection points in our history (the good, and the bad) and how the architecture and development practices evolved to support those needs.
+  speakers:
+    - Ivan Moscoso
+
+- id: "nando-vieira-rubyconf-brazil-2011"
+  title: "Rails Views: codificando sua interface como um profissional"
+  date: "2011-11-04"
+  start_time: "11:00"
+  end_time: "11:50"
+  language: "Portuguese"
+  track: "Room 1"
+  video_provider: "not_recorded"
+  video_id: "nando-vieira-rubyconf-brazil-2011"
+  description: |-
+    Um grande problema com Rails apps é que a interface nem sempre é tratada com a devida atenção. Views com códigos "macarrônicos", lógica embutida, e tudo o que você sabe que não deve fazer, mas faz mesmo assim.
+
+    Nesta palestra você verá como melhorar suas views, conhecerá o conceito de presenters e de quebra ainda verá porque usar Haml, Coffeescript e SCSS nem sempre é uma boa ideia.
+  speakers:
+    - Nando Vieira
+
+- id: "marcelo-manzan-eric-fer-rubyconf-brazil-2011"
+  title: "Automatizando documentação e versionamento semântico de projetos GIT com StepUp"
+  date: "2011-11-04"
+  start_time: "11:00"
+  end_time: "11:50"
+  language: "Portuguese"
+  track: "Room 2"
+  video_provider: "not_recorded"
+  video_id: "marcelo-manzan-eric-fer-rubyconf-brazil-2011"
+  description: |-
+    Manter documentação de alterações do projeto pode ser caótico, o commit log é detalhado demais, listar somente as histórias é muito abrangente, sem falar que muitas vezes se deixa para a última hora e o changelog nunca sai com todas as alterações feitas. O StepUp ajuda a solucionar esse problema ao utilizar uma funcionalidade pouco conhecida no GIT, que são as notas. Explore a criação de changelogs e o versionamento semântico dos seus projetos.
+  speakers:
+    - Marcelo Manzan
+    - Eric Fer
+
+- id: "evan-henshaw-plath-rubyconf-brazil-2011"
+  title: "Lean Startups for the Ruby Hacker"
+  date: "2011-11-04"
+  start_time: "11:50"
+  end_time: "12:40"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_recorded"
+  video_id: "evan-henshaw-plath-rubyconf-brazil-2011"
+  description: |-
+    Talk about what's going on in startups and the business side so that programmers can understand their clients. Also perhaps build their own products.
+  speakers:
+    - Evan Henshaw-Plath
+
+- id: "lucas-rosa-galego-rubyconf-brazil-2011"
+  title: "Analytics em Tempo Real com Ruby"
+  date: "2011-11-04"
+  start_time: "11:50"
+  end_time: "12:40"
+  language: "Portuguese"
+  track: "Room 2"
+  video_provider: "not_recorded"
+  video_id: "lucas-rosa-galego-rubyconf-brazil-2011"
+  description: |-
+    Na globo.com, utilizamos Ruby para processar cada acesso, cada click, gerando informações em tempo real para nossos editores.
+
+    Mas se ruby é uma linguagem criticada por ser lenta, como conseguimos utilizá-la para tal fim?
+
+    Nessa palestra, queremos mostrar como que decisões arquiteturais são o que realmente fazem um projeto ter performance e escala.
+  speakers:
+    - Lucas Rosa Galego
+
+- id: "douglas-campos-rubyconf-brazil-2011"
+  title: "JRuby on Steroids"
+  date: "2011-11-04"
+  start_time: "14:10"
+  end_time: "15:00"
+  language: "Portuguese"
+  track: "Room 1"
+  video_provider: "not_recorded"
+  video_id: "douglas-campos-rubyconf-brazil-2011"
+  description: |-
+    O JRuby sempre foi famoso pela sua excelente performance, por diversas vezes superando em performance as outras implementações de Ruby.
+
+    Recentemente o Java 7 foi lançado, causando um verdadeiro burburinho entre os desenvolvedores de linguagens dinâmicas baseadas na JVM.
+
+    Nessa sessão vou mostrar quais foram as novidades trazidas pelo Java 7, e como o JRuby se aproveita delas; Qual o real impacto de termos invocações dinâmicas na JVM, qual foi a abordagem do time do JRuby ao explorar essas melhorias, e principalmente, como você pode tirar benefício disso tudo ao executar suas aplicações no JRuby. Palestra com foco técnico mais aprofundado.
+  speakers:
+    - Douglas Campos
+
+- id: "rafael-felix-rubyconf-brazil-2011"
+  title: "Aplicativos Rails dinâmicos com Backbone.js"
+  date: "2011-11-04"
+  start_time: "14:10"
+  end_time: "15:00"
+  language: "Portuguese"
+  track: "Room 2"
+  video_provider: "not_recorded"
+  video_id: "rafael-felix-rubyconf-brazil-2011"
+  description: |-
+    O uso pesado de JavaScript em aplicações web se tornou muito comum. No mundo Ruby on Rails não é diferente. Apesar de existirem diversos metodos para auxiliar no desenvolvimento dessas aplicações mais interativas, ainda existem uma mescla grande de código Ruby com JavaScript.
+
+    Nessa palestra Rafael falará sobre Backbone.js, um framework JavaScript MVC, que propõe uma separação simples de código JavaScript com o código do backend. Rafael irá mostrar os conceitos do Backbone.js mesclando teoria e código e concluindo com exemplos de integração de Ruby on Rails e Backbone
+  speakers:
+    - Rafael Felix
+
+- id: "saurabh-bhatia-rubyconf-brazil-2011"
+  title: "Developing Chat Application in Rails with HTML5 Websockets"
+  date: "2011-11-04"
+  start_time: "15:00"
+  end_time: "15:50"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_recorded"
+  video_id: "saurabh-bhatia-rubyconf-brazil-2011"
+  description: |-
+    Xmpp, jabber are some of the protocols currently available for development of chat based applications. HTML5 websocket provides a lightweight means of real-time interaction between app users. The talk demonstrates how to create a Rails application that uses HTML5 websockets for create a chat application,hands on.
+  speakers:
+    - Saurabh Bhatia
+
+- id: "bruno-oliveira-rubyconf-brazil-2011"
+  title: "TorqueBox - Ultrapassando a fronteira entre Java e Ruby"
+  date: "2011-11-04"
+  start_time: "15:00"
+  end_time: "15:50"
+  language: "Portuguese"
+  track: "Room 2"
+  video_provider: "not_recorded"
+  video_id: "bruno-oliveira-rubyconf-brazil-2011"
+  description: |-
+    Aplicações Ruby estão cada vez mais populares, graças a facilidade de escrever código, porém nem tudo precisa ser reinventado pra escalar. Nesta apresentação mostraremos como aproveitar a maturidade da plataforma Java dentro de temas: clustering, mensageria e processamento de jobs em aplicações rails/sinatra/rack.
+  speakers:
+    - Bruno Oliveira
+
+- id: "nigel-fernandes-rubyconf-brazil-2011"
+  title: "Continuous Delivery through server side mash-ups"
+  date: "2011-11-04"
+  start_time: "15:50"
+  end_time: "16:40"
+  language: "English"
+  track: "Room 1"
+  video_provider: "not_recorded"
+  video_id: "nigel-fernandes-rubyconf-brazil-2011"
+  description: |-
+    There's a typical problem facing the enterprise world. There is a well entrenched CMS system (like Alfresco, Teamsite, etc) and an enthusiastic agile team.
+
+    These commercial off the shelf(COTS) products were never designed for Agile development teams and the principles of continuous integration (CI) and delivery.
+
+    So how do you setup an automated integration and delivery pipeline doing trunk based deployments into Production of your enterprise quality CMS system and its content?
+
+    At ThoughtWorks we've encountered these problems in the field several times, and one approach has proved very effective.
+
+    This talk is about leveraging Ruby, Rails, and a couple of custom gems to implement a server side mash-up as a mechanism for CI and continuous delivery.
+
+    I'll cover architecture principles and patterns inherited from Sitemesh, Segmented content freshness, the decorator pattern, and HTTP based caching.
+  speakers:
+    - Nigel Fernandes
+
+- id: "diogo-terror-rubyconf-brazil-2011"
+  title: "Application black-boxing: Além da mentalidade monolítica"
+  date: "2011-11-04"
+  start_time: "15:50"
+  end_time: "16:40"
+  language: "Portuguese"
+  track: "Room 2"
+  video_provider: "not_recorded"
+  video_id: "diogo-terror-rubyconf-brazil-2011"
+  description: |-
+    O desenvolvimento da versão 3 do Rails envolveu um grande esforço em permitir aplicações modulares e flexíveis em sua estrutura. O código mudou, agora é preciso alterar a 'mentalidade monolítica'.
+
+    Essa palestra é sobre os benefícios e as melhores práticas em se ter várias pequenas aplicações especializadas ao invés de uma só. No caminho, veremos as lições aprendidas pela comunidade Python e como o framework Django influenciou o desenvolvimento do Rails 3.
+  speakers:
+    - Diogo Terror
+
+- id: "jose-valim-rubyconf-brazil-2011"
+  title: "Aprenda e entenda mais sobre Ruby criando a sua própria linguagem de programação"
+  date: "2011-11-04"
+  start_time: "17:10"
+  end_time: "18:00"
+  language: "Portuguese"
+  track: "Room 1"
+  video_provider: "not_recorded"
+  video_id: "jose-valim-rubyconf-brazil-2011"
+  description: |-
+    José Valim compartilhará o que ele aprendeu sobre Ruby ao escrever a sua própria linguagem de programação chamada Elixir.
+
+    Ele discutirá a estrutura básica de uma linguagem de programação, propor mudanças e debater sobre gramática, Object Model, métodos, iteradores e blocos do Ruby.
+
+    Certamente é uma experiência única para quem está interessado em aprender mais sobre Ruby e linguagens de programação.
+  speakers:
+    - José Valim
+
+- id: "robson-junior-roberto-pepato-rubyconf-brazil-2011"
+  title: "Adicionando \"where\" a suas aplicações Ruby"
+  date: "2011-11-04"
+  start_time: "17:10"
+  end_time: "18:00"
+  language: "Portuguese"
+  track: "Room 2"
+  video_provider: "not_recorded"
+  video_id: "robson-junior-roberto-pepato-rubyconf-brazil-2011"
+  description: |-
+    Aplicar geografia em uma aplicação qualquer é meramente questão de criatividade. Mas se a criatividade flui o que falta são ferramentas. Atualmente temos cases de sucesso da popularização e democratização dos sistemas de informação geográfica (GIS) como Google Maps e Foursquare. Mas GIS não é simplesmente geocodificar um endereço ou traçar uma rota. Você já parou para pensar como adicionar o fator “geografia” em sua aplicação? Quais as possibilidades? Quais ferramentas suportam isso de fato? Apresentaremos ferramentas e técnicas para você adicionar desde uma simples geocodificação até controlar a energia de um país inteiro.
+  speakers:
+    - Robson Júnior
+    - Roberto Pepato
+
+- id: "leonardo-borges-rubyconf-brazil-2011"
+  title: "A Cloud contra as enchentes, ou como Ruby On Rails salvou o dia na Austrália"
+  date: "2011-11-04"
+  start_time: "18:00"
+  end_time: "18:50"
+  language: "Portuguese"
+  track: "Room 1"
+  video_provider: "not_recorded"
+  video_id: "leonardo-borges-rubyconf-brazil-2011"
+  description: |-
+    Fortes enchentes atingiram a Austrália no final de 2010, causando mortes e bilhões de dólares em danos.
+    Em resposta ao desastre o Governo de  Queensland planejou um teleton nacional para arrecadar doações para as vítimas das enchentes.
+    Porém, eles não estavam preparados para a carga que estava por vir.
+
+    Nessa sessão vou mostrar como tiramos vantagem da "cloud" para desenvolver a aplicação de doações do teleton em 48 horas,
+    recebendo mais de 30 milhões de  dólares em doações - mesmo com todo o ceticismo ao longo do projeto.
+
+    Também vou discutir e mostrar alguns truques e problemas importantes para quem trabalha com uma plataforma PaaS, como o Heroku.
+    Se você não tem certeza se cloud computing é sério o suficiente para o seu negócio, essa sessão vai te fazer mudar de idéia.
+  speakers:
+    - Leonardo Borges
+
+- id: "daniel-lopes-rubyconf-brazil-2011"
+  title: "Código Melhor através de Design de Interface"
+  date: "2011-11-04"
+  start_time: "18:00"
+  end_time: "18:50"
+  language: "Portuguese"
+  track: "Room 2"
+  slides_url: "https://speakerdeck.com/danielvlopes/better-software-through-the-ui-design-rubyconf-br-2011"
+  video_provider: "not_recorded"
+  video_id: "daniel-lopes-rubyconf-brazil-2011"
+  description: |-
+    Cada software tem suas próprias peculiaridades mas todos eles tem uma coisa em comum: sua complexidade irá crescer.
+
+    Desenvolvedores tendem a pensar em modelos, tabelas e estruturas de dados. Eles constróem o software por esse ponto de vista. Designers tendem a pensar em telas e navegação mas normalmente seu trabalho somente acontece no começo ou no fim do projeto.
+
+    Nesta apresentação discutiremos, com exemplos reais, como simplificar o código através do design de interface e navegação. Como evitar doenças como "crud-ificação" ou "resource-ficação". Como não cuidar do fluxo e telas pode afetar negativamente seus modelos, controllers, views, javascript e experiência geral de seus desenvolvedores e usuários.
+  speakers:
+    - Daniel Lopes
+
+- id: "i-hate-lambdas-rubyconf-brazil-2011"
+  title: "I Hate Lambdas"
+  date: "2011-11-04"
+  start_time: "18:50"
+  end_time: "19:40"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "i-hate-lambdas-rubyconf-brazil-2011"
+  description: "" # TODO
+  speakers:
+    - Aaron Patterson
+
+- id: "daniel-cukier-rubyconf-brazil-2011"
+  title: "Rap do Robô Ruby"
+  kind: "lightning_talk"
+  date: "2011-11-03"
+  published_at: "2011-11-04T15:51:58Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "nj45fLCGFLs"
+  description: "" # TODO
+  speakers:
+    - Daniel Cukier

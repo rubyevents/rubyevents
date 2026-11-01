@@ -1,7 +1,260 @@
-# TODO: Add talks and videos
-
 # Website: https://online.rubyconf.com.br/
 # Videos: -
 # https://www.youtube.com/watch?v=LssPqd3lc-g
 ---
-[]
+
+- id: "willian-molinari-rubyconf-brazil-2021"
+  title: "Ruby, além da linguagem"
+  date: "2021-07-29"
+  start_time: "14:35"
+  end_time: "15:20"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "willian-molinari-rubyconf-brazil-2021"
+  description: |-
+    Não é segredo que nós gostamos de Ruby, mas por quê? O que nos atrai é só a linguagem?
+    Nessa palestra vamos explorar além da linguagem para ver o que há de legal em torno de Ruby e porque vale a pena tê-la em nossa caixa de ferramentas.
+  speakers:
+    - Willian Molinari
+
+- id: "ingrid-murielem-amanda-gregorio-rubyconf-brazil-2021"
+  title: "Precisamos falar sobre Feature Branch e Trunk Based."
+  date: "2021-07-29"
+  start_time: "15:20"
+  end_time: "16:05"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "ingrid-murielem-amanda-gregorio-rubyconf-brazil-2021"
+  description: |-
+    Qual a forma de desenvolvimento mais adequada para o seu time? Quais as vantagens e desvantagens de cada abordagem? Quais são as boas práticas? Geralmente, a estratégia de desenvolvimento não é o problema principal, mas, sim, como a implementamos.
+  speakers:
+    - Ingrid Murielem
+    - Amanda Gregório
+
+- id: "gabriel-ferreira-rubyconf-brazil-2021"
+  title: "Uma talk eventualmente consistente"
+  date: "2021-07-29"
+  start_time: "16:05"
+  end_time: "16:50"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "gabriel-ferreira-rubyconf-brazil-2021"
+  description: |-
+    "Eventualmente consistente" é a expressão que usamos para informações que não são atualizadas em tempo real mas que, eventualmente, se tornam consistentes. Essa estratégia de delaying pode ser vital para um sistema, como foi no nosso caso, em que reduzimos o tempo para recalcular relatórios de envio por hora de 4 horas em média para apenas 5 minutos. Esta talk traz um compilado de aprendizados sobre o uso consciente dos recursos disponíveis, tomando por base um ambiente altamente concorrente com processamento diário de mais de 10M de eventos.
+  speakers:
+    - Gabriel Ferreira
+
+- id: "joao-paulo-lethier-rubyconf-brazil-2021"
+  title: "Entendendo o funcionamento do cache no Rails"
+  date: "2021-07-29"
+  start_time: "16:50"
+  end_time: "17:35"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "joao-paulo-lethier-rubyconf-brazil-2021"
+  description: |-
+    O Rails possui métodos e helpers que nos ajudam muito quando precisamos usar cache para otimização e melhoria de performance. Mas o que acontece na mágica do rails que torna esse uso tão fácil? Entender exatamente como as chaves do cache são geradas, assim como entender como invalidar as chaves da melhor forma, nos permitem fazer o melhor uso dessa ferramenta e também evitar erros e problemas.
+  speakers:
+    - João Paulo Lethier
+
+- id: "kevin-santos-rubyconf-brazil-2021"
+  title: "Minha aplicação cresceu e agora?"
+  date: "2021-07-29"
+  start_time: "17:35"
+  end_time: "18:20"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "kevin-santos-rubyconf-brazil-2021"
+  description: |-
+    Vou abordar num contexto geral como enfrentar desafios de escalabilidade em aplicações Rails e trazer também muitas outras dicas para desenvolver uma aplicação robusta e ainda por cima gastando pouco. 
+
+    Vou mostrar na prática temas como gerenciamento de métricas, ferramentas e serviços terceiros usando como exemplo uma plataforma SaaS de ecommerce.
+
+    Vamos abordar pontos como:
+    Utilização de APM na aplicação
+    Otimização do Banco de dados
+    Otimizações de Memória
+    Distribuição de Workers e Threads
+    Tracking de Bugs e Logging
+  speakers:
+    - Kevin Santos
+
+- id: "dannie-magalhaes-rubyconf-brazil-2021"
+  title: "Rails e Segurança: what YOU don't see is what THEY get"
+  date: "2021-07-29"
+  start_time: "18:20"
+  end_time: "19:05"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "dannie-magalhaes-rubyconf-brazil-2021"
+  description: |-
+    Pequenos maus hábitos podem ser a porta de entrada para o sistema. Nesta palestra vamos falar de dicas e pequenas mudanças que podem fazer a diferença para prevenir o temido roubo de dados.
+  speakers:
+    - Dannie Magalhães
+
+- id: "joacir-oliveira-santos-junior-rubyconf-brazil-2021"
+  title: "Os Benefícios e Desafios da Programação em Par"
+  date: "2021-07-29"
+  start_time: "19:05"
+  end_time: "19:50"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "joacir-oliveira-santos-junior-rubyconf-brazil-2021"
+  description: |-
+    A Programação em Par consiste em fundir os pensamentos de duas pessoas para atingir um único objetivo e, apesar de parecer estranho para algumas delas, pode ser bem produtivo e prazeroso.
+    Programar em dupla evidencia a importância da relação humana e da cooperação, portanto o desenvolvimento interpessoal é chave essencial para uma ótima programação em par. Como resultado, podemos construir códigos melhores, aumentar a empatia, acelerar a revisão de código, disseminar conhecimento e porque não dar boas risadas. No fim, melhorar a entrega do trabalho e a relação dos membros pode ser alcançada com sucesso.
+  speakers:
+    - Joacir Oliveira Santos Júnior
+
+- id: "laura-meireles-rubyconf-brazil-2021"
+  title: "Como construir uma carreira notável na área de tecnologia"
+  date: "2021-07-29"
+  start_time: "19:50"
+  end_time: "20:35"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "laura-meireles-rubyconf-brazil-2021"
+  description: |-
+    Para ter sucesso no mercado de TI, é preciso ver sua carreira como se fosse um negócio. Mas você sabe o que pode diferenciar você de outras pessoas na hora de fazer sua carreira decolar? Como se destacar dos outros? Venha aprender como levá-la para o caminho que você escolheu: o do sucesso.
+  speakers:
+    - Laura Meireles
+
+- id: "renan-ranelli-rubyconf-brazil-2021"
+  title: "Rubismo para além-ruby"
+  date: "2021-07-29"
+  start_time: "20:35"
+  end_time: "21:15"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "renan-ranelli-rubyconf-brazil-2021"
+  description: |-
+    Ruby está morrendo". Todo rubista já se deparou com essa afirmação. Entra ano e sai ano, estamos sempre à beira da extinção rubista, que parece sempre eminente mas jamais se concretiza. 
+      Nessa palestra vamos explorar essa questão para entender, afinal, por que diabos esse futuro *nunca chega*? Vamos falar sobre a historia do Ruby, seus principais marcos e também seus impactos e influências para além de suas fronteiras. Não é exagero dizer que Ruby mudou radicalmente a história da nossa indústria, e, nessa apresentação, pretendo mostrar um pouco como esse processo se deu.
+      Em paralelo ao big-picture, também vou falar como ruby mudou radicalmente a minha vida e a de pessoas próximas.
+  speakers:
+    - Renan Ranelli
+
+- id: "rafael-franca-rubyconf-brazil-2021"
+  title: "Rails em escala"
+  date: "2021-07-30"
+  start_time: "14:35"
+  end_time: "15:20"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "rafael-franca-rubyconf-brazil-2021"
+  description: |-
+    Ruby on Rails é um framework maduro, usado por milhares de aplicações, de diversos tamanhos. Nessa palestra veremos como as empresas estão levando o framework para grande escala em diversas perspectives.
+  speakers:
+    - Rafael França
+
+- id: "marina-joranhezon-rubyconf-brazil-2021"
+  title: "Evite que seus clientes fiquem na fila do pão utilizando Kafka"
+  date: "2021-07-30"
+  start_time: "15:20"
+  end_time: "16:05"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "marina-joranhezon-rubyconf-brazil-2021"
+  description: |-
+    Uma introdução ao Kafka e as vantagens em utiliza-lo, assim como uma demonstração de como produzir e consumir seus dados com Ruby.
+  speakers:
+    - Marina Joranhezon
+
+- id: "mauricio-eduardo-chicupo-szabo-rubyconf-brazil-2021"
+  title: "Are we abstracting too much?"
+  date: "2021-07-30"
+  start_time: "16:05"
+  end_time: "16:50"
+  language: "English"
+  video_provider: "not_published"
+  video_id: "mauricio-eduardo-chicupo-szabo-rubyconf-brazil-2021"
+  description: |-
+    When I first learnt Ruby, I was amazed at the power of DSLs and the Rails framework.
+    Then, after working outside Ruby and back, I felt the paradigm change. DSLs that do not compose. Frameworks that make things difficult when you need new technologies. "Convention over configuration" that needs configuration to make the convention work. Are we abstracting too much? What benefits can we harvest when we drop some, if not all, abstractions.
+
+    In this talk, I want to show a different way to handle code - how can we escape the problems we have when things fall outside the framework's "conventions".
+  speakers:
+    - Maurício Eduardo Chicupo Szabo
+
+- id: "fabricio-buzeto-rubyconf-brazil-2021"
+  title: "Gall’s law applied to distributed systems"
+  date: "2021-07-30"
+  start_time: "16:50"
+  end_time: "17:35"
+  language: "English"
+  video_provider: "not_published"
+  video_id: "fabricio-buzeto-rubyconf-brazil-2021"
+  description: |-
+    Gall’s Law states that any complex system that works, evolved from a simple system that also worked. I'll show you practical examples of how to start small and let complexity grow as needed. Sharing how we identified the hints for improvement, and the techniques and tools that supported it.
+  speakers:
+    - Fabricio Buzeto
+
+- id: "maciej-rzasa-rubyconf-brazil-2021"
+  title: "API Optimization Tale: Monitor, Fix and Deploy (on Friday)"
+  date: "2021-07-30"
+  start_time: "17:35"
+  end_time: "18:20"
+  language: "English"
+  video_provider: "not_published"
+  video_id: "maciej-rzasa-rubyconf-brazil-2021"
+  description: |-
+    I saw a green build on a Friday afternoon. I knew I need to push it to production before the weekend. My gut told me it was a trap. I had already stayed late to revert a broken deploy. I knew the risk. 
+    In the middle of a service extraction project, we decided to migrate from REST to GraphQL and optimize API usage. My deploy was a part of this radical change. Why was I deploying so late? How did we measure the migration effects? And why was I testing on production? I'll tell you a tale of small steps, monitoring, and old tricks in a new setting. Hope, despair, and broken production included.
+  speakers:
+    - Maciej Rząsa
+
+- id: "wagner-narde-rubyconf-brazil-2021"
+  title: "Explorando vulnerabilidades de segurança em apps Rails"
+  date: "2021-07-30"
+  start_time: "18:20"
+  end_time: "19:05"
+  published_at: "2021-08-10T14:50:32Z"
+  language: "Portuguese"
+  slides_url: "https://docs.google.com/presentation/d/1uo9HnTKWsfpayu_HjxMe9YjWLlVuR7xD02ixmUrHMDs/edit"
+  video_provider: "youtube"
+  video_id: "LssPqd3lc-g"
+  description: |-
+    Conheça técnicas básicas de invasão de aplicações Rails usando o próprio Ruby como ferramenta e aprenda como escrever seu código de maneira defensiva.
+  speakers:
+    - Wagner Narde
+
+- id: "sarah-lima-rubyconf-brazil-2021"
+  title: "Entregar sempre para entregar bem"
+  date: "2021-07-30"
+  start_time: "19:05"
+  end_time: "19:50"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "sarah-lima-rubyconf-brazil-2021"
+  description: |-
+    Nesta palestra abordaremos conceitos e técnicas de integração e entrega contínua para que a feature que você implementa ou a sua correção de bug esteja disponível o mais rapidamente possível para o seu usuário, sem que isso se traduza em pressão e estresse e para o seu time de desenvolvimento. Falaremos sobre as dificuldades que podem ser enfrentadas e benefícios que podem ser observados ao utilizar feature toggles e testes automatizados para ter a segurança de desenvolver um produto sempre pronto para ser entregue com qualidade.
+  speakers:
+    - Sarah Lima
+
+- id: "eduardo-matos-rubyconf-brazil-2021"
+  title: "Como se tornar o(a) líder que sua equipe precisa e merece"
+  date: "2021-07-30"
+  start_time: "19:50"
+  end_time: "20:35"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "eduardo-matos-rubyconf-brazil-2021"
+  description: |-
+    Na área de tecnologia é muito comum devs assumirem posição de liderança da noite pro dia.
+    Sem qualquer tipo de treinamento ou acompanhamento eles passam a ter responsabilidades que sequer foram alinhadas.
+    Nessa palestra eu falo sobre para onde esses jovens líderes deveriam olhar para entregarem bons resultados e serem admirados pela equipe.
+  speakers:
+    - Eduardo Matos
+
+- id: "daniel-moreto-rubyconf-brazil-2021"
+  title: "Arel - Consultas além do Active Record"
+  date: "2021-07-30"
+  start_time: "20:35"
+  end_time: "21:15"
+  language: "Portuguese"
+  video_provider: "not_published"
+  video_id: "daniel-moreto-rubyconf-brazil-2021"
+  description: |-
+    Em nosso dia a dia utilizamos bastante o Active Record para nos ajudar na construção de consultas SQL mais básicas. O Arel entra quando precisamos fazer operações mais complexas e ir um pouco além do básico fornecido pelo Active Record.
+  speakers:
+    - Daniel Moreto

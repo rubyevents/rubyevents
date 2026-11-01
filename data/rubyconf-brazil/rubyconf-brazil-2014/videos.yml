@@ -1,6 +1,416 @@
-# TODO: Add talks and videos
-
 # Website: -
 # Videos: -
 ---
-[]
+
+- id: "george-guimaraes-rubyconf-brazil-2014"
+  title: "Dogmatismo e desenvolvimento de software"
+  date: "2014-08-28"
+  start_time: "09:00"
+  end_time: "09:45"
+  language: "Portuguese"
+  slides_url: "https://speakerdeck.com/plataformatec/dogmatismo-e-desenvolvimento-de-software-at-rubyconf-br-2014"
+  video_provider: "not_recorded"
+  video_id: "george-guimaraes-rubyconf-brazil-2014"
+  description: |-
+    Dogmatismo permeia nossa indústria. Por sorte, a comunidade Ruby é altamente crítica e está sempre reavaliando suas práticas. Vamos falar sobre algumas dessas crenças e como detectá-las na sua organização.
+  speakers:
+    - George Guimarães
+
+- id: "ruslan-synytsky-rubyconf-brazil-2014"
+  title: "Ruby in the Sky With Diamonds - Jelastic's new Ruby implementation"
+  date: "2014-08-28"
+  start_time: "10:15"
+  end_time: "11:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "ruslan-synytsky-rubyconf-brazil-2014"
+  description: |-
+    See what happens when industry leaders Jelastic and Locaweb partner to offer the industry's best Ruby support in the cloud. In this session Ruslan Synytsky, Jelastic's CTO, will describe Jelastic's new Ruby offering and why it is the best in the industry - better than Salesforce/Heroku! Jelastic enables architects and developers to deploy new or legacy applications to the cloud without any code changes, providing them with a scalable, highly available and secure environment in seconds.
+    Developers can rapidly setup application and database environments and ensure application resource availability with Jelastic’s automatic vertical and horizontal scaling features. Truly elastic scaling and an innovative pricing model means that developers pay only for resources used, increasing efficiency and driving down costs.
+  speakers:
+    - Ruslan Synytsky
+
+- id: "pedro-franceschi-rubyconf-brazil-2014"
+  title: "Fazendo mágica com ElasticSearch"
+  date: "2014-08-28"
+  start_time: "11:00"
+  end_time: "11:45"
+  language: "Portuguese"
+  track: "Sala 1"
+  video_provider: "not_recorded"
+  video_id: "pedro-franceschi-rubyconf-brazil-2014"
+  description: |-
+    Quando uma aplicação começa a ficar grande e complexa, fazer buscas nos seus models torna-se uma tarefa complicada. Efetuar as buscas diretamente no banco de dados é um processo lento, ineficiente e que permite pouca ou nenhuma maleabilidade sobre a forma com que a busca é feita. Surge então o ElasticSearch, uma engine de busca utilizada por empresas como Github, Twitter e 4square para indexar e buscar literalmente milhões de documentos em tempo real. Nessa palestra, explicarei quando, como e porque utilizar o ElasticSearch para facilmente indexar e efetuar buscas complexas nos seus models.
+  speakers:
+    - Pedro Franceschi
+
+- id: "miguel-di-ciurcio-filho-rubyconf-brazil-2014"
+  title: "Como estender o Puppet usando Ruby"
+  date: "2014-08-28"
+  start_time: "11:00"
+  end_time: "11:45"
+  language: "Portuguese"
+  track: "Sala 2"
+  video_provider: "not_recorded"
+  video_id: "miguel-di-ciurcio-filho-rubyconf-brazil-2014"
+  description: |-
+    Puppet é a ferramenta de automação mais utilizada, que dá aos administradores de sistema, o poder de automatizar tarefas repetitivas e manter todo o sistema configurado com consistência. Puppet utiliza uma linguagem de configuração poderosa e bem projetada, utilizada para declarar e modelar o estado dos recursos administrado pelo Puppet. Além disso, é um dos projetos open source e enterprise de maior sucesso escritos em Ruby.
+    A linguagem Puppet não é adequada para algumas atividades de implantação da aplicação. Se alguns comandos específicos da aplicação precisam ser executados, a situação pode ficar feira. Por isso, a linguagem Puppet pode ser estendida usando Ruby, para criar tipos de recursos, funções e fatos personalizados. Nesta palestra, faremos uma breve introdução ao Puppet e mostraremos como você pode fazer com que suas configurações escritas em Puppet sejam muito mais claras e legíveis, usando API's nativas do Ruby para o trabalho pesado.
+  speakers:
+    - Miguel Di Ciurcio Filho
+
+- id: "ben-langfeld-rubyconf-brazil-2014"
+  title: "Design de software de qualidade para seus servidores de dados"
+  date: "2014-08-28"
+  start_time: "13:15"
+  end_time: "14:00"
+  language: "Portuguese"
+  track: "Sala 1"
+  video_provider: "not_recorded"
+  video_id: "ben-langfeld-rubyconf-brazil-2014"
+  description: |-
+    DevOps é a metodologia que funde as comunidades de desenvolvimento e operações para formar uma super-disciplina com o melhor das experiência de ambos oa lados da força, colaborando para obter o melhor dos dois mundos, como estabilidade, flexibilidade, eficiência e agilidade na administração de aplicações de larga escala. DevOps é sobre automatizar a monotonia o dia-a-dia e ir mais longe, unir atividades feitas manualmente por operações com as melhores práticas de desenvolvimento, principalmente em relação a testes automáticos e agilidade.
+    Mas isso ainda não é suficiente para todos saberem o que devem fazer. Existe muita informação sobre problemas enfrentados por DevOps, assim como materiais introdutórios, mas há pouca coisa sobre "o que você deve fazer".
+    Nesta palestra, resolveremos este problema e vamos preparar você para embarcar nesta jornada de DevOps, com noites de sono mais felizes e novas funcionalidades para seus usuários. Falaremos sobre Puppet e Chief, testes e turbulência, robôs e armas nucleares. Se você iniciou como DevOps e precisa saber de alguma coisa, ou ainda se atrapalha com Puppet, essa palestra é para você.
+  speakers:
+    - Ben Langfeld
+
+- id: "marcio-trindade-rubyconf-brazil-2014"
+  title: "Migrando uma aplicação de MongoDB para PostgreSQL"
+  date: "2014-08-28"
+  start_time: "13:15"
+  end_time: "14:00"
+  language: "Portuguese"
+  track: "Sala 2"
+  video_provider: "not_recorded"
+  video_id: "marcio-trindade-rubyconf-brazil-2014"
+  description: |-
+    Caso de sucesso onde o desafio da Locaweb foi migrar uma aplicação de alta escala utiliza MongoDB com mais de 0,5 Bilhões de registros para uma nova estrutura mult-tenant no PostgreSQL. Alguns assuntos abordados serão:
+
+      re-escrita da aplicação em Ruby
+      utilização do multi-schema do Postgres
+      router no Nginx pra manter as duas aplicações funcionando no mesmo domínio.
+  speakers:
+    - Marcio Trindade
+
+- id: "rishi-jain-rubyconf-brazil-2014"
+  title: "Build, Debug and Prosper"
+  date: "2014-08-28"
+  start_time: "14:00"
+  end_time: "14:45"
+  language: "Portuguese"
+  track: "Sala 1"
+  video_provider: "not_recorded"
+  video_id: "rishi-jain-rubyconf-brazil-2014"
+  description: |-
+    There were around 140000 ruby developers in the world 4 years ago. And the rate at which IT industry(particularly ruby and rails community) had grown in the past 4 years, it is safe to assume that this number would be much much higher, but lets proceed assuming 140000 ruby developers.
+    As of 1-apr-2014 17:15 IST, there are 70,000 ruby gems available for download. So, the average number of ruby gem per developer comes out to be 0.50 Lets accept it, this is not a very impressive figure. So,what has stopped us from building gems and helping the ruby community grow? It could be one of the following reasons:
+
+      Its like sending a space ship to Mars - complicated process
+      I can't do that, it's only for experts - calibre
+      Who has the time? I work 24x7 - busy
+      There are people already doing it, why should I work hard for it and open source it. I am not that crazy - lazy
+      Is it really needed, it's so trivial? - useless
+
+    During the course of the talk, I am going to explain how ridiculously easy it is to build and publish a gem, what are various security issues you should be aware of and how does building open-source software helps in your career growth? After this talk, I hope we all will try to improve upon the figure of 0.50 !!
+  speakers:
+    - Rishi Jain
+
+- id: "cezar-carvalho-pereira-rubyconf-brazil-2014"
+  title: "iOS on Rails"
+  date: "2014-08-28"
+  start_time: "14:00"
+  end_time: "14:45"
+  language: "Portuguese"
+  track: "Sala 2"
+  video_provider: "not_recorded"
+  video_id: "cezar-carvalho-pereira-rubyconf-brazil-2014"
+  description: |-
+    Muitas aplicações mobile de hoje necessitam de um componente servidor, que suporta desde sincronização de dados a notificações até in app purchases. Apesar da Apple fornecer uma boa solução na forma do novo CloudKit no iOS 8, ainda existem muitos motivos para desenvolvedores iOS melhorarem suas capacidades de desenvolvimento web e implementar o backend de seus próprios aplicativos. Ao mesmo tempo, a imensa popularidade da plataforma iOS é incentivo o suficiente para que desenvolvedores web invistam na mesma.
+    Das muitas formas que se pode construir APIs para aplicações móveis, Rails se sobressai como uma solução efetiva e confiável. Paralelo a isso, o atrito causado por transitar da mentalidade necessária ao desenvolvimento web para iOS tende a ser reduzido com o surgimento da Swift, uma linguagem de programação moderna e com similaridades a Ruby em muitos aspectos.
+    Nesta palestra, vou apresentar uma maneira limpa de construir APIs JSON amigáveis com Rails, e como utilizar Swift para implementar as aplicações iOS que funcionam com elas.
+  speakers:
+    - Cezar Carvalho Pereira
+
+- id: "vipul-a-m-prathamesh-sonpatki-rubyconf-brazil-2014"
+  title: "Building an ORM with AReL: Walking up the (AS)Tree"
+  date: "2014-08-28"
+  start_time: "14:45"
+  end_time: "15:30"
+  language: "English"
+  track: "Sala 1"
+  video_provider: "not_recorded"
+  video_id: "vipul-a-m-prathamesh-sonpatki-rubyconf-brazil-2014"
+  description: |-
+    We all love ActiveRecord. Its amazing. But how exactly does ActiveRecord handle generating complex SQL queries? How Joins, Associations and Table Relations are handled? Most of this raw power comes from ARel. ARel is packed up with many features for complex query generation. Lets build our own ORM on top of ARel to see it in action.
+    In the process we will also explore about how ActiveRecord hooks up with ARel. This talk describes Relational Algebra, Object and Collection modelling of ARel using a tiny ORM at its base. At the end of talk you will be equipped with better understanding of ARel and AR as an ORM.
+  speakers:
+    - Vipul A M
+    - Prathamesh Sonpatki
+
+- id: "eduardo-fiorezi-rubyconf-brazil-2014"
+  title: "Convenção na criação e no deploy de aplicações Rails"
+  date: "2014-08-28"
+  start_time: "14:45"
+  end_time: "15:30"
+  language: "Portuguese"
+  track: "Sala 2"
+  video_provider: "not_recorded"
+  video_id: "eduardo-fiorezi-rubyconf-brazil-2014"
+  description: |-
+    Quanto tempo você ou sua empresa leva para criar e colocar no ar um aplicativo RubyOnRails? O uso de convenções dentro da sua equipe irá ajudar a disseminar o conhecimento e facilitar o deploy de aplicações. Saiba quais serviços não podem faltar em um projeto que está em seu início e como eles podem te ajudar no dia a dia a chegar ao ponto de gastar apenas 5 minutos na criação de um novo projeto. Esta palestra irá te auxiliar nas decisões sobre padrões de testes, integração continua e no uso da convenção na escolha de ferramentas.
+  speakers:
+    - Eduardo Fiorezi
+
+- id: "sebastian-sogamoso-rubyconf-brazil-2014"
+  title: "SOLID principles through tests"
+  date: "2014-08-28"
+  start_time: "16:00"
+  end_time: "16:45"
+  language: "Portuguese"
+  track: "Sala 1"
+  video_provider: "not_recorded"
+  video_id: "sebastian-sogamoso-rubyconf-brazil-2014"
+  description: |-
+    We care about writing quality code, we have read the definition of SOLID principles several times and we know how important they are for writing good OO code, but are we really following those principles? Is there a pragmatic way of following them in our day to day jobs or are they just some principles a few computer scientists wrote?
+    Fortunately there is, SOLID principles are not just good ideas , they are intended to help us write better code, enjoy our jobs more and be happy programmers. So, where should we start? We should start where we always do. By writing tests, yes, for real. As Kent Beck says "TDD doesn't drive good design. TDD gives you immediate feedback about what is likely to be bad design", so we need to go a step further.
+    In this talk we will see how writing tests is not just doing TDD is about having good test coverage, it's also about driving our code towards good design, one that follows SOLID principles.
+  speakers:
+    - Sebastian Sogamoso
+
+- id: "lucas-martins-rubyconf-brazil-2014"
+  title: "Meu processo de (re)arquitetura, do zero ao além!"
+  date: "2014-08-28"
+  start_time: "16:00"
+  end_time: "16:45"
+  language: "Portuguese"
+  track: "Sala 2"
+  video_provider: "not_recorded"
+  video_id: "lucas-martins-rubyconf-brazil-2014"
+  description: |-
+    Em Startups com objetivos e metas agressivas, em dos desafios é recontruir a arquitetura do software para se adequar à demanda e deixar sua manutenção sustentável - em outras palavras, trocar os pneus com o carro em movimento. Nesta palestra, irei compartilhar estratégias e experiências que passei nos últimos anos com o processo de rearquitetura como um todo. Desde concepção, execução e deploy em produção. Uma mistura de práticas ágeis, pragmatismo, técnica, tomada de decisões e intuição. No caminho para mudanças, contratempos e erros se tornarão inseguranças. Saber que está no caminho certo pode ser mais difícil do que parece.
+  speakers:
+    - Lucas Martins
+
+- id: "murilo-gun-rubyconf-brazil-2014"
+  title: "Liderança para o Futuro"
+  date: "2014-08-28"
+  start_time: "16:45"
+  end_time: "17:30"
+  language: "Portuguese"
+  video_provider: "not_recorded"
+  video_id: "murilo-gun-rubyconf-brazil-2014"
+  description: |-
+    O comediante e palestrante Murilo Gun vai passar 10 semanas no Vale do Silício estudando as tecnologias do futuro na Singularity University, uma parceria do Google e da Nasa. Quando voltar, a primeira palestra dele vai ser no RubyConf, onde ele vai compartilhar as experiências que passou e as tendências tecnológicas para o futuro.
+  speakers:
+    - Murilo Gun
+
+- id: "koichi-sasada-rubyconf-brazil-2014"
+  title: "Growing the Ruby Interpreter"
+  date: "2014-08-29"
+  start_time: "09:00"
+  end_time: "09:45"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "koichi-sasada-rubyconf-brazil-2014"
+  description: |-
+    I'm working on improving quality of the Ruby interpreter, especially performance at Heroku, Inc. The Ruby intepreter consists of many components, such as virtual machine, memory management (including garbage collection) and threading. We had introduced a fast virtual machine called YARV in Ruby 1.9, rebuilt the threading feature using native threads in Ruby 1.9, and new GC algorithms, particularly generational garbage collection in Ruby 2.1. In this presentation, I will show you our contributions for the Ruby interpreter and current activities. I will also introduce Ruby 2.2, the next release of Ruby.
+  speakers:
+    - Koichi Sasada
+
+- id: "travis-douce-rubyconf-brazil-2014"
+  title: "Integration Testing SOA Rails Apps"
+  date: "2014-08-29"
+  start_time: "10:15"
+  end_time: "11:00"
+  language: "English"
+  track: "Sala 1"
+  video_provider: "not_recorded"
+  video_id: "travis-douce-rubyconf-brazil-2014"
+  description: |-
+    Writing tests are hard, but writing integration tests for Service Oriented Architecture (SOA) is harder. In this talk, we'll start by describing what SOA is, why integration testing SOA apps is necessary, and why it is inherently difficult to accomplish. Next we'll look at some commonly used approaches for implementing integration testing in SOA (stubbing http requests, VCR). We'll then look at some emerging techniques and tools (RemoteFactoryGirl and offshore) that better enable us write integration tests for SOA. Finally, we'll walk through a simple SOA and it's associated integration testings.
+  speakers:
+    - Travis Douce
+
+- id: "daniel-romero-rubyconf-brazil-2014"
+  title: "Testando a segurança de suas aplicações com o framework Metasploit"
+  date: "2014-08-29"
+  start_time: "10:15"
+  end_time: "11:00"
+  language: "Portuguese"
+  track: "Sala 2"
+  video_provider: "not_recorded"
+  video_id: "daniel-romero-rubyconf-brazil-2014"
+  description: |-
+    Você escreve teste para verificar a segurança de suas aplicações? Atualmente, testes de segurança de aplicações são necessários no processo de desenvolvimento. Nesta palestra, vou apresentar o framework Metasploit, uma ferramenta poderosa que nos ajuda a testar a segurança de nossas aplicações e infraestrutura.
+  speakers:
+    - Daniel Romero
+
+- id: "marko-anastasov-rubyconf-brazil-2014"
+  title: "Improve your Rails application design with better TDD"
+  date: "2014-08-29"
+  start_time: "11:00"
+  end_time: "11:45"
+  language: "English"
+  track: "Sala 1"
+  video_provider: "not_recorded"
+  video_id: "marko-anastasov-rubyconf-brazil-2014"
+  description: |-
+    Do your controller specs suffer from complicated setups? Are some parts of the system “too hard to test”? Difficulty in testing is often a sign that we could improve our application design. How to use tests to refactor in the real world when time is scarce? Can we have too much - or too little - of certain kinds of tests? The presentation will be based on concrete, before & after examples of Rails-based test and implementation. We’ll see that every problem is an opportunity to write better code and that there are guidelines that transcend any framework.
+  speakers:
+    - Marko Anastasov
+
+- id: "thiago-scalone-rubyconf-brazil-2014"
+  title: "MRuby - Minimalistic ruby on browser or mobile"
+  date: "2014-08-29"
+  start_time: "11:00"
+  end_time: "11:45"
+  language: "Portuguese"
+  track: "Sala 2"
+  video_provider: "not_recorded"
+  video_id: "thiago-scalone-rubyconf-brazil-2014"
+  description: |-
+    Inicialmente uma rápida introdução ao MRuby e status do projeto. Para poder comparar com o desenvolvimento Ruby em outras plataformas e tecnologias, relacionado com sistemas móveis e embarcados como Ruboto(Jruby on Android), Mobiruby(Mruby on IOS), RubyMotion(MacRuby), WebRuby(MRuby + emiscripten), Jamruby/mruby-android(mruby on Android), Point Of Sale(Mruby) ou Arduino(mruby-arduino).
+    Conhecimento acumulado com o desenvolvimento do produto CloudWalk, o jeito Ruby de desenvolver, capturar e entregar transações financeiras. E finalmente, vamos ver algum código rodando de verdade!
+  speakers:
+    - Thiago Scalone
+
+- id: "carlos-antonio-da-silva-rubyconf-brazil-2014"
+  title: "Truques que o Rails não te contou"
+  date: "2014-08-29"
+  start_time: "13:15"
+  end_time: "14:00"
+  language: "Portuguese"
+  video_provider: "not_recorded"
+  video_id: "carlos-antonio-da-silva-rubyconf-brazil-2014"
+  description: |-
+    Rails já existe por cerca de 10 anos, e cada vez mais aplicações são criadas todos os dias. Depois de trabalhar em muitos projetos diferentes, alguns criados por colegas, e muitos outros legados, começamos a encontrar alguns padrões, onde pessoas tendem a escrever muito código que a framework já provê. Não importa se é um time pequeno ou grande, ou se muitos desenvolvedores são iniciantes ou mais experientes, é comum encontrar código da aplicação fazendo algo que o Rails já oferece, criando duplicação desnecessária e introduzindo bugs. Mesmo em nossos próprios pull requests, é comum ver alguém usando uma funcionalidade que ninguém conhecia e começar a pensar que isso teria sido muito útil em outras situações.
+    Esta palestra tem como objetivo mostrar essas funcionalidades não tão conhecidas do Rails, desde queries do ActiveRecord, até helpers de Views não muito bem documentados (mas muito úteis), que podem ajudar a escrever código mais conciso e entregar valor mais rápido. Tanto desenvolvedores iniciantes, quanto mais experientes deveriam assistir e aprender alguns truques do Rails.
+  speakers:
+    - Carlos Antonio da Silva
+
+- id: "jean-emer-rubyconf-brazil-2014"
+  title: "Você ainda não sabe escrever JavaScript para aplicações Rails"
+  date: "2014-08-29"
+  start_time: "14:00"
+  end_time: "14:45"
+  language: "Portuguese"
+  track: "Sala 1"
+  video_provider: "not_recorded"
+  video_id: "jean-emer-rubyconf-brazil-2014"
+  description: |-
+    Uma palestra com as principais tecnologias e técnicas utilizadas para escrever código JavaScript sano para diferentes tipos de aplicações. Uma viagem às antigas soluções Rails até as atuais e nem sempre suficientes jQuery UJS e Turbolinks. Aprenda sobre componentes auto-discoverable, comunicação através de eventos, modularização e gerência de dependências. Tudo isto sem deixar de fora alguns dos conceitos por trás dos principais frameworks MV* do mercado.
+  speakers:
+    - Jean Emer
+
+- id: "arthur-zapparoli-ricardo-valeriano-rubyconf-brazil-2014"
+  title: "Lotus: Um verdadeiro framework OO para Ruby"
+  date: "2014-08-29"
+  start_time: "14:00"
+  end_time: "14:45"
+  language: "Portuguese"
+  track: "Sala 2"
+  video_provider: "not_recorded"
+  video_id: "arthur-zapparoli-ricardo-valeriano-rubyconf-brazil-2014"
+  description: |-
+    Lotus é um completo, rápido e leve framework web para Ruby. Tem o objetivo de trazer de volta a Programação Orientada a Objetos para desenvolvimento web, com foco em simplificar objetos ao máximo. Nesta palestra, veremos cada módulo do framwork Lotus (Router, Controller View e Model) e como podem ser usados, separadamente ou em conjunto.
+  speakers:
+    - Arthur Zapparoli
+    - Ricardo Valeriano
+
+- id: "matt-campbell-rubyconf-brazil-2014"
+  title: "“There’s a Bootcamp for That”: How Immersive Web Development Schools are Changing the Game"
+  date: "2014-08-29"
+  start_time: "14:45"
+  end_time: "15:30"
+  language: "English"
+  track: "Sala 1"
+  video_provider: "not_recorded"
+  video_id: "matt-campbell-rubyconf-brazil-2014"
+  description: |-
+    The purpose of my talk is to share the perspective of a brand new, “bootcamp”-educated developer and member of the RoR community. I think that in many ways my story - leaving an “old school” job out of pure boredom, enrolling in a web dev bootcamp, and coming out the other end employed and loving it - is representative of some important trends in our industry today.
+    Take these questions for example:
+
+      First of all, why does everyone want to be a programmer?!
+      I attended a web development “bootcamp,” many of which are sprouting up left and right these days. Is software development particularly well-suited to produce junior level professionals after a mere 3 months of intensive education? If so, why?
+      What are the implications of having more and more junior developers enter the workforce? Do we benefit (via more code being written, perhaps) or suffer (via lots of poor quality or broken code floating around, perhaps) as a result?
+      Do coding bootcamps actually work? What aspects of bootcamps can we steal & implement as part of our work environments to constantly be improving? 
+      We must always have a beginner’s mindset and remain humble. New programming languages are great for this, as they challenge how we think about writing code.
+      Software development is the best industry/profession/career in the world - what can we do to keep attracting good, talented people, and moving our community towards greatness? 
+      As Bret Victor says, new technologies don’t just appear - we make them appear collectively by striving to reach for what our imaginations create. The more minds we have writing code, the cooler the stuff we’re all going to make. 
+      Let your interests & problems guide your hacking (in that order).
+  speakers:
+    - Matt Campbell
+
+- id: "hanneli-tavante-rubyconf-brazil-2014"
+  title: "Dores de cabeça com Java? Torquebox!"
+  date: "2014-08-29"
+  start_time: "14:45"
+  end_time: "15:30"
+  language: "Portuguese"
+  track: "Sala 2"
+  video_provider: "not_recorded"
+  video_id: "hanneli-tavante-rubyconf-brazil-2014"
+  description: |-
+    Existem algumas coisas que desenvolvedores não podem se esquivar, como trabalhar com diferentes linguagens que podemos ou não gostar. Este cenário pode acontecer com um desenvolvedor Ruby que precisa trabalhar com Java em um sistema legado, ou um sistema com muitas funcionalidades já implementadas em Java, e não há outro jeito de construir um novo projeto em puro Ruby, do zero. Já passou por esta situação? É bom se vc gosta de Java e sua forma de codificação, mas o que acontece se você não gosta? Dores de cabeça, estômago, e todas as piadas de Java vêm à mente.
+    Antes que você pense que está amaldiçoado, você pode escolher algumas alternatives de continuar escrevendo código Ruby e integrar com projeto escrito em Java. Esta palestra vai mostrar como você pode ser produtivo escrevendo sistemas poliglotas, em particular sistemas Ruby + Java com a força do Torquebox.
+    Os tópicos principais são:
+
+      Não existe linguagem perfeita - alguns são do mundo Java, outros do mundo Ruby
+      Sistemas não precisam pertencer a uma única linguagem
+      Por que as pessoas têm medo de misturar mais de uma linguagem?
+      Primeiros experimentos com Ruby e Java
+      Torquebox, uma solução melhor e mais rápida
+      Por que Torquebox 3 é a versão mais rápida?
+      Ruby + Java no Torquebox na nuvem! - Trabalhos futuros
+  speakers:
+    - Hanneli Tavante
+
+- id: "carlos-souza-rubyconf-brazil-2014"
+  title: "Rock-Solid Web APIs com Rails"
+  date: "2014-08-29"
+  start_time: "16:00"
+  end_time: "16:45"
+  language: "Portuguese"
+  track: "Sala 1"
+  video_provider: "not_recorded"
+  video_id: "carlos-souza-rubyconf-brazil-2014"
+  description: |-
+    Em algum momento, todo desenvolvedor vai precisar criar uma API. Utilizar Rails como backend para tecnologias como Ember.js, Angular.js, Backbone e aplicações mobile vem se tornando uma prática cada vez mais comum. Nesta palestra veremos como o Rails pode nos ajudar a construir APIs robustas, e de acordo com o protocolo HTTP. Iremos aprender sobre configurações de rotas, Content Negotiation, Versionamento e Autenticação. Veremos também como testar nossas APIs, e algumas práticas que ajudam a manter nosso código organizado.
+  speakers:
+    - Carlos Souza
+
+- id: "eduardo-mourao-rubyconf-brazil-2014"
+  title: "Montando sua própria empresa de cartão de crédito"
+  date: "2014-08-29"
+  start_time: "16:00"
+  end_time: "16:45"
+  language: "Portuguese"
+  track: "Sala 2"
+  video_provider: "not_recorded"
+  video_id: "eduardo-mourao-rubyconf-brazil-2014"
+  description: |-
+    Nesta palestra, mostrarei como você pode criar sua própria compania de processamento de cartões de crédito. Quais são os desafios e as simples soluções que você mesmo pode implementar. Ao invés de apenas falar sobre como você pode implementar um servidor de processamento, nós vamos implementar um server side ao vivo. Além disso, falaremos sobre como arquitetar suas aplicações ruby (e rails) para suportar ambientes empresariais.
+    Tópicos:
+
+      Apis REST
+      Rails engines
+      Arquitetura de projetos Rails
+      Não quebre nada (você não é o facebook)
+      Trabalhando menos
+  speakers:
+    - Eduardo Mourão
+
+- id: "fabio-akita-rubyconf-brazil-2014"
+  title: "Os Últimos 10 Anos através de Rails e Ruby"
+  date: "2014-08-29"
+  start_time: "16:45"
+  end_time: "17:30"
+  language: "Portuguese"
+  slides_url: "https://www.slideshare.net/akitaonrails/rubyconf-brasil-2014"
+  video_provider: "not_recorded"
+  video_id: "fabio-akita-rubyconf-brazil-2014"
+  description: |-
+    Foi um longo período de 10 anos e nós conquistamos muito nesse tempo. Vimos o nascer de novas eras. A era dos dispositivos móveis. A era das redes sociais. A nova geração de tech startups. A comoditização da infraestrutura web. 10 anos atrás, em 2004, Ruby on Rails nascia. E com ele uma nova geração inteira de programadores que saíram para construir uma década em Ruby. Vamos revisitar o que aprendemos para os próximos 10 anos.
+  speakers:
+    - Fabio Akita

@@ -73,9 +73,16 @@ class Static::Validators::EventRecordingsPublishedDateTest < ActiveSupport::Test
     end
   end
 
-  test "terminal states are excluded from the majority so an all-recorded event still requires published_at" do
-    # 2 watchable + 5 not_recorded: only 2 resolvable talks, both published -> majority.
+  test "not_recorded talks count against the majority" do
     videos = watchable(2, dates: %w[2025-01-01 2025-01-02]) + providers("not_recorded", 5)
+    with_temp_event({"kind" => "conference", "end_date" => "2024-12-31", "recordings_published_date" => "2025-01-02"}, videos) do |path|
+      errors = Static::Validators::EventRecordingsPublishedDate.new(file_path: path).errors
+      assert errors.any? { |e| e.to_h["message"].include?("must not be set unless the majority") }
+    end
+  end
+
+  test "not_published talks are excluded from the majority" do
+    videos = watchable(2, dates: %w[2025-01-01 2025-01-02]) + providers("not_published", 5)
     with_temp_event({"kind" => "conference", "end_date" => "2024-12-31"}, videos) do |path|
       errors = Static::Validators::EventRecordingsPublishedDate.new(file_path: path).errors
       assert errors.any? { |e| e.to_h["message"].include?("is required when the majority") }

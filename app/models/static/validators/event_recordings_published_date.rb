@@ -4,7 +4,7 @@ module Static
   module Validators
     class EventRecordingsPublishedDate
       WATCHABLE_PROVIDERS = %w[youtube mp4 vimeo].freeze
-      TERMINAL_PROVIDERS = %w[not_recorded not_published].freeze
+      TERMINAL_PROVIDERS = %w[not_published].freeze
       PERCENTILE = 90
 
       def self.percentile(dates, percentile = PERCENTILE)
