@@ -3,6 +3,8 @@ module EventsHelper
     "meetup" => ["Meetup.com", "meetup"],
     "luma" => ["Luma", "calendar"],
     "kommunity" => ["Kommunity", "users"],
+    "facebook" => ["Facebook", "facebook"],
+    "linkedin" => ["LinkedIn", "linkedin"],
     "website" => ["Website", "globe"],
     "tickets_url" => ["Tickets", "ticket"]
   }.freeze
@@ -13,6 +15,8 @@ module EventsHelper
     "kommunity" => "RSVP on Kommunity",
     "tickets_url" => "Get tickets"
   }.freeze
+
+  BRAND_ICON_FIELDS = %w[meetup facebook linkedin].freeze
 
   def meetup_link_label(field)
     MEETUP_LINK_LABELS.fetch(field) { [field.humanize, "link"] }.first
@@ -61,7 +65,7 @@ module EventsHelper
   def meetup_link_icon(field, **options)
     icon = MEETUP_LINK_LABELS.dig(field, 1) || "link"
 
-    (field == "meetup") ? fab(icon, **options) : fa(icon, **options)
+    BRAND_ICON_FIELDS.include?(field) ? fab(icon, **options) : fa(icon, **options)
   end
 
   def meetup_time_range(event)
