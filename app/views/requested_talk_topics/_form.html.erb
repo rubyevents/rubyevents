@@ -1,0 +1,37 @@
+<% if requested_talk_topic.errors.any? %>
+  <div class="alert alert-error mb-6">
+    <div>
+      <h3 class="font-bold">
+        <%= pluralize(requested_talk_topic.errors.count, "error") %> prohibited this talk idea from being saved:
+      </h3>
+
+      <ul class="list-disc list-inside mt-2">
+        <% requested_talk_topic.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<%= form_with model: requested_talk_topic do |form| %>
+  <div class="space-y-6">
+    <div>
+      <%= form.label :title %>
+      <%= form.text_field :title,
+            class: "input input-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :description %>
+      <%= form.text_area :description,
+            rows: 6,
+            class: "textarea textarea-bordered w-full" %>
+    </div>
+
+    <div class="flex justify-end">
+      <%= ui_button "Submit",
+            type: :submit %>
+    </div>
+  </div>
+<% end %>

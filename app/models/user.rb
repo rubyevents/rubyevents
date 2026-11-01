@@ -126,6 +126,9 @@ class User < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :subscribed_event_series, through: :subscriptions, source: :subscribable, source_type: "EventSeries"
 
+  has_many :requested_talk_topics, dependent: :destroy
+  has_many :requested_talk_topic_votes, dependent: :destroy
+
   def checked_in_events
     Event.where(id: EventCheckIn.where(connect_id: passports.select(:uid)).select(:event_id))
   end
