@@ -6,7 +6,9 @@ module MeetupLinks
   HOSTS = {
     "meetup" => %w[meetup.com],
     "luma" => %w[luma.com lu.ma],
-    "kommunity" => %w[kommunity.com]
+    "kommunity" => %w[kommunity.com],
+    "facebook" => %w[facebook.com fb.me],
+    "linkedin" => %w[linkedin.com]
   }.freeze
 
   PLATFORMS = HOSTS.keys.freeze
@@ -15,7 +17,9 @@ module MeetupLinks
   EVENT_URLS = {
     "meetup" => %r{https?://(?:www\.)?meetup\.com/[^\s<>")\]]+/events/\d+/?},
     "luma" => %r{https?://(?:www\.)?(?:lu\.ma|luma\.com)/[A-Za-z0-9_-]+},
-    "kommunity" => %r{https?://(?:www\.)?kommunity\.com/[^\s<>")\]]+/events/[^\s<>")\]]+}
+    "kommunity" => %r{https?://(?:www\.)?kommunity\.com/[^\s<>")\]]+/events/[^\s<>")\]]+},
+    "facebook" => %r{https?://(?:www\.)?facebook\.com/events/\d+/?},
+    "linkedin" => %r{https?://(?:www\.)?linkedin\.com/events/[A-Za-z0-9_-]+/?}
   }.freeze
 
   def self.field_for(url)

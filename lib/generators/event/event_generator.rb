@@ -30,6 +30,8 @@ class EventGenerator < Generators::EventBase
   class_option :meetup, type: :string, desc: "Meetup.com event URL", group: "Fields"
   class_option :luma, type: :string, desc: "Luma event URL", group: "Fields"
   class_option :kommunity, type: :string, desc: "Kommunity event URL", group: "Fields"
+  class_option :facebook, type: :string, desc: "Facebook event URL", group: "Fields"
+  class_option :linkedin, type: :string, desc: "LinkedIn event URL", group: "Fields"
 
   # Flags
   class_option :last_edition, type: :boolean, desc: "Is this the last edition?", default: false, group: "Fields"
