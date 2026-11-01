@@ -9,8 +9,8 @@ class InvolvementsGenerator < Generators::EventBase
 
   class_option :name, type: :string, desc: "Role or involvement type (e.g., 'Organizer', 'Program Committee member')", required: true, group: "Fields"
   class_option :users, type: :array, desc: "Person names involved in this role", required: false, group: "Fields"
-  class_option :organisations, type: :array, desc: "Organization names involved in this role", required: false, group: "Fields"
-  class_option :from, type: :string, desc: "With --series-level: when the users and organisations started in this role (YYYY, YYYY-MM or YYYY-MM-DD)", required: false, group: "Fields"
+  class_option :organizations, type: :array, desc: "Organization names involved in this role", required: false, group: "Fields"
+  class_option :from, type: :string, desc: "With --series-level: when the users and organizations started in this role (YYYY, YYYY-MM or YYYY-MM-DD)", required: false, group: "Fields"
   class_option :to, type: :string, desc: "With --series-level: when they ended in this role (YYYY, YYYY-MM or YYYY-MM-DD)", required: false, group: "Fields"
 
   series_level_files!
@@ -23,7 +23,7 @@ class InvolvementsGenerator < Generators::EventBase
     @involvement ||= {
       "name" => options[:name].singularize,
       "users" => with_period(options[:users]),
-      "organisations" => with_period(options[:organisations])
+      "organizations" => with_period(options[:organizations])
     }.compact
   end
 

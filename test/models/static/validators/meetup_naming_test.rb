@@ -131,12 +131,8 @@ class Static::Validators::MeetupNamingTest < ActiveSupport::TestCase
     end
   end
 
-  test "MeetupFolder ignores conferences and the undated Rails Girls groups" do
+  test "MeetupFolder ignores conferences" do
     with_meetup(event_id: "testconf-2026", kind: "conference", start_date: "2026-01-14") do |paths|
-      assert_empty Static::Validators::MeetupFolder.new(file_path: paths[:event]).errors
-    end
-
-    with_meetup(event_id: "rails-girls-copenhagen") do |paths|
       assert_empty Static::Validators::MeetupFolder.new(file_path: paths[:event]).errors
     end
   end

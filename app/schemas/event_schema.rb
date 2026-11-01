@@ -35,7 +35,7 @@ class EventSchema < ApplicationSchema
     enum: ["year", "month", "day"],
     required: false
 
-  string :location, description: "Location in 'City, Country' format (e.g., 'Detroit, MI' or 'Tokyo, Japan')"
+  string :location, description: "Location in 'City, Country' format with the country written out (e.g., 'Detroit, MI, United States' or 'Tokyo, Japan'), or 'online'"
   string :timezone, description: "IANA time zone identifier, e.g. America/New_York", enum: TZInfo::Timezone.all_identifiers
 
   array :youtube_channels, of: YouTubeChannelSchema, description: "YouTube channels associated with this event", required: false

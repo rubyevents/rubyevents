@@ -125,7 +125,7 @@ class EventGeneratorTest < Rails::Generators::TestCase
 
     assert_valid_file event_file_path do |content|
       assert_match(/title: "RubyConf 2025"/, content)
-      assert_match(/location: "São Paulo, SP, BR"/, content)
+      assert_match(/location: "São Paulo, SP, Brazil"/, content)
       assert_match(/coordinates:\n\s+latitude: -23.595/, content)
       assert_match(/longitude: -46.684/, content)
     end

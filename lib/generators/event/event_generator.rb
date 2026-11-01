@@ -71,7 +71,8 @@ class EventGenerator < Generators::EventBase
         latitude: options[:latitude] || @geocoded_address&.latitude,
         longitude: options[:longitude] || @geocoded_address&.longitude
       }
-      options[:location].presence || [@geocoded_address&.city, @geocoded_address&.state, @geocoded_address&.country_code].compact.join(", ").presence || "Earth"
+      country = Country.find_by(country_code: @geocoded_address&.country_code)&.name || @geocoded_address&.country
+      options[:location].presence || [@geocoded_address&.city, @geocoded_address&.state, country].compact.join(", ").presence || "Earth"
     end
 
     @timezone = options[:timezone] || (static_series&.[]("timezone") if meetup?) || "UTC"

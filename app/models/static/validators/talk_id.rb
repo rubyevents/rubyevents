@@ -112,8 +112,6 @@ module Static
       end
 
       def expected_ids
-        return {} if meetup_event? && MeetupNaming.ignored?(nodes.first.event)
-
         @expected_ids ||= nodes.group_by { |node| speaker_id(node) }.each_with_object({}) do |(id, group), result|
           next if id.blank?
           next result[group.first] = id if group.one? && available?(group.first, id)
@@ -143,10 +141,6 @@ module Static
 
       def event_slug
         @event_slug ||= File.basename(File.dirname(File.expand_path(@file_path)))
-      end
-
-      def meetup_event?
-        nodes.first&.event&.[]("kind") == "meetup"
       end
 
       def id_for(node)

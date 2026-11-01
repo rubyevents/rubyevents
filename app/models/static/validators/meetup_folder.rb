@@ -21,7 +21,7 @@ module Static
           File.fnmatch?(pattern, @file_path, File::FNM_PATHNAME | File::FNM_DOTMATCH)
         end
 
-        matches && event&.meetup? && !MeetupNaming.ignored?(event)
+        matches && event&.meetup?
       end
 
       def errors

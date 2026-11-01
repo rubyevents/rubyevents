@@ -2,7 +2,7 @@
   "name": "RubyEvents Dev",
   "dockerComposeFile": "./docker-compose.yml",
   "service": "rails-app",
-  "workspaceFolder": "/rails",
+  "workspaceFolder": "/rubyevents",
   "overrideCommand": true,
   "customizations": {
     "vscode": {
@@ -34,6 +34,7 @@
     }
   },
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.gitconfig,target=/etc/gitconfig,type=bind,consistency=cached"
   ]
 }

@@ -81,7 +81,7 @@ Gotchas:
 
 ### involvements.yml
 
-`bin/rails g involvements --event <slug> --name "Organizer" --users "A" "B" --organisations "Org"`. Run once per role (Organizer, MC, Volunteer, Program Committee, Video Production, …); role names are singularized and the singular form is convention. Users don't need to pre-exist (seeding auto-creates bare Users) — but to give them social handles, add speaker entries.
+`bin/rails g involvements --event <slug> --name "Organizer" --users "A" "B" --organizations "Org"`. Run once per role (Organizer, MC, Volunteer, Program Committee, Video Production, …); role names are singularized and the singular form is convention. Users don't need to pre-exist (seeding auto-creates bare Users) — but to give them social handles, add speaker entries.
 
 ### sponsors.yml
 

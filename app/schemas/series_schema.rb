@@ -21,7 +21,7 @@ class SeriesSchema < ApplicationSchema
 
   string :default_country_code, description: "Default ISO country code (e.g., 'US', 'JP')", required: false
 
-  string :location, description: "Where a meetup group meets, in 'City, Country' format (e.g., 'London, UK'), or 'online'", required: false
+  string :location, description: "Where a meetup group meets, in 'City, Country' format with the country written out (e.g., 'London, United Kingdom'), or 'online'", required: false
   string :timezone, description: "IANA time zone identifier of a meetup group, e.g. Europe/London", enum: TZInfo::Timezone.all_identifiers, required: false
 
   any_of :coordinates, description: "Geographic coordinates of a meetup group (use 'coordinates: false' for online groups)", required: false do

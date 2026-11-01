@@ -34,14 +34,6 @@ class Static::Validators::EventDatesTest < ActiveSupport::TestCase
     end
   end
 
-  test "returns empty errors for an undated group event that keeps its meetups as talks" do
-    yaml = Yerba::Document.from({"id" => "rails-girls-copenhagen", "name" => "Rails Girls Copenhagen", "kind" => "meetup"}).to_s
-    with_temp_event_yaml(yaml) do |path|
-      validator = Static::Validators::EventDates.new(file_path: path)
-      assert_empty validator.errors
-    end
-  end
-
   test "returns error when start_date is missing for non-meetup" do
     yaml = {"name" => "RubyConf", "kind" => "conference", "end_date" => "2025-11-15"}.to_yaml
     with_temp_event_yaml(yaml) do |path|
