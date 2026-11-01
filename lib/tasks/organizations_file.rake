@@ -107,4 +107,23 @@ namespace :organizations_file do
       puts "To merge, move the slug into the `aliases` of the organization to keep, then run bin/rails validate:fix to update the files that use the old slug"
     end
   end
+
+  desc "Report organizations a series references for the first time since BASE (git ref, default origin/main), for review. " \
+    "HEAD=git ref compares that commit instead of the working tree; OUTPUT=path writes the report there (only if there is one); " \
+    "REPOSITORY=owner/name links the lines on GitHub"
+  task first_uses: :environment do
+    head = ENV["HEAD"].presence
+    repository = ENV["REPOSITORY"].presence
+    link = ->(path, line) { "https://github.com/#{repository}/blob/#{head}/#{path}#L#{line}" } if repository && head
+
+    Static::Organization::FirstUses.between(base: ENV.fetch("BASE", "origin/main"), head: head) do |first_uses|
+      report = first_uses.report(link: link)
+      puts report || "No series references an existing organization for the first time"
+
+      if report && (output = ENV["OUTPUT"].presence)
+        FileUtils.mkdir_p(File.dirname(output))
+        File.write(output, report)
+      end
+    end
+  end
 end

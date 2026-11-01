@@ -78,6 +78,10 @@ bin/rails validate:fix
 
 The alias keeps the old URL `/organizations/scout-apm` working. From then on, `bin/rails validate:sponsors` and `validate:involvements` (both part of `validate:all`) report every `sponsors.yml` and `involvements.yml` that still uses the old slug, and `bin/rails validate:fix` updates them. If the fix leaves the organization twice in one tier or role, the validation reports that too; resolve it by hand. Remove the duplicate's own entry; put anything worth keeping (other websites, logos, spellings) on the kept entry.
 
+### Reusing an organization in another series
+
+Giving a different organization an existing slug merges the two. So on a pull request, the "New references" check posts one summary comment listing, per series, the existing organizations that a `sponsors.yml` or `involvements.yml` of the series references for the first time; check each is the same organization. Later pushes update the comment when the list changes. Run the check locally with `bin/rails organizations_file:first_uses BASE=origin/main`.
+
 ### Renaming
 
 Change `name` and keep the old spelling in `alternate_names`. Changing `slug` works the same way as merging: the old slug goes into `aliases`, then run `bin/rails validate:fix`.
