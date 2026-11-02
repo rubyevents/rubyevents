@@ -1,20 +1,207 @@
-# TODO: Add talks and videos
-
-# Website: https://burlingtonruby.github.io/buruco2013/
-# Videos: https://www.youtube.com/playlist?list=PLE7tQUdRKcyb03P3xsIBPGoPycg03fEJ1
-
 ---
-[]
 
-# TODO: add missing talk - https://www.youtube.com/watch?v=3P3UTKeJYxY  Burlington Ruby Conf 2013 Building Code Quality by Bryan Helmkamp
-# TODO: add missing talk - https://www.youtube.com/watch?v=caYY6vdXEeo  Burlington Ruby Conf 2013 Functional Reactive Programming by Steve Klabnik
-# TODO: add missing talk - https://www.youtube.com/watch?v=2t-_7Eo4DnI  Burlington Ruby Conf 2013 Building Ambitious APIs with Ruby by Dan Gebhardt
-# TODO: add missing talk - https://www.youtube.com/watch?v=XJMd1pTjCRE  Burlington Ruby Conf 2013 Esoteric Library by Zachary Scott
-# TODO: add missing talk - https://www.youtube.com/watch?v=JQYhZWXvHzA  Burlington Ruby Conf 2013 Millions of Apps: What we've learned by Richard Schneeman
-# TODO: add missing talk - https://www.youtube.com/watch?v=icuSn3k9Euk  Burlington Ruby Conf 2013 Negotiations for Hackers by Danielle Sucher
-# TODO: add missing talk - https://www.youtube.com/watch?v=mZ6Pou9qm-M  Burlington Ruby Conf 2013 Fighting Burnout Incorporating Rest Into the Software Development Workflow
-# TODO: add missing talk - https://www.youtube.com/watch?v=JQJVCRvPBp0  Burlington Ruby Conference 2013 Embedding Ruby into your Daily Life
-# TODO: add missing talk - https://www.youtube.com/watch?v=fiFdE2kD12w  Burlington Ruby Conf 2013 Real-Time Rails by Brian Cardarella
-# TODO: add missing talk - https://www.youtube.com/watch?v=zHTyoYMRVvo  Burlington Ruby Conf 2013 Handcrafting Community by Carina C. Zona
-# TODO: add missing talk - https://www.youtube.com/watch?v=KDEtx_un4n8  Burlington Ruby Conf 2013 Particular Particulars about "Zero Downtime Deploys" by David Czarnecki
-# TODO: add missing talk - https://www.youtube.com/watch?v=YVofNrFb5ww  Burlington Ruby Conf 2013 get /better by Mark Bates (Keynote)
+- id: "mark-bates-burlington-ruby-conference-2013"
+  title: "get /better"
+  raw_title: "Burlington Ruby Conf 2013 get /better by Mark Bates (Keynote)"
+  kind: "keynote"
+  date: "2013-08-03"
+  start_time: "09:00"
+  end_time: "09:30"
+  published_at: "2013-08-11T19:50:55Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "YVofNrFb5ww"
+  description: |-
+    Mark is returning for his second year speaking at the conference. He will be delivering an inspirational keynote to kick the event off.
+  speakers:
+    - Mark Bates
+
+- id: "david-czarnecki-burlington-ruby-conference-2013"
+  title: "Particular Particulars about \"Zero Downtime Deploys\""
+  raw_title: "Burlington Ruby Conf 2013 Particular Particulars about \"Zero Downtime Deploys\" by David Czarnecki"
+  date: "2013-08-03"
+  start_time: "10:00"
+  end_time: "10:30"
+  published_at: "2013-08-11T19:56:42Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "KDEtx_un4n8"
+  description: |-
+    You've probably already read the GitHub blog post on Unicorn and "Zero Downtime Deploys" and would like to try it out for your application(s). This talk will cover the particular particulars of making this work. Detailed discussion will be given on our Unicorn, NGINX, Runit, RVM, Capistrano and Chef changes that needed to be made in order to make this work reliably. Approaches to migrations and schema changes will also be discussed. Even if your stack differs slightly, the salient points should be applicable. Once you have zero downtime deploys working, you'll wonder why you ever did deploys any other way. Say goodbye to cap deploy:maintenance. Secrets will be revealed!
+  speakers:
+    - David Czarnecki
+
+- id: "carina-c-zona-burlington-ruby-conference-2013"
+  title: "Handcrafting Community"
+  raw_title: "Burlington Ruby Conf 2013 Handcrafting Community by Carina C. Zona"
+  date: "2013-08-03"
+  start_time: "11:00"
+  end_time: "11:30"
+  published_at: "2013-08-11T20:00:11Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "zHTyoYMRVvo"
+  description: |-
+    Community-building can seem like a herculean effort that must be coordinated among many. But it doesn't have to be. One is plenty.
+
+    How can we handcraft a fulfilling code career? How can we support peers in developing theirs, whether newcomer or artisan? How can we contribute, without having to be expert? How do we develop social capital among community members, and channel those investments into people who are just entering? How will we craft a thriving community, using only simple tools & scarce local resources?
+
+    We'll examine the history of major successes -- in Ruby community, Python, and well beyond -- and extract lessons to apply generally. It's a story that weaves in personal narratives of rising into that, both well and clumsily. It's about transforming minor ambitions & frequent iterations into a scope of change that looks amazing. By making choices to do small things well and thoughtfully, rather than with concern for how they scale.
+  speakers:
+    - Carina C. Zona
+
+- id: "brian-cardarella-burlington-ruby-conference-2013"
+  title: "Real-Time Rails"
+  raw_title: "Burlington Ruby Conf 2013 Real-Time Rails by Brian Cardarella"
+  date: "2013-08-03"
+  start_time: "14:00"
+  end_time: "14:30"
+  published_at: "2013-08-12T11:38:51Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "fiFdE2kD12w"
+  description: |-
+    The future is real time! With the Rails 4.0 Live Streaming API we finally have the ability to easily add real time functionality to our apps. Learn all about the live streaming API, how best to take advantage of this in the browser, and how to deploy a real-time ready Rails app. Get ready to open your apps to a whole new world of interaction and functionality.
+
+    Topics we will cover:
+
+    - Live Streaming API
+    - EventMachine vs Rails 4.0
+    - Node.js vs Rails 4.0
+    - Polling vs Live Streaming
+    - Websockets & Rails 4.0
+    - Puma
+  speakers:
+    - Brian Cardarella
+
+- id: "nick-cox-burlington-ruby-conference-2013"
+  title: "Fighting Burnout: Incorporating Rest Into the Software Development Workflow"
+  raw_title: "Burlington Ruby Conf 2013 Fighting Burnout Incorporating Rest Into the Software Development Workflow"
+  date: "2013-08-03"
+  start_time: "15:00"
+  end_time: "15:30"
+  published_at: "2013-09-05T03:56:13Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "mZ6Pou9qm-M"
+  description: |-
+    Ruby developers enjoy a certain job security, despite the current economic climate in the United States and elsewhere. Yet with the proliferation of technologies and startups (and subsequently jobs), the quality of life of many developers has seen a marked decrease in recent years. In an industry in which working 60+ hour weeks is seen as a status symbol, and many companies are offering incentives to remain at work in the guise of perks and benefits, it can be difficult for software developers to achieve a sustainable work-life balance. Further, developers often spend a great deal of time outside of business hours working on side projects, and consequently, many promising careers can lead to immense stress and, ultimately, burnout.
+
+    How, as developers, can we work toward a healthier lifestyle? How might devoting time to rest lead to increased productivity at work and greater psychological and physical well-being at home? Finally, how can we practically rest in ways that lead to more lasting benefits than just sitting in our pajamas on Saturday morning and sorting through our Twitter feeds? Drawing from recent developments in the fields of psychology and cognitive neuroscience, we will explore a physiological basis for the relationship between work and relaxation, as well as specific, practical exercises to achieve an optimal equilibrium between work performance and emotional health.
+  speakers:
+    - Nick Cox
+
+- id: "andrew-nordman-burlington-ruby-conference-2013"
+  title: "Embedding Ruby into your Daily Life"
+  raw_title: "Burlington Ruby Conference 2013 Embedding Ruby into your Daily Life"
+  date: "2013-08-03"
+  start_time: "16:00"
+  end_time: "16:30"
+  published_at: "2013-08-25T16:00:38Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "JQJVCRvPBp0"
+  description: |-
+    Many Rubyists know Ruby for its ease of use as a web scripting language. Many sysadmins know Ruby for its server provisioning capacity and as a glue language to the shell. Many Rubyists don't know about how Ruby can be used in the world of embedded computing and microcontrollers to assist your daily life. Mruby expands the capabilities to robotics and hobby electronics, as well as small-scale automation. Learn about ways to embed ruby into your daily life with heat control, plant watering, helpful robots, and more.
+  speakers:
+    - Andrew Nordman
+
+- id: "richard-schneeman-burlington-ruby-conference-2013"
+  title: "Millions of Apps: What We've Learned"
+  raw_title: "Burlington Ruby Conf 2013 Millions of Apps: What we've learned by Richard Schneeman"
+  date: "2013-08-04"
+  start_time: "09:00"
+  end_time: "09:30"
+  published_at: "2013-09-10T19:00:21Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "JQYhZWXvHzA"
+  description: |-
+    Heroku has deployed millions of web apps. When you've run that many applications, it's hard not to notice when frameworks and developers do things wrong, and when they do them right. We've taken a look at the most common patterns and boiled down the best of our advice in to 12 simple factors that can help you build your next app to be stable, successful, and scaleable. After this talk you'll walk away with in depth knowledge of web framework design patterns and practical examples of how to improve your application code.
+  speakers:
+    - Richard Schneeman
+
+- id: "danielle-sucher-burlington-ruby-conference-2013"
+  title: "Negotiation for Hackers"
+  raw_title: "Burlington Ruby Conf 2013 Negotiations for Hackers by Danielle Sucher"
+  date: "2013-08-04"
+  start_time: "10:00"
+  end_time: "10:30"
+  published_at: "2013-09-05T15:07:33Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "icuSn3k9Euk"
+  description: |-
+    Negotiation is a critical part of our lives as programmers. It comes up in many contexts: when starting a gig (salary/benefits, employment or freelance contracts), when ending a gig (severance or debt settlement), and during our everyday lives (disagreements over features/architecture/other project decisions, prioritizing stories, convincing managers to give us time to pay down technical debt instead of just rolling out the next feature, explaining when something won't be possible or what will have to give to make it possible, etc.).
+
+    Effective negotiation and persuasion techniques can seem intuitive and therefore intimidating, but in fact they're simply another set of skills that you can study and practice and learn.
+  speakers:
+    - Danielle Sucher
+
+- id: "zachary-scott-burlington-ruby-conference-2013"
+  title: "The Esoteric Library"
+  raw_title: "Burlington Ruby Conf 2013 Esoteric Library by Zachary Scott"
+  date: "2013-08-04"
+  start_time: "11:00"
+  end_time: "11:30"
+  published_at: "2013-09-10T22:02:04Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "XJMd1pTjCRE"
+  description: |-
+    Have you ever wondered what that ~20MB of code in your Ruby installation is there for? You didn't know Ruby came with an eso- standard library?! Well it totally does, and there's a lot of hidden gems in there just waiting for you to uncover.
+
+    Allow me to guide you through some of the more delightful members of the standard library. I will hand pick libraries authored by the pioneers of Ruby and show you the useful bits.
+
+    Together we'll discover the bountiful archive of libraries that come packaged with Ruby.
+  speakers:
+    - Zachary Scott
+
+- id: "bryan-helmkamp-burlington-ruby-conference-2013"
+  title: "Building a Culture of Quality"
+  raw_title: "Burlington Ruby Conf 2013 Building Code Quality by Bryan Helmkamp"
+  date: "2013-08-04"
+  start_time: "14:00"
+  end_time: "14:30"
+  published_at: "2013-10-15T20:16:42Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "3P3UTKeJYxY"
+  description: |-
+    Time and time again, skilled developers with good intentions set out into the green field of their new Rails app. Alas, as days turn to weeks, weeks to months and months to years, they find themselves with an ever increasing maintenance burden. Adding new features in a well-designed way starts to feel like an exercise in futility, so they resort to liberal use of conditionals to avoid breaking existing code. This leads to more complexity, and on the cycle goes.
+
+    It doesn't need to be like this. There's no silver bullet that will save your project from this fate, but by practicing a holistic approach to code quality you can stave off the maintenance monsters and keep your app's code feeling fresh and clean. This talk will look at low ceremony, common sense approaches to taking control of the quality of your codebase. You'll leave with an expanded toolbox of techniques to build a culture of quality within your organization.
+  speakers:
+    - Bryan Helmkamp
+
+- id: "dan-gebhardt-burlington-ruby-conference-2013"
+  title: "Building Ambitious APIs with Ruby"
+  raw_title: "Burlington Ruby Conf 2013 Building Ambitious APIs with Ruby by Dan Gebhardt"
+  date: "2013-08-04"
+  start_time: "15:00"
+  end_time: "15:30"
+  published_at: "2013-09-11T15:00:47Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "2t-_7Eo4DnI"
+  description: |-
+    With the advent of native and single page web apps, APIs are more important than ever. An application's API often must serve the needs of its own front end(s) as well as any third party applications and scripts that integrate with it. It should be flexible, yet follow strong conventions to be easily understood.
+
+    This talk will discuss strategies for building an ambitious API with Ruby. It will cover diverse topics such as authentication, versioning, side-loading and embedding related data, bulk access, and more.
+  speakers:
+    - Dan Gebhardt
+
+- id: "steve-klabnik-burlington-ruby-conference-2013"
+  title: "Functional Reactive Programming"
+  raw_title: "Burlington Ruby Conf 2013 Functional Reactive Programming by Steve Klabnik"
+  kind: "keynote"
+  date: "2013-08-04"
+  start_time: "16:00"
+  end_time: "16:30"
+  published_at: "2013-10-15T20:22:09Z"
+  language: "English"
+  video_provider: "youtube"
+  video_id: "caYY6vdXEeo"
+  description: "" # TODO
+  speakers:
+    - Steve Klabnik

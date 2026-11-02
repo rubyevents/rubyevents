@@ -1,6 +1,256 @@
-# TODO: Add talks and videos
-
-# Website: https://burlingtonruby.github.io/burlingtonrubyconference2014/
-# Videos: https://vimeo.com/showcase/2996485
 ---
-[]
+
+- id: "ernie-miller-burlington-ruby-conference-2014"
+  title: "Keynote: Ernie Miller"
+  raw_title: "Ernie Miller - Keynote - Burlington Ruby Conference 2014"
+  kind: "keynote"
+  date: "2014-08-02"
+  start_time: "09:00"
+  end_time: "09:30"
+  published_at: "2014-08-15T16:36:52Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "103529608"
+  description: "" # TODO
+  speakers:
+    - Ernie Miller
+
+- id: "alan-peabody-burlington-ruby-conference-2014"
+  title: "Breaking Up With the Asset Pipeline"
+  raw_title: "Alan Peabody - Breaking Up With the Asset Pipeline - Burlington Ruby Conference 2014"
+  date: "2014-08-02"
+  start_time: "10:00"
+  end_time: "10:30"
+  published_at: "2014-08-14T15:44:36Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "103438429"
+  description: |-
+    Have you ever had to wait 30 seconds for your front end app to load in development?
+
+    You must be using the Rails Asset Pipeline.
+
+    This talk will show you a better way.
+
+    Decoupling your Front End application from your Rails API gives you the best of both the Javascript and the Rails world. It will accelerate your development and help you write better, more maintainable code.
+
+    Forget About:
+    * JS Gem dependencies
+    * Asset Pipeline manifests
+    * Getting distracted during page refreshes
+
+    Learn About:
+    * Cross Origin Requests
+    * API Authentication without sessions (OAuth 2.0?)
+    * JavaScript dependencies management
+    * Javascript build tools
+    * Source Maps
+    * Live reload
+  speakers:
+    - Alan Peabody
+
+- id: "nicole-fenton-burlington-ruby-conference-2014"
+  title: "Interface Writing - Code for Humans"
+  raw_title: "Nicole Fenton - Interface Writing - Code for Humans - Burlington Ruby Conference 2014"
+  date: "2014-08-02"
+  start_time: "11:00"
+  end_time: "11:30"
+  published_at: "2014-08-15T15:56:10Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "103526258"
+  description: |-
+    We build systems to help real people. But honestly, are we being that helpful in our interfaces? Or are we treating the copy as an afterthought and letting people fend for themselves? Instead of debating the latest design trends, let's reflect on something that isn't going away: the text on your website.
+
+    In this session, we'll look at how strings, labels, forms, and flows shape the user experience. You'll learn how to write clear copy and guide your readers through multipart interfaces in a friendly way.
+  speakers:
+    - Nicole Fenton
+
+- id: "jennifer-eliuk-burlington-ruby-conference-2014"
+  title: "Apprenticeships - I implore you!"
+  raw_title: "Jennifer Eliuk - Apprenticeships - I implore you! - Burlington Ruby Conference 2014"
+  date: "2014-08-02"
+  start_time: "14:00"
+  end_time: "14:30"
+  published_at: "2014-08-15T22:57:48Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "103559084"
+  description: |-
+    The increase in web development vocational programs means a steady supply of junior developers, but are we prepared to help them become productive members of our teams?
+
+    These programs were created in response to the need for more developers, but I fear without apprenticeships to bridge the gap, we're simply moving the bottleneck upstream.
+
+    In the absence of an established, structured program, I've had to figure out what it means to be a software apprentice and ensure I'm building skills and learning best practices daily. Conversely, the senior developers have had to think about how to integrate apprentices and provide purposeful learning opportunities.
+
+    In this talk, I'll share my experience coming from a vocational web development school and the apprenticeship program we're developing at Democracy Works, Inc.
+  speakers:
+    - Jennifer Eliuk
+
+- id: "dan-luchi-burlington-ruby-conference-2014"
+  title: "iOS for the Web Developer"
+  raw_title: "Dan Luchi - iOS for the Web Developer - Burlington Ruby Conference 2014"
+  date: "2014-08-02"
+  start_time: "15:00"
+  end_time: "15:30"
+  published_at: "2014-08-14T16:19:19Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "103441455"
+  description: |-
+    RubyMotion is a framework for creating iOS applications with the flexibility and familiarity that Ruby provides. By architecting around a web view and a single page javascript application, building native iOS applications can leverage all of the tools and techniques that we've developed for the web.
+
+    In this talk, I will walk through the development of an iOS application that uses this approach with RubyMotion, a Rails backend, and AngularJS. I'll discuss how we decided what responsibility each component should have, how they interact with one another, a couple of things that turned out to be a bit tricky. Our iOS app has an Android and a mobile web equivalent and this is where this approach really shines: we're essentially building all three at the same time.
+
+    There are some downsides to this approach. Familiarity with iOS conventions and the Cocoa APIs are still necessary to build an app that looks and feels polished. It's a poor fit for applications that need to be completely or mostly available offline and if your app does not have an Android or mobile web version, you lose one of the largest benefits.
+  speakers:
+    - Dan Luchi
+
+- id: "panel-burlington-ruby-conference-2014"
+  title: "Panel: The Future of Ruby"
+  raw_title: "Mark Bates - Panel: The Future of Ruby - Burlington Ruby Conference 2014"
+  kind: "panel"
+  date: "2014-08-02"
+  start_time: "15:45"
+  end_time: "16:30"
+  published_at: "2014-08-16T14:57:33Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "103590400"
+  description: |-
+    The sky is falling!!! Life as we know it is over! These pretzels are making me thirsty! There's been a lot of talk recently regarding the health of Ruby. Is it dying? Does it have Lupus? (Hint, it's never Lupus). I sit down with Sandi Metz, Ernie Miller, and Johnny Bourisquot for a candid discussion about what the future holds for one of our favorite languages.
+  speakers:
+    - Mark Bates
+    - Sandi Metz
+    - Ernie Miller
+    - Johnny Boursiquot
+
+- id: "robert-jackson-burlington-ruby-conference-2014"
+  title: "Rails + Ember.js + ember-cli = ♥"
+  raw_title: "Robert Jackson - Rails + Ember.js + ember-cli = ♥ - Burlington Ruby Conference 2014"
+  date: "2014-08-03"
+  start_time: "09:00"
+  end_time: "09:30"
+  published_at: "2014-08-16T22:03:13Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "103608308"
+  description: |-
+    This talk will review how to use the power of Rails as an API server along with Ember.js (via the ember-cli project).
+
+    We will review:
+
+    - How to get up and running with a simple Rails API.
+    - Setting up an ember-cli project.
+    - Proxying requests to the Rails API.
+    - Basic testing setup of the Ember.js side.
+    - Deployment to Heroku.
+  speakers:
+    - Robert Jackson
+
+- id: "phil-cohen-burlington-ruby-conference-2014"
+  title: "Cooking Continuously - Infrastructure Automation Patterns with Chef"
+  date: "2014-08-03"
+  start_time: "09:45"
+  end_time: "10:00"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "phil-cohen-burlington-ruby-conference-2014"
+  description: |-
+    Well-tested code deployed frequently and automatically is nothing new for many Rubyists, yet the idea that these practices can also be applied to infrastructure has yet to catch on the same way. We will explore the usage of RSpec and Minitest with Chef, and look at building an automated pipeline to deliver your entire infrastructure from a development Vagrant image to multi-cloud production clusters. I will discuss some workflows, tooling, and security considerations when adopting these strategies.
+  speakers:
+    - Phil Cohen
+
+- id: "kerri-miller-burlington-ruby-conference-2014"
+  title: "How to Interview and Why"
+  raw_title: "Kerri Miller - How to Interview and Why - Burlington Ruby Conference 2014"
+  date: "2014-08-03"
+  start_time: "10:15"
+  end_time: "10:45"
+  published_at: "2014-08-16T17:49:17Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "103598190"
+  description: |-
+    An interview too often feels like a first date - awkward, strange, and not entirely predictive of what's to follow. There are countless books and websites to help you when you're a job seeker, but what about when you're the one doing the hiring? Will you just ask the same puzzle questions or sort algorithm problems? What are your metrics for evaluating or contextualizing the answers? In this talk, I'll discuss successful practices and techniques to help you find someone who will innovate your business, bring new energy to your team, get the work done, AND be someone you'll want to work with.
+  speakers:
+    - Kerri Miller
+
+- id: "starr-horne-burlington-ruby-conference-2014"
+  title: "Five Machine Learning Techniques That You Can Use Today"
+  date: "2014-08-03"
+  start_time: "11:00"
+  end_time: "11:30"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "starr-horne-burlington-ruby-conference-2014"
+  description: |-
+    Machine learning is everywhere: People have started to expect features like search, voice recognition, and recommendations to be in apps.
+
+    Fortunately, you don't have to be a math whiz to make your apps smarter with standard machine learning techniques.
+
+    In this presentation we'll cover five important machine learning techniques that you can use today. It's a wide and shallow introduction, for Rubyists, with plenty of simple code examples.
+
+    By the end of the presentation, you won't be an expert, but you'll know about a class of tools you may not have realized were available.
+  speakers:
+    - Starr Horne
+
+- id: "neal-kemp-burlington-ruby-conference-2014"
+  title: "Effectively Testing Services"
+  raw_title: "Neal Kemp - Effectively Testing Services - Burlington Ruby Conference 2014"
+  date: "2014-08-03"
+  start_time: "14:00"
+  end_time: "14:30"
+  published_at: "2014-08-16T19:09:06Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "103601557"
+  description: |-
+    Our Ruby world is becoming increasingly service oriented. Even in trivial applications, we often glue on multiple services ranging from Twitter to AWS. Services can, however, be confusing to test.
+
+    Many questions arise such as: How thoroughly should I test a service? Should I stub out responses or consume an API in test mode? How do I know a service is returning what I believe it returns?
+
+    In this talk, Neal will answer these questions and more so that you may test services more effectively.
+  speakers:
+    - Neal Kemp
+
+- id: "doug-alcorn-burlington-ruby-conference-2014"
+  title: "How to Consume Lots of Data"
+  raw_title: "Doug Alcorn - How to Consume Lots of Data - Burlington Ruby Conference 2014"
+  date: "2014-08-03"
+  start_time: "15:00"
+  end_time: "15:30"
+  published_at: "2014-08-14T22:57:57Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "103475219"
+  description: |-
+    Concurrency is all the rage. When you have tons of data being shoved down your throat, you need all the help you can get. All the cool kids are turning to alternatives to try and keep up: node.js, clojure, erlang, elixir, Go. Popular thinking is that Ruby is too slow and "won't scale." But our favorite friend can support it very well. In this talk we'll take a look at the actor pattern in Ruby with Celluloid and compare to similar solutions in other languages.
+  speakers:
+    - Doug Alcorn
+
+- id: "sandi-metz-burlington-ruby-conference-2014"
+  title: "Keynote: Sandi Metz"
+  kind: "keynote"
+  date: "2014-08-03"
+  start_time: "16:00"
+  end_time: "16:30"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "sandi-metz-burlington-ruby-conference-2014"
+  description: "" # TODO
+  speakers:
+    - Sandi Metz
+
+- id: "recap-burlington-ruby-conference-2014"
+  title: "Burlington Ruby Conference 2014 Recap"
+  raw_title: "Burlington Ruby Conference 2014 Recap"
+  kind: "recap"
+  date: "2014-08-03"
+  published_at: "2014-08-20T21:12:44Z"
+  language: "English"
+  video_provider: "vimeo"
+  video_id: "103949937"
+  description: "" # TODO
+  speakers:
+    - TODO
