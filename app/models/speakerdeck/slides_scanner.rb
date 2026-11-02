@@ -3,6 +3,7 @@
 module Speakerdeck
   class SlidesScanner
     IGNORED_HANDLES = [
+      "adambouchard",
       "andpad",
       "coincheck_recruit",
       "guru_sp",
