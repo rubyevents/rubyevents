@@ -1,0 +1,20 @@
+---
+- id: "matt-swanson-indyrb-2020-02-12"
+  title: "Wrangling slow reports, large file exports, and long-running tasks in Rails with ActiveJob"
+  date: "2020-02-12"
+  published_at: "2020-02-13T14:36:00Z"
+  video_provider: "youtube"
+  video_id: "7pIuB6ZvT3Q"
+  description: |-
+    In every non-trivial application you'll have to do something that is just slow. Maybe your application needs to export a large data set to a CSV file. Maybe your business needs a complicated Excel report to be generated. Or maybe you have a workflow that has to connect to external systems or, well, just do a lot of stuff.
+
+    But how do you know when it's time to move things to background jobs?
+
+    Matt Swanson leads teams and build products for customers at SEP, a software product design and development agency in Carmel. He’s been using Ruby in some capacity since 2010. His favorite Ruby method is Array#compact.
+
+    This talk is an adaptation of Matt's blog post:
+    https://boringrails.com/articles/large-exports-and-slow-reports-with-activejob/
+
+    Check out Matt's work at https://boringrails.com
+  speakers:
+    - Matt Swanson

@@ -1,0 +1,66 @@
+---
+- id: "ben-cochran-indyrb-2018-04-11"
+  title: "Pry - A Ruby Developer's Friend"
+  raw_title: "Pry - A Developer's Best Friend with Ben Cochran"
+  date: "2018-04-11"
+  published_at: "2018-04-15T01:28:11Z"
+  video_provider: "youtube"
+  video_id: "96OkAtDaBbg"
+  description: |-
+    In the Ruby world, Pry is IRB on steroids. In a blazingly short period of time you will learn how to install and invoke it, replace your Rails console with it, use it to debug server issues inline, configure macros and shortcuts, and a couple of other neat tips and tricks.
+
+    Ben Cochran is a Polyglot Principal Full Stack Developer and Architect with 15 years of experience developing standalone and web based applications in Enterprise, Freelance and Startup environments. His company, enhasa.io, is seeking contract work and potential CTO-for-hire engagements. He also has a penchant for 3D Printing as well as using Kubernetes for orchestration of containerized applications.
+  speakers:
+    - Ben Cochran
+
+- id: "james-bush-indyrb-2018-04-11"
+  title: "Generating Markdown Docs for Rails Models with James Bush"
+  date: "2018-04-11"
+  video_provider: "not_recorded"
+  video_id: "james-bush-indyrb-2018-04-11"
+  description: |-
+    James shows off a practical solution to crawl a typical Rails app to generate documentation on models, fields and relationships and output to Markdown.
+
+    Video is not available, but here's the code shown in the talk:
+
+    GitHub Gist
+
+    ```ruby
+    Rails.application.eager_load!
+
+    models_to_document = ApplicationRecord.descendants
+      .map(&:to_s)
+      .uniq
+      .select { |m|
+        ActiveRecord::Base.connection.table_exists? m.underscore.pluralize
+      }
+      .map(&:constantize)
+
+    model_descriptions ||= {}
+
+    models_to_document.each do |model|
+      model_referenced_by = models_to_document
+        .select { |m| m.column_names.include?("#{ model.table_name.singularize }_id") }
+        .map(&:to_s)
+        .join(', ')
+
+      model_references_to = model
+        .column_names
+        .select { |cn| cn =~ /_id/ }
+        .map { |r| r.gsub(/_id/, '') }
+        .map(&:camelize)
+        .join(', ')
+
+      model_ancestors = model.ancestors.select { |k| k  1
+      puts
+      puts "#{ model.to_s }  #{ model_references_to }" if model_references)_to.present?
+      puts
+      model_column_names.each { |cn| puts "  |#{ cn }" }
+      puts "```"
+      puts
+      puts "#{ model.description }"
+      puts
+    end
+    ```
+  speakers:
+    - James Bush
