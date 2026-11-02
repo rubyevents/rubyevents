@@ -1,0 +1,24 @@
+---
+- id: "stanko-krtalic-rusendic-rubyzg-2017-03-28"
+  title: "GraphQL"
+  date: "2017-03-28"
+  slides_url: "https://github.com/rubyzg/slides/blob/master/2017-03-28/graphql.pdf"
+  video_provider: "not_recorded"
+  video_id: "stanko-krtalic-rusendic-rubyzg-2017-03-28"
+  description: |-
+    GraphQL is a better way to write APIs. It is auto-documenting, simple to understand, flexible yet powerful. Lets explore how we can build APIs using its Ruby driver and solve common problems that we face when using techniques such as REST, JSON::API or HAL.
+  speakers:
+    - Stanko Krtalić Rusendić
+
+- id: "zoran-majstorovic-rubyzg-2017-03-28"
+  title: "Modeling a Solid Database for Your Ruby Framework"
+  date: "2017-03-28"
+  slides_url: "https://github.com/rubyzg/slides/blob/master/2017-03-28/modeling_a_solid_database.pdf"
+  video_provider: "not_recorded"
+  video_id: "zoran-majstorovic-rubyzg-2017-03-28"
+  description: |-
+    The chances are that your ruby framework of choice, uses an ORM (like ActiveRecord or Sequel) as a critical part of the application ("M" in the MVC). Usually, ORM relies on the relational database, and if the data layer is too permissive, our application can quickly become riddled with bugs.
+
+    In this talk, we'll briefly explore the most important rules in modeling a solid database design with emphasis on modeling associations by normalizing tables up to the Third normal form (3NF).
+  speakers:
+    - Zoran Majstorović

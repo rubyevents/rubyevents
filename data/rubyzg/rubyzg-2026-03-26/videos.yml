@@ -1,0 +1,33 @@
+---
+- id: "marko-avlijas-rubyzg-2026-03-26"
+  title: "Keeping AI Agents in a Sandbox"
+  date: "2026-03-26"
+  video_provider: "not_recorded"
+  video_id: "marko-avlijas-rubyzg-2026-03-26"
+  description: |-
+    This talk is about building a safer environment for AI agents. Since an LLM agent cannot be fully trusted, the goal is to limit what it can access and what damage it can do. The agent runs inside a Firecracker microVM and a Podman container, with access only to approved data and services.
+
+    The talk will also give a simple overview of isolation in containers and virtual machines. It will cover the basic ideas behind namespaces and cgroups, touch on past escape vulnerabilities, and explain how auditing can help detect suspicious behavior.
+  speakers:
+    - Marko Avlijaš
+
+- id: "iskren-nemet-rubyzg-2026-03-26"
+  title: "To vibe, or not to vibe, is that the question?!"
+  date: "2026-03-26"
+  slides_url: "https://github.com/izkreny/agentifico"
+  video_provider: "not_recorded"
+  video_id: "iskren-nemet-rubyzg-2026-03-26"
+  description: |-
+    As it is almost impossible to hide from the AI tsunami, what can you do if you actually want to learn fundamental and advanced programming techniques, and not just be another AI agent shepherd? Let's pair up with Socrates and examine together what options are on the table and how we can use them inside our Ruby and Rails world via VS Code, the most standard and popular code editor today, and its AI fellow: GitHub Copilot.
+  speakers:
+    - Iskren Nemet
+
+- id: "fran-zekan-rubyzg-2026-03-26"
+  title: "Wanna upgrade your agent flow?"
+  date: "2026-03-26"
+  video_provider: "not_recorded"
+  video_id: "fran-zekan-rubyzg-2026-03-26"
+  description: |-
+    We all probably tried some form of Copilot AI autocomplete, most of us probably at least tried agents. But what about those mythical "10/20/50x speed improvements"? How do you "spend $1000+ in token in a month"?. "How is this actually helping you"? The goal of this talk is to show a couple of tricks / hacks for how to use agents to work smarter.
+  speakers:
+    - Fran Zekan

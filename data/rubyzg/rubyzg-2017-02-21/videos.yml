@@ -1,0 +1,28 @@
+---
+- id: "vedran-hrncic-rubyzg-2017-02-21"
+  title: "Subclassing modules"
+  date: "2017-02-21"
+  slides_url: "http://slides.com/vrabac/subclassing-modules"
+  video_provider: "not_recorded"
+  video_id: "vedran-hrncic-rubyzg-2017-02-21"
+  description: |-
+    In it's raw form a ruby module is just a collection of methods to be copied into whoever wants to mix-it-in.
+    More often than not, humble module just doesn't cut it, failing at simplest of tasks like configuring behaviour.
+    In these situations we commonly resort to other solutions like concerns, but there is one almost archaic yet very interesting idiom, module object inclusion.
+    Although it's far away from the standard ruby code, subclassing a module unlocks powerful feature of adding a state to the module which in turn allows for better encapsulation of modularized logic.
+  speakers:
+    - Vedran Hrnčić
+
+- id: "damir-svrtan-rubyzg-2017-02-21"
+  title: "Building Ruby Bots on AWS Lambda"
+  date: "2017-02-21"
+  slides_url: "https://speakerdeck.com/damirsvrtan/building-ruby-bots-on-aws-lambda"
+  video_provider: "not_recorded"
+  video_id: "damir-svrtan-rubyzg-2017-02-21"
+  description: |-
+    Want to build a Ruby Bot without the hassle of provisioning and managing servers? Amazon's got a service for that and it's called AWS Lambda - it executes your code only when needed, scales automatically and you pay only for the compute time you consume.
+
+    There's one problem with Lambda - it doesn't support Ruby!
+    Let's checkout multiple options on how to build a Ruby Bot and package it into an executable which you can run on any machine without the need to actually have Ruby installed.
+  speakers:
+    - Damir Svrtan

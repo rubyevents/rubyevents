@@ -1,17 +1,32 @@
 ---
 id: "rubyzg-2026-10-22"
 title: "Ruby Zagreb Meetup October 2026"
-subtitle: "at DECODE"
+subtitle: "RubyZG October Meetup @ DECODE"
 location: "Zagreb, Croatia"
 timezone: "Europe/Zagreb"
 kind: "meetup"
 description: |-
-    A meetup with a low-level theme: how far Ruby's new concurrency and parallelism tools can be stretched, and how to run Ruby apps on AWS Lambda without maintaining a server. Hosted by DECODE, with pizza and refreshments after the talks.
+  Hi everyone!
+
+  Join us for the [RubyZG](https://rubyzg.org/) October Meetup. We've got a low level theme this time: We'll hear how far Ruby's new concurrency and parallelism tools can be stretched, and how to run Ruby apps on AWS Lambda without maintaining a server.
+
+  This event is hosted by [DECODE](https://decode.agency/) who will be providing pizza and refreshments after the formal part of the meetup. Btw, they are hiring, so be sure to [check their open positions](https://decode.agency/open-positions/).
+  For those coming by car, there is no dedicated parking but there should be plenty of parking at that time in the street in front of the building.
+  See you at [DECODE](https://decode.agency/)!
+
+  **Are We Fast Yet? Ractors, Fibers, and how far can we stretch it**
+  by **Luka Bak**
+  Ractors give Ruby real parallelism, the Fiber scheduler gives it Go-like concurrency. So are we fast yet? I've built the same everyday network service in Ruby and once more in Go, and charted how far one Ruby process can be stretched today, what breaks along the way, and what a few more years might buy us.
+
+  **Running Ruby apps on AWS Lambda**
+  by **Oleg Pustovit**
+  You can run a Rails or Sinatra app on AWS Lambda without maintaining a VM. I'll show how that works through Rack and adapters such as Lamby, then walk through deploying a small app. I'll also show how Ruby code can use AWS services to handle file uploads in S3, process jobs through SQS, and run scheduled tasks. We'll look at what gets awkward, including cold starts and database connections, and when I'd stick with a regular server.
 start_date: "2026-10-22"
 end_date: "2026-10-22"
 start_time: "18:00"
 end_time: "20:00"
-meetup: "https://www.meetup.com/rubyzg/events/316907788/"
+website: "https://rubyzg.org/events/2026-10-22-rubyzg-october-meetup-decode/"
+meetup: "https://www.meetup.com/rubyzg/events/316907788"
 coordinates:
-  latitude: 45.8025
-  longitude: 16.0058
+  latitude: 45.80229
+  longitude: 16.005716

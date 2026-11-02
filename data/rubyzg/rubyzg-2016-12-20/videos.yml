@@ -1,0 +1,39 @@
+---
+- id: "dario-daic-rubyzg-2016-12-20"
+  title: "pry-globs - Ruby's global variables - decrypted"
+  kind: "lightning_talk"
+  date: "2016-12-20"
+  slides_url: "https://github.com/da1chy/pry-globs"
+  video_provider: "not_recorded"
+  video_id: "dario-daic-rubyzg-2016-12-20"
+  description: |-
+    "You can't require a file? Print out $" and list the $:. By the way, $0 is confusing. Rename it."
+
+    Got that? If you didn’t, it is because Ruby’s global variables are notoriously cryptic. But, fear not. This simple Pry plugin will put the Rosetta Stone underneath your fingertips.
+  speakers:
+    - Dario Daić
+
+- id: "bruno-sutic-rubyzg-2016-12-20"
+  title: "Sidekiq Enterprise"
+  date: "2016-12-20"
+  slides_url: "https://github.com/rubyzg/slides/blob/master/2016-12-20/sidekiq_enterprise.pdf"
+  video_provider: "not_recorded"
+  video_id: "bruno-sutic-rubyzg-2016-12-20"
+  description: |-
+    Sidekiq is standard for background job processing in Ruby. It also has paid versions Pro and Enterprise which give you a plethora of advanced capabilities.
+
+    We'll take a look at some of those advanced features, explore their use cases and see code examples from production code at my company.
+  speakers:
+    - Bruno Sutic
+
+- id: "nika-jukic-rubyzg-2016-12-20"
+  title: "Destroying dead code with unused"
+  kind: "lightning_talk"
+  date: "2016-12-20"
+  slides_url: "https://github.com/rubyzg/slides/blob/master/2016-12-20/unused.pdf"
+  video_provider: "not_recorded"
+  video_id: "nika-jukic-rubyzg-2016-12-20"
+  description: |-
+    Finding unused code with an awesome command line tool.
+  speakers:
+    - Nika Jukić

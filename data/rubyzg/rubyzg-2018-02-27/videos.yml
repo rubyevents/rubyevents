@@ -1,0 +1,32 @@
+---
+- id: "stanko-krtalic-rusendic-rubyzg-2018-02-27"
+  title: "RabbitMQ is more than a Sidekiq replacement!"
+  date: "2018-02-27"
+  slides_url: "https://github.com/rubyzg/slides/blob/master/2018-02-28/rabbitmq_is_more_than_a_sidekiq_replacement.pdf"
+  video_provider: "not_recorded"
+  video_id: "stanko-krtalic-rusendic-rubyzg-2018-02-27"
+  description: |-
+    We are used to Sidekiq being the defacto norm for a queue service in
+    the Ruby ecosystem. If you replace Sidekiq and Redis with RabbitMQ
+    you may find yourself with a few less problems, and more tools to scale
+    your app.
+
+    This talk will go into problems with using Sidekiq and Redis as a queue service,
+    migrating to RabbitMQ, and using RabbitMQ’s features to scale your Ruby apps a
+    bit easier.
+  speakers:
+    - Stanko Krtalić Rusendić
+
+- id: "janko-marohnic-rubyzg-2018-02-27"
+  title: "Dynamic Routing in Ruby"
+  date: "2018-02-27"
+  slides_url: "https://speakerdeck.com/janko_m/dynamic-routing-in-ruby"
+  video_provider: "not_recorded"
+  video_id: "janko-marohnic-rubyzg-2018-02-27"
+  description: |-
+    Most of us are Rails developers, so we’re used to the way Rails routes requests.
+    Most Ruby web frameworks also use a similar approach, but some are stepping off the rails.
+    Roda and Cuba route requests in what I would call a “dynamic” way, which I found very natural
+    and flexible. I will compare the two approaches and demonstrate the advantages I see in dynamic routing.
+  speakers:
+    - Janko Marohnić
