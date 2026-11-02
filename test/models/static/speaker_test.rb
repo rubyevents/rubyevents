@@ -128,4 +128,22 @@ class Static::SpeakerTest < ActiveSupport::TestCase
       assert_operator Static::Speaker.count, :>, 1
     end
   end
+
+  test "import_all! imports the remaining speakers and then raises when one fails to save" do
+    invalid = ActiveRecord::RecordInvalid.new(::User.new)
+    imported = []
+    speakers = %w[First Broken Last].map do |name|
+      speaker = Struct.new(:name, :github).new(name, name.downcase)
+      speaker.define_singleton_method(:import!) { |**| (name == "Broken") ? raise(invalid) : imported << name && nil }
+      speaker
+    end
+
+    Static::Speaker.stub(:all, speakers) do
+      error = assert_raises(Static::ImportError) { Static::Speaker.import_all!(index: false) }
+
+      assert_match "Broken", error.message
+    end
+
+    assert_equal %w[First Last], imported
+  end
 end

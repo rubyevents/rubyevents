@@ -421,9 +421,9 @@ module Static
 
       destroy_removed_talks!(event)
     rescue ActiveRecord::RecordInvalid => e
-      puts "Couldn't save: #{talk_data["title"]} (#{talk_data["id"]}), error: #{e.message}"
       error_location = ActiveSupport::BacktraceCleaner.new.clean_locations(e.backtrace_locations).first
       puts "::error file=#{error_location&.path},line=#{error_location&.lineno}::#{e.record.class} (#{e.record&.to_param}) - #{e.detailed_message}"
+      raise e
     end
 
     def destroy_removed_talks!(event)

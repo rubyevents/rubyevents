@@ -73,5 +73,21 @@ module Search::Backend
         Rails.logger.error("Failed to reindex all in #{backend.name}: #{e.message}")
       end
     end
+
+    def reindex_changed_since(time)
+      talks = ::Talk.where(updated_at: time..)
+      speakers = ::User.where(updated_at: time..).or(::User.where(id: ::UserTalk.where(talk_id: talks.select(:id)).select(:user_id)))
+      events = ::Event.where(updated_at: time..)
+
+      [talks, speakers, events].each do |scope|
+        scope.find_each { |record| index(record) }
+      end
+
+      backends.each_value do |backend|
+        backend.indexer.reindex_facets if backend.available? && backend.indexer.respond_to?(:reindex_facets)
+      rescue => e
+        Rails.logger.error("Failed to reindex facets in #{backend.name}: #{e.message}")
+      end
+    end
   end
 end

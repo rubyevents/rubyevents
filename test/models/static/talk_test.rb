@@ -60,4 +60,22 @@ class Static::TalkTest < ActiveSupport::TestCase
     assert found.new_record?
     assert_equal "brand-new-talk-id", found.static_id
   end
+
+  test "import! imports the remaining talks and then raises when one fails to save" do
+    invalid = ActiveRecord::RecordInvalid.new(::Talk.new)
+    imported = []
+    talks = %w[first broken last].map do |id|
+      talk = Struct.new(:id, :title, :parent).new(id, id.capitalize)
+      talk.define_singleton_method(:import!) { |**| (id == "broken") ? raise(invalid) : (imported << id) && id }
+      talk
+    end
+
+    Static::Talk.stub(:all, talks) do
+      error = assert_raises(Static::ImportError) { Static::Talk.import! }
+
+      assert_match "broken", error.message
+    end
+
+    assert_equal %w[first last], imported
+  end
 end
