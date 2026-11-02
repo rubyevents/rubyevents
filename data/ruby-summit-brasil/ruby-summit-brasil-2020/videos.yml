@@ -1,0 +1,234 @@
+---
+- id: "mauricio-eduardo-chicupo-szabo-ruby-summit-brasil-2020"
+  title: "Ruby, Microservice, e Hardcore PostgreSQL"
+  date: "2020-12-04"
+  published_at: "2021-02-12T13:47:12Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "Nlb9FlG7rnA"
+  description: |-
+    Apresentarei uma estrutura de projetos bem diferente do tradicional no mundo Ruby: sem Rails, sem ActiveRecord, sem a abordagem tradicional dos ORMs e atendendo mensageria (via SQS) que definimos na Bio Ritmo, com o intuito de adquirir um imenso controle de consistência de dados, performance, e uso de features modernas do PostgreSQL (como, por exemplo, upsert e JSONB)
+  speakers:
+    - Maurício Eduardo Chicupo Szabo
+
+- id: "brenno-costa-ruby-summit-brasil-2020"
+  title: "Eventide - Sistemas Autônomos Baseados em Eventos"
+  raw_title: "Eventide   Sistemas Autônomos Baseados em Eventos"
+  date: "2020-12-04"
+  published_at: "2021-02-12T13:26:26Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "Qlz505b1JSc"
+  description: |-
+    Introdução ao Eventide, framework para a construção de serviços autônomos baseados em eventos, em cima da minha experiência lidando com essa mudança de paradigma focada em processos e não em entidades.
+  speakers:
+    - Brenno Costa
+
+- id: "joao-paulo-lethier-ruby-summit-brasil-2020"
+  title: "Feature toggle: release e deploy são a mesma coisa?"
+  raw_title: "Feature toggle  release e deploy são a mesma coisa?"
+  date: "2020-12-04"
+  published_at: "2021-02-12T13:26:00Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "wT1IibBFPhM"
+  description: |-
+    Como foi a experiência em utilizar a gem flipper para implementar feature toggle em nosso projeto Ruby on Rails e no dia a dia de desenvolvimento, quais impactos isso teve para nosso cliente, quais impactos teve no dia a dia do desenvolvedor, e como conseguimos com isso aumentar nossa frequência de deploy e separar totalmente o release do deploy, melhorando muito nossa forma de entregar funcionalidades novas.
+  speakers:
+    - João Paulo Lethier
+
+- id: "izabela-cardoso-ruby-summit-brasil-2020"
+  title: "Testando os testes - Como saber se tenho testes de qualidade utilizando testes de mutação"
+  raw_title: "Testando os testes - Como saber se tenho testes de qualidade utilizando testes de mutação"
+  date: "2020-12-04"
+  published_at: "2021-02-12T13:32:42Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "BIInHwZpP3E"
+  description: |-
+    Como e por que executar testes de mutação em uma aplicação. Os testes de mutação inserem alterações no código e verificam se os testes passam a falhar, se o código é modificado e todos os testes continuam passando, isso pode indicar uma má qualidade ou falta de testes. Para exemplificar como implementar os testes de mutação, será usada a ferramenta mutant.
+  speakers:
+    - Izabela Cardoso
+
+- id: "mesa-redonda-sobre-testes-ruby-summit-brasil-2020"
+  title: "Mesa Redonda sobre Testes"
+  kind: "panel"
+  date: "2020-12-04"
+  published_at: "2021-02-12T13:43:43Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "8a3p_nWlvWE"
+  description: "" # TODO
+  speakers:
+    - Izabela Cardoso
+    - Inajara Leppa
+    - Philippe Hardardt
+    - Estevão Moraes
+
+- id: "camila-campos-ruby-summit-brasil-2020"
+  title: "Desmacarronando código com dry-rb"
+  raw_title: "Desmacarronando código com dry rb"
+  date: "2020-12-04"
+  published_at: "2021-02-12T13:19:40Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "NFEqH9rS3IY"
+  description: |-
+    Usando o dry-transactions, um componente do dry-rb, melhoramos nosso código (sem remover a complexidade), passamos a ter mais domínio do contexto e, de quebra, acabamos mais motivados
+  speakers:
+    - Camila Campos
+
+- id: "paula-arantes-ruby-summit-brasil-2020"
+  title: "Como ensinar iniciantes em programação - e por que isso importa"
+  raw_title: "Como ensinar iniciantes em programação   e por que isso importa"
+  date: "2020-12-04"
+  published_at: "2021-02-12T14:05:12Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "beV-sApCmKQ"
+  description: |-
+    Nessa palestra eu vou falar da importância de saber ensinar, como isso impacta na sua carreira e na das outras pessoas. Também vou ensinar técnicas e dar dicas práticas do que fazer e não fazer quando estiver ensinando pessoas mais iniciantes, baseadas no meu aprendizado como instrutora da Labenu, uma escola de programação focada em empregabilidade que acolhe pessoas de diversas áreas.
+  speakers:
+    - Paula Arantes
+
+- id: "lucas-caponi-ruby-summit-brasil-2020"
+  title: "Indo um pouco além no desenvolvimento de APIs Rest"
+  raw_title: "Indo um pouco além no desenvolvimento de APIs Rest"
+  date: "2020-12-04"
+  published_at: "2021-02-12T13:42:28Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "hhGo8CWB7Eg"
+  description: |-
+    Utilizando query params e a especificação JSON-API (dentro disso entram questões como filtros, paginação, ordenação, relacionamentos, escolha de recursos e content negociation);
+    Melhorando a visualização dos dados com Serializers;
+    Query Params vs GraphQL;
+    Estratégias de Versionamento de APIs;
+    Limitando requisicões (Throttling e Quota);
+    Gestão de custos em APIs;
+    Cacheando APIs?;
+    APIs públicas vs APIs privadas;
+    O que são Web hooks e como podem me ajudar?;
+    Conhecendo o Swagger;
+    API Gateway
+  speakers:
+    - Lucas Caponi
+
+- id: "weverton-timoteo-ruby-summit-brasil-2020"
+  title: "Ruby 3 e Análise Estática: O que esperar e o que significa para o nosso código"
+  raw_title: "Ruby 3 e Análise Estática  O que esperar e o que significa para o nosso código"
+  date: "2020-12-04"
+  published_at: "2021-02-12T13:44:13Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "ljaw8FTiEoM"
+  description: |-
+    O Ruby tem se reinventado para atender as demandas da comunidade e continuar relevante nos últimos anos. O que a comunidade tanto espera é o Ruby 3? Afetando não só o código que escrevemos mas também a performance das nossas apps. Além de melhorias em consumo de CPU/memória e otimizações em concorrência, teremos também o suporte para tipagem estática. O que isso significa para o nosso código e como a qualidade será afetada? Quais as métricas mais importantes para medir a qualidade de código do projeto que você trabalha e como começar a medir em um projeto Ruby?
+  speakers:
+    - Weverton Timoteo
+
+- id: "caio-salgado-ruby-summit-brasil-2020"
+  title: "Olá Ractors! Ruby 3 rodando código em paralelo"
+  raw_title: "Ractors   Ruby 3 rodando código em paralelo"
+  date: "2020-12-05"
+  published_at: "2021-02-12T21:51:01Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "V3O_iGiYVfw"
+  description: |-
+    Apresentarei os modelos de programação concorrente que o Ruby possui, tanto o MRI, quanto JRuby e TruffleRuby. Vantagens, desvantagens e diferenças; tudo com exemplos de código, para depois mostrar os Ractors. Ractor é uma nova abstração para concorrência que o Ruby 3 vai trazer. Pretendo, a partir de exemplos, mostrar como funcionam e como possibilitam rodar código Ruby em paralelo de maneira simples, e trocando dados entre cada thread.
+  speakers:
+    - Caio Salgado
+
+- id: "fabricio-buzeto-ruby-summit-brasil-2020"
+  title: "Construindo o Stonehenge usando a Lei de Gall"
+  date: "2020-12-05"
+  published_at: "2021-02-12T21:46:15Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "eHPy1h3OfhU"
+  description: |-
+    A Lei de Gall diz que todo sistema complexo evolui de sistemas mais simples que funcionaram. Deixe-me apresentar uma abordagem de passos pequenos e seguros para começar pequeno e crescer em complexidade junto com o seu domínio, mostrando as pistas, técnicas e ferramentas que podem ajudar neste caminho, usando como base uma história real, que cresceu de 50 usuários para mais de 1 milhão em pouco tempo.
+  speakers:
+    - Fabricio Buzeto
+
+- id: "livia-almeida-ruby-summit-brasil-2020"
+  title: "Caches Fantásticas e Onde Habitam"
+  raw_title: "Caches Fantásticas e Onde Habitam"
+  date: "2020-12-05"
+  published_at: "2021-02-12T21:41:19Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "-4axuKVUNGE"
+  description: |-
+    Uma das formas de aumentar a performance de uma aplicação é utilizando caching e Rails provê muitas funcionalidades que facilitam o uso de cache no sistema. Nessa palestra serão apresentados conceitos de caching, as opções fornecidas pelo framework e também sobre os problemas que podem acontecer, com o exemplo de um caso real que aconteceu na Saraiva Educação.
+  speakers:
+    - Lívia Almeida
+
+- id: "diego-guimaraes-ruby-summit-brasil-2020"
+  title: "Fazendo Música com Sonic Pi"
+  raw_title: "Fazendo Música com Sonic Pi"
+  date: "2020-12-05"
+  published_at: "2021-02-12T21:48:13Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "ot06PEm5Mhs"
+  description: |-
+    Essa palestra será totalmente mão na massa e vou mostrar como começar a fazer música com Sonic Pi. Vai ter muito som! Vou mostrar como tocar as primeiras notas e acordes, como usar escalas (você não precisa saber como funciona pra usar!) e outros conceitos de música, como usar mexer com samples e como começar a brincar de compor ao vivo! Além de passar por tópicos mais avançados como integração com controladores MIDI e sintetizadores externos.
+  speakers:
+    - Diego Guimarães
+
+- id: "mesa-redonda-sobre-comunidade-diversidade-e-experiencias-ruby-summit-brasil-2020"
+  title: "Mesa Redonda sobre Comunidade, diversidade e experiências"
+  raw_title: "Mesa Redonda   Comunidade, Experiências e Diversidade"
+  kind: "panel"
+  date: "2020-12-05"
+  published_at: "2021-02-12T22:05:32Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "6d4cu3EeP9c"
+  description: |-
+    Um time incrível trocando ideia sobre comunidade, experiências de vida e de trampo e sobre diversidade!
+  speakers:
+    - Alda Rocha
+    - Carolina Karklis
+    - Philip Sampaio
+    - Carolina Brito
+
+- id: "marina-joranhezon-ruby-summit-brasil-2020"
+  title: "A superficialidade da diversidade e seus perigos na TI"
+  date: "2020-12-05"
+  published_at: "2021-02-12T21:43:21Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "1t2D4MJcC8A"
+  description: |-
+    Comentar sobre os números que permeiam esse tema de "diversidade". Mas o principal ponto seria criticar essa nossa abordagem de diversidade na TI, que utiliza um termo genérico pra tentar encaixar todas as minorias nele, acabando por apagar as peculiaridades de cada um desses grupos. Além disso, falar sobre como isso impacta a TI e acaba por criar produtos racistas, machistas, transfóbicos, capacitistas, etc.
+  speakers:
+    - Marina Joranhezon
+
+- id: "radames-roriz-ruby-summit-brasil-2020"
+  title: "Escalando o ambiente de desenvolvimento com CLI em Ruby"
+  date: "2020-12-05"
+  published_at: "2021-02-12T21:46:24Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "7Mhs8z2xGkQ"
+  description: |-
+    Uma ferramenta feita em Ruby e com abstrações do Docker permitiu que todos os times tivessem o mesmo ambiente de desenvolvimento, facilitando o onboarding. A ferramenta passou por evoluções como setup do ambiente, ambiente seletivo, comunicação entre serviços de dentro e de fora do Docker, autocomplete e auto update, evoluções que ajudam outros times a se preocupar menos com processo e mais com a evolução da plataforma.
+  speakers:
+    - Radamés Roriz
+
+- id: "cleiviane-costa-ruby-summit-brasil-2020"
+  title: "Rails Upgrade: como atualizamos uma aplicação gigante utilizando a estratégia de dual boot"
+  raw_title: "Rails Upgrade  como atualizamos uma aplicação gigante utilizando a estratégia de dual boot"
+  date: "2020-12-05"
+  published_at: "2021-02-12T21:56:12Z"
+  language: "Portuguese"
+  video_provider: "youtube"
+  video_id: "pg4CUzGhpf8"
+  description: |-
+    Sabemos a importância de manter nossos sistemas sempre nas últimas versões (novas funcionalidades, correções de falhas de segurança, melhoria de performance, etc), mas fazer o upgrade de uma aplicação Rails nem sempre é uma tarefa fácil.
+    Nesta palestra irei falar sobre minha experiência trabalhando no upgrade de uma aplicação gigantesca e quais o desafios encontrados pela equipe.
+  speakers:
+    - Cleiviane Costa
