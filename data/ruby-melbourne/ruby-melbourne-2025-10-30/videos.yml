@@ -19,9 +19,11 @@
 
 - id: "dan-milne-ruby-melbourne-2025-10-30"
   title: "Using PostgreSQL Tablespaces to Boost Performance"
+  raw_title: "Using PostgreSQL Tablespaces to Boost Performance - Dan Milne"
   date: "2025-10-30"
-  video_provider: "not_recorded"
-  video_id: "dan-milne-ruby-melbourne-2025-10-30"
+  published_at: "2025-11-04T09:19:03Z"
+  video_provider: "youtube"
+  video_id: "W2SWRyHWx6E"
   description: |-
     When my PostgreSQL outgrew local NVMe storage, I moved it to a remote volume—sacrificing speed (50% read, 33% write performance). The solution? Using PostgreSQL tablespaces to strategically place indexes on the local NVMe while keeping data on remote storage. This hybrid approach nearly doubled SELECT performance on large tables, proving that smart storage architecture can reclaim speed without massive hardware upgrades.
   speakers:
