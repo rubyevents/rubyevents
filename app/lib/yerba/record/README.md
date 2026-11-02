@@ -604,6 +604,7 @@ Because these are methods on the record, `where` filters by them like any other 
 
 ```ruby
 Static::Talk.where(created_at: Date.new(2026, 9, 1)..Date.new(2026, 9, 30))
+Static::Event.where(updated_at: Date.today.all_month)
 Static::Event.where(updated_at: 1.week.ago..)
 Static::Talk.where(first_commit: {pr_number: 2158})
 ```

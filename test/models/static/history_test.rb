@@ -63,6 +63,19 @@ class Yerba::Record::HistoryTest < ActiveSupport::TestCase
     assert_equal %w[talk-a talk-b], talks.where(updated_at: Date.new(2026, 9, 1)..).map(&:id)
   end
 
+  test "where with a Date range covers commits on its last day" do
+    File.write(@path, File.read(@path) + <<~YAML)
+
+      - id: "talk-c"
+        title: "Talk C"
+        video_provider: "youtube"
+    YAML
+    commit "Add Talk C", date: "2026-09-30T15:00:00Z"
+
+    assert_equal %w[talk-b talk-c], talks.where(created_at: Date.new(2026, 9, 1).all_month).map(&:id)
+    assert_equal ["talk-c"], talks.where(created_at: Date.new(2026, 9, 30)..Date.new(2026, 9, 30)).map(&:id)
+  end
+
   test "lines that aren't committed yet are skipped" do
     File.write(@path, File.read(@path) + <<~YAML)
 

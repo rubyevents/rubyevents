@@ -3,8 +3,6 @@ class NewsletterGenerator < Rails::Generators::NamedBase
 
   class_option :year, type: :string, default: Time.now.year.to_s, desc: "Year for the newsletter"
 
-  VIDEO_FILE_REGEX = %r{data/(?<event_series>[^/]+)/(?<event_name>[^/]+)/videos\.yml}
-
   def initialize_dates
     @month = name.capitalize
     @year = options[:year]
@@ -18,11 +16,7 @@ class NewsletterGenerator < Rails::Generators::NamedBase
   end
 
   def fetch_this_months_contributions
-    @pull_requests = JSON.parse(%x(
-      gh pr list --repo RubyEvents/RubyEvents --limit 150 \
-        --state merged --search "merged:#{@github_date_range}" \
-        --json author,number,url,labels
-    ))
+    @pull_requests = fetch_pull_requests
     @pr_count = @pull_requests.size
     contributors = @pull_requests.group_by { |pr| pr["author"] }
       .sort_by { |author, prs| prs.size }
@@ -34,18 +28,8 @@ class NewsletterGenerator < Rails::Generators::NamedBase
     @data_pr_count = @pull_requests.count { |pr| pr["labels"]&.any? { |label| label["name"] == "data" } }
   end
 
-  # Relies on the PRs from fetching contributions
-  def fetch_videos
-    video_prs = @pull_requests.filter { |pr| pr["labels"]&.any? { |label| label["name"] == "videos" } }.map { |pr| pr["number"] }
-    @video_prs_update_event = {}
-    video_prs.each do |pr_number|
-      video_files = `gh pr diff --name-only #{pr_number}`.split("\n").select { |file| file.ends_with?("videos.yml") }
-      updated_events = video_files.map do |file|
-        match = file.match(VIDEO_FILE_REGEX)
-        match ? "/events/#{match[:event_name]}/talks" : nil
-      end.compact.uniq
-      @video_prs_update_event[pr_number] = updated_events
-    end
+  def fetch_data_changes
+    @data_changes = data_changes
   end
 
   def create_newsletter_file
@@ -59,5 +43,19 @@ class NewsletterGenerator < Rails::Generators::NamedBase
     @filepath = File.join("content", "announcements", filename)
 
     template "template.md.tt", @filepath
+  end
+
+  private
+
+  def fetch_pull_requests
+    JSON.parse(%x(
+      gh pr list --repo RubyEvents/RubyEvents --limit 150 \
+        --state merged --search "merged:#{@github_date_range}" \
+        --json author,number,url,labels
+    ))
+  end
+
+  def data_changes
+    Announcement::DataChanges.new(month: @first_day_of_month)
   end
 end

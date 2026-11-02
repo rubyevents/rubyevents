@@ -47,12 +47,11 @@ _If you were planning on attending [<%= event.name.gsub(/ #{@year}/, "")%>](<%= 
 
 ## Uploaded videos
 
-<% @video_prs_update_event.each do |pr_number, updated_events| -%>
-📺 PR [<%= pr_number %>](https://github.com/rubyevents/rubyevents/pull/<%= pr_number %>) added videos to
-<%- updated_events.each do |event_path| -%>
-  <%= "[#{event_path}](#{event_path})" %>
-<%- end.to_sentence -%>
-<%- end -%>
+<%= @data_changes.videos_markdown %>
+
+## New data
+
+<%= @data_changes.new_data_markdown %>
 
 ## Contributions
 
