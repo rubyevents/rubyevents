@@ -56,9 +56,9 @@
     <% end %>
 
     <div class="min-w-0 flex-1 px-1">
-      <div class="truncate text-xs font-medium <%= text_class %>">
+      <%= ui_tooltip talk.title, class: "truncate text-xs font-medium #{text_class}", tabindex: 0 do %>
         <%= talk.title %>
-      </div>
+      <% end %>
 
       <div class="truncate text-xs text-gray-400">
         <%= talk.speakers.map(&:name).join(", ") %>
