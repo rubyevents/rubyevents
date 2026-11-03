@@ -37,7 +37,6 @@ TODO - excerpt
 
 <%- @next_month_events.reject(&:cancelled?).each do |event| -%>
 📆 [<%= event.name.gsub(/ #{@year}/, "")%>](<%= Router.event_path(event) %>)<%= "(#{event.formatted_dates} in #{event.location})"%><%if event.talks.count > 0%> 🎤 Check out the <%= event.talks.count %> scheduled [talks](<%= Router.event_talks_path(event) %>)!<% end %><% if event.tickets.url %> 🎟️[Tickets](<%= event.tickets.url %>) are available for $TICKETPRICE.<% end %>
-
 <%- end -%>
 <%- @next_month_events.filter(&:cancelled?).each do |event| -%>
 _If you were planning on attending [<%= event.name.gsub(/ #{@year}/, "")%>](<%= Router.event_path(event) %>), please be advised that it has been cancelled._
