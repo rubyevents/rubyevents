@@ -11,6 +11,7 @@ language: "English"
 twitter: "tropicalonrails"
 default_country_code: "BR"
 mastodon: "https://ruby.social/@tropicalonrails"
+luma: "https://luma.com/tropicalonrails"
 aliases:
   - Abril Pro Ruby
   - Tropical Ruby
@@ -19,3 +20,7 @@ youtube_channels:
   - id: "UCC3ljLfioI4qN2_zmG_kseQ"
     name: "tropicalonrails"
     handle: "@tropicalonrails"
+feeds:
+  - type: "ical"
+    url: "https://api.luma.com/ics/get?entity=calendar&id=cal-w29iZcCBsW2JmMl"
+    name: "Luma"
