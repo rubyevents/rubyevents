@@ -1,0 +1,21 @@
+---
+- id: "bob-breznak-bostonrb-2014-01-14"
+  title: "Devise"
+  date: "2014-01-14"
+  video_provider: "not_recorded"
+  video_id: "bob-breznak-bostonrb-2014-01-14"
+  description: |-
+    Devise is pretty widly used, but have you ever needed more out of it? With the recent release of 3.1.0, Token Authenticatable has been dropped; how can you replace it securely? This talk will quickly go over the basics of Devise, dive into its core use of Warden and we'll write a few new custom strategies. Developers walking into the talk without any previous exposure to Devise will get a quick intro, casual users will get a better understanding of how its innards work, and the seasoned will get to see how one group addressed api authentication token generation while avoiding the timing security issues that had previously existed.
+  speakers:
+    - Bob Breznak
+
+- id: "tim-raymond-bostonrb-2014-01-14"
+  title: "Threading and Concurrency in Ruby"
+  date: "2014-01-14"
+  video_provider: "not_recorded"
+  video_id: "tim-raymond-bostonrb-2014-01-14"
+  description: |-
+    Rubyists generally tend to shy away from multi-threaded code.
+    Cognitive overload, horror stories of threading bugs, and MRI's lack of native threading support are probably the reasons, but these are powerful constructs that every developer should understand. We'll tour the basic synchronization primitives that Ruby provides, and I'll show you where each is appropriate, covering potential pitfalls and hazards along the way. We'll see the strengths and limitations of the way MRI, Rubinius, and JRuby run our multithreaded code, and the implications that that has on our code's progress.
+  speakers:
+    - Tim Raymond

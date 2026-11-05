@@ -1,0 +1,22 @@
+---
+- id: "eileen-alayce-bostonrb-2016-01-12"
+  title: "How to Performance"
+  date: "2016-01-12"
+  video_provider: "not_recorded"
+  video_id: "eileen-alayce-bostonrb-2016-01-12"
+  description: |-
+    Understanding performance output can feel like reading tea leaves. It makes sense to a few people, but many of us are left in the dark; overwhelmed and frustrated by the data. On top of that there are a ton of performance tools to choose from; StackProf, RubyProf, AllocationTracer. Where do you even start? While working on speeding up integration tests in Rails source, I learned that the key to improving the performance of Ruby code is having a baseline, not relying on one profiler and understanding the advantages and limitations of your tools. By utilizing these methods, integration tests are now 3 times faster than they were in Rails 4.2.0, with more improvements being made every day. In this talk we will not only look at how to read performance output, but when and how to use the right profilers for the job. We'll discuss a variety of methods and techniques for benchmarking and profiling so you can get the most out of any performance tool.
+  speakers:
+    - Eileen Alayce
+
+- id: "kevin-menard-bostonrb-2016-01-12"
+  title: "Fast Metaprogramming with Truffle"
+  date: "2016-01-12"
+  video_provider: "not_recorded"
+  video_id: "kevin-menard-bostonrb-2016-01-12"
+  description: |-
+    Metaprogramming is a powerful technique that sets Ruby apart from other contemporary languages. It allows compact and elegant solutions to seemingly intractable problems. Serving as the foundation of some of the mostly widely used frameworks and DSLs in the Ruby ecosystem, it’s arguably the single most defining feature of Ruby. Unfortunately, that expressive power has traditionally come at the expense of performance.
+
+    We’ll show you how JRuby+Truffle has eliminated the cost of metaprogramming so Rubyists can write idiomatic Ruby without having to worry about hidden performance trade-offs.
+  speakers:
+    - Kevin Menard

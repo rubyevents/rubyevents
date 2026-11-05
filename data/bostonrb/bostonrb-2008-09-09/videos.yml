@@ -1,0 +1,21 @@
+---
+- id: "bruce-williams-bostonrb-2008-09-09"
+  title: "New in Ruby 1.9"
+  date: "2008-09-09"
+  video_provider: "not_recorded"
+  video_id: "bruce-williams-bostonrb-2008-09-09"
+  description: |-
+    Ruby 1.9 has already introduced a wide range of syntax and language feature changes to the Ruby language (some of which have been backported into 1.8.7). We'll focus on the new features in 1.9, exploring the new object literals, enumerators, text processing changes (encodings and oniguruma regular expressions), new scoping rules, and Fibers.
+  # TODO: the archived bostonrb.org page linked Sam Ruby's OSCON 2008 deck (intertwingly.net/slides/2008/oscon/ruby19/1) as the slides, left out because it isn't Bruce's
+  speakers:
+    - Bruce Williams
+
+- id: "francis-hwang-bostonrb-2008-09-09"
+  title: "The API Construction Kit"
+  date: "2008-09-09"
+  video_provider: "not_recorded"
+  video_id: "francis-hwang-bostonrb-2008-09-09"
+  description: |-
+    Ruby offers a lot of tools -- some easy, some advanced -- for programmers to construct elegant APIs for reuse, wheather that reuse is personal, confined within a single company, or for public consumption via an open source library or framework. I'll go over method_missing, const_missing, instance_eval, Module.included, and other tools in the Rubyist toolbelt that make this work possible. This will be a broad survey including real-world examples, with n eye towards elegance, practcality, shedding light on pitfulls, and workarounds.
+  speakers:
+    - Francis Hwang

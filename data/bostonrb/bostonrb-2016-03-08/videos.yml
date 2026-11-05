@@ -1,0 +1,20 @@
+---
+- id: "vincent-devendra-bostonrb-2016-03-08"
+  title: "Cloud Based Proxies for Rack apps"
+  date: "2016-03-08"
+  video_provider: "not_recorded"
+  video_id: "vincent-devendra-bostonrb-2016-03-08"
+  description: |-
+    This talk will detail some of the lessons the speaker learned from writing a gem that allows its users to easily implement a cloud-based proxy cache for their Rack app. Proxy caching is similar to a browser caching, except that the cache is shared by every client making requests to a server. So, as soon as one client requests a given path, any subsequent requests to that same path will return the cached version (as long as certain conditions are met). The gem implements a Rack middleware to catch requests and return cached responses before a server is ever hit. That means public pages that don't change often can load lightning fast and the burden on a server can be substantially lightened.
+  speakers:
+    - Vincent DeVendra
+
+- id: "mark-bates-bostonrb-2016-03-08"
+  title: "Butterfly in Reverse: From SOA to Monolith"
+  date: "2016-03-08"
+  video_provider: "not_recorded"
+  video_id: "mark-bates-bostonrb-2016-03-08"
+  description: |-
+    OA, SPA, JSON APIs, all the big buzz words. I spend my days building these for my clients. When I started working on my startup we were going to build it “the right way”. So why is it a single monolith with full page refreshes and almost no JavaScript? Excellent question!
+  speakers:
+    - Mark Bates

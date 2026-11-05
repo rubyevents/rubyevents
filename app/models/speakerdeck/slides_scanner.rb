@@ -5,6 +5,7 @@ module Speakerdeck
     IGNORED_HANDLES = [
       "adambouchard",
       "andpad",
+      "bostonrb",
       "coincheck_recruit",
       "guru_sp",
       "gurzu",
