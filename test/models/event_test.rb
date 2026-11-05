@@ -431,7 +431,7 @@ class EventTest < ActiveSupport::TestCase
         UID:RUBYEVENTS-#{event.id}
         DTSTART;VALUE=DATE:20231026
         DESCRIPTION:RailsWorld is a yearly conference held in Netherlands and featu
-         res 1 talk from various speakers.
+         res 1 talk by Yaroslav Shmarov.
         LAST-MODIFIED:20260101T000000
         LOCATION:Amsterdam\\, Netherlands
         STATUS:CONFIRMED
