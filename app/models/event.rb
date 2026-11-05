@@ -403,14 +403,15 @@ class Event < ApplicationRecord
 
   def talks_text
     count = public_talks_count
+    return "" unless count.positive?
 
-    speakers_text = if talks.size > 2
+    speakers_text = if count > 2
       " from various speakers"
     elsif (speaker_names = speakers.order(:name).pluck(:name)).any?
       " by #{speaker_names.to_sentence}"
     end
 
-    " and #{(meetup_inactive? || (meetup? && past?)) ? "featured" : "features"} #{talks.size} #{"talk".pluralize(talks.size)}#{speakers_text}"
+    " and #{(meetup_inactive? || (meetup? && past?)) ? "featured" : "features"} #{count} #{"talk".pluralize(count)}#{speakers_text}"
   end
 
   def to_meta_tags
