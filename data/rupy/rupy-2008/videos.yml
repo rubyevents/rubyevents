@@ -1,0 +1,152 @@
+---
+- id: "jaroslaw-rzeszotko-rupy-2008"
+  title: "Metaprogramming in Ruby"
+  date: "2008-04-12"
+  video_provider: "not_recorded"
+  video_id: "jaroslaw-rzeszotko-rupy-2008"
+  description: |-
+    Metaprogramming is the act of writing programs that generate or manipulate other programs. This introduction to meta-programming using Ruby starts with an overview of Ruby's object system, as it is the basis for many metaprogramming techniques described further in the talk. Than, the fundamental patterns for generating code with Ruby are described, together with examples of how popular projects use them to abstract certain problem domains. In the end, more advanced topics are discussed in the context of metaprogramming, like creating Domain Specific Languages or parsing small external languages.
+  speakers:
+    - Jarosław Rzeszótko
+
+- id: "ryan-dahl-rupy-2008"
+  title: "Ebb web server"
+  date: "2008-04-12"
+  video_provider: "not_recorded"
+  video_id: "ryan-dahl-rupy-2008"
+  description: |-
+    Ebb, like Mongrel, is a bare bones server to prop up a larger framework. Ebb is uses the new libev event library to handle incoming requests before passing them off to a Ragel state machine for parsing. Ebb is written entirely in C and is designed to be very fast and light. A Ruby binding makes Ebb into a Rack handler so that it can easily host Rails, Merb, and other Ruby language frameworks. In the future a Python WSGI binding will also be added (hopefully by the time of RuPy!).
+  speakers:
+    - Ryan Dahl
+
+- id: "zed-a-shaw-rupy-2008"
+  title: "Correlations and Conclusions"
+  kind: "keynote"
+  date: "2008-04-12"
+  video_provider: "not_recorded"
+  video_id: "zed-a-shaw-rupy-2008"
+  description: |-
+    Learning to properly measure and improve your applications is a universal skill that every programmer needs no matter what language they use. This presentation will give you a good crash course in how to systematically yet simply analyze the performance of any web application, and from there learn on your own how to analyze other topics of interest. No Ruby or Python will be used in the making of this presentation.
+  speakers:
+    - Zed A. Shaw
+
+- id: "andrzej-krzywda-rupy-2008"
+  title: "TDD in Rails"
+  date: "2008-04-12"
+  video_provider: "not_recorded"
+  video_id: "andrzej-krzywda-rupy-2008"
+  description: |-
+    This talk will provide a brief overview of Test Driven Development and Behaviour Driven Development followed by a demonstration of creating a Rails application from scratch all the time being test/spec driven.
+
+    Test-Driven Development (TDD) is a software development technique that many people are aware of. However, only a small number of people actually use it. I believe it's due to the lack of existing examples showing how simple it is and how great it is to be "driven". TDD affects the way you design your software. It also helps you with gathering requirements without the need of having a big, heavy specification. The talk will demonstrate how to prepare a user story, split it into tasks and TDD all of them.
+
+    I've been using TDD for 6 years.
+
+    Subjects covered will include:
+
+    - What is TDD/BDD,
+    - How to organise tests for a typical Rails application,
+    - TDD/BDD as a design technique,
+    - A live coding session,
+    - The process of fixing a bug being test-driven,
+    - The process of preparing and implementing a new user story,
+    - RSpec on Rails (Stories Runner),
+    - Autotest,
+    - How to start doing TDD/BDD in an application that was not tested at all.
+  speakers:
+    - Andrzej Krzywda
+
+- id: "jay-fields-rupy-2008"
+  title: "Business Natural Languages"
+  date: "2008-04-12"
+  video_provider: "not_recorded"
+  video_id: "jay-fields-rupy-2008"
+  description: |-
+    Since the introduction of computers to the general workforce businesses have searched for a solution that will enable subject matter experts to specify the business logic of an application. This solution is highly sought after since it will allow the application to be changed without the assistance of a programmer. Programmers are still required to create the application; however, the application is written in a way that empowers the subject matter experts to maintain the business logic.
+
+    Enabling the subject matter expert greatly increases efficiency of maintaining an application as the needs of the business change. Using a Domain Specific Language (DSL) is the most recent solution to this problem. A Business Natural Language is a Domain Specific Language; however, not all Domain Specific Languages are Business Natural Languages. Business Natural Languages use natural language to represent business logic. Business Natural Languages are expressed as descriptive and maintainable phrases. For example, a marketing executive for an airline could specify point award descriptions as: award 1 point for each mile flown where the total flight length is greater than 500 miles and award 500 points for each flight where the total flight length is less than or equal to 500 miles. Any domain expert, with no explanation required, can read a well-written Business Natural Language as if it were simply a phrase specifying logic. The previous airline example appears to be a specification written by a business analyst. The specification could be used to describe business logic to be implemented in a general-purpose language. However, when using a Business Natural Language the above example is a specification, but also much more. The above example is executable code, which will be used to determine point allocation after each flight flown. The above example is also documentation of the business rules contained in the point allocation application. And, the above example can be used to formulate a test case to verify the system works as expected. Business Natural Languages allow you to specify, in one location, exactly how your application should work.
+  speakers:
+    - Jay Fields
+
+- id: "pedro-sousa-rupy-2008"
+  title: "acts_as_problem_solved"
+  date: "2008-04-12"
+  video_provider: "not_recorded"
+  video_id: "pedro-sousa-rupy-2008"
+  description: |-
+    We've started working with Ruby On Rails almost a year ago, this talk aims to share experiences with novice Rails developers by presenting a handfull of projects done in Portugal and a showing for each of them, a specific problem and solution (maps, file upload, ratings and others).
+
+    The goal is to promote the discussion around the potential and possibilities of Ruby on Rails and share the experiences of working on different projects.
+  speakers:
+    - Pedro Sousa
+
+- id: "wiktor-schmidt-rupy-2008"
+  title: "Caching in Rails"
+  date: "2008-04-12"
+  video_provider: "not_recorded"
+  video_id: "wiktor-schmidt-rupy-2008"
+  description: |-
+    The only way to overcome Rails scaling issues is to use cache. In this session the speaker will walk you through all the caching mechanisms available in Rails highlighting advantages and disadvantages of each of them. Techniques covered include: page, action and fragment caching, caching plugins, memcached and more.
+  speakers:
+    - Wiktor Schmidt
+
+- id: "krzysztof-szafranek-rupy-2008"
+  title: "Rails, Amazon Web Services and you"
+  date: "2008-04-13"
+  video_provider: "not_recorded"
+  video_id: "krzysztof-szafranek-rupy-2008"
+  description: |-
+    The problem of scalability can be an indicator of popularity and success for a web application. Still, this is a problem and needs to be addressed. Amazon offers two solutions to handle high load: Simple Storage Service (S3) and Elastic Compute Cloud (EC2). The presentation will show in practice how to use these services in Ruby on Rails applications. It will also demonstrate how existing Ruby utilities provide an easy way to handle high load.
+  speakers:
+    - Krzysztof Szafranek
+
+- id: "daniel-liszka-rupy-2008"
+  title: "Ruby on Rails deployment with RubyStack"
+  date: "2008-04-13"
+  video_provider: "not_recorded"
+  video_id: "daniel-liszka-rupy-2008"
+  description: |-
+    BitNami RubyStack is an installer that greatly simplifies the installation of Ruby on Rails and its runtime dependencies. It includes ready-to-run versions of Ruby, Rails, MySQL, Subversion, RMagick and other useful components. RubyStack on Linux, Windows or Mac OS X. It is self-conained relocatable so you can have multiple instances installed on one system at the same time. RubyStack is free and uses an Apache 2.0 license.
+
+    It it will be shown how to easily deploy Ruby on Rails applications using RubyStack (read more on rubyforge.org or bitnami.org), how it can be used to ensure consistency among multiple developers and systems, as well as talk about future releases and upcoming changes such as JRuby support.
+  speakers:
+    - Daniel Liszka
+
+- id: "rida-al-barazi-rupy-2008"
+  title: "Is Rails as agile as advertised?"
+  date: "2008-04-13"
+  video_provider: "not_recorded"
+  video_id: "rida-al-barazi-rupy-2008"
+  description: |-
+    Rails as Agile as advertised? This is what the speaker will demonstrate in this session. In the 3 hours session, the speaker will start an IMDB-like Rails project from scratch and build it from the bottom up until it's in a launchable state, at least for a public beta.
+
+    The speaker will present all Rails best practices like fat-models/skinny-controllers, high test coverage and RESTfull implementation.
+
+    The session will also include some tips and tricks for some tools that help speeding Rails development up.
+
+    The project will have some user-interactivity corners like comments, reviews, ratings and even a public user profile. Some mash-ups from other online resources may be presented too.
+
+    Everything will be built from scratch with the help of some commonly used plugins like restfull_authentications and acts_as_taggable_steroids. A ready design will be implemented using haml too. The main goal of this session is demonstrate the agility in Rails and how it really helps in executing ideas and projects.
+  # TODO: spread over three slots on the programme (part 1 and twice part 2)
+  speakers:
+    - Rida Al Barazi
+
+- id: "marek-janukowicz-rupy-2008"
+  title: "Custom SQL queries in Rails"
+  date: "2008-04-13"
+  video_provider: "not_recorded"
+  video_id: "marek-janukowicz-rupy-2008"
+  description: |-
+    Creating simple SQL querries in Ruby on Rails is quite trivial. However sometimes there is a need to retrieve the information more complicated then that stored directly in the rows of one or a few tables, or we have a problem with excessive databse load caused by our application. How to deal with that? The talk attempts to answer this question by explaining the way of creating complicated SQL querries in accordance with Rails philosophy, showing practical appliances and presenting optimization methods.
+  speakers:
+    - Marek Janukowicz
+
+- id: "witold-rugowski-rupy-2008"
+  title: "Rails + Facebook"
+  date: "2008-04-13"
+  video_provider: "not_recorded"
+  video_id: "witold-rugowski-rupy-2008"
+  description: |-
+    Facebook Platform - from developer's perspective. How to build FB application with Ruby on Rails - FB API - key things to know, support for FB API in Rails.
+  speakers:
+    - Witold Rugowski

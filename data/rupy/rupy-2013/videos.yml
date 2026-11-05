@@ -1,0 +1,174 @@
+---
+- id: "tero-parviainen-rupy-2013"
+  title: "Immutability in Clojure, Ruby, JavaScript, and Python"
+  date: "2013-10-11"
+  published_at: "2013-11-18T23:06:49Z"
+  video_provider: "youtube"
+  video_id: "aSvZEyQT52k"
+  description: |-
+    Following the rise of Clojure, many of us have become aware of the idea of immutable data structures and their benefits. In Clojure, all built-in data structures are immutable, and the same also applies to everything we build out of them. This has profound effects on how programs are constructed and transforms the way we can reason about them, test them, compose them, and drop them into concurrent environments.
+
+    But what is the immutability story in Ruby, JavaScript, and Python? Is immutability just a Clojure or a functional thing, or does it apply to the type of OO programs we build with these other languages? If we do want to utilize immutable data in Ruby, JavaScript, or Python, how should we go about it? What built-in data structures can we use and what should we stay away from? What libraries are there to help us? How should we construct our programs - in the small and in the large?
+
+    This talk surveys the current state of immutable data in Ruby, JavaScript, and Python, comparing and contrasting it to Clojure.
+  speakers:
+    - Tero Parviainen
+
+- id: "emanuele-delbono-rupy-2013"
+  title: "Ruby loves DDD"
+  date: "2013-10-11"
+  published_at: "2013-11-19T15:42:40Z"
+  video_provider: "youtube"
+  video_id: "Vn34CdkLa3g"
+  description: |-
+    When developers talk about Domain Driven Design they usually talk about Java or C# implementation and it seems that languages like Ruby or Python are not suited for these kind of architectures. During the talk I would like to show that every patterns described in the blue book can be written even in Ruby and sometimes the Ruby implementation is better than the Java one. Ruby is not a second a class language and its dynamic power could help a lot in writing complex business logic.
+  speakers:
+    - Emanuele Delbono
+
+- id: "julian-fischer-rupy-2013"
+  title: "Building a European PaaS with Cloud Foundry"
+  date: "2013-10-11"
+  published_at: "2013-11-20T21:15:33Z"
+  video_provider: "youtube"
+  video_id: "VD2t06v6aGo"
+  description: |-
+    Latest NSA and PRISM news show how valuable a pure European infrastructure can be. It stands for independence and freedom of information. This is also applicable for hosting because a hosting provider has ultimate access to incoming and outgoing data.
+
+    In this talk you will learn how to bootstrap a European NSA- and PRISM-free PaaS with Open source Cloud Foundry using the example of anynines.
+
+    Get insights about the building blocks of such a Heroku like infrastructure, how apps are distributed, how services are provisioned and learn more about how Heroku buildpacks can be used to run apps of any language and framework.
+
+    Bosh helps you to discover how a PaaS can remain independent of IaaS layers and easily run on VMWare or OpenStack.
+
+    Explore how a PaaS is managed, scaled and upgraded.
+
+    Furthermore see how easy it is to add new services to a Cloud Foundry PaaS.
+
+    At the end of this talk you will know how to build your own PaaS.
+  speakers:
+    - Julian Fischer
+
+- id: "ashe-dryden-rupy-2013"
+  title: "Programming Diversity"
+  date: "2013-10-11"
+  video_provider: "not_recorded"
+  video_id: "ashe-dryden-rupy-2013"
+  description: |-
+    It's been scientifically proven that more diverse communities and workplaces create better products and the solutions to difficult problems are more complete and diverse themselves. Companies are struggling to find adequate talent. So why do we see so few women, people of color, and LGBTQ people at our events and on the about pages of our websites? Even more curiously, why do 60% of women leave the tech industry within 10 years? Why are fewer women choosing to pursue computer science and related degrees than ever before? Why have stories of active discouragement, dismissal, harassment, or worse become regular news?
+
+    In this talk we’ll examine the causes behind the lack of diversity in our communities, events, and workplaces. We’ll discuss what we can do as community members, event organizers, and co-workers to not only combat this problem, but to encourage positive change by contributing to an atmosphere of inclusivity.
+  speakers:
+    - Ashe Dryden
+
+- id: "mattt-thompson-rupy-2013"
+  title: "Bound by Convention"
+  date: "2013-10-12"
+  published_at: "2013-12-09T21:57:25Z"
+  video_provider: "youtube"
+  video_id: "G3iLMReTfso"
+  description: ""
+  speakers:
+    - Mattt Thompson
+
+- id: "makoto-inoue-rupy-2013"
+  title: "Data Visualisation as an Interface"
+  date: "2013-10-12"
+  published_at: "2013-12-09T22:01:55Z"
+  video_provider: "youtube"
+  video_id: "g48_0c3UQnE"
+  description: |-
+    Infographics or data visualisations tend to be the output of journalistic or scientific research. You may be wowed by their aesthetics or insightfulness, but that is usually the end of the story. However, if you turn the process on its end and treat visualisations as an input rather than as an output, you might see things from an entirely different perspective. In this talk, I will talk about the journey I took while exploring this possibility, sharing some tips to make your data visualisation more engaging and perhaps even convincing you to give the d3 JavaScript library a try.
+  speakers:
+    - Makoto Inoue
+
+- id: "boris-staal-rupy-2013"
+  title: "Data-Centric security in Ruby (on Rails)"
+  date: "2013-10-13"
+  published_at: "2014-02-01T23:01:32Z"
+  video_provider: "youtube"
+  video_id: "CpiOyEezpjk"
+  description: |-
+    Having troubles supporting huge ACLs? Got your security rules spreaded across the whole app? Unsure if you permissions are getting applied properly? Say hi to Protector – the HQ of your defence line.
+
+    Let's see how to use all modern things like strong_parameters and CanCan keeping things centralized, clean and testable. And even more – how to use the security layer as an essential meta to DRY your business logic.
+  speakers:
+    - Boris Staal
+
+- id: "alex-gaynor-rupy-2013"
+  title: "Building Ruby in Python"
+  date: "2013-10-13"
+  published_at: "2014-03-26T23:07:43Z"
+  video_provider: "youtube"
+  video_id: "zb40lkffUXU"
+  description: |-
+    Most Ruby implementations are written in languages like C, or target existing VMs like the JVM. Topaz is a Ruby interpreter written in RPython, using the same framework that powers PyPy. This talk explores how this process works, what the code looks like, and what the benefits are. It will also include a report of the current status of Topaz.
+  speakers:
+    - Alex Gaynor
+
+- id: "pat-shaughnessy-rupy-2013"
+  title: "Visualizing Garbage Collection in Ruby and Python"
+  date: "2013-10-13"
+  published_at: "2014-03-26T23:22:25Z"
+  video_provider: "youtube"
+  video_id: "qzEekAnAS_g"
+  description: |-
+    In this talk we'll dive into Ruby and Python internals and take a close look at an ugly topic: garbage collection. How do these languages allocate memory for new objects? How do they identify unused objects? How do they reclaim memory from garbage objects, allowing it to be used again?
+
+    You can learn a lot about someone from their garbage. Using a series of diagrams, we'll visually compare and contrast the complex algorithms these languages use. What computer science research is behind each garbage collector? We'll learn a lot about Python and Ruby from their garbage collectors. We'll also look at the GC changes planned for the upcoming Ruby 2.1 release.
+  speakers:
+    - Pat Shaughnessy
+
+- id: "mateus-armando-rupy-2013"
+  title: "Introduction to RubyMotion"
+  date: "2013-10-13"
+  published_at: "2014-03-26T23:43:13Z"
+  video_provider: "youtube"
+  video_id: "PhT9RxFn3qk"
+  description: ""
+  speakers:
+    - Mateus Armando
+
+- id: "floor-drees-rupy-2013"
+  title: "The best programmers are teachers"
+  date: "2013-10-13"
+  published_at: "2014-03-26T23:17:27Z"
+  video_provider: "youtube"
+  video_id: "yQK6NOhDq1w"
+  description: |-
+    After working as a community manager for over 5 years I missed 'making stuff' and I started learning Rails and Ruby in August last year. Now that I'm confident with CSS, Less and Rails, I want to share my learnings when it comes to learning and teaching programming. As a newbie to programming I'm spending my weekends learning about technologies like CoffeeScript or Python, or about version control, libraries, gems and generally useful resources out there. I genuinely believe that teaching skyrockets one's own learning curve and I would encourage everyone to start coaching beginners to programming, even if you consider yourself to be a beginner still.
+  speakers:
+    - Floor Drees
+
+- id: "steve-klabnik-rupy-2013"
+  title: "Nobody Knows Rust"
+  date: "2013-10-13"
+  published_at: "2014-03-26T23:11:34Z"
+  video_provider: "youtube"
+  video_id: "qkxn5bfKfso"
+  description: ""
+  # TODO: the agenda says TBA, title taken from the recording
+  speakers:
+    - Steve Klabnik
+
+- id: "railsgirls-presentation-rupy-2013"
+  title: "RailsGirls Presentation"
+  date: "2013-10-11"
+  video_provider: "not_recorded"
+  video_id: "railsgirls-presentation-rupy-2013"
+  description: ""
+  # TODO: the agenda names no speaker
+  speakers:
+    - TODO
+
+- id: "marko-anastasov-rupy-2013"
+  title: "Stack a platform with Linux containers"
+  date: "2013-10-13"
+  published_at: "2014-01-03T12:45:45Z"
+  video_provider: "youtube"
+  video_id: "8lUN3rKWlKc"
+  description: |-
+    Creating a cloud service is becoming easy with open source tools. However running a platform that provides mission-critical and hardware-intensive services is a challenging task. Platforms are driven by a large number of distributed computers, so it is critical to automate all operations that are possible.
+
+    I will introduce you to a lightweight virtualization technology LXC that lets you securely start a new virtual machine in a matter of seconds and with minimal footprint. I will give practical examples on how to automatically provision new physical and virtual machines using Ruby and Chef. Finally, we shall see what Docker brings to the table. These technologies can be used to build and deploy software and platforms in the cloud.
+  speakers:
+    - Marko Anastasov

@@ -1,0 +1,286 @@
+---
+- id: "dr-nic-williams-rupy-2012"
+  title: "The Future of Deployment"
+  date: "2012-11-17"
+  published_at: "2013-05-31T08:10:53Z"
+  video_provider: "youtube"
+  video_id: "p5v_RCotVH0"
+  description: ""
+  speakers:
+    - Dr. Nic Williams
+
+- id: "steve-klabnik-rupy-2012"
+  title: "Why should I care about Rails 4?"
+  date: "2012-11-18"
+  published_at: "2013-02-09T16:11:16Z"
+  video_provider: "youtube"
+  video_id: "yV_EYXr7aWs"
+  description: |-
+    It's been a long time coming, and there's a lot going on with edge Rails. In this talk, Steve will show off some new features of Rails 4, as well as discuss where Rails is going in the future.
+  speakers:
+    - Steve Klabnik
+
+- id: "zed-a-shaw-rupy-2012"
+  title: "Keynote"
+  kind: "keynote"
+  date: "2012-11-17"
+  published_at: "2013-05-29T16:47:15Z"
+  video_provider: "youtube"
+  video_id: "SUf8wI1jkwc"
+  description: ""
+  # TODO: title not given beyond "Keynote"
+  speakers:
+    - Zed A. Shaw
+
+- id: "charles-oliver-nutter-thomas-e-enebo-rupy-2012"
+  title: "JRuby: Industrial-Strength Ruby"
+  date: "2012-11-18"
+  published_at: "2013-05-29T16:20:55Z"
+  video_provider: "youtube"
+  video_id: "yJnpYdXYuOE"
+  description: |-
+    There's a lot to love about JRuby. It performs better than just about any other implementation. It has solid, reliable, parallel threading. Its extensions are managed code and won't segfault or interfere with threads or GC. And it gives Ruby access to anything that can run on a JVM, including code written in other languages.
+  speakers:
+    - Charles Oliver Nutter
+    - Thomas E Enebo
+
+- id: "benjamin-browning-rupy-2012"
+  title: "Simplify Your Infrastructure with TorqueBox"
+  date: "2012-11-17"
+  published_at: "2013-05-29T16:49:51Z"
+  video_provider: "youtube"
+  video_id: "5zMW2SFJmOE"
+  description: |-
+    TorqueBox is an open source project that combines JRuby with the JBoss Application Server to form a fast, scalable server for Rack/Rails applications. It exposes features traditionally found in Java application servers to Ruby, such as asynchronous processing, job scheduling, daemons, caching, clustering, and websockets.
+
+    After a quick overview, we'll show how the above features simplify the accidental complexity present in many Ruby applications.
+  speakers:
+    - Benjamin Browning
+
+- id: "piotr-szotkowski-rupy-2012"
+  title: "Fly, You Tools!"
+  date: "2012-11-17"
+  published_at: "2013-05-29T16:32:48Z"
+  video_provider: "youtube"
+  video_id: "pyyU9s8qonw"
+  description: |-
+    As developers we heavily depend on our tools of the trade, as oftentimes mastering them means getting out of deep trouble so much faster.
+
+    This talk covers some lesser known features of our everyday infrastructure (like Git or PostgreSQL); tricks which make using these tools such a pleasure, regardless whether it’s for shaving yet another yak or saving one’s own skin.
+  speakers:
+    - Piotr Szotkowski
+
+- id: "andrzej-krzywda-rupy-2012"
+  title: "Single Page Applications with CoffeeScript"
+  date: "2012-11-18"
+  published_at: "2013-02-09T16:57:05Z"
+  video_provider: "youtube"
+  video_id: "ENVPZ-UoQsg"
+  description: |-
+    We, the backend programmers, often have troubles working on JS frontends. We avoid it, even when that would be the best User Experience.
+
+    - What if you knew how to manage the JavaScript (or rather CoffeeScript)?
+    - What if you could use even nicer architectures than the ones you build on the backend?
+
+    Once you realize, that the frontend is a separate application and once you learn good patterns of the real MVC, you will be proud of your frontend code.
+  speakers:
+    - Andrzej Krzywda
+
+- id: "karel-minarik-rupy-2012"
+  title: "Ruby and Elasticsearch"
+  date: "2012-11-18"
+  published_at: "2013-05-31T08:38:51Z"
+  video_provider: "youtube"
+  video_id: "U8whfTS3G8U"
+  description: |-
+    Elasticsearch is a Lucene-based search engine with powerful capabilities, which has been gaining a lot of steam in the recent year or two.
+
+    In the talk, we'll see how to work with elasticsearch in Ruby with the Tire client, by walking through a real use case. I'll go over the problems of modelling your data as JSON documents, explaining the analysis process and using custom analyzers, giving tips on proper testing setup, writing Cucumber features for search behaviour, extending the Tire client, and more.
+  speakers:
+    - Karel Minařík
+
+- id: "frank-celler-rupy-2012"
+  title: "Running MRuby in a database - totally awesome, useful or just another pointless approach?"
+  date: "2012-11-17"
+  published_at: "2013-05-31T08:12:11Z"
+  video_provider: "youtube"
+  video_id: "i2CBIIfhkiQ"
+  description: |-
+    In April Matz released a new implementation of the Ruby language called MRuby. MRuby allows developers to embed Ruby in other programs. This talk will give you an overview what MRuby is, what can be done with MRuby and what not. And we will have a closer look at our approach of embedding Ruby in the open source NoSQL database ArangoDB. We will introduce some real life use cases, ready to hear if this approach is nonsense in your point of view or may help you building better applications in a shorter period of time.
+  speakers:
+    - Frank Celler
+
+- id: "mike-burns-rupy-2012"
+  title: "When not to use OO"
+  date: "2012-11-17"
+  published_at: "2013-05-31T11:17:21Z"
+  video_provider: "youtube"
+  video_id: "ThN1vznxisY"
+  description: |-
+    Object-oriented programming is a hot topic in the Rails world and beyond, but it is not always the appropriate solution.
+
+    In this talk I discuss various OO techniques, when to use them, and when a simpler pattern exists in the functional, declarative, or procedural world — including, yes, the Rails framework itself. You will leave knowing when to use an aspect instead of a decorator, a mixin instead of a presenter, or a monoid instead of a factory.
+
+    Topics will include:
+
+    - The benefits of code coupling
+    - Testing non-object oriented code
+    - Good uses of classical OO design patterns
+    - How to use a continuation
+  speakers:
+    - Mike Burns
+
+- id: "marcin-kulik-rupy-2012"
+  title: "Don't use Ruby!"
+  date: "2012-11-17"
+  published_at: "2013-02-09T17:14:29Z"
+  video_provider: "youtube"
+  video_id: "ty38QcLT1_o"
+  description: |-
+    As developers we tend to favor one single language or technology over the others. But there's a world outside!
+
+    In this talk I'll present how I came to this conclusion during the development of ascii.io. I'll tell you why I used Rails for the website, why I used Python (instead of Ruby) for client recorder script and why I used bash, typescript and tmux (!) for thumbnail generation.
+
+    It's an interesting case study for everyone interested in any or all of mentioned technologies. It is meant to inspire the audience to reach for solutions from outside of your daily comfort zone when it's reasonable to do it.
+  speakers:
+    - Marcin Kulik
+
+- id: "michal-papis-rupy-2012"
+  title: "RVM2: Python Version Manager"
+  date: "2012-11-18"
+  published_at: "2013-05-31T08:47:14Z"
+  video_provider: "youtube"
+  video_id: "gYNht8H24ZQ"
+  description: |-
+    Most of you have tried RVM at some point or at least heard of it. I want to share with you what I have learnt while supporting RVM users. We will cover The Grand Plan for RVM2, how it will be different and why RVM users will benefit from it.
+  speakers:
+    - Michal Papis
+
+- id: "lukas-rieder-rupy-2012"
+  title: "Burn all the cores!"
+  date: "2012-11-18"
+  published_at: "2013-05-31T08:43:06Z"
+  video_provider: "youtube"
+  video_id: "4cVWuMf3JcQ"
+  description: |-
+    The talk is about a stateful application server built on top of JRuby/JVM. We at Wooga have built and evaluated such an application server, and now I want to share the learnings and obstacles that came up during development.
+
+    Scaling up: We aim to fully utilize our available hardware. One box has 32 Cores and more than 32GB RAM available. How to saturate such beasts? Well, since JRuby supports real Threads we can share state (uh oh!) and saturate cores.
+
+    Scaling out: What are the options for scaling a stateful application server? How to shard state across many servers safely?
+
+    I aim for a talk that gives useful tips and shows code. Basically a ratio between 30% background information, 70% showcasing.
+
+    The talk will cover the following topics:
+
+    - Safely sharing state in a concurrent environment using JRuby
+    - Using Java concurrency utils in JRuby
+    - Practical tips for tuning JRuby/JVM for maximum throughput
+    - Practical tips for evaluating performance tunings
+    - Bonus: Timetraveling
+  speakers:
+    - Lukas Rieder
+
+- id: "james-coglan-rupy-2012"
+  title: "Breaking the Big Ball of Mud"
+  date: "2012-11-16"
+  video_provider: "not_recorded"
+  video_id: "james-coglan-rupy-2012"
+  description: |-
+    Growing pains: every young company has them. It's so easy to spend your first couple of years coding as fast as possible that you let technical debt build up. You know what that looks like: the website is slow, the build takes hours, it takes forever to ship anything, and maintenance is a nightmare. The temptation to rewrite from scratch is huge.
+
+    At Songkick, we've spent the past year getting ourselves out of this problem and we're now moving faster than ever before – without a big rewrite. By breaking our monolithic Rails app into small web services, we've built a system that's more flexible, performant, and easier to develop, test and deploy. Join me to find out how we did it, and how you can avoid making the same mistakes we did.
+  speakers:
+    - James Coglan
+
+- id: "andreas-ronge-rupy-2012"
+  title: "The Dynamic Nature of Graph Databases"
+  date: "2012-11-17"
+  published_at: "2013-05-29T16:43:34Z"
+  video_provider: "youtube"
+  video_id: "AtskC-MxeYU"
+  description: |-
+    Object oriented and dynamic languages have many similarities to graph databases. For example, in both JavaScript and the Neo4j graph database each object describes itself by its relationships and properties instead of relying on a class definition or a database schema. In this talk you will learn how to use the graph database to solve graph related problems like finding recommendations as well as how to use the graph database as an object oriented database.
+  speakers:
+    - Andreas Ronge
+
+- id: "cristina-santamarina-rupy-2012"
+  title: "Rails Girls - Giving tools for women to build their ideas"
+  date: "2012-11-18"
+  published_at: "2013-05-29T16:51:39Z"
+  video_provider: "youtube"
+  video_id: "TlvGuuPX9kg"
+  description: |-
+    Rails Girls is a global non profit volunteer community that was founded in Finland in November 2010 with the purpose of empowering women through web applications development and change the ratio. In less than two years, what stated as a one time event has spread to many different countries around the world.
+
+    Anyone can get in touch with the Finish team to get directions, form a group of passionate people and organize a Rails Girls workshop. Rails Girls promotes learning by experience, and try to give attendees a useful insight into the Rails framework. And after the workshops we need to keep on coding. This is where local groups come into action.
+  speakers:
+    - Cristina Santamarina
+
+- id: "jose-valim-rupy-2012"
+  title: "Elixir - A modern approach to programming for the Erlang VM"
+  date: "2012-11-17"
+  published_at: "2013-05-31T08:20:17Z"
+  video_provider: "youtube"
+  video_id: "q2Hxt0tOR0k"
+  description: |-
+    In this talk, José Valim will cover the main goals and features in Elixir while also presenting some of the rationale and changes behind the language design and its latest tools.
+  speakers:
+    - José Valim
+
+- id: "mitchell-hashimoto-rupy-2012"
+  title: "The Future of Development"
+  date: "2012-11-17"
+  published_at: "2013-02-09T16:26:06Z"
+  video_provider: "youtube"
+  video_id: "qKb0_13-E9w"
+  description: |-
+    Three years ago, the de facto way to do web development was by installing lots of backend software on your machine, and running that application directly from your machine. This method is still around, but wrought with problems and pitfalls.
+
+    Then came Vagrant. Vagrant introduced an elegant workflow around working with VirtualBox virtual machines. Today, working in VMs for development, infrastructure/operations work, and more has become more of the norm. There is still a long way to go, but Vagrant-style workflows are quickly overcoming the previous status quo.
+
+    It's time for development and our points of view on development to change again. With the rise of PaaS, multiple cloud vendors, more accessible virtualization, and more, we now have the opportunity to once again fundamentally change the way we work. This talk will discuss my ideas on this and introduce the work I'm doing to reach this goal with future versions of Vagrant. The goal of this talk is to stir up your imagination and redefine what you believe is possible, and how you can work.
+
+    And, prepare to hear some exciting news, announced to the world for the first time ever.
+  speakers:
+    - Mitchell Hashimoto
+
+- id: "cristina-santamarina-workshop-rupy-2012"
+  title: "Where are the girls? Coding in Rails"
+  kind: "workshop"
+  date: "2012-11-16"
+  video_provider: "not_recorded"
+  video_id: "cristina-santamarina-workshop-rupy-2012"
+  description: |-
+    Get yourself a Rails pack here, look for where the girls are and come with your laptop - not a knitting class, we will be programming our first Ruby on Rails app.
+
+    Who: Women, and men wearing a kilt. Please come with rails and a text editor installed. http://guides.railsgirls.com/install/
+  speakers:
+    - Cristina Santamarina
+
+- id: "michal-czyz-rupy-2012"
+  title: "Outside-in testing in Ruby"
+  kind: "workshop"
+  date: "2012-11-16"
+  video_provider: "not_recorded"
+  video_id: "michal-czyz-rupy-2012"
+  description: |-
+    My workshop is a Test Driven Development walk-through on how to write and test an example Ruby on Rails application. During the coding sessions the focus will be put on how tester/developer is going through the stack of different test types, from acceptance, to integration and unit tests. Finally, we’ll do some refactoring, improving our tests readability and maintainability.
+
+    Who: For ruby on rails developers - bring your own laptop
+  speakers:
+    - Michał Czyż
+
+- id: "frank-celler-lucas-dohmen-rupy-2012"
+  title: "ArangoDB & Ruby"
+  kind: "workshop"
+  date: "2012-11-16"
+  video_provider: "not_recorded"
+  video_id: "frank-celler-lucas-dohmen-rupy-2012"
+  description: |-
+    Learn how to set up the NoSQL database ArangoDB and the corresponding Ruby driver Ashikawa. Experiment with built-in query language in the ArangoDB shell. Using this knowledge we build a small Ruby application using ArangoDB as database and Ashikawa as driver.
+
+    Who: Ruby developers with interest in NoSQL - bring your own laptop (Linux or Mac)
+  speakers:
+    - Frank Celler
+    - Lucas Dohmen
