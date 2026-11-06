@@ -1,0 +1,36 @@
+---
+id: "singapore-ruby-group-2016-08-17"
+title: "Singapore Ruby Group August 2016"
+subtitle: "Ruby Code Reading Group #3: Rack"
+location: "Singapore"
+timezone: "Asia/Singapore"
+kind: "meetup"
+description: |-
+  The "How does it work?" meetup was inspired by Guo Xiang's suggestion to have a meetup talk about how Sprockets actually works.
+
+  In our previous meetings we learned about Sprockets and Concurrent Ruby.
+
+  This is our 3rd meetup and this time we'll dig into the code of Rack library. Rack ( http://rack.github.io ) is the most popular web server interface for Ruby libraries. It powers most of the Ruby web frameworks (Rails, Sinatra, Volt, Roda). Although used by many, Rack is understood by few people, and we'll change it a bit by learning how it works.
+
+  Preparation
+
+  Rack is quite a big library, therefore we'll focus on just 2 parts: server and handler. To prepare for the meetup:
+
+  1. Watch Aaron Patterson's presentation from RubyConf Taiwan 2015 ( https://www.youtube.com/watch?v=u5AaZRVhecI - start from 24:00)
+
+  2. Read Rack handler's code:
+
+  a) handler's selection ( https://github.com/rack/rack/blob/master/lib/rack/handler.rb )
+
+  b) example handler, let's use Webrick: ( https://github.com/rack/rack/blob/master/lib/rack/handler/webrick.rb )
+
+  3. Read Rack server's code ( https://github.com/rack/rack/blob/master/lib/rack/server.rb )
+
+  4. Play with the code - write a simple Rack application, run it, try to see what happens when you do it.
+
+  5. Prepare some small snippet of code that you can show to other people - it can be either very small app, or some call of Rack internals that you find interesting.
+start_date: "2016-08-17"
+end_date: "2016-08-17"
+start_time: "19:00"
+end_time: "22:00"
+meetup: "https://www.meetup.com/singapore-ruby-group/events/233082612/"
