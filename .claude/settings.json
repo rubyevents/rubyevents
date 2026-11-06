@@ -11,6 +11,19 @@
       "mcp__rubyevents__*",
       "Bash(npx agent-browser:*)",
       "WebFetch(domain:github.com)"
+    ],
+    "deny": [
+      "Bash(gh issue create:*)",
+      "Bash(gh issue comment:*)",
+      "Bash(gh pr comment:*)",
+      "Bash(gh pr review:*)",
+      "Bash(gh api* -X*)",
+      "Bash(gh api* --method*)",
+      "Bash(gh api* -f*)",
+      "Bash(gh api* -F*)",
+      "Bash(gh api* --raw-field*)",
+      "Bash(gh api* --field*)",
+      "Bash(gh api* --input*)"
     ]
   },
   "hooks": {
