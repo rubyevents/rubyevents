@@ -1,21 +1,26 @@
 Description:
-   Generate a sponsors.yml file for a given event.
-   If the file already exists, adds the sponsor in the correct tier.
-   If the sponsor already exists in the file, updates the existing sponsor record.
-   Tiers can only be added on the first pass.
+   Creates or extends the sponsors.yml file of an event, or of a series with --series-level.
 
-Example: Create a new sponsors.yml file for an event with the first sponsor added.
-    bin/rails generate sponsors --event rails-world-2026 --tiers "Platinum,Gold,Silver,Sponsors,Members" \
-      --name "App Signal" --website "https://www.appsignal.com" \
-      --logo_url "https://rubyonrails.org/assets/images/logo-appsignal.svg" \
-      --tier "Platinum"
+   Each sponsor is given as slug_or_name|tier|badge, in a series' file as slug_or_name|tier|badge|from|to.
+   Everything after slug_or_name is optional. slug_or_name is exactly the slug, an alias slug, the name, an
+   alias name or an alternate name of an organization in data/organizations.yml. If any of them isn't there,
+   nothing is written: add the organization with bin/rails g organization first.
+
+   A new file gets the tiers of --tiers, or else the tiers of the sponsors in the order they first appear,
+   highest first. Tiers can only be added on the first pass. A new sponsor's tier defaults to "Sponsors".
+   A sponsor already in the file is updated and keeps what isn't given, its tier included (in a series' file:
+   the entry starting in the same period).
+
+Example: Create the sponsors.yml file of an event with all its sponsors
+    bin/rails g sponsors --event rails-world-2026 --sponsors \
+      "appsignal|Platinum" "typesense|Gold|Wifi Sponsor" "Planet Argon|Gold" "shopify|Silver"
 
     This will create:
-        /data/rails-world/rails-world-2026/sponsors.yml
+        data/rails-world/rails-world-2026/sponsors.yml
+    with the tiers Platinum, Gold and Silver.
 
-Example: Add a new sponsor to an existing sponsors.yml file
-  bin/rails g sponsors --event rubyconf-austria-2026 --name "Teamtailor" --website "https://teamtailor.com/" \
-    --tier "Gold Online" --logo_url "https://rubyconf.at/assets/images/sponsors/teamtailor.png"
+Example: Add a sponsor to an existing sponsors.yml file, or change its tier or badge
+  bin/rails g sponsors --event tropical-on-rails-2026 --sponsors "appsignal|Platinum|Wifi Sponsor"
 
-Example: Update a sponsor's tier
-  bin/rails g sponsors --event tropical-on-rails-2026 --name "Sponsor Name" --tier "Platinum"
+Example: A meetup group's sponsors over the years
+  bin/rails g sponsors --event-series lrug --series-level --sponsors "gocardless|Sponsors||2015|2019" "cleo|Sponsors||2020"

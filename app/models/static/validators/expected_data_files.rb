@@ -4,7 +4,7 @@ module Static
   module Validators
     class ExpectedDataFiles
       EXPECTED = {
-        root: %w[featured_cities.yml speakers.yml topics.yml],
+        root: %w[featured_cities.yml organizations.yml speakers.yml topics.yml],
         series: %w[series.yml cfp.yml involvements.yml sponsors.yml],
         event: %w[cfp.yml event.yml involvements.yml schedule.yml sponsors.yml venue.yml videos.yml]
       }.freeze

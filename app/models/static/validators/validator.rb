@@ -38,7 +38,17 @@ class Static::Validators::Validator
     @involvement_validator_classes ||= [
       Static::Validators::Schema,
       Static::Validators::InvolvementRoleName,
-      Static::Validators::SpeakerExists
+      Static::Validators::OrganizationAliasReference,
+      Static::Validators::OrganizationExists,
+      Static::Validators::SpeakerExists,
+      Static::Validators::UniqueOrganizationReferences
+    ]
+  end
+
+  def self.organization_validator_classes
+    @organization_validator_classes ||= [
+      Static::Validators::Schema,
+      Static::Validators::UniqueOrganizationFields
     ]
   end
 
@@ -75,7 +85,9 @@ class Static::Validators::Validator
   def self.sponsor_validator_classes
     @sponsor_validator_classes ||= [
       Static::Validators::Schema,
-      Static::Validators::SponsorSlug
+      Static::Validators::OrganizationAliasReference,
+      Static::Validators::OrganizationExists,
+      Static::Validators::UniqueOrganizationReferences
     ]
   end
 
@@ -114,6 +126,7 @@ class Static::Validators::Validator
       cfp_validator_classes,
       event_validator_classes,
       involvement_validator_classes,
+      organization_validator_classes,
       schedule_validator_classes,
       series_validator_classes,
       speaker_validator_classes,
