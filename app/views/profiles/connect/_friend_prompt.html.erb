@@ -45,7 +45,8 @@
   <!-- CTA Button -->
   <div class="pt-4">
     <% if Current.user.present? %>
-      <% if false # enable this when we have a way to connect to other users %>
+      <%# enable this when we have a way to connect to other users %>
+      <% if false %>
         <%= ui_button url: "#", kind: :primary, size: :lg, class: "px-8 shadow-lg btn-disabled hidden" do %>
           <%= fa :plus, variant: :solid, class: "w-5 h-5 mr-2" %> Connect
         <% end %>
