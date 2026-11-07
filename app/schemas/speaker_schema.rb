@@ -5,7 +5,7 @@ class SpeakerSchema < ApplicationSchema
 
   string :name, description: "Full name of the speaker", required: true
   string :slug, description: "URL-friendly slug for the speaker", required: true
-  string :github, description: "GitHub username (not a URL)", required: true, pattern: "^([^/:\\s]+)?$"
+  string :github, description: "GitHub username (not a URL)", required: true, pattern: "^([A-Za-z0-9][A-Za-z0-9-]{0,38})?$"
 
   string :twitter, description: "Twitter/X handle (without @, not a URL)", required: false, pattern: "^([^/:\\s]+)?$"
   string :website, description: "Personal website URL", required: false
