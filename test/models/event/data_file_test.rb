@@ -31,7 +31,7 @@ class Event::DataFileTest < ActiveSupport::TestCase
   end
 
   test "files are missing when the event has no Static::Event" do
-    event = events(:future_conference)
+    event = events(:no_sponsors_event)
 
     assert_nil Static::Event.find_by_slug(event.slug)
 

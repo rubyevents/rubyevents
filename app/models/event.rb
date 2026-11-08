@@ -379,6 +379,10 @@ class Event < ApplicationRecord
 
   delegate :country, :state, :city_object, to: :to_location
 
+  def time_zone
+    static_metadata.time_zone || ActiveSupport::TimeZone["UTC"]
+  end
+
   def description
     return @description if @description.present?
 
@@ -412,6 +416,24 @@ class Event < ApplicationRecord
     end
 
     " and #{(meetup_inactive? || (meetup? && past?)) ? "featured" : "features"} #{count} #{"talk".pluralize(count)}#{speakers_text}"
+  end
+
+  def scheduled_sessions
+    @scheduled_sessions ||= schedule.exist? ? schedule.sessions : []
+  end
+
+  def scheduled_sessions_within_event
+    scheduled_sessions.select do |session|
+      session[:start_at].to_date <= end_date && session[:end_at].to_date >= start_date
+    end
+  end
+
+  def first_scheduled_session
+    scheduled_sessions_within_event.min_by { |session| session[:start_at] }
+  end
+
+  def last_scheduled_session
+    scheduled_sessions_within_event.max_by { |session| session[:end_at] }
   end
 
   def to_meta_tags
@@ -494,18 +516,48 @@ class Event < ApplicationRecord
     Icalendar::Event.new.tap do |event|
       event.uid = "RUBYEVENTS-#{id}"
       event.last_modified = updated_at
-      event.dtstart = Icalendar::Values::Date.new(start_date)
 
-      if end_date > start_date
-        event.dtend = Icalendar::Values::Date.new(end_date + 1.day) # dtend is exclusive, add 1 day to make it inclusive
-      end
+      tzid = time_zone.name
+      event.dtstart = Icalendar::Values::DateTime.new(ical_start_at.to_datetime, "tzid" => tzid)
+      event.dtend = Icalendar::Values::DateTime.new(ical_end_at.to_datetime, "tzid" => tzid)
 
       event.summary = name
-      event.description = description.strip
+      event.description = ical_description
       event.location = static_metadata.location
-      event.url = website
+      event.url = Router.event_url(self)
+      event.append_custom_property("X-EVENT-WEBSITE", website) if website.present?
       event.status = cancelled? ? "CANCELLED" : "CONFIRMED"
     end
+  end
+
+  def ical_description
+    parts = [description.strip, "\n"]
+    parts << "Event website: #{website}" if website.present?
+    parts.join("\n")
+  end
+
+  def ical_start_time
+    static_metadata.start_time.presence ||
+      first_scheduled_session&.dig(:start_at)&.strftime("%H:%M") ||
+      "08:00"
+  end
+
+  def ical_end_time
+    static_metadata.end_time.presence ||
+      last_scheduled_session&.dig(:end_at)&.strftime("%H:%M") ||
+      "20:00"
+  end
+
+  def ical_start_at
+    time_zone.parse("#{start_date} #{ical_start_time}")
+  end
+
+  def ical_end_at
+    time_zone.parse("#{end_date} #{ical_end_time}")
+  end
+
+  def vtimezone
+    TZInfo::Timezone.get(time_zone.name).ical_timezone(ical_start_at)
   end
 
   private
