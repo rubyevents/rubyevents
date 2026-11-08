@@ -69,7 +69,7 @@ module Static
         next [] if document.path.blank?
 
         params = path_params_for(document.path) || {}
-        event = Static::Event.find_by_file_path(Static::Event.path_for({series_id: params[:series_id], id: params[:event_id]}))
+        event = Static::Event.find_by_file_path(Static::Event.path_for({parent_path: params[:parent_path], series_id: params[:series_id], id: params[:event_id]}))
 
         Array(event&.[]("removed_talk_ids"))
       end
