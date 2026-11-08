@@ -23,6 +23,9 @@ Rails.application.configure do
     request&.host&.include?("rubyevents.org") ? "https://staging.rubyevents.org" : "https://staging.rubyvideo.dev"
   }
 
+  # staging.rubyevents.org is the canonical host for generated links and feeds.
+  Rails.application.routes.default_url_options.merge!(protocol: "https", host: "staging.rubyevents.org")
+
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
