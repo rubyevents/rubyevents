@@ -504,7 +504,7 @@ class Event < ApplicationRecord
       event.description = ical_description
       event.location = venue.exist? ? venue.pretty_venue_address : static_metadata.location
       event.url = Router.event_url(self)
-      event.append_custom_property("X-EVENT-WEBSITE", website) if website.present?
+      event.append_custom_property("X-RUBYEVENTS-EVENT-WEBSITE", website) if website.present?
       event.status = cancelled? ? "CANCELLED" : "CONFIRMED"
     end
   end
