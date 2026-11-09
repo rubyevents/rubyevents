@@ -522,6 +522,7 @@ class Event < ApplicationRecord
       event.dtend = Icalendar::Values::DateTime.new(ical_end_at.to_datetime, "tzid" => tzid)
 
       event.summary = name
+      event.color = static_metadata.featured_background if static_metadata.featured_background.present?
       event.description = ical_description
       event.location = ical_location
       if geocoded?

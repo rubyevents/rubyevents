@@ -431,6 +431,7 @@ class EventTest < ActiveSupport::TestCase
         UID:RUBYEVENTS-#{event.id}
         DTSTART;TZID=Europe/Amsterdam:20231026T080000
         DTEND;TZID=Europe/Amsterdam:20231026T200000
+        COLOR:#BF281C
         DESCRIPTION:RailsWorld is a yearly conference held in Netherlands and featu
          res 1 talk by Yaroslav Shmarov.\\n\\n\\nEvent website: https://rubyonrails.or
          g/world\\nVenue: Beurs van Berlage\\, Damrak 243\\, 1012 ZJ Amsterdam\\, Nethe
