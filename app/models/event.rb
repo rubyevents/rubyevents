@@ -377,7 +377,7 @@ class Event < ApplicationRecord
     @to_location ||= Location.from_record(self)
   end
 
-  delegate :country, :state, :city_object, to: :to_location
+  delegate :country, :state, :city_object, :online?, to: :to_location
 
   def time_zone
     static_metadata.time_zone || ActiveSupport::TimeZone["UTC"]
@@ -523,7 +523,12 @@ class Event < ApplicationRecord
 
       event.summary = name
       event.description = ical_description
-      event.location = static_metadata.location
+      event.location = ical_location
+      if geocoded?
+        event.geo = to_coordinates
+        event.append_custom_property("X-APPLE-STRUCTURED-LOCATION", ical_apple_structured_location(to_coordinates))
+      end
+
       event.url = Router.event_url(self)
       event.append_custom_property("X-EVENT-WEBSITE", website) if website.present?
       event.status = cancelled? ? "CANCELLED" : "CONFIRMED"
@@ -533,7 +538,25 @@ class Event < ApplicationRecord
   def ical_description
     parts = [description.strip, "\n"]
     parts << "Event website: #{website}" if website.present?
+
+    if venue.exist?
+      parts << "Venue: #{venue.pretty_venue_address}"
+    end
+
     parts.join("\n")
+  end
+
+  def ical_location
+    venue.exist? ? venue.pretty_venue_address : static_metadata.location
+  end
+
+  def ical_apple_structured_location(geo)
+    value = Icalendar::Values::Text.new("geo:#{geo[0]},#{geo[1]}")
+    value.ical_params["VALUE"] = "URI"
+    value.ical_params["X-APPLE-REFERENCEFRAME"] = "1"
+    value.ical_params["X-TITLE"] = venue.name if venue.name.present?
+    value.ical_params["X-ADDRESS"] = venue.display_address if venue.display_address.present?
+    value
   end
 
   def ical_start_time

@@ -433,9 +433,10 @@ class EventTest < ActiveSupport::TestCase
         DTEND;TZID=Europe/Amsterdam:20231026T200000
         DESCRIPTION:RailsWorld is a yearly conference held in Netherlands and featu
          res 1 talk by Yaroslav Shmarov.\\n\\n\\nEvent website: https://rubyonrails.or
-         g/world
+         g/world\\nVenue: Beurs van Berlage\\, Damrak 243\\, 1012 ZJ Amsterdam\\, Nethe
+         rlands
         LAST-MODIFIED:20260101T000000
-        LOCATION:Amsterdam\\, Netherlands
+        LOCATION:Beurs van Berlage\\, Damrak 243\\, 1012 ZJ Amsterdam\\, Netherlands
         STATUS:CONFIRMED
         SUMMARY:Rails World 2023
         URL;VALUE=URI:http://www.example.com/events/rails-world-2023
@@ -487,6 +488,17 @@ class EventTest < ActiveSupport::TestCase
 
     assert_equal "08:00", event.ical_start_time
     assert_equal "20:00", event.ical_end_time
+  end
+
+  test "to_ical uses online location for online events" do
+    event = events(:wnb_rb_march_2021)
+
+    ical = event.to_ical.to_ical
+
+    assert_includes ical, "LOCATION:online\r\n"
+    refute_includes ical, "GEO:"
+    refute_includes ical, "X-APPLE-STRUCTURED-LOCATION"
+    refute_includes ical, "Venue:"
   end
 
   test "to_ical sets an inclusive DTEND for multi-day events" do

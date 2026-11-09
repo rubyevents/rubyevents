@@ -117,6 +117,10 @@ class Event::Venue < Event::DataFile
     file["locations"] || []
   end
 
+  def pretty_venue_address
+    [name, display_address].compact_blank.join(", ")
+  end
+
   def map_markers
     markers = []
 
