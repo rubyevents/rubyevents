@@ -429,17 +429,77 @@ class EventTest < ActiveSupport::TestCase
         BEGIN:VEVENT
         DTSTAMP:20260101T000000Z
         UID:RUBYEVENTS-#{event.id}
-        DTSTART;VALUE=DATE:20231026
+        DTSTART;TZID=Europe/Amsterdam:20231026T080000
+        DTEND;TZID=Europe/Amsterdam:20231026T200000
+        COLOR:#BF281C
         DESCRIPTION:RailsWorld is a yearly conference held in Netherlands and featu
-         res 1 talk by Yaroslav Shmarov.
+         res 1 talk by Yaroslav Shmarov.\\n\\n\\nEvent website: https://rubyonrails.or
+         g/world\\nVenue: Beurs van Berlage\\, Damrak 243\\, 1012 ZJ Amsterdam\\, Nethe
+         rlands
         LAST-MODIFIED:20260101T000000
-        LOCATION:Amsterdam\\, Netherlands
+        LOCATION:Beurs van Berlage\\, Damrak 243\\, 1012 ZJ Amsterdam\\, Netherlands
         STATUS:CONFIRMED
         SUMMARY:Rails World 2023
-        URL;VALUE=URI:https://rubyonrails.org/world
+        URL;VALUE=URI:http://www.example.com/events/rails-world-2023
+        X-EVENT-WEBSITE:https://rubyonrails.org/world
         END:VEVENT
       ICAL
     end
+  end
+
+  test "to_ical points at the RubyEvents event page and keeps the original website in the description" do
+    event = events(:rails_world_2023)
+
+    ical = event.to_ical
+
+    assert_equal "http://www.example.com/events/rails-world-2023", ical.url.to_s
+    assert_includes ical.description.to_s, "Event website: https://rubyonrails.org/world"
+    assert_includes ical.to_ical, "X-EVENT-WEBSITE:https://rubyonrails.org/world"
+  end
+
+  test "to_ical uses the first and last scheduled sessions for the event times" do
+    event = events(:rails_world_2023)
+    zone = event.static_metadata.time_zone
+    sessions = [
+      {start_at: zone.parse("2023-10-26 09:15"), end_at: zone.parse("2023-10-26 10:00")},
+      {start_at: zone.parse("2023-10-26 17:00"), end_at: zone.parse("2023-10-26 18:45")}
+    ]
+    event.define_singleton_method(:scheduled_sessions) { sessions }
+
+    assert_equal "09:15", event.ical_start_time
+    assert_equal "18:45", event.ical_end_time
+    assert_includes event.to_ical.to_ical, "DTSTART;TZID=Europe/Amsterdam:20231026T091500"
+    assert_includes event.to_ical.to_ical, "DTEND;TZID=Europe/Amsterdam:20231026T184500"
+  end
+
+  test "to_ical prefers the event's explicit start and end times" do
+    event = events(:rails_world_2023)
+    metadata = event.static_metadata
+    metadata.define_singleton_method(:start_time) { "09:30" }
+    metadata.define_singleton_method(:end_time) { "17:45" }
+    event.define_singleton_method(:scheduled_sessions) { [] }
+
+    assert_equal "09:30", event.ical_start_time
+    assert_equal "17:45", event.ical_end_time
+  end
+
+  test "to_ical defaults to 8am and 8pm without times or schedule" do
+    event = events(:rails_world_2023)
+    event.define_singleton_method(:scheduled_sessions) { [] }
+
+    assert_equal "08:00", event.ical_start_time
+    assert_equal "20:00", event.ical_end_time
+  end
+
+  test "to_ical uses online location for online events" do
+    event = events(:wnb_rb_march_2021)
+
+    ical = event.to_ical.to_ical
+
+    assert_includes ical, "LOCATION:online\r\n"
+    refute_includes ical, "GEO:"
+    refute_includes ical, "X-APPLE-STRUCTURED-LOCATION"
+    refute_includes ical, "Venue:"
   end
 
   test "to_ical sets an inclusive DTEND for multi-day events" do
@@ -447,7 +507,7 @@ class EventTest < ActiveSupport::TestCase
 
     ical = event.to_ical.to_ical
 
-    assert_includes ical, "DTSTART;VALUE=DATE:20250708"
-    assert_includes ical, "DTEND;VALUE=DATE:20250711"
+    assert_includes ical, "DTSTART;TZID=America/New_York:20250708T080000"
+    assert_includes ical, "DTEND;TZID=America/New_York:20250710T200000"
   end
 end

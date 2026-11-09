@@ -3,7 +3,7 @@ require "test_helper"
 class Event::StaticMetadataTest < ActiveSupport::TestCase
   setup do
     @event_with_assets = events(:railsconf_2017)
-    @event_without_yaml = events(:future_conference)
+    @event_without_yaml = events(:no_sponsors_event)
   end
 
   test "featured_background returns value from YAML when present" do

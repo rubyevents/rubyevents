@@ -20,9 +20,13 @@ class EventsController < ApplicationController
       format.html
       format.ics do
         calendar = Icalendar::Calendar.new
-        calendar_events = selected_kind ? @events : @events.conference
+        calendar_events = (selected_kind ? @events : @events.conference).where(date_precision: :day).to_a
 
-        calendar_events.where(date_precision: :day).each do |event|
+        calendar_events.map(&:vtimezone).uniq(&:tzid).each do |timezone|
+          calendar.add_timezone(timezone)
+        end
+
+        calendar_events.each do |event|
           calendar.add_event(event.to_ical)
         end
 

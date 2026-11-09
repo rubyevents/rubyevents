@@ -19,11 +19,26 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "text/calendar; charset=utf-8", response.content_type
     assert_includes response.body, "BEGIN:VCALENDAR"
     assert_includes response.body, "UID:RUBYEVENTS-#{@event.id}"
+    assert_includes response.body, "URL;VALUE=URI:http://www.example.com/events/#{@event.slug}"
+    assert_includes response.body, "X-EVENT-WEBSITE:https://rubyonrails.org/world"
+  end
+
+  test "should include event timezones in the ics feed" do
+    event = events(:rails_world_2023)
+    date = 3.weeks.from_now.to_date
+    event.update!(start_date: date, end_date: date)
+
+    get events_url(format: :ics)
+
+    assert_includes response.body, "BEGIN:VTIMEZONE"
+    assert_includes response.body, "TZID:Europe/Amsterdam"
+    assert_includes response.body, "DTSTART;TZID=Europe/Amsterdam:#{date.strftime("%Y%m%d")}T080000"
+    assert_includes response.body, "DTEND;TZID=Europe/Amsterdam:#{date.strftime("%Y%m%d")}T200000"
   end
 
   test "should only list conferences in the ics feed" do
     series = EventSeries.create!(name: "Test.rb", slug: "testrb", kind: :meetup)
-    meetup = Event.create!(name: "Test.rb Meetup", slug: "testrb-2030-01-14", series: series, kind: :meetup, start_date: 1.week.from_now, end_date: 1.week.from_now)
+    meetup = Event.create!(name: "Test.rb Meetup", slug: "wnb-rb-2021-03-30", series: series, kind: :meetup, start_date: 1.week.from_now, end_date: 1.week.from_now)
 
     get events_url(format: :ics)
 
