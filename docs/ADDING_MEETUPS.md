@@ -174,7 +174,7 @@ A meetup without talks doesn't need a `videos.yml`.
       from: "2018"
       to: "2022-06"
   organizations:
-    - name: "Codebar"
+    - slug: "codebar"
       from: "2021-03-01"
 ```
 
@@ -182,7 +182,8 @@ The group's page lists current and former organizers and sponsors, and each meet
 
 ```bash
 bin/rails g involvements --event-series lrug --series-level --name Organizer --users "Jane Doe" --from 2018 --to 2022-06
-bin/rails g sponsors --event-series lrug --series-level --name "Example Ltd" --website https://example.com --from 2024
+bin/rails g organization --name "Example Ltd" --website https://example.com  # unless data/organizations.yml has it already
+bin/rails g sponsors --event-series lrug --series-level --sponsors "example-ltd|Sponsors||2024"
 bin/rails g cfp --event-series lrug --series-level --link https://lrug.org/speaking
 ```
 

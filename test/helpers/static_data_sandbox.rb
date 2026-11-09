@@ -18,7 +18,8 @@ module StaticDataSandbox
       Static::SeriesCFP,
       Static::SeriesInvolvement,
       Static::SeriesSponsor,
-      Static::SeriesSticker
+      Static::SeriesSticker,
+      Static::Organization
     ]
   end
 
@@ -40,5 +41,13 @@ module StaticDataSandbox
     end
 
     FileUtils.rm_rf(root) if root
+  end
+
+  # Writes `content` as YAML to `path` below the sandbox `root` and returns the full path
+  def write_data_file(root, path, content)
+    full_path = File.join(root, path)
+    FileUtils.mkdir_p(File.dirname(full_path))
+    File.write(full_path, Yerba::Document.from(content).to_s)
+    full_path
   end
 end

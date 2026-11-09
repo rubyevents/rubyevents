@@ -9,6 +9,9 @@ namespace :db do
         puts "Importing Speakers..."
         Static::Speaker.import_all!
 
+        puts "Importing Organizations..."
+        Static::Organization.import_all!
+
         puts "Importing Event Series and Events..."
         Static::EventSeries.import_all!
 
@@ -43,6 +46,13 @@ namespace :db do
     task meetups: :environment do
       Search::Backend.without_indexing do
         Static::Event.import_meetups!
+      end
+    end
+
+    desc "Seed all organizations"
+    task organizations: :environment do
+      Search::Backend.without_indexing do
+        Static::Organization.import_all!
       end
     end
 

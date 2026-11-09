@@ -6,7 +6,7 @@ class Static::Validators::ValidatorTest < ActiveSupport::TestCase
   test "finds the validators that can fix themselves" do
     fixable = Static::Validators::Validator.fixable_validators
 
-    assert_includes fixable, Static::Validators::SponsorSlug
+    assert_includes fixable, Static::Validators::OrganizationExists
     assert_includes fixable, Static::Validators::TalkId
   end
 

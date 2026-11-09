@@ -1,0 +1,79 @@
+name: New references
+
+# Posts one summary comment listing the organizations an event series references for the first time, so a human
+# checks each isn't a different organization that happens to share the slug. Later pushes update that comment when
+# the report changes, and say so in a new comment.
+#
+# pull_request_target gives the token the write access that comments on pull requests from forks need. So this only
+# runs the base branch's code; the pull request's commits are fetched and read as data, never executed.
+#
+# No paths filter: GitHub only matches it against the first 300 changed files, and big data imports are where a slug is
+# most likely reused by mistake. The task finishes quickly when no sponsors.yml or involvements.yml changed.
+on:
+  pull_request_target:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: new-references-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  new-references:
+    name: New references
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      RAILS_ENV: test
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Fetch the pull request's commits
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: git fetch --no-tags origin "+refs/pull/${PR_NUMBER}/head:refs/remotes/pull/head"
+
+      - name: Report new references
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+          REPOSITORY: ${{ github.repository }}
+        run: bin/rails organizations_file:first_uses OUTPUT=tmp/new_references.md
+
+      - name: Post or update the summary comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- new-references-summary -->";
+            const report = fs.existsSync("tmp/new_references.md") ? fs.readFileSync("tmp/new_references.md", "utf8").trim() : "";
+
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
+            const summary = comments.find((comment) => comment.user?.login === "github-actions[bot]" && comment.body.trim().endsWith(marker));
+
+            if (!summary) {
+              if (report) await github.rest.issues.createComment({ owner, repo, issue_number, body: report });
+              return core.info(report ? "Posted the summary." : "No new references.");
+            }
+
+            const body = report || `# New references detected\n\nNone left after the latest push.\n\n${marker}`;
+            // Links point into the commit they were found in; a new commit alone doesn't change the report
+            const withoutCommits = (text) => text.trim().replace(/\/blob\/[0-9a-f]{40}\//g, "/blob/-/");
+            if (withoutCommits(body) === withoutCommits(summary.body)) return core.info("Summary unchanged.");
+
+            await github.rest.issues.updateComment({ owner, repo, comment_id: summary.id, body });
+            await github.rest.issues.createComment({ owner, repo, issue_number, body: `[Summary of new references](${summary.html_url}) updated!` });

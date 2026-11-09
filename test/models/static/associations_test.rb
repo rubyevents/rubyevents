@@ -1,6 +1,8 @@
 require "test_helper"
 
 class Static::AssociationsTest < ActiveSupport::TestCase
+  include StaticDataSandbox
+
   test "event.talks returns a collection" do
     event = Static::Event.find_by_slug("rubyconf-2026")
 
@@ -156,9 +158,27 @@ class Static::AssociationsTest < ActiveSupport::TestCase
     end
   end
 
+  test "a nested model owned by several models collects its records from all of them" do
+    with_static_data_dir do |dir|
+      write_data_file(dir, "data/testrb/series.yml", {"id" => "testrb", "name" => "Test.rb", "kind" => "meetup"})
+      write_data_file(dir, "data/testrb/sponsors.yml", [{"tiers" => [{"name" => "Group", "sponsors" => [{"slug" => "group-sponsor"}]}]}])
+      write_data_file(dir, "data/testrb/testrb-2025-01/event.yml", {"id" => "testrb-2025-01", "title" => "Test.rb January 2025", "start_date" => "2025-01-15", "end_date" => "2025-01-15"})
+      write_data_file(dir, "data/testrb/testrb-2025-01/sponsors.yml", [{"tiers" => [{"name" => "Host", "sponsors" => [{"slug" => "meetup-host"}]}]}])
+
+      entries = Static::Sponsor::Entry.all.to_h { |entry| [entry["slug"], entry] }
+
+      assert_equal %w[group-sponsor meetup-host], entries.keys.sort
+      assert_nil entries["group-sponsor"].event
+      assert_equal "testrb", entries["group-sponsor"].series.slug
+      assert_equal "testrb-2025-01", entries["meetup-host"].event.slug
+      assert_equal %w[Group Host], Static::Sponsor::Tier.all.map { |tier| tier["name"] }.sort
+    end
+  end
+
   test "records nested in another model belong to the event and series of their parent" do
     [Static::Talk::AlternativeRecording, Static::Sponsor::Tier, Static::Sponsor::Entry].each do |model|
-      record = model.all.first
+      # Sponsor tiers also live in a series' sponsors.yml, whose owner has no event
+      record = model.all.find(&:event)
       owner = record.parent
       owner = owner.parent while owner.parent
 
