@@ -439,7 +439,7 @@ class EventTest < ActiveSupport::TestCase
         STATUS:CONFIRMED
         SUMMARY:Rails World 2023
         URL;VALUE=URI:http://www.example.com/events/rails-world-2023
-        X-EVENT-WEBSITE:https://rubyonrails.org/world
+        X-RUBYEVENTS-EVENT-WEBSITE:https://rubyonrails.org/world
         END:VEVENT
       ICAL
     end
