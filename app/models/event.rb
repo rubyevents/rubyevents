@@ -501,11 +501,20 @@ class Event < ApplicationRecord
       end
 
       event.summary = name
-      event.description = description.strip
-      event.location = static_metadata.location
-      event.url = website
+      event.description = ical_description
+      event.location = venue.exist? ? venue.pretty_venue_address : static_metadata.location
+      event.url = Router.event_url(self)
+      event.append_custom_property("X-EVENT-WEBSITE", website) if website.present?
       event.status = cancelled? ? "CANCELLED" : "CONFIRMED"
     end
+  end
+
+  def ical_description
+    parts = [description.strip, "\n"]
+    parts << "Event website: #{website}" if website.present?
+    parts << "RubyEvents: #{Router.event_url(self)}"
+    parts << "Venue: #{venue.pretty_venue_address}" if venue.exist?
+    parts.join("\n")
   end
 
   private

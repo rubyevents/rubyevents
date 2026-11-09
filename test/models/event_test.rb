@@ -431,12 +431,15 @@ class EventTest < ActiveSupport::TestCase
         UID:RUBYEVENTS-#{event.id}
         DTSTART;VALUE=DATE:20231026
         DESCRIPTION:RailsWorld is a yearly conference held in Netherlands and featu
-         res 1 talk by Yaroslav Shmarov.
+         res 1 talk by Yaroslav Shmarov.\\n\\n\\nEvent website: https://rubyonrails.or
+         g/world\\nRubyEvents: http://www.example.com/events/rails-world-2023\\nVenue
+         : Beurs van Berlage\\, Damrak 243\\, 1012 ZJ Amsterdam\\, Netherlands
         LAST-MODIFIED:20260101T000000
-        LOCATION:Amsterdam\\, Netherlands
+        LOCATION:Beurs van Berlage\\, Damrak 243\\, 1012 ZJ Amsterdam\\, Netherlands
         STATUS:CONFIRMED
         SUMMARY:Rails World 2023
-        URL;VALUE=URI:https://rubyonrails.org/world
+        URL;VALUE=URI:http://www.example.com/events/rails-world-2023
+        X-EVENT-WEBSITE:https://rubyonrails.org/world
         END:VEVENT
       ICAL
     end
