@@ -58,7 +58,19 @@ class MCPServerTest < ActiveSupport::TestCase
 
     assert_empty app_tool_names - tool_names
     assert_includes tool_names, "generate_event"
+    assert_includes tool_names, "generate_series"
     assert_includes tool_names, "generate_talk"
+  end
+
+  test "exposes the series generator as a tool" do
+    series_tool = self.class.discovered_server.tools["generate_series"]
+
+    assert_equal SeriesGenerator::TOOL_DESC, series_tool.description
+    assert_equal(
+      %i[series name kind parent description website language default_country_code location timezone meetup luma kommunity],
+      series_tool.declared_parameters.keys
+    )
+    assert_equal %w[name series], series_tool.new.parameters_schema["required"].sort
   end
 
   test "lists every discovered tool with its input schema" do
