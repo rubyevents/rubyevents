@@ -33,16 +33,6 @@ Typical tier hierarchy (with suggested level values):
 6. **Community Sponsors** (level: 6) - Community supporters
 7. **Media Partners** (level: 7) - Media and promotional partners
 
-## Special Sponsor Types
-
-Some sponsors may have special designations indicated by the `badge` field:
-
-- **Event-specific sponsors**: "Opening Keynote Sponsor", "Closing Party Sponsor"
-- **Service sponsors**: "Video Sponsor", "Live Stream Sponsor", "WiFi Sponsor"
-- **Amenity sponsors**: "Coffee Sponsor", "Lunch Sponsor", "Snack Sponsor"
-- **Activity sponsors**: "Workshop Sponsor", "Hackathon Sponsor"
-- **Support sponsors**: "Scholarship Sponsor", "Diversity Sponsor"
-
 ## Generation
 
 Generate a sponsors.yml in the correct folder using the SponsorsGenerator!
@@ -117,7 +107,7 @@ A badge field can be added for special sponsor designations eg. "Wifi Sponsor"
 Run the linter to automatically format and verify all required properties are present.
 
 ```bash
-bin/lint
+bin/rails validate:all
 ```
 
 ### 5. Run seeds to load data
@@ -136,21 +126,36 @@ Start the dev server and review the event.
 bin/dev
 ```
 
-## Troubleshooting
+## FAQ
 
-### Common Issues
+<details><summary>How do I handle special sponsor types, like WiFi or passport sponsors?</summary>
+  Use the `badge` field to record special designations. Common examples include:
 
-- **Invalid YAML syntax**: Check indentation (use spaces, not tabs)
-- **Missing required fields**: Ensure all required properties are present
-- **Old sponsor logos**: All sponsor logos listed in any sponsors file are associated with a sponsor, and the first logo stored is displayed
-- **Sponsors out of order**: Enter sponsors in the correct order in the file, which may not be how they are displayed
+  - **Event-specific sponsors**: "Opening Keynote Sponsor", "Closing Party Sponsor"
+  - **Service sponsors**: "Video Sponsor", "Live Stream Sponsor", "WiFi Sponsor"
+  - **Amenity sponsors**: "Coffee Sponsor", "Lunch Sponsor", "Snack Sponsor", "Passport Sponsor"
+  - **Activity sponsors**: "Workshop Sponsor", "Hackathon Sponsor"
+  - **Support sponsors**: "Scholarship Sponsor", "Diversity Sponsor", "Travel Sponsor"
+</details>
+
+<details><summary>Why am I seeing an old logo instead of one I just added in the sponsors file?</summary>
+  All sponsor logos listed in any sponsors file are associated with a sponsor, and the first logo stored is displayed.
+  If you would like a different logo, open an issue or comment on the relevant PR, and a site admin can update the logo in production.
+</details>
+
+<details><summary>Should I use the company's brand name or its legal name?</summary>
+  Always use the name the sponsor prefers and has asked us to display if one exists.
+  If they haven't contacted us, use the name as it appears in the sponsor's logo or image for the event.
+  If different event logos conflict, fall back to the name in the logo on the sponsor's website.
+  We match based on domain, but ideally the name will be the same across files.
+</details>
 
 ## Submission Process
 
 1. Fork the RubyEvents repository
 2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md)
 3. Create your sponsors file in the appropriate directory
-4. Run `bin/lint`
+4. Run `bin/rails validate:all`
 5. Run `bin/rails db:seed` (or `bin/rails db:seed:all` if the event happened more than 6 months ago)
 6. Run `bin/dev` and review the event on your dev server
 7. Submit a pull request

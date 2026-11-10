@@ -170,7 +170,7 @@ tracks:
 Ensure the YAML is properly formatted:
 
 ```bash
-bin/lint
+bin/rails validate:all
 ```
 
 ## Finding Schedule Information
@@ -223,7 +223,7 @@ We prefer the English translation of the schedule if provided, otherwise use the
 2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md)
 3. Create your schedule file in the appropriate directory
 4. Run `bin/rails db:seed` (or `bin/rails db:seed:all` if the event happened more than 6 months ago)
-5. Run `bin/lint`
+5. Run `bin/rails validate:all`
 6. Run `bin/dev` and review the event on your dev server
 7. Submit a pull request
 

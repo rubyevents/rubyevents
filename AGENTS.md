@@ -7,7 +7,7 @@ This file provides guidance to coding agents (Claude Code, Cursor, Codex, etc.) 
 ### Setup & Development
 
 - `bin/setup` - Full setup including database seeding via docker-compose
-- `bin/dev` - Start Rails server, SolidQueue jobs, and Vite (for CSS/JS)
+- `bin/dev` - Start Rails server, SolidQueue jobs, Vite (for CSS/JS), and the Herb dev server
 - `bin/lint` - Run all formatters and linters (StandardRB, JS Standard, ERB lint, yerba)
 - `bin/rails db:seed` - Seed database with conference data manually
 - `bin/rails db:seed:all` - Seed database with all conference data manually
@@ -65,15 +65,23 @@ Run `yerba --help` for a full overview of all commands, selectors, conditions, a
 Conference data is stored in YAML files under `/data/`:
 
 - `data/speakers.yml` - Global speaker database
+- `data/topics.yml` - Global list of talk topics
+- `data/featured_cities.yml` - Featured cities for location-based browsing
 - `data/{series-slug}/series.yml` - Event series metadata (conference organizers/series)
 - `data/{series-slug}/{event-name}/event.yml` - Event metadata (dates, location, colors, etc.)
 - `data/{series-slug}/{event-name}/videos.yml` - Individual talk data
 - `data/{series-slug}/{event-name}/schedule.yml` - Event schedules
+- `data/{series-slug}/{event-name}/venue.yml` - Venue details (address, coordinates, maps, hotels)
+- `data/{series-slug}/{event-name}/sponsors.yml` - Event sponsors grouped by tier
+- `data/{series-slug}/{event-name}/involvements.yml` - Organizers, MCs, and other event roles
+- `data/{series-slug}/{event-name}/cfp.yml` - Call for proposals links and dates
+
+`cfp.yml`, `sponsors.yml`, and `involvements.yml` can also live at the series level (`data/{series-slug}/`) when they apply to every event in the series.
 
 ### Technology Stack
 
-- **Backend**: Rails 8.0, SQLite, Solid Queue, Solid Cache
-- **Frontend**: Vite, Tailwind CSS, daisyUI, Stimulus
+- **Backend**: Rails 8.1, SQLite, Solid Queue, Solid Cache
+- **Frontend**: Vite, Tailwind CSS, daisyUI, Stimulus, ReActionView
 - **Admin**: Avo admin panel at `/admin`
 - **Authentication**: Custom session-based auth with GitHub OAuth
 - **Deployment**: Kamal on Hetzner VPS

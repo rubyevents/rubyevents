@@ -153,19 +153,19 @@ Visit your speaker profile and the talk page to confirm the changes look right.
 ### Common Issues
 
 - **`github` looks like a URL**: The `github`, `twitter`, `bluesky`, `linkedin`, and `speakerdeck` fields must be bare usernames/handles, not URLs. `mastodon` is the exception — it must be a full profile URL.
-- **Duplicate `slug`, `github`, `twitter`, `speakerdeck`, `mastodon`, or `bluesky`**: Each of these fields must be unique across `speakers.yml`. `bin/lint` will report the conflicting entries.
+- **Duplicate `slug`, `github`, `twitter`, `speakerdeck`, `mastodon`, or `bluesky`**: Each of these fields must be unique across `speakers.yml`. `bin/rails validate:all` will report the conflicting entries.
 - **Similar names flagged without a social handle**: If two speaker names are very close (a likely typo or accent difference), the linter asks you to add a distinguishing social handle to confirm they're different people, or merge them via an alias if they're the same.
 - **`Speaker "X" not found in data/speakers.yml`**: A `videos.yml` or `involvements.yml` references a speaker name that doesn't have a matching entry (or alias) in `speakers.yml`. Add the speaker there first.
 - **Invalid resource `type`**: Check that `additional_resources` entries use one of the allowed `type` values listed above.
 
-Run `bin/lint` to catch all of the above before submitting.
+Run `bin/rails validate:all` to catch all of the above before submitting.
 
 ## Submission Process
 
 1. Fork the RubyEvents repository
 2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md)
 3. Update `data/speakers.yml` and/or the relevant `videos.yml`
-4. Run `bin/lint`
+4. Run `bin/rails validate:all`
 5. Run `bin/rails db:seed:speakers` (and `bin/rails db:seed:event_series[series-slug]` if you touched a `videos.yml`)
 6. Run `bin/dev` and review the profile/talk on your dev server
 7. Submit a pull request
