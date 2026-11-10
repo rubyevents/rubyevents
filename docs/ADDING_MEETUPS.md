@@ -201,4 +201,4 @@ Use `bin/rails g series --parent madison-ruby ...` to create one. Series ids sta
 
 ---
 
-For seeding and PR steps, use the same process as in [ADDING_EVENTS](ADDING_EVENTS.md#submission-process) (e.g. `bin/rails db:seed:event_series[<series-slug>]`, `bin/lint`, `bin/dev`).
+For seeding and PR steps, use the same process as in [ADDING_EVENTS](ADDING_EVENTS.md#submission-process) (e.g. `bin/rails db:seed:event_series[<series-slug>]`, `bin/rails validate:all`, `bin/dev`).
