@@ -28,7 +28,6 @@ class EventSeriesLookupTool < RubyLLM::Tool
       slug: series.slug,
       name: series.name,
       kind: series.kind,
-      frequency: series.frequency,
       website: series.website,
       twitter: series.twitter,
       language: series.language,
