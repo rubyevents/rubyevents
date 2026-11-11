@@ -72,7 +72,7 @@ module GitBaseline
     end
 
     def git(*arguments)
-      output, _stderr, status = Open3.capture3("git", *arguments)
+      output, _stderr, status = Open3.capture3("git", "-c", "color.ui=never", *arguments)
 
       [output, status.success?]
     rescue Errno::ENOENT
