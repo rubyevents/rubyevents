@@ -18,8 +18,7 @@ metadata:
 
 ## The template
 
-The template lives at `.github/pull_request_template.md` (all lowercase). Read it every time and keep
-its section headings and order.
+The template lives at `.github/pull_request_template.md` (all lowercase). Read it every time and keep its section headings and order. This template _definitely_ exists, but might not be found by a glob search, because .github is hidden. Make sure you find it and use it to write the PR.
 
 You can copy the template into a /tmp/ directory and edit the pull request body there - good for lots of edits.
 
@@ -44,8 +43,7 @@ Leave it as a draft unless the human asks for it to be marked ready.
 
 > IF you are updating files in data/** just use `bin/rails screenshots:changed` to generate the screenshots automatically.
 
-Capture the screenshot under the repo's gitignored `tmp/` directory with a plain filename, and
-reference that exact path in the body:
+Capture the screenshot under the repo's gitignored `tmp/` directory with a plain filename, and reference that exact path in the body:
 
 ```bash
 playwright screenshot --full-page http://127.0.0.1:3000 ./tmp/shot.png
@@ -64,8 +62,9 @@ gh pr edit <number> \
   --attach "./tmp/shot.png#alt text after the hash"
 ```
 
-`--attach` takes up to 50 files. The text after `#` becomes the alt text; without it the filename is
-used.
+`--attach` takes up to 50 files. The text after `#` becomes the alt text; without it the filename is used.
+
+Screenshots are a vital part of the review process. Don't skip them because they're hard. Spend the tokens and make the screenshots.
 
 ## Verifying
 
