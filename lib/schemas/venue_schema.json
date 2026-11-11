@@ -222,15 +222,15 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "Hotel name"
+            "description": "Location name"
           },
           "kind": {
             "type": "string",
-            "description": "Type of hotel (e.g., 'Speaker Hotel')"
+            "description": "Type of location (e.g., 'After Party Location')"
           },
           "description": {
             "type": "string",
-            "description": "Hotel description"
+            "description": "Location description"
           },
           "address": {
             "type": "object",
@@ -272,15 +272,15 @@
               "display"
             ],
             "additionalProperties": false,
-            "description": "Hotel address"
-          },
-          "url": {
-            "type": "string",
-            "description": "Hotel website URL"
+            "description": "Location address"
           },
           "distance": {
             "type": "string",
-            "description": "Distance from venue"
+            "description": "Distance from main venue"
+          },
+          "url": {
+            "type": "string",
+            "description": "Location website URL"
           },
           "coordinates": {
             "type": "object",
@@ -322,7 +322,7 @@
         },
         "required": [
           "name",
-          "address",
+          "kind",
           "coordinates"
         ],
         "additionalProperties": false

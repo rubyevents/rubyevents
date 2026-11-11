@@ -23,8 +23,9 @@ maps:
     "https://maps.apple.com/place?address=701%20Brazos%20St,%20Austin,%20TX%2078701,%20United%20States&coordinate=30.268908,-97.740437&name=Capital%20Factory&place-id=I1CDEBB03E62968BD&map=transit"
   openstreetmap: "https://www.openstreetmap.org/?mlat=30.268889&mlon=-97.740556"
 
-hotels:
+locations:
   - name: "Omni Austin"
+    kind: "Hotel"
     description: |-
       High end, located in same building
     address:
@@ -42,6 +43,7 @@ hotels:
       latitude: 30.26914032642583
       longitude: -97.74027480099309
   - name: "Aloft Austin Downtown"
+    kind: "Hotel"
     description: |-
       Mid Range, close to 6th St.
     distance: "0.1mi from venue"
@@ -59,6 +61,7 @@ hotels:
       latitude: 30.268840866048542
       longitude: -97.74200688934701
   - name: "Hyatt House"
+    kind: "Hotel"
     description: |-
       Low end, 2 blocks from Franklins BBQ
     distance: "0.4mi from venue"

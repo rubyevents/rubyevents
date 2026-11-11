@@ -291,7 +291,7 @@ namespace :validate do
   def validate_venue_files
     validate_files(
       files: Dir.glob(Static::Venue.file_glob),
-      validators: [],
+      validators: Static::Validators::Validator.venue_validator_classes,
       success_message: "✓ All venue.yml files passed validations!"
     )
   end
