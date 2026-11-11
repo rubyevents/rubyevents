@@ -73,7 +73,8 @@ class MCPServerTest < ActiveSupport::TestCase
     end
 
     event_lookup = tools.find { |tool| tool.name == "event_lookup" }
-    assert_equal ["query"], event_lookup.parameters_schema["properties"].keys
+    assert_equal %w[query start_date end_date kind].sort, event_lookup.parameters_schema["properties"].keys.sort
+    assert_equal [], event_lookup.parameters_schema["required"]
   end
 
   test "lists declared parameters as JSON schema properties" do
