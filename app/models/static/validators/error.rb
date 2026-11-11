@@ -25,7 +25,7 @@ module Static
 
       def as_error
         if ENV["GITHUB_ACTIONS"] == "true"
-          "::error file=#{file_path},line=#{line},endLine=#{end_line},col=#{column},endColumn=#{end_column}::#{annotation_message}"
+          GitHubAnnotation.error(annotation_message, **annotation_properties)
         elsif line > 1
           "❌ line #{line}: #{message}"
         else
@@ -35,7 +35,7 @@ module Static
 
       def as_warning
         if ENV["GITHUB_ACTIONS"] == "true"
-          "::warning file=#{file_path},line=#{line},endLine=#{end_line},col=#{column},endColumn=#{end_column}::#{annotation_message}"
+          GitHubAnnotation.warning(annotation_message, **annotation_properties)
         elsif line > 1
           "⚠️ line #{line}: #{message}"
         else
@@ -47,6 +47,10 @@ module Static
 
       def annotation_message
         (line > 1) ? "line #{line}: #{message}" : message
+      end
+
+      def annotation_properties
+        {file: file_path, line: line, endLine: end_line, col: column, endColumn: end_column}
       end
     end
   end
