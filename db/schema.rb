@@ -12,24 +12,24 @@
 
 ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   create_table "active_storage_attachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.bigint "record_id", null: false
+    t.string "record_type", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "active_storage_blobs", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum"
+    t.string "content_type"
     t.datetime "created_at", null: false
+    t.string "filename", null: false
+    t.string "key", null: false
+    t.text "metadata"
+    t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -40,42 +40,42 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "ahoy_events", force: :cascade do |t|
-    t.integer "visit_id"
-    t.integer "user_id"
     t.string "name"
     t.text "properties"
     t.datetime "time"
+    t.integer "user_id"
+    t.integer "visit_id"
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
     t.index ["user_id"], name: "index_ahoy_events_on_user_id"
     t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
   end
 
   create_table "ahoy_visits", force: :cascade do |t|
-    t.string "visit_token"
-    t.string "visitor_token"
-    t.integer "user_id"
-    t.string "ip"
-    t.text "user_agent"
-    t.text "referrer"
-    t.string "referring_domain"
-    t.text "landing_page"
+    t.string "app_version"
     t.string "browser"
-    t.string "os"
-    t.string "device_type"
-    t.string "country"
-    t.string "region"
     t.string "city"
+    t.string "country"
+    t.string "device_type"
+    t.string "ip"
+    t.text "landing_page"
     t.float "latitude"
     t.float "longitude"
-    t.string "utm_source"
-    t.string "utm_medium"
-    t.string "utm_term"
-    t.string "utm_content"
-    t.string "utm_campaign"
-    t.string "app_version"
+    t.string "os"
     t.string "os_version"
     t.string "platform"
+    t.text "referrer"
+    t.string "referring_domain"
+    t.string "region"
     t.datetime "started_at"
+    t.text "user_agent"
+    t.integer "user_id"
+    t.string "utm_campaign"
+    t.string "utm_content"
+    t.string "utm_medium"
+    t.string "utm_source"
+    t.string "utm_term"
+    t.string "visit_token"
+    t.string "visitor_token"
     t.index ["ip"], name: "index_ahoy_visits_on_ip"
     t.index ["started_at", "ip"], name: "index_ahoy_visits_on_started_at_and_ip"
     t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
@@ -83,11 +83,11 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "aliases", force: :cascade do |t|
-    t.string "aliasable_type", null: false
     t.integer "aliasable_id", null: false
+    t.string "aliasable_type", null: false
+    t.datetime "created_at", null: false
     t.string "name", null: false
     t.string "slug"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["aliasable_type", "aliasable_id"], name: "index_aliases_on_aliasable"
     t.index ["aliasable_type", "name"], name: "index_aliases_on_aliasable_type_and_name", unique: true
@@ -95,12 +95,12 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "cfps", force: :cascade do |t|
-    t.string "name"
-    t.string "link"
-    t.date "open_date"
     t.date "close_date"
-    t.integer "event_id"
     t.datetime "created_at", null: false
+    t.integer "event_id"
+    t.string "link"
+    t.string "name"
+    t.date "open_date"
     t.datetime "updated_at", null: false
     t.integer "event_series_id"
     t.index ["event_id"], name: "index_cfps_on_event_id"
@@ -108,43 +108,43 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "cities", force: :cascade do |t|
+    t.string "country_code", null: false
+    t.datetime "created_at", null: false
+    t.boolean "featured", default: false, null: false
+    t.json "geocode_metadata", default: {}, null: false
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
     t.string "name", null: false
     t.string "slug", null: false
     t.string "state_code"
-    t.string "country_code", null: false
-    t.decimal "latitude", precision: 10, scale: 6
-    t.decimal "longitude", precision: 10, scale: 6
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "featured", default: false, null: false
-    t.json "geocode_metadata", default: {}, null: false
     t.index ["featured"], name: "index_cities_on_featured"
     t.index ["name", "country_code", "state_code"], name: "index_cities_on_name_and_country_code_and_state_code"
     t.index ["slug"], name: "index_cities_on_slug", unique: true
   end
 
   create_table "connected_accounts", force: :cascade do |t|
-    t.string "uid"
-    t.string "provider"
-    t.string "username"
-    t.integer "user_id", null: false
     t.string "access_token"
-    t.datetime "expires_at"
     t.datetime "created_at", null: false
+    t.datetime "expires_at"
+    t.string "provider"
+    t.string "uid"
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.string "username"
     t.index ["provider", "uid"], name: "index_connected_accounts_on_provider_and_uid", unique: true
     t.index ["provider", "username"], name: "index_connected_accounts_on_provider_and_username", unique: true
     t.index ["user_id"], name: "index_connected_accounts_on_user_id"
   end
 
   create_table "contributors", force: :cascade do |t|
+    t.string "avatar_url"
+    t.datetime "created_at", null: false
+    t.string "html_url"
     t.string "login", null: false
     t.string "name"
-    t.string "avatar_url"
-    t.string "html_url"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["login"], name: "index_contributors_on_login", unique: true
     t.index ["user_id"], name: "index_contributors_on_user_id"
   end
@@ -155,10 +155,10 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "event_check_ins", force: :cascade do |t|
-    t.string "connect_id", null: false
-    t.integer "event_id", null: false
     t.datetime "checked_in_at", null: false
+    t.string "connect_id", null: false
     t.datetime "created_at", null: false
+    t.integer "event_id", null: false
     t.datetime "updated_at", null: false
     t.index ["connect_id", "event_id"], name: "index_event_check_ins_on_connect_id_and_event_id", unique: true
     t.index ["connect_id"], name: "index_event_check_ins_on_connect_id"
@@ -166,12 +166,12 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "event_involvements", force: :cascade do |t|
-    t.string "involvementable_type", null: false
-    t.integer "involvementable_id", null: false
-    t.integer "event_id"
-    t.string "role", null: false
-    t.integer "position", default: 0
     t.datetime "created_at", null: false
+    t.integer "event_id"
+    t.integer "involvementable_id", null: false
+    t.string "involvementable_type", null: false
+    t.integer "position", default: 0
+    t.string "role", null: false
     t.datetime "updated_at", null: false
     t.integer "event_series_id"
     t.date "started_on"
@@ -184,11 +184,11 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "event_participations", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
     t.integer "event_id", null: false
     t.string "role", null: false
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.index ["event_id"], name: "index_event_participations_on_event_id"
     t.index ["role"], name: "index_event_participations_on_role"
     t.index ["user_id", "event_id"], name: "index_event_participations_on_user_id_and_event_id", unique: true
@@ -196,18 +196,18 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "event_series", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.text "description", default: "", null: false
-    t.string "website", default: "", null: false
-    t.integer "kind", default: 0, null: false
-    t.integer "frequency", default: 0, null: false
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "youtube_channel_id", default: ""
-    t.string "youtube_channel_name", default: ""
+    t.text "description", default: "", null: false
+    t.integer "frequency", default: 0, null: false
+    t.integer "kind", default: 0, null: false
+    t.string "language", default: "", null: false
+    t.string "name", default: "", null: false
     t.string "slug", default: "", null: false
     t.string "twitter", default: "", null: false
-    t.string "language", default: "", null: false
+    t.datetime "updated_at", null: false
+    t.string "website", default: "", null: false
+    t.string "youtube_channel_id", default: ""
+    t.string "youtube_channel_name", default: ""
     t.integer "parent_id"
     t.string "location", default: "", null: false
     t.string "city"
@@ -224,31 +224,31 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.date "date"
+    t.string "banner_background"
+    t.integer "canonical_id"
     t.string "city"
     t.string "country_code"
-    t.integer "event_series_id", null: false
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name", default: "", null: false
-    t.string "slug", default: "", null: false
-    t.integer "talks_count", default: 0, null: false
-    t.integer "canonical_id"
-    t.string "website", default: ""
-    t.date "start_date"
-    t.date "end_date"
-    t.string "kind", default: "event", null: false
+    t.date "date"
     t.string "date_precision", default: "day", null: false
-    t.decimal "longitude", precision: 10, scale: 6
-    t.decimal "latitude", precision: 10, scale: 6
-    t.string "state_code"
-    t.string "location"
-    t.json "geocode_metadata", default: {}, null: false
+    t.date "end_date"
+    t.integer "event_series_id", null: false
     t.string "featured_background"
     t.string "featured_color"
-    t.string "banner_background"
+    t.json "geocode_metadata", default: {}, null: false
     t.date "home_sort_date"
+    t.string "kind", default: "event", null: false
+    t.decimal "latitude", precision: 10, scale: 6
+    t.string "location"
+    t.decimal "longitude", precision: 10, scale: 6
+    t.string "name", default: "", null: false
     t.date "recordings_published_date"
+    t.string "slug", default: "", null: false
+    t.date "start_date"
+    t.string "state_code"
+    t.integer "talks_count", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.string "website", default: ""
     t.string "subtitle", default: "", null: false
     t.boolean "ruby_focused", default: true, null: false
     t.index ["canonical_id"], name: "index_events_on_canonical_id"
@@ -256,45 +256,45 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
     t.index ["event_series_id"], name: "index_events_on_event_series_id"
     t.index ["kind"], name: "index_events_on_kind"
     t.index ["name"], name: "index_events_on_name"
-    t.index ["slug"], name: "index_events_on_slug"
+    t.index ["slug"], name: "index_events_on_slug", unique: true
   end
 
   create_table "geocode_results", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.string "query", null: false
     t.text "response_body", null: false
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["query"], name: "index_geocode_results_on_query", unique: true
   end
 
   create_table "llm_requests", force: :cascade do |t|
-    t.string "request_hash", null: false
-    t.json "raw_response", null: false
-    t.float "duration", null: false
-    t.string "resource_type", null: false
-    t.integer "resource_id", null: false
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.float "duration", null: false
+    t.json "raw_response", null: false
+    t.string "request_hash", null: false
+    t.integer "resource_id", null: false
+    t.string "resource_type", null: false
     t.boolean "success", default: false, null: false
     t.string "task_name", default: "", null: false
+    t.datetime "updated_at", null: false
     t.index ["request_hash"], name: "index_llm_requests_on_request_hash", unique: true
     t.index ["resource_type", "resource_id"], name: "index_llm_requests_on_resource"
     t.index ["task_name"], name: "index_llm_requests_on_task_name"
   end
 
   create_table "organizations", force: :cascade do |t|
-    t.string "name"
-    t.string "website"
-    t.text "description"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug"
-    t.string "main_location"
+    t.text "description"
+    t.string "domain"
+    t.integer "kind", default: 0, null: false
+    t.string "logo_background", default: "white"
     t.string "logo_url"
     t.json "logo_urls", default: []
-    t.string "domain"
-    t.string "logo_background", default: "white"
-    t.integer "kind", default: 0, null: false
+    t.string "main_location"
+    t.string "name"
+    t.string "slug"
+    t.datetime "updated_at", null: false
+    t.string "website"
     t.index ["kind"], name: "index_organizations_on_kind"
     t.index ["slug"], name: "index_organizations_on_slug"
   end
@@ -305,53 +305,53 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "rollups", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "interval", null: false
-    t.datetime "time", null: false
     t.json "dimensions", default: {}, null: false
+    t.string "interval", null: false
+    t.string "name", null: false
+    t.datetime "time", null: false
     t.float "value"
     t.index ["name", "interval", "time", "dimensions"], name: "index_rollups_on_name_and_interval_and_time_and_dimensions", unique: true
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "user_agent"
-    t.string "ip_address"
     t.datetime "created_at", null: false
+    t.string "ip_address"
     t.datetime "updated_at", null: false
+    t.string "user_agent"
+    t.integer "user_id", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "speaker_talks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "discarded_at"
     t.integer "speaker_id", null: false
     t.integer "talk_id", null: false
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "discarded_at"
     t.index ["speaker_id", "talk_id"], name: "index_speaker_talks_on_speaker_id_and_talk_id", unique: true
     t.index ["speaker_id"], name: "index_speaker_talks_on_speaker_id"
     t.index ["talk_id"], name: "index_speaker_talks_on_talk_id"
   end
 
   create_table "speakers", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.string "twitter", default: "", null: false
-    t.string "github", default: "", null: false
     t.text "bio", default: "", null: false
-    t.string "website", default: "", null: false
-    t.string "slug", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "talks_count", default: 0, null: false
-    t.integer "canonical_id"
-    t.string "speakerdeck", default: "", null: false
-    t.string "pronouns_type", default: "not_specified", null: false
-    t.string "pronouns", default: "", null: false
-    t.string "mastodon", default: "", null: false
     t.string "bsky", default: "", null: false
-    t.string "linkedin", default: "", null: false
     t.json "bsky_metadata", default: {}, null: false
+    t.integer "canonical_id"
+    t.datetime "created_at", null: false
+    t.string "github", default: "", null: false
     t.json "github_metadata", default: {}, null: false
+    t.string "linkedin", default: "", null: false
+    t.string "mastodon", default: "", null: false
+    t.string "name", default: "", null: false
+    t.string "pronouns", default: "", null: false
+    t.string "pronouns_type", default: "not_specified", null: false
+    t.string "slug", default: "", null: false
+    t.string "speakerdeck", default: "", null: false
+    t.integer "talks_count", default: 0, null: false
+    t.string "twitter", default: "", null: false
+    t.datetime "updated_at", null: false
+    t.string "website", default: "", null: false
     t.index ["canonical_id"], name: "index_speakers_on_canonical_id"
     t.index ["github"], name: "index_speakers_on_github", unique: true, where: "github IS NOT NULL AND github != ''"
     t.index ["name"], name: "index_speakers_on_name"
@@ -359,13 +359,13 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "sponsors", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "organization_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "tier"
     t.string "badge"
+    t.datetime "created_at", null: false
+    t.integer "event_id"
     t.integer "level"
+    t.integer "organization_id", null: false
+    t.string "tier"
+    t.datetime "updated_at", null: false
     t.integer "event_series_id"
     t.date "started_on"
     t.date "ended_on"
@@ -376,21 +376,21 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "subscribable_type", null: false
-    t.integer "subscribable_id", null: false
-    t.text "notes"
     t.datetime "created_at", null: false
+    t.text "notes"
+    t.integer "subscribable_id", null: false
+    t.string "subscribable_type", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.index ["subscribable_type", "subscribable_id"], name: "index_subscriptions_on_subscribable"
     t.index ["user_id", "subscribable_type", "subscribable_id"], name: "idx_on_user_id_subscribable_type_subscribable_id_fb68f3bd3a", unique: true
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "talk_topics", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.integer "talk_id", null: false
     t.integer "topic_id", null: false
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["talk_id"], name: "index_talk_topics_on_talk_id"
     t.index ["topic_id", "talk_id"], name: "index_talk_topics_on_topic_id_and_talk_id", unique: true
@@ -398,56 +398,56 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "talk_transcripts", force: :cascade do |t|
-    t.integer "talk_id", null: false
-    t.text "raw_transcript"
-    t.text "enhanced_transcript"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.boolean "auto_generated"
+    t.datetime "created_at", null: false
+    t.text "enhanced_transcript"
     t.string "language", default: "en", null: false
+    t.text "raw_transcript"
+    t.integer "talk_id", null: false
     t.boolean "translated", default: false, null: false
+    t.datetime "updated_at", null: false
     t.index ["talk_id", "language"], name: "index_talk_transcripts_on_talk_id_and_language", unique: true
     t.index ["talk_id"], name: "index_talk_transcripts_on_talk_id"
   end
 
   create_table "talks", force: :cascade do |t|
-    t.string "title", default: "", null: false
-    t.text "description", default: "", null: false
-    t.string "slug", default: "", null: false
-    t.string "video_id", default: "", null: false
-    t.string "video_provider", default: "", null: false
-    t.string "thumbnail_sm", default: "", null: false
-    t.string "thumbnail_md", default: "", null: false
-    t.string "thumbnail_lg", default: "", null: false
+    t.json "additional_resources", default: [], null: false
+    t.datetime "announced_at"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "event_id"
-    t.string "thumbnail_xs", default: "", null: false
-    t.string "thumbnail_xl", default: "", null: false
     t.date "date"
-    t.integer "like_count", default: 0
-    t.integer "view_count", default: 0
-    t.text "summary", default: "", null: false
-    t.string "language", default: "en", null: false
-    t.string "slides_url"
-    t.boolean "summarized_using_ai", default: true, null: false
-    t.string "kind", default: "talk", null: false
+    t.text "description", default: "", null: false
+    t.integer "duration_in_seconds"
+    t.integer "end_seconds"
+    t.integer "event_id"
     t.boolean "external_player", default: false, null: false
     t.string "external_player_url", default: "", null: false
-    t.integer "parent_talk_id"
+    t.string "kind", default: "talk", null: false
+    t.string "language", default: "en", null: false
+    t.integer "like_count", default: 0
     t.boolean "meta_talk", default: false, null: false
-    t.integer "start_seconds"
-    t.integer "end_seconds"
-    t.integer "duration_in_seconds"
-    t.datetime "announced_at"
-    t.datetime "published_at"
     t.string "original_title", default: "", null: false
+    t.integer "parent_talk_id"
+    t.datetime "published_at"
+    t.string "slides_url"
+    t.string "slug", default: "", null: false
+    t.integer "start_seconds"
     t.string "static_id", null: false
-    t.json "additional_resources", default: [], null: false
-    t.datetime "youtube_thumbnail_checked_at"
-    t.datetime "video_unavailable_at"
-    t.datetime "video_availability_checked_at"
+    t.boolean "summarized_using_ai", default: true, null: false
+    t.text "summary", default: "", null: false
+    t.string "thumbnail_lg", default: "", null: false
+    t.string "thumbnail_md", default: "", null: false
+    t.string "thumbnail_sm", default: "", null: false
+    t.string "thumbnail_xl", default: "", null: false
+    t.string "thumbnail_xs", default: "", null: false
+    t.string "title", default: "", null: false
     t.datetime "transcript_checked_at"
+    t.datetime "updated_at", null: false
+    t.datetime "video_availability_checked_at"
+    t.string "video_id", default: "", null: false
+    t.string "video_provider", default: "", null: false
+    t.datetime "video_unavailable_at"
+    t.integer "view_count", default: 0
+    t.datetime "youtube_thumbnail_checked_at"
     t.index ["date"], name: "index_talks_on_date"
     t.index ["event_id"], name: "index_talks_on_event_id"
     t.index ["kind"], name: "index_talks_on_kind"
@@ -460,24 +460,24 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "topic_gems", force: :cascade do |t|
-    t.integer "topic_id", null: false
-    t.string "gem_name", null: false
     t.datetime "created_at", null: false
+    t.string "gem_name", null: false
+    t.integer "topic_id", null: false
     t.datetime "updated_at", null: false
     t.index ["topic_id", "gem_name"], name: "index_topic_gems_on_topic_id_and_gem_name", unique: true
     t.index ["topic_id"], name: "index_topic_gems_on_topic_id"
   end
 
   create_table "topics", force: :cascade do |t|
-    t.string "name"
+    t.integer "canonical_id"
+    t.datetime "created_at", null: false
     t.text "description"
+    t.string "name"
     t.boolean "published", default: false
     t.string "slug", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "status", default: "pending", null: false
-    t.integer "canonical_id"
     t.integer "talks_count"
+    t.datetime "updated_at", null: false
     t.index ["canonical_id"], name: "index_topics_on_canonical_id"
     t.index ["name"], name: "index_topics_on_name", unique: true
     t.index ["slug"], name: "index_topics_on_slug"
@@ -485,52 +485,52 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "user_talks", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "talk_id", null: false
-    t.datetime "discarded_at"
     t.datetime "created_at", null: false
+    t.datetime "discarded_at"
+    t.integer "talk_id", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.index ["talk_id"], name: "index_user_talks_on_talk_id"
     t.index ["user_id", "talk_id"], name: "index_user_talks_on_user_id_and_talk_id", unique: true
     t.index ["user_id"], name: "index_user_talks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
-    t.boolean "verified", default: false, null: false
     t.boolean "admin", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "github_handle"
     t.text "bio", default: "", null: false
-    t.string "website", default: "", null: false
-    t.string "slug", default: "", null: false
-    t.string "twitter", default: "", null: false
     t.string "bsky", default: "", null: false
-    t.string "mastodon", default: "", null: false
+    t.json "bsky_metadata", default: {}, null: false
+    t.integer "canonical_id"
+    t.string "city"
+    t.string "country_code"
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.json "geocode_metadata", default: {}, null: false
+    t.string "github_handle"
+    t.json "github_metadata", default: {}, null: false
+    t.json "language_preferences", default: {}, null: false
+    t.decimal "latitude", precision: 10, scale: 6
     t.string "linkedin", default: "", null: false
-    t.string "speakerdeck", default: "", null: false
+    t.string "location", default: ""
+    t.decimal "longitude", precision: 10, scale: 6
+    t.boolean "marked_for_deletion", default: false, null: false
+    t.string "mastodon", default: "", null: false
+    t.string "name"
+    t.string "password_digest"
     t.string "pronouns", default: "", null: false
     t.string "pronouns_type", default: "not_specified", null: false
-    t.integer "talks_count", default: 0, null: false
-    t.integer "canonical_id"
-    t.json "bsky_metadata", default: {}, null: false
-    t.json "github_metadata", default: {}, null: false
-    t.integer "watched_talks_count", default: 0, null: false
-    t.string "location", default: ""
-    t.boolean "marked_for_deletion", default: false, null: false
     t.json "settings", default: {}, null: false
-    t.string "city"
+    t.string "slug", default: "", null: false
+    t.string "speakerdeck", default: "", null: false
     t.string "state_code"
-    t.string "country_code"
-    t.decimal "latitude", precision: 10, scale: 6
-    t.decimal "longitude", precision: 10, scale: 6
-    t.json "geocode_metadata", default: {}, null: false
-    t.datetime "suspicion_marked_at"
     t.datetime "suspicion_cleared_at"
-    t.json "language_preferences", default: {}, null: false
+    t.datetime "suspicion_marked_at"
+    t.integer "talks_count", default: 0, null: false
+    t.string "twitter", default: "", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "verified", default: false, null: false
+    t.integer "watched_talks_count", default: 0, null: false
+    t.string "website", default: "", null: false
     t.index "lower(github_handle)", name: "index_users_on_lower_github_handle", unique: true, where: "github_handle IS NOT NULL AND github_handle != ''"
     t.index ["canonical_id"], name: "index_users_on_canonical_id"
     t.index ["email"], name: "index_users_on_email"
@@ -540,36 +540,36 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_30_120100) do
   end
 
   create_table "watch_list_talks", force: :cascade do |t|
-    t.integer "watch_list_id", null: false
-    t.integer "talk_id", null: false
     t.datetime "created_at", null: false
+    t.integer "talk_id", null: false
     t.datetime "updated_at", null: false
+    t.integer "watch_list_id", null: false
     t.index ["talk_id"], name: "index_watch_list_talks_on_talk_id"
     t.index ["watch_list_id", "talk_id"], name: "index_watch_list_talks_on_watch_list_id_and_talk_id", unique: true
     t.index ["watch_list_id"], name: "index_watch_list_talks_on_watch_list_id"
   end
 
   create_table "watch_lists", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "name", null: false
-    t.text "description"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text "description"
+    t.string "name", null: false
     t.integer "talks_count", default: 0
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.index ["user_id"], name: "index_watch_lists_on_user_id"
   end
 
   create_table "watched_talks", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "talk_id", null: false
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "progress_seconds", default: 0, null: false
-    t.string "watched_on"
-    t.datetime "watched_at", null: false
     t.json "feedback", default: {}
     t.datetime "feedback_shared_at"
+    t.integer "progress_seconds", default: 0, null: false
+    t.integer "talk_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.boolean "watched", default: false, null: false
+    t.datetime "watched_at", null: false
+    t.string "watched_on"
     t.index ["talk_id", "user_id"], name: "index_watched_talks_on_talk_id_and_user_id", unique: true
     t.index ["talk_id"], name: "index_watched_talks_on_talk_id"
     t.index ["user_id"], name: "index_watched_talks_on_user_id"
