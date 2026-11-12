@@ -110,7 +110,7 @@ class Event::Venue < Event::DataFile
   end
 
   def hotels
-    file["hotels"] || []
+    locations.select { |location| location["kind"]&.match?(/Hotel/) }
   end
 
   def locations
