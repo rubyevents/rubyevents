@@ -151,6 +151,8 @@ class Event::Venue < Event::DataFile
     end
 
     locations.each do |location|
+      next if location["kind"]&.match?(/Hotel/)
+
       coords = location["coordinates"]
       next unless coords&.dig("latitude").present? && coords&.dig("longitude").present?
 
