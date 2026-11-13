@@ -19,8 +19,9 @@ maps:
   apple: "https://maps.apple.com/?q=eTown+Hall&ll=40.0201669,-105.275401"
   openstreetmap: "https://www.openstreetmap.org/?mlat=40.0201669&mlon=-105.275401"
 
-hotels:
+locations:
   - name: "The Bradley Boulder Inn"
+    kind: "Hotel"
     url: "https://www.thebradleyboulder.com"
     address:
       street: "2040 16th St"
@@ -40,6 +41,7 @@ hotels:
       openstreetmap: ""
 
   - name: "Hotel Boulderado"
+    kind: "Hotel"
     url: "https://www.boulderado.com"
     address:
       street: "2115 13th St"
@@ -59,6 +61,7 @@ hotels:
       openstreetmap: ""
 
   - name: "Hilton Garden Inn Boulder"
+    kind: "Hotel"
     url: "https://www.hilton.com/en/hotels/wbubogi-hilton-garden-inn-boulder/"
     address:
       street: "2701 Canyon Boulevard"
@@ -78,6 +81,7 @@ hotels:
       openstreetmap: ""
 
   - name: "Marriott Boulder"
+    kind: "Hotel"
     url: "https://www.marriott.com/en-us/hotels/denbo-boulder-marriott/overview/"
     address:
       street: "2660 Canyon Blvd"
@@ -97,6 +101,7 @@ hotels:
       openstreetmap: ""
 
   - name: "Limelight Boulder"
+    kind: "Hotel"
     url: "https://www.limelighthotels.com/boulder"
     address:
       street: "1295 University Avenue"

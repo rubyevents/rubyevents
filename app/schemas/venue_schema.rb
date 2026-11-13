@@ -12,8 +12,7 @@ class VenueSchema < ApplicationSchema
   object :coordinates, of: CoordinatesSchema, description: "Geographic coordinates"
   object :maps, of: MapsSchema, description: "Links to various map services", required: false
 
-  array :locations, of: LocationSchema, description: "Additional event locations", required: false
-  array :hotels, of: HotelSchema, description: "Recommended hotels near the venue", required: false
+  array :locations, of: LocationSchema, description: "Additional event locations, including recommended hotels", required: false
 
   array :rooms, description: "Rooms within the venue", required: false do
     object do

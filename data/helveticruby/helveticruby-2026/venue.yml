@@ -19,8 +19,9 @@ maps:
   google: "https://www.google.com/maps/search/?api=1&query=47.3893338,8.5157189"
   openstreetmap: "https://www.openstreetmap.org/?mlat=47.3893338&mlon=8.5157189&zoom=17"
 
-hotels:
+locations:
   - name: "Novotel Zürich City-West"
+    kind: "Hotel"
     description: "Adjacent to venue"
     url: "https://all.accor.com/hotel/2731/index.en.shtml"
     address:
@@ -36,6 +37,7 @@ hotels:
       longitude: 8.5168028
 
   - name: "Ibis Zürich City-West"
+    kind: "Hotel"
     description: "Adjacent to venue"
     url: "https://all.accor.com/hotel/2942/index.en.shtml"
     address:
@@ -51,6 +53,7 @@ hotels:
       longitude: 8.5170924
 
   - name: "Ibis Budget Zürich City-West"
+    kind: "Hotel"
     description: "Adjacent to venue"
     url: "https://all.accor.com/hotel/3184/index.en.shtml"
     address:
@@ -66,6 +69,7 @@ hotels:
       longitude: 8.5162188
 
   - name: "25hours Hotel Zürich West"
+    kind: "Hotel"
     description: "Walking distance"
     url: "https://www.25hours-hotels.com"
     address:
@@ -81,6 +85,7 @@ hotels:
       longitude: 8.5098939
 
   - name: "Hotel Züri by Fassbind"
+    kind: "Hotel"
     description: "Walking distance"
     url: "https://www.byfassbind.com"
     address:
