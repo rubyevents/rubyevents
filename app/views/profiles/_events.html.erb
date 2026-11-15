@@ -4,7 +4,7 @@
 <% past_events = (events.to_a - future_events).sort_by(&:sort_date).reverse %>
 <% event_kinds = events.map(&:kind).uniq.sort %>
 
-<% cache [user, events, Current.user, checked_in_event_ids] do %>
+<% cache [user, events, participations.values, Current.user, checked_in_event_ids] do %>
   <div data-controller="events-filter" data-events-filter-current-value="all" class="space-y-8">
     <% if events.any? %>
       <%= render "shared/filter_buttons", kinds: event_kinds, current_filter: "all" %>
