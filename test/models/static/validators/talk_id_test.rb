@@ -84,17 +84,51 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     end
   end
 
-  test "flags an id with an extra title or number" do
+  test "adds the title when talks share a base id" do
     videos = [
       {"id" => "jane-doe-building-things-testconf-2024", "title" => "Building Things", "speakers" => ["Jane Doe"]},
-      {"id" => "jane-doe-2-testconf-2024", "title" => "Breaking Things", "speakers" => ["Jane Doe"]}
+      {"id" => "jane-doe-breaking-things-testconf-2024", "title" => "Breaking Things", "speakers" => ["Jane Doe"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      assert_empty Static::Validators::TalkId.new(file_path: path).errors
+    end
+  end
+
+  test "flags shared base ids that are missing the title" do
+    videos = [
+      {"id" => "jane-doe-testconf-2024", "title" => "Building Things", "speakers" => ["Jane Doe"]},
+      {"id" => "jane-doe-testconf-2024", "title" => "Breaking Things", "speakers" => ["Jane Doe"]}
     ]
 
     with_temp_video(videos) do |path|
       errors = Static::Validators::TalkId.new(file_path: path).errors
 
       assert_equal 2, errors.size
-      assert errors.all? { |error| message_without_color(error).include?(%(expected id "jane-doe-testconf-2024")) }
+      assert errors.any? { |error| message_without_color(error).include?(%(expected id "jane-doe-building-things-testconf-2024")) }
+      assert errors.any? { |error| message_without_color(error).include?(%(expected id "jane-doe-breaking-things-testconf-2024")) }
+    end
+  end
+
+  test "numbers ids when the titles collide too" do
+    videos = [
+      {"id" => "jane-doe-building-things-1-testconf-2024", "title" => "Building Things", "speakers" => ["Jane Doe"]},
+      {"id" => "jane-doe-building-things-2-testconf-2024", "title" => "Building Things", "speakers" => ["Jane Doe"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      assert_empty Static::Validators::TalkId.new(file_path: path).errors
+    end
+  end
+
+  test "does not repeat the title when it is already part of the base id" do
+    videos = [
+      {"id" => "opening-keynote-1-testconf-2024", "title" => "Opening Keynote", "kind" => "keynote"},
+      {"id" => "opening-keynote-2-testconf-2024", "title" => "Opening Keynote", "kind" => "keynote"}
+    ]
+
+    with_temp_video(videos) do |path|
+      assert_empty Static::Validators::TalkId.new(file_path: path).errors
     end
   end
 
@@ -138,17 +172,14 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     end
   end
 
-  test "expects the same speaker id for talks that share a speaker" do
+  test "adds the title when speakers with different names share a base id" do
     videos = [
-      {"id" => "building-things-testconf-2024", "title" => "Building Things", "speakers" => ["Jane Doe"]},
-      {"id" => "breaking-things-testconf-2024", "title" => "Breaking Things", "speakers" => ["Jane Doe"]}
+      {"id" => "jane-doe-building-things-testconf-2024", "title" => "Building Things", "speakers" => ["Jane Doe"]},
+      {"id" => "jane-doe-breaking-things-testconf-2024", "title" => "Breaking Things", "speakers" => ["Jane", "Doe"]}
     ]
 
     with_temp_video(videos) do |path|
-      errors = Static::Validators::TalkId.new(file_path: path).errors
-
-      assert_equal 2, errors.size
-      assert errors.all? { |error| message_without_color(error).include?(%(expected id "jane-doe-testconf-2024")) }
+      assert_empty Static::Validators::TalkId.new(file_path: path).errors
     end
   end
 

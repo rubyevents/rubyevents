@@ -87,8 +87,8 @@ module Static
 
       def map_unexpected_ids
         expected_ids.map do |talk, expected|
-          # Strip out title and deduplication
-          expected_regex = expected.sub(/-#{event_slug}\z/, "(-#{talk["title"].parameterize})?(-\\d+)?-#{event_slug}\\z")
+          # Allow reordering talks - the number does not have to match the expected_id exactly - the unique check will catch duplicates.
+          expected_regex = expected.gsub(/(-\d+)?-#{event_slug}\z/, "\1-#{event_slug}\\z")
           yield(talk, expected) unless talk["id"].match(Regexp.new(expected_regex))
         end
       end
@@ -113,9 +113,43 @@ module Static
       end
 
       def expected_ids
-        @expected_ids ||= talks.each_with_object({}) do |talk, result|
-          result[talk] = id_for(talk).to_s
+        @expected_ids = generate_expected_ids
+      end
+
+      def generate_expected_ids
+        @ids = talks.to_h { |talk| [talk, id_for(talk)] }
+
+        add_titles_to_duplicates(@ids)
+        add_index_to_duplicates(@ids)
+        @ids
+      end
+
+      # When talks share a base id, the title usually tells them apart.
+      def add_titles_to_duplicates(ids)
+        duplicates(ids) do |id, talks|
+          talks.each do |talk|
+            title = talk["title"].to_s.parameterize
+            next if id.include? title
+            @ids[talk] = id.sub(/-#{event_slug}\z/, "-#{title}-#{event_slug}")
+          end
         end
+      end
+
+      # When the titles collide too, number the talks.
+      def add_index_to_duplicates(ids)
+        duplicates(ids) do |id, talks|
+          talks.each_with_index do |talk, index|
+            @ids[talk] = id.sub(/-#{event_slug}\z/, "-#{index + 1}-#{event_slug}")
+          end
+        end
+      end
+
+      # The talks whose id is shared with another talk, keyed by their 1-based
+      # position within that shared id.
+      def duplicates(ids, &block)
+        @ids.group_by { |_, id| id }
+          .select { |_, talks| talks.size > 1 }
+          .each { |id, talks| block.call(id, talks) }
       end
 
       def talks
