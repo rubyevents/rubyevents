@@ -37,7 +37,7 @@ class TalkGenerator < Generators::EventBase
     }.freeze
 
     attr_accessor :event_slug, :event, :announced_at, :description, :original_title, :start_time, :end_time, :track, :slides_url
-    attr_writer :id, :date, :language, :speakers, :title, :kind, :existing_ids
+    attr_writer :id, :date, :language, :speakers, :title, :kind
 
     def initialize(**attributes)
       attributes.each { |k, v| send("#{k}=", v) }
@@ -72,15 +72,12 @@ class TalkGenerator < Generators::EventBase
     end
 
     def generate_talk_id
-      @generated_talk_id ||= begin
-        candidates = ::Talk::StaticID.new(event_slug: event_slug, title: title, speakers: speakers, kind: kind).candidates
-
-        candidates.find { |candidate| existing_ids.exclude?(candidate) } || candidates.last
-      end
-    end
-
-    def existing_ids
-      @existing_ids || []
+      @generated_talk_id ||= ::Talk::StaticID.generate(
+        event_slug: event_slug,
+        title: title,
+        speakers: speakers,
+        kind: write_kind? ? kind : nil
+      )
     end
   end
 
@@ -89,8 +86,7 @@ class TalkGenerator < Generators::EventBase
 
     attrs = @attributes.merge({
       event: static_event,
-      event_slug: static_event&.slug || options[:event],
-      existing_ids: existing_ids
+      event_slug: static_event&.slug || options[:event]
     })
 
     attrs = Talk::LIGHTNING_TALKS_DEFAULTS.merge(attrs) if options[:lightning_talks]
@@ -145,12 +141,6 @@ class TalkGenerator < Generators::EventBase
 
   def videos_file
     @videos_file ||= Static::Talk.in_file(videos_file_path) if File.exist?(videos_file_path)
-  end
-
-  def existing_ids
-    return [] unless videos_file
-
-    videos_file.ids + videos_file.old_ids
   end
 
   def missing_talk_message

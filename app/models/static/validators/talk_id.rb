@@ -129,36 +129,16 @@ module Static
       def id_for(talk)
         @ids ||= {}
 
-        @ids[talk] ||= ::Talk::StaticID.new(
+        @ids[talk] ||= ::Talk::StaticID.generate(
           event_slug: event_slug,
           title: talk["title"],
           speakers: talk["speakers"],
           kind: talk["kind"]
-        ).generate
+        )
       end
 
       def watchable_video?(talk)
         talk["video_provider"].in?(::Talk::WATCHABLE_PROVIDERS)
-      end
-
-      def numbered(talk, id, index)
-        index += 1 until available?(talk, candidate = id.sub(/-#{Regexp.escape(event_slug)}\z/, "-#{index}-#{event_slug}"))
-
-        candidate
-      end
-
-      def available?(talk, candidate)
-        (reservations.fetch(candidate, []) - [talk]).empty?
-      end
-
-      def reservations
-        @reservations ||= talks.each_with_object({}) do |talk, result|
-          [talk["id"], talk["old_id"]].each do |value|
-            next if value.blank?
-
-            (result[value] ||= []) << talk
-          end
-        end
       end
     end
   end

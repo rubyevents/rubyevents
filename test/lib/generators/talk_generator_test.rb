@@ -140,7 +140,7 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     end
   end
 
-  test "adds the kind to the id when the speaker already has a talk in the file" do
+  test "keeps talks with the same speaker apart using the kind" do
     seed_speakers_file
 
     videos_file_path = File.join(destination_root, "data/rubyconf/2034/videos.yml")
@@ -167,14 +167,14 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     run_generator [
       "--event-series", "rubyconf",
       "--event", "2026",
-      "--id", "jane-doe-2026",
+      "--id", "jane-doe-keynote-2026",
       "--title", "Keynote: Talks about Talks"
     ]
 
     assert_valid_file videos_file_path do |content|
       assert_no_match(/title: "Keynote: Jane Doe"/, content)
       assert_match(/title: "Keynote: Talks about Talks"/, content)
-      assert_match(/id: "jane-doe-2026"/, content)
+      assert_match(/id: "jane-doe-keynote-2026"/, content)
       assert_match(/- Jane Doe/, content)
     end
   end
@@ -201,7 +201,7 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     run_generator [
       "--event-series", "rubyconf",
       "--event", "2025",
-      "--id", "jane-doe-john-smith-2025",
+      "--id", "jane-doe-john-smith-keynote-2025",
       "--title", "Workshop: Jane Doe",
       "--description", "A workshop about Ruby!",
       "--kind", "workshop",
@@ -216,7 +216,7 @@ class TalkGeneratorTest < Rails::Generators::TestCase
 
     assert_valid_file videos_file_path do |content|
       assert_equal 1, content.scan("- id:").size
-      assert_match(/id: "jane-doe-john-smith-2025"/, content)
+      assert_match(/id: "jane-doe-john-smith-workshop-2025"/, content)
       assert_match(/title: "Workshop: Jane Doe"/, content)
       assert_match(/description: "A workshop about Ruby!"/, content)
       assert_match(/kind: "workshop"/, content)
@@ -276,7 +276,7 @@ class TalkGeneratorTest < Rails::Generators::TestCase
     end
 
     assert_includes stderr, "No talk with id 'john-smith-2035' found"
-    assert_includes stderr, "Available ids:\n  jane-doe-2035"
+    assert_includes stderr, "Available ids:\n  jane-doe-keynote-2035"
   end
 
   test "updates id properly when title changed" do
@@ -365,13 +365,13 @@ class TalkGeneratorTest < Rails::Generators::TestCase
 
     assert_valid_file videos_file_path do |content|
       assert_match(/title: "Keynote: Jane Doe"/, content)
-      assert_match(/id: "jane-doe-2027"/, content)
+      assert_match(/id: "jane-doe-keynote-2027"/, content)
       assert_match(/title: "RubyEvents is great"/, content)
       assert_match(/- Jane Doe/, content)
       assert_match(/- Rachael Wright-Munn/, content)
       assert_match(/- Marco Roth/, content)
       assert_match(/title: "Future of Ruby Panel"/, content)
-      assert_match(/id: "panel-2027"/, content)
+      assert_match(/id: "future-of-ruby-panel-2027"/, content)
     end
   end
 
