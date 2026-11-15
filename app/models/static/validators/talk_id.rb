@@ -87,9 +87,15 @@ module Static
 
       def map_unexpected_ids
         expected_ids.map do |talk, expected|
-          # Allow reordering talks - the number does not have to match the expected_id exactly - the unique check will catch duplicates.
-          expected_regex = expected.gsub(/(-\d+)?-#{event_slug}\z/, "\1-#{event_slug}\\z")
-          yield(talk, expected) unless talk["id"].match(Regexp.new(expected_regex))
+          # Allow reordering talks - the number does not have to match exactly - the unique check will catch duplicates.
+          # If there is an index, there must be an index.
+          # If there isn't, don't add one.
+          expected_regex = expected.sub(/(-\d+)?-#{Regexp.escape(event_slug)}\z/) do
+            index = Regexp.last_match(1) ? "-\\d+" : ""
+            "#{index}-#{Regexp.escape(event_slug)}"
+          end
+
+          yield(talk, expected) unless talk["id"].match?(/\A#{expected_regex}\z/)
         end
       end
 
@@ -147,9 +153,11 @@ module Static
       # The talks whose id is shared with another talk, keyed by their 1-based
       # position within that shared id.
       def duplicates(ids, &block)
-        @ids.group_by { |_, id| id }
-          .select { |_, talks| talks.size > 1 }
-          .each { |id, talks| block.call(id, talks) }
+        ids.group_by { |_, id| id }
+          .each do |id, talks|
+            next if talks.size <= 1
+            yield(id, talks.map(&:first))
+          end
       end
 
       def talks
