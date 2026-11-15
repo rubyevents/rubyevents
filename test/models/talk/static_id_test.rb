@@ -50,4 +50,28 @@ class Talk::StaticIDTest < ActiveSupport::TestCase
 
     assert_equal "lightning-talk-tiny-things-testconf-2024", id.generate
   end
+
+  test "generate skips the kind if the title ends with it" do
+    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Tiny Things Lightning Talk", kind: "lightning_talk")
+
+    assert_equal "tiny-things-lightning-talk-testconf-2024", id.generate
+  end
+
+  test "generate skips the kind if the title contains it" do
+    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Ruby Workshop for Beginners", kind: "workshop")
+
+    assert_equal "ruby-workshop-for-beginners-testconf-2024", id.generate
+  end
+
+  test "generate uses the title for an intro without speakers" do
+    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Welcome and Introduction", kind: "intro")
+
+    assert_equal "welcome-and-introduction-testconf-2024", id.generate
+  end
+
+  test "generate uses the kind and title for an intro with speakers" do
+    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Welcome to TestConf", kind: "intro", speakers: ["Jane Doe"])
+
+    assert_equal "intro-welcome-to-testconf-testconf-2024", id.generate
+  end
 end

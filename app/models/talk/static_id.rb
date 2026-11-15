@@ -11,9 +11,9 @@ class Talk::StaticID
   end
 
   def generate
-    if speakers.length.between?(1, 2)
+    if speakers.length.between?(1, 2) && !kind.in?(%w[intro outro])
       id_from(*speakers, kind, event_slug)
-    elsif title.starts_with? kind
+    elsif title.include? kind
       id_from(title, event_slug)
     else
       id_from(kind, title, event_slug)
