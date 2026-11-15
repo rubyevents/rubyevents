@@ -35,7 +35,7 @@ module Static
           location = node.source_location("id")
 
           Static::Validators::Error.new(
-            %(id "#{actual}" does not match the expected id "#{expected}". Run `bin/rails validate:fix` to rename it and keep the current id as old_id.),
+            %(id "\e[31m#{actual}\e[0m" does not match the expected id "\e[32m#{expected}\e[0m". Run `bin/rails validate:fix` to rename it, rename any thumbnails, and keep the current id as old_id if needed.),
             file_path: @file_path,
             line: location&.start_line || 1,
             end_line: location&.end_line
@@ -48,24 +48,24 @@ module Static
 
         cued_thumbnails = {}
 
-        changes = map_unexpected_ids do |node, expected|
-          current = node["id"].to_s
+        changes = map_unexpected_ids do |talk, expected|
+          current = talk["id"].to_s
 
           # Production is seeded from the baseline, so a committed id is the one it knows the talk by
-          node["old_id"] = current if id_in_baseline?(current)
-          node.delete("old_id") if node["old_id"] == expected
+          talk["old_id"] = current if id_in_baseline?(current)
+          talk.delete("old_id") if talk["old_id"] == expected
 
-          if node["video_id"] == current && !watchable_video?(node)
-            node["video_id"] = expected
+          if talk["video_id"] == current && !watchable_video?(talk)
+            talk["video_id"] = expected
           end
 
-          cued_thumbnails[current] = expected if watchable_video?(node) && node["start_cue"].present?
-          node["id"] = expected
+          cued_thumbnails[current] = expected if watchable_video?(talk) && talk["start_cue"].present?
+          talk["id"] = expected
         end.compact
 
         return unless changes.any?
 
-        videos_file.save!
+        static_talks.save!
 
         move_cued_thumbnails(cued_thumbnails)
 
@@ -86,9 +86,10 @@ module Static
       end
 
       def map_unexpected_ids
-        expected_ids.map do |node, expected|
-          actual = node["id"].to_s
-          yield(node, expected) if actual != expected
+        expected_ids.map do |talk, expected|
+          # Strip out title and deduplication
+          expected_regex = expected.sub(/-#{event_slug}\z/, "(-#{talk["title"].parameterize})?(-\\d+)?-#{event_slug}\\z")
+          yield(talk, expected) unless talk["id"].match(Regexp.new(expected_regex))
         end
       end
 
@@ -107,85 +108,55 @@ module Static
         end
       end
 
-      def videos_file
-        @videos_file ||= Static::Talk.in_file(@file_path, document: @document)
+      def static_talks
+        @static_talks ||= Static::Talk.in_file(@file_path, document: @document)
       end
 
       def expected_ids
-        @expected_ids ||= nodes.group_by { |node| speaker_id(node) }.each_with_object({}) do |(id, group), result|
-          next if id.blank?
-          next result[group.first] = id if group.one? && available?(group.first, id)
-
-          group.group_by { |node| kind_id(node) }.each do |with_kind, kind_group|
-            next if with_kind.blank?
-            next result[kind_group.first] = with_kind if kind_group.one? && available?(kind_group.first, with_kind)
-
-            kind_group.group_by { |node| title_id(node) }.each do |with_title, title_group|
-              next if with_title.blank?
-
-              if title_group.one? && available?(title_group.first, with_title)
-                result[title_group.first] = with_title
-              else
-                title_group.each_with_index do |node, index|
-                  result[node] = numbered(node, with_title, index + 1)
-                end
-              end
-            end
-          end
+        @expected_ids ||= talks.each_with_object({}) do |talk, result|
+          result[talk] = id_for(talk).to_s
         end
       end
 
-      def nodes
-        @nodes ||= videos_file.to_a
+      def talks
+        @talks ||= static_talks.to_a
       end
 
       def event_slug
         @event_slug ||= File.basename(File.dirname(File.expand_path(@file_path)))
       end
 
-      def id_for(node)
+      def id_for(talk)
         @ids ||= {}
 
-        @ids[node] ||= ::Talk::StaticID.new(
+        @ids[talk] ||= ::Talk::StaticID.new(
           event_slug: event_slug,
-          title: node["title"],
-          speakers: node["speakers"],
-          kind: node["kind"]
-        )
+          title: talk["title"],
+          speakers: talk["speakers"],
+          kind: talk["kind"]
+        ).generate
       end
 
-      def speaker_id(node)
-        id_for(node).speaker_id
+      def watchable_video?(talk)
+        talk["video_provider"].in?(::Talk::WATCHABLE_PROVIDERS)
       end
 
-      def kind_id(node)
-        id_for(node).kind_id
-      end
-
-      def title_id(node)
-        id_for(node).title_id
-      end
-
-      def watchable_video?(node)
-        node["video_provider"].in?(::Talk::WATCHABLE_PROVIDERS)
-      end
-
-      def numbered(node, id, index)
-        index += 1 until available?(node, candidate = id.sub(/-#{Regexp.escape(event_slug)}\z/, "-#{index}-#{event_slug}"))
+      def numbered(talk, id, index)
+        index += 1 until available?(talk, candidate = id.sub(/-#{Regexp.escape(event_slug)}\z/, "-#{index}-#{event_slug}"))
 
         candidate
       end
 
-      def available?(node, candidate)
-        (reservations.fetch(candidate, []) - [node]).empty?
+      def available?(talk, candidate)
+        (reservations.fetch(candidate, []) - [talk]).empty?
       end
 
       def reservations
-        @reservations ||= nodes.each_with_object({}) do |node, result|
-          [node["id"], node["old_id"]].each do |value|
+        @reservations ||= talks.each_with_object({}) do |talk, result|
+          [talk["id"], talk["old_id"]].each do |value|
             next if value.blank?
 
-            (result[value] ||= []) << node
+            (result[value] ||= []) << talk
           end
         end
       end

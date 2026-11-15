@@ -44,6 +44,7 @@ namespace :validate do
 
       puts
     end
+    puts Gum.style("Total errors: #{file_errors.values.flatten.size}", foreground: "1")
   end
 
   def validate_files(files:, validators:, success_message:, warning_only: false)

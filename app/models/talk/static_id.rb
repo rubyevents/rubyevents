@@ -1,7 +1,7 @@
 class Talk::StaticID
   PLACEHOLDER_SPEAKER = "TODO"
 
-  attr_reader :event_slug, :title
+  attr_reader :event_slug
 
   def initialize(event_slug:, title:, speakers: [], kind: nil)
     @event_slug = event_slug
@@ -10,52 +10,31 @@ class Talk::StaticID
     @kind = kind
   end
 
-  # "firstname-lastname-event-slug" for talks with one or two speakers,
-  # "kind-event-slug" (e.g. "panel-event-slug") otherwise.
-  def speaker_id
+  def generate
     if speakers.length.between?(1, 2)
-      id_from(*speakers)
-    elsif kind == "talk"
-      title_id
+      id_from(*speakers, kind, event_slug)
+    elsif title.starts_with? kind
+      id_from(title, event_slug)
     else
-      id_from(kind.dasherize)
+      id_from(kind, title, event_slug)
     end
   end
 
-  # Adds the kind, e.g. "firstname-lastname-lightning-talk-event-slug". Plain
-  # talks have no kind to add, so on collisions they keep the speaker id while
-  # their siblings with a kind move out of the way.
-  def kind_id
-    if speakers.length.between?(1, 2) && kind != "talk"
-      id_from(*speakers, kind.dasherize)
-    else
-      speaker_id
-    end
-  end
-
-  # "title-in-slug-form-event-slug", the last resort.
-  def title_id
-    id_from(title)
-  end
-
-  def candidates
-    [speaker_id, kind_id, title_id].compact.uniq
+  def kind
+    @kind.to_s.dasherize
   end
 
   def speakers
     Array(@speakers).map(&:to_s).reject { |name| name.blank? || name == PLACEHOLDER_SPEAKER }
   end
 
-  def kind
-    @kind.presence || Talk::Kind.from_title(title).to_s
+  def title
+    @title.to_s.parameterize
   end
 
   private
 
   def id_from(*parts)
-    base = parts.map { |part| part.to_s.parameterize }.reject(&:blank?)
-    return nil if base.empty?
-
-    [*base, event_slug].join("-")
+    parts.map { |part| part.to_s.parameterize }.reject(&:blank?).join("-")
   end
 end

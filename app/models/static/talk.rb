@@ -52,6 +52,7 @@ module Static
       imported.values.compact
     end
 
+    # Returns an array of top-level talks and their child talks.
     def self.pairs
       top_level.map { |talk| [talk, talk.talks.to_a] }
     end
