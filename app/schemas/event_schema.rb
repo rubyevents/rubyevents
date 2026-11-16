@@ -12,7 +12,7 @@ class EventSchema < ApplicationSchema
   string :description, description: "Description of the event", required: false
   array :aliases, of: :string, description: "Alternative names for the event", required: false
 
-  string :kind, description: "Type of event", enum: ["conference", "meetup", "retreat", "hackathon", "event", "workshop"], required: true
+  string :kind, description: "Type of event", enum: ::Event.kinds.keys, required: true
   boolean :hybrid, description: "Whether the event has both in-person and online attendance", required: false
   string :status,
     description: "Event status",
