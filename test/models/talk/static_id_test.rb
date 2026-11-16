@@ -12,6 +12,12 @@ class Talk::StaticIDTest < ActiveSupport::TestCase
     assert_equal "jane-doe-keynote-testconf-2024", generate(speakers: ["Jane Doe"], kind: "keynote")
   end
 
+  test "generate excludes the default talk kind" do
+    assert_equal "jane-doe-testconf-2024", generate(speakers: ["Jane Doe"], kind: "talk")
+    assert_equal "jane-doe-john-smith-testconf-2024", generate(speakers: ["Jane Doe", "John Smith"], kind: "talk")
+    assert_equal "building-things-testconf-2024", generate(kind: "talk")
+  end
+
   test "generate ignores placeholder speakers" do
     assert_equal "building-things-testconf-2024", generate(speakers: ["TODO"])
   end

@@ -1,8 +1,9 @@
 class Talk::StaticID
   PLACEHOLDER_SPEAKER = "TODO"
+  DEFAULT_KIND = "talk"
 
   def self.generate(event_slug:, title:, speakers: [], kind: nil)
-    kind = kind.to_s.dasherize
+    kind = (kind.to_s == DEFAULT_KIND) ? "" : kind.to_s.dasherize
     speakers = Array(speakers).map(&:to_s).reject { |name| name.blank? || name == PLACEHOLDER_SPEAKER }
     title = title.to_s.parameterize
 
