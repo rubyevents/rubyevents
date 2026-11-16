@@ -132,6 +132,17 @@ class Static::Validators::TalkIdTest < ActiveSupport::TestCase
     end
   end
 
+  test "does not repeat the kind when the title starts with it" do
+    videos = [
+      {"id" => "jane-doe-keynote-foo-testconf-2024", "title" => "Keynote: Foo", "kind" => "keynote", "speakers" => ["Jane Doe"]},
+      {"id" => "jane-doe-keynote-bar-testconf-2024", "title" => "Keynote: Bar", "kind" => "keynote", "speakers" => ["Jane Doe"]}
+    ]
+
+    with_temp_video(videos) do |path|
+      assert_empty Static::Validators::TalkId.new(file_path: path).errors
+    end
+  end
+
   test "ignores TODO placeholder speakers" do
     videos = [
       {"id" => "building-things-testconf-2024", "title" => "Building Things", "speakers" => ["TODO"]}

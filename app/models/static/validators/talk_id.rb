@@ -134,11 +134,24 @@ module Static
       def add_titles_to_duplicates(ids)
         duplicates(ids) do |id, talks|
           talks.each do |talk|
-            title = talk["title"].to_s.parameterize
+            title = title_without_kind(talk)
             next if id.include? title
             @ids[talk] = id.sub(/-#{event_slug}\z/, "-#{title}-#{event_slug}")
           end
         end
+      end
+
+      # The base id already includes the kind, so drop a leading kind from the
+      # title to avoid repeating it (e.g. "Keynote: Foo" -> "foo").
+      def title_without_kind(talk)
+        title = talk["title"].to_s.parameterize
+        kind = talk["kind"].to_s.dasherize
+
+        return title if kind.blank?
+        return title.delete_prefix("#{kind}-") if title.start_with?("#{kind}-")
+        return "" if title == kind
+
+        title
       end
 
       # When the titles collide too, number the talks.
