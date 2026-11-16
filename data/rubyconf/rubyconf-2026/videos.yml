@@ -379,7 +379,8 @@
 
 # Day 2 - Wednesday, July 15, 2026 (Community Day)
 
-- id: "keynote-rubyconf-2026"
+- id: "keynote-panel-once-a-maintainer-rubyconf-2026"
+  old_id: "keynote-rubyconf-2026"
   title: "Panel: Once a Maintainer"
   raw_title: "RubyConf 2026 - Once a Maintainer with Allison Pike, Jeremy Evans, Richard Schneeman, Colby Swandle"
   kind: "keynote"
@@ -397,15 +398,15 @@
     - Jeremy Evans
     - Colby Swandale
 
-- id: "workshop-rubyconf-2026"
-  old_id: "marty-haught-colby-swandale-rubyconf-2026"
+- id: "workshop-from-scan-to-fix-a-maintainer-s-guide-to-gem-security-rubyconf-2026"
+  old_id: "workshop-rubyconf-2026"
   title: "From Scan to Fix: A Maintainer's Guide to Gem Security"
   kind: "workshop"
   date: "2026-07-15"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "not_recorded"
-  video_id: "workshop-rubyconf-2026"
+  video_id: "workshop-from-scan-to-fix-a-maintainer-s-guide-to-gem-security-rubyconf-2026"
   description: |-
     The gems you maintain could be foundational infrastructure for the Ruby community and that makes their security everyone's concern. But most maintainers aren't security engineers, and the path from "I think my gem might have a vulnerability" to "I've fixed it and shipped a release" can feel daunting. This hands-on workshop, led by the RubyGems team will incorporate lessons learned from Project Glasswing, Ruby Central's Alpha-Omega-funded security initiative for the Ruby ecosystem, and it will give maintainers the tools and confidence to take ownership of their gem's security posture. We'll walk through the full lifecycle: what good security looks like for a gem, how to run a scan against your own project, how to read and interpret the resulting report, and how to triage and address what you find. No prior security experience is assumed. By the end of the session, you'll have run a real scan, reviewed real findings, and left with practical strategies for fixing vulnerabilities and hardening your gem against future ones. What we'll cover: * An overview of Project Glasswing and how the gem scanning program works * What a strong security posture looks like for a Ruby gem * Running a scan and understanding the prompt-driven process * Reading and interpreting a scan report * Walking through an example scan together * Strategies for addressing vulnerabilities — from quick fixes to longer-term hardening Who should attend: Maintainers of Ruby gems of any size, from weekend projects to widely depended-on libraries. If you ship a gem, this workshop is for you.
   speakers:
@@ -506,7 +507,8 @@
   speakers:
     - Noel Rappin
 
-- id: "demo-rubyconf-2026"
+- id: "demo-ruby-runway-finals-rubyconf-2026"
+  old_id: "demo-rubyconf-2026"
   title: "Ruby Runway Finals"
   raw_title: "RubyConf 2026 - Ruby Runway Finals"
   kind: "demo"
