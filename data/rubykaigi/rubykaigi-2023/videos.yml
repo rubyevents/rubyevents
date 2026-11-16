@@ -277,7 +277,8 @@
   thumbnail_xl: "https://img.youtube.com/vi/c58mN6NtwsQ/hqdefault.jpg"
   description: ""
   talks:
-    - id: "akira-matsuda-rubykaigi-2023"
+    - id: "akira-matsuda-intro-rubykaigi-2023"
+      old_id: "akira-matsuda-rubykaigi-2023"
       title: "Lightning Talks Intro"
       kind: "intro"
       start_cue: "00:00"
@@ -285,18 +286,19 @@
       thumbnail_cue: "00:11"
       language: "English"
       video_provider: "parent"
-      video_id: "akira-matsuda-rubykaigi-2023"
+      video_id: "akira-matsuda-intro-rubykaigi-2023"
       speakers:
         - Akira Matsuda
 
-    - id: "katsyoshi-rubykaigi-2023"
+    - id: "katsyoshi-lightning-talk-rubykaigi-2023"
+      old_id: "katsyoshi-rubykaigi-2023"
       title: "Lightning Talk: Building Ruby Native Extension using Ruby"
       kind: "lightning_talk"
       start_cue: "00:55"
       end_cue: "06:14"
       language: "Japanese" # and English
       video_provider: "parent"
-      video_id: "katsyoshi-rubykaigi-2023"
+      video_id: "katsyoshi-lightning-talk-rubykaigi-2023"
       description:
         |-
           I build a native ruby compiler for x86.
@@ -305,14 +307,15 @@
       speakers:
         - katsyoshi
 
-    - id: "kokuyou-rubykaigi-2023"
+    - id: "kokuyou-lightning-talk-rubykaigi-2023"
+      old_id: "kokuyou-rubykaigi-2023"
       title: "Lightning Talk: RBS meets LLMs - Type inference using LLM"
       kind: "lightning_talk"
       start_cue: "06:14"
       end_cue: "11:30"
       language: "Japanese"
       video_provider: "parent"
-      video_id: "kokuyou-rubykaigi-2023"
+      video_id: "kokuyou-lightning-talk-rubykaigi-2023"
       description:
         |-
           Recently, Large Language Models (LLMs), such as ChatGPT, have been rapidly evolving.
@@ -328,14 +331,15 @@
       speakers:
         - kokuyou
 
-    - id: "okura-masafumi-rubykaigi-2023"
+    - id: "okura-masafumi-lightning-talk-rubykaigi-2023"
+      old_id: "okura-masafumi-rubykaigi-2023"
       title: "Lightning Talk: Customize your Vim/Neovim directly with Ruby"
       kind: "lightning_talk"
       start_cue: "11:30"
       end_cue: "16:40"
       language: "English"
       video_provider: "parent"
-      video_id: "okura-masafumi-rubykaigi-2023"
+      video_id: "okura-masafumi-lightning-talk-rubykaigi-2023"
       description:
         |-
           My editor of choice is Neovim. Do you know what advantage Vim/Neovim have for us Rubyists? Yes, we can write plugins with Ruby!
@@ -358,42 +362,45 @@
       speakers:
         - "Yukihiro \"Matz\" Matsumoto"
 
-    - id: "lulalala-rubykaigi-2023"
+    - id: "lulalala-lightning-talk-rubykaigi-2023"
+      old_id: "lulalala-rubykaigi-2023"
       title: "Lightning Talk: Natsukantou the XML translator"
       kind: "lightning_talk"
       start_cue: "22:03"
       end_cue: "26:29"
       language: "English"
       video_provider: "parent"
-      video_id: "lulalala-rubykaigi-2023"
+      video_id: "lulalala-lightning-talk-rubykaigi-2023"
       description:
         |-
           Natsukantou gem enables seamless XML translation by allowing users to mix & match filters and translation services (DeepL, みんなの自動翻訳, or ChatGPT). The gem's architecture will be presented, showcasing its middleware pattern, the use cases and wizard configuration inference.
       speakers:
         - lulalala
 
-    - id: "shugo-maeda-rubykaigi-2023"
+    - id: "shugo-maeda-lightning-talk-rubykaigi-2023"
+      old_id: "shugo-maeda-rubykaigi-2023"
       title: "Lightning Talk: BINGO!"
       kind: "lightning_talk"
       start_cue: "26:29"
       end_cue: "31:36"
       language: "Japanese"
       video_provider: "parent"
-      video_id: "shugo-maeda-rubykaigi-2023"
+      video_id: "shugo-maeda-lightning-talk-rubykaigi-2023"
       description:
         |-
           I became the president of Network Applied Communication Laboratory Ltd. (NaCl) last year, and one of the most important duties of the president at NaCl is to hold a lottery at a year-end party. So I've created a bingo machine and cards using Rails and ruby.wasm for the last year-end party. In this talk, I will explain how to write useful applications using ruby.wasm.
       speakers:
         - Shugo Maeda
 
-    - id: "yla-aioi-rubykaigi-2023"
+    - id: "yla-aioi-lightning-talk-rubykaigi-2023"
+      old_id: "yla-aioi-rubykaigi-2023"
       title: "Lightning Talk: Adding custom rule for Rubocop in the 2 month of employment"
       kind: "lightning_talk"
       start_cue: "31:36"
       end_cue: "35:53"
       language: "Japanese"
       video_provider: "parent"
-      video_id: "yla-aioi-rubykaigi-2023"
+      video_id: "yla-aioi-lightning-talk-rubykaigi-2023"
       description:
         |-
           I will talk about how I contributed to the team by developing about "nice to have, but not too much trouble without" rule in Rubocop.
@@ -415,14 +422,15 @@
       speakers:
         - Yuichiro Kaneko
 
-    - id: "yuya-fujiwara-rubykaigi-2023"
+    - id: "yuya-fujiwara-lightning-talk-rubykaigi-2023"
+      old_id: "yuya-fujiwara-rubykaigi-2023"
       title: "Lightning Talk: Ultra-fast test-driven development"
       kind: "lightning_talk"
       start_cue: "41:07"
       end_cue: "46:20"
       language: "Japanese"
       video_provider: "parent"
-      video_id: "yuya-fujiwara-rubykaigi-2023"
+      video_id: "yuya-fujiwara-lightning-talk-rubykaigi-2023"
       description:
         |-
           Software testing is crucial in our daily development process. Our team adopts mob programming to develop many features. While we also use TDD for development, it is known that running tests with Rspec can be slow. In particular, loading and initializing files can be a bottleneck.
@@ -432,28 +440,30 @@
       speakers:
         - Yuya Fujiwara
 
-    - id: "peter-zhu-rubykaigi-2023"
+    - id: "peter-zhu-lightning-talk-rubykaigi-2023"
+      old_id: "peter-zhu-rubykaigi-2023"
       title: "Lightning Talk: Optimizing Ruby's Memory Layout: Variable Width Allocation"
       kind: "lightning_talk"
       start_cue: "46:20"
       end_cue: "50:09"
       language: "English"
       video_provider: "parent"
-      video_id: "peter-zhu-rubykaigi-2023"
+      video_id: "peter-zhu-lightning-talk-rubykaigi-2023"
       description:
         |-
           Ruby 3.2 comes with Variable Width Allocation, a new feature inside of the garbage collector that increases allocation speed and improves memory efficiency. In this talk, I'll talk about the motivation behind this feature, what changes we made, and the performance improvements.
       speakers:
         - Peter Zhu
 
-    - id: "yudai-takada-rubykaigi-2023"
+    - id: "yudai-takada-lightning-talk-rubykaigi-2023"
+      old_id: "yudai-takada-rubykaigi-2023"
       title: "Lightning Talk: Dividing and Managing: The Cops Squad of RuboCop RSpec Dept"
       kind: "lightning_talk"
       start_cue: "50:09"
       end_cue: "54:31"
       language: "Japanese"
       video_provider: "parent"
-      video_id: "yudai-takada-rubykaigi-2023"
+      video_id: "yudai-takada-lightning-talk-rubykaigi-2023"
       description:
         |-
           As you all know, RuboCop is a static code analyzer and formatter for Ruby. It also has extensions that are specialized for external Ruby libraries/frameworks. RuboCop RSpec is one of those extensions.
@@ -944,7 +954,8 @@
   speakers:
     - Takashi Yoneuchi
 
-- id: "maxime-chevalier-boisvert-rubykaigi-2023"
+- id: "maxime-chevalier-boisvert-keynote-rubykaigi-2023"
+  old_id: "maxime-chevalier-boisvert-rubykaigi-2023"
   title: "Keynote: Optimizing YJIT’s Performance, from Inception to Production"
   raw_title: "[EN][Keynote] Optimizing YJIT’s Performance, from Inception to Production / @maximecb"
   kind: "keynote"
@@ -968,7 +979,8 @@
 
 ## Day 3
 
-- id: "ruby-committers-rubykaigi-2023"
+- id: "ruby-committers-q-and-a-rubykaigi-2023"
+  old_id: "ruby-committers-rubykaigi-2023"
   title: "Ruby Committers and The World"
   raw_title: "[EN] Ruby Committers and The World / CRuby Committers @rubylangorg"
   kind: "q_and_a"
@@ -1212,7 +1224,8 @@
   speakers:
     - Masataka Kuwabara
 
-- id: "soutaro-matsumoto-rubykaigi-2023"
+- id: "soutaro-matsumoto-keynote-rubykaigi-2023"
+  old_id: "soutaro-matsumoto-rubykaigi-2023"
   title: "Keynote: Parsing RBS"
   raw_title: "[EN][Keynote] Parsing RBS / Soutaro Matsumoto @soutaro"
   kind: "keynote"

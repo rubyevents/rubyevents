@@ -1,7 +1,8 @@
 ---
 ## Day 1
 
-- id: "mari-imaizumi-rubykaigi-2025"
+- id: "mari-imaizumi-keynote-rubykaigi-2025"
+  old_id: "mari-imaizumi-rubykaigi-2025"
   title: "Keynote: Ruby Taught Me About Encoding Under the Hood"
   raw_title: "[JA][Keynote] Ruby Taught Me About Encoding Under the Hood / Mari Imaizumi @ima1zumi"
   kind: "keynote"
@@ -380,7 +381,8 @@
 
 ## Day 2
 
-- id: "ivo-anjo-rubykaigi-2025"
+- id: "ivo-anjo-keynote-rubykaigi-2025"
+  old_id: "ivo-anjo-rubykaigi-2025"
   title: "Keynote: Performance Bugs and Low-level Ruby Observability APIs"
   raw_title: "[EN][Keynote] Performance Bugs and Low-level Ruby Observability APIs / Ivo Anjo @KnuX"
   kind: "keynote"
@@ -800,7 +802,8 @@
       speakers:
         - TODO
 
-    - id: "shunsuke-michii-rubykaigi-2025"
+    - id: "shunsuke-michii-lightning-talk-rubykaigi-2025"
+      old_id: "shunsuke-michii-rubykaigi-2025"
       title: "Lightning Talk: PicoRabbit: a Tiny Presentation Device Powered by Ruby"
       kind: "lightning_talk"
       date: "2025-04-17"
@@ -809,7 +812,7 @@
       thumbnail_cue: "03:44"
       language: "Japanese"
       video_provider: "parent"
-      video_id: "shunsuke-michii-rubykaigi-2025"
+      video_id: "shunsuke-michii-lightning-talk-rubykaigi-2025"
       description: |-
         This talk introduces PicoRabbit, a presentation system built from scratch on a Raspberry Pi Pico 2. This talk itself is running on PicoRabbit.
 
@@ -819,7 +822,8 @@
       speakers:
         - Shunsuke Michii
 
-    - id: "makicamel-rubykaigi-2025"
+    - id: "makicamel-lightning-talk-rubykaigi-2025"
+      old_id: "makicamel-rubykaigi-2025"
       title: "Lightning Talk: Road to RubyKaigi: Making Tinny Chiptunes with Ruby"
       kind: "lightning_talk"
       date: "2025-04-17"
@@ -829,13 +833,14 @@
       language: "Japanese"
       slides_url: "https://speakerdeck.com/makicamel/road-to-rubykaigi-making-tinny-chiptunes-with-ruby"
       video_provider: "parent"
-      video_id: "makicamel-rubykaigi-2025"
+      video_id: "makicamel-lightning-talk-rubykaigi-2025"
       description: |-
         "Road to RubyKaigi" is an action game made in Ruby that you can play right in your terminal. We defeat bugs, dodge deadlines, and race toward the RubyKaigi venue. All the graphics are rendered with text, and the background music is performed on the fly using Ruby. In this talk, I will talk how to implement the BGM performance and present a live demo of the game in action.
       speakers:
         - makicamel
 
-    - id: "white-green-rubykaigi-2025"
+    - id: "white-green-lightning-talk-rubykaigi-2025"
+      old_id: "white-green-rubykaigi-2025"
       title: "Lightning Talk: Ruby as a Frontend for Programming Language Implementations"
       kind: "lightning_talk"
       date: "2025-04-17"
@@ -844,7 +849,7 @@
       thumbnail_cue: "13:44"
       language: "Japanese"
       video_provider: "parent"
-      video_id: "white-green-rubykaigi-2025"
+      video_id: "white-green-lightning-talk-rubykaigi-2025"
       description: |-
         When developing a new programming language, it is typically necessary to implement both a frontend (such as a parser) and a backend (such as a virtual machine). However, especially during the prototyping stage, if the primary novelty of the language lies in its backend, it is desirable to simplify frontend implementation as much as possible. This presentation introduces an approach that leverages Ruby's powerful metaprogramming capabilities to construct language frontends with minimal effort. Specifically, we discuss an intuitive method of generating intermediate representations (such as SSA forms) directly from Ruby scripts written in a natural syntax.
       speakers:
@@ -865,7 +870,8 @@
       speakers:
         - Yudai Takada
 
-    - id: "chris-hasinski-rubykaigi-2025"
+    - id: "chris-hasinski-lightning-talk-rubykaigi-2025"
+      old_id: "chris-hasinski-rubykaigi-2025"
       title: "Lightning Talk: Ruby on a PlayStation"
       kind: "lightning_talk"
       date: "2025-04-17"
@@ -874,7 +880,7 @@
       thumbnail_cue: "24:13"
       language: "English"
       video_provider: "parent"
-      video_id: "chris-hasinski-rubykaigi-2025"
+      video_id: "chris-hasinski-lightning-talk-rubykaigi-2025"
       description: |-
         My very incomplete yet working port of mruby/c for PlayStation 1!
 
@@ -882,7 +888,8 @@
       speakers:
         - Chris Hasiński
 
-    - id: "taketo-takashima-rubykaigi-2025"
+    - id: "taketo-takashima-lightning-talk-rubykaigi-2025"
+      old_id: "taketo-takashima-rubykaigi-2025"
       title: "Lightning Talk: Debugging DDR for Encrypted DNS with Ruby"
       kind: "lightning_talk"
       date: "2025-04-17"
@@ -892,7 +899,7 @@
       language: "Japanese"
       slides_url: "https://speakerdeck.com/taketo1113/debugging-ddr-for-encrypted-dns-with-ruby"
       video_provider: "parent"
-      video_id: "taketo-takashima-rubykaigi-2025"
+      video_id: "taketo-takashima-lightning-talk-rubykaigi-2025"
       description: |-
         As concerns about privacy and security in DNS resolution grow, encrypted protocols such as DoH (DNS over HTTPS) have emerged. In this talk, I will introduce a Ruby implementation of a DDR (Discovery of Designated Resolvers) client, which enables the distribution of information about secure and encrypted DNS resolvers like DoH. While DDR allows multiple DNS resolvers to be advertised, verifying whether each resolver is functioning correctly can be challenging. To address this, I developed a debugging tool as a Ruby gem to confirm whether DDR is operating as expected.
 
@@ -900,7 +907,8 @@
       speakers:
         - Taketo Takashima
 
-    - id: "kazuhiro-nishiyama-rubykaigi-2025"
+    - id: "kazuhiro-nishiyama-lightning-talk-rubykaigi-2025"
+      old_id: "kazuhiro-nishiyama-rubykaigi-2025"
       title: "Lightning Talk: riscv64.rubyci.org internal"
       kind: "lightning_talk"
       date: "2025-04-17"
@@ -909,13 +917,14 @@
       thumbnail_cue: "33:18"
       language: "Japanese"
       video_provider: "parent"
-      video_id: "kazuhiro-nishiyama-rubykaigi-2025"
+      video_id: "kazuhiro-nishiyama-lightning-talk-rubykaigi-2025"
       description: |-
         I set up the current riscv64.rubyci.org. It runs chkbuild on a RISC-V virtual machine using qemu. It's difficult to find maintenance windows between CI runs in a slow environment, so I'll talk about the way I solved that problem.
       speakers:
         - Kazuhiro NISHIYAMA
 
-    - id: "hayao-kimura-rubykaigi-2025"
+    - id: "hayao-kimura-lightning-talk-rubykaigi-2025"
+      old_id: "hayao-kimura-rubykaigi-2025"
       title: "Lightning Talk: Fiber Scheduler vs. General-Purpose Parallel Client"
       kind: "lightning_talk"
       date: "2025-04-17"
@@ -924,13 +933,14 @@
       thumbnail_cue: "38:35"
       language: "Japanese"
       video_provider: "parent"
-      video_id: "hayao-kimura-rubykaigi-2025"
+      video_id: "hayao-kimura-lightning-talk-rubykaigi-2025"
       description: |-
         In an effort to build a general-purpose parallel request client in Ruby—something anyone in our team could easily use—I ran into an unexpected roadblock: the limitations of the Fiber Scheduler. This talk walks through the journey from parallelizing Faraday requests, to exploring Fiber Scheduler as a lightweight alternative to threads, and ultimately hitting a wall when trying to support gRPC and AWS SDK. I'll explain why Fiber Scheduler couldn't handle gRPC due to its C-level implementation, and how that led to a shift toward using threads instead. If you're curious about the real-world limitations of Ruby's Fiber Scheduler and what it takes to design a truly flexible parallel request client, this talk is for you.
       speakers:
         - Hayao Kimura
 
-    - id: "shugo-maeda-rubykaigi-2025"
+    - id: "shugo-maeda-lightning-talk-rubykaigi-2025"
+      old_id: "shugo-maeda-rubykaigi-2025"
       title: "Lightning Talk: Displaying 'アパート' correctly on Textbringer"
       kind: "lightning_talk"
       date: "2025-04-17"
@@ -939,13 +949,14 @@
       thumbnail_cue: "43:42"
       language: "Japanese"
       video_provider: "parent"
-      video_id: "shugo-maeda-rubykaigi-2025"
+      video_id: "shugo-maeda-lightning-talk-rubykaigi-2025"
       description: |-
         Displaying "アパート" on a text editor seems simple, right? But is it really? This presentation will explain how to handle combining diacritical marks, variation selectors, hangul jamo etc. on a text editor.
       speakers:
         - Shugo Maeda
 
-    - id: "ryo-ishigaki-rubykaigi-2025"
+    - id: "ryo-ishigaki-lightning-talk-rubykaigi-2025"
+      old_id: "ryo-ishigaki-rubykaigi-2025"
       title: "Lightning Talk: Making a MIDI controller device with PicoRuby/R2P2"
       kind: "lightning_talk"
       date: "2025-04-17"
@@ -954,7 +965,7 @@
       thumbnail_cue: "48:57"
       language: "Japanese"
       video_provider: "parent"
-      video_id: "ryo-ishigaki-rubykaigi-2025"
+      video_id: "ryo-ishigaki-lightning-talk-rubykaigi-2025"
       description: |-
         There are many wonderful synthesizers and electronic instruments in the world. And instruments and devices that support MIDI (Musical Instrument Digital Interface) can easily be played together.
 
@@ -964,7 +975,8 @@
       speakers:
         - Ryo Ishigaki
 
-    - id: "taiga-asano-rubykaigi-2025"
+    - id: "taiga-asano-lightning-talk-rubykaigi-2025"
+      old_id: "taiga-asano-rubykaigi-2025"
       title: "Lightning Talk: Securing Credentials for Package Manager and Bundler"
       kind: "lightning_talk"
       date: "2025-04-17"
@@ -973,7 +985,7 @@
       thumbnail_cue: "54:07"
       language: "Japanese"
       video_provider: "parent"
-      video_id: "taiga-asano-rubykaigi-2025"
+      video_id: "taiga-asano-lightning-talk-rubykaigi-2025"
       description: |-
         When using private gems, tokens are passed to Bundler via environment variables or config.
 
@@ -997,7 +1009,8 @@
 
 ## Day 3
 
-- id: "ruby-committers-rubykaigi-2025"
+- id: "ruby-committers-q-and-a-rubykaigi-2025"
+  old_id: "ruby-committers-rubykaigi-2025"
   title: "Ruby Committers and the World"
   raw_title: "[EN/JA] Ruby Committers and the World / CRuby Committers @rubylangorg"
   kind: "q_and_a"
@@ -1314,7 +1327,8 @@
   speakers:
     - Masato Ohba
 
-- id: "yukihiro-matz-matsumoto-rubykaigi-2025"
+- id: "yukihiro-matz-matsumoto-keynote-rubykaigi-2025"
+  old_id: "yukihiro-matz-matsumoto-rubykaigi-2025"
   title: "Keynote: Programming Language for AI age"
   raw_title: "[JA][Keynote] Matz Keynote / Yukihiro 'Matz' Matsumoto @yukihiro_matz"
   kind: "keynote"
