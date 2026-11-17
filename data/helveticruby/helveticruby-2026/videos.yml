@@ -1,6 +1,38 @@
 # Website: https://helvetic-ruby.ch
 # Videos: -
 ---
+- id: "riccardo-carlesso-helveticruby-2026"
+  title: "Workshop: Rails 8 in the Cloud, Done Right: A Golden Blueprint & Agentic Migration"
+  raw_title: "Rails 8 in the Cloud, Done Right: A Golden Blueprint & Agentic Migration Workshop"
+  kind: "workshop"
+  date: "2026-11-19"
+  language: "English"
+  video_provider: "not_recorded"
+  video_id: "riccardo-carlesso-helveticruby-2026"
+  description: |-
+    Every Rubyist loves the magic of rails new on localhost:3000 — until it is time to move to the Cloud and you end up juggling plaintext .env passwords, public storage buckets, unstructured logs, or over-engineered Kubernetes YAML.
+
+    Led live by Riccardo Carlesso — on an open-source Rails 8 blueprint co-authored with Emiliano Della Casa (together, your beloved co-organizers of RubyCon Italy!) — this hands-on workshop walks you through a production-grade Rails 8 reference application (github.com/palladius/rails8-app-on-gcp). While we use a free cloud sandbox (credits provided) as our live playground, every architectural pattern is cloud-agnostic and built to keep the Majestic Monolith simple, secure, and observable anywhere. Even better: you will drive the entire migration side-by-side with an agentic coding harness, picking up battle-tested tips along the way.
+
+    In this codelab, you'll learn:
+
+    - How to architect a Rails 8 app in the Cloud the right way: zero plaintext passwords or static API keys in .env (runtime secret injection + keyless IAM), private ActiveStorage buckets with on-the-fly signed URLs, managed PostgreSQL (powering Primary DB, Solid Queue, Solid Cache, and Solid Cable) over an encrypted local proxy tunnel, and native single-line structured JSON logging with trace correlation.
+    - How to keep the Monolith intact without Kubernetes: running Puma (web), Solid Queue (worker), and a DB auth proxy sidecar declaratively from a clean compose.prod.yaml.
+    - How to move an app to the Cloud with an agentic harness: Riccardo's hard-earned tips from the trenches on structuring AGENTS.md, <5s deterministic self-diagnostics (just workshop-test), and guardrails so your AI pair-programmer accelerates cloud migrations without hallucinating configs or leaking secrets.
+
+    Bring your own laptop with charger, and Antigravity installed and configured with your personal Gmail account. Alternatively, bring your favorite coding harness with some tokens left :)
+  speakers:
+    - Riccardo Carlesso
+  additional_resources:
+    - name: "palladius/rails8-app-on-gcp"
+      type: "repo"
+      url: "https://github.com/palladius/rails8-app-on-gcp"
+
+    - name: "Codelab"
+      type: "documentation"
+      title: "Rails 8 on Google Cloud"
+      url: "https://codelabs.developers.google.com/codelabs/rails8-on-google-cloud"
+
 - id: "jade-dickinson-helveticruby-2026"
   title: "Building a multi-user reservation system across Hotwire and a Rails API"
   date: "2026-11-20"
