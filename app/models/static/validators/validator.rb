@@ -45,6 +45,7 @@ class Static::Validators::Validator
   def self.schedule_validator_classes
     @schedule_validator_classes ||= [
       Static::Validators::Schema,
+      Static::Validators::ScheduleDuplicateTimeSlots,
       Static::Validators::ScheduleSlotsFilled
     ]
   end
