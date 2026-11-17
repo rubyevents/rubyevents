@@ -48,6 +48,13 @@ class InvolvementsGenerator < Generators::EventBase
     say "Added involvement entry '#{involvement_attributes["name"]}' to #{involvements_file_path}", :green
   end
 
+  def maybe_add_users_to_speakers_file
+    user_names = Array(involvement_attributes["users"]).map do |user|
+      user.is_a?(Hash) ? user["name"] : user
+    end.compact
+    sync_speakers(user_names)
+  end
+
   private
 
   # Years like 2018 would read as numbers

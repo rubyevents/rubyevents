@@ -128,11 +128,115 @@ class InvolvementsGeneratorTest < Rails::Generators::TestCase
     end
   end
 
+  test "adds unknown users to data/speakers.yml with generated slugs" do
+    seed_speakers_file
+
+    run_generator [
+      "--event-series", "xoruby",
+      "--event", "xoruby-salt-lake-city-2026",
+      "--name", "Organizer",
+      "--users", "Jim Remsik", "Co-organizer"
+    ]
+
+    speakers = read_speakers_file
+    assert_equal [
+      {"name" => "Co-organizer", "github" => "", "slug" => "co-organizer"},
+      {"name" => "Jim Remsik", "github" => "", "slug" => "jim-remsik"}
+    ], speakers
+  end
+
+  test "only adds users that don't exist in data/speakers.yml" do
+    seed_speakers_file(<<~YAML)
+      ---
+      - name: Jim Remsik
+        slug: jim-remsik
+    YAML
+
+    run_generator [
+      "--event-series", "xoruby",
+      "--event", "xoruby-salt-lake-city-2026",
+      "--name", "Organizer",
+      "--users", "Jim Remsik", "New Person"
+    ]
+
+    speakers = read_speakers_file
+    assert_equal 2, speakers.size
+    assert_equal "Jim Remsik", speakers.first["name"]
+    assert_equal({"name" => "New Person", "github" => "", "slug" => "new-person"}, speakers.last)
+  end
+
+  test "adds a user listed twice only once" do
+    seed_speakers_file
+
+    run_generator [
+      "--event-series", "xoruby",
+      "--event", "xoruby-salt-lake-city-2026",
+      "--name", "Organizer",
+      "--users", "Jim Remsik", "Jim Remsik"
+    ]
+
+    assert_equal [
+      {"name" => "Jim Remsik", "github" => "", "slug" => "jim-remsik"}
+    ], read_speakers_file
+  end
+
+  test "adds users with a from/to period to data/speakers.yml" do
+    seed_speakers_file
+
+    run_generator [
+      "--event-series", "xoruby",
+      "--event", "xoruby-salt-lake-city-2026",
+      "--name", "Organizer",
+      "--users", "Jim Remsik",
+      "--from", "2020",
+      "--to", "2021"
+    ]
+
+    speakers = read_speakers_file
+    assert_equal [
+      {"name" => "Jim Remsik", "github" => "", "slug" => "jim-remsik"}
+    ], speakers
+  end
+
+  test "reports a red message and continues when speaker sync fails" do
+    seed_speakers_file
+
+    stderr = capture(:stderr) do
+      run_generator [
+        "--event-series", "xoruby",
+        "--event", "xoruby-salt-lake-city-2026",
+        "--name", "Organizer",
+        "--users", ""
+      ]
+    end
+
+    assert_includes stderr, "Could not sync speakers"
+    assert_includes stderr, "Speaker name cannot be blank"
+
+    assert_file File.join(destination_root, "data/xoruby/xoruby-salt-lake-city-2026/involvements.yml") do |content|
+      assert_match(/Organizer/, content)
+    end
+    assert_empty read_speakers_file
+  end
+
   def assert_valid_file(file_path, msg = nil, &block)
     errors = Static::Validators::Validator.involvement_validator_classes.flat_map do |validator|
       validator.new(file_path:).errors
     end
     assert_empty errors, msg || errors.map { |e| e.to_h["message"] }.join(", ")
     assert_file file_path, msg, &block
+  end
+
+  def seed_speakers_file(content = "--- []\n")
+    FileUtils.mkdir_p(File.dirname(speakers_file_path))
+    File.write(speakers_file_path, content)
+  end
+
+  def read_speakers_file
+    Yerba.parse_file(speakers_file_path).to_a
+  end
+
+  def speakers_file_path
+    File.join(destination_root, "data", "speakers.yml")
   end
 end
