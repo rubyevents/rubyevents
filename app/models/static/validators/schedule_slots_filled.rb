@@ -36,7 +36,7 @@ module Static
 
         @talks_by_time = talks.group_by { |talk| [talk["date"], talk["start_time"], talk["end_time"]] }
 
-        grid_rows.filter_map { |day, row, location| error_for(day, row, location) }
+        grid_rows.filter_map { |row| error_for(row) }
       end
 
       private
@@ -45,19 +45,8 @@ module Static
         @schedule ||= Static::Schedule.in_file(@file_path.to_s, document: @document).first
       end
 
-      # Every grid row of every day, as [day, row, location] triples.
       def grid_rows
-        return @grid_rows if defined?(@grid_rows)
-
-        @grid_rows = []
-
-        Array(schedule["days"]).each_with_index do |day, day_index|
-          Array(day["grid"]).each_with_index do |row, row_index|
-            @grid_rows << [day, row, schedule.source_location("days[#{day_index}].grid[#{row_index}]")]
-          end
-        end
-
-        @grid_rows
+        @grid_rows ||= schedule.days.flat_map { |day| day.grid.to_a }
       end
 
       # The talks a schedule can draw from: the top level entries of videos.yml,
@@ -68,29 +57,29 @@ module Static
         @talks = schedule.event&.talks&.top_level.to_a
       end
 
-      def error_for(day, row, location)
-        unclaimed_slots_left = unclaimed_slots_left(day, row)
+      def error_for(row)
+        unclaimed_slots_left = unclaimed_slots_left(row)
 
         case unclaimed_slots_left
         when (..-1)
           error(
-            location,
-            "#{row_name(day, row)} has #{-unclaimed_slots_left} too many items. Update the slot count, remove items from the schedule.yml, or reschedule talks in the videos.yml."
+            row,
+            "#{row_name(row)} has #{-unclaimed_slots_left} too many items. Update the slot count, remove items from the schedule.yml, or reschedule talks in the videos.yml."
           )
         when (1...)
           error(
-            location,
-            "#{row_name(day, row)} has #{unclaimed_slots_left} unfilled #{"slot".pluralize(unclaimed_slots_left)}. Fix by lowering the slot count, adding talks to the videos.yml, or removing items from the schedule.yml."
+            row,
+            "#{row_name(row)} has #{unclaimed_slots_left} unfilled #{"slot".pluralize(unclaimed_slots_left)}. Fix by lowering the slot count, adding talks to the videos.yml, or removing items from the schedule.yml."
           )
         end
       end
 
-      def unclaimed_slots_left(day, row)
+      def unclaimed_slots_left(row)
         slots_left = row["slots"]
         slots_left -= row["items"]&.length.to_i
-        scheduled_talks_count = @talks_by_time[[day["date"], row["start_time"], row["end_time"]]]&.count || 0
+        scheduled_talks_count = @talks_by_time[[row.day["date"], row["start_time"], row["end_time"]]]&.count || 0
         slots_left -= scheduled_talks_count
-        unscheduled_talks = untimed_talks(day)&.shift(slots_left) if slots_left.positive?
+        unscheduled_talks = untimed_talks(row.day)&.shift(slots_left) if slots_left.positive?
         slots_left -= unscheduled_talks&.count || 0
 
         slots_left
@@ -101,14 +90,16 @@ module Static
         @talks_by_time[[day["date"], nil, nil]]
       end
 
-      def row_name(day, row)
+      def row_name(row)
         time = "#{row["start_time"]}-#{row["end_time"]}"
-        day_label = day["name"] || day["date"]
+        day_label = row.day["name"] || row.day["date"]
 
         "slots (#{row["slots"]}) at #{time} on \"#{day_label}\""
       end
 
-      def error(location, message)
+      def error(row, message)
+        location = row.source_location
+
         Static::Validators::Error.new(
           message,
           file_path: @file_path,
