@@ -16,6 +16,9 @@ require "vcr"
 require_relative "helpers/event_tracking_helper"
 require_relative "helpers/static_speakers_sandbox"
 require_relative "helpers/static_data_sandbox"
+require_relative "helpers/github_annotations_reporter"
+
+Minitest.register_plugin(GitHubAnnotationsReporter)
 
 VCR.configure do |c|
   c.cassette_library_dir = "test/vcr_cassettes"
