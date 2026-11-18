@@ -81,10 +81,12 @@ module Yerba
               @nested_collections[name] ||= begin
                 klass = class_name.is_a?(String) ? class_name.constantize : class_name
 
-                if new_record? || parsed_selector.nil?
+                if new_record?
                   Collection.new(record_class: klass, records: [])
                 else
-                  Collection.new(record_class: klass, document: document, selector: parsed_selector.join(name.to_s), parent: self)
+                  selector = parsed_selector ? parsed_selector.join(name.to_s) : name.to_s
+
+                  Collection.new(record_class: klass, document: document, selector: selector, parent: self)
                 end
               end
             end

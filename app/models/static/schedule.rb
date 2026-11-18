@@ -9,5 +9,7 @@ module Static
 
     belongs_to :event
     has_one :series, through: :event
+
+    has_many :days, nested: true, class_name: "Static::Schedule::Day"
   end
 end
