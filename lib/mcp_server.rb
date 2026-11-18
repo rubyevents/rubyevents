@@ -72,7 +72,9 @@ class MCPServer
     # Load all the generators, create a tool class associated with each one and
     # then add them to the tools hash
     Rails::Generators.sorted_groups
-    generators = Generators::EventBase.descendants
+    # SeriesGenerator creates a series rather than belonging to an event, so it
+    # doesn't inherit from Generators::EventBase and isn't found via descendants.
+    generators = Generators::EventBase.descendants + [SeriesGenerator]
     tool_classes = ToolGeneration.generate_tools(generators)
     tool_classes.each.with_object(discovered_tools) do |klass, tools|
       tools[tool_name(klass.name)] = klass

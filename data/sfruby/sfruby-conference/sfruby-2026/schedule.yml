@@ -3,7 +3,20 @@ days:
   - name: "Day 1"
     date: "2026-11-10"
     grid:
-      - start_time: "09:15"
+      - start_time: "08:00"
+        end_time: "09:00"
+        slots: 1
+        items:
+          - "Doors open"
+
+      - start_time: "09:00"
+        end_time: "09:10"
+        slots: 1
+        items:
+          - title: "Welcome words"
+            description: "Amanda Kinney"
+
+      - start_time: "09:10"
         end_time: "09:45"
         slots: 1
 
@@ -88,9 +101,22 @@ days:
         end_time: "16:45"
         slots: 1
 
+      - start_time: "18:00"
+        end_time: "20:00"
+        slots: 1
+        items:
+          - title: "Manhunt: Martians vs Humans"
+            description: "Alamo Square Park, the stairs at Fulton and Steiner. Hide-and-seek meets tag, after dark. Humans try to reach base untagged. A tagged team turns martian and starts hunting. Glowsticks and rules at 6 pm, the game starts at 6:30 pm sharp. Teams of up to three, one person registers."
+
   - name: "Day 2"
     date: "2026-11-11"
     grid:
+      - start_time: "08:00"
+        end_time: "09:00"
+        slots: 1
+        items:
+          - "Doors open"
+
       - start_time: "09:00"
         end_time: "09:30"
         slots: 1
@@ -175,5 +201,29 @@ days:
       - start_time: "16:00"
         end_time: "16:30"
         slots: 1
+
+  - name: "Day 3"
+    date: "2026-11-12"
+    grid:
+      - start_time: "10:00"
+        end_time: "16:00"
+        slots: 1
+        items:
+          - title: "Rails Girls: Build your first app with a coding agent"
+            description: "Mux HQ, Financial District. Open for all, with a focus on women and nonbinary people, especially those in non-technical roles at Ruby companies. No coding experience needed. Small groups, each with a Ruby engineer as mentor."
+
+      - start_time: "10:30"
+        end_time: "14:30"
+        slots: 1
+        items:
+          - title: "No Rails, Just Trails: a hike and picnic on Angel Island"
+            description: "Ferry Building, Gate B. Ferry over at 10:55 am, an easy 2-mile walk to Camp Reynolds, then a picnic. Back by 3:05 pm, or stay for the longer hike and come straight to Wrapped. The ferry is $20 round trip, paid at the gate."
+
+      - start_time: "18:00"
+        end_time: "21:00"
+        slots: 1
+        items:
+          - title: "SF Ruby 2026 Wrapped"
+            description: "Mux HQ, Financial District. One more evening together before SF Ruby 2027."
 
 tracks: []

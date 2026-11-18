@@ -79,7 +79,7 @@ Start with the basic structure and add additional CFPs if necessary.
 Run the linter to automatically format and verify all required properties are present.
 
 ```bash
-bin/lint
+bin/rails validate:all
 ```
 
 ### 5. Run seeds to load data
@@ -110,7 +110,7 @@ bin/dev
 1. Fork the RubyEvents repository
 2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md)
 3. Create your cfp file in the appropriate directory
-4. Run `bin/lint`
+4. Run `bin/rails validate:all`
 5. Run `bin/rails db:seed` (or `bin/rails db:seed:all` if the event happened more than 6 months ago)
 6. Run `bin/dev` and review the event on your dev server
 7. Submit a pull request

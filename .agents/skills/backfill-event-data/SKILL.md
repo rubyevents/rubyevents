@@ -29,7 +29,7 @@ data/speakers.yml          # global, one entry per speaker
 
 `involvements`, `sponsors`, `venue`, `schedule`, `event`, `cfp`, `talk`, `newsletter`. They write via yerba and validate. Quirks that bite:
 - **sponsors**: args are pipe-separated `"Name|url|Tier|badge"`, `--event-series --event`. The template **ignores the url and hardcodes placeholder `website`/`logo_url`** — you must fill real values afterward (`yerba set`). Tiers get `level` 1,2,3… in first-seen order, so list all Gold, then all Silver, etc.
-- **venue**: `--name --address` (address is **geocoded**); flags `--hotels/--locations/ --rooms/--spaces/--accessibility/--nearby` add **one placeholder** section each. It **also overwrites `event.yml` coordinates** with the geocoded venue coords. Geocoding by *name* can resolve the wrong place (e.g. wrong campus) — verify and fix with the `geocode` MCP tool + `yerba set`.
+- **venue**: `--name --address` (address is **geocoded**); flags `--locations/ --rooms/--spaces/--accessibility/--nearby` add **one placeholder** section each. It **also overwrites `event.yml` coordinates** with the geocoded venue coords. Geocoding by *name* can resolve the wrong place (e.g. wrong campus) — verify and fix with the `geocode` MCP tool + `yerba set`.
 - **schedule**: auto-fills the talk *count* from videos.yml into a **uniform** grid you then rewrite to the real program (see Schedule below).
 - Generators leave a `# docs/ADDING_*.md` / `# TODO:` header. Convention is files start at `---`; delete the header lines (sed) once the file is real, then `yerba check`.
 
@@ -44,7 +44,7 @@ data/speakers.yml          # global, one entry per speaker
 
 ### yerba Ruby API (`bin/rails runner script.rb`; `Yerba` is autoloaded)
 
-Use this to build nested structures (hotels, schedule days, new speakers) that are painful via CLI.
+Use this to build nested structures (locations, schedule days, new speakers) that are painful via CLI.
 
 ```ruby
 document = Yerba.parse_file("data/…/venue.yml")
@@ -87,9 +87,9 @@ Gotchas:
 
 Generate the tier skeleton, then `yerba set` each sponsor's real `website` and `logo_url` (the generator only writes placeholders). Level order = tier order in the args.
 
-### venue.yml + hotels
+### venue.yml + locations
 
-Generate with `--name --address`; then correct the geocode if it missed, add `maps`, and build the `hotels` array with the Ruby API (one placeholder from `--hotels` isn't enough for several hotels). `geocode` each hotel. Quote postal codes. Re-check `event.yml` coordinates the generator may have changed.
+Generate with `--name --address`; then correct the geocode if it missed, add `maps`, and build the `locations` array with the Ruby API. `geocode` each location. Quote postal codes. Re-check `event.yml` coordinates the generator may have changed.
 
 ### schedule.yml  ← depends on videos.yml order
 

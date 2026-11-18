@@ -110,12 +110,19 @@ See [ADDING_SPEAKERS.md](ADDING_SPEAKERS.md) for the full speaker profile fields
   ```
 </details>
 
+<details><summary>What do I do if I don't have the speaker's name or only have their first name?</summary>
+  If you don't have a name or only have a first name, use `- TODO` for the speaker. This gives us [one place](https://www.rubyevents.org/profiles/todo) to review talks with missing speaker names.
+  Speakers are usually identified when someone recognizes their own talk or a friend's talk, or by watching the first and last five minutes of the video.
+  Keeping these talks in one place makes the second option easier.
+  Pair it with a comment like `- TODO # TODO: Missing Rachael's last name` and it will show up in the [TODOs on the event](https://www.rubyevents.org/events/wnb-rb-2024-03-26/todos). Event TODOs roll up on the series page — see the bottom of [wnb-rb](https://www.rubyevents.org/events/series/wnb-rb) for an example.
+</details>
+
 ## Submission Process
 
 1. Fork the RubyEvents repository
 2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md)
 3. Create or update the videos.yml file in the appropriate directory
-4. Run `bin/lint`
+4. Run `bin/rails validate:all`
 5. Run `bin/rails db:seed` (or `bin/rails db:seed:all` if the event happened more than 6 months ago)
 6. Run `bin/dev` and review the event on your dev server
 7. Submit a pull request

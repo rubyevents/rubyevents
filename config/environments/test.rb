@@ -40,6 +40,8 @@ Rails.application.configure do
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = {host: "example.com"}
 
+  Rails.application.routes.default_url_options.merge!(protocol: "http", host: "www.example.com")
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 

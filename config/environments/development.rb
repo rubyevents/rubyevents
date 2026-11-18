@@ -41,6 +41,8 @@ Rails.application.configure do
     request&.host&.include?("localhost") ? "http://localhost:#{port}" : "#{request&.protocol}#{request&.host_with_port}"
   }
 
+  Rails.application.routes.default_url_options.merge!(protocol: "http", host: "localhost", port: port)
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 

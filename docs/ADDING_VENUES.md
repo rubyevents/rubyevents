@@ -36,20 +36,20 @@ bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --na
 > For more accurate results, set your GEOLOCATE_API_KEY in [.env](/.env) to a google api key.
 > Otherwise nominatim and open street map will be used for geolocation.
 
-There are multiple optional sections in the venue information, including locations, hotels, rooms, spaces, accessbility, and nearby.
+There are multiple optional sections in the venue information, including locations, rooms, spaces, accessbility, and nearby.
 
 To include or exclude these sections, pass flags to the generator.
 
 This includes all sections:
 
 ```bash
-bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --name="Korjaamo Kino cinema" --address "Töölönkatu 51 A-B, 00250 Helsinki" --accessbility --hotels --nearby --locations --rooms --spaces
+bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --name="Korjaamo Kino cinema" --address "Töölönkatu 51 A-B, 00250 Helsinki" --accessbility --nearby --locations --rooms --spaces
 ```
 
 This includes only primary venue information:
 
 ```bash
-bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --name="Korjaamo Kino cinema" --address "Töölönkatu 51 A-B, 00250 Helsinki" --no-accessbility --no-hotels --no-nearby --no-locations --no-rooms --no-spaces
+bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --name="Korjaamo Kino cinema" --address "Töölönkatu 51 A-B, 00250 Helsinki" --no-accessbility --no-nearby --no-locations --no-rooms --no-spaces
 ```
 
 Check the usage instructions using `--help`.
@@ -147,30 +147,12 @@ locations:
       apple:
 ```
 
-#### Hotel information
-
-```yaml
-hotels:
-  - name:
-    kind:
-    description:
-    address:
-    url:
-    distance:
-    coordinates:
-      latitude:
-      longitude:
-    maps:
-      google:
-      apple:
-```
-
 ### 6. Format your yaml
 
 Run the linter to automatically format and verify all required properties are present.
 
 ```bash
-bin/lint
+bin/rails validate:all
 ```
 
 ### 5. Run seeds to load data
@@ -222,7 +204,7 @@ bin/dev
 1. Fork the RubyEvents repository
 2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md)
 3. Create your venue file in the appropriate directory
-4. Run `bin/lint`
+4. Run `bin/rails validate:all`
 5. Run `bin/rails db:seed` (or `bin/rails db:seed:all` if the event happened more than 6 months ago)
 6. Run `bin/dev` and review the event on your dev server
 7. Submit a pull request

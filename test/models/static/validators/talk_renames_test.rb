@@ -89,6 +89,12 @@ class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
     end
   end
 
+  test "does not flag an id listed under removed_talk_ids in event.yml of a nested series" do
+    with_temp_video([{"id" => "someone-else-testconf-2024", "title" => "Another Talk"}], removed_talk_ids: ["jane-doe-testconf-2024"], series_path: "testgroup/testconf") do |path|
+      assert_empty errors_for(path)
+    end
+  end
+
   test "still flags a disappeared id when a different id is listed under removed_talk_ids" do
     with_temp_video([{"id" => "someone-else-testconf-2024", "title" => "Another Talk"}], removed_talk_ids: ["somebody-else-testconf-2024"]) do |path|
       errors = errors_for(path)
@@ -204,9 +210,9 @@ class Static::Validators::TalkRenamesTest < ActiveSupport::TestCase
     Static::Validators::TalkRenames.new(file_path: path, baseline: baseline_file).errors
   end
 
-  def with_temp_video(videos, removed_talk_ids: nil)
+  def with_temp_video(videos, removed_talk_ids: nil, series_path: "testconf")
     with_static_data_dir do |dir|
-      videos_path = File.join(dir, "data", "testconf", "testconf-2024", "videos.yml")
+      videos_path = File.join(dir, "data", series_path, "testconf-2024", "videos.yml")
       FileUtils.mkdir_p(File.dirname(videos_path))
       File.write(videos_path, videos.to_yaml)
       write_event_file(File.dirname(videos_path), removed_talk_ids) if removed_talk_ids

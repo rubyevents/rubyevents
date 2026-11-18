@@ -110,11 +110,15 @@ class Event::Venue < Event::DataFile
   end
 
   def hotels
-    file["hotels"] || []
+    locations.select { |location| location["kind"]&.match?(/Hotel/) }
   end
 
   def locations
     file["locations"] || []
+  end
+
+  def pretty_venue_address
+    [name, display_address].compact_blank.join(", ")
   end
 
   def map_markers
@@ -147,6 +151,8 @@ class Event::Venue < Event::DataFile
     end
 
     locations.each do |location|
+      next if location["kind"]&.match?(/Hotel/)
+
       coords = location["coordinates"]
       next unless coords&.dig("latitude").present? && coords&.dig("longitude").present?
 

@@ -122,7 +122,7 @@ Like this!
 1. Fork the RubyEvents repository.
 2. Setup your dev environment following the steps in [CONTRIBUTING](/CONTRIBUTING.md).
 3. Create your event file in the appropriate directory.
-4. Run `bin/lint`.
+4. Run `bin/rails validate:all`.
 5. Run `bin/rails db:seed:event_series[<series-slug>]` to seed just one event series.
 6. Run `bin/dev` and review the event on your dev server.
 7. Review "todos" panel on the event page to see if any can be resolved.

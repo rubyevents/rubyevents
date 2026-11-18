@@ -20,8 +20,10 @@ RUN apt-get update -qq && \
     pkg-config \
     python-is-python3 \
     # sqlite3 \
-    vim-tiny \ # Used for git editing
-    chromium chromium-driver \
+    # Used for git editing
+    vim-tiny \
+    chromium \
+    chromium-driver \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy lockfiles and setup script

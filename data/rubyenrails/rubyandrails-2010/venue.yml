@@ -22,8 +22,9 @@ maps:
   google: "https://maps.google.com/?q=Pakhuis+de+Zwijger,52.3767781,4.9221545"
   apple: "https://maps.apple.com/?q=Pakhuis+de+Zwijger&ll=52.3767781,4.9221545"
   openstreetmap: "https://www.openstreetmap.org/?mlat=52.3767781&mlon=4.9221545"
-hotels:
+locations:
   - name: "Lloyd Hotel Amsterdam"
+    kind: "Hotel"
     address:
       street: "Oostelijke Handelskade 34"
       city: "Amsterdam"
@@ -42,6 +43,7 @@ hotels:
       apple: "https://maps.apple.com/?q=Lloyd%20Hotel%20Amsterdam&ll=52.3742473,4.9347806"
       openstreetmap: "https://www.openstreetmap.org/?mlat=52.3742473&mlon=4.9347806"
   - name: "Inntel Hotels Amsterdam Centre"
+    kind: "Hotel"
     address:
       street: "Nieuwezijds Kolk 19"
       city: "Amsterdam"
@@ -60,6 +62,7 @@ hotels:
       apple: "https://maps.apple.com/?q=Inntel%20Hotels%20Amsterdam%20Centre&ll=52.3761449,4.8944788"
       openstreetmap: "https://www.openstreetmap.org/?mlat=52.3761449&mlon=4.8944788"
   - name: "Eden Lancaster Hotel Amsterdam"
+    kind: "Hotel"
     address:
       street: "Plantage Middenlaan 48"
       city: "Amsterdam"

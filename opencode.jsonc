@@ -12,7 +12,9 @@
   "permission": {
     "bash": {
       "gh *": "ask",
+      "gh auth status*": "allow",
       "git *": "ask",
+      "git fetch*": "allow",
       "git add*": "allow",
       "git diff*": "allow",
       "git log*": "allow",

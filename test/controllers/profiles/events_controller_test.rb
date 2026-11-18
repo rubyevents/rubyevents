@@ -53,6 +53,20 @@ class Profiles::EventsControllerTest < ActionDispatch::IntegrationTest
     refute_includes response.body, "Checked in"
   end
 
+  test "reflects a recreated participation's role instead of a cached one" do
+    participation = EventParticipation.create!(user: @user, event: @event, role: "interested")
+
+    get profile_events_url(@user)
+    assert_select ".badge", text: "Interested"
+
+    participation.destroy!
+    EventParticipation.create!(user: @user, event: @event, role: "attendee")
+
+    get profile_events_url(@user)
+    assert_select ".badge", text: "Attendee"
+    assert_select ".badge", text: "Interested", count: 0
+  end
+
   test "shows empty state when user has no attendance" do
     get profile_events_url(@user)
     assert_response :success
