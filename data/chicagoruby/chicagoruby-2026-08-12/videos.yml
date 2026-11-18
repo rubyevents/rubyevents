@@ -3,20 +3,31 @@
   old_id: "kevin-murphy-chicagoruby-meetup-august-2026"
   title: "InstiLLMent of Successful Practices in an Agentic World"
   date: "2026-08-12"
-  video_provider: "scheduled"
-  video_id: "kevin-murphy-chicagoruby-2026-08-12"
+  start_cue: "17:46"
+  end_cue: "TODO"
+  published_at: "2026-08-20T15:31:16Z"
+  video_provider: "youtube"
+  video_id: "pAgvqq4wQmE"
   description: |-
     Congrats on joining Hours Unlimited. The Math and Numbers team is excited to have you join us on our journey to redefine the importance of numerals. This introductory session will provide tips and tricks for best interacting with powerfuLLMachine, the next-level platform we use to unlock productivity and effectiveness.
   speakers:
     - Kevin Murphy
 
-- id: "zeljko-dakic-chicagoruby-2026-08-12"
-  old_id: "zeljko-dakic-chicagoruby-meetup-august-2026"
-  title: "Life Beyond Claude Code"
+- id: "dan-phillips-chicagoruby-2026-08-12"
+  title: "No Better Sandbox: Ruby, Wasm, and the Future of AI Agent Runtimes"
   date: "2026-08-12"
-  video_provider: "scheduled"
-  video_id: "zeljko-dakic-chicagoruby-2026-08-12"
+  start_cue: "59:43"
+  end_cue: "1:34:28"
+  published_at: "2026-08-20T15:31:16Z"
+  video_provider: "youtube"
+  video_id: "pAgvqq4wQmE"
   description: |-
-    You're paying the Anthropic subscription tax because you don't know your options. Claude Code is really three things in one - the harness, the model, the plugins. Split them up and you get the same power for way less. Here's how, and why I switched to Pi Agent.
+    As AI agents gain the ability to execute code, access tools, and interact with external systems, the runtime they operate in becomes a primary security boundary. This talk argues that WebAssembly represents the strongest sandbox available today for agent execution and explores what that actually means in practice.
+
+    We'll examine the specific classes of exploits that simply are not possible in a Wasm-based agent runtime: arbitrary memory reads and writes, syscall abuse, privilege escalation, kernel escapes, shared-library attacks, ambient filesystem access, and uncontrolled process spawning. By constraining execution to explicit module sets, capability-scoped imports and exports, a virtual filesystem, and WebAssembly's strict Harvard architecture, entire categories of historical sandbox failures are structurally eliminated rather than mitigated.
+
+    Using Boxer (https://boxer.dev) as a concrete implementation, we'll show how these constraints translate into a practical, production-grade agent runtime, specifically one that is deterministic, inspectable, and hostile by default. We'll also highlight a key but often overlooked advantage: universality. Unlike agent sandboxes tied to specific clouds or server environments, a Wasm-based runtime can execute the same agent logic in browsers, servers, bare metal, and embedded systems without changing the trust model.
+
+    Finally, we'll discuss why this model is not just well-suited for MCP tooling, but represents a general-purpose foundation for the next generation of AI agent runtimes, where safety is enforced by construction, not policy.
   speakers:
-    - Zeljko Dakic
+    - Dan Phillips
