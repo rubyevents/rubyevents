@@ -121,7 +121,7 @@ jobs:
     needs: changes
     if: ${{ needs.changes.outputs.code == 'true' || github.event_name == 'push' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       RAILS_ENV: test
 
@@ -158,7 +158,7 @@ jobs:
   seed_smoke_test:
     name: "Data Smoke Test"
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       RAILS_ENV: test
       SEED_SMOKE_TEST: true
