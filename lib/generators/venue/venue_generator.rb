@@ -14,7 +14,6 @@ class VenueGenerator < Generators::EventBase
 
   # Add Section
   class_option :accessibility, type: :boolean, desc: "Include accessibility information section", default: false, group: "Fields"
-  class_option :hotels, type: :boolean, desc: "Include hotel information section", default: false, group: "Fields"
   class_option :locations, type: :boolean, desc: "Include additional locations section", default: false, group: "Fields"
   class_option :nearby, type: :boolean, desc: "Include nearby amenities section", default: false, group: "Fields"
   class_option :rooms, type: :boolean, desc: "Include rooms section", default: false, group: "Fields"

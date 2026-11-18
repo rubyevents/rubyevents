@@ -83,7 +83,7 @@ jump straight to it.
 - **schedule.yml** — every `start_time`/`end_time`, item titles and descriptions, day boundaries, **and anything present in the source but absent here**. Slots without items are filled by talks from videos.yml in order.
 - **videos.yml** — talk titles (verbatim), kinds, dates, start/end time, speaker lists, running order, descriptions/summaries (check session detail pages), and every talk on the site that's missing here.
 - **cfp.yml** — call for papers open date, close date, and link. **Often, the cfp link is removed once it closes.** If the open/close data cannot be confirmed, trust the file as the authoritative source. Do not raise missing open/close dates or broken cfp links as discrepancies. Only raise them if there is a conflict.
-- **venue.yml** — venue name, address, hotels, distances, ratings.
+- **venue.yml** — venue name, address, locations, distances, ratings.
 - **sponsors.yml** — tiers, membership, names, ordering, badges/grouping as presented.
 - **involvements.yml** — names and role labels against the organizers/team page (preserve site language).
 - **speakers.yml** (contextual) — only when referenced by discrepancies (e.g. socials on session pages). Don't rewrite speaker identities; surface conflicts for review.

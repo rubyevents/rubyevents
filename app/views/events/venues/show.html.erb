@@ -220,58 +220,6 @@
           </div>
         </section>
       <% end %>
-
-      <% if @venue.hotels.any? %>
-        <section class="rounded-lg border bg-white p-6 shadow-sm">
-          <h3 class="mb-4 text-xl font-bold text-gray-900">Recommended Hotels</h3>
-
-          <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <% @venue.hotels.each do |hotel| %>
-              <div class="rounded-lg border p-4">
-                <div class="flex items-start justify-between gap-2">
-                  <h4 class="font-semibold text-gray-900"><%= hotel["name"] %></h4>
-
-                  <% if hotel["kind"].present? %>
-                    <span class="badge badge-outline badge-sm shrink-0"><%= hotel["kind"] %></span>
-                  <% end %>
-                </div>
-
-                <% if hotel.dig("address", "display").present? %>
-                  <p class="mt-1 text-sm text-gray-500"><%= hotel.dig("address", "display") %></p>
-                <% end %>
-
-                <% if hotel["description"].present? %>
-                  <p class="mt-2 text-sm text-gray-600"><%= hotel["description"] %></p>
-                <% end %>
-
-                <% if hotel["distance"].present? %>
-                  <p class="mt-2 text-xs text-gray-500"><%= hotel["distance"] %></p>
-                <% end %>
-
-                <div class="mt-3 flex flex-wrap gap-2">
-                  <% if hotel.dig("maps", "google").present? %>
-                    <%= link_to hotel.dig("maps", "google"), target: "_blank", rel: "noopener", class: "btn btn-xs btn-outline" do %>
-                      <%= fa("map-location", size: :xs, style: :solid) %> Google
-                    <% end %>
-                  <% end %>
-
-                  <% if hotel.dig("maps", "apple").present? %>
-                    <%= link_to hotel.dig("maps", "apple"), target: "_blank", rel: "noopener", class: "btn btn-xs btn-outline" do %>
-                      <%= fa("map-location", size: :xs, style: :solid) %> Apple
-                    <% end %>
-                  <% end %>
-
-                  <% if hotel["url"].present? %>
-                    <%= link_to hotel["url"], target: "_blank", rel: "noopener", class: "btn btn-xs btn-outline" do %>
-                      <%= fa("square-arrow-up-right", size: :xs, style: :solid) %> Website
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </section>
-      <% end %>
     </div>
   </div>
 <% end %>

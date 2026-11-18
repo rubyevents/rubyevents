@@ -19,8 +19,9 @@ maps:
   apple: "https://maps.apple.com/?q=Technopark,+Technoparkstrasse+1,+Zürich"
   openstreetmap: "https://www.openstreetmap.org/?mlat=47.3893338&mlon=8.5157189&zoom=17"
 
-hotels:
+locations:
   - name: "Novotel Zürich City-West"
+    kind: "Hotel"
     address:
       street: "13 Turbinenplatz"
       city: "Zurich"
@@ -38,6 +39,7 @@ hotels:
       google: "https://www.google.com/maps/search/?api=1&query=47.3891116,8.5168028"
 
   - name: "Ibis Zürich City-West"
+    kind: "Hotel"
     address:
       street: "11 Schiffbaustrasse"
       city: "Zurich"
@@ -55,6 +57,7 @@ hotels:
       google: "https://www.google.com/maps/search/?api=1&query=47.3889746,8.5170924"
 
   - name: "Ibis Budget Zürich City-West"
+    kind: "Hotel"
     address:
       street: "2 Technoparkstrasse"
       city: "Zurich"
@@ -72,6 +75,7 @@ hotels:
       google: "https://www.google.com/maps/search/?api=1&query=47.3889874,8.5162188"
 
   - name: "25hours Hotel Zürich West"
+    kind: "Hotel"
     address:
       street: "102 Pfingstweidstrasse"
       city: "Zurich"
@@ -89,6 +93,7 @@ hotels:
       google: "https://www.google.com/maps/search/?api=1&query=47.3909662,8.5095164"
 
   - name: "Hotel Züri by Fassbind"
+    kind: "Hotel"
     address:
       street: "254 Heinrichstrasse"
       city: "Zurich"
