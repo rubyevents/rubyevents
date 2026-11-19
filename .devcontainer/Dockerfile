@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=4.0.9
+ARG RUBY_VERSION=4.0.10
 FROM docker.io/library/ruby:$RUBY_VERSION
 
 # Rails app lives here. Must match workspaceFolder in devcontainer.json and the
