@@ -3,6 +3,8 @@ require "generators/sponsors/sponsors_generator"
 require "#{Rails.root}/app/schemas/sponsors_schema"
 
 class SponsorsGeneratorTest < Rails::Generators::TestCase
+  include DataFileAssertions
+
   tests SponsorsGenerator
   setup do
     self.class.destination Dir.mktmpdir("sponsors_generator", Rails.root.join("tmp").to_s)
@@ -146,10 +148,7 @@ class SponsorsGeneratorTest < Rails::Generators::TestCase
   end
 
   def assert_valid_file(file_path, msg = nil, &block)
-    errors = Static::Validators::Validator.sponsor_validator_classes.flat_map do |validator|
-      validator.new(file_path:).errors
-    end
-    assert_empty errors, msg || errors.map { |e| e.to_h["message"] }.join(", ")
+    assert_valid_data_file(file_path, msg)
     assert_file file_path, msg, &block
   end
 end

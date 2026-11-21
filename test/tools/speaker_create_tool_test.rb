@@ -33,11 +33,11 @@ class SpeakerCreateToolTest < ActiveSupport::TestCase
     assert_equal "sandi-metz", speaker["slug"]
   end
 
-  test "creates a speaker with custom slug" do
-    @tool.execute(name: "Sandi Metz", github: "sandimetz", slug: "sandi")
+  test "refuses a custom slug that isn't the parameterized name" do
+    result = @tool.execute(name: "Sandi Metz", github: "sandimetz", slug: "sandi")
 
-    speaker = Static::Speaker.in_file(@tmp_file.path).find_by(name: "Sandi Metz")
-    assert_equal "sandi", speaker["slug"]
+    assert_equal "Validation failed: Slug must be the name parameterized, expected: sandi-metz", result[:error]
+    assert_nil Static::Speaker.in_file(@tmp_file.path).find_by(name: "Sandi Metz")
   end
 
   test "creates a speaker with optional social fields" do

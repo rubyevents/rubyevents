@@ -31,6 +31,28 @@ module Static
     has_file :featured, "app/assets/images/events/:series_id/:id/featured.webp"
     has_file :poster, "app/assets/images/events/:series_id/:id/poster.webp"
 
+    validates :start_date, :end_date, presence: {message: "is required"}
+    validate :iso8601_dates
+    validates :start_time, :end_time, absence: {message: ->(event, _data) { "is only for one-day events, this one runs from #{event["start_date"]} to #{event["end_date"]}. Put the hours of each day in its schedule.yml instead" }}, if: :multi_day?
+    validates :end_date, comparison: {greater_than_or_equal_to: :start_date, message: "must be on or after start_date"}, if: :dated?
+    validates :start_date, :end_date, "static/date_precision": true
+
+    validates :id, matches_path: true, on: :lint
+    validates :location, "static/city_name": true, on: :lint
+    validates :youtube_channels, "static/duplicate_youtube_channels": true, on: :lint
+    validates :removed_talk_ids, "static/removed_talk_ids": true, on: :lint
+    validates :recordings_published_date, absence: {message: ->(_event, data) { "(#{data[:value]}) must not be set for meetups" }}, if: :meetup?, on: :lint
+    validates :recordings_published_date, absence: {message: ->(event, data) { "(#{data[:value]}) must not be set for an event that has not started yet (start_date #{event["start_date"]} is in the future)" }}, if: :upcoming?, unless: :meetup?, on: :lint
+
+    validates_with Static::CityStateConsistencyValidator, on: :lint
+    validates_with Static::RecordingsPublishedDateValidator, on: :lint, unless: -> { meetup? || upcoming? }
+    validates_with Static::BrandColorsValidator, on: :lint
+    validates_with Static::SeriesSocialsValidator, on: :lint, duplicated: %w[facebook github instagram luma mastodon meetup twitter], missing: %w[facebook instagram mastodon twitter]
+    validates :location, "static/location_country": true, on: :lint
+    validate :meetup_id_matches_series_and_date, if: :meetup?, on: :lint
+    validates_with Static::MeetupTitleValidator, if: :meetup?, on: :lint
+    validates_with Static::EventRenamesValidator, on: :lint
+
     SEARCH_INDEX_ON_IMPORT_DEFAULT = ENV.fetch("SEARCH_INDEX_ON_IMPORT", "true") == "true"
 
     class << self
@@ -178,6 +200,18 @@ module Static
 
     def meetup?
       kind == "meetup"
+    end
+
+    def multi_day?
+      dated? && self["start_date"].to_s.strip != self["end_date"].to_s.strip
+    end
+
+    def upcoming?
+      start_date.is_a?(Date) && start_date.future?
+    end
+
+    def dated?
+      iso8601_date?(self["start_date"]) && iso8601_date?(self["end_date"])
     end
 
     def retreat?
@@ -473,12 +507,41 @@ module Static
         %(then move the event again.)
     end
 
-    def save!(videos_file: true)
+    def save!(videos_file: true, **options)
       self["id"] = self["title"]&.parameterize if new_record? && self["id"].blank?
 
-      super()
+      super(**options)
 
       talks.ensure_file! if @was_new_record && videos_file
+    end
+
+    private
+
+    def iso8601_dates
+      %w[start_date end_date].each do |field|
+        value = self[field].to_s.strip
+        next if value.empty? || iso8601_date?(value)
+
+        errors.add(field, %("#{value}" is not a date, use YYYY-MM-DD and set `date_precision` to "month" or "year" when the exact date is unknown))
+      end
+    end
+
+    # A meetup's folder, and so its id, is its series and date: "data/lrug/lrug-2026-01-12/event.yml",
+    # with a counter for another meetup of the series on the same day: "lrug-2026-01-12-2".
+    def meetup_id_matches_series_and_date
+      series_folder = File.basename(File.dirname(file_path.to_s, 2))
+      date = self["start_date"].to_s
+      base = "#{series_folder}-#{date}"
+      expected_ids = date.match?(/\A\d{4}-\d{2}-\d{2}\z/) ? [base, *(2..9).map { |counter| "#{base}-#{counter}" }] : []
+      return if expected_ids.include?(self["id"].to_s)
+
+      errors.add(:base, %(meetup id "#{self["id"]}" should be "#{expected_ids.first || "#{series_folder}-YYYY-MM-DD"}", its series and date, with "-2", "-3", ... for another meetup on the same day. The folder is named after the id.), at: "id")
+    end
+
+    def iso8601_date?(value)
+      value.to_s.strip.match?(/\A\d{4}-\d{2}-\d{2}\z/) && Date.iso8601(value.to_s.strip)
+    rescue Date::Error
+      false
     end
   end
 end

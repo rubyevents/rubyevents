@@ -46,9 +46,15 @@ class Static::FileAssociationsTest < ActiveSupport::TestCase
       talks = Static::Talk.in_file(File.join(root, "data/testconf/testconf-2024/videos.yml"))
       thumbnails = File.join(root, "app/assets/images/thumbnails/testconf-2024")
 
-      talks.find_by(id: "opening").tap { |talk| talk["video_id"] = "welcome" }
+      talks.find_by(id: "opening").tap do |talk|
+        talk["video_provider"] = "youtube"
+        talk["video_id"] = "welcome"
+      end
       talks.find_by(id: "panel").tap { |talk| talk["id"] = "panel-discussion" }
-      talks.find_by(id: "panel-one").tap { |talk| talk["video_id"] = "panel-first" }
+      talks.find_by(id: "panel-one").tap do |talk|
+        talk["video_provider"] = "youtube"
+        talk["video_id"] = "panel-first"
+      end
       talks.save!
 
       assert File.exist?(File.join(thumbnails, "welcome.webp"))
@@ -73,28 +79,36 @@ class Static::FileAssociationsTest < ActiveSupport::TestCase
   def with_event
     with_static_data_dir do |root|
       write(root, "data/testconf/series.yml", %(---\nid: "testconf"\nname: "TestConf"\n))
-      write(root, "data/testconf/testconf-2024/event.yml", %(---\nid: "testconf-2024"\ntitle: "TestConf 2024"\nkind: "conference"\n))
+      write(root, "data/testconf/testconf-2024/event.yml", %(---\nid: "testconf-2024"\ntitle: "TestConf 2024"\nkind: "conference"\nstart_date: "2024-05-01"\nend_date: "2024-05-02"\n))
       write(root, "data/testconf/testconf-2024/videos.yml", <<~YAML)
         ---
         - id: "opening"
           title: "Opening"
           video_provider: "not_recorded"
           video_id: "opening"
+          speakers:
+            - "Jane Doe"
 
         - id: "panel"
           title: "Panel"
+          kind: "panel"
           video_provider: "children"
           video_id: "panel"
           talks:
             - id: "panel-one"
               title: "Panel One"
+              kind: "panel"
               video_provider: "not_recorded"
               video_id: "panel-one"
+              speakers:
+                - "Jane Doe"
 
         - id: "closing"
           title: "Closing"
           video_provider: "not_recorded"
           video_id: "closing"
+          speakers:
+            - "Jane Doe"
       YAML
 
       images = "app/assets/images/events/testconf/testconf-2024"

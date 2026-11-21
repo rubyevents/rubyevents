@@ -2,6 +2,8 @@ require "test_helper"
 require "generators/venue/venue_generator"
 
 class VenueGeneratorTest < Rails::Generators::TestCase
+  include DataFileAssertions
+
   tests VenueGenerator
   setup do
     self.class.destination Dir.mktmpdir("talk_generator", Rails.root.join("tmp").to_s)
@@ -113,7 +115,7 @@ class VenueGeneratorTest < Rails::Generators::TestCase
         "--title", "Tropical on Rails",
         "--start-date", "2029-07-15",
         "--end-date", "2029-07-17",
-        "--location", "São Paulo",
+        "--location", "São Paulo, Brazil",
         "--latitude", "-23.54966",
         "--longitude", "-46.64679"
       ], behavior: :invoke, destination_root: destination_root
@@ -131,10 +133,7 @@ class VenueGeneratorTest < Rails::Generators::TestCase
   end
 
   def assert_valid_file(file_path, msg = nil, &block)
-    errors = Static::Validators::Validator.venue_validator_classes.flat_map do |validator|
-      validator.new(file_path:).errors
-    end
-    assert_empty errors, msg || errors.map { |e| e.to_h["message"] }.join(", ")
+    assert_valid_data_file(file_path, msg)
     assert_file file_path, msg, &block
   end
 end

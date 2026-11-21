@@ -22,7 +22,7 @@ module Screenshots
   end
 
   # Maps a changed data file to the page it renders on. Slugs are the folder
-  # names, which Static::Validators::IdMatchesFolder keeps in sync with the `id`
+  # names, which the `matches_path` validation on Static::Event keeps in sync with the `id`
   # in event.yml and series.yml, so no record lookup is needed.
   #
   # schedule.yml is the only file with more than one page: every day has its own

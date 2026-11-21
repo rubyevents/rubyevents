@@ -146,15 +146,15 @@ class Yerba::Record::CollectionEditingTest < ActiveSupport::TestCase
   test "set replaces a value or inserts it at a position, with a quote style" do
     opening = talks.find_by(id: "opening")
 
-    opening.set("title", "Welcome", quote_style: :single)
+    opening.set("title", "Ruby Basics", quote_style: :single)
     opening.set("published_at", "2025-01-02", after: "date", quote_style: :double)
     opening.save!
 
-    assert_includes File.read(@path), "  title: 'Welcome'\n  date: \"2025-01-01\"\n  published_at: \"2025-01-02\"\n"
+    assert_includes File.read(@path), "  title: 'Ruby Basics'\n  date: \"2025-01-01\"\n  published_at: \"2025-01-02\"\n"
   end
 
   test "create inserts at a position and returns the new record" do
-    record = talks.create({id: "keynote", title: "Keynote", date: "2025-01-01", video_provider: "youtube", video_id: "keynote", speakers: ["Eve"]}, after: "opening")
+    record = talks.create({id: "keynote", title: "Keynote", kind: "keynote", date: "2025-01-01", video_provider: "youtube", video_id: "keynote", speakers: ["Eve"]}, after: "opening")
 
     assert_equal "keynote", record.id
     assert_equal %w[opening keynote lightning-talks closing], ids_on_disk

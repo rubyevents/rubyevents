@@ -29,7 +29,6 @@ end
 
 Rails.autoloaders.each do |autoloader|
   autoloader.inflector.inflect(
-    "static_id" => "StaticID",
-    "website_url" => "WebsiteURL"
+    "static_id" => "StaticID"
   )
 end
