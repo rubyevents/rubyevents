@@ -4,6 +4,7 @@
 ## Screenshots
 <!-- Add screenshots or GIFs if applicable. -->
 <!-- Please include screenshots of any data changes. It helps when reviewing the PR. -->
+<!-- With your dev server running at localhost:3000, and playwright installed, run `bin/rails screenshots:changed`, to generate the screenshots automatically. -->
 
 ## Testing Steps
 <!-- List steps to test your changes. -->
