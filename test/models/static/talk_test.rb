@@ -22,7 +22,7 @@ class Static::TalkTest < ActiveSupport::TestCase
   end
 
   test "kind reads an explicit kind from a real videos.yml entry" do
-    video = Static::Talk.find_by_static_id("drew-bragg-brightonruby-2024")
+    video = Static::Talk.find_by_static_id("drew-bragg-gameshow-brightonruby-2024")
 
     assert_equal "gameshow", video.kind
   end

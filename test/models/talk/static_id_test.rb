@@ -3,75 +3,49 @@
 require "test_helper"
 
 class Talk::StaticIDTest < ActiveSupport::TestCase
-  test "speaker_id uses the parameterized speaker name" do
-    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Building Things", speakers: ["Jane Doe"])
-
-    assert_equal "jane-doe-testconf-2024", id.speaker_id
+  test "generate uses the speakers" do
+    assert_equal "jane-doe-testconf-2024", generate(speakers: ["Jane Doe"])
+    assert_equal "jane-doe-john-smith-testconf-2024", generate(speakers: ["Jane Doe", "John Smith"])
   end
 
-  test "speaker_id transliterates accented speaker names" do
-    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Hola", speakers: ["José García"])
-
-    assert_equal "jose-garcia-testconf-2024", id.speaker_id
+  test "generate adds the kind after the speakers" do
+    assert_equal "jane-doe-keynote-testconf-2024", generate(speakers: ["Jane Doe"], kind: "keynote")
   end
 
-  test "speaker_id joins two speakers" do
-    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Pairing", speakers: ["Jane Doe", "John Smith"])
-
-    assert_equal "jane-doe-john-smith-testconf-2024", id.speaker_id
+  test "generate excludes the default talk kind" do
+    assert_equal "jane-doe-testconf-2024", generate(speakers: ["Jane Doe"], kind: "talk")
+    assert_equal "jane-doe-john-smith-testconf-2024", generate(speakers: ["Jane Doe", "John Smith"], kind: "talk")
+    assert_equal "building-things-testconf-2024", generate(kind: "talk")
   end
 
-  test "speaker_id uses the kind for more than two speakers" do
-    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "The Future of Ruby", kind: "panel", speakers: ["A B", "C D", "E F"])
-
-    assert_equal "panel-testconf-2024", id.speaker_id
+  test "generate ignores placeholder speakers" do
+    assert_equal "building-things-testconf-2024", generate(speakers: ["TODO"])
   end
 
-  test "speaker_id falls back to the title for a plain talk without speakers" do
-    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Building Things")
-
-    assert_equal "building-things-testconf-2024", id.speaker_id
+  test "generate falls back to the kind and title for more than two speakers" do
+    assert_equal "keynote-building-things-testconf-2024", generate(speakers: ["A B", "C D", "E F"], kind: "keynote")
   end
 
-  test "speaker_id ignores TODO placeholder speakers" do
-    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Building Things", speakers: ["TODO"])
-
-    assert_equal "building-things-testconf-2024", id.speaker_id
+  test "generate falls back to the kind and title without speakers" do
+    assert_equal "keynote-building-things-testconf-2024", generate(kind: "keynote")
   end
 
-  test "kind_id adds the dasherized kind after the speakers" do
-    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Tiny Things", kind: "lightning_talk", speakers: ["Jane Doe"])
-
-    assert_equal "jane-doe-lightning-talk-testconf-2024", id.kind_id
+  test "generate uses the title alone when it contains the kind" do
+    assert_equal "opening-keynote-testconf-2024", generate(title: "Opening Keynote", kind: "keynote")
   end
 
-  test "kind_id infers the kind from the title when not given" do
-    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Keynote: Big Things", speakers: ["Jane Doe"])
-
-    assert_equal "jane-doe-keynote-testconf-2024", id.kind_id
+  test "generate uses the title alone without speakers or kind" do
+    assert_equal "building-things-testconf-2024", generate
   end
 
-  test "kind_id matches speaker_id for a plain talk" do
-    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Building Things", speakers: ["Jane Doe"])
-
-    assert_equal id.speaker_id, id.kind_id
+  test "generate parameterizes every part" do
+    assert_equal "jose-garcia-testconf-2024", generate(speakers: ["José García"])
+    assert_equal "hola-testconf-2024", generate(title: "¡Hola!")
   end
 
-  test "title_id uses the title in slug form" do
-    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Building Things", speakers: ["Jane Doe"])
+  private
 
-    assert_equal "building-things-testconf-2024", id.title_id
-  end
-
-  test "candidates lists the unique ids in priority order" do
-    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Keynote: Big Things", speakers: ["Jane Doe"])
-
-    assert_equal ["jane-doe-testconf-2024", "jane-doe-keynote-testconf-2024", "keynote-big-things-testconf-2024"], id.candidates
-  end
-
-  test "candidates collapses for a plain talk without speakers" do
-    id = Talk::StaticID.new(event_slug: "testconf-2024", title: "Building Things")
-
-    assert_equal ["building-things-testconf-2024"], id.candidates
+  def generate(**attributes)
+    Talk::StaticID.generate(event_slug: "testconf-2024", title: "Building Things", **attributes)
   end
 end
