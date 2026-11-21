@@ -68,13 +68,19 @@
     - Svyatoslav Kryukov
 
 - id: "carmine-paolino-sfruby-2026"
-  title: "RubyLLM 2.2: The AI Framework Python Should Envy"
+  title: "RubyLLM 2.2: Frameworks Matter"
   date: "2026-11-10"
   language: "English"
   video_provider: "scheduled"
   video_id: "carmine-paolino-sfruby-2026"
   description: |-
-    RubyLLM brought one beautiful AI API to Ruby and passed 14 million downloads. 2.2 puts agents to work: running code in sandboxes on your servers, learning workflows from skills, using MCP tools, and turning files into finished work. Durable jobs, human approvals, evaluations, tracing, and a ledger for every billable attempt. Live demos, plain Ruby, native Rails. Ruby is where you ship AI.
+    "You don't need frameworks anymore. Just let the agent write it."
+
+    I tested that.
+
+    The same coding agent built the same app with RubyLLM on Rails, LangChain, the Vercel AI SDK, and no framework at all. With RubyLLM it wrote a third of the code or less.
+
+    Frameworks matter if agents can use them. Here's how I made RubyLLM one they can, what's new in 2.2, and the product it comes from.
   speakers:
     - Carmine Paolino
 
@@ -140,7 +146,8 @@
   language: "English"
   video_provider: "scheduled"
   video_id: "jason-bosco-sfruby-2026"
-  description: ""
+  description: |-
+    A collection of stories and lessons from our journey building Typesense from a nights-and-weekends project to a $10M ARR company over a decade, without raising venture capital.
   speakers:
     - Jason Bosco
 
@@ -167,13 +174,13 @@
     - Alex Coomans
 
 - id: "phillip-campbell-sfruby-2026"
-  title: "Background processing at Gusto: The Parts Where People Look Puzzled"
+  title: "Background processing at Gusto"
   date: "2026-11-11"
   language: "English"
   video_provider: "scheduled"
   video_id: "phillip-campbell-sfruby-2026"
   description: |-
-    An update/extension/reformulation of my talk from Rocky Mountain Ruby: https://www.youtube.com/watch?v=aY_yKeZYzko
+    Last time I talked about background processing, I shared real stories of how many things can go wrong managing background jobs. This time: how we stabilized Sidekiq, the major mindset shift that got us there, and where we’re headed. We’ll go over a little bit of Karafka and the outbox pattern, and maybe you can bring back a few tidbits on maturing your own async stack.
   speakers:
     - Phillip Campbell
 
