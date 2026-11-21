@@ -2,7 +2,8 @@
 ---
 # Day 1 - Tuesday, July 14, 2026
 
-- id: "opening-remarks-day-1-rubyconf-2026"
+- id: "ran-craycraft-jason-swett-intro-opening-remarks-day-1-rubyconf-2026"
+  old_id: "opening-remarks-day-1-rubyconf-2026"
   title: "Opening Remarks (Day 1)"
   raw_title: "RubyConf 2026 - Day 1 Opening Remarks with Ran Craycraft and Jason Swett"
   kind: "intro"
@@ -18,7 +19,8 @@
     - Ran Craycraft
     - Jason Swett
 
-- id: "yukihiro-matz-matsumoto-rubyconf-2026"
+- id: "yukihiro-matz-matsumoto-keynote-rubyconf-2026"
+  old_id: "yukihiro-matz-matsumoto-rubyconf-2026"
   title: 'Keynote by Yukihiro "Matz" Matsumoto'
   raw_title: "RubyConf 2026 - Opening Keynote by Yukihiro \"Matz\" Matsumoto"
   kind: "keynote"
@@ -360,7 +362,8 @@
   speakers:
     - Ben Greenberg
 
-- id: "jessica-kerr-rubyconf-2026"
+- id: "jessica-kerr-keynote-rubyconf-2026"
+  old_id: "jessica-kerr-rubyconf-2026"
   title: "Keynote: Who are we Now?"
   raw_title: "RubyConf 2026 - Keynote: Who are we Now? by Jessica Kerr"
   kind: "keynote"
@@ -377,7 +380,8 @@
 
 # Day 2 - Wednesday, July 15, 2026 (Community Day)
 
-- id: "keynote-rubyconf-2026"
+- id: "keynote-panel-once-a-maintainer-rubyconf-2026"
+  old_id: "keynote-rubyconf-2026"
   title: "Panel: Once a Maintainer"
   raw_title: "RubyConf 2026 - Once a Maintainer with Allison Pike, Jeremy Evans, Richard Schneeman, Colby Swandle"
   kind: "keynote"
@@ -395,15 +399,15 @@
     - Jeremy Evans
     - Colby Swandale
 
-- id: "workshop-rubyconf-2026"
-  old_id: "marty-haught-colby-swandale-rubyconf-2026"
+- id: "workshop-from-scan-to-fix-a-maintainer-s-guide-to-gem-security-rubyconf-2026"
+  old_id: "workshop-rubyconf-2026"
   title: "From Scan to Fix: A Maintainer's Guide to Gem Security"
   kind: "workshop"
   date: "2026-07-15"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "not_recorded"
-  video_id: "workshop-rubyconf-2026"
+  video_id: "workshop-from-scan-to-fix-a-maintainer-s-guide-to-gem-security-rubyconf-2026"
   description: |-
     The gems you maintain could be foundational infrastructure for the Ruby community and that makes their security everyone's concern. But most maintainers aren't security engineers, and the path from "I think my gem might have a vulnerability" to "I've fixed it and shipped a release" can feel daunting. This hands-on workshop, led by the RubyGems team will incorporate lessons learned from Project Glasswing, Ruby Central's Alpha-Omega-funded security initiative for the Ruby ecosystem, and it will give maintainers the tools and confidence to take ownership of their gem's security posture. We'll walk through the full lifecycle: what good security looks like for a gem, how to run a scan against your own project, how to read and interpret the resulting report, and how to triage and address what you find. No prior security experience is assumed. By the end of the session, you'll have run a real scan, reviewed real findings, and left with practical strategies for fixing vulnerabilities and hardening your gem against future ones. What we'll cover: * An overview of Project Glasswing and how the gem scanning program works * What a strong security posture looks like for a Ruby gem * Running a scan and understanding the prompt-driven process * Reading and interpreting a scan report * Walking through an example scan together * Strategies for addressing vulnerabilities — from quick fixes to longer-term hardening Who should attend: Maintainers of Ruby gems of any size, from weekend projects to widely depended-on libraries. If you ship a gem, this workshop is for you.
   speakers:
@@ -412,33 +416,36 @@
     - Andrew Nesbitt
     - Patrick Linnane
 
-- id: "amir-rajan-rubyconf-2026"
+- id: "amir-rajan-workshop-rubyconf-2026"
+  old_id: "amir-rajan-rubyconf-2026"
   title: "Workshop: DragonRuby Game Toolkit - Soup to Nuts"
   kind: "workshop"
   date: "2026-07-15"
   language: "English"
   track: "Breakout 1 - Red Rock A&D"
   video_provider: "not_recorded"
-  video_id: "amir-rajan-rubyconf-2026"
+  video_id: "amir-rajan-workshop-rubyconf-2026"
   description: |-
     Build a video game using DragonRuby Game Toolkit! Here's what we'll end up covering: - Hello world. - Links/resources overview (sample apps and book). - Getting a sprite to move on the screen. - Setting up keyboard and mouse input. - Collision. - Animations. - Scene management. - Minimal implementation of Flappy Bird- I mean Flappy Dragon.
   speakers:
     - Amir Rajan
 
-- id: "joe-masilotti-rubyconf-2026"
+- id: "joe-masilotti-workshop-rubyconf-2026"
+  old_id: "joe-masilotti-rubyconf-2026"
   title: "Workshop: Build an iPhone app with Ruby and YAML"
   kind: "workshop"
   date: "2026-07-15"
   language: "English"
   track: "Breakout 2 - Red Rock G&H"
   video_provider: "not_recorded"
-  video_id: "joe-masilotti-rubyconf-2026"
+  video_id: "joe-masilotti-workshop-rubyconf-2026"
   description: |-
     Bring your Rails codebase. Leave with an iPhone app. In this hands-on workshop, you'll take an existing Ruby on Rails application and see it running as a native iOS app on your own iPhone. No iOS experience required. You won't need Xcode, an Apple Developer account, or even a Mac. We'll use the Ruby Native preview app to wrap your server-rendered Rails views in a native iOS shell. Your existing views, authentication, and business logic all carry over. You configure a few settings and point it at your app. Here's what we'll cover: - Configuring your Rails app for mobile rendering - Connecting to the Ruby Native preview app - Handling navigation, tabs, and native chrome - Tweaking your views for a great mobile experience - Understanding the path from preview to the App Store You'll hit real problems along the way, the same ones I've debugged across the 25+ Rails-powered mobile apps I've shipped, and we'll solve them together. By the end, you'll have your app running on your iPhone and a clear picture of what it takes to go from Rails app to the App Store. Prerequisites: an iPhone and your Rails codebase running locally on your laptop.
   speakers:
     - Joe Masilotti
 
-- id: "panel-rubyconf-2026"
+- id: "panel-future-of-ruby-rubyconf-2026"
+  old_id: "panel-rubyconf-2026"
   title: "Panel: Future of Ruby"
   raw_title: "RubyConf 2026 - Future of Ruby Panel by Rich Kilmer"
   kind: "panel"
@@ -459,46 +466,50 @@
     - Chad Fowler
     - Chad Pytel
 
-- id: "carolyn-cole-rubyconf-2026"
+- id: "carolyn-cole-workshop-rubyconf-2026"
+  old_id: "carolyn-cole-rubyconf-2026"
   title: "Workshop: Converting from Rails to Hanami"
   kind: "workshop"
   date: "2026-07-15"
   language: "English"
   track: "Main Stage - Red Rock"
   video_provider: "not_recorded"
-  video_id: "carolyn-cole-rubyconf-2026"
+  video_id: "carolyn-cole-workshop-rubyconf-2026"
   description: |-
     Hanami (hanamirb.org) is a relatively new Ruby framework that is focused on inclusivity and developer happiness. In addition to the inclusive community, Hanami's focuses on functional Ruby, which has the promise of less bugs too! It would be nice to think that we all have tons of greenfield projects where we could utilize Hanami. In reality most of us do more maintenance of existing applications than creating new applications. That is why I have been working on converting some of my existing Rails applications over to Hanami. In this workshop we will take the demo Rails Bookshop application and convert it to a Hanami application. While we do the conversion we will discuss the different component parts of Rails (Model, View, Controller) and how they map to the component parts of Hanami (Relations, Repositories, Views, Templates, Actions). I hope that you will leave the workshop feeling empowered to utilize Hanami in place of Rails!
   speakers:
     - Carolyn Cole
 
-- id: "miguel-marcondes-filho-rubyconf-2026"
+- id: "miguel-marcondes-filho-workshop-rubyconf-2026"
+  old_id: "miguel-marcondes-filho-rubyconf-2026"
   title: "Workshop: Evolving Monsters: Build an AI Game Engine with Ruby and Genetic Algorithms"
   kind: "workshop"
   date: "2026-07-15"
   language: "English"
   track: "Breakout 1 - Red Rock A&D"
   video_provider: "not_recorded"
-  video_id: "miguel-marcondes-filho-rubyconf-2026"
+  video_id: "miguel-marcondes-filho-workshop-rubyconf-2026"
   description: |-
     When was the last time you wrote Ruby that wasn't a web app? In this workshop, you'll build a game where monsters race, fight, and evolve — using genetic algorithms for natural selection and LLMs to generate their stories. All in pure Ruby, no frameworks. You'll leave with a working project and practical patterns for both evolutionary algorithms and LLM integration.
   speakers:
     - Miguel Marcondes Filho
 
-- id: "noel-rappin-rubyconf-2026"
+- id: "noel-rappin-workshop-rubyconf-2026"
+  old_id: "noel-rappin-rubyconf-2026"
   title: "Workshop: The Dynamic Ruby Toolkit"
   kind: "workshop"
   date: "2026-07-15"
   language: "English"
   track: "Breakout 2 - Red Rock G&H"
   video_provider: "not_recorded"
-  video_id: "noel-rappin-rubyconf-2026"
+  video_id: "noel-rappin-workshop-rubyconf-2026"
   description: |-
     I've taught Ruby to a lot of people, and often people seeing Ruby's dynamic types ask how a Ruby developer avoids type errors and gets things done. This session is my answer to the question. Ruby rewards thinking about types with a dynamic mindset instead of a static one. In this workshop, we'll show how use Ruby's dynamism to your advantage. From runtime type checking to coercing data. From nil-avoidance to full object-oriented design, you'll come away with techniques to take full advantage of Ruby's power.
   speakers:
     - Noel Rappin
 
-- id: "demo-rubyconf-2026"
+- id: "demo-ruby-runway-finals-rubyconf-2026"
+  old_id: "demo-rubyconf-2026"
   title: "Ruby Runway Finals"
   raw_title: "RubyConf 2026 - Ruby Runway Finals"
   kind: "demo"
@@ -523,7 +534,8 @@
 
 # TODO: Add Lightning Talk timestamps
 
-- id: "lightning-talk-rubyconf-2026"
+- id: "lightning-talks-rubyconf-2026"
+  old_id: "lightning-talk-rubyconf-2026"
   title: "Lightning Talks"
   raw_title: "RubyConf 2026 -  Lightning Talks"
   kind: "lightning_talk"
@@ -535,13 +547,14 @@
   video_id: "XGA0kCOuDLE"
   description: ""
   talks:
-    - id: "keshia-coriolan-rubyconf-2026"
+    - id: "keshia-coriolan-lightning-talk-rubyconf-2026"
+      old_id: "keshia-coriolan-rubyconf-2026"
       title: "Lightning Talk: From Ruby Objects to Salsa Moves 💃🏽"
       kind: "lightning_talk"
       date: "2026-07-15"
       language: "English"
       video_provider: "parent"
-      video_id: "keshia-coriolan-rubyconf-2026"
+      video_id: "keshia-coriolan-lightning-talk-rubyconf-2026"
       description: |-
         As a salsa dancer, I often spend more time deciding what to practice than actually practicing. Which moves should I work on? What combinations make sense together? And what song should I use?
 
@@ -551,25 +564,27 @@
       speakers:
         - Keshia Coriolan
 
-    - id: "kj-loving-rubyconf-2026"
+    - id: "kj-loving-lightning-talk-rubyconf-2026"
+      old_id: "kj-loving-rubyconf-2026"
       title: "Lightning Talk: Love Scales"
       kind: "lightning_talk"
       date: "2026-07-15"
       language: "English"
       video_provider: "parent"
-      video_id: "kj-loving-rubyconf-2026"
+      video_id: "kj-loving-lightning-talk-rubyconf-2026"
       description: |-
         A love letter to everyone who made space for someone who didn't see themselves here. On being loved into a room you never thought was yours and planting seeds you may never see bloom. Love scales.
       speakers:
         - KJ Loving
 
-    - id: "mohammad-arjamand-ali-rubyconf-2026"
+    - id: "mohammad-arjamand-ali-lightning-talk-rubyconf-2026"
+      old_id: "mohammad-arjamand-ali-rubyconf-2026"
       title: "Lightning Talk: Mohammad Arjamand Ali"
       kind: "lightning_talk"
       date: "2026-07-15"
       language: "English"
       video_provider: "parent"
-      video_id: "mohammad-arjamand-ali-rubyconf-2026"
+      video_id: "mohammad-arjamand-ali-lightning-talk-rubyconf-2026"
       description: ""
       speakers:
         - Mohammad Arjamand Ali
@@ -588,13 +603,14 @@
       speakers:
         - Alan Ridlehoover
 
-    - id: "adam-mccrea-rubyconf-2026"
+    - id: "adam-mccrea-lightning-talk-rubyconf-2026"
+      old_id: "adam-mccrea-rubyconf-2026"
       title: "Lightning Talk: 5 Steps to Resilient Job Queues"
       kind: "lightning_talk"
       date: "2026-07-15"
       language: "English"
       video_provider: "parent"
-      video_id: "adam-mccrea-rubyconf-2026"
+      video_id: "adam-mccrea-lightning-talk-rubyconf-2026"
       description: |-
         Five quick tips to avoid queue backlogs and struggling worker processes. Dense, practical, and lightning fast! We'll cover how to structure your queues, alerting, and scaling.
       speakers:
@@ -640,25 +656,27 @@
       speakers:
         - Cameron Dutro
 
-    - id: "irina-nazarova-rubyconf-2026"
+    - id: "irina-nazarova-lightning-talk-rubyconf-2026"
+      old_id: "irina-nazarova-rubyconf-2026"
       title: "Lightning Talk: San Francisco Ruby Startup Conference 2026"
       kind: "lightning_talk"
       date: "2026-07-15"
       language: "English"
       video_provider: "parent"
-      video_id: "irina-nazarova-rubyconf-2026"
+      video_id: "irina-nazarova-lightning-talk-rubyconf-2026"
       description: |-
         Announcing the second edition of the SF Ruby Conference on Nov 10-12, with the President of Y Combinator, Garry Tan, delivering a keynote. Announcing planned ticket sales and how to get involved.
       speakers:
         - Irina Nazarova
 
-    - id: "shuveksha-tuladhar-rubyconf-2026"
+    - id: "shuveksha-tuladhar-lightning-talk-rubyconf-2026"
+      old_id: "shuveksha-tuladhar-rubyconf-2026"
       title: "Lightning Talk: Ruby as the Glue for AI: Planning Fun Activities for My Kids"
       kind: "lightning_talk"
       date: "2026-07-15"
       language: "English"
       video_provider: "parent"
-      video_id: "shuveksha-tuladhar-rubyconf-2026"
+      video_id: "shuveksha-tuladhar-lightning-talk-rubyconf-2026"
       description: |-
         As a mom, I often spend more time searching for activities than actually doing them with my kids. While there are countless activity ideas available online, finding ones that match my children's ages, interests, available supplies, and our limited free time can be overwhelming.
 
@@ -666,25 +684,27 @@
       speakers:
         - Shuveksha Tuladhar
 
-    - id: "stefan-taitano-rubyconf-2026"
+    - id: "stefan-taitano-lightning-talk-rubyconf-2026"
+      old_id: "stefan-taitano-rubyconf-2026"
       title: "Lightning Talk: Volunteering at RubyConf Before Becoming a Ruby Developer"
       kind: "lightning_talk"
       date: "2026-07-15"
       language: "English"
       video_provider: "parent"
-      video_id: "stefan-taitano-rubyconf-2026"
+      video_id: "stefan-taitano-lightning-talk-rubyconf-2026"
       description: |-
         What is it like to attend RubyConf while still learning Ruby? Share the experience of the conference through the eyes of a newcomer, covering initial expectations, memorable interactions, and lessons learned from volunteering alongside experienced Rubyists (so far).
       speakers:
         - Stefan Taitano
 
-    - id: "rachael-wright-munn-rubyconf-2026"
+    - id: "rachael-wright-munn-lightning-talk-rubyconf-2026"
+      old_id: "rachael-wright-munn-rubyconf-2026"
       title: "Lightning Talk: RubyEvents.org - on a mission to index all Ruby events!"
       kind: "lightning_talk"
       date: "2026-07-15"
       language: "English"
       video_provider: "parent"
-      video_id: "rachael-wright-munn-rubyconf-2026"
+      video_id: "rachael-wright-munn-lightning-talk-rubyconf-2026"
       description: |-
         RubyEvents.org brings together RubyVideo.dev and RubyConferences.org to support Ruby community events. This talk will be a brief overview of our mission, our architecture, and how you can help!
       speakers:
@@ -692,7 +712,8 @@
 
 # Day 3 - Thursday, July 16, 2026
 
-- id: "opening-remarks-day-3-rubyconf-2026"
+- id: "ran-craycraft-jason-swett-intro-opening-remarks-day-3-rubyconf-2026"
+  old_id: "opening-remarks-day-3-rubyconf-2026"
   title: "Opening Remarks (Day 3)"
   raw_title: "RubyConf 2026 - Day 3 Opening Remarks with Ran Craycraft, Jason Swett"
   kind: "intro"
@@ -708,7 +729,8 @@
     - Ran Craycraft
     - Jason Swett
 
-- id: "obie-fernandez-rubyconf-2026"
+- id: "obie-fernandez-keynote-rubyconf-2026"
+  old_id: "obie-fernandez-rubyconf-2026"
   title: "Keynote by Obie Fernandez"
   raw_title: "RubyConf 2026 - Opening Keynote by Obie Fernandez"
   kind: "keynote"
@@ -850,7 +872,8 @@
   speakers:
     - Hilary Stohs-Krause
 
-- id: "yukihiro-matz-matsumoto-aaron-patterson-rubyconf-2026"
+- id: "yukihiro-matz-matsumoto-aaron-patterson-q-and-a-rubyconf-2026"
+  old_id: "yukihiro-matz-matsumoto-aaron-patterson-rubyconf-2026"
   title: "Q&A with Matz"
   raw_title: "RubyConf 2026 - Q&A with Matz - Hosted by Aaron Patterson"
   kind: "q_and_a"
@@ -947,7 +970,8 @@
   speakers:
     - Phil Crissman
 
-- id: "dave-thomas-rubyconf-2026"
+- id: "dave-thomas-keynote-rubyconf-2026"
+  old_id: "dave-thomas-rubyconf-2026"
   title: "Keynote by Dave Thomas"
   raw_title: "RubyConf 2026 - Closing Keynote by Dave Thomas"
   kind: "keynote"
@@ -961,7 +985,8 @@
   speakers:
     - Dave Thomas
 
-- id: "closing-remarks-rubyconf-2026"
+- id: "ran-craycraft-jason-swett-intro-closing-remarks-rubyconf-2026"
+  old_id: "closing-remarks-rubyconf-2026"
   title: "Closing Remarks"
   raw_title: "RubyConf 2026 - Closing Remarks with Ran Craycraft, Jason Swett"
   kind: "intro"
