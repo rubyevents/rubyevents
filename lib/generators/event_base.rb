@@ -43,6 +43,28 @@ module Generators
 
         @static_event = Static::Event.find_by_slug(options[:event].to_s)
       end
+
+      # Path to the global speakers.yml data file.
+      def speakers_file_path
+        @speakers_file_path ||= File.join(destination_root, "data", "speakers.yml")
+      end
+
+      # Creates or updates speaker records in data/speakers.yml for the given names.
+      def sync_speakers(names)
+        return if names.empty?
+
+        speakers = Static::Speaker.in_file(speakers_file_path)
+        names.each { |name| speakers.upsert(name: name) }
+
+        return unless speakers.changed?
+
+        speakers.save!
+        say("Added or updated #{names.to_sentence} in #{speakers_file_path}.", :green)
+      rescue Static::Speaker::InvalidSpeakerError,
+        Static::Speaker::DuplicateSpeakerError,
+        Yerba::StaleFileError => e
+        say_error("Could not sync speakers to #{speakers_file_path}: #{e.message}", :red)
+      end
     end
 
     private

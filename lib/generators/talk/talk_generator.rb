@@ -102,10 +102,6 @@ class TalkGenerator < Generators::EventBase
     @videos_file_path ||= File.join(event_directory, "videos.yml")
   end
 
-  def speakers_file_path
-    @speakers_file_path ||= File.join(destination_root, "data", "speakers.yml")
-  end
-
   def ensure_file_exists
     template "videos.yml.tt", videos_file_path unless File.exist?(videos_file_path)
   end
@@ -124,21 +120,8 @@ class TalkGenerator < Generators::EventBase
     end
   end
 
-  def maybe_add_speaker_to_file
-    names = @talk.speakers
-    return if names.empty?
-
-    speakers = Static::Speaker.in_file(speakers_file_path)
-    names.each { |name| speakers.upsert(name: name) }
-
-    return unless speakers.changed?
-
-    speakers.save!
-    say("Added or updated #{names.to_sentence} in #{speakers_file_path}.", :green)
-  rescue Static::Speaker::InvalidSpeakerError,
-    Static::Speaker::DuplicateSpeakerError,
-    Yerba::StaleFileError => e
-    say_error("Could not sync speakers to #{speakers_file_path}: #{e.message}", :red)
+  def maybe_add_speakers_to_file
+    sync_speakers(@talk.speakers)
   end
 
   private
