@@ -1,0 +1,28 @@
+---
+- id: "denis-defreyne-lrug-2026-12-14"
+  title: "The Goal Pattern"
+  date: "2026-12-14"
+  video_provider: "scheduled"
+  video_id: "denis-defreyne-lrug-2026-12-14"
+  description: |-
+    Effectful code is hard to manage. It often leads to monolithic code that is hard to think about, let alone test, with unhandled edge cases.
+
+    This talk introduces a pattern that makes effectful code easier to handle. It restores modularity and thereby makes the code easier to reason about, and it makes the code testable and resilient.
+
+    In this talk, I will walk through the components of this concept, demonstrate its use in a real-world setting, and dive more deeply into its applications, pros, and cons.
+  speakers:
+    - Denis Defreyne
+
+- id: "james-smith-lrug-2026-12-14"
+  title: "Mosscap - the impossible Rails fork"
+  date: "2026-12-14"
+  video_provider: "scheduled"
+  video_id: "james-smith-lrug-2026-12-14"
+  description: |-
+    Content warning: this talk will inevitably have to discuss DHH and his politics, as it's the driving force behind the fork, though we'll keep it brief. It also deals with the problem of far right politics in open source, and it's an active call for resistance.
+
+    Rails is an amazing framework that many of us have used for years to build rich, complex applications some of which have changed the world. But many of us don't feel comfortable working with it any more; with increasingly unhinged leadership and a brand refocusing on the needs of AI, we felt that something needed to change. While alternative frameworks exist, lots of projects have huge sunk costs on the framework and can't easily move; so we decided to do what we'd been told was impossible, and fork Rails. Enter Mosscap.
+
+    This talk will explore how on earth you fork a huge framework depended on by hundreds of gems and applications, how to change over your own application, how we're building a community of contributors, and what the future of Mosscap looks like.
+  speakers:
+    - James Smith
