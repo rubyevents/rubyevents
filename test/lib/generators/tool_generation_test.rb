@@ -101,7 +101,7 @@ class ToolGenerationTest < ActiveSupport::TestCase
       class_option :duration, type: :numeric, desc: "Duration of the thing", group: "Fields"
       class_option :alternate_format, type: :string, desc: "Alternate format of the thing", group: "Options"
 
-      def say_success
+      def emit_success
         say("Talk created successfully!", :green)
       end
 
