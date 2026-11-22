@@ -12,6 +12,11 @@ class ToolGenerationTest < ActiveSupport::TestCase
     if Object.const_defined?(GENERATED_TOOL_CONST)
       Object.send(:remove_const, GENERATED_TOOL_CONST)
     end
+
+    # Remove the generator so it doesn't leak into other tests
+    @generated_generators&.each do |gen|
+      Rails::Generators.subclasses.delete(gen)
+    end
   end
 
   test "returns a RubyLLM::Tool subclass for each given generator" do
@@ -76,6 +81,14 @@ class ToolGenerationTest < ActiveSupport::TestCase
     assert_equal tool, Object.const_get(GENERATED_TOOL_CONST)
   end
 
+  test "captures output from the generator's say calls so the MCP client can read it" do
+    tool = ToolGeneration.generate_tools([build_generator]).first
+
+    output = tool.new.execute(event: "rbqconf-2026", title: "The Thing")
+
+    assert_includes output, "Talk created successfully!"
+  end
+
   private
 
   # Builds an anonymous Generators::EventBase subclass with one string, one array,
@@ -87,10 +100,22 @@ class ToolGenerationTest < ActiveSupport::TestCase
       class_option :kind, type: :string, enum: %w[foo bar], desc: "Kind of the thing", group: "Fields"
       class_option :duration, type: :numeric, desc: "Duration of the thing", group: "Fields"
       class_option :alternate_format, type: :string, desc: "Alternate format of the thing", group: "Options"
+
+      def emit_success
+        say("Talk created successfully!", :green)
+      end
+
+      def emit_error
+        say_error("Oh no! Error!", :red)
+      end
     end
 
     generator.define_singleton_method(:name) { "#{GENERATOR_NAME}Generator" }
+    generator.instance_variable_set(:@namespace, GENERATOR_NAME.downcase)
+    @generated_generators ||= []
+    @generated_generators << generator
     generator.const_set(:TOOL_DESC, tool_desc) if tool_desc
+    Rails::Generators.subclasses << generator
 
     generator
   end

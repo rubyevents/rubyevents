@@ -49,11 +49,23 @@ class ToolGeneration
           cli_options = []
           #{argument_handling_code}
 
-          Rails::Generators.invoke(
-            "#{generator_type}",
-            cli_options.flatten,
-            behavior: :invoke
-          )
+          output = StringIO.new
+          original_stdout = $stdout
+          original_stderr = $stderr
+          $stdout = output
+          $stderr = output
+          begin
+            Rails::Generators.invoke(
+              "#{generator_type}",
+              cli_options.flatten,
+              behavior: :invoke
+            )
+          ensure
+            $stdout = original_stdout
+            $stderr = original_stderr
+          end
+
+          output.string
         end
       RUBY
 
