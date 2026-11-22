@@ -6,8 +6,7 @@ require "rails/generators"
 #
 # Thin wrapper around Static::Speaker#upsert/save!. Supports every social field
 # defined in SpeakerSchema (github, twitter, website, mastodon, bluesky,
-# linkedin, speakerdeck) plus aliases. speakers.yml is global, so an event is
-# not required.
+# linkedin, speakerdeck) plus aliases. speakers.yml is global.
 class SpeakerGenerator < Rails::Generators::Base
   TOOL_DESC = "Add or update a speaker in data/speakers.yml."
 

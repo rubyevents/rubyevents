@@ -75,8 +75,8 @@ class SpeakerGeneratorTest < Rails::Generators::TestCase
     assert_equal 1, janes.size, "speaker should not be duplicated"
 
     jane = janes.first
-    assert_equal "janedoe", jane["twitter"], "existing twitter should be preserved"
-    assert_equal "janedoe.bsky.social", jane["bluesky"], "new bluesky should be added"
+    assert_equal "janedoe", jane["twitter"]
+    assert_equal "janedoe.bsky.social", jane["bluesky"]
 
     assert_valid_speakers_file
   end
