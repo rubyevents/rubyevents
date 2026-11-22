@@ -1,0 +1,26 @@
+Description:
+   Add or update a speaker entry in the global data/speakers.yml file.
+   If the speaker does not exist, it is created. If it already exists, only the
+   provided fields are updated and everything else is left unchanged.
+   Supports every social field defined in SpeakerSchema.
+
+Example: Add a new speaker with several socials.
+   bin/rails g speaker --name "Jane Doe" --github "janedoe" \
+     --twitter "janedoe" --website "https://janedoe.example.com" \
+     --bluesky "janedoe.bsky.social" --linkedin "janedoe"
+
+Example: Update an existing speaker's socials only.
+   bin/rails g speaker --name "Jane Doe" --mastodon "https://ruby.social/@janedoe"
+
+Example: Add a speaker whose name cannot be parameterized (slug falls back to
+   the GitHub handle).
+   bin/rails g speaker --name "川野十行" --github "jugyo"
+
+Example: Add aliases (alternative names) for a speaker. Each alias's slug is
+   parameterized from its name. Pass multiple aliases as space-separated values.
+   bin/rails g speaker --name "Jane Doe" --github "janedoe" \
+     --aliases "J. Doe" "Jane Doe Smith"
+
+Example: Add aliases to an existing speaker without touching its socials.
+   bin/rails g speaker --name "Jane Doe" --github "janedoe" \
+     --aliases "J. Doe"
