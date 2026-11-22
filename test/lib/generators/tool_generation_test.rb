@@ -105,7 +105,7 @@ class ToolGenerationTest < ActiveSupport::TestCase
         say("Talk created successfully!", :green)
       end
 
-      def say_error
+      def emit_error
         say_error("Oh no! Error!", :red)
       end
     end
