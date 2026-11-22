@@ -173,3 +173,23 @@ If the speaker has multiple aliases, they'll be included as aliases.
 ```
 
 To update a speaker programmatically, use `Static::Speaker` with a rails runner, e.g. `Static::Speaker.upsert(name: "Speaker Name", github: "github_handle")` followed by `Static::Speaker.save!`, or `Static::Speaker.find_by(name: "Speaker Name").add_alias(name: "Other Name")` and `save!`.
+
+## Speaker socials from the website
+
+**Speaker socials (GitHub, Twitter/X, Mastodon, Bluesky, LinkedIn, Speakerdeck, website) live in the global `data/speakers.yml`.**
+
+Grab each speaker's socials from the event website's speakers/team page and write them using the `generate_speaker` MCP tool (created from `SpeakerGenerator`).
+
+Run `bin/rails g speaker --help` to review the available parameters for the SpeakerGenerator, or call `generate_speaker` once per speaker:
+
+- `name:` — full name of the speaker (required)
+- `github:` — GitHub username, not a URL (required; use `""` if unknown)
+- `slug:` — URL-friendly slug (defaults to parameterized name; see Slug convention above)
+- `twitter:`, `website:`, `mastodon:`, `bluesky:`, `linkedin:`, `speakerdeck:` — any socials found on the site
+
+The tool adds the speaker when missing and updates only the provided fields when the speaker already exists — it never removes other socials or duplicates the entry.
+
+**Verify handles.** Confirm each GitHub handle with `github_profile(username)` by matching the profile's `name` to the speaker. A twitter handle often equals the github one but not always, and the data can contain wrong-person handles.
+Watch for renamed speakers — if the name is an alias of a current-name entry, patch the canonical entry instead.
+
+Run `bundle exec yerba check data/speakers.yml`, then `bin/rails validate:speakers` (or `bin/rails validate:all`), then seed and review locally per the workflow above.

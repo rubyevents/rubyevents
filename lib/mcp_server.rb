@@ -74,7 +74,7 @@ class MCPServer
     Rails::Generators.sorted_groups
     # SeriesGenerator creates a series rather than belonging to an event, so it
     # doesn't inherit from Generators::EventBase and isn't found via descendants.
-    generators = Generators::EventBase.descendants + [SeriesGenerator]
+    generators = Generators::EventBase.descendants + [SeriesGenerator, SpeakerGenerator]
     tool_classes = ToolGeneration.generate_tools(generators)
     tool_classes.each.with_object(discovered_tools) do |klass, tools|
       tools[tool_name(klass.name)] = klass
