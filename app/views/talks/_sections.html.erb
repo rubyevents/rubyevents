@@ -29,7 +29,12 @@
                     data-active
                   <% end %>
                 >
-                  <%= child_talk.title %>
+                  <% if child_talk.original_title.present? %>
+                    <span><%= child_talk.original_title %></span>
+                    <div class="text-xs text-gray-400"><%= child_talk.title %></div>
+                  <% else %>
+                    <%= child_talk.title %>
+                  <% end %>
 
                   <% if child_talk.language_name != "English" %>
                     <span data-controller="tooltip" data-tooltip-content-value="<%= child_talk.language_name %>">

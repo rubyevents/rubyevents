@@ -88,7 +88,15 @@
         </div>
       <% end %>
 
-      <%= link_to talk.title, talk_path(talk), class: "text-base font-bold leading-snug line-clamp-2 hover:underline", data: {turbo_frame: "_top"} %>
+      <% if talk.original_title.present? %>
+        <div class="flex flex-col gap-0.5">
+          <%= link_to talk.original_title, talk_path(talk), class: "text-base font-bold leading-snug line-clamp-2 hover:underline", data: {turbo_frame: "_top"} %>
+
+          <div class="line-clamp-1 text-sm text-gray-500"><%= talk.title %></div>
+        </div>
+      <% else %>
+        <%= link_to talk.title, talk_path(talk), class: "text-base font-bold leading-snug line-clamp-2 hover:underline", data: {turbo_frame: "_top"} %>
+      <% end %>
     </div>
 
     <% if talk.speakers.present? %>

@@ -303,7 +303,12 @@
                 <span class="shrink-0 text-2xl font-bold text-red-400"><%= index + 1 %></span>
 
                 <div class="min-w-0">
-                  <p class="truncate font-medium group-hover:underline"><%= talk.title %></p>
+                  <% if talk.original_title.present? %>
+                    <p class="truncate font-medium group-hover:underline"><%= talk.original_title %></p>
+                    <p class="truncate text-xs text-red-300/70"><%= talk.title %></p>
+                  <% else %>
+                    <p class="truncate font-medium group-hover:underline"><%= talk.title %></p>
+                  <% end %>
 
                   <p class="truncate text-sm text-red-300">
                     <%= talk.speakers.map(&:name).join(", ") %>
