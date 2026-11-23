@@ -11,18 +11,26 @@
 
   <div id="speakers" class="mb-6 grid min-w-full gap-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
     <% talks_without_slides.each do |talk| %>
-      <%= link_to talk_path(talk), id: dom_id(talk), class: "hover:bg-gray-100 p-4 rounded-lg border bg-white" do %>
+      <% speaker = talk.speakers.find { |s| s.speakerdeck.present? } || talk.speakers.first %>
+
+      <div id="<%= dom_id(talk) %>" class="rounded-lg border bg-white p-4">
         <div class="flex flex-col">
-          <% if talk.original_title.present? %>
-            <span class="font-bold"><%= talk.original_title %></span>
-            <span class="text-xs text-gray-500"><%= talk.title %></span>
-          <% else %>
-            <span class="font-bold"><%= talk.title %></span>
+          <%= link_to talk_path(talk), class: "font-bold hover:underline", data: {turbo_frame: "_top"} do %>
+            <% if talk.original_title.present? %>
+              <span class="font-bold"><%= talk.original_title %></span>
+              <span class="text-xs text-gray-500"><%= talk.title %></span>
+            <% else %>
+              <span class="font-bold"><%= talk.title %></span>
+            <% end %>
           <% end %>
 
-          <span><%= talk.speakers.first.name %></span>
+          <% if speaker&.speakerdeck.present? %>
+            <%= link_to speaker.name, "https://speakerdeck.com/#{speaker.speakerdeck}", class: "hover:underline", target: "_blank", rel: "noopener" %>
+          <% elsif speaker %>
+            <span><%= speaker.name %></span>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     <% end %>
   </div>
 <% end %>
