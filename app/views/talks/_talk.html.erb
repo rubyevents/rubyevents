@@ -265,7 +265,7 @@
             <% end %>
           </h2>
           <% if talk.original_title.present? %>
-            <div class="text-xs text-gray-500 line-clamp-1"><%= talk.title %></div>
+            <div class="line-clamp-1 text-xs text-gray-500"><%= talk.title %></div>
           <% end %>
           <%= speakers.map(&:name).to_sentence %> • <%= talk.formatted_date %> •
           <%= talk.to_location.to_html(show_links: false) %>
@@ -302,7 +302,7 @@
               <% end %>
             </b>
             <% if talk.original_title.present? %>
-              <div class="text-xs text-gray-500 line-clamp-1"><%= talk.title %></div>
+              <div class="line-clamp-1 text-xs text-gray-500"><%= talk.title %></div>
             <% end %>
             <br>
             <%= speakers.map(&:name).to_sentence %> • <%= talk.to_location.to_html(show_links: false) %>

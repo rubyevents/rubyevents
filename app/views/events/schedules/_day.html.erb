@@ -76,10 +76,11 @@
                 <div class="flex-col">
                   <% if talk.original_title.present? %>
                     <div class="text-md font-bold"><%= talk.original_title %></div>
-                    <div class="text-xs text-gray-400 truncate"><%= talk.title %></div>
+                    <div class="truncate text-xs text-gray-400"><%= talk.title %></div>
                   <% else %>
                     <div class="text-md font-bold"><%= talk.title %></div>
                   <% end %>
+
                   <br>
 
                   <div class="inline-flex flex-wrap justify-center gap-2 text-gray-500 group-hover:text-white">

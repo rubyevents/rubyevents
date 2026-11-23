@@ -139,8 +139,8 @@
         <%= link_to talk_path(talk, back_to: back_to, back_to_title: back_to_title), data: {action: "mouseover->preserve-scroll#updateLinkBackToWithScrollPosition", turbo_frame: "_top"} do %>
           <% if talk.original_title.present? %>
             <div class="flex flex-col gap-0.5">
-              <span class="text-sm font-sans font-medium"><%= talk.original_title %></span>
-              <span class="text-xs text-gray-500 line-clamp-1"><%= sanitize(talk.title_with_snippet, tags: ["mark"]) %></span>
+              <span class="font-sans text-sm font-medium"><%= talk.original_title %></span>
+              <span class="line-clamp-1 text-xs text-gray-500"><%= sanitize(talk.title_with_snippet, tags: ["mark"]) %></span>
             </div>
           <% else %>
             <%= content_tag :h2, class: "text-sm font-sans font-medium" do %>

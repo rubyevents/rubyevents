@@ -20,7 +20,7 @@
     <span class="<%= class_names("text-gray-900 [text-wrap:pretty]", compact ? "text-sm font-medium" : "font-semibold") %>">
       <% if talk.original_title.present? %>
         <%= talk.original_title %>
-        <div class="text-gray-500 <%= compact ? "text-xs" : "text-sm" %> line-clamp-1"><%= talk.title %></div>
+        <div class="line-clamp-1 text-gray-500 <%= compact ? "text-xs" : "text-sm" %>"><%= talk.title %></div>
       <% else %>
         <%= talk.title %>
       <% end %>

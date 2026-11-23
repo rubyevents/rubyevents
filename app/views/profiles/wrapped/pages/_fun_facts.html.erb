@@ -48,6 +48,7 @@
 
         <div>
           <p class="font-semibold text-blue-700">Longest Talk: <%= longest_watched.talk.formatted_duration %></p>
+
           <% if longest_watched.talk.original_title.present? %>
             <p class="line-clamp-2 text-sm text-gray-600"><%= longest_watched.talk.original_title %></p>
             <p class="line-clamp-2 text-xs text-gray-400"><%= longest_watched.talk.title %></p>
@@ -66,6 +67,7 @@
 
         <div>
           <p class="font-semibold text-green-700">Shortest Talk: <%= shortest_watched.talk.formatted_duration %></p>
+
           <p class="truncate text-sm text-gray-600">
             <% if shortest_watched.talk.original_title.present? %>
               <%= shortest_watched.talk.original_title.truncate(35) %>
