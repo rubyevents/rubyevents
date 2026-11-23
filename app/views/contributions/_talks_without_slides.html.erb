@@ -13,7 +13,7 @@
     <% talks_without_slides.each do |talk| %>
       <% speaker = talk.speakers.find { |s| s.speakerdeck.present? } || talk.speakers.first %>
 
-      <div id="<%= dom_id(talk) %>" class="p-4 rounded-lg border bg-white">
+      <div id="<%= dom_id(talk) %>" class="rounded-lg border bg-white p-4">
         <div class="flex flex-col">
           <%= link_to talk.title, talk_path(talk), class: "font-bold hover:underline", data: {turbo_frame: "_top"} %>
 
