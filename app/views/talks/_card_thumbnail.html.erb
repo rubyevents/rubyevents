@@ -94,9 +94,12 @@
       <% end %>
 
       <div class="absolute bottom-0 left-0 right-0 z-20 hidden p-3 text-white sm:block">
-        <div class="mb-1 line-clamp-1 text-sm font-semibold leading-tight">
-          <%= talk.title %>
-        </div>
+        <% if talk.original_title.present? %>
+          <div class="mb-1 line-clamp-1 text-sm font-semibold leading-tight"><%= talk.original_title %></div>
+          <div class="mb-1 line-clamp-1 text-xs text-white/80"><%= talk.title %></div>
+        <% else %>
+          <div class="mb-1 line-clamp-1 text-sm font-semibold leading-tight"><%= talk.title %></div>
+        <% end %>
 
         <div class="line-clamp-1 text-xs text-white/80">
           <% if speaker_text %>
@@ -115,9 +118,12 @@
     </div>
 
     <div class="mt-2 sm:hidden">
-      <div class="line-clamp-2 text-sm font-semibold leading-tight">
-        <%= talk.title %>
-      </div>
+      <% if talk.original_title.present? %>
+        <div class="line-clamp-2 text-sm font-semibold leading-tight"><%= talk.original_title %></div>
+        <div class="line-clamp-1 text-xs text-base-content/70"><%= talk.title %></div>
+      <% else %>
+        <div class="line-clamp-2 text-sm font-semibold leading-tight"><%= talk.title %></div>
+      <% end %>
 
       <div class="mt-0.5 line-clamp-1 text-xs text-base-content/70">
         <% if speaker_text %>

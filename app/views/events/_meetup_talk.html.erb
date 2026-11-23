@@ -17,7 +17,14 @@
   </div>
 
   <div class="flex min-w-0 flex-1 flex-col gap-0.5">
-    <span class="<%= class_names("text-gray-900 [text-wrap:pretty]", compact ? "text-sm font-medium" : "font-semibold") %>"><%= talk.title %></span>
+    <span class="<%= class_names("text-gray-900 [text-wrap:pretty]", compact ? "text-sm font-medium" : "font-semibold") %>">
+      <% if talk.original_title.present? %>
+        <%= talk.original_title %>
+        <div class="text-gray-500 <%= compact ? "text-xs" : "text-sm" %> line-clamp-1"><%= talk.title %></div>
+      <% else %>
+        <%= talk.title %>
+      <% end %>
+    </span>
 
     <span class="text-gray-500 <%= compact ? "text-xs" : "text-sm" %>">
       <%= speakers.map(&:name).to_sentence %>

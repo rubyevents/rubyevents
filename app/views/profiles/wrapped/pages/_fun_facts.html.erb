@@ -48,7 +48,12 @@
 
         <div>
           <p class="font-semibold text-blue-700">Longest Talk: <%= longest_watched.talk.formatted_duration %></p>
-          <p class="truncate text-sm text-gray-600"><%= longest_watched.talk.title.truncate(35) %></p>
+          <% if longest_watched.talk.original_title.present? %>
+            <p class="line-clamp-2 text-sm text-gray-600"><%= longest_watched.talk.original_title %></p>
+            <p class="line-clamp-2 text-xs text-gray-400"><%= longest_watched.talk.title %></p>
+          <% else %>
+            <p class="truncate text-sm text-gray-600"><%= longest_watched.talk.title.truncate(35) %></p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -61,7 +66,13 @@
 
         <div>
           <p class="font-semibold text-green-700">Shortest Talk: <%= shortest_watched.talk.formatted_duration %></p>
-          <p class="truncate text-sm text-gray-600"><%= shortest_watched.talk.title.truncate(35) %></p>
+          <p class="truncate text-sm text-gray-600">
+            <% if shortest_watched.talk.original_title.present? %>
+              <%= shortest_watched.talk.original_title.truncate(35) %>
+            <% else %>
+              <%= shortest_watched.talk.title.truncate(35) %>
+            <% end %>
+          </p>
         </div>
       </div>
     </div>

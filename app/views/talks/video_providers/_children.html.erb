@@ -9,8 +9,13 @@
       text-xl text-white
     "
   >
-    <span class="mb-2 rounded-full p-4 text-center text-2xl font-bold">
-      <%= talk.title %>
+    <span class="mb-2 rounded-full p-4 text-center text-2xl font-bold line-clamp-2">
+      <% if talk.original_title.present? %>
+        <%= talk.original_title %>
+        <div class="text-xs text-gray-300 line-clamp-1"><%= talk.title %></div>
+      <% else %>
+        <%= talk.title %>
+      <% end %>
     </span>
 
     <%= render partial: "talks/sections", locals: {talk: talk} %>

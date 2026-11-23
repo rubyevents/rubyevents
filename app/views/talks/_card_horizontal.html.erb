@@ -8,7 +8,7 @@
 <% scheduled = talk.scheduled? || talk.parent_talk&.scheduled? %>
 
 <% profile = variant == :profile %>
-<% thumb_width_class = profile ? "w-[132px]" : "w-20" %>
+<% thumb_width_class = profile ? "w-[132px]" : "w-28" %>
 <% title_class = profile ? "font-bold text-[15px] leading-[1.3] line-clamp-2 [text-wrap:pretty]" : "font-regular line-clamp-1" %>
 <% thumbnail_classes = talk.thumbnail_classes.to_s %>
 <% fit_class = thumbnail_classes.match?(/(?:\A|\s)object-(?:contain|cover|fill|none|scale-down)\b/) ? nil : "object-cover" %>
@@ -85,8 +85,10 @@
   </div>
 
   <div class="flex min-w-0 flex-grow flex-col gap-1 text-sm">
-    <%= content_tag :div do %>
-      <%= content_tag :div, talk.title, class: title_class %>
+    <%= content_tag :div, (talk.original_title.presence || talk.title), class: title_class %>
+
+    <% if talk.original_title.present? %>
+      <div class="text-xs text-gray-500 line-clamp-1"><%= talk.title %></div>
     <% end %>
 
     <% meta = if profile
