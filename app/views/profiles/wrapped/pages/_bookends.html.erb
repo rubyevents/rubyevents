@@ -6,7 +6,12 @@
     <p class="mb-2 text-sm text-gray-500">🎬 Your first watch of the year:</p>
 
     <div class="rounded-lg border border-green-200 bg-green-50 p-4">
-      <p class="font-semibold"><%= first_watched.talk.title.truncate(60) %></p>
+      <% if first_watched.talk.original_title.present? %>
+        <p class="font-semibold"><%= first_watched.talk.original_title.truncate(60) %></p>
+        <p class="truncate text-xs text-gray-400"><%= first_watched.talk.title.truncate(60) %></p>
+      <% else %>
+        <p class="font-semibold"><%= first_watched.talk.title.truncate(60) %></p>
+      <% end %>
 
       <p class="mt-1 text-sm text-gray-600">
         by <%= first_watched.talk.speakers.map(&:name).join(", ").truncate(40) %>
@@ -22,7 +27,12 @@
     <p class="mb-2 text-sm text-gray-500">🏁 Your last watch of the year:</p>
 
     <div class="rounded-lg border border-blue-200 bg-blue-50 p-4">
-      <p class="font-semibold"><%= last_watched.talk.title.truncate(60) %></p>
+      <% if last_watched.talk.original_title.present? %>
+        <p class="font-semibold"><%= last_watched.talk.original_title.truncate(60) %></p>
+        <p class="truncate text-xs text-gray-400"><%= last_watched.talk.title.truncate(60) %></p>
+      <% else %>
+        <p class="font-semibold"><%= last_watched.talk.title.truncate(60) %></p>
+      <% end %>
 
       <p class="mt-1 text-sm text-gray-600">
         by <%= last_watched.talk.speakers.map(&:name).join(", ").truncate(40) %>

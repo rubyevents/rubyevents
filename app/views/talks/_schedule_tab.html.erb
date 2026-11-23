@@ -76,7 +76,14 @@
     <% if prev_talk %>
       <%= link_to talk_path(prev_talk), class: "flex flex-col h-full p-3 rounded border bg-white hover:bg-gray-50 transition-colors overflow-hidden" do %>
         <span class="mb-1 truncate text-xs text-gray-400"><%= fa("arrow-left", size: :xs, class: "fill-gray-400 inline mr-1") %> <%= prev_label %></span>
-        <span class="line-clamp-2 text-sm font-medium"><%= prev_talk.title %></span>
+
+        <% if prev_talk.original_title.present? %>
+          <div class="line-clamp-2 text-sm font-medium"><%= prev_talk.original_title %></div>
+          <div class="line-clamp-1 text-xs text-gray-500"><%= prev_talk.title %></div>
+        <% else %>
+          <span class="line-clamp-2 text-sm font-medium"><%= prev_talk.title %></span>
+        <% end %>
+
         <span class="mt-1 block w-full truncate text-xs text-gray-500"><%= prev_talk.speakers.map(&:name).join(", ") %></span>
 
         <% if prev_time %>
@@ -94,7 +101,14 @@
   <div class="min-w-0 flex-1">
     <div class="flex h-full flex-col overflow-hidden rounded bg-primary p-3 text-white">
       <span class="mb-1 text-xs text-white/70">Now Playing</span>
-      <span class="line-clamp-2 text-sm font-medium"><%= talk.title %></span>
+
+      <% if talk.original_title.present? %>
+        <div class="line-clamp-2 text-sm font-medium"><%= talk.original_title %></div>
+        <div class="line-clamp-1 text-xs text-white/70"><%= talk.title %></div>
+      <% else %>
+        <span class="line-clamp-2 text-sm font-medium"><%= talk.title %></span>
+      <% end %>
+
       <span class="mt-1 block w-full truncate text-xs text-white/70"><%= talk.speakers.map(&:name).join(", ") %></span>
 
       <% if current_time %>
@@ -107,7 +121,14 @@
     <% if next_talk %>
       <%= link_to talk_path(next_talk), class: "flex flex-col h-full p-3 rounded border bg-white hover:bg-gray-50 transition-colors overflow-hidden" do %>
         <span class="mb-1 truncate text-xs text-gray-400"><%= next_label %> <%= fa("arrow-right", size: :xs, class: "fill-gray-400 inline ml-1") %></span>
-        <span class="line-clamp-2 text-sm font-medium"><%= next_talk.title %></span>
+
+        <% if next_talk.original_title.present? %>
+          <div class="line-clamp-2 text-sm font-medium"><%= next_talk.original_title %></div>
+          <div class="line-clamp-1 text-xs text-gray-500"><%= next_talk.title %></div>
+        <% else %>
+          <span class="line-clamp-2 text-sm font-medium"><%= next_talk.title %></span>
+        <% end %>
+
         <span class="mt-1 block w-full truncate text-xs text-gray-500"><%= next_talk.speakers.map(&:name).join(", ") %></span>
 
         <% if next_time %>
@@ -142,7 +163,13 @@
             </span>
           <% end %>
 
-          <span class="line-clamp-2 text-sm font-medium"><%= parallel_talk.title %></span>
+          <% if parallel_talk.original_title.present? %>
+            <div class="line-clamp-2 text-sm font-medium"><%= parallel_talk.original_title %></div>
+            <div class="line-clamp-1 text-xs text-gray-500"><%= parallel_talk.title %></div>
+          <% else %>
+            <span class="line-clamp-2 text-sm font-medium"><%= parallel_talk.title %></span>
+          <% end %>
+
           <span class="mt-1 block w-full truncate text-xs text-gray-500"><%= parallel_talk.speakers.map(&:name).join(", ") %></span>
         <% end %>
       <% end %>
@@ -198,7 +225,12 @@
                   </div>
 
                   <div class="min-w-0 flex-grow">
-                    <div class="truncate font-medium"><%= schedule_talk.title.truncate(100) %></div>
+                    <% if schedule_talk.original_title.present? %>
+                      <div class="truncate font-medium"><%= schedule_talk.original_title.truncate(100) %></div>
+                      <div class="truncate text-xs text-gray-500"><%= schedule_talk.title.truncate(100) %></div>
+                    <% else %>
+                      <div class="truncate font-medium"><%= schedule_talk.title.truncate(100) %></div>
+                    <% end %>
 
                     <div class="flex max-w-full overflow-hidden truncate text-xs <%= speaker_classes %>">
                       <%= schedule_talk.speakers.map(&:name).join(", ").truncate(120) %>
