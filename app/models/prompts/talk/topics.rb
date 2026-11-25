@@ -1,7 +1,7 @@
 module Prompts
   module Talk
     class Topics < Prompts::Base
-      MODEL = "gpt-5-mini"
+      MODEL = "gpt-6.1-terra"
 
       def initialize(talk:)
         @talk = talk

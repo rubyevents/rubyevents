@@ -1,7 +1,7 @@
 module Prompts
   module Topic
     class MatchTalks < Prompts::Base
-      MODEL = "gpt-4.1"
+      MODEL = "gpt-6-luna"
 
       def initialize(topic:, talks:)
         @topic = topic

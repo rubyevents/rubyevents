@@ -1,7 +1,7 @@
 module Prompts
   module Talk
     class Summary < Prompts::Base
-      MODEL = "gpt-5"
+      MODEL = "gpt-6.1-sol"
 
       def initialize(talk:)
         @talk = talk
