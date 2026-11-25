@@ -11,7 +11,7 @@ metadata:
 - [ ] Check `git status`. Commit the work first, and leave unrelated untracked files alone.
 - [ ] Push the branch: `git push -u origin <branch>`.
 - [ ] Find the real base. This repo will probably be a fork, so `origin/main` is often stale. Use `git log --oneline upstream/main..HEAD` to see only your commits.
-- [ ] Write the PR body to a file outside the repo, for example `/tmp/pr-body.md`. Writing it inside the repo dirties the tree.
+- [ ] Write the PR body to a file, for example `/tmp/branch-name-pr-body.md`.
 - [ ] Create the PR as a draft.
 - [ ] Attach screenshots, if there are any.
 - [ ] Verify what GitHub actually stored.
@@ -21,8 +21,6 @@ metadata:
 The template lives at `.github/pull_request_template.md` (all lowercase). Read it every time and keep its section headings and order. This template _definitely_ exists, but might not be found by a glob search, because .github is hidden. Make sure you find it and use it to write the PR.
 
 You can copy the template into a /tmp/ directory and edit the pull request body there - good for lots of edits.
-
-```bash
 
 ## Opening as a draft
 

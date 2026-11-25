@@ -56,8 +56,17 @@
     <% end %>
 
     <div class="min-w-0 flex-1 px-1">
-      <%= ui_tooltip talk.title, class: "w-fit max-w-full truncate text-xs font-medium #{text_class}", tabindex: 0 do %>
-        <%= talk.title %>
+      <% if talk.original_title.present? %>
+        <%= ui_tooltip talk.original_title, class: "w-fit max-w-full truncate text-xs font-medium #{text_class}", tabindex: 0 do %>
+          <div class="flex flex-col gap-0.5">
+            <span class="#{text_class} w-fit max-w-full truncate text-xs font-medium"><%= talk.original_title %></span>
+            <div class="truncate text-xs text-gray-400"><%= talk.title %></div>
+          </div>
+        <% end %>
+      <% else %>
+        <%= ui_tooltip talk.title, class: "w-fit max-w-full truncate text-xs font-medium #{text_class}", tabindex: 0 do %>
+          <%= talk.title %>
+        <% end %>
       <% end %>
 
       <div class="truncate text-xs text-gray-400">

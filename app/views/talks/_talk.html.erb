@@ -52,12 +52,11 @@
     <div class="flex w-full flex-col divide-y md:gap-1">
       <div class="flex w-full flex-wrap justify-between divide-y">
         <div class="py-4 text-xl font-bold">
-          <span><%= talk.title %></span>
-
           <% if talk.original_title.present? %>
-            <div class="mb-2 text-xs text-gray-500">
-              Original title (<%= talk.language %>): <%= talk.original_title %>
-            </div>
+            <span><%= talk.original_title %></span>
+            <div class="mb-2 text-xs text-gray-500"><%= talk.title %></div>
+          <% else %>
+            <span><%= talk.title %></span>
           <% end %>
         </div>
 
@@ -258,7 +257,16 @@
             </div>
           <% end %>
 
-          <h2><%= talk.title %></h2>
+          <h2>
+            <% if talk.original_title.present? %>
+              <%= talk.original_title %>
+            <% else %>
+              <%= talk.title %>
+            <% end %>
+          </h2>
+          <% if talk.original_title.present? %>
+            <div class="line-clamp-1 text-xs text-gray-500"><%= talk.title %></div>
+          <% end %>
           <%= speakers.map(&:name).to_sentence %> • <%= talk.formatted_date %> •
           <%= talk.to_location.to_html(show_links: false) %>
           <% if language && language != "English" %>
@@ -286,7 +294,17 @@
       >
         <article class="prose">
           <p>
-            <b><%= talk.title %></b><br>
+            <b>
+              <% if talk.original_title.present? %>
+                <%= talk.original_title %>
+              <% else %>
+                <%= talk.title %>
+              <% end %>
+            </b>
+            <% if talk.original_title.present? %>
+              <div class="line-clamp-1 text-xs text-gray-500"><%= talk.title %></div>
+            <% end %>
+            <br>
             <%= speakers.map(&:name).to_sentence %> • <%= talk.to_location.to_html(show_links: false) %>
             <% if language && language != "English" %>
               • <%= language %>
