@@ -8,3 +8,10 @@ Example:
 
   This will create a venue file with geocoded coordinates and all address values.
     data/tiny-ruby-conf/tiny-ruby-conf-2026/venue.yml
+
+  To add an additional location (e.g. a hotel or afterparty) to an existing venue,
+  pass --additional_location with the kind. --name, --address, --description and
+  --url are reused for the location and its address is geocoded:
+
+  bin/rails g venue --event=tiny-ruby-conf-2026 --additional_location="Afterparty Location" \
+    --name="Café & Bar Odessa" --address="Traverssikuja 3, 00510 Helsinki, Finland"

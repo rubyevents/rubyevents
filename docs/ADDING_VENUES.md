@@ -36,20 +36,20 @@ bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --na
 > For more accurate results, set your GEOLOCATE_API_KEY in [.env](/.env) to a google api key.
 > Otherwise nominatim and open street map will be used for geolocation.
 
-There are multiple optional sections in the venue information, including locations, rooms, spaces, accessbility, and nearby.
+There are multiple optional sections in the venue information, including rooms, spaces, accessibility, and nearby.
 
 To include or exclude these sections, pass flags to the generator.
 
 This includes all sections:
 
 ```bash
-bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --name="Korjaamo Kino cinema" --address "Töölönkatu 51 A-B, 00250 Helsinki" --accessbility --nearby --locations --rooms --spaces
+bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --name="Korjaamo Kino cinema" --address "Töölönkatu 51 A-B, 00250 Helsinki" --accessibility --nearby --rooms --spaces
 ```
 
 This includes only primary venue information:
 
 ```bash
-bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --name="Korjaamo Kino cinema" --address "Töölönkatu 51 A-B, 00250 Helsinki" --no-accessbility --no-nearby --no-locations --no-rooms --no-spaces
+bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 --name="Korjaamo Kino cinema" --address "Töölönkatu 51 A-B, 00250 Helsinki" --no-accessibility --no-nearby --no-rooms --no-spaces
 ```
 
 Check the usage instructions using `--help`.
@@ -57,6 +57,28 @@ Check the usage instructions using `--help`.
 ```bash
 bin/rails g venue --help
 ```
+
+### Adding an additional location
+
+Use `--additional_location` to append a location — such as a hotel or an
+afterparty — to an **existing** `venue.yml`. Its value is the location's `kind`,
+and the other fields are reused from the regular flags:
+
+```bash
+bin/rails g venue --event-series=tiny-ruby-conf --event=tiny-ruby-conf-2026 \
+  --additional_location="Afterparty Location" \
+  --name="Café & Bar Odessa" \
+  --address="Traverssikuja 3, 00510 Helsinki, Finland" \
+  --description="Official afterparty venue" \
+  --url="https://odessa.example.com"
+```
+
+The address is geocoded, map links are generated, and a new entry is appended to
+the `locations:` array. The primary venue and the event's coordinates are left
+untouched, so you can run the generator once per additional location.
+
+Include "Hotel" in the kind (e.g. `Conference Hotel`) to have the location shown
+as a hotel instead of a general "Other Location".
 
 ## Step-by-Step Guide
 

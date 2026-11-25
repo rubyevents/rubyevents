@@ -29,7 +29,7 @@ data/speakers.yml          # global, one entry per speaker
 
 `involvements`, `sponsors`, `venue`, `schedule`, `event`, `cfp`, `talk`, `newsletter`. They write via yerba and validate. Quirks that bite:
 - **sponsors**: args are pipe-separated `"Name|url|Tier|badge"`, `--event-series --event`. The template **ignores the url and hardcodes placeholder `website`/`logo_url`** — you must fill real values afterward (`yerba set`). Tiers get `level` 1,2,3… in first-seen order, so list all Gold, then all Silver, etc.
-- **venue**: `--name --address` (address is **geocoded**); flags `--locations/ --rooms/--spaces/--accessibility/--nearby` add **one placeholder** section each. It **also overwrites `event.yml` coordinates** with the geocoded venue coords. Geocoding by *name* can resolve the wrong place (e.g. wrong campus) — verify and fix with the `geocode` MCP tool + `yerba set`.
+- **venue**: `--name --address` (address is **geocoded**); flags `--rooms/--spaces/--accessibility/--nearby` add **one placeholder** section each. It **also overwrites `event.yml` coordinates** with the geocoded venue coords. Geocoding by *name* can resolve the wrong place (e.g. wrong campus) — verify and fix with the `geocode` MCP tool + `yerba set`.
 - **schedule**: auto-fills the talk *count* from videos.yml into a **uniform** grid you then rewrite to the real program (see Schedule below).
 - Generators leave a `# docs/ADDING_*.md` / `# TODO:` header. Convention is files start at `---`; delete the header lines (sed) once the file is real, then `yerba check`.
 
