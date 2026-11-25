@@ -29,7 +29,7 @@ module Generators
       def event_series_slug
         @series_slug ||= options[:event_series]
           || static_event&.series_slug
-          || say_error("Could not determine event series.", :red)
+          || raise(Thor::Error, "Could not determine event series. Pass --event-series.")
       end
 
       def static_series

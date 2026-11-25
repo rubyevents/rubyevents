@@ -132,6 +132,8 @@ Run `bin/rails g venue --help` to review the available parameters for the VenueG
 
 Create a command to reproduce the venue.
 
+Add hotels, afterparties, and other secondary locations with `--additional_location="<kind>"` on the VenueGenerator, or the `additional_location` parameter of the `generate_venue` MCP tool (`GenerateVenueTool`). The venue file must already exist, and the tool must be called once per location. Use a kind containing "Hotel" (e.g. `Conference Hotel`) for a hotel so it is shown as one.
+
 If you create a venue capture a screenshot from http://localhost:3000/events/<event-slug>/venue after the changes are seeded.
 
 ## Speakers
