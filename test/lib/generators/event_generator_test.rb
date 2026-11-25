@@ -189,6 +189,19 @@ class EventGeneratorTest < Rails::Generators::TestCase
     Static::Validators::MeetupTitle.reset_meetup_dates!
   end
 
+  test "reports a clear error when the event series cannot be determined" do
+    stderr = capture(:stderr) do
+      run_generator ["--force",
+        "--event", "not-a-real-event-2099",
+        "--title", "Not a real event",
+        "--start-date", "2099-01-01",
+        "--end-date", "2099-01-01",
+        "--online"]
+    end
+
+    assert_match(/Could not determine event series\. Pass --event-series\./, stderr)
+  end
+
   test "non-meetup event without dates does not generate a file" do
     event_file_path = File.join(destination_root, "data/rubyconf/2030/event.yml")
 
