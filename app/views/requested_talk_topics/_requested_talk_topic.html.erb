@@ -1,0 +1,46 @@
+<div class="card bg-base-100 border shadow-sm">
+  <div class="card-body">
+    <div class="flex justify-between items-start gap-6">
+
+      <div class="flex-1 min-w-0">
+        <%= link_to requested_talk_topic_path(topic) do %>
+
+          <p class="font-semibold text-xl">
+            <%= topic.title %>
+          </p>
+
+          <p class="mt-2 text-gray-500 break-words">
+            <%= truncate(topic.description, length: 180) %>
+          </p>
+
+          <div class="mt-4 text-sm text-gray-500">
+            Requested by
+            <%= link_to topic.user.name,
+                  profile_path(topic.user),
+                  class: "font-medium hover:underline" %>
+          </div>
+
+          <div class="mt-2">
+            <span class="badge badge-outline">
+              <%= topic.status.humanize %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="flex flex-col items-center gap-2 shrink-0 w-24">
+        <%= button_to requested_talk_topic_vote_path(topic),
+              method: :post,
+              class: "btn btn-outline w-full" do %>
+          <%= fa("arrow-up", size: :sm) %>
+          Vote
+        <% end %>
+
+        <span class="font-semibold">
+          <%= topic.votes_count %>
+        </span>
+      </div>
+
+    </div>
+  </div>
+</div>
