@@ -1,5 +1,7 @@
 <%# locals: (event:, participation: nil) %>
 
+<% participation ||= Current.user&.participation_for(event) %>
+
 <% meetup = event.meetup? && event.start_date.present? %>
 
 <div
