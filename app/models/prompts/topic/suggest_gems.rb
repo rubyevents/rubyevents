@@ -1,7 +1,7 @@
 module Prompts
   module Topic
     class SuggestGems < Prompts::Base
-      MODEL = "gpt-4o-mini"
+      MODEL = "gpt-6-luna"
 
       def initialize(topics:)
         @topics = topics

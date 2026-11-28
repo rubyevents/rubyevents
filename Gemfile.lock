@@ -699,13 +699,14 @@ GEM
     ruby-vips (2.3.0)
       ffi (~> 1.12)
       logger
-    ruby_llm (2.1.1)
+    ruby_llm (2.2.3)
       base64
       faraday (>= 1.10.0, != 2.0.0)
       faraday-multipart (>= 1)
       faraday-net_http (>= 1)
       faraday-retry (>= 1)
       json (< 4)
+      logger
       marcel (>= 1.0, < 3)
       schematist (~> 1.1)
       zeitwerk (~> 2)
@@ -921,7 +922,7 @@ DEPENDENCIES
   rouge (~> 4.4)
   rss (~> 0.3.1)
   ruby-lsp-rails
-  ruby_llm (~> 2.1.0)
+  ruby_llm (~> 2.2.3)
   schematist (~> 1.1)
   selenium-webdriver
   simplecov

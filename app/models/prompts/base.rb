@@ -1,6 +1,6 @@
 module Prompts
   class Base
-    MODEL = "gpt-5-mini"
+    MODEL = "gpt-6.1-terra"
 
     def to_params
       {
